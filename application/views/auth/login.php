@@ -17,7 +17,7 @@
                                     <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="60">
                                     <hr>
                                     <h1 class="h4 text-gray-900 mb-4"> <b>PENTA</b> |
-                                        <span>DISNAKERTRANS YEYEEYEY</span> </h1>
+                                        <span>DISNAKERTRANS</span> </h1>
 
                                 </div>
 
