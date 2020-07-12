@@ -1,0 +1,208 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Pmi extends CI_Controller
+
+{
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('Master');
+        $this->load->model('Wilayah');
+        // $this->load->model('ProvinsiModel');
+        // $this->load->model('KotaModel');
+    }
+
+
+    // FUNCTION Tambah START
+    public function index()
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data wilayah
+        // $data['wilayah_provinsi'] = $this->Wilayah->view();
+
+        $data['wilayah_provinsi'] = $this->Wilayah->provinsi();
+      
+
+
+        // $data['wilayah_provinsi'] = $this->db->get('wilayah_provinsi')->result_array();
+        // $data['wilayah_kabupaten'] = $this->db->get('wilayah_kabupaten')->result_array();
+        // $data['wilayah_kecamatan'] = $this->db->get('wilayah_kecamatan')->result_array();
+        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        // $data['wilayah_desa'] = $this->db->get('wilayah_desa')->result_array();
+
+        // Load Model User Role
+        $data['pmi'] = $this->Master->getPmi();
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kab', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('negara', 'Negara', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
+        $this->form_validation->set_rules('berangkat', 'Berangkat', 'required|trim');
+        $this->form_validation->set_rules('pengirim', 'Pengirim', 'required|trim');
+        $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data PMI';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('pmi/index', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'nama' => $this->input->post('nama', true),
+                'tgl_lahir' => $this->input->post('tgl_lahir', true),
+                'provinsi' => $this->input->post('prov', true),
+                'kabupaten' => $this->input->post('kab', true),
+                'kecamatan' => $this->input->post('kec', true),
+                'desa' => $this->input->post('desa', true),
+                'negara_bekerja' => $this->input->post('negara', true),
+                'jenis_pekerjaan' => $this->input->post('jenis', true),
+                'berangkat_melalui' => $this->input->post('berangkat', true),
+                'pengirim' => $this->input->post('pengirim', true),
+                'lama_bekerja' => $this->input->post('lama', true),
+                'date_created' => date('Y-m-d'),
+
+            ];
+            // cek jika ada gambar yang akan di upload
+            // masih salah dan belum bisa upload gambar
+            // cek jika ada gambar yang akan di upload
+
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '5000';
+                $config['upload_path']   = './assets/img/pmi';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('pmi/index');
+                }
+            }
+
+            $this->db->insert('tb_pmi', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! PMI data has been added succesfully. </div>');
+            redirect('pmi/index');
+        }
+    }
+
+    function kabupaten()
+    {
+        if ($this->input->post('provinsi_id')) {
+            echo $this->wilayah->kabupaten($this->input->post('provinsi_id'));
+        }
+    }
+
+    function kecamatan()
+    {
+        if ($this->input->post('kabupaten_id')) {
+            echo $this->wilayah->kecamatan($this->input->post('kabupaten_id'));
+        }
+    }
+
+
+    // public function listKota()
+    // {
+    //     // Ambil data ID Provinsi yang dikirim via ajax post
+    //     $id_provinsi = $this->input->post('provinsi_id');
+
+    //     $wilayah_kabupaten = $this->KotaModel->viewByProvinsi($id_provinsi);
+
+    //     // Buat variabel untuk menampung tag-tag option nya
+    //     // Set defaultnya dengan tag option Pilih
+    //     $lists = "<option value=''>Pilih</option>";
+
+    //     foreach ($wilayah_kabupaten as $data) {
+    //         $lists .= "<option value='" . $data->id . "'>" . $data->nama . "</option>"; // Tambahkan tag option ke variabel $lists
+    //     }
+
+    //     $callback = array('list_kota' => $lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+    //     echo json_encode($callback); // konversi varibael $callback menjadi JSON
+    // }
+
+
+    public function deletePmi($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_pmi');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected PMI has succesfully deleted, be carefull for manage data. </div>');
+        redirect('pmi/');
+    }
+
+    public function editPmi($id)
+    {
+        $data['title'] = 'Edit PMI';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+
+        $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
+        $this->form_validation->set_rules('bio', 'Bio', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/edit_user', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $name = $this->input->post('name', $id);
+            $email = $this->input->post('email', $id);
+            $bio = $this->input->post('bio', $id);
+
+            // cek jika ada gambar yang akan di upload
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '2500';
+                $config['upload_path']   = './assets/img/profile';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $old_image = $data['user']['image'];
+                    if ($old_image != 'default.png') {
+                        unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                    }
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('user');
+                }
+            }
+
+            $this->db->set('name', $name);
+            $this->db->set('bio', $bio);
+
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected PMI has been updated! </div>');
+            redirect('pmi/index');
+        }
+    }
+}
