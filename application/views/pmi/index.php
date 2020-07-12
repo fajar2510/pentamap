@@ -250,7 +250,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
+                            <label for="negara" class="col-sm-3 col-form-label">Negara JAYAA</label>
                             <div class="col-sm-4">
                                 <select name="negara" id="negara" class="form-control">
                                     <option value=""> Pilih Negara </option>
