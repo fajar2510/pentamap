@@ -85,7 +85,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTambahLabel">Tambah SubMenu</h5>
@@ -95,23 +95,39 @@
             </div>
             <form action="<?= base_url('menu/submenu'); ?>" method="post">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Judul . . . ">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-form-label">Judul Sub</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= set_value('title'); ?>">
+                            <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <select name="menu_id" id="menu_id" class="form-control">
-                            <option value=""> Pilih Menu </option>
-                            <?php foreach ($menu as $m) : ?>
-                                <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="form-group row">
+                        <label for="negara" class="col-sm-3 col-form-label">Menu</label>
+                        <div class="col-sm-5">
+                            <select name="menu_id" id="menu_id" class="form-control">
+                                <option value=""> Pilih Menu </option>
+                                <?php foreach ($menu as $m) : ?>
+                                    <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . ">
+                    <div class="form-group row">
+                        <label for="url" class="col-sm-3 col-form-label">URL</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . ">
+                            <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . ">
+                    <div class="form-group row">
+                        <label for="icon" class="col-sm-3 col-form-label">Font Awesome Ikon</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . ">
+                            <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>

@@ -83,24 +83,25 @@
                             <?= form_error('menu', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
-                    <div class="modal-footer">
 
-                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
-                            <span class="icon text-gray-600">
-                                <i class="fas fa-window-close"></i>
-                            </span>
-                            <span class="text">Tutup</span>
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <span class="text">Tambahkan</span>
-                        </button>
-
-                    </div>
                 </div>
             </form>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                    <span class="icon text-gray-600">
+                        <i class="fas fa-window-close"></i>
+                    </span>
+                    <span class="text">Tutup</span>
+                </button>
+                <button type="submit" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Tambahkan</span>
+                </button>
+
+            </div>
         </div>
     </div>
 </div>
