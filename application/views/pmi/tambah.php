@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('pmi/index'); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('pmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Status</label>
@@ -59,7 +59,16 @@
                                             <input class="form-control" type="date" value="1997-08-19" id="tgl_lahir" name="tgl_lahir">
                                         </div>
                                     </div>
-
+                                    <div class="form-group row">
+                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                        <div class="col-sm-4">
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value=""> Pilih Gender </option>
+                                                <option value="L"> Laki-Laki </option>
+                                                <option value="P"> Perempuan </option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <label for="password" class="col-sm-3 col-form-label">Alamat</label>
@@ -68,7 +77,7 @@
                                                 <option value=""> Pilih Provinsi </option>
                                                 <?php
                                                 foreach ($wilayah_provinsi as $row) {
-                                                    echo '<option value="' . $row->id . '">' . $row->nama . '</option>';
+                                                    echo '<option value="' . $row->nama . '">' . $row->nama . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -113,7 +122,7 @@
                                             <select name="negara" id="negara" class="form-control">
                                                 <option value=""> Pilih Negara </option>
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['kode_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

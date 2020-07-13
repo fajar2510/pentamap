@@ -15,7 +15,7 @@
 
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <?= form_error('menu',  '<div class="alert alert-danger" role="alert">', '</div>'); ?>
             <?= $this->session->flashdata('message'); ?>
 
@@ -28,9 +28,9 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
-                                    <th scope="col" width="8%">#</th>
-                                    <th scope="col">Menu</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col" width="7%">#</th>
+                                    <th scope="col" width="73%">Menu</th>
+                                    <th scope="col" width="15%">Aksi</th>
 
                                 </tr>
                             </thead>
@@ -39,7 +39,7 @@
                                 <?php foreach ($menu as $m) : ?>
                                     <tr align="center">
                                         <th scope="row"><?= $i; ?></th>
-                                        <td><?= $m['menu']; ?></td>
+                                        <td> <b>[ </b> <i><?= $m['menu']; ?></i> <b> ]</b> </td>
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
