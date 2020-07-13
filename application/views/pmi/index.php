@@ -38,8 +38,11 @@
                                 <span class="text">Filter</span>
                             </a>
                             <div>
-
-                                <span>
+                                <div class="container">
+                                    Rentang Awal: <input id="startDate" width="276" />
+                                    Rentang Akhir: <input id="endDate" width="276" />
+                                </div>
+                                <!-- <span>
                                     <div class="form-group row">
                                         <label for="ren_awal" class="col-4 col-form-label">
                                             <h6 class="m-0 font-weight-bold text-primary text-left"> Rentang Awal</h6>
@@ -56,7 +59,7 @@
                                         </label>
                                         <input class="form-control" type="date" value="2018-08-19" id="ren_akhir" name="ren_akhir">
                                     </div>
-                                </span>
+                                </span> -->
                             </div>
 
 
@@ -250,7 +253,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="negara" class="col-sm-3 col-form-label">Negara JAYAA</label>
+                            <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                             <div class="col-sm-4">
                                 <select name="negara" id="negara" class="form-control">
                                     <option value=""> Pilih Negara </option>

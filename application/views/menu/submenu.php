@@ -2,7 +2,15 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+        <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Tambah</span>
+        </a>
+    </div>
 
     <div class="row">
         <div class="col-lg">
@@ -14,38 +22,54 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-info mb-3" data-toggle="modal" data-target="#newSubMenuModal">Add New SubMenu</a>
-            <table class=" table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Menu</th>
-                        <th scope="col">Url</th>
-                        <th scope="col">Icon</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($subMenu as $sm) : ?>
-                        <tr>
-                            <th scope="row"><?= $i; ?></th>
-                            <td><?= $sm['title']; ?></td>
-                            <td><?= $sm['menu']; ?></td>
-                            <td><?= $sm['url']; ?></td>
-                            <td><?= $sm['icon']; ?></td>
-                            <td><?= $sm['is_active']; ?></td>
-                            <td>
-                                <a href="" class="badge badge-success">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
-                            </td>
-                        </tr>
-                        <?php $i++; ?>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Kelola Data <?= $title; ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr align="center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Menu</th>
+                                    <th scope="col">Url</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($subMenu as $sm) : ?>
+                                    <tr align="center">
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $sm['title']; ?></td>
+                                        <td><?= $sm['menu']; ?></td>
+                                        <td><?= $sm['url']; ?></td>
+                                        <td><?= $sm['icon']; ?></td>
+                                        <td> <?php if ($sm['is_active'] == 1) {
+                                                    echo 'Aktif';
+                                                } else {
+                                                    echo 'Tidak Aktif';
+                                                } ?>
+
+                                        <td>
+                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
@@ -60,11 +84,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="newSubMenuModal" tabindex="-1" role="dialog" aria-labelledby="newSubMenuModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSubMenuModalLabel">Add New SubMenu</h5>
+                <h5 class="modal-title" id="modalTambahLabel">Tambah SubMenu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,11 +96,11 @@
             <form action="<?= base_url('menu/submenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="SubMenu title . . . ">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Judul . . . ">
                     </div>
                     <div class="form-group">
                         <select name="menu_id" id="menu_id" class="form-control">
-                            <option value=""> Select Menu </option>
+                            <option value=""> Pilih Menu </option>
                             <?php foreach ($menu as $m) : ?>
                                 <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
                             <?php endforeach; ?>
@@ -86,20 +110,32 @@
                         <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . ">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="icon" name="icon" placeholder="SubMenu icon. . . ">
+                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . ">
                     </div>
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                             <label class="form-check-label" for="is_active">
-                                Active?
+                                Status Aktif?
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-gray-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Tambahkan</span>
+                    </button>
+
                 </div>
             </form>
         </div>
