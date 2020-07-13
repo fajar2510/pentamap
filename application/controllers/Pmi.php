@@ -10,8 +10,6 @@ class Pmi extends CI_Controller
 
         $this->load->model('Master');
         $this->load->model('Wilayah');
-        // $this->load->model('ProvinsiModel');
-        // $this->load->model('KotaModel');
     }
 
 
@@ -24,15 +22,7 @@ class Pmi extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data wilayah
-        // $data['wilayah_provinsi'] = $this->Wilayah->view();
-
         $data['wilayah_provinsi'] = $this->Wilayah->provinsi();
-      
-
-
-        // $data['wilayah_provinsi'] = $this->db->get('wilayah_provinsi')->result_array();
-        // $data['wilayah_kabupaten'] = $this->db->get('wilayah_kabupaten')->result_array();
-        // $data['wilayah_kecamatan'] = $this->db->get('wilayah_kecamatan')->result_array();
         $data['negara'] = $this->db->get('tb_negara')->result_array();
         // $data['wilayah_desa'] = $this->db->get('wilayah_desa')->result_array();
 
@@ -52,7 +42,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data PMI';
+            $data['title'] = 'Data Pemulangan PMI';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -119,25 +109,38 @@ class Pmi extends CI_Controller
         }
     }
 
+    public function tambah()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
 
-    // public function listKota()
-    // {
-    //     // Ambil data ID Provinsi yang dikirim via ajax post
-    //     $id_provinsi = $this->input->post('provinsi_id');
+        $data['wilayah_provinsi'] = $this->Wilayah->provinsi();
+        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        // $data['wilayah_desa'] = $this->db->get('wilayah_desa')->result_array();
 
-    //     $wilayah_kabupaten = $this->KotaModel->viewByProvinsi($id_provinsi);
+        // Load Model User Role
+        $data['pmi'] = $this->Master->getPmi();
 
-    //     // Buat variabel untuk menampung tag-tag option nya
-    //     // Set defaultnya dengan tag option Pilih
-    //     $lists = "<option value=''>Pilih</option>";
+        $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI)';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('pmi/tambah', $data);
+        $this->load->view('templates/footer', $data);
 
-    //     foreach ($wilayah_kabupaten as $data) {
-    //         $lists .= "<option value='" . $data->id . "'>" . $data->nama . "</option>"; // Tambahkan tag option ke variabel $lists
-    //     }
-
-    //     $callback = array('list_kota' => $lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
-    //     echo json_encode($callback); // konversi varibael $callback menjadi JSON
-    // }
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kab', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('negara', 'Negara', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
+        $this->form_validation->set_rules('berangkat', 'Berangkat', 'required|trim');
+        $this->form_validation->set_rules('pengirim', 'Pengirim', 'required|trim');
+        $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
+    }
 
 
     public function deletePmi($id)

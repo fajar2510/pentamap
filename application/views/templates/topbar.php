@@ -45,19 +45,19 @@
 
                         <?php
                         $tanggal = mktime(date("m"), date("d"), date("Y"));
-                        echo " <b>" . date("d-M-Y", $tanggal) . "</b> ";
+                        echo " " . date("d M Y", $tanggal) . " ";
                         date_default_timezone_set('Asia/Jakarta');
-                        $jam = date("H:i:s");
-                        echo "|  <b>" . $jam . " " . "</b>";
+                        $jam = date("H:i");
+                        echo "|  " . $jam . " WIB " . "";
                         $a = date("H");
                         if (($a >= 4) && ($a <= 11)) {
-                            echo "<b>, Selamat Pagi !!</b>";
+                            echo "<b>, Selamat Pagi ;D </b>";
                         } else if (($a > 11) && ($a <= 15)) {
-                            echo ", Selamat Siang !!";
+                            echo "<b>, Selamat Siang :)</b>";
                         } else if (($a > 15) && ($a <= 18)) {
-                            echo ", Selamat Sore !!";
+                            echo "<b>, Selamat Petang :></b>";
                         } else {
-                            echo ", <b> Selamat Malam </b>";
+                            echo "<b>, <b> Selamat Malam zZZ</b>";
                         }
                         ?>
                     </marquee>
