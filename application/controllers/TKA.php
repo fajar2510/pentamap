@@ -22,7 +22,7 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data wilayah
-        $data['tb_tka'] = $this->Perusahaan->get_tka();
+        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
 
 
 

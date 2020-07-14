@@ -43,7 +43,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pemulangan PMI';
+            $data['title'] = 'Data Pemulangan PMI-B Non-Prosedural';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -138,7 +138,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI)';
+            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -211,7 +211,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI)';
+            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

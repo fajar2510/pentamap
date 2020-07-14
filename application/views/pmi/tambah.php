@@ -38,11 +38,7 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Status</label>
                                         <div class="col-sm-4">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value="PROSEDURAL">PROSEDURAL</option>
-                                                <option value="NON-PROSEDURAL">NON-PROSEDURAL</option>
-
-                                            </select>
+                                            <input type="text" class="form-control" id="status" name="status" readonly value="NON-PROSEDURAL">
                                         </div>
                                     </div>
 
@@ -56,14 +52,14 @@
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-3 col-form-label">Tanggal Lahir</label>
                                         <div class="col-4">
-                                            <input class="form-control" type="date" value="1997-08-19" id="tgl_lahir" name="tgl_lahir">
+                                            <input class="form-control" type="date" value="1999-12-31" id="tgl_lahir" name="tgl_lahir">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-4">
                                             <select name="gender" id="gender" class="form-control">
-                                                <option value=""> Pilih Gender </option>
+                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
                                                 <option value="L"> Laki-Laki </option>
                                                 <option value="P"> Perempuan </option>
                                             </select>
@@ -74,7 +70,7 @@
                                         <label for="password" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-4">
                                             <select name="prov" id="prov" class="form-control">
-                                                <option value=""> Pilih Provinsi </option>
+                                                <option value="">~ Pilih Provinsi ~</option>
                                                 <?php
                                                 foreach ($wilayah_provinsi as $row) {
                                                     echo '<option value="' . $row->nama . '">' . $row->nama . '</option>';
@@ -84,7 +80,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <select name="kab" id="kab" class="form-control">
-                                                <option value=""> Pilih Kabupaten/Kota </option>
+                                                <option value="">~ Pilih Kabupaten/Kota ~</option>
                                             </select>
                                             <!-- <div id="loading" style="margin-top: 15px;">
                                     <img src="assets/img/loading//loading.gif" width="18"> <small>Memuat...</small>
@@ -95,7 +91,7 @@
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-5">
                                             <select name="kec" id="kec" class="form-control">
-                                                <option value=""> Pilih Kecamatan </option>
+                                                <option value="">~ Pilih Kecamatan ~</option>
 
                                             </select>
                                         </div>
@@ -112,7 +108,7 @@
                                     <div class="form-group row">
                                         <label for="desa" class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="desa" placeholder="Desa" name="desa" value="<?= set_value('desa'); ?>">
+                                            <input type="text" class="form-control" id="desa" placeholder="Desa , Jalan, RT/RW ,No." name="desa" value="<?= set_value('desa'); ?>">
                                             <?= form_error('desa', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -120,7 +116,7 @@
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
                                             <select name="negara" id="negara" class="form-control">
-                                                <option value=""> Pilih Negara </option>
+                                                <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>

@@ -77,9 +77,9 @@
                                 <thead align="center">
                                     <tr align="center">
 
-                                        <td colspan="12" align="center">
+                                        <td colspan="11" align="center">
                                             <center><b>
-                                                    DATA TKA per Perusahaan
+                                                    DATA AN PEKERJA MIGRAN INDONESIA PADA BIDANG PPK
                                                 </b>
                                                 <center>
                                         </td>
@@ -87,55 +87,42 @@
                                     <tr>
                                         <th rowspan="3"> No</th>
                                         <th rowspan="3">Nama Perusahaan</th>
-                                        <th rowspan="3">Alamat Perusahaan </th>
+                                        <th rowspan="3">Alamat</th>
 
-                                        <th colspan="9">Data TKA (Tenaga Kerja Asing)</th>
-                                        <th width="15%" scope="col" rowspan="3">Aksi</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="5%" rowspan="2">Nama TKA</th>
-                                        <th width="5%" rowspan="2">Negara</th>
-                                        <th width="5%" rowspan="2">Jenis Kelamin</th>
-                                        <th width="5%" rowspan="2">Jabatan</th>
-                                        <th width="5%" rowspan="2">No. RPTKA</th>
-                                        <th width="5%" rowspan="2">Masa Berlaku (RPTKA)</th>
-                                        <th width="5%" rowspan="2">No. IMTA</th>
-                                        <th width="5%" rowspan="2">Masa Berlaku (IMTA)</th>
-                                        <th width="5%" rowspan="2">Lokasi Kerja</th>
-                                    </tr>
+                                        <th rowspan="3">Kontak</th>
+                                        <th rowspan="3">Status</th>
 
+                                        <th rowspan="3">Logo</th>
+                                        <th rowspan="3">Sektor</th>
+                                        <th width="12%" scope="col" rowspan="3">Aksi</th>
+                                    </tr>
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_tka as $t) : ?>
+                                    <?php foreach ($tb_perusahaan as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <?= $t['nama_perusahaan']; ?>
-                                            <td><?= $t['alamat']; ?></td>
-                                            <td><?= $i; ?>. <?= $t['nama_tka']; ?> </td>
-                                            <td><?= $t['kewarganegaraan']; ?></td>
+                                            <td> <?= $p['nama_perusahaan']; ?>
+                                            <td><?= $p['alamat']; ?></td>
+                                            <td> <?= $p['kontak']; ?> </td>
                                             <td>
-                                                <?php if ($t['jenis_kel'] == 'L') {
-                                                    echo 'Laki-Laki';
+                                                <?php if ($p['status'] == 'P') {
+                                                    echo 'Pusat';
                                                 } else {
-                                                    echo 'Perempuan';
+                                                    echo 'Cabang';
                                                 } ?>
-                                            </td>
-                                            <td> <?= $t['jabatan']; ?> </td>
-                                            <td> <?= $t['no_rptka']; ?> </td>
-                                            <td> <?= $t['masa_rptka']; ?> </td>
-                                            <td><?= $t['no_imta']; ?></td>
-                                            <td> <?= $t['masa_imta']; ?> </td>
-                                            <td> <?= $t['lokasi_kerja']; ?> </td>
+
+                                            <td><img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td>
+                                            <td> <?= $p['sektor']; ?> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $t['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
+                                               
+                                                <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
 
-                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $t['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $t['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$t['id']')" data-toggle="modal" data-target="#hapusModal">
+                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $p['id']); ?>">&nbsp;edit</a>
+                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $p['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
+                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$p['id']')" data-toggle="modal" data-target="#hapusModal">
                                     Hapus pake modal
                                 </a> -->
                                             </td>
@@ -171,7 +158,7 @@
             <div class="modal-body">Data akan dihapus secara permanen </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="<?= base_url('pmi/deletePmi/' . $t['id']); ?>">Hapus</a>
+                <a class="btn btn-danger" href="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">Hapus</a>
             </div>
         </div>
     </div>

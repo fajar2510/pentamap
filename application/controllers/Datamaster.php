@@ -63,66 +63,64 @@ class Datamaster extends CI_Controller
     // FUNCTION USER END
 
     // FUNCTION DOCTOR START
-    // public function doctor()
-    // {
+    public function perusahaan()
+    {
 
-    //     $data['user'] = $this->db->get_where('user', ['email' =>
-    //     $this->session->userdata('email')])->row_array();
-    //     $data['doctor'] = $this->db->get('doctor')->result_array();
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
 
-    //     $this->form_validation->set_rules('name', 'Name', 'required|trim');
-    //     $this->form_validation->set_rules('specialist', 'Specialist', 'required|trim');
-    //     $this->form_validation->set_rules('contact', 'Contact', 'required|trim');
-    //     $this->form_validation->set_rules('address', 'Address', 'required|trim');
-    //     $this->form_validation->set_rules('age', 'Age', 'required|trim');
-    //     $this->form_validation->set_rules('work_unit_office', 'work_unit_office', 'required|trim');
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
+        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
+        $this->form_validation->set_rules('status', 'Status', 'required|trim');
+        $this->form_validation->set_rules('sektor', 'Sektor Bidang', 'required|trim');
 
-    //     if ($this->form_validation->run() == false) {
-    //         $data['title'] = 'Doctor Info';
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('templates/sidebar', $data);
-    //         $this->load->view('templates/topbar', $data);
-    //         $this->load->view('datamaster/doctor', $data);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         $data = [
-    //             'name' => $this->input->post('name', true),
-    //             'specialist' => $this->input->post('specialist', true),
-    //             'contact' => $this->input->post('contact', true),
-    //             'address' => $this->input->post('address', true),
-    //             'age' => $this->input->post('age', true),
-    //             'work_unit_office' => $this->input->post('work_unit_office', true),
-    //         ];
-    //         // cek jika ada gambar yang akan di upload
-    //         // masih salah dan belum bisa upload gambar
-    //         // cek jika ada gambar yang akan di upload
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/perusahaan', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'alamat' => $this->input->post('alamat', true),
+                'kontak' => $this->input->post('kontak', true),
+                'status' => $this->input->post('status', true),
+                'sektor' => $this->input->post('sektor', true),
+            ];
+            // cek jika ada gambar yang akan di upload
+            // masih salah dan belum bisa upload gambar
+            // cek jika ada gambar yang akan di upload
 
-    //         $upload_image = $_FILES['image']['name'];
+            $upload_image = $_FILES['image']['name'];
 
-    //         if ($upload_image) {
-    //             $config['allowed_types'] = 'gif|jpg|png';
-    //             $config['max_size']      = '5000';
-    //             $config['upload_path']   = './assets/img/profile';
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '5000';
+                $config['upload_path']   = './assets/img/profile';
 
-    //             $this->load->library('upload', $config);
+                $this->load->library('upload', $config);
 
-    //             if ($this->upload->do_upload('image')) {
+                if ($this->upload->do_upload('image')) {
 
-    //                 $new_image = $this->upload->data('file_name');
-    //                 $this->db->set('image', $new_image);
-    //             } else {
-    //                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-    //                 redirect('datamaster/doctor');
-    //             }
-    //         }
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('datamaster/perusahaan');
+                }
+            }
 
-    //         $this->db->insert('doctor', $data);
+            $this->db->insert('tb_perusahaan', $data);
 
-    //         $this->session->set_flashdata('message', '<div class="alert 
-    //         alert-success" role="alert"> Congratulation! Profile has been added succesfully. </div>');
-    //         redirect('datamaster/doctor');
-    //     }
-    // }
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! Perusahaan has been added succesfully. </div>');
+            redirect('datamaster/perusahaaan');
+        }
+    }
     // FUNCTION DOCTOR END
 
 
