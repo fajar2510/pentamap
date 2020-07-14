@@ -8,4 +8,10 @@ class Perusahaan extends CI_Model
         $query = "SELECT * FROM tb_pptkis";
         return $this->db->query($query)->result_array();
     }
+
+    public function get_tka()
+    {
+        $query = "SELECT * FROM tb_tka";
+        return $this->db->query($query)->result_array();
+    }
 }

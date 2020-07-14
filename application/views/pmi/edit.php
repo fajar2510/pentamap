@@ -152,7 +152,7 @@
                                         <div class="form-group row">
                                             <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                             <div class="col-sm-2">
-                                                <input type="number" class="form-control" id="lama" placeholder="Tahun" min="0" name="lama" value="<?= set_value('lama_bekerja'); ?>">
+                                                <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan"  name="lama" value="<?= set_value('lama_bekerja'); ?>">
                                                 <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                         </div>

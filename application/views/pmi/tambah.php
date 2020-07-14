@@ -5,7 +5,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
-        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('pmi/'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
@@ -151,7 +151,7 @@
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="lama" placeholder="Tahun" min="0" name="lama" value="<?= set_value('lama_bekerja'); ?>">
+                                            <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= set_value('lama_bekerja'); ?>">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
