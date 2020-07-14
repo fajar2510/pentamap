@@ -35,6 +35,27 @@ class Tka extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function tambah()
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data wilayah
+        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+
+
+
+
+        $data['title'] = 'Data TKA per Perusahaan';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('tka/tambah', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
 
 
     public function hapus($id)

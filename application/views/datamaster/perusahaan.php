@@ -6,7 +6,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
-        <a href="<?= base_url('perusahaan/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('datamaster/perusahaan_add/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
@@ -92,19 +92,24 @@
                                         <th rowspan="3">Kontak</th>
                                         <th rowspan="3">Status</th>
 
-                                        <th rowspan="3">Logo</th>
+                                        <!-- <th rowspan="3">Logo</th> -->
                                         <th rowspan="3">Sektor</th>
                                         <th width="12%" scope="col" rowspan="3">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody align="center">
+                                <tbody align="left">
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_perusahaan as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td><?= $p['alamat']; ?></td>
-                                            <td> <?= $p['kontak']; ?> </td>
+                                            <td>
+                                                <?php if ($p['kontak'] == null) {
+                                                    echo '-';
+                                                } else {
+                                                    echo $p['kontak'];
+                                                } ?>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'Pusat';
@@ -112,12 +117,12 @@
                                                     echo 'Cabang';
                                                 } ?>
 
-                                            <td><img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td>
+                                                <!-- <td> <img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td> -->
                                             <td> <?= $p['sektor']; ?> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                               
+
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
 
                                                 <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $p['id']); ?>">&nbsp;edit</a>
