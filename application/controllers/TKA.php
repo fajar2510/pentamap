@@ -44,6 +44,7 @@ class Tka extends CI_Controller
 
         // load data wilayah
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
 
 
 

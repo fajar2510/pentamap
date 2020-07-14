@@ -39,9 +39,15 @@
 
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Perusahaan</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama PT/Perusahaan" name="nama" value="<?= set_value('nama'); ?>">
-                                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <div class="col-sm-4">
+                                            <select name="nama_perusahaan" id="nama_perusahaan" class="form-control">
+                                                <option value="">~ Pilih PT ~</option>
+                                                <?php
+                                                foreach ($tb_tka as $p) {
+                                                    echo '<option value="' . $p->nama_perusahaan . '">' . $p->nama_perusahaan . '</option>';
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

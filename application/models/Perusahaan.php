@@ -9,9 +9,9 @@ class Perusahaan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function get_tka()
+    public function get_perusahaan()
     {
-        $query = "SELECT * FROM tb_tka";
+        $query = "SELECT * FROM tb_perusahaan";
         return $this->db->query($query)->result_array();
     }
 
