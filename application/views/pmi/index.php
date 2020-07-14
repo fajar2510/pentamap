@@ -138,8 +138,7 @@
                                             <td><?= $p['negara_bekerja']; ?></td>
                                             <td> <small><?= $p['status']; ?> </small> </td>
                                             <td>
-                                                <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                                <a href="<?= base_url('pmi/edit/') . $p['id']; ?>"  class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
 
@@ -324,77 +323,6 @@
                 </form>
             </div>
 
-        </div>
-    </div>
-</div>
-
-
-<!-- edituserModal -->
-<div class=" modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUserLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editUserLabel">Edit User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('datamaster/user'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" placeholder="full name of user ... " name="name" value="<?= $user['name']; ?>">
-                            <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email" disabled placeholder="email of user " name="email" value="<?= $user['email']; ?>">
-                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="role" class="col-sm-2 col-form-label">Role</label>
-                        <div class="col-sm-5">
-                            <select name="role" id="role" class="form-control">
-                                <option value=""> Pilih Hak Akses </option>
-                                <?php foreach ($role as $ru) : ?>
-                                    <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <!-- <div class=" form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Role</label>
-                        <div class="col-sm-5">
-                            <select name="role" id="role" class="form-control">
-                                <option value=""> Select Role </option>
-                                <?php
-                                while ($role = mysqli_fetch_array($user)) {
-                                    if ($data['id'] == $r['id']) {
-                                        $s = "selected";
-                                    } else {
-                                        $s = "";
-                                    }
-                                    // echo "<option $s>".$r['id']."</option>";
-                                    echo "<option value='$r[id]' $s>$r[role]</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div> -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

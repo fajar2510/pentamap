@@ -32,7 +32,7 @@ class Auth extends CI_Controller
     private function _login()
     {
         $email = $this->input->post('email');
-        $password = md5($this->input->post('password'));
+        $password = $this->input->post('password');
 
         // $user = $this->db->get_where('user', ['email' => $email])->row_array();
         $this->db->select('user.id,user.email,user_role.role,user.role_id,user.is_active,user.password,user_role.role');
@@ -45,8 +45,7 @@ class Auth extends CI_Controller
             // jika usernya aktif
             if ($user['is_active'] == 1) {
                 // cek password
-                if ($password = $user['password']) {
-                    // data tersimpan sebagai session login
+                if (password_verify($password, $user['password'])) {
                     $data = [
                         'id' => $user['id'],
                         'email' => $user['email'],

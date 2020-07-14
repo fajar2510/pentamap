@@ -81,11 +81,11 @@
 
 
 <!-- adduserModal -->
-<div class=" modal fade" id="newUser">
+<div class=" modal fade" id="modalEdit">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newUserLabel">Tambah Data User</h5>
+                <h5 class="modal-title" id="modalEditLabel">Tambah Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
