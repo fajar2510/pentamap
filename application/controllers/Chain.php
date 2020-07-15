@@ -31,7 +31,7 @@ class Chain extends CI_Controller {
             'kabupaten' => $this->Chain_model->get_kabupaten(),
             'kecamatan' => $this->Chain_model->get_kecamatan(),
             'provinsi_selected' => $selected->id_provinsi,
-            'kabupaten_selected' => $selected->id_kota,
+            'kabupaten_selected' => $selected->id_kabupaten,
             'kecamatan_selected' => $selected->id_kecamatan,
         );
         $this->load->view('chain', $data);

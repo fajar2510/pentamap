@@ -23,7 +23,6 @@ class Pmi extends CI_Controller
         // load data wilayah
         $data['wilayah_provinsi'] = $this->Wilayah->provinsi();
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-        // $data['wilayah_desa'] = $this->db->get('wilayah_desa')->result_array();
 
         // Load Model User Role
         $data['pmi'] = $this->Master->getPmi();

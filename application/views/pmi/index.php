@@ -67,30 +67,6 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <!-- <tr align="center">
-
-                                        <td colspan="9" align="center">
-                                            <center><b>
-                                                    DATA PEMULANGAN PEKERJA MIGRAN INDONESIA (PMI-B)
-                                                </b>
-                                                <center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th width="4%" rowspan="2"> No</th>
-                                        <th width="6%" rowspan="2">Tanggal</th>
-                                        <th width="11%" rowspan="2">Nama</th>
-
-                                        <th colspan="3">Alamat</th>
-                                        <th width="8%" scope="col" rowspan="2">Negara Bekerja</th>
-                                        <th width="9%" scope="col" rowspan="2">Aksi</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="8%" rowspan="2">Desa</th>
-                                        <th width="8%" rowspan="2">Kecamatan</th>
-                                        <th width="9%" rowspan="2">Kabupaten</th>
-
-                                    </tr> -->
                                     <tr>
                                         <th width="4%"> No</th>
                                         <th width="6%">Tanggal</th>
@@ -99,9 +75,6 @@
                                         <th width="8%" scope="col">Negara Bekerja</th>
                                         <th width="9%" scope="col">Aksi</th>
                                     </tr>
-
-
-
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
@@ -116,8 +89,13 @@
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
                                             </td>
+                                            <!-- 	id="btn-hapus" data-id="<?= $p['id']; ?>"
+											<td style="width: 120px;">
+												<a class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal_edit<?php echo $barang_id; ?>"> Edit</a>
+												<a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $barang_id; ?>"> Hapus</a>
+											</td> -->
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -293,21 +271,29 @@
 
 <!-- batas akhir -->
 
-<!-- modalhapus -->
-<div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Data akan dihapus secara permanen </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">Hapus</a>
+<?php foreach ($pmi as $p) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapus<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
+                    <div class="modal-body">Data akan dihapus secara permanen </div>
+                    <div class="modal-footer">
+                        <input type="text" name="id" value=<?= $p['id']; ?>>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
+
+<!-- end main -->
