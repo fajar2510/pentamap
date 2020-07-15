@@ -10,9 +10,9 @@ class Chain extends CI_Controller {
     public function index()
     {
         $data = array(
-            'prov' => $this->Chain_model->get_provinsi(),
-            'kab' => $this->Chain_model->get_kabupaten(),
-            'kec' => $this->Chain_model->get_kecamatan(),
+            'provinsi' => $this->Chain_model->get_provinsi(),
+            'kabupaten' => $this->Chain_model->get_kabupaten(),
+            'kecamatan' => $this->Chain_model->get_kecamatan(),
             'provinsi_selected' => '',
             'kabupaten_selected' => '',
             'kecamatan_selected' => '',
@@ -27,9 +27,9 @@ class Chain extends CI_Controller {
         // kita ambil data selected nya untuk selected option
         $selected = $this->Chain_model->get_selected_by_id_kecamatan($id_kecamatan);
         $data = array(
-            'prov' => $this->Chain_model->get_provinsi(),
-            'kab' => $this->Chain_model->get_kabupaten(),
-            'kec' => $this->Chain_model->get_kecamatan(),
+            'provinsi' => $this->Chain_model->get_provinsi(),
+            'kabupaten' => $this->Chain_model->get_kabupaten(),
+            'kecamatan' => $this->Chain_model->get_kecamatan(),
             'provinsi_selected' => $selected->id_provinsi,
             'kabupaten_selected' => $selected->id_kota,
             'kecamatan_selected' => $selected->id_kecamatan,
