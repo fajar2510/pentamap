@@ -55,11 +55,9 @@
                                                 } else {
                                                     echo 'Tidak Aktif';
                                                 } ?>
-
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

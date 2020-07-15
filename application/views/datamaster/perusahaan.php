@@ -74,42 +74,30 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead align="center">
-                                    <tr align="center">
-
-                                        <td colspan="11" align="center">
-                                            <center><b>
-                                                    DATA AN PEKERJA MIGRAN INDONESIA PADA BIDANG PPK
-                                                </b>
-                                                <center>
-                                        </td>
-                                    </tr>
+                                <thead>
                                     <tr>
-                                        <th rowspan="3"> No</th>
-                                        <th rowspan="3">Nama Perusahaan</th>
-                                        <th rowspan="3">Alamat</th>
-                                        <!-- <th rowspan="3">Kontak</th> -->
-                                        <th rowspan="3">Status</th>
-
-                                        <!-- <th rowspan="3">Logo</th> -->
-                                        <!-- <th rowspan="3">Sektor</th> -->
-                                        <th width="12%" scope="col" rowspan="3">Aksi</th>
+                                        <th> No</th>
+                                        <th>Nama Perusahaan</th>
+                                        <th>Alamat</th>
+                                        <th>Kontak</th>
+                                        <th>Status</th>
+                                        <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody align="left">
+                                <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_perusahaan as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td><?= $p['alamat']; ?></td>
-                                            <!-- <td>
+                                            <td>
                                                 <?php if ($p['kontak'] == null) {
                                                     echo '-';
                                                 } else {
                                                     echo $p['kontak'];
                                                 } ?>
-                                            </td> -->
+                                            </td>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'Pusat';

@@ -53,6 +53,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="kontak" class="col-sm-3 col-form-label">Kontak</label>
+
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" value="<?= set_value('kontak'); ?>">
+                                            <small id="uploadHelp1" class="form-text text-muted"> <i> *alamat e-mail/no.telp yang dapat dihubungi </i></small>
+                                            <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="status" class="col-sm-3 col-form-label">Status</label>
                                         <div class="col-sm-4">
                                             <select name="status" id="status" class="form-control">
@@ -62,6 +71,7 @@
                                             </select>
                                         </div>
                                     </div>
+
 
                                     <!-- <div class="form-group row">
                                         <label for="sektor" class="col-sm-3 col-form-label">Sektor/Bidang</label>

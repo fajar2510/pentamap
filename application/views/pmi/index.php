@@ -92,8 +92,8 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead align="center">
-                                    <tr align="center">
+                                <thead>
+                                    <!-- <tr align="center">
 
                                         <td colspan="9" align="center">
                                             <center><b>
@@ -109,7 +109,6 @@
 
                                         <th colspan="3">Alamat</th>
                                         <th width="8%" scope="col" rowspan="2">Negara Bekerja</th>
-                                        <th width="8%" scope="col" rowspan="2">Status</th>
                                         <th width="9%" scope="col" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
@@ -117,29 +116,32 @@
                                         <th width="8%" rowspan="2">Kecamatan</th>
                                         <th width="9%" rowspan="2">Kabupaten</th>
 
+                                    </tr> -->
+                                    <tr>
+                                        <th width="4%"> No</th>
+                                        <th width="6%">Tanggal</th>
+                                        <th width="11%">Nama</th>
+                                        <th width="20%">Alamat</th>
+                                        <th width="8%" scope="col">Negara Bekerja</th>
+                                        <th width="9%" scope="col">Aksi</th>
                                     </tr>
 
 
+
                                 </thead>
-                                <tbody align="center">
+                                <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($pmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="" width="60" height="60"></td> -->
-                                            <td> <small><?= $p['date_created']; ?></small>
-                                            </td>
-                                            <td><?= $p['nama']; ?>
-                                            </td>
-
-                                            <td><?= $p['desa']; ?></td>
-                                            <td><?= $p['kecamatan']; ?></td>
-                                            <td> <small><?= $p['kabupaten']; ?> </small> </td>
+                                            <td> <small><?= $p['date_created']; ?></small></td>
+                                            <td><?= $p['nama']; ?></td>
+                                            <td><?= $p['desa']; ?> , <?= $p['kecamatan']; ?>, <small><?= $p['kabupaten']; ?></td>
                                             <td><?= $p['negara_bekerja']; ?></td>
-                                            <td> <small><?= $p['status']; ?> </small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

@@ -1,17 +1,15 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-        <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#newUser">
+        <button class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
-        </a>
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
+        </button>
     </div>
 
     <div class="row">
@@ -22,8 +20,8 @@
                 </div>
             <?php endif; ?>
 
+            <!-- menampilkan jika terjadi tindakan berhasil atau error -->
             <?= $this->session->flashdata('message'); ?>
-
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -33,7 +31,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr align="center">
+                                <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
@@ -45,20 +43,13 @@
                                 <?php $i = 1; ?>
                                 <?php foreach ($user_role as $ur) : ?>
                                     <tr>
-                                        <th align="center" scope="row"><?= $i; ?></th>
+                                        <th scope="row"><?= $i; ?></th>
                                         <td> <?= $ur['name']; ?></td>
                                         <td> <i> <?= $ur['email']; ?></i></td>
-                                        <td align="center">[ <?= $ur['role']; ?> ]</td>
-                                        <td align="center">
-
+                                        <td>[ <?= $ur['role']; ?> ]</td>
+                                        <td>
                                             <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-sm btn-warning" id="btn-edit" class="btn btn-sm btn-warning" data-id="<?= $ur['id']; ?>" data-nisn="<?= $ur['name']; ?>" data-nama="<?= $ur['email']; ?>" data-role="<?= $ur['role_id']; ?>" data-status="<?= $ur['is_active']; ?>"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $ur['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
-
-                                            <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $ur['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $ur['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                            <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$ur['id']')" data-toggle="modal" data-target="#hapusModal">
-                                    Hapus pake modal
-                                </a> -->
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -70,10 +61,8 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container-fluid -->
-
 </div>
 <!-- End of Main Content -->
 
@@ -81,7 +70,7 @@
 
 
 <!-- adduserModal -->
-<div class=" modal fade" id="modalEdit">
+<div class=" modal fade" id="modalTambah">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
