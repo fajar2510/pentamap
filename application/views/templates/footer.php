@@ -3,7 +3,7 @@
     <hr>
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright All Reserved &copy; P E N T A | DISNAKERTRANS <?= date('Y'); ?></span>
+            <span>Copyright All Reserved &copy; P E N T A | <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp;DISNAKERTRANS <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>

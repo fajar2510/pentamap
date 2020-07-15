@@ -1,22 +1,19 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+    <hr>
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin'); ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('admin'); ?>">
         <div class="sidebar-brand-icon">
             <!-- <i class="far fa-building"></i> -->
-            <img src="<?php echo base_url() ?>assets/img/favicon/disnakerlogo.png" alt="" width="60px" height="60px">
+            <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="60px" height="70">
         </div>
         <div class="sidebar-brand-text mx-3">P E N T A <br>
-            <!-- <h6> DISNAKERTRANS</h6> -->
+            <small> DISNAKERTRANS</small>
         </div>
-
-
-
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider mt-3">
 
     <!-- QUERY MENU-->
 
@@ -60,7 +57,6 @@
                     <i class="<?= $sm['icon']; ?>"></i>
                     <span><?= $sm['title']; ?></span></a>
                 </li>
-
             <?php endforeach; ?>
 
             <!-- Divider -->

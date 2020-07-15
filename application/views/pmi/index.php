@@ -25,13 +25,10 @@
             <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
-
-
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
                             <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-filter"></i>
@@ -43,31 +40,8 @@
                                     Rentang Awal: <input id="startDate" width="276" />
                                     Rentang Akhir: <input id="endDate" width="276" />
                                 </div>
-                                <!-- <span>
-                                    <div class="form-group row">
-                                        <label for="ren_awal" class="col-4 col-form-label">
-                                            <h6 class="m-0 font-weight-bold text-primary text-left"> Rentang Awal</h6>
-                                        </label>
-                                        <input class="form-control" type="date" value="2018-08-19" id="ren_awal" name="ren_awal">
-                                    </div>
-                                </span>
                             </div>
-                            <div>
-                                <span>
-                                    <div class="form-group row">
-                                        <label for="ren_akhir" class="col-4 col-form-label">
-                                            <h6 class="m-0 font-weight-bold text-primary text-left"> Rentang Akhir</h6>
-                                        </label>
-                                        <input class="form-control" type="date" value="2018-08-19" id="ren_akhir" name="ren_akhir">
-                                    </div>
-                                </span> -->
-                            </div>
-
-
-
                         </div>
-
-
                         <div class="dropdown mb-0">
                             <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
