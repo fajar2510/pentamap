@@ -123,14 +123,7 @@
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
-
-                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $p['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $p['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$p['id']')" data-toggle="modal" data-target="#hapusModal">
-                                    Hapus pake modal
-                                </a> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -164,7 +157,7 @@
             <div class="modal-body">Data akan dihapus secara permanen </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-danger" href="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">Hapus</a>
+                <a class="btn btn-danger" href="<?= base_url('datamaster/hapusPerusahaan/' . $p['id']); ?>">Hapus</a>
             </div>
         </div>
     </div>

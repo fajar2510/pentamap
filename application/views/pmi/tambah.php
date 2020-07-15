@@ -38,7 +38,8 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Status</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="status" name="status" readonly value="NON-PROSEDURAL">
+                                            <input type="text" class="form-control" id="status" name="status" readonly value="NON-PROSEDURAL" aria-describedby="statusHelp">
+                                            <small id="statusHelp" class="form-text text-muted"> <i> non-prosedural adalah untuk PMI/TKI-B </i></small>
                                         </div>
                                     </div>
 
@@ -82,9 +83,6 @@
                                             <select name="kab" id="kab" class="form-control">
                                                 <option value="">~ Pilih Kabupaten/Kota ~</option>
                                             </select>
-                                            <!-- <div id="loading" style="margin-top: 15px;">
-                                    <img src="assets/img/loading//loading.gif" width="18"> <small>Memuat...</small>
-                                </div> -->
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -146,7 +144,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= set_value('lama_bekerja'); ?>">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -155,8 +153,9 @@
                                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
                                         <div class="col-sm-7">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="image" name="image">
+                                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
                                                 <label class="custom-file-label" for="image">Pilih File</label>
+                                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 2 MB. </i></small>
                                             </div>
                                         </div>
                                     </div>

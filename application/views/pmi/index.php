@@ -138,15 +138,9 @@
                                             <td><?= $p['negara_bekerja']; ?></td>
                                             <td> <small><?= $p['status']; ?> </small> </td>
                                             <td>
-                                                <a href="<?= base_url('pmi/edit/') . $p['id']; ?>"  class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
-
-                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $p['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $p['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$p['id']')" data-toggle="modal" data-target="#hapusModal">
-                                    Hapus pake modal
-                                </a> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -300,12 +294,8 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                             <span class="icon text-gray-600">
                                 <i class="fas fa-window-close"></i>
@@ -318,17 +308,14 @@
                             </span>
                             <span class="text">Tambahkan</span>
                         </button>
-
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
 
-
-
+<!-- batas akhir -->
 
 <!-- modalhapus -->
 <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
@@ -342,7 +329,7 @@
             </div>
             <div class="modal-body">Data akan dihapus secara permanen </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
                 <a class="btn btn-danger" href="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">Hapus</a>
             </div>
         </div>

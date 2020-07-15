@@ -183,6 +183,16 @@ class Datamaster extends CI_Controller
     // FUNCTION DOCTOR END
 
 
+    public function hapusPerusahaan($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_perusahaan');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected has succesfully deleted, be carefull for manage data. </div>');
+        redirect('datamaster/perusahaan');
+    }
+
 
     public function deleteUser($id)
     {

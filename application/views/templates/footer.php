@@ -59,7 +59,7 @@
 <script src="<?= base_url(); ?>assets/dist/sweetalert2.all.min.js"></script>
 
 
-
+<!-- untuk mengambil input tanggal -->
 <script>
     $(function() {
         $('#datepicker').datepicker({
@@ -69,6 +69,7 @@
     });
 </script>
 
+<!-- untuk ubah status hak akses dengan realtime -->
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -90,13 +91,10 @@
                 document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId;
             }
         });
-
-
     });
 </script>
-<!-- sung mengarahkan ke file hapus.php (berdasarkan parameter data-href=’hapus.php?id=”.$row[‘id’].”) dengan membawa parameter id dari baris data tersebut.
 
-bootstrap.php -->
+<!-- untuk memanggil id dari baris tabel yang ingin di hapus -->
 <script type="text/javascript">
     //Hapus Data
     $(document).ready(function() {
@@ -106,52 +104,8 @@ bootstrap.php -->
     });
 </script>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
-
-
-<!-- chained drilldown daerah  -->
-
-<!-- Load librari/plugin jquery nya -->
-
-
-<!-- <script>
-    $(document).ready(function() { // Ketika halaman sudah siap (sudah selesai di load)
-        // Kita sembunyikan dulu untuk loadingnya
-        $("#loading").hide();
-
-        $("#prov").change(function() { // Ketika user mengganti atau memilih data provinsi
-            $("#kab").hide(); // Sembunyikan dulu combobox kota nya
-            $("#loading").show(); // Tampilkan loadingnya
-
-            $.ajax({
-                type: "POST", // Method pengiriman data bisa dengan GET atau POST
-                url: "<?php echo base_url("pmi/index/listKota"); ?>", // Isi dengan url/path file php yang dituju
-                data: {
-                    id_provinsi: $("#prov").val()
-                }, // data yang akan dikirim ke file yang dituju
-                dataType: "json",
-                beforeSend: function(e) {
-                    if (e && e.overrideMimeType) {
-                        e.overrideMimeType("application/json;charset=UTF-8");
-                    }
-                },
-                success: function(response) { // Ketika proses pengiriman berhasil
-                    $("#loading").hide(); // Sembunyikan loadingnya
-                    // set isi dari combobox kota
-                    // lalu munculkan kembali combobox kotanya
-                    $("#kab").html(response.list_kota).show();
-                },
-                error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                }
-            });
-        });
-    });
-</script> -->
-
+<!-- chained dropdown sekaligus drilldown daerah  -->
 <script>
     $(document).ready(function() {
         $('#prov').change(function() {
@@ -195,6 +149,7 @@ bootstrap.php -->
     });
 </script>
 
+<!-- untuk menampilkan form date range bootstrap -->
 <script>
     var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     $('#startDate').datepicker({
