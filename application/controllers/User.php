@@ -92,7 +92,7 @@ class User extends CI_Controller
 
     public function changePassword()
     {
-        $data['title'] = 'Change Password';
+        $data['title'] = 'Ubah Kata Sandi/Password';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 

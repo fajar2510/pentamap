@@ -48,8 +48,8 @@
                                         <td> <i> <?= $ur['email']; ?></i></td>
                                         <td>[ <?= $ur['role']; ?> ]</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-sm btn-warning" id="btn-edit" class="btn btn-sm btn-warning" data-id="<?= $ur['id']; ?>" data-nisn="<?= $ur['name']; ?>" data-nama="<?= $ur['email']; ?>" data-role="<?= $ur['role_id']; ?>" data-status="<?= $ur['is_active']; ?>"> <i class="fa fa-edit"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $ur['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-sm btn-warning" id="btn-edit" class="btn btn-sm btn-warning" data-id="<?= $ur['id']; ?>" data-nisn="<?= $ur['name']; ?>" data-nama="<?= $ur['email']; ?>" data-role="<?= $ur['role_id']; ?>" data-status="<?= $ur['is_active']; ?>"> <i class="fa fa-edit">&nbsp;Edit</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $ur['id']; ?>"> <i class="fa fa-trash-alt">&nbsp;Hapus</i></button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -71,10 +71,10 @@
 
 <!-- adduserModal -->
 <div class=" modal fade" id="modalTambah">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalEditLabel">Tambah Data User</h5>
+                <h5 class="modal-title" id="modalEditLabel">Tambah Data Pengguna</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,37 +82,37 @@
             <form action="<?= base_url('datamaster/user'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Nama</label>
-                        <div class="col-sm-10">
+                        <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" name="name" value="<?= set_value('name'); ?>">
                             <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="<?= set_value('email'); ?>">
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-5">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-4">
                             <input type="password" class="form-control" id="password1" name="password1" placeholder="Masukkan Password" value="<?= set_value('password1'); ?>">
                             <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
-                        <div class="col-sm-5">
-                            <input type="password" class="form-control" id="password2" placeholder="Ulangi Password" name="password2" value="<?= set_value('password2'); ?>">
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="password2" placeholder="Konfirmasi Password" name="password2" value="<?= set_value('password2'); ?>">
                             <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
 
 
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Akses</label>
+                        <label for="password" class="col-sm-3 col-form-label">Jabatan</label>
                         <div class="col-sm-5">
                             <select name="role" id="role" class="form-control">
-                                <option value=""> Pilih Hak Akses </option>
+                                <option value=""> Pilih Jabatan </option>
                                 <?php foreach ($role as $ru) : ?>
                                     <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
                                 <?php endforeach; ?>

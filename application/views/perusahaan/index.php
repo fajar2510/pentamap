@@ -74,53 +74,34 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead align="center">
-                                    <tr align="center">
+                                <thead>
 
-                                        <td colspan="11" align="center">
-                                            <center><b>
-                                                    DATA AN PEKERJA MIGRAN INDONESIA PADA BIDANG PPK
-                                                </b>
-                                                <center>
-                                        </td>
-                                    </tr>
                                     <tr>
-                                        <th rowspan="3"> No</th>
-                                        <th rowspan="3">Nama PPTKIS</th>
-                                        <th rowspan="3">Status</th>
+                                        <th> No</th>
+                                        <th>Nama PPTKIS</th>
+                                        <th width="7%">Status</th>
 
-                                        <th colspan="2">Sektor</th>
-                                        <th colspan="2">Domisili</th>
-
-                                        <th scope="col" rowspan="3">L</th>
-                                        <th scope="col" rowspan="3">P</th>
-                                        <th scope="col" rowspan="3">Total</th>
-                                        <th width="12%" scope="col" rowspan="3">Aksi</th>
+                                        <th width="8%">Formal</th>
+                                        <th width="8%">Informal</th>
+                                        <th width="8%">Jatim</th>
+                                        <th width="8%">LuarJatim</th>
+                                        <th>L</th>
+                                        <th>P</th>
+                                        <th>Total</th>
+                                        <th width="8%">Aksi</th>
                                     </tr>
-                                    <tr>
-                                        <th width="8%" rowspan="2">Formal</th>
-                                        <th width="8%" rowspan="2">Informal</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="8%" rowspan="2">Jatim</th>
-                                        <th width="8%" rowspan="2">Luar Jatim</th>
-                                    </tr>
-
-
-
-
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_pptkis as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <?= $p['nama_pptkis']; ?>
+                                            <td> <small> <?= $p['nama_pptkis']; ?> </small> </td>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
-                                                    echo 'Pusat';
+                                                    echo 'P';
                                                 } else {
-                                                    echo 'Cabang';
+                                                    echo 'C';
                                                 } ?>
 
                                             <td><?= $p['formal']; ?></td>
@@ -131,16 +112,8 @@
                                             <td> <?= $p['total_pr']; ?> </td>
                                             <td> <?= $p['total']; ?> </td>
                                             <td>
-                                                <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $p['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
-
-                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $p['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $p['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$p['id']')" data-toggle="modal" data-target="#hapusModal">
-                                    Hapus pake modal
-                                </a> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

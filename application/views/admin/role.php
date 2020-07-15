@@ -44,12 +44,9 @@
                                         <th scope="row"><?= $i; ?></th>
                                         <td><?= $r['role']; ?></td>
                                         <td>
-                                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" type="button" class="btn btn-sm btn-success"> <i class="fa fa-universal-access"></i></a>
-                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            <!-- <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-info">access</a> -->
-                                            <!-- <a href="" class="badge badge-success">edit</a> -->
-                                            <!-- <a href="" class="badge badge-danger">delete</a> -->
+                                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" type="button" class="btn btn-sm btn-success"> <i class="fa fa-universal-access">&nbsp;Akses</i></a>
+                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit">&nbsp;Edit</i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt">&nbsp;Hapus</i></button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

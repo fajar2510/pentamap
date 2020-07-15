@@ -2,7 +2,18 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> | <?= $role['role']; ?></h1>
+    <div class="d-sm-flex align-items-center justify-content-start mb-4">
+
+        <a href="<?= base_url('admin/role/'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <span class="icon text-white-50">
+                <i class="fas fa-angle-left"></i>
+            </span>
+            <span class="text">Kembali</span>
+        </a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?>| <?= $role['role']; ?> </h3>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
+    </div>
 
     <div class="row">
         <div class="col-lg-6">

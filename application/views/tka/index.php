@@ -74,38 +74,24 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead align="center">
-                                    <tr align="center">
-
-                                        <td colspan="12" align="center">
-                                            <center><b>
-                                                    DATA TKA per Perusahaan
-                                                </b>
-                                                <center>
-                                        </td>
-                                    </tr>
+                                <thead>
                                     <tr>
-                                        <th rowspan="3"> No</th>
-                                        <th rowspan="3">Nama Perusahaan</th>
-                                        <th rowspan="3">Alamat Perusahaan </th>
-
-                                        <th colspan="9">Data TKA (Tenaga Kerja Asing)</th>
-                                        <th width="15%" scope="col" rowspan="3">Aksi</th>
+                                        <th> No</th>
+                                        <th width="12%">Nama Perusahaan</th>
+                                        <th width="15%">Alamat Perusahaan </th>
+                                        <th>Nama TKA</th>
+                                        <th>Negara</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Jabatan</th>
+                                        <th>No. RPTKA</th>
+                                        <th>Masa Berlaku (RPTKA)</th>
+                                        <th>No. IMTA</th>
+                                        <th>Masa Berlaku (IMTA)</th>
+                                        <th>Lokasi Kerja</th>
+                                        <th width="15%">Aksi</th>
                                     </tr>
-                                    <tr>
-                                        <th width="5%" rowspan="2">Nama TKA</th>
-                                        <th width="5%" rowspan="2">Negara</th>
-                                        <th width="5%" rowspan="2">Jenis Kelamin</th>
-                                        <th width="5%" rowspan="2">Jabatan</th>
-                                        <th width="5%" rowspan="2">No. RPTKA</th>
-                                        <th width="5%" rowspan="2">Masa Berlaku (RPTKA)</th>
-                                        <th width="5%" rowspan="2">No. IMTA</th>
-                                        <th width="5%" rowspan="2">Masa Berlaku (IMTA)</th>
-                                        <th width="5%" rowspan="2">Lokasi Kerja</th>
-                                    </tr>
-
                                 </thead>
-                                <tbody align="center">
+                                <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_tka as $t) : ?>
                                         <tr>
@@ -130,14 +116,7 @@
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalUnduht" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger" id="btn-hapus" data-id="<?= $t['id']; ?>"> <i class="fa fa-trash-alt"></i></button>
-
-                                                <!-- <a class="badge badge-warning fas fa-ban" href="<?= base_url('datamaster/editUser/' . $t['id']); ?>">&nbsp;edit</a>
-                                <a class="badge badge-danger fas fa-trash-alt" href="<?= base_url('datamaster/deleteUser/' . $t['id']); ?>" onclick="return confirm('Are you sure ?')">&nbsp;delete</a> -->
-                                                <!-- <a class="badge badge-danger" href="<?= base_url('datamaster/deleteUser'); ?>" onclick="hapusModal('$t['id']')" data-toggle="modal" data-target="#hapusModal">
-                                    Hapus pake modal
-                                </a> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
