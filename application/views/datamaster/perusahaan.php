@@ -88,12 +88,11 @@
                                         <th rowspan="3"> No</th>
                                         <th rowspan="3">Nama Perusahaan</th>
                                         <th rowspan="3">Alamat</th>
-
-                                        <th rowspan="3">Kontak</th>
+                                        <!-- <th rowspan="3">Kontak</th> -->
                                         <th rowspan="3">Status</th>
 
                                         <!-- <th rowspan="3">Logo</th> -->
-                                        <th rowspan="3">Sektor</th>
+                                        <!-- <th rowspan="3">Sektor</th> -->
                                         <th width="12%" scope="col" rowspan="3">Aksi</th>
                                     </tr>
                                 </thead>
@@ -104,21 +103,23 @@
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td><?= $p['alamat']; ?></td>
-                                            <td>
+                                            <!-- <td>
                                                 <?php if ($p['kontak'] == null) {
                                                     echo '-';
                                                 } else {
                                                     echo $p['kontak'];
                                                 } ?>
+                                            </td> -->
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'Pusat';
                                                 } else {
                                                     echo 'Cabang';
                                                 } ?>
+                                            </td>
 
-                                                <!-- <td> <img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td> -->
-                                            <td> <?= $p['sektor']; ?> </td>
+                                            <!-- <td> <img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td> -->
+                                            <!-- <td> <?= $p['sektor']; ?> </td> -->
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>

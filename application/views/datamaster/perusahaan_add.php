@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="sektor" class="col-sm-3 col-form-label">Sektor/Bidang</label>
 
                                         <div class="col-sm-6">
@@ -81,7 +81,7 @@
                                                 <small id="uploadHelp" class="form-text text-muted"> <i> *hanya opsional!! </i></small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">
