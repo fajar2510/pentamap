@@ -13,6 +13,12 @@ class Datamaster extends CI_Controller
     // FUNCTION USER START
     public function user()
     {
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+        $data['user'] = $this->db->get()->row_array();
 
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();

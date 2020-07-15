@@ -12,7 +12,7 @@
     <title>
         <?= $title; ?>
     </title>
-    <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/disnakerlogo.ico">
+    <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/logo.ico">
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
