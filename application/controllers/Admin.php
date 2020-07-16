@@ -8,7 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model('dashboard');
+        // $this->load->model('dashboard');
     }
 
     public function index()

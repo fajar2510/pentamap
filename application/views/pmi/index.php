@@ -91,11 +91,6 @@
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
                                             </td>
-                                            <!-- 	id="btn-hapus" data-id="<?= $p['id']; ?>"
-											<td style="width: 120px;">
-												<a class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal_edit<?php echo $barang_id; ?>"> Edit</a>
-												<a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $barang_id; ?>"> Hapus</a>
-											</td> -->
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -283,10 +278,11 @@
                     </button>
                 </div>
                 <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
-                    <div class="modal-body">Data akan dihapus secara permanen </div>
+                    <div class="modal-body">Data&nbsp; <b>
+                            <font color="red"><?= $p['nama']; ?></font>
+                        </b> akan dihapus secara permanen </div>
                     <div class="modal-footer">
-                        <input type="text" name="id" value=<?= $p['id']; ?>>
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <input type="hidden" name="id" value=<?= $p['id']; ?>>
                         <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
                         <button class="btn btn-danger" type="submit">Hapus</button>
                     </div>
