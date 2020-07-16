@@ -7,7 +7,7 @@
             $this->db->order_by('nama_provinsi', 'asc');
             return $this->db->get('wilayah_provinsi')->result();
         }
-        public function get_kabupaten()
+        public function get_kabupaten() 
         {
             // kita joinkan tabel kota dengan provinsi
             $this->db->order_by('nama_kabupaten', 'asc');

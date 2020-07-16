@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 08:18 AM
+-- Generation Time: Jul 16, 2020 at 05:38 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -43,7 +43,6 @@ CREATE TABLE `tb_kwitansi` (
 
 CREATE TABLE `tb_negara` (
   `id` int(11) NOT NULL,
-  `kode_negara` varchar(2) NOT NULL DEFAULT '',
   `nama_negara` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -51,253 +50,42 @@ CREATE TABLE `tb_negara` (
 -- Dumping data for table `tb_negara`
 --
 
-INSERT INTO `tb_negara` (`id`, `kode_negara`, `nama_negara`) VALUES
-(1, 'AF', 'Afghanistan'),
-(2, 'AL', 'Albania'),
-(3, 'DZ', 'Algeria'),
-(4, 'DS', 'American Samoa'),
-(5, 'AD', 'Andorra'),
-(6, 'AO', 'Angola'),
-(7, 'AI', 'Anguilla'),
-(8, 'AQ', 'Antarctica'),
-(9, 'AG', 'Antigua and Barbuda'),
-(10, 'AR', 'Argentina'),
-(11, 'AM', 'Armenia'),
-(12, 'AW', 'Aruba'),
-(13, 'AU', 'Australia'),
-(14, 'AT', 'Austria'),
-(15, 'AZ', 'Azerbaijan'),
-(16, 'BS', 'Bahamas'),
-(17, 'BH', 'Bahrain'),
-(18, 'BD', 'Bangladesh'),
-(19, 'BB', 'Barbados'),
-(20, 'BY', 'Belarus'),
-(21, 'BE', 'Belgium'),
-(22, 'BZ', 'Belize'),
-(23, 'BJ', 'Benin'),
-(24, 'BM', 'Bermuda'),
-(25, 'BT', 'Bhutan'),
-(26, 'BO', 'Bolivia'),
-(27, 'BA', 'Bosnia and Herzegovina'),
-(28, 'BW', 'Botswana'),
-(29, 'BV', 'Bouvet Island'),
-(30, 'BR', 'Brazil'),
-(31, 'IO', 'British Indian Ocean Territory'),
-(32, 'BN', 'Brunei Darussalam'),
-(33, 'BG', 'Bulgaria'),
-(34, 'BF', 'Burkina Faso'),
-(35, 'BI', 'Burundi'),
-(36, 'KH', 'Cambodia'),
-(37, 'CM', 'Cameroon'),
-(38, 'CA', 'Canada'),
-(39, 'CV', 'Cape Verde'),
-(40, 'KY', 'Cayman Islands'),
-(41, 'CF', 'Central African Republic'),
-(42, 'TD', 'Chad'),
-(43, 'CL', 'Chile'),
-(44, 'CN', 'China'),
-(45, 'CX', 'Christmas Island'),
-(46, 'CC', 'Cocos (Keeling) Islands'),
-(47, 'CO', 'Colombia'),
-(48, 'KM', 'Comoros'),
-(49, 'CD', 'Democratic Republic of the Congo'),
-(50, 'CG', 'Republic of Congo'),
-(51, 'CK', 'Cook Islands'),
-(52, 'CR', 'Costa Rica'),
-(53, 'HR', 'Croatia (Hrvatska)'),
-(54, 'CU', 'Cuba'),
-(55, 'CY', 'Cyprus'),
-(56, 'CZ', 'Czech Republic'),
-(57, 'DK', 'Denmark'),
-(58, 'DJ', 'Djibouti'),
-(59, 'DM', 'Dominica'),
-(60, 'DO', 'Dominican Republic'),
-(61, 'TP', 'East Timor'),
-(62, 'EC', 'Ecuador'),
-(63, 'EG', 'Egypt'),
-(64, 'SV', 'El Salvador'),
-(65, 'GQ', 'Equatorial Guinea'),
-(66, 'ER', 'Eritrea'),
-(67, 'EE', 'Estonia'),
-(68, 'ET', 'Ethiopia'),
-(69, 'FK', 'Falkland Islands (Malvinas)'),
-(70, 'FO', 'Faroe Islands'),
-(71, 'FJ', 'Fiji'),
-(72, 'FI', 'Finland'),
-(73, 'FR', 'France'),
-(74, 'FX', 'France, Metropolitan'),
-(75, 'GF', 'French Guiana'),
-(76, 'PF', 'French Polynesia'),
-(77, 'TF', 'French Southern Territories'),
-(78, 'GA', 'Gabon'),
-(79, 'GM', 'Gambia'),
-(80, 'GE', 'Georgia'),
-(81, 'DE', 'Germany'),
-(82, 'GH', 'Ghana'),
-(83, 'GI', 'Gibraltar'),
-(84, 'GK', 'Guernsey'),
-(85, 'GR', 'Greece'),
-(86, 'GL', 'Greenland'),
-(87, 'GD', 'Grenada'),
-(88, 'GP', 'Guadeloupe'),
-(89, 'GU', 'Guam'),
-(90, 'GT', 'Guatemala'),
-(91, 'GN', 'Guinea'),
-(92, 'GW', 'Guinea-Bissau'),
-(93, 'GY', 'Guyana'),
-(94, 'HT', 'Haiti'),
-(95, 'HM', 'Heard and Mc Donald Islands'),
-(96, 'HN', 'Honduras'),
-(97, 'HK', 'Hong Kong'),
-(98, 'HU', 'Hungary'),
-(99, 'IS', 'Iceland'),
-(100, 'IN', 'India'),
-(101, 'IM', 'Isle of Man'),
-(102, 'ID', 'Indonesia'),
-(103, 'IR', 'Iran (Islamic Republic of)'),
-(104, 'IQ', 'Iraq'),
-(105, 'IE', 'Ireland'),
-(106, 'IL', 'Israel'),
-(107, 'IT', 'Italy'),
-(108, 'CI', 'Ivory Coast'),
-(109, 'JE', 'Jersey'),
-(110, 'JM', 'Jamaica'),
-(111, 'JP', 'Japan'),
-(112, 'JO', 'Jordan'),
-(113, 'KZ', 'Kazakhstan'),
-(114, 'KE', 'Kenya'),
-(115, 'KI', 'Kiribati'),
-(116, 'KP', 'Korea, Democratic People\'s Republic of'),
-(117, 'KR', 'Korea, Republic of'),
-(118, 'XK', 'Kosovo'),
-(119, 'KW', 'Kuwait'),
-(120, 'KG', 'Kyrgyzstan'),
-(121, 'LA', 'Lao People\'s Democratic Republic'),
-(122, 'LV', 'Latvia'),
-(123, 'LB', 'Lebanon'),
-(124, 'LS', 'Lesotho'),
-(125, 'LR', 'Liberia'),
-(126, 'LY', 'Libyan Arab Jamahiriya'),
-(127, 'LI', 'Liechtenstein'),
-(128, 'LT', 'Lithuania'),
-(129, 'LU', 'Luxembourg'),
-(130, 'MO', 'Macau'),
-(131, 'MK', 'North Macedonia'),
-(132, 'MG', 'Madagascar'),
-(133, 'MW', 'Malawi'),
-(134, 'MY', 'Malaysia'),
-(135, 'MV', 'Maldives'),
-(136, 'ML', 'Mali'),
-(137, 'MT', 'Malta'),
-(138, 'MH', 'Marshall Islands'),
-(139, 'MQ', 'Martinique'),
-(140, 'MR', 'Mauritania'),
-(141, 'MU', 'Mauritius'),
-(142, 'TY', 'Mayotte'),
-(143, 'MX', 'Mexico'),
-(144, 'FM', 'Micronesia, Federated States of'),
-(145, 'MD', 'Moldova, Republic of'),
-(146, 'MC', 'Monaco'),
-(147, 'MN', 'Mongolia'),
-(148, 'ME', 'Montenegro'),
-(149, 'MS', 'Montserrat'),
-(150, 'MA', 'Morocco'),
-(151, 'MZ', 'Mozambique'),
-(152, 'MM', 'Myanmar'),
-(153, 'NA', 'Namibia'),
-(154, 'NR', 'Nauru'),
-(155, 'NP', 'Nepal'),
-(156, 'NL', 'Netherlands'),
-(157, 'AN', 'Netherlands Antilles'),
-(158, 'NC', 'New Caledonia'),
-(159, 'NZ', 'New Zealand'),
-(160, 'NI', 'Nicaragua'),
-(161, 'NE', 'Niger'),
-(162, 'NG', 'Nigeria'),
-(163, 'NU', 'Niue'),
-(164, 'NF', 'Norfolk Island'),
-(165, 'MP', 'Northern Mariana Islands'),
-(166, 'NO', 'Norway'),
-(167, 'OM', 'Oman'),
-(168, 'PK', 'Pakistan'),
-(169, 'PW', 'Palau'),
-(170, 'PS', 'Palestine'),
-(171, 'PA', 'Panama'),
-(172, 'PG', 'Papua New Guinea'),
-(173, 'PY', 'Paraguay'),
-(174, 'PE', 'Peru'),
-(175, 'PH', 'Philippines'),
-(176, 'PN', 'Pitcairn'),
-(177, 'PL', 'Poland'),
-(178, 'PT', 'Portugal'),
-(179, 'PR', 'Puerto Rico'),
-(180, 'QA', 'Qatar'),
-(181, 'RE', 'Reunion'),
-(182, 'RO', 'Romania'),
-(183, 'RU', 'Russian Federation'),
-(184, 'RW', 'Rwanda'),
-(185, 'KN', 'Saint Kitts and Nevis'),
-(186, 'LC', 'Saint Lucia'),
-(187, 'VC', 'Saint Vincent and the Grenadines'),
-(188, 'WS', 'Samoa'),
-(189, 'SM', 'San Marino'),
-(190, 'ST', 'Sao Tome and Principe'),
-(191, 'SA', 'Saudi Arabia'),
-(192, 'SN', 'Senegal'),
-(193, 'RS', 'Serbia'),
-(194, 'SC', 'Seychelles'),
-(195, 'SL', 'Sierra Leone'),
-(196, 'SG', 'Singapore'),
-(197, 'SK', 'Slovakia'),
-(198, 'SI', 'Slovenia'),
-(199, 'SB', 'Solomon Islands'),
-(200, 'SO', 'Somalia'),
-(201, 'ZA', 'South Africa'),
-(202, 'GS', 'South Georgia South Sandwich Islands'),
-(203, 'SS', 'South Sudan'),
-(204, 'ES', 'Spain'),
-(205, 'LK', 'Sri Lanka'),
-(206, 'SH', 'St. Helena'),
-(207, 'PM', 'St. Pierre and Miquelon'),
-(208, 'SD', 'Sudan'),
-(209, 'SR', 'Suriname'),
-(210, 'SJ', 'Svalbard and Jan Mayen Islands'),
-(211, 'SZ', 'Swaziland'),
-(212, 'SE', 'Sweden'),
-(213, 'CH', 'Switzerland'),
-(214, 'SY', 'Syrian Arab Republic'),
-(215, 'TW', 'Taiwan'),
-(216, 'TJ', 'Tajikistan'),
-(217, 'TZ', 'Tanzania, United Republic of'),
-(218, 'TH', 'Thailand'),
-(219, 'TG', 'Togo'),
-(220, 'TK', 'Tokelau'),
-(221, 'TO', 'Tonga'),
-(222, 'TT', 'Trinidad and Tobago'),
-(223, 'TN', 'Tunisia'),
-(224, 'TR', 'Turkey'),
-(225, 'TM', 'Turkmenistan'),
-(226, 'TC', 'Turks and Caicos Islands'),
-(227, 'TV', 'Tuvalu'),
-(228, 'UG', 'Uganda'),
-(229, 'UA', 'Ukraine'),
-(230, 'AE', 'United Arab Emirates'),
-(231, 'GB', 'United Kingdom'),
-(232, 'US', 'United States'),
-(233, 'UM', 'United States minor outlying islands'),
-(234, 'UY', 'Uruguay'),
-(235, 'UZ', 'Uzbekistan'),
-(236, 'VU', 'Vanuatu'),
-(237, 'VA', 'Vatican City State'),
-(238, 'VE', 'Venezuela'),
-(239, 'VN', 'Vietnam'),
-(240, 'VG', 'Virgin Islands (British)'),
-(241, 'VI', 'Virgin Islands (U.S.)'),
-(242, 'WF', 'Wallis and Futuna Islands'),
-(243, 'EH', 'Western Sahara'),
-(244, 'YE', 'Yemen'),
-(245, 'ZM', 'Zambia'),
-(246, 'ZW', 'Zimbabwe');
+INSERT INTO `tb_negara` (`id`, `nama_negara`) VALUES
+(247, 'Indonesia'),
+(248, 'Malaysia'),
+(249, 'Singapura'),
+(250, 'Brunei Darusallam'),
+(251, 'Thailand'),
+(252, 'Hongkong'),
+(253, 'RRC China'),
+(254, 'Taiwan'),
+(255, 'Jepang'),
+(256, 'Korea Selatan'),
+(257, 'India'),
+(258, 'Saudi Arabia'),
+(259, 'Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_perusahaan`
+--
+
+CREATE TABLE `tb_perusahaan` (
+  `id` int(11) NOT NULL,
+  `nama_perusahaan` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `status` enum('P','C') NOT NULL,
+  `kontak` varchar(25) NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_perusahaan`
+--
+
+INSERT INTO `tb_perusahaan` (`id`, `nama_perusahaan`, `alamat`, `status`, `kontak`, `date_created`) VALUES
+(1, 'PT Aneka Indomakmur', 'Jl Surowongso 415 A, Desa Karangbong Kec. Gedangan ', 'P', '08123672311', '2020-07-14');
 
 -- --------------------------------------------------------
 
@@ -309,6 +97,7 @@ CREATE TABLE `tb_pmi` (
   `id` int(11) NOT NULL,
   `nama` varchar(60) NOT NULL,
   `tgl_lahir` date NOT NULL,
+  `gender` enum('L','P') NOT NULL,
   `provinsi` varchar(30) NOT NULL,
   `kabupaten` varchar(60) NOT NULL,
   `kecamatan` varchar(80) NOT NULL,
@@ -327,10 +116,76 @@ CREATE TABLE `tb_pmi` (
 -- Dumping data for table `tb_pmi`
 --
 
-INSERT INTO `tb_pmi` (`id`, `nama`, `tgl_lahir`, `provinsi`, `kabupaten`, `kecamatan`, `desa`, `negara_bekerja`, `jenis_pekerjaan`, `berangkat_melalui`, `pengirim`, `lama_bekerja`, `image`, `status`, `date_created`) VALUES
-(15, 'Savhira Indah', '2001-07-31', 'Sumatera Utara', 'Kab. Aceh Tenggara', 'Simeulue Timur', 'Daserana', 'China', 'Buruh', 'Jakarta', 'PT. Seira Indah Jaya', '2', '70a896f91e6f48fcee8cfd79bd980b08.jpg', 'NON-PROSEDURAL', '2020-07-14'),
-(16, 'Bagus Hari Jaya', '2001-08-19', 'Sumatera Barat', 'Kab. Aceh Tenggara', 'Teupah Tengah', 'Daserana', 'Hongkong', 'Buruh', 'Jakarta', 'PT. Seira Indah Jaya', '2', 'bhinbhin-5cb4f92a2a2bf5b85228443cda82f9021.png', 'NON-PROSEDURAL', '2020-07-06'),
-(17, 'Anggita Sekar', '2001-08-18', 'Di Yogyakarta', 'Kab. Nagan Raya', 'Silih Nara', 'Klewer', 'Malaysia', 'Mahasiswa Pengajar', 'Batam', 'PT. Seira Indah Jaya', '3', 'atung-8dafb596ca53bd1e877ded6a390ed9563.png', 'NON-PROSEDURAL', '2020-07-28');
+INSERT INTO `tb_pmi` (`id`, `nama`, `tgl_lahir`, `gender`, `provinsi`, `kabupaten`, `kecamatan`, `desa`, `negara_bekerja`, `jenis_pekerjaan`, `berangkat_melalui`, `pengirim`, `lama_bekerja`, `image`, `status`, `date_created`) VALUES
+(15, 'Savhira Indah', '2001-07-31', 'P', 'Sumatera Utara', 'Kab. Aceh Tenggara', 'Simeulue Timur', 'Daserana', 'China', 'Buruh', 'Jakarta', 'PT. Seira Indah Jaya', '2', '70a896f91e6f48fcee8cfd79bd980b08.jpg', 'NON-PROSEDURAL', '2020-07-14'),
+(17, 'Anggita Sekar', '2001-08-18', 'P', 'Di Yogyakarta', 'Kab. Nagan Raya', 'Silih Nara', 'Klewer', 'Malaysia', 'Mahasiswa Pengajar', 'Batam', 'PT. Seira Indah Jaya', '3', 'atung-8dafb596ca53bd1e877ded6a390ed9563.png', 'NON-PROSEDURAL', '2020-07-28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pptkis`
+--
+
+CREATE TABLE `tb_pptkis` (
+  `id` int(11) NOT NULL,
+  `nama_pptkis` varchar(100) NOT NULL,
+  `status` enum('P','C') NOT NULL,
+  `taiwan_lk` int(11) NOT NULL,
+  `taiwan_pr` int(11) NOT NULL,
+  `hongkong_lk` int(11) NOT NULL,
+  `hongkong_pr` int(11) NOT NULL,
+  `malay_lk` int(11) NOT NULL,
+  `malay_pr` int(11) NOT NULL,
+  `brunei_lk` int(11) NOT NULL,
+  `brunei_pr` int(11) NOT NULL,
+  `sin_lk` int(11) NOT NULL,
+  `sin_pr` int(11) NOT NULL,
+  `lainnya_lk` int(11) NOT NULL,
+  `lainnya_pr` int(11) NOT NULL,
+  `formal` int(11) NOT NULL,
+  `informal` int(11) NOT NULL,
+  `jatim` int(11) NOT NULL,
+  `luar_jatim` int(11) NOT NULL,
+  `total_lk` int(11) NOT NULL,
+  `total_pr` int(11) NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_pptkis`
+--
+
+INSERT INTO `tb_pptkis` (`id`, `nama_pptkis`, `status`, `taiwan_lk`, `taiwan_pr`, `hongkong_lk`, `hongkong_pr`, `malay_lk`, `malay_pr`, `brunei_lk`, `brunei_pr`, `sin_lk`, `sin_pr`, `lainnya_lk`, `lainnya_pr`, `formal`, `informal`, `jatim`, `luar_jatim`, `total_lk`, `total_pr`, `total`) VALUES
+(1, 'PT ADHI MAKMUR OENGGOEL INSANI', 'P', 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 2, 5, 15, 11, 25, 1, 7, 17, 24),
+(2, 'PT. AKARINKA UTAMA SEJAHTERA', 'C', 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 2, 5, 15, 11, 25, 1, 7, 17, 24);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_tka`
+--
+
+CREATE TABLE `tb_tka` (
+  `id` int(11) NOT NULL,
+  `nama_perusahaan` varchar(80) NOT NULL,
+  `nama_tka` varchar(100) NOT NULL,
+  `kewarganegaraan` varchar(50) NOT NULL,
+  `jenis_kel` enum('L','P') NOT NULL,
+  `jabatan` varchar(60) NOT NULL,
+  `no_rptka` varchar(30) NOT NULL,
+  `masa_rptka` date NOT NULL,
+  `no_imta` varchar(50) NOT NULL,
+  `masa_imta` date NOT NULL,
+  `lokasi_kerja` varchar(50) NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_tka`
+--
+
+INSERT INTO `tb_tka` (`id`, `nama_perusahaan`, `nama_tka`, `kewarganegaraan`, `jenis_kel`, `jabatan`, `no_rptka`, `masa_rptka`, `no_imta`, `masa_imta`, `lokasi_kerja`, `date_created`) VALUES
+(1, '1', 'Romeo, M. Consolacion', 'China', 'L', 'Mechanical Manager', '613132432', '2020-10-15', '3513342354361', '2020-11-13', 'Mojoketo', '2020-07-14');
 
 -- --------------------------------------------------------
 
@@ -355,7 +210,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `image`, `email`, `bio`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(2, 'Fajar Abdurrohman', 'user.png', 'sepertiseharusnyafajar@gmail.com', 'Belajar tanpa batas', '81dc9bdb52d04dc20036dbd8313ed055', 1, 1, 1587455351);
+(10, 'admin', 'default.png', 'admin@mail.com', '', '$2y$10$t9cyoLuZyxxDXo11MUyMMONlVfeI1zC64ZkHuNeti3a6j5397Ipvq', 2, 1, 1594601522),
+(11, 'Savhira Indah', 'default.png', 'savhiraindah@gmail.com', '', '$2y$10$pMK7AvYHDPTiP6UTTZDvHO/Y6D.NoiiRvUmyODaj1z7cjNXxtD/gm', 2, 1, 1594686535),
+(13, 'Fajar Abdurrohman', 'bhinbhin-5cb4f92a2a2bf5b85228443cda82f902.png', 'sepertiseharusnyafajar@gmail.com', 'T I M E  L A P S E', '$2y$10$4DLUERv1PVMtd33AyT.Ci.rjiVtbjVsXWGpLnBUatMv09iqDKkyRC', 1, 1, 1594686815);
 
 -- --------------------------------------------------------
 
@@ -376,11 +233,11 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3),
 (5, 1, 99),
 (52, 1, 98),
-(53, 2, 3),
-(54, 2, 98);
+(54, 2, 98),
+(56, 2, 3),
+(57, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -451,7 +308,10 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (9, 1, 'Hak Akses', 'admin/role', 'fas fa-fw fa-user-tie', 1),
 (11, 2, ' Data Pengguna', 'datamaster/user', 'fas  fa-fw fa-users', 1),
 (37, 98, 'Ubah Password', 'user/changePassword', 'fas fa-fw fa-unlock-alt', 1),
-(42, 3, 'Pemulangan Pekerja', 'pmi', 'fas fa-fw fa-person-booth', 1);
+(42, 3, 'Pemulangan Pekerja', 'pmi', 'fas fa-fw fa-person-booth', 1),
+(45, 3, 'AN Perusahaan', 'pptkis/index', 'fas fa-fw fa-building', 1),
+(46, 3, 'TKA Perusahaan', 'tka', 'fa fa-fw fa-briefcase', 1),
+(47, 2, 'Data Perusahaan', 'datamaster/perusahaan', 'fa fa-fw fa-building', 1);
 
 -- --------------------------------------------------------
 
@@ -475,14 +335,14 @@ CREATE TABLE `user_token` (
 CREATE TABLE `wilayah_kabupaten` (
   `id` varchar(4) NOT NULL,
   `provinsi_id` varchar(2) NOT NULL DEFAULT '',
-  `nama` varchar(30) NOT NULL
+  `nama_kabupaten` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `wilayah_kabupaten`
 --
 
-INSERT INTO `wilayah_kabupaten` (`id`, `provinsi_id`, `nama`) VALUES
+INSERT INTO `wilayah_kabupaten` (`id`, `provinsi_id`, `nama_kabupaten`) VALUES
 ('1101', '11', 'Kab. Simeulue'),
 ('1102', '11', 'Kab. Aceh Singkil'),
 ('1103', '11', 'Kab. Aceh Selatan'),
@@ -992,14 +852,14 @@ INSERT INTO `wilayah_kabupaten` (`id`, `provinsi_id`, `nama`) VALUES
 CREATE TABLE `wilayah_kecamatan` (
   `id` varchar(7) NOT NULL,
   `kabupaten_id` varchar(4) NOT NULL DEFAULT '',
-  `nama` varchar(30) NOT NULL
+  `nama_kecamatan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `wilayah_kecamatan`
 --
 
-INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
+INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama_kecamatan`) VALUES
 ('1101010', '1101', ' Teupah Selatan'),
 ('1101020', '1101', ' Simeulue Timur'),
 ('1101021', '1101', ' Teupah Barat'),
@@ -2414,9 +2274,9 @@ INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
 ('1674021', '1674', ' Lubuk Linggau Selatan I'),
 ('1674022', '1674', ' Lubuk Linggau Selatan Ii'),
 ('1674031', '1674', ' Lubuk Linggau Timur I'),
-('1674032', '1674', ' Lubuk Linggau Timur Ii'),
-('1674041', '1674', ' Lubuk Linggau Utara I');
-INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
+('1674032', '1674', ' Lubuk Linggau Timur Ii');
+INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama_kecamatan`) VALUES
+('1674041', '1674', ' Lubuk Linggau Utara I'),
 ('1674042', '1674', ' Lubuk Linggau Utara Ii'),
 ('1701040', '1701', ' Manna'),
 ('1701041', '1701', ' Kota Manna'),
@@ -3907,10 +3767,10 @@ INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
 ('3318200', '3318', ' Tayu'),
 ('3318210', '3318', ' Dukuhseti'),
 ('3319010', '3319', ' Kaliwungu'),
-('3319020', '3319', ' Kota Kudus'),
+('3319020', '3319', ' Kota Kudus');
+INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama_kecamatan`) VALUES
 ('3319030', '3319', ' Jati'),
-('3319040', '3319', ' Undaan');
-INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
+('3319040', '3319', ' Undaan'),
 ('3319050', '3319', ' Mejobo'),
 ('3319060', '3319', ' Jekulo'),
 ('3319070', '3319', ' Bae'),
@@ -5458,10 +5318,10 @@ INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
 ('5315050', '5315', ' Macang Pacar'),
 ('5316010', '5316', ' Katikutana'),
 ('5316011', '5316', ' Katikutana Selatan'),
-('5316020', '5316', ' Umbu Ratu Nggay Barat'),
+('5316020', '5316', ' Umbu Ratu Nggay Barat');
+INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama_kecamatan`) VALUES
 ('5316030', '5316', ' Umbu Ratu Nggay'),
-('5316040', '5316', ' Mamboro');
-INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
+('5316040', '5316', ' Mamboro'),
 ('5317010', '5317', ' Kodi Bangedo'),
 ('5317011', '5317', ' Kodi Balaghar'),
 ('5317020', '5317', ' Kodi'),
@@ -6923,10 +6783,10 @@ INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
 ('7408030', '7408', ' Kodeoha'),
 ('7408031', '7408', ' Tiwu'),
 ('7408040', '7408', ' Ngapa'),
-('7408041', '7408', ' Watunohu'),
+('7408041', '7408', ' Watunohu');
+INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama_kecamatan`) VALUES
 ('7408050', '7408', ' Pakue'),
-('7408051', '7408', ' Pakue Utara');
-INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
+('7408051', '7408', ' Pakue Utara'),
 ('7408052', '7408', ' Pakue Tengah'),
 ('7408060', '7408', ' Batu Putih'),
 ('7408061', '7408', ' Porehu'),
@@ -7891,14 +7751,14 @@ INSERT INTO `wilayah_kecamatan` (`id`, `kabupaten_id`, `nama`) VALUES
 
 CREATE TABLE `wilayah_provinsi` (
   `id` varchar(2) NOT NULL,
-  `nama` varchar(30) NOT NULL
+  `nama_provinsi` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `wilayah_provinsi`
 --
 
-INSERT INTO `wilayah_provinsi` (`id`, `nama`) VALUES
+INSERT INTO `wilayah_provinsi` (`id`, `nama_provinsi`) VALUES
 ('11', 'Aceh'),
 ('12', 'Sumatera Utara'),
 ('13', 'Sumatera Barat'),
@@ -7951,9 +7811,27 @@ ALTER TABLE `tb_negara`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_perusahaan`
+--
+ALTER TABLE `tb_perusahaan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_pmi`
 --
 ALTER TABLE `tb_pmi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_pptkis`
+--
+ALTER TABLE `tb_pptkis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_tka`
+--
+ALTER TABLE `tb_tka`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -8024,25 +7902,43 @@ ALTER TABLE `tb_kwitansi`
 -- AUTO_INCREMENT for table `tb_negara`
 --
 ALTER TABLE `tb_negara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
+
+--
+-- AUTO_INCREMENT for table `tb_perusahaan`
+--
+ALTER TABLE `tb_perusahaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_pmi`
 --
 ALTER TABLE `tb_pmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `tb_pptkis`
+--
+ALTER TABLE `tb_pptkis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_tka`
+--
+ALTER TABLE `tb_tka`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -8060,7 +7956,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user_token`
