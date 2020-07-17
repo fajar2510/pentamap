@@ -154,7 +154,7 @@ class Pmi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('pmi/tambah',  $chain + $data);
+        $this->load->view('pmi/tambah', $chain, $data);
         $this->load->view('templates/footer', $data);
 
 

@@ -62,10 +62,10 @@ class Tka extends CI_Controller
     public function hapus($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('tb_pptkis');
+        $this->db->delete('tb_tka');
 
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Your selected PPTKIS has succesfully deleted, be carefull for manage data. </div>');
-        redirect('perusahaan/');
+        redirect('tka/');
     }
 }

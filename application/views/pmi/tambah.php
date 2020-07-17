@@ -1,4 +1,5 @@
 <!-- Begin Page Content -->
+<!-- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css') ?>" /> -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -110,15 +111,6 @@
                                                 ?>
                                             </select>
                                         </div>
-
-                                        <!-- <div class="col-sm-5">
-                                <select name="desa" id="desa" class="form-control">
-                                    <option value=""> Pilih Desa </option>
-                                    <?php foreach ($wilayah_desa as $d) : ?>
-                                        <option value="<?= $d['nama']; ?>"> <?= $d['nama']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div> -->
                                     </div>
                                     <div class="form-group row">
                                         <label for="desa" class="col-sm-3 col-form-label"></label>
@@ -203,6 +195,3 @@
 
 </div>
 <!-- End of Main Content -->
-
-<script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>

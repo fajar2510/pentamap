@@ -64,7 +64,6 @@
         $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi
         $("#kecamatan").chained("#kabupaten"); // disini kita hubungkan kecamatan dengan kota
     </script>
-    </script>
 </body>
 
 </html>

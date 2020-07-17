@@ -177,10 +177,13 @@
     });
 </script>
 
+<!-- <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script> -->
+<script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
 <script>
     $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi
     $("#kecamatan").chained("#kabupaten"); // disini kita hubungkan kecamatan dengan kota
 </script>
+
 
 
 
