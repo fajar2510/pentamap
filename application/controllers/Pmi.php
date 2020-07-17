@@ -95,19 +95,19 @@ class Pmi extends CI_Controller
         }
     }
 
-    function kabupaten()
-    {
-        if ($this->input->post('provinsi_id')) {
-            echo $this->wilayah->kabupaten($this->input->post('provinsi_id'));
-        }
-    }
+    // function kabupaten()
+    // {
+    //     if ($this->input->post('provinsi_id')) {
+    //         echo $this->wilayah->kabupaten($this->input->post('provinsi_id'));
+    //     }
+    // }
 
-    function kecamatan()
-    {
-        if ($this->input->post('kabupaten_id')) {
-            echo $this->wilayah->kecamatan($this->input->post('kabupaten_id'));
-        }
-    }
+    // function kecamatan()
+    // {
+    //     if ($this->input->post('kabupaten_id')) {
+    //         echo $this->wilayah->kecamatan($this->input->post('kabupaten_id'));
+    //     }
+    // }
 
     public function tambah()
     {
@@ -191,7 +191,6 @@ class Pmi extends CI_Controller
 
         $data['wilayah_provinsi'] = $this->Wilayah->provinsi();
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-        // $data['wilayah_desa'] = $this->db->get('wilayah_desa')->result_array();
 
         // Load Model User Role
         $data['pmi'] = $this->Master->getPmi();

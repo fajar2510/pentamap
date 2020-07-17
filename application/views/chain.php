@@ -32,7 +32,7 @@
                         foreach ($kabupaten as $kab) {
                         ?>
                             <!--di sini kita tambahkan class berisi id provinsi-->
-                            <option <?php echo $kabupaten_selected == $kab->provinsi_id ? 'selected="selected"' : '' ?> class="<?php echo $kab->provinsi_id ?>" value="<?php echo $kab->provinsi_id ?>"><?php echo $kab->nama_kabupaten ?></option>
+                            <option <?php echo $kabupaten_selected == $kab->provinsi_id ? 'selected="selected"' : '' ?> class="<?php echo $kab->provinsi_id ?>" value="<?php echo $kab->id ?>"><?php echo $kab->nama_kabupaten ?></option>
                         <?php
                         }
                         ?>
