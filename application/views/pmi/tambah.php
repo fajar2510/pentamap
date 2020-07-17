@@ -70,27 +70,44 @@
                                     <div class="form-group row">
                                         <label for="password" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-4">
-                                            <select name="prov" id="prov" class="form-control">
+                                            <select name="provinsi" id="provinsi" class="form-control">
                                                 <option value="">~ Pilih Provinsi ~</option>
                                                 <?php
-                                                foreach ($wilayah_provinsi as $row) {
-                                                    echo '<option value="' . $row->nama . '">' . $row->nama . '</option>';
+                                                foreach ($provinsi as $prov) {
+                                                ?>
+                                                    <option <?php echo $provinsi_selected == $prov->id ? 'selected="selected"' : '' ?> value="<?php echo $prov->id ?>"><?php echo $prov->nama_provinsi ?></option>
+                                                <?php
                                                 }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
-                                            <select name="kab" id="kab" class="form-control">
+                                            <select name="kabupaten" id="kabupaten" class="form-control">
                                                 <option value="">~ Pilih Kabupaten/Kota ~</option>
+                                                <?php
+                                                foreach ($kabupaten as $kab) {
+                                                ?>
+                                                    <!--di sini kita tambahkan class berisi id provinsi-->
+                                                    <option <?php echo $kabupaten_selected == $kab->provinsi_id ? 'selected="selected"' : '' ?> class="<?php echo $kab->provinsi_id ?>" value="<?php echo $kab->id ?>"><?php echo $kab->nama_kabupaten ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-5">
-                                            <select name="kec" id="kec" class="form-control">
+                                            <select name="kecamatan" id="kecamatan" class="form-control">
                                                 <option value="">~ Pilih Kecamatan ~</option>
-
+                                                <?php
+                                                foreach ($kecamatan as $kec) {
+                                                ?>
+                                                    <!--di sini kita tambahkan class berisi id kota-->
+                                                    <option <?php echo $kecamatan_selected == $kec->id ? 'selected="selected"' : '' ?> class="<?php echo $kec->kabupaten_id ?>" value="<?php echo $kec->id ?>"><?php echo $kec->nama_kecamatan ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
 
@@ -173,6 +190,8 @@
 
                                 </div>
                             </form>
+
+
                         </div>
                     </div>
                 </div>
@@ -184,3 +203,6 @@
 
 </div>
 <!-- End of Main Content -->
+
+<script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>

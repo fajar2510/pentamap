@@ -82,4 +82,14 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert 
         alert-success" role="alert"> Access Changed!</div>');
     }
+
+    public function hapusRole($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_role');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected ROle has succesfully deleted, be carefull for manage data. </div>');
+        redirect('admin/role');
+    }
 }

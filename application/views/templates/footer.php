@@ -65,6 +65,8 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
+
+
 <!-- untuk mengambil input tanggal -->
 <script>
     $(function() {
@@ -175,6 +177,10 @@
     });
 </script>
 
+<script>
+    $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi
+    $("#kecamatan").chained("#kabupaten"); // disini kita hubungkan kecamatan dengan kota
+</script>
 
 
 

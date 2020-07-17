@@ -6,7 +6,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-        <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#newRoleModal">
+        <a href="#" class="btn btn-primary bg-gradient-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#newRoleModal">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
@@ -44,9 +44,9 @@
                                         <th scope="row"><?= $i; ?></th>
                                         <td><?= $r['role']; ?></td>
                                         <td>
-                                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" type="button" class="btn btn-sm btn-success"> <i class="fa fa-universal-access">&nbsp;Akses</i></a>
-                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit">&nbsp;Edit</i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt">&nbsp;Hapus</i></button>
+                                            <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" type="button" class="btn btn-sm btn-success bg-gradient-success"> <i class="fa fa-universal-access">&nbsp;Akses</i></a>
+                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning bg-gradient-warning"> <i class="fa fa-edit"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id']; ?>" class="btn btn-sm btn-danger bg-gradient-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -68,28 +68,57 @@
 <!-- MODAL -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="newRoleModal" tabindex="-1" role="dialog" aria-labelledby="newRoleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newRoleModalLabel">Tambah Hak Akses</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('admin/role'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="role">Level (Hak Akses)</label>
-                        <input type="text" class="form-control" id="role" name="role" placeholder="Kepala Bidang/Kasi/Staf...">
+    <!-- Modal -->
+    <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Tambah Hak Akses</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('admin/role'); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="role">Level (Hak Akses)</label>
+                            <input type="text" class="form-control" id="role" name="role" placeholder="Kepala Bidang/Kasi/Staf...">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambahkan</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary bg-gradient-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary bg-gradient-primary">Tambahkan</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+
+<?php foreach ($role as $r) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapus<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('admin/hapusRole/' . $r['id']); ?>">
+                    <div class="modal-body">Data&nbsp; <b>
+                            <font color="red"><?= $r['role']; ?></font>
+                        </b> akan dihapus secara permanen </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" value=<?= $r['id']; ?>>
+                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- end main -->
