@@ -41,7 +41,7 @@
 
 <!-- Bootstrap core JavaScript-->
 
-<script src="<?php echo base_url("js/jquery.min.js"); ?>" type="text/javascript"></script>
+<!-- <script src="<?php echo base_url("js/jquery.min.js"); ?>" type="text/javascript"></script> -->
 
 <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -177,7 +177,6 @@
     });
 </script>
 
-<!-- <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script> -->
 <script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
 <script>
     $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi

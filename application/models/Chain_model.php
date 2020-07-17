@@ -29,4 +29,5 @@
             $this->db->join('wilayah_provinsi', 'wilayah_kabupaten.provinsi_id = wilayah_provinsi.id');
             return $this->db->get('wilayah_kecamatan')->row();
         }
+        
     }
