@@ -13,7 +13,7 @@ class User extends CI_Controller
 
     public function index() 
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Profil Pengguna';
 
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
@@ -32,7 +32,7 @@ class User extends CI_Controller
 
     public function edit()
     { 
-        $data['title'] = 'Edit Profile';
+        $data['title'] = 'Edit Profil';
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
         $this->db->from('user');
