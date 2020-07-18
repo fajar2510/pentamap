@@ -13,7 +13,6 @@
         <?= $title; ?>
     </title>
     <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/logo.ico">
-    <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css') ?>" />
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

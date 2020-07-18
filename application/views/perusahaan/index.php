@@ -44,12 +44,7 @@
                                     Rentang Akhir: <input id="endDate" width="276" />
                                 </div>
                             </div>
-
-
-
                         </div>
-
-
                         <div class="dropdown mb-0">
                             <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">

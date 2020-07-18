@@ -8,7 +8,7 @@
             <hr>
 
             <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
+                <div class="card-body p-1">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg">
@@ -42,12 +42,12 @@
 
                                 </form>
                                 <hr>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" href="<?php echo base_url() ?>auth/registration">Buat Akun Baru</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
