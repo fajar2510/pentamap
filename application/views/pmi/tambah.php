@@ -68,57 +68,47 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="password" class="col-sm-3 col-form-label">Alamat</label>
+                                    <div class="form-group">
+                                        <label for="jk" class="control-label col-sm-3">Provinsi <?= $this->uri->segment(3)?></label>
                                         <div class="col-sm-4">
-                                            <select name="provinsi" id="provinsi" class="form-control">
-                                                <option value="">~ Pilih Provinsi ~</option>
-                                                <?php
-                                                foreach ($provinsi as $prov) {
-                                                ?>
-                                                    <option <?php echo $provinsi_selected == $prov->id ? 'selected="selected"' : '' ?> value="<?php echo $prov->id ?>"><?php echo $prov->nama_provinsi ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <select name="kabupaten" id="kabupaten" class="form-control">
-                                                <option value="">~ Pilih Kabupaten/Kota ~</option>
-                                                <?php
-                                                foreach ($kabupaten as $kab) {
-                                                ?>
-                                                    <!--di sini kita tambahkan class berisi id provinsi-->
-                                                    <option <?php echo $kabupaten_selected == $kab->provinsi_id ? 'selected="selected"' : '' ?> class="<?php echo $kab->provinsi_id ?>" value="<?php echo $kab->id ?>"><?php echo $kab->nama_kabupaten ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
+                                            <?php
+                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id"  onChange="tampilKabupaten()"';
+                                            echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
+                                            ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-5">
-                                            <select name="kecamatan" id="kecamatan" class="form-control">
-                                                <option value="">~ Pilih Kecamatan ~</option>
-                                                <?php
-                                                foreach ($kecamatan as $kec) {
-                                                ?>
-                                                    <!--di sini kita tambahkan class berisi id kota-->
-                                                    <option <?php echo $kecamatan_selected == $kec->id ? 'selected="selected"' : '' ?> class="<?php echo $kec->kabupaten_id ?>" value="<?php echo $kec->id ?>"><?php echo $kec->nama_kecamatan ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
+
+                                    <div class="form-group">
+                                        <label for="jk" class="control-label col-sm-3">Kabupaten</label>
+                                        <div class="col-sm-4">
+                                            <?php
+                                            $style_kabupaten = 'class="form-control input-sm" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                            echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
+                                            ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="desa" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="desa" placeholder="Desa , Jalan, RT/RW ,No." name="desa" value="<?= set_value('desa'); ?>">
-                                            <?= form_error('desa', '<small class="text-danger pl-3">', '</small>'); ?>
+
+                                    <div class="form-group">
+                                        <label for="jk" class="control-label col-sm-3">Kecamatan</label>
+                                        <div class="col-sm-4">
+                                            <?php
+                                            $style_kecamatan = 'class="form-control input-sm" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                            echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
+                                            ?>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="program_studi" class="control-label col-sm-3">Kelurahan</label>
+                                        <div class="col-sm-4">
+                                            <?php
+                                            $style_kelurahan = 'class="form-control input-sm" id="kelurahan_id"';
+                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
+                                            ?>
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
@@ -130,6 +120,7 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-6">

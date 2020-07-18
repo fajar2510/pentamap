@@ -43,7 +43,10 @@
 
 <!-- <script src="<?php echo base_url("js/jquery.min.js"); ?>" type="text/javascript"></script> -->
 
-<script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+<!-- <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script> -->
+<script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
+
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -114,7 +117,7 @@
 
 
 <!-- chained dropdown sekaligus drilldown daerah  -->
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('#prov').change(function() {
             var provinsi_id = $('#prov').val();
@@ -155,7 +158,7 @@
         });
 
     });
-</script>
+</script> -->
 
 <!-- untuk menampilkan form date range bootstrap -->
 <script>
@@ -177,11 +180,50 @@
     });
 </script>
 
-<script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.js"></script> -->
+<script>
+    function tampilKabupaten() {
+        kdprop = document.getElementById("provinsi_id").value;
+        $.ajax({
+            url: "<?php echo base_url(); ?>pmi/pilih_kabupaten/" + kdprop + "",
+            success: function(response) {
+                $("#kabupaten_id").html(response);
+            },
+            dataType: "html"
+        });
+        return false;
+    }
+
+    function tampilKecamatan() {
+        kdkab = document.getElementById("kabupaten_id").value;
+        $.ajax({
+            url: "<?php echo  base_url(); ?>pmi/pilih_kecamatan/" + kdkab + "",
+            success: function(response) {
+                $("#kecamatan_id").html(response);
+            },
+            dataType: "html"
+        });
+        return false;
+    }
+
+    function tampilKelurahan() {
+        kdkec = document.getElementById("kecamatan_id").value;
+        $.ajax({
+            url: "<?php echo  base_url(); ?>pmi/pilih_kelurahan/" + kdkec + "",
+            success: function(response) {
+                $("#kelurahan_id").html(response);
+            },
+            dataType: "html"
+        });
+        return false;
+    }
+</script>
+
+<!-- <script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
 <script>
     $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi
     $("#kecamatan").chained("#kabupaten"); // disini kita hubungkan kecamatan dengan kota
-</script>
+</script> -->
 
 
 

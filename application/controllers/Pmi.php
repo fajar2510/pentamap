@@ -113,6 +113,41 @@ class Pmi extends CI_Controller
     //     }
     // }
 
+    // dijalankan saat provinsi di klik
+    public function pilih_kabupaten()
+    {
+        //var_dump($this->uri->segment(3));
+        $data['kabupaten'] = $this->Wilayah->ambil_kabupaten($this->uri->segment(3));
+        //return $data['kabupaten'];
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('templates/sidebar', $data);
+        // $this->load->view('templates/topbar', $data);
+        $this->load->view('pmi/v_drop_down_kabupaten', $data);
+        // $this->load->view('templates/footer', $data);
+    }
+
+    // dijalankan saat kabupaten di klik
+    public function pilih_kecamatan()
+    {
+        $data['kecamatan'] = $this->Wilayah->ambil_kecamatan($this->uri->segment(3));
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('templates/sidebar', $data);
+        // $this->load->view('templates/topbar', $data);
+        $this->load->view('pmi/v_drop_down_kecamatan', $data);
+        // $this->load->view('templates/footer', $data);
+    }
+
+    // dijalankan saat kecamatan di klik
+    public function pilih_kelurahan()
+    {
+        $data['kelurahan'] = $this->Wilayah->ambil_kelurahan($this->uri->segment(3));
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('templates/sidebar', $data);
+        // $this->load->view('templates/topbar', $data);
+        $this->load->view('pmi/v_drop_down_kelurahan', $data);
+        // $this->load->view('templates/footer', $data);
+    }
+
     public function tambah()
     {
         $data['user'] = $this->db->get_where('user', ['email' =>
@@ -124,6 +159,8 @@ class Pmi extends CI_Controller
 
         // Load Model User Role
         $data['pmi'] = $this->Master->getPmi();
+
+        $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
 
         // $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
@@ -139,14 +176,14 @@ class Pmi extends CI_Controller
         // $this->form_validation->set_rules('pengirim', 'Pengirim', 'required|trim');
         // $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
 
-        $chain = array(
-            'provinsi' => $this->Chain_model->get_provinsi(),
-            'kabupaten' => $this->Chain_model->get_kabupaten(),
-            'kecamatan' => $this->Chain_model->get_kecamatan(),
-            'provinsi_selected' => '',
-            'kabupaten_selected' => '',
-            'kecamatan_selected' => '',
-        );
+        // $chain = array(
+        //     'provinsi' => $this->Chain_model->get_provinsi(),
+        //     'kabupaten' => $this->Chain_model->get_kabupaten(),
+        //     'kecamatan' => $this->Chain_model->get_kecamatan(),
+        //     'provinsi_selected' => '',
+        //     'kabupaten_selected' => '',
+        //     'kecamatan_selected' => '',
+        // );
 
         // if ($this->form_validation->run() == false) {
         $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
@@ -154,7 +191,7 @@ class Pmi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('pmi/tambah', $chain, $data);
+        $this->load->view('pmi/tambah', $data);
         $this->load->view('templates/footer', $data);
 
 
@@ -201,7 +238,7 @@ class Pmi extends CI_Controller
         // }
     }
 
-    public function edit()
+    public function edit($id)
     {
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -211,7 +248,7 @@ class Pmi extends CI_Controller
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
         // Load Model User Role
-        $data['pmi'] = $this->Master->getPmi();
+        $data['pmi'] = $this->Master->getPmiById($id);
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');

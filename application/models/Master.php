@@ -105,6 +105,13 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getPmiById($id)
+    {
+        $query = "SELECT * FROM tb_pmi WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     public function getW_Prov()
     {
         $query = "SELECT * FROM wilayah_provinsi
