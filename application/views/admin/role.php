@@ -110,7 +110,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/editRole'); ?>" method="post">
+                <form action="<?= base_url('admin/editRole/' . $r['id']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="role">Level (Hak Akses)</label>

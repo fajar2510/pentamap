@@ -29,8 +29,8 @@
 
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                        <div class="d-sm-flex align-items-center justify-content-between mb-0">
+                    <div class="d-sm-flex align-items-center justify-content-end mb-0">
+                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-0">
 
                             <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
@@ -47,7 +47,7 @@
 
 
 
-                        </div>
+                        </div> -->
 
 
                         <div class="dropdown mb-0">

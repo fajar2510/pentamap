@@ -8,7 +8,7 @@ class Pmi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Master');
-        $this->load->model('Wilayah');
+        $this->load->model('Wilayah', '', TRUE);
         $this->load->model('Chain_model');
     }
 
@@ -21,7 +21,7 @@ class Pmi extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // Load Model User Role
-        $data['pmi'] = $this->Master->getPmi();
+        $data['pmi'] = $this->Master->getPmiJoinWilayah();
 
         //load data view
         $data['title'] = 'Data Pemulangan PMI-B Non-Prosedural';
@@ -62,18 +62,19 @@ class Pmi extends CI_Controller
         //load data negara
         $data['negara'] = $this->db->get('tb_negara')->result_array();
         // Load model PMI
-        $data['pmi'] = $this->Master->getPmi();
+        $data['pmi'] = $this->Master->getPmiJoinWilayah();
         //LOAD data chained dropdown
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+
 
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kab', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
@@ -93,15 +94,16 @@ class Pmi extends CI_Controller
                 'nama' => $this->input->post('nama', true),
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
-                'provinsi' => $this->input->post('prov', true),
-                'kabupaten' => $this->input->post('kab', true),
-                'kecamatan' => $this->input->post('kec', true),
-                'desa' => $this->input->post('desa', true),
+                'provinsi' => $this->input->post('provinsi_id', true),
+                'kabupaten' => $this->input->post('kabupaten_id', true),
+                'kecamatan' => $this->input->post('kecamatan_id', true),
+                'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),
                 'lama_bekerja' => $this->input->post('lama', true),
+                'date_created' => date('Y-m-d'),
             ];
             // cek jika ada gambar yang akan di upload
             // masih salah dan belum bisa upload gambar

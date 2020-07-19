@@ -72,13 +72,13 @@
                                         <label for="jk" class="control-label col-sm-3">Alamat </label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="prov"  onChange="tampilKabupaten()"';
+                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
                                             echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
                                             ?>
                                         </div>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kabupaten = 'class="form-control input-sm" name="kab" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                            $style_kabupaten = 'class="form-control input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
                                             echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
                                             ?>
                                         </div>
@@ -88,7 +88,7 @@
                                         <label for="" class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kecamatan = 'class="form-control input-sm" name="kec" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                            $style_kecamatan = 'class="form-control input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
                                             echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
                                             ?>
                                         </div>

@@ -5,6 +5,7 @@ class Wilayah extends CI_Model
     var $tabel_kabupaten = 'kabupaten';
     var $tabel_kecamatan = 'kecamatan';
     var $tabel_kelurahan = 'kelurahan';
+
     function provinsi()
     {
         $this->db->order_by("nama_provinsi", "ASC");

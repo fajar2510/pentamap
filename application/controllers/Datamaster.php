@@ -40,7 +40,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('role', 'Role', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Pengguna';
+            $data['title'] = 'Data Pengguna';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -66,6 +66,61 @@ class Datamaster extends CI_Controller
             redirect('datamaster/user');
         }
     }
+
+    public function user_edit($id)
+    {
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+        $data['user'] = $this->db->get()->row_array();
+
+        // Load model pmi
+        $data['userid'] = $this->Master->getUserById($id);
+        $data['user_role'] = $this->Master->getRole();
+
+
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|is_unique[user.email]', [
+            'is_unique' => 'This email has already registered!'
+        ]);
+        // $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+        //     'matches' => 'Password dont match!',
+        //     'min_length' => 'Password too short!'
+        // ]);
+        // $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
+        $this->form_validation->set_rules('role', 'Role', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Data Pengguna';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/user', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                // 'password' => password_hash(
+                //     $this->input->post('password1'),
+                //     PASSWORD_DEFAULT
+                // ),
+                'role_id' => htmlspecialchars($this->input->post('role', true)),
+            ];
+
+
+            $this->db->where('id', $id);
+            $this->db->update('user', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> User data has been updated! </div>');
+            redirect('datamaster/user');
+        }
+    }
+
 
     public function deleteUser($id)
     {

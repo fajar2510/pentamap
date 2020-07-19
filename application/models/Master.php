@@ -13,6 +13,20 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getUserById($id)
+    {
+        $query = "SELECT * FROM user WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
+    public function getRoleById($id)
+    {
+        $query = "SELECT * FROM user_role WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     // query ambil id Perusahaan
     public function getPerusahaanById($id)
     {
@@ -22,9 +36,19 @@ class Master extends CI_Model
     }
 
     // query data PMI
-    public function getPmi()
+    public function getPmiJoinWilayah()
     {
-        $query = "SELECT * FROM tb_pmi
+        $query =
+            "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                    FROM `tb_pmi` JOIN `provinsi`
+                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    JOIN `kabupaten`
+                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `kecamatan`
+                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    JOIN `kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`
                 ";
         return $this->db->query($query)->result_array();
     }

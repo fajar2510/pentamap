@@ -25,7 +25,7 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Kelola Data <?= $title; ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Kelola <?= $title; ?></h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -152,7 +152,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('datamaster/editUser'); ?>" method="post">
+                <form action="<?= base_url('datamaster/user_edit/' . $ur['id']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
@@ -164,7 +164,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email" disabled placeholder=" " name="email" value="<?= $ur['email']; ?>">
+                                <input type="text" class="form-control" id="email"  placeholder=" " name="email" value="<?= $ur['email']; ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -174,8 +174,8 @@
                             <div class="col-sm-5">
                                 <select name="role" id="role" class="form-control">
                                     <option value=""> Pilih Role </option>
-                                    <?php foreach ($role as $ru) : ?>
-                                        <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
+                                    <?php foreach ($role as $ur) : ?>
+                                        <option value="<?= $ur['id']; ?>"> <?= $ur['role']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -203,8 +203,18 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Perbarui</button>
+                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                            <span class="icon text-gray-600">
+                                <i class="fas fa-window-close"></i>
+                            </span>
+                            <span class="text">Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Perbarui</span>
+                        </button>
                     </div>
                 </form>
             </div>

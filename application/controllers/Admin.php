@@ -59,8 +59,6 @@ class Admin extends CI_Controller
             alert-success" role="alert"> Congratulation! Role Akses has been created. </div>');
             redirect('admin/role');
         }
-
-       
     }
     public function roleAccess($role_id)
     {
@@ -114,17 +112,33 @@ class Admin extends CI_Controller
 
     public function editRole($id)
     {
-        // $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
 
-        $role = $this->input->post('role', $id);
+        $data['role_id'] = $this->Master->getRoleById($id);
 
+        $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
 
-        $this->db->set('role', $role);
-        $this->db->where('id', $id);
-        $this->db->update('user_role');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Role Akses';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/role', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'role' => $this->input->post('role', true),
+            ];
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected Role has been updated! </div>');
-        redirect('admin/role');
+            $this->db->where('id', $id);
+            $this->db->update('user_role', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Role Akses has been updated! </div>');
+            redirect('admin/role');
+        }
     }
 }
