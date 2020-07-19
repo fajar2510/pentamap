@@ -41,8 +41,8 @@
                                         <th scope="row"><?= $i; ?></th>
                                         <td> <b>[ </b> <i><?= $m['menu']; ?></i> <b> ]</b> </td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $m['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus<?= $m['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
 
                                         </td>
                                     </tr>
@@ -74,34 +74,101 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu'); ?>" method="post">
+            <form action="<?= base_url('menu/index'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="menu" class="col-sm-2 col-form-label">Menu</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="menu" placeholder="Judul Menu" name="menu" value="<?= set_value('menu'); ?>">
+                            <input type="text" class="form-control" id="menu" placeholder="Judul Menu" name="menu">
                             <?= form_error('menu', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-gray-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Tambahkan</span>
+                    </button>
 
                 </div>
             </form>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
-                    <span class="icon text-gray-600">
-                        <i class="fas fa-window-close"></i>
-                    </span>
-                    <span class="text">Tutup</span>
-                </button>
-                <button type="submit" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambahkan</span>
-                </button>
-
-            </div>
         </div>
     </div>
 </div>
+<!-- Modal Tambah End -->
+
+<!-- Modal Edit -->
+<?php foreach ($menu as $m) : ?>
+    <div class="modal fade" id="modalEdit<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">Edit Hak Akses</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('menu/editMenu/' . $m['id']); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="role">Menu</label>
+                            <input type="text" class="form-control" id="menu" name="menu" value="<?= $m['menu']; ?>">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                            <span class="icon text-gray-600">
+                                <i class="fas fa-window-close"></i>
+                            </span>
+                            <span class="text">Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Perbarui</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- end Modal Edit -->
+
+<!-- Modal Hapus -->
+<?php foreach ($menu as $m) : ?>
+
+    <div class="modal fade" id="modalHapus<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('menu/hapusMenu/' . $m['id']); ?>">
+                    <div class="modal-body">Data&nbsp; <b>
+                            <font color="red"><?= $m['menu']; ?></font>
+                        </b> akan dihapus secara permanen </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" value=<?= $m['id']; ?>>
+                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- end Modal Hapus -->

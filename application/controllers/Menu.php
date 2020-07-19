@@ -8,6 +8,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Master');
     }
 
 
@@ -22,6 +23,7 @@ class Menu extends CI_Controller
         $this->form_validation->set_rules('menu', 'Menu', 'required');
 
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Menu';
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -35,6 +37,50 @@ class Menu extends CI_Controller
                 alert-success" role="alert"> New Menu Added! </div>');
             redirect('menu');
         }
+    }
+
+    public function editMenu($id)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+
+        $data['menu_id'] = $this->Master->getMenuById($id);
+
+        $this->form_validation->set_rules('menu', 'Judul Menu', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Menu';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'menu' => $this->input->post('menu', true),
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('user_menu', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Menu has been updated! </div>');
+            redirect('menu');
+        }
+    }
+
+    public function hapusMenu($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_menu');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected Menu has succesfully deleted, be carefull for manage data. </div>');
+        redirect('menu');
     }
 
     public function submenu()
@@ -71,5 +117,15 @@ class Menu extends CI_Controller
                 alert-success" role="alert"> New sub menu Added! </div>');
             redirect('menu/submenu');
         }
+    }
+
+    public function hapusSubMenu($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_sub_menu');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected SubMenu has succesfully deleted, be carefull for manage data. </div>');
+        redirect('menu/submenu');
     }
 }

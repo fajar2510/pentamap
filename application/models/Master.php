@@ -27,6 +27,13 @@ class Master extends CI_Model
         return $this->db->query($query)->row();
     }
 
+    public function getMenuById($id)
+    {
+        $query = "SELECT * FROM user_menu WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     // query ambil id Perusahaan
     public function getPerusahaanById($id)
     {

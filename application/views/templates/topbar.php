@@ -17,12 +17,47 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Cari data ..." aria-label="Search" aria-describedby="basic-addon2">
+                    <!-- <input type="text" class="form-control bg-light border-0 small" placeholder="Cari data ..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
                         </button>
-                    </div>
+                    </div> -->
+                    <marquee behavior="scroll" direction="right" scrollamount="5" width="130%">
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <small>
+                                    <img src="http://www.myiconfinder.com/uploads/iconsets/621654299bc0f478fe3c1be4924d727d.png" width="30" height="30" alt="pmi" class="rounded-circle"> <b> &nbsp;PMI </b>
+                                        <span class="border-left"> &nbsp;2312 </span> &nbsp; <b>TKA</b>
+                                        <span class="border-left"> &nbsp;896 </span> &nbsp; <b>PMI-B </b>
+                                        <span class="border-left"> &nbsp;1463 </span> &nbsp; <b>Pengangguran </b>
+                                        <span class="border-left"> &nbsp;15232 </span>
+                                </small>
+                            </div>
+                            <!-- <div></div>
+                            <div class="col-sm-2">
+                                <small>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;Pengangguran
+                                    <span class="border-left"> &nbsp;15232 </span>
+                                </small>
+                            </div>
+                            <div></div>
+                            <div class="col-sm-2">
+                                <small>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;PMI-B
+                                    <span class="border-left"> &nbsp;1463 </span>
+                                </small>
+                            </div>
+                            <div></div>
+                            <div class="col-sm-2">
+                                <small>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;TKA
+                                    <span class="border-left"> &nbsp;896 </span>
+                                </small>
+                            </div> -->
+
+                        </div>
+                    </marquee>
                 </div>
 
             </form>
@@ -40,28 +75,28 @@
             <!-- /*Menampilkan Waktu*/ -->
             <center>
 
-                <marquee direction="up" scrollamount="2" align="left" behavior="alternate" width="90%">
-                    <marquee direction="right">
 
-                        <?php
-                        $tanggal = mktime(date("m"), date("d"), date("Y"));
-                        echo " " . date("d M Y", $tanggal) . " ";
-                        date_default_timezone_set('Asia/Jakarta');
-                        $jam = date("H:i");
-                        echo "|  " . $jam . " WIB " . "";
-                        $a = date("H");
-                        if (($a >= 4) && ($a <= 11)) {
-                            echo "<b>, Selamat Pagi ;D </b>";
-                        } else if (($a > 11) && ($a <= 15)) {
-                            echo "<b>, Selamat Siang :)</b>";
-                        } else if (($a > 15) && ($a <= 18)) {
-                            echo "<b>, Selamat Petang :></b>";
-                        } else {
-                            echo "<b>, <b> Selamat Malam zZZ</b>";
-                        }
-                        ?>
-                    </marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="4">
+
+                    <?php
+                    $tanggal = mktime(date("m"), date("d"), date("Y"));
+                    echo " " . date("d M Y", $tanggal) . " ";
+                    date_default_timezone_set('Asia/Jakarta');
+                    $jam = date("H:i");
+                    echo "|  " . $jam . " WIB " . "";
+                    $a = date("H");
+                    if (($a >= 4) && ($a <= 11)) {
+                        echo "<b>, Selamat Pagi ;D </b>";
+                    } else if (($a > 11) && ($a <= 15)) {
+                        echo "<b>, Selamat Siang :)</b>";
+                    } else if (($a > 15) && ($a <= 18)) {
+                        echo "<b>, Selamat Petang :></b>";
+                    } else {
+                        echo "<b>, <b> Selamat Malam zZZ</b>";
+                    }
+                    ?>
                 </marquee>
+
             </center>
 
 

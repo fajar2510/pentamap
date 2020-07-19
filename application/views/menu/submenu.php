@@ -56,8 +56,8 @@
                                                     echo 'Tidak Aktif';
                                                 } ?>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $sm['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus<?= $sm['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -78,10 +78,8 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- MODAL -->
 
-
-<!-- Modal -->
+<!-- Modal  Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -155,3 +153,109 @@
         </div>
     </div>
 </div>
+<!-- Modal Tambah End -->
+
+<!-- Modal Edit -->
+<?php foreach ($subMenu as $sm) : ?>
+    <div class="modal fade" id="modalEdit<?= $sm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">Edit Sub Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('menu/ediSubMenu/' . $sm['id']); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-3 col-form-label">Judul Sub</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= $sm['title']; ?>">
+                                <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="negara" class="col-sm-3 col-form-label">Menu</label>
+                            <div class="col-sm-5">
+                                <select name="menu_id" id="menu_id" class="form-control">
+                                    <option value=""> Pilih Menu </option>
+                                    <?php foreach ($menu as $m) : ?>
+                                        <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="url" class="col-sm-3 col-form-label">URL</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . " value="<?= $sm['url']; ?>">
+                                <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="icon" class="col-sm-3 col-form-label">Ikon</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . " value="<?= $sm['icon']; ?>">
+                                <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                                <label class="form-check-label" for="is_active">
+                                    Status Aktif?
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                            <span class="icon text-gray-600">
+                                <i class="fas fa-window-close"></i>
+                            </span>
+                            <span class="text">Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Perbarui</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- end Modal Edit -->
+
+<!-- Modal Hapus -->
+<?php foreach ($subMenu as $sm) : ?>
+
+    <div class="modal fade" id="modalHapus<?= $sm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('menu/hapusSubMenu/' . $sm['id']); ?>">
+                    <div class="modal-body">Data&nbsp; <b>
+                            <font color="red"><?= $sm['title']; ?></font>
+                        </b> akan dihapus secara permanen </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" value=<?= $sm['id']; ?>>
+                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- end Modal Hapus -->

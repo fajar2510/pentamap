@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary  sidebar sidebar-dark accordion" id="accordionSidebar">
-    <hr>
+   <hr class="sidebar-divider mt-3">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('admin'); ?>">
         <div class="sidebar-brand-icon">

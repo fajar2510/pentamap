@@ -139,7 +139,7 @@
 <!-- end Modal Edit -->
 
 <!-- Modal Hapus -->
-<?php foreach ($role as $r) : ?>
+<?php foreach ($role as $r) : ?> 
 
     <div class="modal fade" id="modalHapus<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
         <div class="modal-dialog" role="document">

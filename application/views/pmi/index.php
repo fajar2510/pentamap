@@ -56,8 +56,8 @@
                                 <span class="text">Eksport</span>
                             </button>
                             <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Excel</a>
-                                <a class="dropdown-item" href="#">PDF</a>
+                                <a class="dropdown-item" href="<?= base_url('exportimport/'); ?>">Excel</a>
+                                <a class="dropdown-item" href="<?= base_url('exportimport/'); ?>">PDF</a>
                             </div>
                             </>
                         </div>

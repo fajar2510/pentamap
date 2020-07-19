@@ -1,3 +1,6 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
 <div class="container">
 
 
@@ -5,7 +8,7 @@
     <div class="row justify-content-center">
 
         <div class="col-lg-5">
-            <hr>
+            <br>
 
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-1">
@@ -14,7 +17,7 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="60">
+                                    <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45">
                                     <hr>
                                     <h1 class="h4 text-gray-900 mb-4"> <b>PENTA</b> |
                                         <span>DISNAKERTRANS</span> </h1>
@@ -42,20 +45,23 @@
 
                                 </form>
                                 <hr>
-                                <!-- <div class="text-center">
+                                <div class="text-center">
                                     <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" href="<?php echo base_url() ?>auth/registration">Buat Akun Baru</a>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+
+            </div>
         </div>
 
     </div>
+
+</div>
 
 </div>
