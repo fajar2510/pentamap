@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('datamaster/perusahaan_edit'); ?>" method="post">
+                            <form action="<?= base_url('datamaster/perusahaan_edit/' . $perusahaan->id) ?>" method="post">
                                 <div class="modal-body">
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>

@@ -69,11 +69,11 @@
                                 <thead>
                                     <tr>
                                         <th width="4%"> No</th>
-                                        <th width="6%">Tanggal</th>
-                                        <th width="11%">Nama</th>
-                                        <th width="20%">Alamat</th>
-                                        <th width="8%" scope="col">Negara Bekerja</th>
-                                        <th width="9%" scope="col">Aksi</th>
+                                        <th width="10%">Tanggal</th>
+                                        <th width="19%">Nama</th>
+                                        <th width="38%">Alamat <small> (Desa/Kec/Kab)</small></th>
+                                        <th width="15%">Negara Bekerja</th>
+                                        <th width="17%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

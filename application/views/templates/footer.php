@@ -116,50 +116,6 @@
 </script>
 
 
-<!-- chained dropdown sekaligus drilldown daerah  -->
-<!-- <script>
-    $(document).ready(function() {
-        $('#prov').change(function() {
-            var provinsi_id = $('#prov').val();
-            if (provinsi_id != '') {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>pmi/index/kabupaten",
-                    method: "POST",
-                    data: {
-                        provinsi_id: provinsi_id
-                    },
-                    success: function(data) {
-                        $('#kab').html(data);
-                        $('#kec').html('<option value="">Pilih Kecamatan</option>');
-                    }
-                });
-            } else {
-                $('#kab').html('<option value="">Pilih Provinsi</option>');
-                $('#kec').html('<option value="">Pilih Kabupaten</option>');
-            }
-        });
-
-        $('#kab').change(function() {
-            var kabupaten_id = $('#kab').val();
-            if (kabupaten_id != '') {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>pmi/index/kecamatan",
-                    method: "POST",
-                    data: {
-                        kabupaten_id: kabupaten_id
-                    },
-                    success: function(data) {
-                        $('#kec').html(data);
-                    }
-                });
-            } else {
-                $('#kec').html('<option value="">Pilih Kecamatan</option>');
-            }
-        });
-
-    });
-</script> -->
-
 <!-- untuk menampilkan form date range bootstrap -->
 <script>
     var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
@@ -180,7 +136,7 @@
     });
 </script>
 
-<!-- <script src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.js"></script> -->
+
 <script>
     function tampilKabupaten() {
         kdprop = document.getElementById("provinsi_id").value;
@@ -218,13 +174,6 @@
         return false;
     }
 </script>
-
-<!-- <script src="<?php echo base_url('assets/js/jquery.chained.min.js') ?>"></script>
-<script>
-    $("#kabupaten").chained("#provinsi"); // disini kita hubungkan kota dengan provinsi
-    $("#kecamatan").chained("#kabupaten"); // disini kita hubungkan kecamatan dengan kota
-</script> -->
-
 
 
 

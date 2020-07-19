@@ -68,54 +68,44 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="jk" class="control-label col-sm-3">Provinsi <?= $this->uri->segment(3)?></label>
+                                    <div class="form-group row">
+                                        <label for="jk" class="control-label col-sm-3">Alamat </label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id"  onChange="tampilKabupaten()"';
+                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="prov"  onChange="tampilKabupaten()"';
                                             echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
                                             ?>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="jk" class="control-label col-sm-3">Kabupaten</label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kabupaten = 'class="form-control input-sm" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                            $style_kabupaten = 'class="form-control input-sm" name="kab" id="kabupaten_id" onChange="tampilKecamatan()"';
                                             echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
                                             ?>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="jk" class="control-label col-sm-3">Kecamatan</label>
+                                    <div class="form-group row">
+                                        <label for="" class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kecamatan = 'class="form-control input-sm" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                            $style_kecamatan = 'class="form-control input-sm" name="kec" id="kecamatan_id" onChange="tampilKelurahan()"';
                                             echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
                                             ?>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="program_studi" class="control-label col-sm-3">Kelurahan</label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kelurahan = 'class="form-control input-sm" id="kelurahan_id"';
+                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
                                             echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
                                             ?>
                                         </div>
                                     </div>
-
-
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
                                             <select name="negara" id="negara" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                    <option value="<?= $n['nama_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

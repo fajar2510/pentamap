@@ -18,6 +18,7 @@ class Wilayah extends CI_Model
         if ($sql_prov->num_rows() > 0) {
             foreach ($sql_prov->result_array() as $row) {
                 $result['-'] = '- Pilih Provinsi -';
+                
                 $result[$row['id_provinsi']] = ucwords(strtolower($row['nama_provinsi']));
             }
             return $result;
@@ -32,6 +33,7 @@ class Wilayah extends CI_Model
         if ($sql_kabupaten->num_rows() > 0) {
 
             foreach ($sql_kabupaten->result_array() as $row) {
+                $result['-'] = '- Pilih Kabupaten -';
                 $result[$row['id_kabupaten']] = ucwords(strtolower($row['nama_kabupaten']));
             }
         } else {
@@ -48,6 +50,7 @@ class Wilayah extends CI_Model
         if ($sql_kecamatan->num_rows() > 0) {
 
             foreach ($sql_kecamatan->result_array() as $row) {
+                $result['-'] = '- Pilih Kecamatan -';
                 $result[$row['id_kecamatan']] = ucwords(strtolower($row['nama_kecamatan']));
             }
         } else {
@@ -64,6 +67,7 @@ class Wilayah extends CI_Model
         if ($sql_kelurahan->num_rows() > 0) {
 
             foreach ($sql_kelurahan->result_array() as $row) {
+                $result['-'] = '- Pilih Kelurahan/Desa -';
                 $result[$row['id_kelurahan']] = ucwords(strtolower($row['nama_kelurahan']));
             }
         } else {
