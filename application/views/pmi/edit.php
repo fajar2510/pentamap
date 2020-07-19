@@ -157,6 +157,14 @@
                                     <div class="form-group row">
                                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
                                         <div class="col-sm-2">
+
+                                            <?php
+                                            if ($pmi->image == null) {
+                                                echo "assets/img/pmi/default.png";
+                                            } else {
+                                                echo " $pmi->image";
+                                            }
+                                            ?>
                                             <img src="<?= base_url('assets/img/pmi/') . $pmi->image ?>" class="img-thumbnail" alt="Profile Picture">
                                         </div>
                                         <div class="col-sm-6">

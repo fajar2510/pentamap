@@ -30,24 +30,6 @@
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-end mb-0">
-                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
-                            <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-filter"></i>
-                                </span>
-                                <span class="text">Filter</span>
-                            </a>
-                            <div>
-                                <div class="container">
-                                    Rentang Awal: <input id="startDate" width="276" />
-                                    Rentang Akhir: <input id="endDate" width="276" />
-                                </div>
-                            </div>
-
-
-
-                        </div> -->
 
 
                         <div class="dropdown mb-0">
@@ -90,7 +72,7 @@
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
-                                            <td><?= $p['alamat']; ?></td>
+                                            <td> <small> <?= $p['alamat']; ?></small></td>
                                             <td>
                                                 <?php if ($p['kontak'] == null) {
                                                     echo '-';

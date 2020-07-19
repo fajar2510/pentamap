@@ -39,7 +39,7 @@
                                 <?php foreach ($menu as $m) : ?>
                                     <tr align="center">
                                         <th scope="row"><?= $i; ?></th>
-                                        <td> <b>[ </b> <i><?= $m['menu']; ?></i> <b> ]</b> </td>
+                                        <td>  <?= $m['menu']; ?> </td>
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modalEdit<?= $m['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $m['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
