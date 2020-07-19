@@ -14,6 +14,7 @@ class Perusahaan extends CI_Model
         $query = "SELECT * FROM tb_perusahaan";
         return $this->db->query($query)->result_array();
     }
+    
 
     public function get_TkaPerusahaan()
     {

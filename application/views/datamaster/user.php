@@ -144,7 +144,7 @@
 <?php foreach ($user_role as $ur) : ?>
     <!-- edituserModal -->
     <div class=" modal fade" id="modalEdit<?= $ur['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditLabel">Ubah Data User</h5>
@@ -155,25 +155,25 @@
                 <form action="<?= base_url('datamaster/editUser'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="name" class="col-sm-2 col-form-label">Nama</label>
-                            <div class="col-sm-10">
+                            <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $ur['name']; ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
+                            <label for="email" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="email" disabled placeholder=" " name="email" value="<?= $ur['email']; ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="role" class="col-sm-2 col-form-label">Hak Akses</label>
+                            <label for="role" class="col-sm-3 col-form-label">Hak Akses</label>
                             <div class="col-sm-5">
                                 <select name="role" id="role" class="form-control">
-                                    <option value=""> Pilih </option>
+                                    <option value=""> Pilih Role </option>
                                     <?php foreach ($role as $ru) : ?>
                                         <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
                                     <?php endforeach; ?>

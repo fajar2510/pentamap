@@ -66,6 +66,16 @@ class Datamaster extends CI_Controller
             redirect('datamaster/user');
         }
     }
+
+    public function deleteUser($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected user has succesfully deleted, be carefull for manage data. </div>');
+        redirect('datamaster/user');
+    }
     // FUNCTION USER END
 
     // FUNCTION DOCTOR START
@@ -76,73 +86,29 @@ class Datamaster extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
 
-        $this->form_validation->set_rules('nama_perusahaan', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
-        $this->form_validation->set_rules('status', 'Status', 'required|trim');
-        $this->form_validation->set_rules('sektor', 'Sektor Bidang', 'required|trim');
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('datamaster/perusahaan', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-                'alamat' => $this->input->post('alamat', true),
-                'kontak' => $this->input->post('kontak', true),
-                'status' => $this->input->post('status', true),
-                'sektor' => $this->input->post('sektor', true),
-            ];
-            // cek jika ada gambar yang akan di upload
-            // masih salah dan belum bisa upload gambar
-            // cek jika ada gambar yang akan di upload
-
-            $upload_image = $_FILES['image']['name'];
-
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']      = '5000';
-                $config['upload_path']   = './assets/img/profile';
-
-                $this->load->library('upload', $config);
-
-                if ($this->upload->do_upload('image')) {
-
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                    redirect('datamaster/perusahaan');
-                }
-            }
-
-            $this->db->insert('tb_perusahaan', $data);
-
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! Perusahaan has been added succesfully. </div>');
-            redirect('datamaster/perusahaaan');
-        }
+        $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('datamaster/perusahaan', $data);
+        $this->load->view('templates/footer');
     }
+
+
 
     public function perusahaan_add()
     {
-
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
 
-        $this->form_validation->set_rules('nama_perusahaan', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
         $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
-        $this->form_validation->set_rules('sektor', 'Sektor Bidang', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
+            $data['title'] = 'Tambah Data Perusahaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -154,39 +120,57 @@ class Datamaster extends CI_Controller
                 'alamat' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
-                'sektor' => $this->input->post('sektor', true),
             ];
-            // cek jika ada gambar yang akan di upload
-            // masih salah dan belum bisa upload gambar
-            // cek jika ada gambar yang akan di upload
-
-            $upload_image = $_FILES['image']['name'];
-
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']      = '5000';
-                $config['upload_path']   = './assets/img/profile';
-
-                $this->load->library('upload', $config);
-
-                if ($this->upload->do_upload('image')) {
-
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                    redirect('datamaster/perusahaan');
-                }
-            }
 
             $this->db->insert('tb_perusahaan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Congratulation! Perusahaan has been added succesfully. </div>');
-            redirect('datamaster/perusahaaan');
+            redirect('datamaster/perusahaan');
         }
     }
-    // FUNCTION  END
+    // FUNCTION  add END
+
+    public function perusahaan_edit($id)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // Load model pmi
+        $data['perusahaan'] = $this->Master->getPerusahaanById($id);
+
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
+        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
+        $this->form_validation->set_rules('status', 'Status', 'required|trim');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Data Perusahaan';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/perusahaan_edit', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'alamat' => $this->input->post('alamat', true),
+                'kontak' => $this->input->post('kontak', true),
+                'status' => $this->input->post('status', true),
+            ];
+
+
+            $this->db->where('id', $id);
+            $this->db->update('tb_perusahaan', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Perusahaan has been updated! </div>');
+            redirect('datamaster/perusahaan');
+        }
+    }
 
 
     public function hapusPerusahaan($id)
@@ -197,16 +181,5 @@ class Datamaster extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Your selected has succesfully deleted, be carefull for manage data. </div>');
         redirect('datamaster/perusahaan');
-    }
-
-
-    public function deleteUser($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('user');
-
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected user has succesfully deleted, be carefull for manage data. </div>');
-        redirect('datamaster/user');
     }
 }

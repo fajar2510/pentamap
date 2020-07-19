@@ -105,12 +105,9 @@
                                                     echo 'Cabang';
                                                 } ?>
                                             </td>
-
-                                            <!-- <td> <img src="<?= base_url('assets/img/perusahaan/') . $p['logo']; ?>" alt="" width="60" height="60"></td> -->
-                                            <!-- <td> <?= $p['sektor']; ?> </td> -->
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                                <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

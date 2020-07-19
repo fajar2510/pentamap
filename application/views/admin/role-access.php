@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
 
             <?= $this->session->flashdata('message'); ?>
 
@@ -30,9 +30,9 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Menu</th>
-                                    <th scope="col">Akses</th>
+                                    <th width="10%">#</th>
+                                    <th width="53%">Menu</th>
+                                    <th width="37%">Akses</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -8,7 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        // $this->load->model('dashboard');
+        $this->load->model('Master');
     }
 
     public function index()
@@ -22,13 +22,15 @@ class Admin extends CI_Controller
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
 
-        //load with templating
+        //load with templating view
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
+
+    // index Role dan tambah Role
     public function role()
     {
         $data['title'] = 'Hak Akses';
@@ -37,11 +39,28 @@ class Admin extends CI_Controller
 
         $data['role'] = $this->db->get('user_role')->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/role', $data);
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Hak Akses';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/role', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'role' =>
+                htmlspecialchars($this->input->post('role', true)),
+            ];
+            $this->db->insert('user_role', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! Role Akses has been created. </div>');
+            redirect('admin/role');
+        }
+
+       
     }
     public function roleAccess($role_id)
     {
@@ -89,7 +108,23 @@ class Admin extends CI_Controller
         $this->db->delete('user_role');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected ROle has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Your selected Role has succesfully deleted, be carefull for manage data. </div>');
+        redirect('admin/role');
+    }
+
+    public function editRole($id)
+    {
+        // $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
+
+        $role = $this->input->post('role', $id);
+
+
+        $this->db->set('role', $role);
+        $this->db->where('id', $id);
+        $this->db->update('user_role');
+
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected Role has been updated! </div>');
         redirect('admin/role');
     }
 }

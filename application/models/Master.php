@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Master extends CI_Model
 {
+    // query join user dan user_role untuk autentifikasi login
     public function getRole()
     {
         $query = "SELECT `user`.*, `user_role`. `role`
@@ -12,92 +13,15 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function getTranfusion()
+    // query ambil id Perusahaan
+    public function getPerusahaanById($id)
     {
-        $query = "SELECT `tranfusion`.*, 
-                        `doctor`. `name`,
-                        `blood_group`. `group_name`,
-                        `blood_type`. `category_name`,
-                        `region`. `region_name`,
-                        `blood_pressure`. `level`,
-                        `blood_pressure`. `details`
-                    FROM `tranfusion` 
-                    JOIN `doctor`
-                    ON `tranfusion`. `doctor_name` = `doctor`. `id`
-                    JOIN `blood_group`
-                    ON `tranfusion`. `blood_group` = `blood_group`. `id`
-                    JOIN `blood_type`
-                    ON `tranfusion`. `blood_type` = `blood_type`. `id`
-                    JOIN `region`
-                    ON `tranfusion`. `region` = `region`. `id`
-                    JOIN `blood_pressure`
-                    ON `tranfusion`. `blood_pressure` = `blood_pressure`. `id`
-                    ORDER BY `tranfusion`.`id` ASC
+        $query = "SELECT * FROM tb_perusahaan WHERE id='$id'
                 ";
-        return $this->db->query($query)->result_array();
+        return $this->db->query($query)->row();
     }
 
-    public function getReception()
-    {
-        $query = "SELECT `blood_reception`.*, 
-                        `blood_group`. *,
-                        `blood_type`. `category_name`
-                    FROM `blood_reception` 
-                    JOIN `blood_group`
-                    ON `blood_reception`. `blood_group` = `blood_group`. `id`
-                    JOIN `blood_type`
-                    ON `blood_reception`. `blood_type` = `blood_type`. `id`
-                ";
-        return $this->db->query($query)->result_array();
-    }
-
-    public function getOrder()
-    {
-        $query = "SELECT `blood_order`.*, 
-                        `doctor`. `name`,
-                        `blood_group`. `group_name`,
-                        `blood_group`. `information`,
-                        `blood_type`. `category_name`,
-                        `specific_room`. `room_name`,
-                        `status_order`. `status`
-                    FROM `blood_order` 
-                    JOIN `doctor`
-                    ON `blood_order`. `doctor` = `doctor`. `id`
-                    JOIN `blood_group`
-                    ON `blood_order`. `blood_group` = `blood_group`. `id`
-                    JOIN `blood_type`
-                    ON `blood_order`. `blood_type` = `blood_type`. `id`
-                    JOIN `specific_room`
-                    ON `blood_order`. `room` = `specific_room`. `id`
-                    JOIN `status_order`
-                    ON `blood_order`. `status` = `status_order`. `id`
-                    ORDER BY `blood_order`.`status` ASC ,  `blood_order`.`id` DESC
-                ";
-        return $this->db->query($query)->result_array();
-    }
-
-
-    public function getCanceled()
-    {
-        $query = "SELECT `blood_canceled`.*, 
-                        `doctor`. `name`,
-                        `blood_group`. *,
-                        `blood_type`. `category_name`,
-                        `specific_room`. `room_name`
-                    FROM `blood_canceled` 
-                    JOIN `doctor`
-                    ON `blood_canceled`. `doctor` = `doctor`. `id`
-                    JOIN `blood_group`
-                    ON `blood_canceled`. `blood_group` = `blood_group`. `id`
-                    JOIN `blood_type`
-                    ON `blood_canceled`. `blood_type` = `blood_type`. `id`
-                    JOIN `specific_room`
-                    ON `blood_canceled`. `room` = `specific_room`. `id`
-                   
-                ";
-        return $this->db->query($query)->result_array();
-    }
-
+    // query data PMI
     public function getPmi()
     {
         $query = "SELECT * FROM tb_pmi
@@ -105,6 +29,7 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    // query ambil id PMI
     public function getPmiById($id)
     {
         $query = "SELECT * FROM tb_pmi WHERE id='$id'
@@ -112,6 +37,7 @@ class Master extends CI_Model
         return $this->db->query($query)->row();
     }
 
+    //query data Chainded Wilayah Prov, Kab, Kec, Kelurahan Indonesia
     public function getW_Prov()
     {
         $query = "SELECT * FROM wilayah_provinsi
@@ -140,7 +66,7 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-
+    //query data negara yang terdaftar(statis)
     public function get_Negara()
     {
         $query = "SELECT * FROM tb_negara
