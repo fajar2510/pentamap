@@ -74,48 +74,30 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
+                                <thead align="center">
                                     <tr>
-                                        <th> No</th>
-                                        <th width="12%">Nama Perusahaan</th>
-                                        <th width="15%">Alamat Perusahaan </th>
-                                        <th>Nama TKA</th>
-                                        <th>Negara</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Jabatan</th>
-                                        <th>No. RPTKA</th>
-                                        <th>Masa Berlaku (RPTKA)</th>
-                                        <th>No. IMTA</th>
-                                        <th>Masa Berlaku (IMTA)</th>
-                                        <th>Lokasi Kerja</th>
-                                        <th width="15%">Aksi</th>
+                                        <th width="3%">No.</th>
+                                        <th width="20%">Nama (JK)/ Negara </th>
+                                        <th width="22%">Perusahaan/Jabatan/Sektor</th>
+                                        <th width="17%">No. RPTKA/ *masa berlaku</th>
+                                        <th width="17%">No. IMTA/ *masa berlaku</th>
+                                        <th width="11%">Lokasi</th>
+                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_tka as $t) : ?>
-                                        <tr>
-                                            <th scope="row"><?= $i; ?></th>
-                                            <td> <?= $t['nama_perusahaan']; ?>
-                                            <td><?= $t['alamat']; ?></td>
-                                            <td><?= $i; ?>. <?= $t['nama_tka']; ?> </td>
-                                            <td><?= $t['kewarganegaraan']; ?></td>
-                                            <td>
-                                                <?php if ($t['jenis_kel'] == 'L') {
-                                                    echo 'Laki-Laki';
-                                                } else {
-                                                    echo 'Perempuan';
-                                                } ?>
-                                            </td>
-                                            <td> <?= $t['jabatan']; ?> </td>
-                                            <td> <?= $t['no_rptka']; ?> </td>
-                                            <td> <?= $t['masa_rptka']; ?> </td>
-                                            <td><?= $t['no_imta']; ?></td>
-                                            <td> <?= $t['masa_imta']; ?> </td>
-                                            <td> <?= $t['lokasi_kerja']; ?> </td>
+                                        <tr align="justify">
+                                            <th><?= $i; ?></th>
+                                            <td> <small> <?= $t['nama_tka']; ?> (<?= $t['jenis_kel']; ?>) / <?= $t['country_name']; ?> </small> </td>
+                                            <td> <small> <?= $t['nama_perusahaan']; ?> / <?= $t['jabatan']; ?> / <?= $t['sektor']; ?></small></td>
+                                            <td> <small><?= $t['no_rptka']; ?> / <?= $t['masa_rptka']; ?> </small></td>
+                                            <td> <small><?= $t['no_imta']; ?> / <?= $t['masa_imta']; ?></small></td>
+                                            <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalEdit<?= $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $t['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -138,24 +120,27 @@
 
 
 <!-- modalhapus -->
-<div class="modal fade" id="modalHapus<?= $t['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="<?= base_url('tka/hapus/' . $t['id']); ?>">
-                <div class="modal-body">Data&nbsp; <b>
-                        <font color="red"><?= $t['nama_perusahaan']; ?></font>
-                    </b> akan dihapus secara permanen </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-danger" type="submit">Hapus</button>
+<?php foreach ($tb_tka as $t) : ?>
+
+    <div class="modal fade" id="modalHapus<?= $t['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-            </form>
+                <form action="<?= base_url('tka/hapus/' . $t['id']); ?>">
+                    <div class="modal-body">Data&nbsp; <b>
+                            <font color="red"><?= $t['nama_perusahaan']; ?></font>
+                        </b> akan dihapus secara permanen </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>

@@ -67,7 +67,7 @@ class Pmi extends CI_Controller
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
 
-        $this->form_validation->set_rules('status', 'Status', 'required|trim');
+        // $this->form_validation->set_rules('status', 'Status', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
@@ -90,7 +90,7 @@ class Pmi extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'status' => $this->input->post('status', true),
+                'status' => 'NON-PROSEDURAL',
                 'nama' => $this->input->post('nama', true),
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
@@ -182,7 +182,7 @@ class Pmi extends CI_Controller
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),
                 'lama_bekerja' => $this->input->post('lama', true),
-                'date_created' => date('Y-m-d'),
+                // 'date_created' => date('Y-m-d'),
             ];
             // cek gambar upload
             $upload_image = $_FILES['image']['name'];

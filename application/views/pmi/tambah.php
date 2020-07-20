@@ -36,13 +36,13 @@
                         <div>
                             <form action="<?= base_url('pmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Status</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" id="status" name="status" readonly value="NON-PROSEDURAL" aria-describedby="statusHelp">
                                             <small id="statusHelp" class="form-text text-muted"> <i> non-prosedural adalah untuk PMI/TKI-B </i></small>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>

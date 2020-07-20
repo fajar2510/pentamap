@@ -1,10 +1,11 @@
 <!-- Begin Page Content -->
+<!-- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css') ?>" /> -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
+        <h4 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h4>
         <a href="<?= base_url('tka/'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
@@ -36,58 +37,97 @@
                             <form action="<?= base_url('tka/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
 
-
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama Perusahaan</label>
-                                        <div class="col-sm-4">
-                                            <select name="nama_perusahaan" id="nama_perusahaan" class="form-control">
-                                                <option value="">~ Pilih PT ~</option>
-                                                <?php
-                                                foreach ($tb_tka as $p) {
-                                                    echo '<option value="' . $p->nama_perusahaan . '">' . $p->nama_perusahaan . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="3"></textarea>
-                                            <!-- <input type="text-area" class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat" value="<?= set_value('alamat'); ?>"> -->
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-4">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value=""> ~ Pilih Status Perusahaan ~ </option>
-                                                <option value="P"> Pusat </option>
-                                                <option value="C"> Cabang </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="sektor" class="col-sm-3 col-form-label">Sektor/Bidang</label>
-
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="sektor" placeholder="" name="sektor" value="<?= set_value('sektor'); ?>">
-                                            <small id="uploadHelp1" class="form-text text-muted"> <i> *hanya opsional!! </i></small>
-                                            <?= form_error('sektor', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="image" class="col-sm-3 col-form-label">Unggah Logo Perusahaan</label>
+                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA</label>
                                         <div class="col-sm-7">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
-                                                <label class="custom-file-label" for="image">Pilih File</label>
-                                                <small id="uploadHelp" class="form-text text-muted"> <i> *hanya opsional!! </i></small>
-                                            </div>
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
+                                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                        <div class="col-sm-4">
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
+                                                <option value="L"> Laki-Laki </option>
+                                                <option value="P"> Perempuan </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="negara" class="col-sm-3 col-form-label">Kewarganegeraan</label>
+                                        <div class="col-sm-4">
+                                            <select name="negara" id="negara" class="form-control">
+                                                <option value="">~ Pilih Kewarganegeraan ~</option>
+                                                <?php foreach ($negara as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>"> <?= $n['country_name']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Perusahaan</label>
+                                        <div class="col-sm-4">
+                                            <select name="perusahaan" id="perusahaan" class="form-control">
+                                                <option value="">~ Pilih Perusahaan ~</option>
+                                                <?php foreach ($perusahaan as $p) : ?>
+                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="">
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
+                                        <div class="col-sm-3">
+                                            <select name="sektor" id="sektor" class="form-control" >
+                                                <option value="">~ Pilih Sektor ~</option>
+                                                <option value="Formal"> FORMAL</option>
+                                                <option value="Informal"> INFORMAL</option>
+                                            </select>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka">
+                                            <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="2020-07-31" id="masa_rptka" name="masa_rptka">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="no_imta" class="col-sm-3 col-form-label">NO. IMTA / *masa berlaku</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta">
+                                            <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="2020-07-31" id="masa_imta" name="masa_imta">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Lokasi Kerja</label>
+                                        <div class="col-sm-4">
+                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
+                                                <option value="">~ Pilih Lokasi Kerja ~</option>
+                                                <?php foreach ($jatim as $j) : ?>
+                                                    <option value="<?= $j['id_kabupaten']; ?>"> <?= $j['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small id="lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">
@@ -99,6 +139,8 @@
 
                                 </div>
                             </form>
+
+
                         </div>
                     </div>
                 </div>
