@@ -113,7 +113,7 @@ class Tka extends CI_Controller
 
 
 
-        $data['title'] = 'Data AN Perusahaan Pekerja Migran Indonesia';
+        $data['title'] = 'Data AN Perusahaan TKA';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

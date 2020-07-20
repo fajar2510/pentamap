@@ -91,7 +91,7 @@
                                     <?php foreach ($tb_pptkis as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_pptkis']; ?> </small> </td>
+                                            <td> <small> <?= $p['nama_perusahaan']; ?> </small> </td>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'P';

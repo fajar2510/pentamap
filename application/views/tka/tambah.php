@@ -87,12 +87,12 @@
                                     <div class="form-group row">
                                         <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-3">
-                                            <select name="sektor" id="sektor" class="form-control" >
+                                            <select name="sektor" id="sektor" class="form-control">
                                                 <option value="">~ Pilih Sektor ~</option>
                                                 <option value="Formal"> FORMAL</option>
                                                 <option value="Informal"> INFORMAL</option>
                                             </select>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -123,6 +123,7 @@
                                                 <?php foreach ($jatim as $j) : ?>
                                                     <option value="<?= $j['id_kabupaten']; ?>"> <?= $j['nama_kabupaten']; ?> </option>
                                                 <?php endforeach; ?>
+                                                <option value="LUAR JATIM">*LUAR JATIM</option>
                                             </select>
                                             <small id="lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
                                         </div>
