@@ -81,7 +81,7 @@
 
 <!-- Modal  Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document"> 
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTambahLabel">Tambah SubMenu</h5>
@@ -166,7 +166,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('menu/ediSubMenu/' . $sm['id']); ?>" method="post">
+                <form action="<?= base_url('menu/editSubMenu/' . $sm['id']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="title" class="col-sm-3 col-form-label">Judul Sub</label>

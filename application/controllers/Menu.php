@@ -9,6 +9,7 @@ class Menu extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Master');
+        $this->load->model('Menu_model');
     }
 
 
@@ -88,9 +89,9 @@ class Menu extends CI_Controller
         $data['title'] = 'SubMenu Sidebar';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $this->load->model('Menu_model', 'menu');
+        // $this->load->model('Menu_model', 'menu');
 
-        $data['subMenu'] = $this->menu->getSubMenu();
+        $data['subMenu'] = $this->Menu_model->getSubMenu();
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->form_validation->set_rules('title', 'Title', 'required');
@@ -115,6 +116,50 @@ class Menu extends CI_Controller
             $this->db->insert('user_sub_menu', $data);
             $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert"> New sub menu Added! </div>');
+            redirect('menu/submenu');
+        }
+    }
+
+    public function editSubMenu($id)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // $data['subMenu'] = $this->Master->getSubMenuJoinMenu();
+        $data['subMenu'] = $this->Menu_model->getSubMenu();
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+
+
+        $data['sub_menu_id'] = $this->Master->getSubMenuById($id);
+
+        $this->form_validation->set_rules('title', 'Judul SubMenu', 'required|trim');
+        $this->form_validation->set_rules('menu_id', 'Menu', 'required|trim');
+        $this->form_validation->set_rules('url', 'Alamat URL', 'required|trim');
+        $this->form_validation->set_rules('icon', 'Ikon FA', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Menu';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('menu/submenu', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'menu_id' => $this->input->post('menu_id', true),
+                'title' => $this->input->post('title', true),
+                'url' => $this->input->post('url', true),
+                'icon' => $this->input->post('icon', true),
+                'is_active' => $this->input->post('is_active')
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('user_sub_menu', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Sub Menu has been updated! </div>');
             redirect('menu/submenu');
         }
     }

@@ -27,6 +27,22 @@ class Master extends CI_Model
         return $this->db->query($query)->row();
     }
 
+    public function getSubMenuJoinMenu()
+    {
+        $query = "SELECT  `user_sub_menu`. *, `user_menu`.`menu`
+                 FROM `user_sub_menu` JOIN `user_menu`
+                 ON `user_sub_menu`.`menu_id` = `user_menu`.`id` 
+                ";
+        return $this->db->query($query)->row();
+    }
+
+    public function getSubMenuById($id)
+    {
+        $query = "SELECT * FROM user_sub_menu WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     public function getMenuById($id)
     {
         $query = "SELECT * FROM user_menu WHERE id='$id'
