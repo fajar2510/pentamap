@@ -1,7 +1,5 @@
 <!-- Begin Page Content -->
-<!-- <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/bootstrap.css') ?>" /> -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -110,7 +108,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-6">
@@ -121,21 +118,21 @@
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" >
+                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat">
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="pengirim" placeholder="" name="pengirim" >
+                                            <input type="text" class="form-control" id="pengirim" placeholder="" name="pengirim">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="lama" placeholder="" name="lama" >
+                                            <input type="text" class="form-control" id="lama" placeholder="" name="lama">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -149,9 +146,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">
@@ -163,16 +157,12 @@
 
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
-
 </div>
 <!-- End of Main Content -->
