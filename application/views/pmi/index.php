@@ -86,7 +86,7 @@
                                             <td> <small><?= $p['date_created']; ?></small></td>
                                             <td><?= $p['nama']; ?></td>
                                             <td> <small> <?= $p['nama_kelurahan']; ?> , <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?></small></td>
-                                            <td><small><?= $p['negara_bekerja']; ?></small> </td>
+                                            <td><small><?= $p['nama_negara']; ?></small> </td>
                                             <td><small><?= $p['lama_bekerja']; ?></small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>

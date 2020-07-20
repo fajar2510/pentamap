@@ -82,7 +82,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
+            $data['title'] = 'Edit Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -145,21 +145,22 @@ class Pmi extends CI_Controller
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
         // Load model pmi
+
         $data['pmi'] = $this->Master->getPmiById($id);
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
-        $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
-        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kab', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
-        $this->form_validation->set_rules('negara', 'Negara', 'required|trim');
-        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
-        $this->form_validation->set_rules('berangkat', 'Berangkat', 'required|trim');
-        $this->form_validation->set_rules('pengirim', 'Pengirim', 'required|trim');
-        $this->form_validation->set_rules('lama', 'Lama', 'required|trim');
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
+        $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
+        $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
@@ -173,10 +174,10 @@ class Pmi extends CI_Controller
                 'nama' => $this->input->post('nama', true),
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
-                'provinsi' => $this->input->post('prov', true),
-                'kabupaten' => $this->input->post('kab', true),
-                'kecamatan' => $this->input->post('kec', true),
-                'desa' => $this->input->post('desa', true),
+                'provinsi' => $this->input->post('provinsi_id', true),
+                'kabupaten' => $this->input->post('kabupaten_id', true),
+                'kecamatan' => $this->input->post('kecamatan_id', true),
+                'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
@@ -198,13 +199,15 @@ class Pmi extends CI_Controller
                     $this->db->set('image', $new_image);
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                    redirect('pmi/index');
+                    redirect('pmi');
                 }
             }
-            $this->db->insert('tb_pmi', $data);
+
+            $this->db->where('id', $id);
+            $this->db->update('tb_pmi', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! PMI data has been added succesfully. </div>');
-            redirect('pmi/index');
+            alert-success" role="alert"> Congratulation! PMI data has been update . </div>');
+            redirect('pmi');
         }
     }
 

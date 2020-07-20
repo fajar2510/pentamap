@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <div>
 
-                            <form action="<?= base_url('pmi/'); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('pmi/edit/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <!-- <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Status</label>
@@ -158,13 +158,13 @@
                                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
                                         <div class="col-sm-2">
 
-                                            <?php
-                                            if ($pmi->image == null) {
-                                                echo "assets/img/pmi/default.png";
-                                            } else {
-                                                echo " $pmi->image";
-                                            }
-                                            ?>
+                                            <!-- <?php
+                                                    if ($pmi->image == null) {
+                                                        echo "assets/img/pmi/default.png";
+                                                    } else {
+                                                        echo " $pmi->image";
+                                                    }
+                                                    ?> -->
                                             <img src="<?= base_url('assets/img/pmi/') . $pmi->image ?>" class="img-thumbnail" alt="Profile Picture">
                                         </div>
                                         <div class="col-sm-6">
