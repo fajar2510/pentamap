@@ -121,21 +121,21 @@
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= set_value('berangkat_melalui'); ?>">
+                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" >
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= set_value('pengirim'); ?>">
+                                            <input type="text" class="form-control" id="pengirim" placeholder="" name="pengirim" >
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= set_value('lama_bekerja'); ?>">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="lama" placeholder="" name="lama" >
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

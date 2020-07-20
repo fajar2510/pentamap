@@ -69,10 +69,11 @@
                                 <thead>
                                     <tr>
                                         <th width="4%"> No</th>
-                                        <th width="10%">Tanggal</th>
-                                        <th width="19%">Nama</th>
-                                        <th width="38%">Alamat <small> (Desa,Kecamatan,Kabupaten)</small></th>
-                                        <th width="15%">Negara Bekerja</th>
+                                        <th width="8%">Tanggal</th>
+                                        <th width="17%">Nama</th>
+                                        <th width="37%">Alamat <small> (Desa,Kecamatan,Kabupaten)</small></th>
+                                        <th width="10%">Negara Bekerja</th>
+                                        <th width="10%">Lama Kerja</th>
                                         <th width="17%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -86,6 +87,7 @@
                                             <td><?= $p['nama']; ?></td>
                                             <td> <small> <?= $p['nama_kelurahan']; ?> , <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?></small></td>
                                             <td><small><?= $p['negara_bekerja']; ?></small> </td>
+                                            <td><small><?= $p['lama_bekerja']; ?></small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
