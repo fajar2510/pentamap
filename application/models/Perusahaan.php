@@ -36,6 +36,13 @@ class Perusahaan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function get_TkaById($id)
+    {
+        $query = "SELECT * FROM tb_tka WHERE id='$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
 
     public function get_TkaPerusahaan()
     {

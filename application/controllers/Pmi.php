@@ -9,7 +9,7 @@ class Pmi extends CI_Controller
         parent::__construct();
         $this->load->model('Master');
         $this->load->model('Wilayah', '', TRUE);
-        $this->load->model('Chain_model');
+        // $this->load->model('Chain_model');
     }
 
     // FUNCTION Tambah START
@@ -21,7 +21,7 @@ class Pmi extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // Load Model User Role
-        $data['pmi'] = $this->Master->getPmiJoinWilayah();
+        $data['pmi'] = $this->Master->get_PMI();
 
         //load data view
         $data['title'] = 'Data Pemulangan PMI-B Non-Prosedural';
@@ -69,7 +69,7 @@ class Pmi extends CI_Controller
 
         // $this->form_validation->set_rules('status', 'Status', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
         $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
@@ -92,7 +92,7 @@ class Pmi extends CI_Controller
             $data = [
                 'status' => 'NON-PROSEDURAL',
                 'nama' => $this->input->post('nama', true),
-                'umur' => $this->input->post('Umur', true),
+                'umur' => $this->input->post('umur', true),
                 'gender' => $this->input->post('gender', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
                 'kabupaten' => $this->input->post('kabupaten_id', true),
@@ -188,9 +188,9 @@ class Pmi extends CI_Controller
             // cek gambar upload
             $upload_image = $_FILES['image']['name'];
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jgp|png';
-                $config['max_size']      = '3000';
-                $config['upload_path']   = '.assets/img/pmi/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '5000';
+                $config['upload_path']   = './assets/img/pmi';
 
                 $this->load->library('upload', $config);
 

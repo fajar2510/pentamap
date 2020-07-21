@@ -19,7 +19,7 @@ class Wilayah extends CI_Model
         if ($sql_prov->num_rows() > 0) {
             foreach ($sql_prov->result_array() as $row) {
                 $result['-'] = '- Pilih Provinsi -';
-                
+
                 $result[$row['id_provinsi']] = ucwords(strtolower($row['nama_provinsi']));
             }
             return $result;

@@ -62,7 +62,7 @@ class Master extends CI_Model
     public function getPmiJoinWilayah()
     {
         $query =
-        "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+            "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
                 , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`,
                 `tb_negara`.`nama_negara`
                     FROM `tb_pmi` JOIN `provinsi`
@@ -91,6 +91,13 @@ class Master extends CI_Model
     public function getW_Prov()
     {
         $query = "SELECT * FROM wilayah_provinsi
+                ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_PMI()
+    {
+        $query = "SELECT * FROM tb_pmi
                 ";
         return $this->db->query($query)->result_array();
     }

@@ -121,9 +121,76 @@
                                         <div class="col-sm-4">
                                             <select name="negara" id="negara" class="form-control">
                                                 <option value=""> Pilih Negara </option>
-                                                <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
-                                                <?php endforeach; ?>
+                                                <!-- <?php foreach ($negara as $n) : ?>
+                                                    <option value="<?= $n['nama_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                <?php endforeach; ?> -->
+                                                <!-- statis data -->
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Indonesia') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Indonesia
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Malaysia') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Malaysia
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Singapura') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Singapura
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Brunei Darusallam') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Brunei Darusallam
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Hongkong') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Hongkong
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'RRC/China') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>RRC/China
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Taiwan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Taiwan
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Jepang') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Jepang
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Korea Selatan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Korea Selatan
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Arab Saudi') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Arab Saudi
+                                                </option>
+                                                <option value="PROSEDURAL" <?php if ($pmi->negara_bekerja == 'Indonesia') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Indonesia
+                                                </option>
                                             </select>
                                         </div>
                                     </div>

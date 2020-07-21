@@ -51,6 +51,7 @@ class Exportimport extends CI_Controller
                             'desa' => $row->getCellAtIndex(4),
                             'kecamatan' => $row->getCellAtIndex(5),
                             'kabupaten' => $row->getCellAtIndex(6),
+                            'provinsi' => 'JAWA TIMUR',
                             'negara_bekerja' => $row->getCellAtIndex(7),
                             'jenis_pekerjaan' => $row->getCellAtIndex(8),
                             'berangkat_melalui' => $row->getCellAtIndex(9),
@@ -66,11 +67,16 @@ class Exportimport extends CI_Controller
                 }
                 $reader->close();
                 unlink('assets/exportimport/import/' . $file['file_name']);
-                $this->session->set_flashdata('message', 'Import Data Berhasil !');
-                redirect('exportimport/');
+                $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! Import Data has been succesfully. </div>');
+                redirect('pmi');
             }
         } else {
-            echo "Error :" . $this->upload->display_errors();
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-danger" role="alert"> Error. You dont select any document </div>');
+            redirect('pmi');
+
+            echo "message :" . $this->upload->display_errors();
         }
     }
 }
