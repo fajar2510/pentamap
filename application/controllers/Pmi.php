@@ -82,7 +82,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
+            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -92,7 +92,7 @@ class Pmi extends CI_Controller
             $data = [
                 'status' => 'NON-PROSEDURAL',
                 'nama' => $this->input->post('nama', true),
-                'tgl_lahir' => $this->input->post('tgl_lahir', true),
+                'umur' => $this->input->post('Umur', true),
                 'gender' => $this->input->post('gender', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
                 'kabupaten' => $this->input->post('kabupaten_id', true),
@@ -150,7 +150,7 @@ class Pmi extends CI_Controller
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
         $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
@@ -163,7 +163,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
+            $data['title'] = 'Edit Data Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -172,7 +172,7 @@ class Pmi extends CI_Controller
         } else {
             $data = [
                 'nama' => $this->input->post('nama', true),
-                'tgl_lahir' => $this->input->post('tgl_lahir', true),
+                'umur' => $this->input->post('umur', true),
                 'gender' => $this->input->post('gender', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
                 'kabupaten' => $this->input->post('kabupaten_id', true),

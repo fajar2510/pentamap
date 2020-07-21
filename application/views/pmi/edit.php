@@ -60,9 +60,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tgl_lahir" class="col-3 col-form-label">Tanggal Lahir</label>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" value="<?= $pmi->tgl_lahir ?>" id="tgl_lahir" name="tgl_lahir">
+                                        <label for="umur" class="col-sm-3 col-form-label">tgl lahir/*Umur</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="umur" placeholder="Masukkan Umur" name="umur" value="<?= $pmi->umur ?>">
+                                            <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">

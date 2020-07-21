@@ -68,12 +68,11 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th width="4%"> No</th>
-                                        <th width="8%">Tanggal</th>
-                                        <th width="17%">Nama</th>
+                                        <th width="3%"> No</th>
+                                        <th width="7%">Tanggal</th>
+                                        <th width="19%">Nama</th>
                                         <th width="37%">Alamat <small> (Desa,Kecamatan,Kabupaten)</small></th>
-                                        <th width="10%">Negara Bekerja</th>
-                                        <th width="10%">Lama Kerja</th>
+                                        <th width="20%">Negara Bekerja (lama)</th>
                                         <th width="17%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -86,8 +85,7 @@
                                             <td> <small><?= $p['date_created']; ?></small></td>
                                             <td><?= $p['nama']; ?></td>
                                             <td> <small> <?= $p['nama_kelurahan']; ?> , <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?></small></td>
-                                            <td><small><?= $p['nama_negara']; ?></small> </td>
-                                            <td><small><?= $p['lama_bekerja']; ?></small> </td>
+                                            <td><small><?= $p['nama_negara']; ?> (<?= $p['lama_bekerja']; ?>)</small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>

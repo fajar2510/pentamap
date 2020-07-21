@@ -1,8 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No direct script acces allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Exportimport extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Pemulangan');
+    }
 
     public function index()
     {
@@ -13,11 +21,56 @@ class Exportimport extends CI_Controller
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
 
-        $data['title'] = 'Export PDF';
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('export/index', $data);
-        $this->load->view('templates/footer', $data);
+        $data['title'] = 'Import Excel';
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('templates/sidebar', $data);
+        // $this->load->view('templates/topbar', $data);
+        $this->load->view('import/index', $data);
+        // $this->load->view('templates/footer', $data);
+    }
+
+    public function uploaddata()
+    {
+        $config['upload_path'] = './assets/exportimport/import/';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['file_name'] = 'doc' . time();
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('importexcel')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('assets/exportimport/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    if ($numRow > 1) {
+                        $data_pmi = array(
+                            'nama' => $row->getCellAtIndex(1),
+                            'umur' => $row->getCellAtIndex(2),
+                            'gender' => $row->getCellAtIndex(3),
+                            'desa' => $row->getCellAtIndex(4),
+                            'kecamatan' => $row->getCellAtIndex(5),
+                            'kabupaten' => $row->getCellAtIndex(6),
+                            'negara_bekerja' => $row->getCellAtIndex(7),
+                            'jenis_pekerjaan' => $row->getCellAtIndex(8),
+                            'berangkat_melalui' => $row->getCellAtIndex(9),
+                            'pengirim' => $row->getCellAtIndex(10),
+                            'lama_bekerja' => $row->getCellAtIndex(11),
+                            'status' => 'NON-PROSEDURAL',
+                            // 'image' => $row->getCellAtIndex(12),
+                            'date_created' => date('Y-m-d'),
+                        );
+                        $this->Pemulangan->import_data($data_pmi);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('assets/exportimport/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', 'Import Data Berhasil !');
+                redirect('exportimport/');
+            }
+        } else {
+            echo "Error :" . $this->upload->display_errors();
+        }
     }
 }

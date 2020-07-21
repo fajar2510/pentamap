@@ -45,14 +45,15 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= set_value('nama'); ?>">
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tgl_lahir" class="col-3 col-form-label">Tanggal Lahir</label>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" value="1999-12-31" id="tgl_lahir" name="tgl_lahir">
+                                        <label for="umur" class="col-sm-3 col-form-label">tgl lahir/*Umur</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="umur" placeholder="Masukkan Umur" name="umur">
+                                            <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
