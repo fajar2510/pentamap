@@ -59,7 +59,7 @@ class Tka extends CI_Controller
         $this->form_validation->set_rules('lokasi', 'Loksi Kerja', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Laporan TKA per Perusahaan';
+            $data['title'] = 'Form Laporan TKA dan Perusahaan Provinsi Jawa Timur';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -96,11 +96,11 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data 
-        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         $data['negara'] = $this->Perusahaan->get_NegaraAll();
         $data['jatim'] = $this->Perusahaan->get_Jatim();
-        $data['tka'] = $this->Perusahaan->get_TkaById($id);
+        $data['tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
 
 
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
@@ -120,14 +120,14 @@ class Tka extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('tka/tambah', $data);
+            $this->load->view('tka/edit', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama'),
+                'jenis_kel' => $this->input->post('gender'),
                 'nama_perusahaan' => $this->input->post('perusahaan'),
                 'kewarganegaraan' => $this->input->post('negara'),
-                'jenis_kel' => $this->input->post('gender'),
                 'jabatan' => $this->input->post('jabatan'),
                 'sektor' => $this->input->post('sektor'),
                 'no_rptka' => $this->input->post('no_rptka'),

@@ -34,13 +34,13 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('tka/edit/' . $tb_tka->id); ?>" method="post">
+                            <form action="<?= base_url('tka/edit/' . $tka->id); ?>" method="post">
                                 <div class="modal-body">
 
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA<?= $tka->id ?><?= $tb_tka->id ?></label>
+                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA<?= $tka->id ?><?= $tka->id ?></label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $tb_tka->nama_tka ?>">
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $tka->nama_tka ?>">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -49,9 +49,16 @@
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-4">
                                             <select name="gender" id="gender" class="form-control">
-                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
-                                                <option value="L"> Laki-Laki </option>
-                                                <option value="P"> Perempuan </option>
+                                                <option value="L" <?php if ($tka->jenis_kel == 'L') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Laki-laki</option>
+                                                <option value="P" <?php if ($tka->jenis_kel == 'P') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Perempuan</option>
                                             </select>
                                         </div>
                                     </div>
@@ -80,7 +87,7 @@
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $tb_tka->jabatan ?>">
+                                            <input type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $tka->jabatan ?>">
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -88,9 +95,16 @@
                                         <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-3">
                                             <select name="sektor" id="sektor" class="form-control">
-                                                <option value="">~ Pilih Sektor ~</option>
-                                                <option value="Formal"> FORMAL</option>
-                                                <option value="Informal"> INFORMAL</option>
+                                                <option value="Formal" <?php if ($tka->sektor == 'Formal') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>FORMAL</option>
+                                                <option value="Informal" <?php if ($tka->sektor == 'Informal') {
+                                                                                    echo 'selected';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>>INFORMAL</option>
                                             </select>
 
                                         </div>
@@ -98,21 +112,21 @@
                                     <div class="form-group row">
                                         <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka">
+                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" value="<?= $tka->no_rptka ?>">
                                             <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="2020-07-31" id="masa_rptka" name="masa_rptka">
+                                            <input class="form-control" type="date" id="masa_rptka" name="masa_rptka" value="<?= $tka->masa_rptka ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="no_imta" class="col-sm-3 col-form-label">NO. IMTA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta">
+                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" value="<?= $tka->no_imta ?>">
                                             <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="2020-07-31" id="masa_imta" name="masa_imta">
+                                            <input class="form-control" type="date" id="masa_imta" name="masa_imta" value="<?= $tka->masa_imta ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -140,7 +154,6 @@
 
                                 </div>
                             </form>
-
 
                         </div>
                     </div>

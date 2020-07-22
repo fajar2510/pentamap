@@ -38,7 +38,7 @@
                                 <div class="modal-body">
 
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA</label>
+                                        <label for="nama" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -67,6 +67,27 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= set_value('nama'); ?>">
+                                            <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value=""> ~ Pilih Status ~ </option>
+                                                <option value="P"> Pusat </option>
+                                                <option value="C"> Cabang </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="3"></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Perusahaan</label>
                                         <div class="col-sm-4">
                                             <select name="perusahaan" id="perusahaan" class="form-control">
@@ -76,7 +97,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
@@ -131,11 +152,17 @@
 
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="<?= base_url('tka'); ?>" class="btn btn-light btn-icon-split">
+                                        <span class="icon text-gray-600">
+                                            <i class="fas fa-window-close"></i>
+                                        </span>
+                                        <span class="text">Batal</span>
+                                    </a>
                                     <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-save"></i>
                                         </span>
-                                        <span class="text">Simpan Data</span>
+                                        <span class="text">Tambah Data</span>
                                     </button>
 
                                 </div>
