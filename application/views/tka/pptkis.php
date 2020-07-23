@@ -16,6 +16,10 @@
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
     </div>
 
+    <?php foreach ($formal as $tot_formal); ?>
+    <?php foreach ($a as $aa); ?>
+    <?php foreach ($b as $bb); ?>
+
     <div class="row">
         <div class="col-lg">
             <?php if (validation_errors()) : ?>
@@ -83,12 +87,12 @@
                                         <th>L</th>
                                         <th>P</th>
                                         <th>Total</th>
-                                        <th width="8%">Aksi</th>
+                                        <!-- <th width="8%">Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_pptkis as $p) : ?>
+                                    <?php foreach ($tb_tka as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <small> <?= $p['nama_perusahaan']; ?> </small> </td>
@@ -98,18 +102,16 @@
                                                 } else {
                                                     echo 'C';
                                                 } ?>
-
-                                            <td><?= $p['formal']; ?></td>
-                                            <td> <?= $p['informal']; ?> </td>
-                                            <td><?= $p['jatim']; ?></td>
-                                            <td> <?= $p['luar_jatim']; ?> </td>
-                                            <td><?= $p['total_lk']; ?></td>
-                                            <td> <?= $p['total_pr']; ?> </td>
-                                            <td> <?= $p['total']; ?> </td>
-                                            <td>
+                                            <td> <?php echo $tot_formal->formal; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td> <?php echo $aa->tka + $bb->pmib; ?></td>
+                                            <!-- <td>
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -127,9 +129,9 @@
 </div>
 <!-- End of Main Content -->
 
+<!--  <!-- modalhapus -->
+<!-- <?php foreach ($tb_pptkis as $p) : ?>
 
-<?php foreach ($tb_pptkis as $p) : ?>
-    <!-- modalhapus -->
     <div class="modal fade" id="modalHapus<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -151,4 +153,4 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->

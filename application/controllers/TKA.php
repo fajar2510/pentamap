@@ -25,6 +25,7 @@ class Tka extends CI_Controller
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
 
 
+
         $data['title'] = 'Data TKA per Perusahaan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -42,14 +43,16 @@ class Tka extends CI_Controller
 
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
-        $data['negara'] = $this->Perusahaan->get_NegaraAll();
+        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
+        // $data['negara'] = $this->Perusahaan->get_NegaraAll();
         $data['jatim'] = $this->Perusahaan->get_Jatim();
 
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('nama_perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat Perusahaan', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('sektor', 'Sektor', 'required');
         $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');
@@ -68,9 +71,11 @@ class Tka extends CI_Controller
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama'),
-                'nama_perusahaan' => $this->input->post('perusahaan'),
                 'kewarganegaraan' => $this->input->post('negara'),
                 'jenis_kel' => $this->input->post('gender'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'status' => $this->input->post('status'),
+                'alamat' => $this->input->post('alamat'),
                 'jabatan' => $this->input->post('jabatan'),
                 'sektor' => $this->input->post('sektor'),
                 'no_rptka' => $this->input->post('no_rptka'),
@@ -96,9 +101,10 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data 
+        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
-        $data['negara'] = $this->Perusahaan->get_NegaraAll();
+        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
+        // $data['negara'] = $this->Perusahaan->get_NegaraAll();
         $data['jatim'] = $this->Perusahaan->get_Jatim();
         $data['tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
 
@@ -106,7 +112,9 @@ class Tka extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('nama_perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat Perusahaan', 'required');;
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('sektor', 'Sektor', 'required');
         $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');
@@ -126,7 +134,9 @@ class Tka extends CI_Controller
             $data = [
                 'nama_tka' => $this->input->post('nama'),
                 'jenis_kel' => $this->input->post('gender'),
-                'nama_perusahaan' => $this->input->post('perusahaan'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'status' => $this->input->post('status'),
+                'alamat' => $this->input->post('alamat'),
                 'kewarganegaraan' => $this->input->post('negara'),
                 'jabatan' => $this->input->post('jabatan'),
                 'sektor' => $this->input->post('sektor'),
@@ -166,8 +176,13 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data wilayah
-        $data['tb_pptkis'] = $this->Perusahaan->get_pptkis();
+        // $data['tb_pptkis'] = $this->Perusahaan->get_pptkis();
+        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        $data['formal'] =  $this->Perusahaan->getTotFormalByPerusahaan();
+        $data['a'] =  $this->Perusahaan->getTotalTKA();
+        $data['b'] =  $this->Perusahaan->getTotalPMIB();
 
+        // $data['jumlah'] = $this->Perusahaan->jumlah();
 
 
 
@@ -181,13 +196,13 @@ class Tka extends CI_Controller
 
 
 
-    public function hapusPptkis($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('tb_pptkis');
+    // public function hapusPptkis($id)
+    // {
+    //     $this->db->where('id', $id);
+    //     $this->db->delete('tb_pptkis');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected PPTKIS has succesfully deleted, be carefull for manage data. </div>');
-        redirect('tka/pptkis');
-    }
+    //     $this->session->set_flashdata('message', '<div class="alert 
+    //         alert-success" role="alert"> Your selected PPTKIS has succesfully deleted, be carefull for manage data. </div>');
+    //     redirect('tka/pptkis');
+    // }
 }

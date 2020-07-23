@@ -23,38 +23,22 @@
                             <i class="fas fa-search fa-sm"></i>
                         </button>
                     </div> -->
+                    <!-- <?php foreach ($tka as $total_tka); ?>
+                    <?php foreach ($pmib as $total_pmib); ?> -->
+
+
                     <marquee behavior="scroll" direction="right" scrollamount="5" width="130%">
                         <div class="form-group row">
                             <div class="col-sm-2">
                                 <small>
                                     <img src="http://www.myiconfinder.com/uploads/iconsets/621654299bc0f478fe3c1be4924d727d.png" width="30" height="30" alt="pmi" class="rounded-circle"> <b> &nbsp;PMI </b>
-                                        <span class="border-left"> &nbsp;2312 </span> &nbsp; <b>TKA</b>
-                                        <span class="border-left"> &nbsp;896 </span> &nbsp; <b>PMI-B </b>
-                                        <span class="border-left"> &nbsp;1463 </span> &nbsp; <b>Pengangguran </b>
-                                        <span class="border-left"> &nbsp;15232 </span>
-                                </small>
-                            </div>
-                            <!-- <div></div>
-                            <div class="col-sm-2">
-                                <small>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;Pengangguran
+                                    <span class="border-left"> &nbsp;2324</span> &nbsp; <b>TKA</b>
+                                    <span class="border-left"> &nbsp;4212 </span> &nbsp; <b>PMI-B </b>
+                                    <span class="border-left"> &nbsp;2322 </span> &nbsp; <b>Pengangguran </b>
                                     <span class="border-left"> &nbsp;15232 </span>
                                 </small>
                             </div>
-                            <div></div>
-                            <div class="col-sm-2">
-                                <small>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;PMI-B
-                                    <span class="border-left"> &nbsp;1463 </span>
-                                </small>
-                            </div>
-                            <div></div>
-                            <div class="col-sm-2">
-                                <small>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Blue_circle_logo.svg/768px-Blue_circle_logo.svg.png" width="15" height="15" alt="pmi" class="rounded-circle">&nbsp;TKA
-                                    <span class="border-left"> &nbsp;896 </span>
-                                </small>
-                            </div> -->
+                            
 
                         </div>
                     </marquee>

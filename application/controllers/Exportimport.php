@@ -10,6 +10,7 @@ class Exportimport extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Pemulangan');
+        $this->load->model('Tka');
     }
 
     public function index()
@@ -72,6 +73,57 @@ class Exportimport extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert 
             alert-danger" role="alert"> Error. You dont select any document </div>');
             redirect('pmi');
+
+            echo "message :" . $this->upload->display_errors();
+        }
+    }
+    public function uploaddata_tka()
+    {
+        $config['upload_path'] = './assets/exportimport/import/';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['file_name'] = 'doc' . time();
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('importexcel')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('assets/exportimport/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    if ($numRow > 2) {
+                        $data_tka = array(
+                            'nama_tka' => $row->getCellAtIndex(1),
+                            'jenis_kel' => $row->getCellAtIndex(2),
+                            'kewarganegaraan' => $row->getCellAtIndex(3),
+                            'nama_perusahaan' => $row->getCellAtIndex(4),
+                            'alamat' => $row->getCellAtIndex(5),
+                            'status' => $row->getCellAtIndex(6),
+                            'jabatan' => $row->getCellAtIndex(7),
+                            'sektor' => $row->getCellAtIndex(8),
+                            'no_rptka' => $row->getCellAtIndex(9),
+                            'masa_rptka' => $row->getCellAtIndex(10),
+                            'no_imta' => $row->getCellAtIndex(11),
+                            'masa_imta' => $row->getCellAtIndex(12),
+                            'lokasi_kerja' => $row->getCellAtIndex(13),
+
+                            // 'image' => $row->getCellAtIndex(12),
+                            'date_created' => date('Y-m-d'),
+                        );
+                        $this->Tka->import_data($data_tka);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('assets/exportimport/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! Import Data has been succesfully. </div>');
+                redirect('tka');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-danger" role="alert"> Error. You dont select any document </div>');
+            redirect('tka');
 
             echo "message :" . $this->upload->display_errors();
         }

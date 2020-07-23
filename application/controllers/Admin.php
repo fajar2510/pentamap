@@ -9,6 +9,7 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Master');
+        $this->load->model('Perusahaan');
     }
 
     public function index()
@@ -22,10 +23,14 @@ class Admin extends CI_Controller
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
 
+        // $data['tka'] = $this->Perusahaan->getTotalTKA();
+        $totaltka['tka'] = $this->Perusahaan->getTotalTKA();
+        $totalpmib['pmib'] = $this->Perusahaan->getTotalPMIB();
+
         //load with templating view
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/topbar', $data + $totaltka +$totalpmib);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }

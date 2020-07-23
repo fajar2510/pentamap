@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat *perusahaan</label>
                                         <div class="col-sm-8">
                                             <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="3"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -146,15 +146,53 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="lokasi" class="col-sm-3 col-form-label">Lokasi Kerja</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
                                                 <option value="">~ Pilih Lokasi Kerja ~</option>
-                                                <?php foreach ($jatim as $j) : ?>
+                                                <option value="Bangkalan">Bangkalan</option>
+                                                <option value="Banyuwangi">Banyuwangi</option>
+                                                <option value="Blitar">Blitar</option>
+                                                <option value="Bojonegoro">Bojonegoro</option>
+                                                <option value="Bondowoso">Bondowoso</option>
+                                                <option value="Gresik">Gresik</option>
+                                                <option value="Jember">Jember</option>
+                                                <option value="Jombang">Jombang</option>
+                                                <option value="Kediri">Kediri</option>
+                                                <option value="Kota Batu">Kota Batu</option>
+                                                <option value="Kota Blitar">Kota Blitar</option>
+                                                <option value="Kota Kediri">Kota Kediri</option>
+                                                <option value="Kota Madiun">Kota Madiun</option>
+                                                <option value="Kota Malang">Kota Malang</option>
+                                                <option value="Kota Mojokerto">Kota Mojokerto</option>
+                                                <option value="Kota Pasuruan">Kota Pasuruan</option>
+                                                <option value="Kota Probolinggo">Kota Probolinggo</option>
+                                                <option value="Kota Surabaya">Kota Surabaya</option>
+                                                <option value="Lamongan">Lamongan</option>
+                                                <option value="Lumajang">Lumajang</option>
+                                                <option value="Madiun">Madiun</option>
+                                                <option value="Magetan">Magetan</option>
+                                                <option value="Malang">Malang</option>
+                                                <option value="Mojokerto">Mojokerto</option>
+                                                <option value="Nganjuk">Nganjuk</option>
+                                                <option value="Ngawi">Ngawi</option>
+                                                <option value="Pacitan">Pacitan</option>
+                                                <option value="Pamekasan">Pamekasan</option>
+                                                <option value="Pasuruan">Pasuruan</option>
+                                                <option value="Ponorogo">Ponorogo</option>
+                                                <option value="Probolinggo">Probolinggo</option>
+                                                <option value="Sampang">Sampang</option>
+                                                <option value="Sidoarjo">Sidoarjo</option>
+                                                <option value="Situbondo">Situbondo</option>
+                                                <option value="Sumenep">Sumenep</option>
+                                                <option value="Trenggalek">Trenggalek</option>
+                                                <option value="Tuban">Tuban</option>
+                                                <option value="Tulungagung">Tulungagung</option>
+                                                <!-- <?php foreach ($jatim as $j) : ?>
                                                     <option value="<?= $j['id_kabupaten']; ?>"> <?= $j['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-                                                <option value="LUAR JATIM">*LUAR JATIM</option>
+                                                <?php endforeach; ?> -->
+                                                <option value="Luar Jatim">*LUAR JATIM</option>
                                             </select>
-                                            <small id="lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
+                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
                                         </div>
                                     </div>
 

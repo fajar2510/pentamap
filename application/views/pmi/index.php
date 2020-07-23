@@ -136,7 +136,7 @@
                 <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
                     <div class="modal-body">Data&nbsp; <b>
                             <font color="red"><?= $p['nama']; ?></font>
-                        </b> akan dihapus !  </div>
+                        </b> akan dihapus ! </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id" value=<?= $p['id']; ?>>
                         <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>

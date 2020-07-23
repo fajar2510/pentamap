@@ -38,7 +38,7 @@
                                 <div class="modal-body">
 
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA<?= $tka->id ?><?= $tka->id ?></label>
+                                        <label for="nama" class="col-sm-3 col-form-label">Nama TKA</label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $tka->nama_tka ?>">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -63,25 +63,38 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="negara" class="col-sm-3 col-form-label">Kewarganegeraan</label>
-                                        <div class="col-sm-4">
-                                            <select name="negara" id="negara" class="form-control">
-                                                <option value="">~ Pilih Kewarganegeraan ~</option>
-                                                <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['country_name']; ?> </option>
-                                                <?php endforeach; ?>
+                                        <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" value="<?= $tka->kewarganegaraan ?>" name="negara">
+                                            <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= $tka->nama_perusahaan ?>">
+                                            <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="P" <?php if ($tka->sektor == 'Pusat') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Pusat</option>
+                                                <option value="C" <?php if ($tka->sektor == 'Cabang') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Cabang</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Perusahaan</label>
-                                        <div class="col-sm-4">
-                                            <select name="perusahaan" id="perusahaan" class="form-control">
-                                                <option value="">~ Pilih Perusahaan ~</option>
-                                                <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat *perusahaan</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" value="<?= $tka->alamat ?>">
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -131,13 +144,223 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="lokasi" class="col-sm-3 col-form-label">Lokasi Kerja</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
-                                                <option value="">~ Pilih Lokasi Kerja ~</option>
+                                                <option value="Bangkalan" <?php if ($tka->lokasi_kerja == 'Bangkalan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Bangkalan</option>
+                                                <option value="Banyuwangi" <?php if ($tka->lokasi_kerja == 'Banyuwangi') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Banyuwangi</option>
+                                                <option value="Blitar" <?php if ($tka->lokasi_kerja == 'Blitar') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Blitar</option>
+                                                <option value="Bojonegoro" <?php if ($tka->lokasi_kerja == 'Bojonegoro') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Bojonegoro</option>
+                                                <option value="Bondowoso" <?php if ($tka->lokasi_kerja == 'Bondowoso') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Bondowoso</option>
+
+                                                <option value="Gresik" <?php if ($tka->lokasi_kerja == 'Gresik') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Gresik</option>
+                                                <option value="Jember" <?php if ($tka->lokasi_kerja == 'Jember') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Jember</option>
+
+                                                <option value="Jombang" <?php if ($tka->lokasi_kerja == 'Jombang') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Jombang</option>
+                                                <option value="Kediri" <?php if ($tka->lokasi_kerja == 'Kediri') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Kediri</option>
+
+                                                <option value="Kota Batu" <?php if ($tka->lokasi_kerja == 'Kota Batu') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Kota Batu</option>
+                                                <option value="Kota Blitar" <?php if ($tka->lokasi_kerja == 'Kota Blitar') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Kota Blitar</option>
+
+                                                <option value="Kota Kediri" <?php if ($tka->lokasi_kerja == 'Kota Kediri') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Kota Kediri</option>
+                                                <option value="Kota Madiun" <?php if ($tka->lokasi_kerja == 'Kota Madiun') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Kota Madiun</option>
+
+                                                <option value="Kota Malang" <?php if ($tka->lokasi_kerja == 'Kota Malang') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Kota Malang</option>
+                                                <option value="Kota Mojokerto" <?php if ($tka->lokasi_kerja == 'Kota Mojokerto') {
+                                                                                    echo 'selected';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>>Kota Mojokerto</option>
+
+                                                <option value="Kota Pasuruan" <?php if ($tka->lokasi_kerja == 'Kota Pasuruan') {
+                                                                                    echo 'selected';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>>Kota Pasuruan</option>
+                                                <option value="Kota Probolinggo" <?php if ($tka->lokasi_kerja == 'Kota Probolinggo') {
+                                                                                        echo 'selected';
+                                                                                    } else {
+                                                                                        echo '';
+                                                                                    } ?>>Kota Probolinggo</option>
+
+                                                <option value="Kota Surabaya" <?php if ($tka->lokasi_kerja == 'Kota Surabaya') {
+                                                                                    echo 'selected';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>>Kota Surabaya</option>
+                                                <option value="Lamongan" <?php if ($tka->lokasi_kerja == 'Lamongan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Lamongan</option>
+
+                                                <option value="Lumajang" <?php if ($tka->lokasi_kerja == 'Lumajang') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Lumajang</option>
+                                                <option value="Madiun" <?php if ($tka->lokasi_kerja == 'Madiun') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Madiun</option>
+
+                                                <option value="Magetan" <?php if ($tka->lokasi_kerja == 'Magetan') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Magetan</option>
+                                                <option value="Malang" <?php if ($tka->lokasi_kerja == 'Malang') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Malang</option>
+
+                                                <option value="Mojokerto" <?php if ($tka->lokasi_kerja == 'Mojokerto') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Mojokerto</option>
+                                                <option value="Nganjuk" <?php if ($tka->lokasi_kerja == 'Nganjuk') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Nganjuk</option>
+
+                                                <option value="Ngawi" <?php if ($tka->lokasi_kerja == 'Ngawi') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Ngawi</option>
+                                                <option value="Pacitan" <?php if ($tka->lokasi_kerja == 'Pacitan') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Pacitan</option>
+
+                                                <option value="Pamekasan" <?php if ($tka->lokasi_kerja == 'Pamekasan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Pamekasan</option>
+                                                <option value="Pasuruan" <?php if ($tka->lokasi_kerja == 'Pasuruan') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Pasuruan</option>
+                                                <option value="Ponorogo" <?php if ($tka->lokasi_kerja == 'Ponorogo') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Ponorogo</option>
+
+                                                <option value="Probolinggo" <?php if ($tka->lokasi_kerja == 'Probolinggo') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Probolinggo</option>
+                                                <option value="Sampang" <?php if ($tka->lokasi_kerja == 'Sampang') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Sampang</option>
+
+                                                <option value="Sidoarjo" <?php if ($tka->lokasi_kerja == 'Sidoarjo') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Sidoarjo</option>
+                                                <option value="Situbondo" <?php if ($tka->lokasi_kerja == 'Situbondo') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Situbondo</option>
+
+                                                <option value="Sumenep" <?php if ($tka->lokasi_kerja == 'Sumenep') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Sumenep</option>
+                                                <option value="Trenggalek" <?php if ($tka->lokasi_kerja == 'Trenggalek') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Trenggalek</option>
+                                                <option value="Tuban" <?php if ($tka->lokasi_kerja == 'Tuban') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>Tuban</option>
+                                                <option value="Tulungagung" <?php if ($tka->lokasi_kerja == 'Tulungagung') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>Tulungagung</option>
+                                                <option value="Luar Jatim" <?php if ($tka->lokasi_kerja == 'Luar Jatim') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>*Luar Jatim</option>
+                                                <!-- <option value="">~ Pilih Lokasi Kerja ~</option>
                                                 <?php foreach ($jatim as $j) : ?>
                                                     <option value="<?= $j['id_kabupaten']; ?>"> <?= $j['nama_kabupaten']; ?> </option>
                                                 <?php endforeach; ?>
-                                                <option value="LUAR JATIM">*LUAR JATIM</option>
+                                                <option value="LUAR JATIM">*LUAR JATIM</option> -->
                                             </select>
                                             <small id="lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
                                         </div>

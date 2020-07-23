@@ -51,23 +51,24 @@
 
 
                         <div class="dropdown mb-0">
-                            <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </a>
-                            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span class="text">Eksport</span>
                             </button>
-                            <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Excel</a>
-                                <a class="dropdown-item" href="#">PDF</a>
-                            </div>
-                            </>
+                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="text">PDF</span>
+                            </a>
+                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="text">CSV</span>
+                            </a>
                         </div>
 
                     </div>
@@ -90,11 +91,11 @@
                                     <?php foreach ($tb_tka as $t) : ?>
                                         <tr align="justify">
                                             <th><?= $i; ?></th>
-                                            <td> <small> <?= $t['nama_tka']; ?> (<?= $t['jenis_kel']; ?>) / <?= $t['country_name']; ?> </small> </td>
+                                            <td> <small> <?= $t['nama_tka']; ?> (<?= $t['jenis_kel']; ?>) / <?= $t['kewarganegaraan']; ?> </small> </td>
                                             <td> <small> <?= $t['nama_perusahaan']; ?> / <?= $t['jabatan']; ?> / <?= $t['sektor']; ?></small></td>
                                             <td> <small><?= $t['no_rptka']; ?> / <?= $t['masa_rptka']; ?> </small></td>
                                             <td> <small><?= $t['no_imta']; ?> / <?= $t['masa_imta']; ?></small></td>
-                                            <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
+                                            <td> <small> <?= $t['lokasi_kerja']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
@@ -144,3 +145,43 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Berkas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <?= form_open_multipart('exportimport/uploaddata_tka') ?>
+                    <div class="form-group column">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="importexcel" name="importexcel" accept=".xlsx, .xls" aria-describedby="uploadHelp">
+                            <label class="custom-file-label" for="image">Pilih Berkas</label>
+                            <small id="uploadHelp" class="form-text text-muted"> <i>
+                                    <font color="orange">file format hanya .xls .xlsx (pilih dokumen excel anda terlebih dahulu!!) </font>
+                                </i></small>
+                        </div>
+                        <hr>
+                        <center>
+                            <button type="submit" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="text">IMPORT</span>
+                            </button>
+                        </center>
+                        <!-- <div class="col">
+                            <b><?= $this->session->flashdata('message'); ?></b>
+                        </div> -->
+                    </div>
+                    <?= form_close();  ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

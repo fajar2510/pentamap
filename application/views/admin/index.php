@@ -9,7 +9,8 @@
     </div>
 
     <!-- data dashboard -->
-
+    <?php foreach ($tka as $total_tka); ?>
+    <?php foreach ($pmib as $total_pmib); ?>
 
     <!-- Content Row -->
     <div class="row">
@@ -37,7 +38,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMA [Pekerja Migran Asing]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">564</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tka->tka; ?> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-injured fa-2x text-gray-300"></i>
@@ -54,7 +55,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMI-B [Pekerja INA Bermasalah]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pmib->pmib; ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-id-card fa-2x text-gray-300"></i>
@@ -84,15 +85,15 @@
         <!-- Collapsable Card Example -->
         <div class="card shadow mb-4">
             <!-- Card Header - Accordion -->
-            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+            <!-- <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                 <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
-            </a>
+            </a> -->
             <!-- Card Content - Collapse -->
-            <div class="collapse show" id="collapseCardExample">
+            <!-- <div class="collapse show" id="collapseCardExample">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- /.container-fluid -->

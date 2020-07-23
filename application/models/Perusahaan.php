@@ -24,11 +24,11 @@ class Perusahaan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function get_NegaraAll()
-    {
-        $query = "SELECT * FROM negara_all";
-        return $this->db->query($query)->result_array();
-    }
+    // public function get_NegaraAll()
+    // {
+    //     $query = "SELECT * FROM negara_all";
+    //     return $this->db->query($query)->result_array();
+    // }
 
     public function get_Jatim()
     {
@@ -47,15 +47,13 @@ class Perusahaan extends CI_Model
     public function get_TkaPerusahaan()
     {
         $query =
-            "SELECT `tb_tka`.*, `tb_perusahaan`. `nama_perusahaan`, `tb_perusahaan`. `alamat`,
-                    `negara_all`.`country_code`, `negara_all`.`country_name`,
-                    `kabupaten`.`nama_kabupaten`
-                    FROM `tb_tka` JOIN `tb_perusahaan`
-                    ON `tb_tka`. `nama_perusahaan` = `tb_perusahaan`. `id`
-                    JOIN `negara_all`
-                    ON `tb_tka`. `kewarganegaraan` = `negara_all`. `id`
-                    JOIN `kabupaten`
-                    ON `tb_tka`. `lokasi_kerja` = `kabupaten`. `id_kabupaten`
+            "SELECT `tb_tka`.*
+                    
+                    -- `kabupaten`.`nama_kabupaten`
+                    FROM `tb_tka` 
+                   
+                    -- JOIN `kabupaten`
+                    -- ON `tb_tka`. `lokasi_kerja` = `kabupaten`. `id_kabupaten`
                 ";
         return $this->db->query($query)->result_array();
     }
@@ -63,15 +61,12 @@ class Perusahaan extends CI_Model
     public function get_TkaPerusahaanById($id)
     {
         $query =
-            "SELECT `tb_tka`.*, `tb_perusahaan`. `nama_perusahaan`, `tb_perusahaan`. `alamat`,
-                    `negara_all`.`country_code`, `negara_all`.`country_name`,
-                    `kabupaten`.`nama_kabupaten`
-                    FROM `tb_tka` JOIN `tb_perusahaan`
-                    ON `tb_tka`. `nama_perusahaan` = `tb_perusahaan`. `id`
-                    JOIN `negara_all`
-                    ON `tb_tka`. `kewarganegaraan` = `negara_all`. `id`
-                    JOIN `kabupaten`
-                    ON `tb_tka`. `lokasi_kerja` = `kabupaten`. `id_kabupaten` WHERE `tb_tka`.`id`='$id'
+            "SELECT `tb_tka`.*
+                    -- `kabupaten`.`nama_kabupaten`
+                    FROM `tb_tka` 
+                    -- JOIN `kabupaten`
+                    -- ON `tb_tka`. `lokasi_kerja` = `kabupaten`. `id_kabupaten`
+                     WHERE `tb_tka`.`id`='$id'
                 ";
         return $this->db->query($query)->row();
     }
@@ -84,4 +79,28 @@ class Perusahaan extends CI_Model
                 ";
         return $this->db->query($query)->result_array();
     }
+
+    public function getTotFormalByPerusahaan()
+    {
+        $data = $this->db->query("SELECT COUNT(id) as formal FROM tb_tka WHERE sektor='Formal' AND nama_perusahaan='PT. Indomakmur' ");
+        return $data->result();
+    }
+
+    public function getTotalTKA()
+    {
+        $data = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka ");
+        return $data->result();
+    }
+    public function getTotalPMIB()
+    {
+        $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");
+        return $data->result();
+    }
+    // public function jumlah()
+    // {
+    //     $a = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka ");
+    //     $b = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");
+    //     $hasil = $a + $b;
+    //     return $hasil->result();
+    // }
 }
