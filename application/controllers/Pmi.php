@@ -71,6 +71,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
         $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
         $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
@@ -93,6 +94,7 @@ class Pmi extends CI_Controller
                 'status' => 'NON-PROSEDURAL',
                 'nama' => $this->input->post('nama', true),
                 'umur' => $this->input->post('umur', true),
+                'alamat' => $this->input->post('alamat', true),
                 'gender' => $this->input->post('gender', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
                 'kabupaten' => $this->input->post('kabupaten_id', true),
@@ -152,6 +154,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
         $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
         $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
@@ -174,6 +177,7 @@ class Pmi extends CI_Controller
                 'nama' => $this->input->post('nama', true),
                 'umur' => $this->input->post('umur', true),
                 'gender' => $this->input->post('gender', true),
+                'alamat' => $this->input->post('alamat', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
                 'kabupaten' => $this->input->post('kabupaten_id', true),
                 'kecamatan' => $this->input->post('kecamatan_id', true),

@@ -96,15 +96,15 @@
                                         <div class="col-sm-3">
                                             <select name="sektor" id="sektor" class="form-control">
                                                 <option value="Formal" <?php if ($tka->sektor == 'Formal') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>FORMAL</option>
+                                                <option value="Informal" <?php if ($tka->sektor == 'Informal') {
                                                                                 echo 'selected';
                                                                             } else {
                                                                                 echo '';
-                                                                            } ?>>FORMAL</option>
-                                                <option value="Informal" <?php if ($tka->sektor == 'Informal') {
-                                                                                    echo 'selected';
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>>INFORMAL</option>
+                                                                            } ?>>INFORMAL</option>
                                             </select>
 
                                         </div>
@@ -145,6 +145,12 @@
 
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="<?= base_url('tka'); ?>" class="btn btn-light btn-icon-split">
+                                        <span class="icon text-gray-600">
+                                            <i class="fas fa-window-close"></i>
+                                        </span>
+                                        <span class="text">Batal</span>
+                                    </a>
                                     <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-save"></i>

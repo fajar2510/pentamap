@@ -66,9 +66,15 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
-                                        <label for="jk" class="control-label col-sm-3">Alamat </label>
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="jk" class="control-label col-sm-3"> </label>
                                         <div class="col-sm-4">
                                             <?php
                                             $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
@@ -149,6 +155,12 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="<?= base_url('pmi'); ?>" class="btn btn-light btn-icon-split">
+                                        <span class="icon text-gray-600">
+                                            <i class="fas fa-window-close"></i>
+                                        </span>
+                                        <span class="text">Batal</span>
+                                    </a>
                                     <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-save"></i>

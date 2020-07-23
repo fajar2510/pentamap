@@ -27,4 +27,4 @@
 
 </head>
 
-<body class="bg-gradient-primary" style="background:url('assets/img/auth/kering.jpg');  background-size:cover">
+<body class="bg-gradient-primary" style="background:url('assets/img/auth/keringX.jpg');  background-size:cover">

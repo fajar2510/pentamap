@@ -49,13 +49,13 @@
                                 </span>
                                 <span class="text">Import</span>
                             </button>
-                            <a href="" class="btn btn-danger btn-icon-split" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
                             </a>
-                            <a href="" class="btn btn-success btn-icon-split" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
@@ -82,7 +82,7 @@
                                         <th width="3%"> No</th>
                                         <th width="7%">Tanggal</th>
                                         <th width="19%">Nama</th>
-                                        <th width="37%">Alamat <small> (Desa,Kecamatan,Kabupaten)</small></th>
+                                        <th width="37%">Alamat</th>
                                         <th width="20%">Negara Bekerja (lama)</th>
                                         <th width="17%">Aksi</th>
                                     </tr>
@@ -95,7 +95,7 @@
                                             <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="" width="60" height="60"></td> -->
                                             <td> <small><?= $p['date_created']; ?></small></td>
                                             <td><?= $p['nama']; ?></td>
-                                            <td> <small> <?= $p['desa']; ?> , <?= $p['kecamatan']; ?>, <?= $p['kabupaten']; ?></small></td>
+                                            <td> <small> <?= $p['alamat']; ?> </small></td>
                                             <td><small><?= $p['negara_bekerja']; ?> (<?= $p['lama_bekerja']; ?>)</small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
@@ -136,7 +136,7 @@
                 <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
                     <div class="modal-body">Data&nbsp; <b>
                             <font color="red"><?= $p['nama']; ?></font>
-                        </b> akan dihapus secara permanen </div>
+                        </b> akan dihapus !  </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id" value=<?= $p['id']; ?>>
                         <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
@@ -176,7 +176,7 @@
                         </div>
                         <hr>
                         <center>
-                            <button type="submit" class="btn btn-success btn-icon-split">
+                            <button type="submit" class="btn btn-info btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>

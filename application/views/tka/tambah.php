@@ -56,6 +56,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" name="negara">
+                                            <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Kewarganegeraan</label>
                                         <div class="col-sm-4">
                                             <select name="negara" id="negara" class="form-control">
@@ -65,7 +73,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
                                         <div class="col-sm-6">
