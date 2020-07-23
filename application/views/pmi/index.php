@@ -77,12 +77,12 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
+                                <thead align="center">
                                     <tr>
                                         <th width="3%"> No</th>
-                                        <th width="7%">Tanggal</th>
-                                        <th width="19%">Nama</th>
-                                        <th width="37%">Alamat</th>
+                                        <th width="7%">Profil</th>
+                                        <th width="19%">Nama (umur)</th>
+                                        <th width="37%">Alamat Lengkap</th>
                                         <th width="20%">Negara Bekerja (lama)</th>
                                         <th width="17%">Aksi</th>
                                     </tr>
@@ -92,9 +92,9 @@
                                     <?php foreach ($pmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="" width="60" height="60"></td> -->
-                                            <td> <small><?= $p['date_created']; ?></small></td>
-                                            <td><?= $p['nama']; ?></td>
+                                            <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="" width="60" height="60"></td>
+                                            <!-- <td> <small><?= $p['date_created']; ?></small></td> -->
+                                            <td><?= $p['nama']; ?> (<?= $p['umur']; ?>)</td>
                                             <td> <small> <?= $p['alamat']; ?> </small></td>
                                             <td><small><?= $p['negara_bekerja']; ?> (<?= $p['lama_bekerja']; ?>)</small> </td>
                                             <td>

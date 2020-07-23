@@ -30,7 +30,6 @@
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
                     </div>
                     <div class="card-body">
                         <div>
@@ -44,10 +43,9 @@
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <select name="gender" id="gender" class="form-control">
                                                 <option value=""> ~ Pilih Jenis Kelamin ~ </option>
                                                 <option value="L"> Laki-Laki </option>
@@ -62,30 +60,11 @@
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-
-                                    <!-- <div class="form-group row">
-                                        <label for="negara" class="col-sm-3 col-form-label">Kewarganegeraan</label>
-                                        <div class="col-sm-4">
-                                            <select name="negara" id="negara" class="form-control">
-                                                <option value="">~ Pilih Kewarganegeraan ~</option>
-                                                <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['country_name']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= set_value('nama'); ?>">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value=""> ~ Pilih Status ~ </option>
-                                                <option value="P"> Pusat </option>
-                                                <option value="C"> Cabang </option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -111,17 +90,6 @@
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="">
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
-                                        <div class="col-sm-3">
-                                            <select name="sektor" id="sektor" class="form-control">
-                                                <option value="">~ Pilih Sektor ~</option>
-                                                <option value="Formal"> FORMAL</option>
-                                                <option value="Informal"> INFORMAL</option>
-                                            </select>
-
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -6,16 +6,15 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
-        <!-- <a href="<?= base_url('perusahaan/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('ppmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
-        </a> -->
-
-        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
+        </a>
     </div>
 
+    <!-- parsing data -->
     <?php foreach ($formal as $tot_formal); ?>
     <?php foreach ($a as $aa); ?>
     <?php foreach ($b as $bb); ?>
@@ -50,35 +49,36 @@
                             </div>
                         </div>
                         <div class="dropdown mb-0">
-                            <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </a>
-                            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span class="text">Eksport</span>
                             </button>
-                            <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Excel</a>
-                                <a class="dropdown-item" href="#">PDF</a>
-                            </div>
-                            </>
+                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="text">PDF</span>
+                            </a>
+                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="text">CSV</span>
+                            </a>
                         </div>
 
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
+                                <thead align="center">
 
                                     <tr>
                                         <th> No</th>
-                                        <th>Nama PPTKIS</th>
-                                        <th width="7%">Status</th>
+                                        <th>Nama PPPMI</th>
+                                        <th width="3%">Status</th>
 
                                         <th width="8%">Formal</th>
                                         <th width="8%">Informal</th>
@@ -87,15 +87,15 @@
                                         <th>L</th>
                                         <th>P</th>
                                         <th>Total</th>
-                                        <!-- <th width="8%">Aksi</th> -->
+                                        <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_tka as $p) : ?>
+                                    <?php foreach ($ppmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_perusahaan']; ?> </small> </td>
+                                            <td> <small> <?= $p['nama_pptkis']; ?> </small> </td>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'P';
@@ -107,11 +107,12 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                             <td> <?php echo $aa->tka + $bb->pmib; ?></td>
-                                            <!-- <td>
+                                            <td>
                                                 <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            </td> -->
+                                            </td>
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -130,7 +131,7 @@
 <!-- End of Main Content -->
 
 <!--  <!-- modalhapus -->
-<!-- <?php foreach ($tb_pptkis as $p) : ?>
+<?php foreach ($ppmi as $p) : ?>
 
     <div class="modal fade" id="modalHapus<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -153,4 +154,44 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?> -->
+<?php endforeach; ?>
+
+<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Berkas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <?= form_open_multipart('exportimport/uploaddata_tka') ?>
+                    <div class="form-group column">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="importexcel" name="importexcel" accept=".xlsx, .xls" aria-describedby="uploadHelp">
+                            <label class="custom-file-label" for="image">Pilih Berkas</label>
+                            <small id="uploadHelp" class="form-text text-muted"> <i>
+                                    <font color="orange">file format hanya .xls .xlsx (pilih dokumen excel anda terlebih dahulu!!) </font>
+                                </i></small>
+                        </div>
+                        <hr>
+                        <center>
+                            <button type="submit" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="text">IMPORT</span>
+                            </button>
+                        </center>
+                        <!-- <div class="col">
+                            <b><?= $this->session->flashdata('message'); ?></b>
+                        </div> -->
+                    </div>
+                    <?= form_close();  ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

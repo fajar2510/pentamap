@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Tka extends CI_Controller
+class Ppmi extends CI_Controller
 
 {
     public function __construct()
@@ -9,11 +9,9 @@ class Tka extends CI_Controller
         parent::__construct();
 
         $this->load->model('Master');
-        $this->load->model('Perusahaan');
+        $this->load->model('Penempatan');
     }
 
-
-    // FUNCTION Tambah START
     public function index()
     {
 
@@ -22,15 +20,17 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data wilayah
-        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        // $data['tb_pptkis'] = $this->Penempatan->get_pptkis();
+        $data['ppmi'] = $this->Penempatan->get_ppmi();
+        $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
+        $data['a'] =  $this->Penempatan->getTotalTKA();
+        $data['b'] =  $this->Penempatan->getTotalPMIB();
 
-
-
-        $data['title'] = 'Data TKA per Perusahaan';
+        $data['title'] = 'Data Perusahaan Penempatan Pekerja Migran Indonesia ';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('tka/index', $data);
+        $this->load->view('ppmi/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -42,50 +42,49 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data 
-        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        $data['ppmi'] = $this->Penempatan->get_ppmi();
+        $data['perusahaan'] = $this->Penempatan->get_perusahaan();
         // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         // $data['negara'] = $this->Perusahaan->get_NegaraAll();
-        $data['jatim'] = $this->Perusahaan->get_Jatim();
 
-        $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
-        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
-        $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('nama_perusahaan', 'Perusahaan', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat Perusahaan', 'required');
-        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
-        $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');
-        $this->form_validation->set_rules('masa_rptka', 'Masa Berlaku RPTKA', 'required');
-        $this->form_validation->set_rules('no_imta', 'NO. IMTA', 'required');
-        $this->form_validation->set_rules('masa_imta', 'Masa Berlaku IMTA', 'required');
-        $this->form_validation->set_rules('lokasi', 'Loksi Kerja', 'required');
+        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
+
+        $this->form_validation->set_rules('taiwan_lk', 'Data Taiwan Laki-laki', 'required');
+        $this->form_validation->set_rules('taiwan_p', 'Data Taiwan Perempuan', 'required');
+        $this->form_validation->set_rules('hongkong_lk', 'Data Hongkong Laki-laki', 'required');
+        $this->form_validation->set_rules('hongkong_p', 'Data Hongkong Perempuan', 'required');
+        $this->form_validation->set_rules('singapura_lk', 'Data Singapura Laki-laki', 'required');
+        $this->form_validation->set_rules('singapuran_p', 'Data Singapura Peremupuan', 'required');
+        $this->form_validation->set_rules('malaysia_lk', 'Data Malaysia Laki-laki', 'required');
+        $this->form_validation->set_rules('malaysia_p', 'Data Malaysia Laki-laki', 'required');
+        $this->form_validation->set_rules('brunei_lk', 'Data Brunei Laki-laki', 'required');
+        $this->form_validation->set_rules('brunei_p', 'Data Brunei Perempuan', 'required');
+        $this->form_validation->set_rules('lain', 'Data Lainnya Laki-laki', 'required');
+        $this->form_validation->set_rules('lain', 'Fata Lainnya Perempuan', 'required');
+        $this->form_validation->set_rules('formal', 'Data Sektor Formal', 'required');
+        $this->form_validation->set_rules('informal', 'Data Sektor Informal', 'required');
+        $this->form_validation->set_rules('jatim', 'Data Jatim', 'required');
+        $this->form_validation->set_rules('luar', 'Data Luar Jatim', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Penempatan TKA dan Perusahaan Provinsi Jawa Timur';
+            $data['title'] = 'Form Data PPPMI (Perusahan Penempatan Pekerja Migran Indonesia)';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('tka/tambah', $data);
+            $this->load->view('ppmi/tambah', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'nama_tka' => $this->input->post('nama'),
-                'kewarganegaraan' => $this->input->post('negara'),
-                'jenis_kel' => $this->input->post('gender'),
-                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
-                'alamat' => $this->input->post('alamat'),
-                'jabatan' => $this->input->post('jabatan'),
-                'no_rptka' => $this->input->post('no_rptka'),
-                'masa_rptka' => $this->input->post('masa_rptka'),
-                'no_imta' => $this->input->post('no_imta'),
-                'masa_imta' => $this->input->post('masa_imta'),
-                'lokasi_kerja' => $this->input->post('lokasi'),
+                'nama_pptkis' => $this->input->post('perusahaan'),
+
+
                 'date_created' => date('Y-m-d'),
             ];
 
-            $this->db->insert('tb_tka', $data);
+            $this->db->insert('tb_pptkis', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA succesfully Added! </div>');
-            redirect('tka');
+                alert-success" role="alert"> Data PPPMI succesfully Added! </div>');
+            redirect('ppmi');
         }
     }
 
@@ -97,7 +96,7 @@ class Tka extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data 
-        $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        $data['ppmi'] = $this->Penempatan->get_ppmi();
         // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         // $data['negara'] = $this->Perusahaan->get_NegaraAll();
@@ -122,7 +121,7 @@ class Tka extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('tka/edit', $data);
+            $this->load->view('ppmi/edit', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
@@ -143,20 +142,20 @@ class Tka extends CI_Controller
             ];
 
             $this->db->where('id', $id);
-            $this->db->update('tb_tka', $data);
+            $this->db->update('tb_pptkis', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA succesfully Updated! </div>');
-            redirect('tka');
+                alert-success" role="alert"> Data PPPMI succesfully Updated! </div>');
+            redirect('ppmi');
         }
     }
 
     public function hapus($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('tb_tka');
+        $this->db->delete('tb_pptkis');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected PPTKIS has succesfully deleted, be carefull for manage data. </div>');
-        redirect('tka');
+            alert-success" role="alert"> Your selected PPMI has succesfully deleted, be carefull for manage data. </div>');
+        redirect('ppmi');
     }
 }

@@ -79,7 +79,7 @@
                                     <tr>
                                         <th width="3%">No.</th>
                                         <th width="20%">Nama (JK)/ Negara </th>
-                                        <th width="22%">Perusahaan/Jabatan/Sektor</th>
+                                        <th width="22%">Perusahaan/Jabatan</th>
                                         <th width="17%">No. RPTKA/ *masa berlaku</th>
                                         <th width="17%">No. IMTA/ *masa berlaku</th>
                                         <th width="11%">Lokasi</th>
@@ -92,7 +92,7 @@
                                         <tr align="justify">
                                             <th><?= $i; ?></th>
                                             <td> <small> <?= $t['nama_tka']; ?> (<?= $t['jenis_kel']; ?>) / <?= $t['kewarganegaraan']; ?> </small> </td>
-                                            <td> <small> <?= $t['nama_perusahaan']; ?> / <?= $t['jabatan']; ?> / <?= $t['sektor']; ?></small></td>
+                                            <td> <small> <?= $t['nama_perusahaan']; ?> / <?= $t['jabatan']; ?> </small></td>
                                             <td> <small><?= $t['no_rptka']; ?> / <?= $t['masa_rptka']; ?> </small></td>
                                             <td> <small><?= $t['no_imta']; ?> / <?= $t['masa_imta']; ?></small></td>
                                             <td> <small> <?= $t['lokasi_kerja']; ?></small> </td>
