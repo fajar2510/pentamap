@@ -74,7 +74,6 @@
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
-
                                     <tr>
                                         <th> No</th>
                                         <th>Nama PPPMI</th>
@@ -82,8 +81,8 @@
 
                                         <th width="8%">Formal</th>
                                         <th width="8%">Informal</th>
-                                        <th width="8%">Jatim</th>
-                                        <th width="8%">LuarJatim</th>
+                                        <th width="8%">Dom.Jatim</th>
+                                        <th width="8%">Dom.LuarJatim</th>
                                         <th>L</th>
                                         <th>P</th>
                                         <th>Total</th>
@@ -95,22 +94,23 @@
                                     <?php foreach ($ppmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_pptkis']; ?> </small> </td>
+                                            <td> <small> <?= $p['nama_perusahaan']; ?> </small> </td>
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
                                                     echo 'P';
                                                 } else {
                                                     echo 'C';
                                                 } ?>
-                                            <td> <?php echo $tot_formal->formal; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                                <!-- <td> <?php echo $tot_formal->formal; ?></td> -->
+                                            <td><small> <?= $p['formal']; ?> </small> </td>
+                                            <td><small> <?= $p['informal']; ?> </small> </td>
+                                            <td><small> <?= $p['jatim']; ?> </small> </td>
+                                            <td><small> <?= $p['luar_jatim']; ?> </small> </td>
                                             <td></td>
                                             <td></td>
                                             <td> <?php echo $aa->tka + $bb->pmib; ?></td>
                                             <td>
-                                                <button type="button" data-toggle="modal" data-target="#modaledit" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                                <a href="<?= base_url('ppmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -144,7 +144,7 @@
                 </div>
                 <form action="<?= base_url('pptkis/hapus/' . $p['id']); ?>">
                     <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $p['nama_pptkis']; ?></font>
+                            <font color="red"><?= $p['nama_perusahaan']; ?></font>
                         </b> akan dihapus secara permanen </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>

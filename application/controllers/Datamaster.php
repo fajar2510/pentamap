@@ -161,6 +161,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
         $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
+        $this->form_validation->set_rules('fungsi', 'Fungsi', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tambah Data Perusahaan';
@@ -175,6 +176,7 @@ class Datamaster extends CI_Controller
                 'alamat' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
+                'fungsi' => $this->input->post('fungsi', true),
             ];
 
             $this->db->insert('tb_perusahaan', $data);
@@ -200,6 +202,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
         $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
+        $this->form_validation->set_rules('fungsi', 'Fungsi', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
@@ -215,6 +218,7 @@ class Datamaster extends CI_Controller
                 'alamat' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
+                'fungsi' => $this->input->post('fungsi', true),
             ];
 
 

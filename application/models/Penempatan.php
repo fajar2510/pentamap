@@ -6,7 +6,10 @@ class Penempatan extends CI_Model
     public function get_ppmi()
     {
         $query =
-            "SELECT `tb_pptkis`.*FROM `tb_pptkis` ";
+            "SELECT `tb_pptkis`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`
+            FROM `tb_pptkis` 
+            JOIN `tb_perusahaan` ON `tb_pptkis`.`nama_pptkis` = `tb_perusahaan`.`id`
+            ";
         return $this->db->query($query)->result_array();
     }
 
@@ -41,5 +44,16 @@ class Penempatan extends CI_Model
     {
         $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");
         return $data->result();
+    }
+
+    public function get_editppmi($id)
+    {
+        $query = "SELECT `tb_pptkis`.*, `tb_perusahaan`. `nama_perusahaan`,
+                    `tb_perusahaan`.`status`
+                    FROM `tb_pptkis` JOIN `tb_perusahaan`
+                    ON `tb_pptkis`. `nama_pptkis` = `tb_perusahaan`. `id`
+                    WHERE `tb_pptkis` .`id`= '$id'
+                ";
+        return $this->db->query($query)->row();
     }
 }

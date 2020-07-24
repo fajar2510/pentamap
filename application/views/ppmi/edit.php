@@ -5,7 +5,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;">Edit Data <?= $title; ?> <?= date('Y'); ?></h3>
-        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('ppmi'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
@@ -34,220 +34,108 @@
                     <div class="card-body">
                         <div>
 
-                            <form action="<?= base_url('pmi/edit/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('ppmi/edit/' . $edit_ppmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <!-- <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-4">
-                                            <select name="status" id="status" class="form-control" readonly>
-                                                <option value="PROSEDURAL" <?php if ($pmi->status == 'PROSEDURAL') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>PROSEDURAL</option>
-                                                <option value="NON-PROSEDURAL" <?php if ($pmi->status == 'NON-PROSEDURAL') {
-                                                                                    echo 'selected';
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>>NON-PROSEDURAL</option>
-                                            </select> </div>
-                                    </div> -->
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $pmi->nama ?>">
-                                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="umur" class="col-sm-3 col-form-label">tgl lahir/*Umur</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="umur" placeholder="Masukkan Umur" name="umur" value="<?= $pmi->umur ?>">
-                                            <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                        <div class="col-sm-4">
-                                            <select name="gender" id="gender" class="form-control">
-                                                <option value="L" <?php if ($pmi->gender == 'L') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Laki-Laki</option>
-                                                <option value="P" <?php if ($pmi->gender == 'P') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Perempuan</option>
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
+                                        <div class="col-sm-6">
+                                            <select name="perusahaan" id="perusahaan" class="form-control">
+                                                <option value="">~ Pilih Perusahaan ~</option>
+                                                <?php foreach ($perusahaan as $p) : ?>
+                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " value="<?= $pmi->alamat ?>" name="alamat" rows="2"></input>
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="jk" class="control-label col-sm-3"></label>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="prov"  onChange="tampilKabupaten()"';
-                                            echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
-                                            ?>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kabupaten = 'class="form-control input-sm" name="kab" id="kabupaten_id" onChange="tampilKecamatan()"';
-                                            echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
-                                            ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="" class="control-label col-sm-3"></label>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kecamatan = 'class="form-control input-sm" name="kec" id="kecamatan_id" onChange="tampilKelurahan()"';
-                                            echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
-                                            ?>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
-                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
-                                            ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
-                                        <div class="col-sm-4">
-                                            <select name="negara" id="negara" class="form-control">
-                                                <option value=""> Pilih Negara </option>
-                                                <!-- <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['nama_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
-                                                <?php endforeach; ?> -->
-                                                <!-- statis data -->
-                                                <option value="Indonesia" <?php if ($pmi->negara_bekerja == 'Indonesia') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Indonesia
-                                                </option>
-                                                <option value="Malaysia" <?php if ($pmi->negara_bekerja == 'Malaysia') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Malaysia
-                                                </option>
-                                                <option value="Singapura" <?php if ($pmi->negara_bekerja == 'Singapura') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Singapura
-                                                </option>
-                                                <option value="Brunei Darusallam" <?php if ($pmi->negara_bekerja == 'Brunei Darusallam') {
-                                                                                        echo 'selected';
-                                                                                    } else {
-                                                                                        echo '';
-                                                                                    } ?>>Brunei Darusallam
-                                                </option>
-                                                <option value="Hongkong" <?php if ($pmi->negara_bekerja == 'Hongkong') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Hongkong
-                                                </option>
-                                                <option value="RRC/China" <?php if ($pmi->negara_bekerja == 'RRC/China') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>RRC/China
-                                                </option>
-                                                <option value="Taiwan" <?php if ($pmi->negara_bekerja == 'Taiwan') {
-                                                                            echo 'selected';
-                                                                        } else {
-                                                                            echo '';
-                                                                        } ?>>Taiwan
-                                                </option>
-                                                <option value="Jepang" <?php if ($pmi->negara_bekerja == 'Jepang') {
-                                                                            echo 'selected';
-                                                                        } else {
-                                                                            echo '';
-                                                                        } ?>>Jepang
-                                                </option>
-                                                <option value="Korea Selatan" <?php if ($pmi->negara_bekerja == 'Korea Selatan') {
-                                                                                    echo 'selected';
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>>Korea Selatan
-                                                </option>
-                                                <option value="Arab Saudi" <?php if ($pmi->negara_bekerja == 'Arab Saudi') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Arab Saudi
-                                                </option>
-                                                <option value="Indonesia" <?php if ($pmi->negara_bekerja == 'Indonesia') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>Indonesia
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $pmi->jenis_pekerjaan ?>">
-                                            <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $pmi->berangkat_melalui ?>">
-                                            <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= $pmi->pengirim ?>">
-                                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
+                                        <label for="taiwan" class="col-sm-3 col-form-label">Taiwan</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $pmi->lama_bekerja ?>">
-                                            <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <input type="number" class="form-control" id="taiwan_lk" min="0" placeholder="L" name="taiwan_lk" value="<?= $edit_ppmi->taiwan_lk ?>">
+                                            <?= form_error('taiwan_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="taiwan_p" min="0" placeholder="P" name="taiwan_p" value="<?= $edit_ppmi->taiwan_p ?>">
+                                            <?= form_error('taiwan_p', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <label for="hongkong" class="col-sm-3 col-form-label">Hongkong</label>
                                         <div class="col-sm-2">
-
-                                            <!-- <?php
-                                                    if ($pmi->image == null) {
-                                                        echo "assets/img/pmi/default.png";
-                                                    } else {
-                                                        echo " $pmi->image";
-                                                    }
-                                                    ?> -->
-                                            <img src="<?= base_url('assets/img/pmi/') . $pmi->image ?>" class="img-thumbnail" alt="Profile Picture">
+                                            <input type="number" class="form-control" id="hongkong_lk" min="0" placeholder="L" name="hongkong_lk" value="<?= $edit_ppmi->hongkong_lk ?>">
+                                            <?= form_error('hongkong_lk', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="image" name="image">
-                                                <label class="custom-file-label" for="image">Pilih File</label>
-                                            </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="tahongkong_piwan_p" min="0" placeholder="P" name="hongkong_p" value="<?= $edit_ppmi->hongkong_p ?>">
+                                            <?= form_error('hongkong_p', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="singapura" class="col-sm-3 col-form-label">Singapura</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="singapura_lk" min="0" placeholder="L" name="singapura_lk" value="<?= $edit_ppmi->singapura_lk ?>">
+                                            <?= form_error('singapura_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="singapura_p" min="0" placeholder="P" name="singapura_p" value="<?= $edit_ppmi->singapura_p ?>">
+                                            <?= form_error('singapura_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="malaysia" class="col-sm-3 col-form-label">Malaysia</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="malaysia_lk" min="0" placeholder="L" name="malaysia_lk" value="<?= $edit_ppmi->malaysia_lk ?>">
+                                            <?= form_error('malaysia_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="malaysia_p" min="0" placeholder="P" name="malaysia_p" value="<?= $edit_ppmi->malaysia_p ?>">
+                                            <?= form_error('malaysia_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="brunei" class="col-sm-3 col-form-label">Brueni Darusallam</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="brunei_lk" min="0" placeholder="L" name="brunei_lk" value="<?= $edit_ppmi->brunei_lk ?>">
+                                            <?= form_error('brunei_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="brunei_p" min="0" placeholder="P" name="brunei_p" value="<?= $edit_ppmi->brunei_p ?>">
+                                            <?= form_error('brunei_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lain" class="col-sm-3 col-form-label">Lainnya</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="lain_lk" min="0" placeholder="L" name="lain_lk" value="<?= $edit_ppmi->lain_lk ?>">
+                                            <?= form_error('lain_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="lain_p" min="0" placeholder="P" name="lain_p" value="<?= $edit_ppmi->lain_p ?>">
+                                            <?= form_error('lain_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="formal" min="0" placeholder="Formal" name="formal" value="<?= $edit_ppmi->formal ?>">
+                                            <?= form_error('formal', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="informal" min="0" placeholder="Informal" name="informal" value="<?= $edit_ppmi->informal ?>">
+                                            <?= form_error('informal', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="domsili" class="col-sm-3 col-form-label">Domisili PMI</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="jatim" min="0" placeholder="Jatim" name="jatim" value="<?= $edit_ppmi->jatim ?>">
+                                            <?= form_error('jatim', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" id="luar_jatim" min="0" placeholder="*Luar Jatim" name="luar_jatim" value="<?= $edit_ppmi->luar_jatim ?>">
+                                            <?= form_error('luar_jatim', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <a href="<?= base_url('pmi'); ?>" class="btn btn-light btn-icon-split">

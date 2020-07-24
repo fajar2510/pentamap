@@ -63,6 +63,7 @@
                                         <th>Alamat</th>
                                         <th>Kontak</th>
                                         <th>Status</th>
+                                        <th>Penempatan</th>
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -87,6 +88,7 @@
                                                     echo 'Cabang';
                                                 } ?>
                                             </td>
+                                            <td><?= $p['fungsi']; ?></td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>

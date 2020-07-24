@@ -68,6 +68,17 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="fungsi" class="col-sm-3 col-form-label">Fungsi</label>
+                                        <div class="col-sm-3">
+                                            <select name="fungsi" id="fungsi" class="form-control">
+                                                <option value=""> ~ Pilih Fungsi ~ </option>
+                                                <option value="TKA">Penempatan TKA</option>
+                                                <option value="PMI">Penempatan PMI</option>
+                                                <option value="-">-</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">

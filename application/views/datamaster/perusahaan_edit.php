@@ -75,6 +75,28 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="fungsi" class="col-sm-3 col-form-label">Fungsi</label>
+                                        <div class="col-sm-3">
+                                            <select name="fungsi" id="fungsi" class="form-control">
+                                                <option value="TKA" <?php if ($perusahaan->fungsi == 'TKA') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Penempatan TKA</option>
+                                                <option value="PMI" <?php if ($perusahaan->fungsi == 'PMI') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Penempatan PMI</option>
+                                                <option value="-" <?php if ($perusahaan->fungsi == '-') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>-</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">

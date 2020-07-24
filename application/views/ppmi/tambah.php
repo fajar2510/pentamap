@@ -128,12 +128,12 @@
                                     <div class="form-group row">
                                         <label for="domsili" class="col-sm-3 col-form-label">Domisili PMI</label>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="formal" min="0" placeholder="Jatim" name="formal">
-                                            <?= form_error('formal', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <input type="number" class="form-control" id="jatim" min="0" placeholder="Jatim" name="jatim">
+                                            <?= form_error('jatim', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="informal" min="0" placeholder="*Luar Jatim" name="informal">
-                                            <?= form_error('informal', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <input type="number" class="form-control" id="luar_jatim" min="0" placeholder="*Luar Jatim" name="luar_jatim">
+                                            <?= form_error('luar_jatim', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
 
