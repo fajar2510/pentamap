@@ -61,22 +61,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= set_value('nama'); ?>">
-                                            <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat *perusahaan</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="3"></textarea>
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Perusahaan</label>
-                                        <div class="col-sm-4">
                                             <select name="perusahaan" id="perusahaan" class="form-control">
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
@@ -84,7 +70,8 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                    </div> -->
+                                    </div>
+
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">

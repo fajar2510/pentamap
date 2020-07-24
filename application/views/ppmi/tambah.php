@@ -35,8 +35,15 @@
                             <form action="<?= base_url('ppmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group row">
+                                        <label for="nama_pmi" class="col-sm-3 col-form-label">Nama</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="nama_pmi" placeholder="Masukkan Nama" name="nama_pmi">
+                                            <?= form_error('nama_pmi', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <select name="perusahaan" id="perusahaan" class="form-control">
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
@@ -46,94 +53,133 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="taiwan" class="col-sm-3 col-form-label">Taiwan</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="taiwan_lk" min="0" placeholder="L" name="taiwan_lk">
-                                            <?= form_error('taiwan_lk', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="taiwan_p" min="0" placeholder="P" name="taiwan_p">
-                                            <?= form_error('taiwan_p', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <!-- <div class="col-sm-2">
-                                            <p>TOTAL</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="hongkong" class="col-sm-3 col-form-label">Hongkong</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="hongkong_lk" min="0" placeholder="L" name="hongkong_lk">
-                                            <?= form_error('hongkong_lk', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="tahongkong_piwan_p" min="0" placeholder="P" name="hongkong_p">
-                                            <?= form_error('hongkong_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                        <div class="col-sm-3">
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
+                                                <option value="L"> Laki-Laki </option>
+                                                <option value="P"> Perempuan </option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="singapura" class="col-sm-3 col-form-label">Singapura</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="singapura_lk" min="0" placeholder="L" name="singapura_lk">
-                                            <?= form_error('singapura_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="2000-07-31" id="tanggal_lahir" name="tanggal_lahir">
                                         </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="singapura_p" min="0" placeholder="P" name="singapura_p">
-                                            <?= form_error('singapura_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="malaysia" class="col-sm-3 col-form-label">Malaysia</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="malaysia_lk" min="0" placeholder="L" name="malaysia_lk">
-                                            <?= form_error('malaysia_lk', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="malaysia_p" min="0" placeholder="P" name="malaysia_p">
-                                            <?= form_error('malaysia_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Wilayah/Kota</label>
+                                        <div class="col-sm-3">
+                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
+                                                <option value="">~ Pilih Lokasi Kota ~</option>
+                                                <option value="Bangkalan">Bangkalan</option>
+                                                <option value="Banyuwangi">Banyuwangi</option>
+                                                <option value="Blitar">Blitar</option>
+                                                <option value="Bojonegoro">Bojonegoro</option>
+                                                <option value="Bondowoso">Bondowoso</option>
+                                                <option value="Gresik">Gresik</option>
+                                                <option value="Jember">Jember</option>
+                                                <option value="Jombang">Jombang</option>
+                                                <option value="Kediri">Kediri</option>
+                                                <option value="Kota Batu">Kota Batu</option>
+                                                <option value="Kota Blitar">Kota Blitar</option>
+                                                <option value="Kota Kediri">Kota Kediri</option>
+                                                <option value="Kota Madiun">Kota Madiun</option>
+                                                <option value="Kota Malang">Kota Malang</option>
+                                                <option value="Kota Mojokerto">Kota Mojokerto</option>
+                                                <option value="Kota Pasuruan">Kota Pasuruan</option>
+                                                <option value="Kota Probolinggo">Kota Probolinggo</option>
+                                                <option value="Kota Surabaya">Kota Surabaya</option>
+                                                <option value="Lamongan">Lamongan</option>
+                                                <option value="Lumajang">Lumajang</option>
+                                                <option value="Madiun">Madiun</option>
+                                                <option value="Magetan">Magetan</option>
+                                                <option value="Malang">Malang</option>
+                                                <option value="Mojokerto">Mojokerto</option>
+                                                <option value="Nganjuk">Nganjuk</option>
+                                                <option value="Ngawi">Ngawi</option>
+                                                <option value="Pacitan">Pacitan</option>
+                                                <option value="Pamekasan">Pamekasan</option>
+                                                <option value="Pasuruan">Pasuruan</option>
+                                                <option value="Ponorogo">Ponorogo</option>
+                                                <option value="Probolinggo">Probolinggo</option>
+                                                <option value="Sampang">Sampang</option>
+                                                <option value="Sidoarjo">Sidoarjo</option>
+                                                <option value="Situbondo">Situbondo</option>
+                                                <option value="Sumenep">Sumenep</option>
+                                                <option value="Trenggalek">Trenggalek</option>
+                                                <option value="Tuban">Tuban</option>
+                                                <option value="Tulungagung">Tulungagung</option>
+
+                                                <option value="Luar Jatim">*LUAR JATIM</option>
+                                            </select>
+                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="brunei" class="col-sm-3 col-form-label">Brueni Darusallam</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="brunei_lk" min="0" placeholder="L" name="brunei_lk">
-                                            <?= form_error('brunei_lk', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="brunei_p" min="0" placeholder="P" name="brunei_p">
-                                            <?= form_error('brunei_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="jabatan" placeholder="Masukkan Nama" name="jabatan">
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lain" class="col-sm-3 col-form-label">Lainnya</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="lain_lk" min="0" placeholder="L" name="lain_lk">
-                                            <?= form_error('lain_lk', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="pendidikan" class="col-sm-3 col-form-label">Pendidikan Formal</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="pendidikan" placeholder="Masukkan Nama" name="pendidikan">
+                                            <?= form_error('pendidikan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="lain_p" min="0" placeholder="P" name="lain_p">
-                                            <?= form_error('lain_p', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label for="pengguna_jasa" class="col-sm-3 col-form-label">Nama Pengguna Jasa</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="pengguna_jasa" placeholder="Masukkan Nama" name="pengguna_jasa">
+                                            <?= form_error('pengguna_jasa', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="sektor" class="col-sm-3 col-form-label">Sektor</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="formal" min="0" placeholder="Formal" name="formal">
-                                            <?= form_error('formal', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="informal" min="0" placeholder="Informal" name="informal">
-                                            <?= form_error('informal', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="alamat_pengguna_jasa" class="col-sm-3 col-form-label">Alamat Pengguna Jasa</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat_pengguna_jasa" placeholder="Alamat Lengkap. . . " name="alamat_pengguna_jasa" rows="2"></textarea>
+                                            <?= form_error('alamat_pengguna_jasa', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="domsili" class="col-sm-3 col-form-label">Domisili PMI</label>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="jatim" min="0" placeholder="Jatim" name="jatim">
-                                            <?= form_error('jatim', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="gaji" class="col-sm-3 col-form-label">Gaji</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="gaji" placeholder="Masukkan Nama" name="gaji">
+                                            <?= form_error('gaji', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <input type="number" class="form-control" id="luar_jatim" min="0" placeholder="*Luar Jatim" name="luar_jatim">
-                                            <?= form_error('luar_jatim', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="paspor" class="col-sm-3 col-form-label">Paspor</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="paspor" placeholder="Masukkan Nama" name="paspor">
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="negara_penempatan" class="col-sm-3 col-form-label">Negara Penempatan</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="negara_penempatan" placeholder="Masukkan Nama" name="negara_penempatan">
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="kode_pesawat" class="col-sm-3 col-form-label">Kode Pesawat</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="kode_pesawat" placeholder="Masukkan Nama" name="kode_pesawat">
+                                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
 

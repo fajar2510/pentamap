@@ -76,16 +76,13 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <th>Nama PPPMI</th>
-                                        <th width="3%">Status</th>
-
-                                        <th width="8%">Formal</th>
-                                        <th width="8%">Informal</th>
-                                        <th width="8%">Dom.Jatim</th>
-                                        <th width="8%">Dom.LuarJatim</th>
-                                        <th>L</th>
-                                        <th>P</th>
-                                        <th>Total</th>
+                                        <th>Nama PMI</th>
+                                        <th>JK</th>
+                                        <th>Perusahaan</th>
+                                        <th>Alamat</th>
+                                        <th>Jabatan</th>
+                                        <th>Gaji</th>
+                                        <th>Negara Penempatan</th>
                                         <th width="10%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -94,21 +91,14 @@
                                     <?php foreach ($ppmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_perusahaan']; ?> </small> </td>
-                                            <td>
-                                                <?php if ($p['status'] == 'P') {
-                                                    echo 'P';
-                                                } else {
-                                                    echo 'C';
-                                                } ?>
-                                                <!-- <td> <?php echo $tot_formal->formal; ?></td> -->
-                                            <td><small> <?= $p['formal']; ?> </small> </td>
-                                            <td><small> <?= $p['informal']; ?> </small> </td>
-                                            <td><small> <?= $p['jatim']; ?> </small> </td>
-                                            <td><small> <?= $p['luar_jatim']; ?> </small> </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> <?php echo $aa->tka + $bb->pmib; ?></td>
+                                            <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
+                                            <td><small> <?= $p['jenis_kelamin']; ?> </small> </td>
+                                            <td><small> <?= $p['nama_perusahaan']; ?> </small> </td>
+                                            <td><small> <?= $p['alamat']; ?> </small> </td>
+                                            <td><small> <?= $p['jabatan']; ?> </small> </td>
+                                            <td><small> <?= $p['gaji']; ?> </small> </td>
+                                            <td><small> <?= $p['negara_penempatan']; ?> </small> </td>
+                                            <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
                                                 <a href="<?= base_url('ppmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

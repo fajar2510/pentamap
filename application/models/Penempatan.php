@@ -6,9 +6,9 @@ class Penempatan extends CI_Model
     public function get_ppmi()
     {
         $query =
-            "SELECT `tb_pptkis`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`
-            FROM `tb_pptkis` 
-            JOIN `tb_perusahaan` ON `tb_pptkis`.`nama_pptkis` = `tb_perusahaan`.`id`
+            "SELECT `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
+            FROM `tb_cpmi` 
+            JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id`
             ";
         return $this->db->query($query)->result_array();
     }
@@ -16,7 +16,7 @@ class Penempatan extends CI_Model
     public function get_perusahaan()
     {
         $query =
-            "SELECT `tb_perusahaan`.*FROM `tb_perusahaan` ";
+            "SELECT `tb_perusahaan`.*FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
         return $this->db->query($query)->result_array();
     }
 

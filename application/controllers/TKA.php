@@ -26,6 +26,8 @@ class Tka extends CI_Controller
 
 
 
+
+
         $data['title'] = 'Data TKA per Perusahaan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -43,7 +45,7 @@ class Tka extends CI_Controller
 
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
+        $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         // $data['negara'] = $this->Perusahaan->get_NegaraAll();
         $data['jatim'] = $this->Perusahaan->get_Jatim();
 

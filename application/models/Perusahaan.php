@@ -6,7 +6,7 @@ class Perusahaan extends CI_Model
 
     public function get_perusahaan()
     {
-        $query = "SELECT * FROM tb_perusahaan";
+        $query = "SELECT * FROM tb_perusahaan WHERE fungsi = 'TKA'";
         return $this->db->query($query)->result_array();
     }
 
