@@ -45,7 +45,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $perusahaan->alamat ?>" rows="3">
+                                            <textarea class="form-control" id="alamat" name="alamat" rows="2"> <?= $perusahaan->alamat ?></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -56,23 +56,6 @@
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" value="<?= $perusahaan->kontak ?>"">
                                             <small id=" uploadHelp1" class="form-text text-muted"> <i> *alamat e-mail/no.telp yang dapat dihubungi </i></small>
                                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-3">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value="P" <?php if ($perusahaan->status == 'P') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Pusat</option>
-                                                <option value="C" <?php if ($perusahaan->status == 'C') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Cabang</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -97,6 +80,24 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                        <div class="col-sm-3">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="P" <?php if ($perusahaan->status == 'P') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Pusat</option>
+                                                <option value="C" <?php if ($perusahaan->status == 'C') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Cabang</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">

@@ -36,6 +36,20 @@
                             <form action="<?= base_url('tka/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
 
+                                    <p> <small><b> DATA PERUSAHAAN</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan TKA</label>
+                                        <div class="col-sm-6">
+                                            <select name="perusahaan" id="perusahaan" class="form-control">
+                                                <option value="">~ Pilih Perusahaan ~</option>
+                                                <?php foreach ($perusahaan as $p) : ?>
+                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p> <small><b> DATA TKA</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-7">
@@ -60,17 +74,7 @@
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
-                                        <div class="col-sm-6">
-                                            <select name="perusahaan" id="perusahaan" class="form-control">
-                                                <option value="">~ Pilih Perusahaan ~</option>
-                                                <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div>
+
 
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>

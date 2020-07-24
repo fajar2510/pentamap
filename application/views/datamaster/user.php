@@ -164,7 +164,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email"  placeholder=" " name="email" value="<?= $ur['email']; ?>">
+                                <input type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $ur['email']; ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -234,16 +234,19 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('datamaster/deleteUser/' . $ur['id']); ?>">
-                    <div class="modal-body">Data&nbsp;<b>
-                            <font color="red"><?= $ur['name']; ?></font>
-                        </b> akan dihapus secara permanen </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" value=<?= $ur['id']; ?>>
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('datamaster/deleteUser/' . $ur['id']); ?>">
+                        <div class="modal-body">Data&nbsp;<b>
+                                <font color="red"><?= $ur['name']; ?></font>
+                            </b> akan dihapus </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value=<?= $ur['id']; ?>>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

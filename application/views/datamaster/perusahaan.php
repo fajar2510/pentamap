@@ -122,16 +122,20 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
+
                 </div>
-                <form action="<?= base_url('datamaster/hapusPerusahaan/' . $p['id']); ?>">
-                    <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $p['nama_perusahaan']; ?></font>
-                        </b> akan dihapus secara permanen </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('datamaster/hapusPerusahaan/' . $p['id']); ?>">
+                        <div class="modal-body">Data&nbsp; <b>
+                                <font color="red"><?= $p['nama_perusahaan']; ?></font>
+                            </b> akan dihapus </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

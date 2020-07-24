@@ -60,10 +60,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="umur" class="col-sm-3 col-form-label">tgl lahir/*Umur</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="umur" placeholder="Masukkan Umur" name="umur" value="<?= $pmi->umur ?>">
-                                            <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup> </label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="<?= $pmi->tgl_lahir ?>" id="tgl_lahir" name="tgl_lahir">
+                                            <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -86,7 +86,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " value="<?= $pmi->alamat ?>" name="alamat" rows="2"></input>
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $pmi->alamat ?></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

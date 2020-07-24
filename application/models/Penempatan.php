@@ -3,7 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Penempatan extends CI_Model
 {
-    public function get_ppmi()
+
+    public function getRole()
+    {
+        $query = "SELECT `user`.*, `user_role`. `role`
+                    FROM `user` JOIN `user_role`
+                    ON `user`. `role_id` = `user_role`. `id`
+                ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_cpmi()
     {
         $query =
             "SELECT `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
@@ -13,19 +23,21 @@ class Penempatan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function get_edit_cpmi($id)
+    {
+        $query = "SELECT `tb_cpmi`.*, `tb_perusahaan`. `nama_perusahaan`,
+                    `tb_perusahaan`.`fungsi`
+                    FROM `tb_cpmi` JOIN `tb_perusahaan`
+                    ON `tb_cpmi`. `perusahaan` = `tb_perusahaan`. `id`
+                    WHERE `tb_cpmi` .`id`= '$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     public function get_perusahaan()
     {
         $query =
             "SELECT `tb_perusahaan`.*FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
-        return $this->db->query($query)->result_array();
-    }
-
-    public function getRole()
-    {
-        $query = "SELECT `user`.*, `user_role`. `role`
-                    FROM `user` JOIN `user_role`
-                    ON `user`. `role_id` = `user_role`. `id`
-                ";
         return $this->db->query($query)->result_array();
     }
 
@@ -44,16 +56,5 @@ class Penempatan extends CI_Model
     {
         $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");
         return $data->result();
-    }
-
-    public function get_editppmi($id)
-    {
-        $query = "SELECT `tb_pptkis`.*, `tb_perusahaan`. `nama_perusahaan`,
-                    `tb_perusahaan`.`status`
-                    FROM `tb_pptkis` JOIN `tb_perusahaan`
-                    ON `tb_pptkis`. `nama_pptkis` = `tb_perusahaan`. `id`
-                    WHERE `tb_pptkis` .`id`= '$id'
-                ";
-        return $this->db->query($query)->row();
     }
 }

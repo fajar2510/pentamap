@@ -139,7 +139,7 @@
 <!-- end Modal Edit -->
 
 <!-- Modal Hapus -->
-<?php foreach ($role as $r) : ?> 
+<?php foreach ($role as $r) : ?>
 
     <div class="modal fade" id="modalHapus<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -150,16 +150,19 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/hapusRole/' . $r['id']); ?>">
-                    <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $r['role']; ?></font>
-                        </b> akan dihapus secara permanen </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" value=<?= $r['id']; ?>>
-                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('admin/hapusRole/' . $r['id']); ?>">
+                        <div class="modal-body">Data&nbsp; <b>
+                                <font color="red"><?= $r['role']; ?></font>
+                            </b> akan dihapus </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value=<?= $r['id']; ?>>
+                            <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

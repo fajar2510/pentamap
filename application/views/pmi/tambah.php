@@ -43,16 +43,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="umur" class="col-sm-3 col-form-label">tgl lahir/*Umur</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="umur" placeholder="Masukkan Umur" name="umur">
-                                            <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="1990-09-05" id="tgl_lahir" name="tgl_lahir">
+                                            <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-4">
-                                            <select name="gender" id="gender" class="form-control">
+                                            <select class="custom-select" name="gender" id="gender" class="form-control">
                                                 <option value=""> ~ Pilih Jenis Kelamin ~ </option>
                                                 <option value="L"> Laki-Laki </option>
                                                 <option value="P"> Perempuan </option>
@@ -62,7 +62,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                                            <textarea class="form-control" class="custom-select" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -70,13 +70,13 @@
                                         <label for="jk" class="control-label col-sm-3"> </label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
+                                            $style_provinsi = 'class="form-control class="custom-select" input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
                                             echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
                                             ?>
                                         </div>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kabupaten = 'class="form-control input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                            $style_kabupaten = 'class="form-control class="custom-select" input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
                                             echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
                                             ?>
                                         </div>
@@ -86,13 +86,13 @@
                                         <label for="" class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kecamatan = 'class="form-control input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                            $style_kecamatan = 'class="form-control class="custom-select" input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
                                             echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
                                             ?>
                                         </div>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
+                                            $style_kelurahan = 'class="form-control class="custom-select" input-sm" name="desa" id="kelurahan_id"';
                                             echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
                                             ?>
                                         </div>
@@ -100,7 +100,7 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
-                                            <select name="negara" id="negara" class="form-control">
+                                            <select class="custom-select" name="negara" id="negara" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['nama_negara']; ?>"> <?= $n['nama_negara']; ?> </option>

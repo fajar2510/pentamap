@@ -81,7 +81,7 @@
 
 <!-- Modal  Tambah -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document"> 
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTambahLabel">Tambah SubMenu</h5>
@@ -244,16 +244,19 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('menu/hapusSubMenu/' . $sm['id']); ?>">
-                    <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $sm['title']; ?></font>
-                        </b> akan dihapus secara permanen </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" value=<?= $sm['id']; ?>>
-                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('menu/hapusSubMenu/' . $sm['id']); ?>">
+                        <div class="modal-body">Data&nbsp; <b>
+                                <font color="red"><?= $sm['title']; ?></font>
+                            </b> akan dihapus </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value=<?= $sm['id']; ?>>
+                            <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

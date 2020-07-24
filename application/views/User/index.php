@@ -13,8 +13,8 @@
     <?= $this->session->flashdata('message'); ?>
 
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="row no-gutters">
+        <div class="card-header py-5 px-5">
+            <div class="form group row">
                 <div class="col-md-2">
                     <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img" alt="My Profile Photos">
                     <hr>
@@ -26,14 +26,21 @@
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h3 class="text" style="font-family:'Roboto';font-size:25;"> &nbsp; <?= $user['name']; ?></h3>
-                        <hr>
-                        <p class="card-text"> <i class="fas fa-envelope"></i> &nbsp; <?= $user['email']; ?></p>
-                        <p class="card-text"> <i class="fas fa-suitcase-rolling"></i> &nbsp; <?= $user['role']; ?></p>
-                        <p class="card-text"> <i class="far fa-smile"></i> &nbsp; <?= $user['bio']; ?></p>
-                        <p class="card-text"> <i class="fas fa-clock"></i> &nbsp; <small class="text-muted">Bergabung sejak
-                                <?= date('d F Y', $user['date_created']);  ?></small></p>
+                    <div class="form group row">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="text" style="font-family:'Roboto';font-size:25;"> &nbsp; <?= $user['name']; ?></h3>
+                                <hr>
+                                <p class="card-text"> <i class="fas fa-envelope"></i> &nbsp; <?= $user['email']; ?></p>
+                                <p class="card-text"> <i class="fas fa-suitcase-rolling"></i> &nbsp; <?= $user['role']; ?></p>
+                                <p class="card-text"> <i class="far fa-smile"></i> &nbsp; <?= $user['bio']; ?></p>
+                                <p class="card-text"> <i class="fas fa-clock"></i> &nbsp; <small class="text-muted">Bergabung sejak
+                                        <?= date('d F Y', $user['date_created']);  ?></small></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-5 ">
+                            <img src="<?= base_url('assets/img/favicon/logopng.png') ?>" alt="Logo Disnaker Jatim" width="200" height="250">
+                        </div>
                     </div>
                 </div>
             </div>

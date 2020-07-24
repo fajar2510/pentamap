@@ -39,7 +39,7 @@
                                 <?php foreach ($menu as $m) : ?>
                                     <tr align="center">
                                         <th scope="row"><?= $i; ?></th>
-                                        <td>  <?= $m['menu']; ?> </td>
+                                        <td> <?= $m['menu']; ?> </td>
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modalEdit<?= $m['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $m['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -157,16 +157,19 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('menu/hapusMenu/' . $m['id']); ?>">
-                    <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $m['menu']; ?></font>
-                        </b> akan dihapus secara permanen </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" value=<?= $m['id']; ?>>
-                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('menu/hapusMenu/' . $m['id']); ?>">
+                        <div class="modal-body">Data&nbsp; <b>
+                                <font color="red"><?= $m['menu']; ?></font>
+                            </b> akan dihapus  </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value=<?= $m['id']; ?>>
+                            <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

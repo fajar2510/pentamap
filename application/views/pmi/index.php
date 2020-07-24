@@ -82,8 +82,8 @@
                                         <th width="3%"> No</th>
                                         <th width="7%">Profil</th>
                                         <th width="19%">Nama (umur)</th>
-                                        <th width="37%">Alamat Lengkap</th>
-                                        <th width="20%">Negara Bekerja (lama)</th>
+                                        <th width="40%">Alamat Lengkap</th>
+                                        <th width="17%">Negara Bekerja (lama)</th>
                                         <th width="17%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -92,11 +92,20 @@
                                     <?php foreach ($pmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="" width="60" height="60"></td>
-                                            <!-- <td> <small><?= $p['date_created']; ?></small></td> -->
-                                            <td><?= $p['nama']; ?> (<?= $p['umur']; ?>)</td>
+                                            <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td>
+                                            <td><?= $p['nama']; ?> <sup>
+                                                    (<?php $lahir    = new DateTime($p['tgl_lahir']);
+                                                        $today        = new DateTime();
+                                                        $umur = $today->diff($lahir);
+                                                        echo $umur->y;
+                                                        // echo " Tahun, ";
+                                                        // echo $umur->m;
+                                                        // echo " Bulan, dan ";
+                                                        // echo $umur->d;
+                                                        // echo " Hari";
+                                                        ?>)th</sup> </td>
                                             <td> <small> <?= $p['alamat']; ?> </small></td>
-                                            <td><small><?= $p['negara_bekerja']; ?> (<?= $p['lama_bekerja']; ?>)</small> </td>
+                                            <td><small><?= $p['negara_bekerja']; ?> <sup> (<?= $p['lama_bekerja']; ?>)</sup></small> </td>
                                             <td>
                                                 <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
@@ -133,16 +142,29 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
-                    <div class="modal-body">Data&nbsp; <b>
-                            <font color="red"><?= $p['nama']; ?></font>
-                        </b> akan dihapus ! </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" value=<?= $p['id']; ?>>
-                        <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </div>
-                </form>
+                <center>
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <form action="<?= base_url('pmi/deletePmi/' . $p['id']); ?>">
+                        <div class="modal-body">Data&nbsp; <b>
+                                <font color="red"><?= $p['nama']; ?> <sup>
+                                        (<?php $lahir    = new DateTime($p['tgl_lahir']);
+                                            $today        = new DateTime();
+                                            $umur = $today->diff($lahir);
+                                            echo $umur->y;
+                                            // echo " Tahun, ";
+                                            // echo $umur->m;
+                                            // echo " Bulan, dan ";
+                                            // echo $umur->d;
+                                            // echo " Hari";
+                                            ?>)th</sup></font>
+                            </b> akan dihapus ! </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" value=<?= $p['id']; ?>>
+                            <button class="btn btn-secondary" type="button" id="btn-ok" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </div>
+                    </form>
+                </center>
             </div>
         </div>
     </div>

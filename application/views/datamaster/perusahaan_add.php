@@ -59,16 +59,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-3">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value=""> ~ Pilih Status ~ </option>
-                                                <option value="P"> Pusat </option>
-                                                <option value="C"> Cabang </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label for="fungsi" class="col-sm-3 col-form-label">Fungsi</label>
                                         <div class="col-sm-3">
                                             <select name="fungsi" id="fungsi" class="form-control">
@@ -79,6 +69,17 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                        <div class="col-sm-3">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value=""> ~ Pilih Status ~ </option>
+                                                <option value="P"> Pusat </option>
+                                                <option value="C"> Cabang </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">

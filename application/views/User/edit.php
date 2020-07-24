@@ -67,7 +67,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-save"></i>
                                 </span>
-                                <span class="text">Perbarui Profil</span>
+                                <span class="text">Simpan</span>
                             </button>
 
                         </div>

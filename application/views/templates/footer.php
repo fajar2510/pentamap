@@ -3,7 +3,8 @@
     <hr>
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright All Reserved &copy; P E N T A | <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp;DISNAKERTRANS <?= date('Y'); ?></span>
+            <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp; P E N T A | DISNAKERTRANS JAWA TIMUR</span>
+            <!-- <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp; -->
         </div>
     </div>
 </footer>
@@ -24,19 +25,37 @@
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Apakah kamu yakin ?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Pilih "Logout" jika ingin mengakhiri sesi.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak , Kembali</button>
-                <a class="btn btn-danger" href="<?= base_url('auth/logout'); ?>">Logout</a>
-            </div>
+            <center>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apakah kamu yakin ?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih "Logout" jika ingin mengakhiri sesi.</div>
+                <img src="<?= base_url('assets/img/favicon/logout.png') ?>" alt="Logout" width="230" height="200">
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-gray-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Batal</span>
+                    </button>
+                    <form action="<?= base_url('auth/logout'); ?>">
+                        <button type="submit" class="btn btn-info btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </span>
+                            <span class="text">Logout</span>
+                        </button>
+            </center>
+            </form>
+            <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>
+                <a class="btn btn-danger" href="<?= base_url('auth/logout'); ?>">Logout</a> -->
         </div>
     </div>
+</div>
 </div>
 
 <!-- Bootstrap core JavaScript-->

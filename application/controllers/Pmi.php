@@ -69,7 +69,7 @@ class Pmi extends CI_Controller
 
         // $this->form_validation->set_rules('status', 'Status', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
@@ -93,7 +93,7 @@ class Pmi extends CI_Controller
             $data = [
                 'status' => 'NON-PROSEDURAL',
                 'nama' => $this->input->post('nama', true),
-                'umur' => $this->input->post('umur', true),
+                'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'alamat' => $this->input->post('alamat', true),
                 'gender' => $this->input->post('gender', true),
                 'provinsi' => $this->input->post('provinsi_id', true),
@@ -152,7 +152,7 @@ class Pmi extends CI_Controller
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('umur', 'Umur', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
         $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
@@ -175,7 +175,7 @@ class Pmi extends CI_Controller
         } else {
             $data = [
                 'nama' => $this->input->post('nama', true),
-                'umur' => $this->input->post('umur', true),
+                'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
                 'alamat' => $this->input->post('alamat', true),
                 'provinsi' => $this->input->post('provinsi_id', true),

@@ -35,6 +35,22 @@
                         <div>
                             <form action="<?= base_url('tka/edit/' . $tka->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
+
+
+                                    <p> <small><b> DATA PERUSAHAAN</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan TKA</label>
+                                        <div class="col-sm-6">
+                                            <select name="perusahaan" id="perusahaan" class="form-control">
+                                                <option value="">~ Pilih Perusahaan ~</option>
+                                                <?php foreach ($perusahaan as $p) : ?>
+                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p> <small><b> DATA TKA</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama_tka" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-5">
@@ -64,20 +80,6 @@
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" value="<?= $tka->kewarganegaraan ?>" name="negara">
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label"> Perusahaan</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= $tka->nama_perusahaan ?>">
-                                            <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat *perusahaan</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" value="<?= $tka->alamat ?>">
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
