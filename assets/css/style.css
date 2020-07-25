@@ -1,0 +1,15 @@
+/*design table 1*/
+.table1 {
+	font-family: sans-serif;
+	color: #232323;
+	border-collapse: collapse;
+
+}
+
+
+.table1,
+th,
+td {
+	border: 0.1mm solid #000000;
+	padding: 2px 2px;
+}

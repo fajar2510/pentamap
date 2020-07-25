@@ -8,6 +8,7 @@ class Datamaster extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Master');
+        $this->load->model('Penempatan');
     }
 
     // FUNCTION USER START
@@ -18,6 +19,12 @@ class Datamaster extends CI_Controller
         $this->db->from('user');
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         $data['user'] = $this->db->get()->row_array();
 
         $data['user'] = $this->db->get_where('user', ['email' =>
@@ -75,6 +82,11 @@ class Datamaster extends CI_Controller
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         // Load model pmi
         $data['userid'] = $this->Master->getUserById($id);
@@ -139,6 +151,12 @@ class Datamaster extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
 
         $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
@@ -156,6 +174,11 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
@@ -194,6 +217,11 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         // Load model pmi
         $data['perusahaan'] = $this->Master->getPerusahaanById($id);

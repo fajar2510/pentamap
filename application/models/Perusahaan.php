@@ -26,8 +26,10 @@ class Perusahaan extends CI_Model
     public function get_TkaPerusahaan()
     {
         $query =
-            "SELECT `tb_tka`.*
+            "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
                     FROM `tb_tka` 
+                    JOIN `tb_perusahaan`
+                    ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                 ";
         return $this->db->query($query)->result_array();
     }

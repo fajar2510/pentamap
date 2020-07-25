@@ -24,13 +24,14 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get()->row_array();
 
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
-        $totaltka['tka'] = $this->Penempatan->getTotalTKA();
-        $totalpmib['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         //load with templating view
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data + $totaltka +$totalpmib);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
@@ -43,6 +44,10 @@ class Admin extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         $data['role'] = $this->db->get('user_role')->result_array();
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
 
@@ -75,6 +80,12 @@ class Admin extends CI_Controller
         $role_id])->row_array();
 
         $this->db->where('id !=', 1);
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -86,6 +97,11 @@ class Admin extends CI_Controller
 
     public function changeAccess()
     {
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         $menu_id = $this->input->post('menuId');
         $role_id = $this->input->post('roleId');
 
@@ -121,6 +137,11 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $data['role_id'] = $this->Master->getRoleById($id);
 

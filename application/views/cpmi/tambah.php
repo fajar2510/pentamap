@@ -4,7 +4,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h4 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h4>
-        <a href="<?= base_url('cpmi'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('cpmi'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
@@ -68,7 +68,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                        <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tempat, Tgl Lahir</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir">
+                                            <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
                                         <div class="col-3">
                                             <input class="form-control" type="date" value="2000-07-31" id="tanggal_lahir" name="tanggal_lahir">
                                             <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -83,7 +87,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lokasi" class="col-sm-3 col-form-label">Wilayah/Kota</label>
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Wilayah/Kota Domisili</label>
                                         <div class="col-sm-3">
                                             <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
                                                 <option value="">~ Pilih Lokasi Kota ~</option>

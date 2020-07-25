@@ -10,6 +10,7 @@ class Tka extends CI_Controller
 
         $this->load->model('Master');
         $this->load->model('Perusahaan');
+        $this->load->model('Penempatan');
     }
 
 
@@ -21,12 +22,13 @@ class Tka extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data wilayah
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-
-
-
-
 
         $data['title'] = 'Data TKA per Perusahaan';
         $this->load->view('templates/header', $data);
@@ -43,10 +45,14 @@ class Tka extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
-        // $data['negara'] = $this->Perusahaan->get_NegaraAll();
         $data['jatim'] = $this->Perusahaan->get_Jatim();
 
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
@@ -73,7 +79,7 @@ class Tka extends CI_Controller
                 'nama_tka' => $this->input->post('nama'),
                 'kewarganegaraan' => $this->input->post('negara'),
                 'jenis_kel' => $this->input->post('gender'),
-                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+                'id_perusahaan' => $this->input->post('nama_perusahaan'),
                 'alamat' => $this->input->post('alamat'),
                 'jabatan' => $this->input->post('jabatan'),
                 'no_rptka' => $this->input->post('no_rptka'),
@@ -98,19 +104,21 @@ class Tka extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
-        // $data['negara'] = $this->Perusahaan->get_NegaraAll();
-        $data['jatim'] = $this->Perusahaan->get_Jatim();
-        $data['tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
+        $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
+        $data['edit_tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
 
 
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('nama_perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('id_perusahaan', 'Perusahaan', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat Perusahaan', 'required');;
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');

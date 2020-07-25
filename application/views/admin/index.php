@@ -11,6 +11,7 @@
     <!-- data dashboard -->
     <?php foreach ($tka as $total_tka); ?>
     <?php foreach ($pmib as $total_pmib); ?>
+    <?php foreach ($cpmi as $total_cpmi); ?>
 
     <!-- Content Row -->
     <div class="row">
@@ -21,8 +22,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">PMI [Pekerja Migran Indonesia]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">875</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">CPMI [Calon P.Migran Ind]</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_cpmi->cpmi; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -37,8 +38,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMA [Pekerja Migran Asing]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tka->tka; ?> </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TKA [Tenaga Kerja Asing]</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tka->tka; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-injured fa-2x text-gray-300"></i>
@@ -54,8 +55,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMI-B [Pekerja INA Bermasalah]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pmib->pmib; ?></div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMI-B [PMI Bermasalah]</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pmib->pmib; ?> <span><small>orang</small> </span></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-id-card fa-2x text-gray-300"></i>
@@ -69,8 +70,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Belum Bekeja [Pengangguran]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">1253</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Belum Bekerja</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">0 <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-credit-card fa-2x text-gray-300"></i>

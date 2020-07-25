@@ -5,7 +5,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;">Edit Data <?= $title; ?> <?= date('Y'); ?></h3>
-        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
@@ -36,22 +36,6 @@
 
                             <form action="<?= base_url('pmi/edit/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <!-- <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-4">
-                                            <select name="status" id="status" class="form-control" readonly>
-                                                <option value="PROSEDURAL" <?php if ($pmi->status == 'PROSEDURAL') {
-                                                                                echo 'selected';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>>PROSEDURAL</option>
-                                                <option value="NON-PROSEDURAL" <?php if ($pmi->status == 'NON-PROSEDURAL') {
-                                                                                    echo 'selected';
-                                                                                } else {
-                                                                                    echo '';
-                                                                                } ?>>NON-PROSEDURAL</option>
-                                            </select> </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                         <div class="col-sm-8">

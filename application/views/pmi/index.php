@@ -42,36 +42,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown mb-0">
+                        <!-- <div class="dropdown mb-0">
                             <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
                             </button>
-                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+
+                            <a href="<?= base_url('exportimport/export_pdf_pmi/'); ?>" target="_blank" class=" btn btn-danger " class=" d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
                             </a>
-                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <a href="<?= base_url('exportimport/export_excel_pmi'); ?> " target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">CSV</span>
                             </a>
-                            <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span class="text">Eksport</span>
-                            </button>
-                            <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="<?= base_url('exportimport/'); ?>">Excel</a>
-                                <a class="dropdown-item" href="<?= base_url('exportimport/'); ?>">PDF</a>
-                            </div> -->
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="card-body">
@@ -79,12 +70,16 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
-                                        <th width="3%"> No</th>
-                                        <th width="7%">Profil</th>
-                                        <th width="19%">Nama (umur)</th>
-                                        <th width="40%">Alamat Lengkap</th>
-                                        <th width="17%">Negara Bekerja (lama)</th>
-                                        <th width="17%">Aksi</th>
+                                        <th rowspan="2" width="4%"> No</th>
+                                        <th rowspan="2" width="21%">Nama (umur)</th>
+                                        <th colspan="3" width="40%">Alamat Lengkap</th>
+                                        <th rowspan="2" width="19%">Negara Bekerja </th>
+                                        <th rowspan="2" width="18%">Aksi</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Desa</th>
+                                        <th>Kecamatan</th>
+                                        <th>Kab./Kota</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,7 +87,7 @@
                                     <?php foreach ($pmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td>
+                                            <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                             <td><?= $p['nama']; ?> <sup>
                                                     (<?php $lahir    = new DateTime($p['tgl_lahir']);
                                                         $today        = new DateTime();
@@ -104,12 +99,20 @@
                                                         // echo $umur->d;
                                                         // echo " Hari";
                                                         ?>)th</sup> </td>
-                                            <td> <small> <?= $p['alamat']; ?> </small></td>
-                                            <td><small><?= $p['negara_bekerja']; ?> <sup> (<?= $p['lama_bekerja']; ?>)</sup></small> </td>
+                                            <td><small> <?= $p['nama_kelurahan']; ?> </small></td>
+                                            <td><small> <?= $p['nama_kecamatan']; ?> </small></td>
+                                            <td> <small> <?= $p['nama_kabupaten']; ?> </small></td>
+                                            <td><small><?= $p['negara_bekerja']; ?></small> </td>
                                             <td>
-                                                <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalUnduh" class="btn btn-sm btn-success"> <i class="fas fa-file-download"></i></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Aksi
+                                                </button>
+                                                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                                    <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="dropdown-item"> Edit</a>
+                                                    <a href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="dropdown-item">Lap./Negara</i></a>
+                                                    <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="dropdown-item">Kwitansi</i></a>
+                                                </div>
+                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -187,7 +190,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <?= form_open_multipart('exportimport/uploaddata') ?>
+                    <?= form_open_multipart('exportimport/import_data_pmi') ?>
                     <div class="form-group column">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="importexcel" name="importexcel" accept=".xlsx, .xls" aria-describedby="uploadHelp">

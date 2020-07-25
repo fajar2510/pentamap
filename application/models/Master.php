@@ -63,8 +63,7 @@ class Master extends CI_Model
     {
         $query =
             "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`,
-                `tb_negara`.`nama_negara`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
@@ -72,12 +71,29 @@ class Master extends CI_Model
                     JOIN `kecamatan`
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`
-                    JOIN `tb_negara`
-                    ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
                 ";
         return $this->db->query($query)->result_array();
     }
+
+    public function getPmi_per_negara($negara)
+    {
+        $query =
+        "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                    FROM `tb_pmi` JOIN `provinsi`
+                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    JOIN `kabupaten`
+                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `kecamatan`
+                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    JOIN `kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` WHERE `negara_bekerja` = '$negara'
+                ";
+        return $this->db->query($query)->result_array();
+    }
+
+
 
     // query ambil id PMI
     public function getPmiById($id)

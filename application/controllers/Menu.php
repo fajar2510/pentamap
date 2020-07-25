@@ -10,6 +10,7 @@ class Menu extends CI_Controller
         is_logged_in();
         $this->load->model('Master');
         $this->load->model('Menu_model');
+        $this->load->model('Penempatan');
     }
 
 
@@ -18,6 +19,11 @@ class Menu extends CI_Controller
         $data['title'] = 'Sidebar Menu';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -47,8 +53,12 @@ class Menu extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
-        $data['menu'] = $this->db->get('user_menu')->result_array();
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
+        $data['menu'] = $this->db->get('user_menu')->result_array();
         $data['menu_id'] = $this->Master->getMenuById($id);
 
         $this->form_validation->set_rules('menu', 'Judul Menu', 'required|trim');
@@ -89,7 +99,11 @@ class Menu extends CI_Controller
         $data['title'] = 'SubMenu Sidebar';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        // $this->load->model('Menu_model', 'menu');
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $data['subMenu'] = $this->Menu_model->getSubMenu();
         $data['menu'] = $this->db->get('user_menu')->result_array();
@@ -126,6 +140,11 @@ class Menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         // $data['subMenu'] = $this->Master->getSubMenuJoinMenu();
         $data['subMenu'] = $this->Menu_model->getSubMenu();

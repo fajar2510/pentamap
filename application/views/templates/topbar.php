@@ -23,22 +23,23 @@
                             <i class="fas fa-search fa-sm"></i>
                         </button>
                     </div> -->
-                    <!-- <?php foreach ($tka as $total_tka); ?>
-                    <?php foreach ($pmib as $total_pmib); ?> -->
+                    <?php foreach ($tka as $total_tka); ?>
+                    <?php foreach ($pmib as $total_pmib); ?>
+                    <?php foreach ($cpmi as $total_cpmi); ?>
 
 
                     <marquee behavior="scroll" direction="right" scrollamount="5" width="130%">
                         <div class="form-group row">
                             <div class="col-sm-2">
                                 <small>
-                                    <img src="http://www.myiconfinder.com/uploads/iconsets/621654299bc0f478fe3c1be4924d727d.png" width="30" height="30" alt="pmi" class="rounded-circle"> <b> &nbsp;PMI </b>
-                                    <span class="border-left"> &nbsp;2324</span> &nbsp; <b>TKA</b>
-                                    <span class="border-left"> &nbsp;4212 </span> &nbsp; <b>PMI-B </b>
-                                    <span class="border-left"> &nbsp;2322 </span> &nbsp; <b>Pengangguran </b>
-                                    <span class="border-left"> &nbsp;15232 </span>
+                                    <img src="http://www.myiconfinder.com/uploads/iconsets/621654299bc0f478fe3c1be4924d727d.png" width="30" height="30" alt="pmi" class="rounded-circle"> <b> &nbsp;CPMI </b>
+                                    <span class="border-left"> &nbsp;<?php echo $total_cpmi->cpmi; ?></span> &nbsp; <b>TKA</b>
+                                    <span class="border-left"> &nbsp;<?php echo $total_tka->tka; ?> </span> &nbsp; <b>PMI-B </b>
+                                    <span class="border-left"> &nbsp;<?php echo $total_pmib->pmib; ?> </span> &nbsp; <b>Pengangguran </b>
+                                    <span class="border-left"> &nbsp;0 </span>
                                 </small>
                             </div>
-                            
+
 
                         </div>
                     </marquee>

@@ -57,13 +57,13 @@
                                 </span>
                                 <span class="text">Import</span>
                             </button>
-                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            <a href="<?= base_url('exportimport/export_pdf_tka'); ?>" target="_blank" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
                             </a>
-                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <a href="<?= base_url('exportimport/export_excel_tka'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
@@ -77,24 +77,39 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
-                                        <th width="3%">No.</th>
-                                        <th width="20%">Nama (JK)/ Negara </th>
-                                        <th width="22%">Perusahaan/Jabatan</th>
-                                        <th width="17%">No. RPTKA/ *masa berlaku</th>
-                                        <th width="17%">No. IMTA/ *masa berlaku</th>
-                                        <th width="11%">Lokasi</th>
-                                        <th width="10%">Aksi</th>
+                                        <th rowspan="2">No.</th>
+                                        <th rowspan="2">Perusahaan</th>
+                                        <th rowspan="2">Alamat Perusahaan</th>
+                                        <th colspan="9">Data TKA</th>
+                                        <th rowspan="2">Aksi</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Negara</th>
+                                        <th>Jabatan</th>
+                                        <th>JK</th>
+                                        <th>No. RPTKA</th>
+                                        <th>Masa Berlaku</th>
+                                        <th>No. IMTA</th>
+                                        <th>Masa Berlaku</th>
+                                        <th>Lokasi Bekerja</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_tka as $t) : ?>
-                                        <tr align="justify">
+                                        <tr align="left">
                                             <th><?= $i; ?></th>
-                                            <td> <small> <?= $t['nama_tka']; ?> (<?= $t['jenis_kel']; ?>) / <?= $t['kewarganegaraan']; ?> </small> </td>
-                                            <td> <small> <?= $t['nama_perusahaan']; ?> / <?= $t['jabatan']; ?> </small></td>
-                                            <td> <small><?= $t['no_rptka']; ?> / <?= $t['masa_rptka']; ?> </small></td>
-                                            <td> <small><?= $t['no_imta']; ?> / <?= $t['masa_imta']; ?></small></td>
+                                            <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
+                                            <td> <small> <?= $t['alamat']; ?> </small></td>
+                                            <td> <small> <?= $t['nama_tka']; ?> </small> </td>
+                                            <td><small> <?= $t['kewarganegaraan']; ?> </small></td>
+                                            <td> <small> <?= $t['jabatan']; ?> </small></td>
+                                            <td><small> <?= $t['jenis_kel']; ?> </small></td>
+                                            <td> <small><?= $t['no_rptka']; ?> </small></td>
+                                            <td> <small><?= $t['masa_rptka']; ?></small></td>
+                                            <td> <small><?= $t['no_imta']; ?> </small></td>
+                                            <td><small><?= $t['masa_imta']; ?></small></td>
                                             <td> <small> <?= $t['lokasi_kerja']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
@@ -162,7 +177,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <?= form_open_multipart('exportimport/uploaddata_tka') ?>
+                    <?= form_open_multipart('exportimport/import_data_tka') ?>
                     <div class="form-group column">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="importexcel" name="importexcel" accept=".xlsx, .xls" aria-describedby="uploadHelp">

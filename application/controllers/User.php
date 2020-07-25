@@ -7,11 +7,12 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Penempatan');
         is_logged_in();
     }
 
 
-    public function index() 
+    public function index()
     {
         $data['title'] = 'Profil Pengguna';
 
@@ -22,6 +23,11 @@ class User extends CI_Controller
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -31,7 +37,7 @@ class User extends CI_Controller
     }
 
     public function edit()
-    { 
+    {
         $data['title'] = 'Edit Profil';
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
@@ -39,7 +45,12 @@ class User extends CI_Controller
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
-        
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
         $this->form_validation->set_rules('bio', 'Bio', 'required|trim');
@@ -78,9 +89,9 @@ class User extends CI_Controller
                 }
             }
 
-            $this->db->set('name', $name );
-            $this->db->set('bio',$bio );
-            
+            $this->db->set('name', $name);
+            $this->db->set('bio', $bio);
+
             $this->db->where('email', $email);
             $this->db->update('user');
 
@@ -95,6 +106,11 @@ class User extends CI_Controller
         $data['title'] = 'Ubah Kata Sandi/Password';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[4]|matches[new_password2]');

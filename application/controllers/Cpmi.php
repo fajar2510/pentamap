@@ -19,9 +19,14 @@ class Cpmi extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data wilayah
-        // $data['tb_pptkis'] = $this->Penempatan->get_pptkis();
-        $data['cpmi'] = $this->Penempatan->get_cpmi();
+
+        $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
@@ -41,6 +46,11 @@ class Cpmi extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data 
         $data['cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
@@ -49,6 +59,7 @@ class Cpmi extends CI_Controller
 
         $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat PMI', 'required');
         $this->form_validation->set_rules('lokasi', 'Lokasi Wilayah PMI', 'required');
@@ -76,6 +87,7 @@ class Cpmi extends CI_Controller
 
                 'nama_pmi' => $this->input->post('nama_pmi'),
                 'jenis_kelamin' => $this->input->post('gender'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir'),
                 'alamat' => $this->input->post('alamat'),
                 'wilayah' => $this->input->post('lokasi'),
@@ -105,8 +117,13 @@ class Cpmi extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // load data 
-        $data['cpmi'] = $this->Penempatan->get_cpmi();
+        // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
 
@@ -115,6 +132,7 @@ class Cpmi extends CI_Controller
 
         $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat PMI', 'required');
         $this->form_validation->set_rules('lokasi', 'Lokasi Wilayah PMI', 'required');
@@ -143,6 +161,7 @@ class Cpmi extends CI_Controller
 
                 'nama_pmi' => $this->input->post('nama_pmi'),
                 'jenis_kelamin' => $this->input->post('gender'),
+                'tempat_lahir' => $this->input->post('tempat_lahir'),
                 'tanggal_lahir' => $this->input->post('tanggal_lahir'),
                 'alamat' => $this->input->post('alamat'),
                 'wilayah' => $this->input->post('lokasi'),

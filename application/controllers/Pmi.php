@@ -9,7 +9,7 @@ class Pmi extends CI_Controller
         parent::__construct();
         $this->load->model('Master');
         $this->load->model('Wilayah', '', TRUE);
-        // $this->load->model('Chain_model');
+        $this->load->model('Penempatan');
     }
 
     // FUNCTION Tambah START
@@ -20,8 +20,14 @@ class Pmi extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         // Load Model User Role
-        $data['pmi'] = $this->Master->get_PMI();
+        $data['pmi'] = $this->Master->getPmiJoinWilayah();
+        // $data['pmi'] = $this->Master->get_PMI();
 
         //load data view
         $data['title'] = 'Data Pemulangan PMI-B Non-Prosedural';
@@ -58,6 +64,11 @@ class Pmi extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         //load data negara
         $data['negara'] = $this->db->get('tb_negara')->result_array();
@@ -144,10 +155,13 @@ class Pmi extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
 
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-
         // Load model pmi
-
         $data['pmi'] = $this->Master->getPmiById($id);
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 

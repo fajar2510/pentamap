@@ -10,27 +10,13 @@ class Exportimport extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Pemulangan');
+        $this->load->model('Penempatan');
+        $this->load->model('Perusahaan');
+        $this->load->model('Master');
         $this->load->model('Tka');
     }
 
-    public function index()
-    {
-        // mengambil data user login
-        $this->db->select('user.*,user_role.role');
-        $this->db->from('user');
-        $this->db->join('user_role', 'user.role_id = user_role.id');
-        $this->db->where('email', $this->session->userdata('email'));
-        $data['user'] = $this->db->get()->row_array();
-
-        $data['title'] = 'Import Excel';
-        // $this->load->view('templates/header', $data);
-        // $this->load->view('templates/sidebar', $data);
-        // $this->load->view('templates/topbar', $data);
-        $this->load->view('import/index', $data);
-        // $this->load->view('templates/footer', $data);
-    }
-
-    public function uploaddata()
+    public function import_data_pmi()
     {
         $config['upload_path'] = './assets/exportimport/import/';
         $config['allowed_types'] = 'xlsx|xls';
@@ -77,7 +63,7 @@ class Exportimport extends CI_Controller
             echo "message :" . $this->upload->display_errors();
         }
     }
-    public function uploaddata_tka()
+    public function import_data_tka()
     {
         $config['upload_path'] = './assets/exportimport/import/';
         $config['allowed_types'] = 'xlsx|xls';
@@ -127,5 +113,60 @@ class Exportimport extends CI_Controller
 
             echo "message :" . $this->upload->display_errors();
         }
+    }
+
+
+    public function export_pdf_pmi()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $data_pmi = $this->Master->getPmiJoinWilayah();
+        $data = $this->load->view('export/pmi_data', ['semua_data_pmi' => $data_pmi], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+    }
+
+
+    public function pmi_negara($negara)
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $data_pmi = $this->Master->getPmi_per_negara($negara);
+        $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+    }
+
+    public function export_pdf_kwitansi($id)
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $data_kwitansi = $this->Master->getPmiById($id);
+        $data = $this->load->view('export/kwitansi_data', ['semua_data_kwitansi' => $data_kwitansi], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+    }
+
+    public function export_pdf_tka()
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $data_tka = $this->Perusahaan->get_TkaPerusahaan();
+        $data = $this->load->view('export/tka_data', ['semua_data_tka' => $data_tka], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+    }
+
+    public function export_pdf_cpmi()
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $data_cpmi = $this->Penempatan->get_cpmi();
+        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
     }
 }

@@ -55,13 +55,13 @@
                                 </span>
                                 <span class="text">Import</span>
                             </button>
-                            <a href="" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            <a href="<?= base_url('exportimport/export_pdf_cpmi'); ?>" target="_blank" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
                             </a>
-                            <a href="" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
@@ -76,27 +76,25 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <th>Nama PMI</th>
-                                        <th>JK</th>
+                                        <th>Nama_PMI </th>
+                                        <th>Domisili</th>
+                                        <th>L/P</th>
                                         <th>Perusahaan</th>
-                                        <th>Alamat</th>
-                                        <th>Jabatan</th>
-                                        <th>Gaji</th>
+                                        <th>Pengguna Jasa </th>
                                         <th>Negara Penempatan</th>
-                                        <th width="10%">Aksi</th>
+                                        <th>&nbsp;Aksi__&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($cpmi as $p) : ?>
+                                    <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
+                                            <td><small> <?= $p['wilayah']; ?> </small> </td>
                                             <td><small> <?= $p['jenis_kelamin']; ?> </small> </td>
                                             <td><small> <?= $p['nama_perusahaan']; ?> </small> </td>
-                                            <td><small> <?= $p['alamat']; ?> </small> </td>
-                                            <td><small> <?= $p['jabatan']; ?> </small> </td>
-                                            <td><small> <?= $p['gaji']; ?> </small> </td>
+                                            <td><small> <?= $p['pengguna_jasa']; ?> </small> </td>
                                             <td><small> <?= $p['negara_penempatan']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
@@ -121,7 +119,7 @@
 <!-- End of Main Content -->
 
 <!--  <!-- modalhapus -->
-<?php foreach ($cpmi as $p) : ?>
+<?php foreach ($data_cpmi as $p) : ?>
 
     <div class="modal fade" id="modalHapus<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
         <div class="modal-dialog" role="document">
