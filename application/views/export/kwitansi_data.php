@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th>
-                    <h2>KWITANSI</h2>
+                    <h2> <u>KWITANSI</u> </h2>
                 </th>
             </tr>
             <tr>

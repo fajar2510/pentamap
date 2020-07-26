@@ -9,61 +9,117 @@
 
 
     <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/logo.ico">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        table,
+        th {
+            height: 30px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        td {
+            /* height: 50px; */
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <?php foreach ($semua_data_pmi as $p); ?>
 
 <body>
+    <span><small> <i>
+                <font color="grey">Tanggal cetak : <?= date('d-m-Y'); ?> </font>
+            </i> </small></span>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" width="100%" cellspacing="0">
+            <!-- <table class="table table-bordered" width="100%" cellspacing="0">
                 <tr style="border: 0px;">
-                    <td align="center">
-                        <b>DAFTAR HADIR PEMULANGAN<br>
-                            PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $p['negara_bekerja']; ?> <br>
-                            TAHUN <?= date('Y'); ?></b>
-
+                    <td align="center"> -->
+            <p align="center"><b>DAFTAR HADIR PEMULANGAN<br>
+                    PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $p['negara_bekerja']; ?> <br>
+                    TAHUN <?= date('Y'); ?></b></p>
+            <!-- 
                     </td>
                 </tr>
-            </table>
-            <br>
+            </table> -->
+
+            <?php
+            function hariIndo($hariInggris)
+            {
+                switch ($hariInggris) {
+                    case 'Sunday':
+                        return 'Minggu';
+                    case 'Monday':
+                        return 'Senin';
+                    case 'Tuesday':
+                        return 'Selasa';
+                    case 'Wednesday':
+                        return 'Rabu';
+                    case 'Thursday':
+                        return 'Kamis';
+                    case 'Friday':
+                        return 'Jumat';
+                    case 'Saturday':
+                        return 'Sabtu';
+                    default:
+                        return 'hari tidak valid';
+                }
+            }
+            ?>
+
+            <p align="left"><small> <b> Hari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?php
+                                                                                                $hariBahasaInggris = date('l');
+                                                                                                $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
+
+                                                                                                // echo "Bahasa Inggris: {$hariBahasaInggris} <br>";
+                                                                                                echo " {$hariBahasaIndonesia}";
+                                                                                                ?></b> <br> <b> Tanggal &nbsp;&nbsp;&nbsp;: <?= date('d-m-Y'); ?></b></small></p>
+            <!-- <br>
             <span><small> <i>
                         <font color="grey">Tanggal cetak : <?= date('d-m-Y'); ?> </font>
                     </i> </small></span>
-            <br>
-            <br>
-
+            <br> -->
             <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead align="center">
                     <tr>
-                        <th rowspan="2" width="5%"> NO</th>
-                        <th rowspan="2" width="20%">NAMA</th>
-                        <th colspan="3" width="45%">ALAMAT</th>
-                        <th rowspan="2" colspan="2" width="30%">TANDA TANGAN</th>
+                        <th rowspan="2" width="7%"> NO</th>
+                        <th rowspan="2" width="17%">NAMA</th>
+                        <th colspan="3">ALAMAT</th>
+                        <th rowspan="2" colspan="2" width="36%">TANDA TANGAN</th>
                     </tr>
                     <tr align="center">
-                        <th width="20%">DESA</th>
-                        <th width="20%">KECAMATAN</th>
-                        <th width="20%">KABUPATEN</th>
+                        <th width="19%">DESA</th>
+                        <th width="18%">KECAMATAN</th>
+                        <th width="18%">KAB./ KOTA</th>
                     </tr>
                 </thead>
                 <tbody align="center">
                     <?php $i = 1;  ?>
                     <?php foreach ($semua_data_pmi as $p) : ?>
-                        <tr style="border: 0;">
-                            <td><?= $i; ?></td>
-                            <td style="text-align: left;">&nbsp;<?= $p['nama']; ?> </td>
-                            <td> <?= $p['nama_kelurahan']; ?></td>
-                            <td><?= $p['nama_kecamatan']; ?></td>
-                            <td><?= $p['nama_kabupaten']; ?></td>
-                            <td style="text-align: left;">
+                        <tr style="border-style: dotted; border: 1;">
+                            <th><?= $i; ?></th>
+                            <td style="text-align: left;"><?= $p['nama']; ?> </td>
+                            <td> <small> <?= $p['nama_kelurahan']; ?></small> </td>
+                            <td><small><?= $p['nama_kecamatan']; ?></small> </td>
+                            <td><small><?= $p['nama_kabupaten']; ?></small> </td>
+                            <td style="text-align: left;" style="border: 0;" align="left">
                                 <?php if ($i % 2 == 1) {
                                     echo "$i . . . . .";
                                 } ?>
-                            </td>
-                            <td style="text-align: left;">
                                 <?php if ($i % 2 == 0) {
-                                    echo "$i . . . . .";
+                                    echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $i . . . . .";
                                 } ?>
+                            </td>
+                            <td style="text-align: left;" style="border: 0;">
+
                             </td>
                         </tr>
                         <?php $i++; ?>

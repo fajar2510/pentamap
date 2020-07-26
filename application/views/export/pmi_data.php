@@ -9,6 +9,27 @@
 
 
     <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/logo.ico">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        table,
+        th {
+            height: 50px;
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>

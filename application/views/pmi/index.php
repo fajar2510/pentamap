@@ -72,7 +72,7 @@
                                     <tr>
                                         <th rowspan="2" width="4%"> No</th>
                                         <th rowspan="2" width="21%">Nama (umur)</th>
-                                        <th colspan="3" width="40%">Alamat Lengkap</th>
+                                        <th colspan="3" width="40%">Alamat</th>
                                         <th rowspan="2" width="19%">Negara Bekerja </th>
                                         <th rowspan="2" width="18%">Aksi</th>
                                     </tr>
@@ -86,7 +86,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($pmi as $p) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></th>
+                                            <td align="center"><?= $i; ?></td>
                                             <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                             <td><?= $p['nama']; ?> <sup>
                                                     (<?php $lahir    = new DateTime($p['tgl_lahir']);
@@ -98,18 +98,18 @@
                                                         // echo " Bulan, dan ";
                                                         // echo $umur->d;
                                                         // echo " Hari";
-                                                        ?>)th</sup> </td>
-                                            <td><small> <?= $p['nama_kelurahan']; ?> </small></td>
-                                            <td><small> <?= $p['nama_kecamatan']; ?> </small></td>
-                                            <td> <small> <?= $p['nama_kabupaten']; ?> </small></td>
-                                            <td><small><?= $p['negara_bekerja']; ?></small> </td>
-                                            <td>
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        ?>)</sup> </td>
+                                            <td align="center"><small> <?= $p['nama_kelurahan']; ?> </small></td>
+                                            <td align="center"><small> <?= $p['nama_kecamatan']; ?> </small></td>
+                                            <td align="center"> <small> <?= $p['nama_kabupaten']; ?> </small></td>
+                                            <td align="center"><small><?= $p['negara_bekerja']; ?></small> </td>
+                                            <td align="center">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Aksi
                                                 </button>
                                                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                                     <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="dropdown-item"> Edit</a>
-                                                    <a href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="dropdown-item">Lap./Negara</i></a>
+                                                    <a href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="dropdown-item">Daftar Hadir</i></a>
                                                     <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="dropdown-item">Kwitansi</i></a>
                                                 </div>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

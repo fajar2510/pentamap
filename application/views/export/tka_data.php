@@ -5,42 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Laporan TKA</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        table,
+        th {
+            height: 50px;
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <table class="table" width="100%">
-        <thead>
-            <tr>
-                <th>
-                    <center>
-                        <b>LAPORAN TKA (TENAGA KERJA ASING) DAN PERUSAHAAN PENEMPATAN <br>
-                            TAHUN <?= date('Y'); ?>
-                        </b>
-                    </center>
-                </th>
-            </tr>
-        </thead>
-    </table>
-
     <span><small> <i>
                 <font color="grey">Tanggal cetak : <?= date('d-m-Y'); ?> </font>
             </i> </small></span>
-    <br>
+    <!-- <table class="table" width="100%">
+        <thead>
+            <tr>
+                <th> -->
+    <center>
+        <p align="center"> <b>LAPORAN TKA (TENAGA KERJA ASING) DAN PERUSAHAAN PENEMPATAN <br>
+                TAHUN <?= date('Y'); ?> </b>
+        </p>
+    </center>
+    <!-- </th>
+            </tr>
+        </thead>
+    </table> -->
     <br>
 
     <table>
         <thead>
             <tr>
                 <th rowspan="2">NO.</th>
-                <th rowspan="2">Nama Perusahaan</th>
-                <th rowspan="2">Alamat Perusahaan</th>
+                <th rowspan="2">Nama_Perusahaan</th>
+                <th rowspan="2">Alamat_Perusahaan</th>
                 <th colspan="9">Data TKA</th>
             </tr>
             <tr align="center">
 
-                <th>Nama TKA</thth>
-                <th>Kewarganegaraan</th>
-                <th>JK(L/P)</th>
+                <th>Nama_TKA</thth>
+                <th>Negara</th>
+                <th>(L/P)</th>
                 <th>Jabatan</th>
                 <th>No.RPTKA</th>
                 <th>Masa Berlaku</th>
@@ -53,10 +72,10 @@
             <?php $i = 1; ?>
             <?php foreach ($semua_data_tka as $row) : ?>
                 <tr>
-                    <td><?= $i; ?></td>
-                    <td><?= $row['nama_perusahaan'] ?></td>
-                    <td><?= $row['alamat'] ?></td>
-                    <td><?= $row['nama_tka'] ?></td>
+                    <th><?= $i; ?></th>
+                    <td align="left"><?= $row['nama_perusahaan'] ?></td>
+                    <td align="left"><?= $row['alamat'] ?></td>
+                    <td align="left"><?= $row['nama_tka'] ?></td>
                     <td><?= $row['kewarganegaraan'] ?></td>
                     <td><?= $row['jenis_kel'] ?></td>
                     <td><?= $row['jabatan'] ?></td>

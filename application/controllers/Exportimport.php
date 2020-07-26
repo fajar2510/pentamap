@@ -130,6 +130,7 @@ class Exportimport extends CI_Controller
     {
         $mpdf = new \Mpdf\Mpdf();
         $data_pmi = $this->Master->getPmi_per_negara($negara);
+
         $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
@@ -157,15 +158,16 @@ class Exportimport extends CI_Controller
         $mpdf->Output();
     }
 
-    public function export_pdf_cpmi()
+    public function export_pdf_cpmi($perusahaan,$negara)
     {
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_cpmi();
-        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi], TRUE);
+        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan);
+        $total_cpmi_byNegara = $this->Penempatan->getTotalCPMI_byNegara($negara);
+        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'cpmi' =>$total_cpmi_byNegara], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }

@@ -18,7 +18,17 @@ class Penempatan extends CI_Model
         $query =
             "SELECT `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
             FROM `tb_cpmi` 
-            JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id`
+            JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
+            ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_pdf_cpmi($perusahaan)
+    {
+        $query =
+            "SELECT `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
+            FROM `tb_cpmi` 
+            JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` WHERE perusahaan='$perusahaan'
             ";
         return $this->db->query($query)->result_array();
     }
@@ -52,11 +62,19 @@ class Penempatan extends CI_Model
         $data = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka ");
         return $data->result();
     }
+
     public function getTotalCPMI()
     {
         $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi ");
         return $data->result();
     }
+
+    public function getTotalCPMI_byNegara($negara)
+    {
+        $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi WHERE negara_penempatan='$negara'");
+        return $data->result();
+    }
+
     public function getTotalPMIB()
     {
         $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");

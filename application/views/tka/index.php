@@ -79,8 +79,8 @@
                                     <tr>
                                         <th rowspan="2">No.</th>
                                         <th rowspan="2">Perusahaan</th>
-                                        <th rowspan="2">Alamat Perusahaan</th>
-                                        <th colspan="9">Data TKA</th>
+                                        <!-- <th rowspan="2">Alamat Perusahaan</th> -->
+                                        <th colspan="5">Data TKA</th>
                                         <th rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
@@ -88,10 +88,10 @@
                                         <th>Negara</th>
                                         <th>Jabatan</th>
                                         <th>JK</th>
-                                        <th>No. RPTKA</th>
+                                        <!-- <th>No. RPTKA</th>
                                         <th>Masa Berlaku</th>
                                         <th>No. IMTA</th>
-                                        <th>Masa Berlaku</th>
+                                        <th>Masa Berlaku</th> -->
                                         <th>Lokasi Bekerja</th>
                                     </tr>
                                 </thead>
@@ -101,15 +101,15 @@
                                         <tr align="left">
                                             <th><?= $i; ?></th>
                                             <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
-                                            <td> <small> <?= $t['alamat']; ?> </small></td>
+                                            <!-- <td> <small> <?= $t['alamat']; ?> </small></td> -->
                                             <td> <small> <?= $t['nama_tka']; ?> </small> </td>
                                             <td><small> <?= $t['kewarganegaraan']; ?> </small></td>
                                             <td> <small> <?= $t['jabatan']; ?> </small></td>
                                             <td><small> <?= $t['jenis_kel']; ?> </small></td>
-                                            <td> <small><?= $t['no_rptka']; ?> </small></td>
+                                            <!-- <td> <small><?= $t['no_rptka']; ?> </small></td>
                                             <td> <small><?= $t['masa_rptka']; ?></small></td>
                                             <td> <small><?= $t['no_imta']; ?> </small></td>
-                                            <td><small><?= $t['masa_imta']; ?></small></td>
+                                            <td><small><?= $t['masa_imta']; ?></small></td> -->
                                             <td> <small> <?= $t['lokasi_kerja']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
