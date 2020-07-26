@@ -200,6 +200,7 @@ class Datamaster extends CI_Controller
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
                 'fungsi' => $this->input->post('fungsi', true),
+                'date_created' => date('Y-m-d'),
             ];
 
             $this->db->insert('tb_perusahaan', $data);

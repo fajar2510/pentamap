@@ -57,12 +57,28 @@ class Master extends CI_Model
                 ";
         return $this->db->query($query)->row();
     }
-
     // query data PMI
     public function getPmiJoinWilayah()
     {
-        $query =
-            "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+
+
+        // $taw = ".$awal[2] . " - " . $awal[0] . " - " . $awal[1].";
+        // $akh = ".$akhir[2] . " - " . $akhir[0] . " - " . $akhir[1].";
+        // $tanggal = array(
+        //     'awal' => $tawal,
+        //     'akhir' => $takhir,
+        // );
+        if (isset($_POST['filter'])) {
+            $post = $this->input->post();
+            $tawal = $post['tawal'];
+            $aw = date_create($tawal);
+            $wal = date_format($aw, 'Y-m-d');
+
+            $takhir = $post['takhir'];
+            $akh = date_create($takhir);
+            $hir = date_format($akh, 'Y-m-d');
+            $query =
+                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
                 , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
@@ -72,14 +88,30 @@ class Master extends CI_Model
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
                     ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    WHERE `date_created` BETWEEN '$wal' AND '$hir'
                 ";
-        return $this->db->query($query)->result_array();
+            return $this->db->query($query)->result_array();
+        } else {
+            $query =
+                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                    FROM `tb_pmi` JOIN `provinsi`
+                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    JOIN `kabupaten`
+                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `kecamatan`
+                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    JOIN `kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`
+                ";
+            return $this->db->query($query)->result_array();
+        }
     }
 
     public function getPmi_per_negara($negara)
     {
         $query =
-        "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+            "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
                 , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`

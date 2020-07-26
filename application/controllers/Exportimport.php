@@ -165,9 +165,9 @@ class Exportimport extends CI_Controller
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan);
-        $total_cpmi_byNegara = $this->Penempatan->getTotalCPMI_byNegara($negara);
-        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'cpmi' =>$total_cpmi_byNegara], TRUE);
+        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan,$negara);
+        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($perusahaan,$negara);
+        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }

@@ -26,6 +26,7 @@ class Pmi extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         // Load Model User Role
+
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['pmi'] = $this->Master->get_PMI();
 
@@ -37,6 +38,7 @@ class Pmi extends CI_Controller
         $this->load->view('pmi/index', $data);
         $this->load->view('templates/footer', $data);
     }
+
 
     // dijalankan saat provinsi di klik
     public function pilih_kabupaten()
@@ -239,4 +241,5 @@ class Pmi extends CI_Controller
             alert-success" role="alert"> Your selected PMI has succesfully deleted, be carefull for manage data. </div>');
         redirect('pmi/');
     }
+   
 }

@@ -51,8 +51,10 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
+        $data['negara'] = $this->db->get('tb_negara')->result_array();
+
         // load data 
-        $data['cpmi'] = $this->Penempatan->get_cpmi();
+        $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
 
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
@@ -103,7 +105,13 @@ class Cpmi extends CI_Controller
                 'date_created' => date('Y-m-d'),
             ];
 
+            // $data_perusahaan_negara = [
+            //     'perusahaan' => $this->input->post('perusahaan'),
+            //     'negara_penempatan' => $this->input->post('negara_penempatan'),
+            // ];
+
             $this->db->insert('tb_cpmi', $data);
+            // $this->db->insert('tb_perusahaan_negara', $data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert"> Data PPPMI succesfully Added! </div>');
             redirect('cpmi');
@@ -123,6 +131,8 @@ class Cpmi extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         // load data 
+        $data['negara'] = $this->db->get('tb_negara')->result_array();
+
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
@@ -175,8 +185,15 @@ class Cpmi extends CI_Controller
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
             ];
 
+            // $data_perusahaan_negara = [
+            //     'perusahaan' => $this->input->post('perusahaan'),
+            //     'negara_penempatan' => $this->input->post('negara_penempatan'),
+            // ];
+
             $this->db->where('id', $id);
             $this->db->update('tb_cpmi', $data);
+
+            // $this->db->update('tb_perusahaan_negara',$data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert"> Data PPPMI succesfully Updated! </div>');
             redirect('cpmi');
@@ -191,5 +208,41 @@ class Cpmi extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Your selected PPPMI has succesfully deleted, be carefull for manage data. </div>');
         redirect('cpmi');
+    }
+
+    public function laporan_pmi()
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+
+        // load data wilayah
+
+        $data['data_cpmi'] = $this->Penempatan->get_distinct_cpmi();
+        // count
+        $data['data_taiwan_lk'] = $this->Penempatan->get_taiwan_lk();
+        $data['data_taiwan_pr'] = $this->Penempatan->get_taiwan_pr();
+        $data['data_hongkong_lk'] = $this->Penempatan->get_hongkong_lk();
+        $data['data_hongkong_pr'] = $this->Penempatan->get_hongkong_pr();
+        $data['data_sin_lk'] = $this->Penempatan->get_sin_lk();
+        $data['data_sin_pr'] = $this->Penempatan->get_sin_pr();
+        $data['data_may_lk'] = $this->Penempatan->get_may_lk();
+        $data['data_may_pr'] = $this->Penempatan->get_may_pr();
+        // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
+        // $data['a'] =  $this->Penempatan->getTotalTKA();
+        // $data['b'] =  $this->Penempatan->getTotalPMIB();
+
+        $data['title'] = 'Data AN Penempatan Pekerja Migran Indonesia ';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('cpmi/laporan_pmi', $data);
+        $this->load->view('templates/footer', $data);
     }
 }

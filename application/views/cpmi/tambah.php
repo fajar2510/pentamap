@@ -34,6 +34,14 @@
                         <div>
                             <form action="<?= base_url('cpmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
+                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
+                                            <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
@@ -137,9 +145,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                                        <label for="jabatan" class="col-sm-3 col-form-label">Sektor Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jabatan" placeholder="Masukkan Jabatan" name="jabatan">
+                                            <select name="jabatan" id="pendidikan" class="form-control">
+                                                <option value=""> ~ Pilih Sektor Jabatan ~ </option>
+                                                <option value="FORMAL">FORMAL</option>
+                                                <option value="INFORMAL">INFORMAL</option>
+                                            </select>
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -149,9 +161,9 @@
                                             <select name="pendidikan" id="pendidikan" class="form-control">
                                                 <option value=""> ~ Pilih Pendidikan ~ </option>
                                                 <option value="SD">SD (Sekolah Dasar)</option>
-                                                <option value="SMP">SMP (Sekolah Menengah Pertama)</option>
-                                                <option value="SMA">SMA (Sekolah Menengah Atas)</option>
-                                                <option value="S1/S2">S1/S2 (Strata 1-2)</option>
+                                                <option value="SMP">SMP/SLTP (Sekolah Menengah Pertama)</option>
+                                                <option value="SMA">SMA/SMU (Sekolah Menengah Atas)</option>
+                                                <option value="S1/S2">S1/S2/Insiyur (Strata 1-2)</option>
                                                 <option value="-">-</option>
                                             </select>
                                             <?= form_error('pendidikan', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -174,8 +186,12 @@
                                     <div class="form-group row">
                                         <label for="negara_penempatan" class="col-sm-3 col-form-label">Negara Penempatan</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="negara_penempatan" placeholder="Negara tempat bekerja" name="negara_penempatan">
-                                            <?= form_error('negara_penempatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <select class="custom-select" name="negara_penempatan" id="negara_penempatan" class="form-control">
+                                                <option value="">~ Pilih Negara ~</option>
+                                                <?php foreach ($negara as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

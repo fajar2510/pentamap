@@ -29,20 +29,24 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-filter"></i>
-                                </span>
-                                <span class="text">Filter</span>
-                            </a>
-                            <div>
-                                <div class="container">
-                                    Rentang Awal: <input id="startDate" width="276" />
-                                    Rentang Akhir: <input id="endDate" width="276" />
-                                </div>
-                            </div>
+                            <form enctype="multipart/form-data" method="post" action="<?= base_url('pmi'); ?>">
+
+                                <div>
+                                    <div class="container">
+
+                                        Rentang Awal: <input id="startDate" width="276" name="tawal">
+                                        Rentang Akhir: <input id="endDate" width="276" name="takhir">
+                                        <button type="submit" class="btn btn-success btn-icon-split " name="filter" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-filter"></i>
+                                            </span>
+                                            <span class="text">Filter</span>
+                                        </button>
+                            </form>
                         </div>
-                        <!-- <div class="dropdown mb-0">
+                    </div>
+                </div>
+                <!-- <div class="dropdown mb-0">
                             <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
@@ -64,69 +68,73 @@
                             </a>
                         </div> -->
 
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead align="center">
-                                    <tr>
-                                        <th rowspan="2" width="4%"> No</th>
-                                        <th rowspan="2" width="21%">Nama (umur)</th>
-                                        <th colspan="3" width="40%">Alamat</th>
-                                        <th rowspan="2" width="19%">Negara Bekerja </th>
-                                        <th rowspan="2" width="18%">Aksi</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Desa</th>
-                                        <th>Kecamatan</th>
-                                        <th>Kab./Kota</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($pmi as $p) : ?>
-                                        <tr>
-                                            <td align="center"><?= $i; ?></td>
-                                            <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
-                                            <td><?= $p['nama']; ?> <sup>
-                                                    (<?php $lahir    = new DateTime($p['tgl_lahir']);
-                                                        $today        = new DateTime();
-                                                        $umur = $today->diff($lahir);
-                                                        echo $umur->y;
-                                                        // echo " Tahun, ";
-                                                        // echo $umur->m;
-                                                        // echo " Bulan, dan ";
-                                                        // echo $umur->d;
-                                                        // echo " Hari";
-                                                        ?>)</sup> </td>
-                                            <td align="center"><small> <?= $p['nama_kelurahan']; ?> </small></td>
-                                            <td align="center"><small> <?= $p['nama_kecamatan']; ?> </small></td>
-                                            <td align="center"> <small> <?= $p['nama_kabupaten']; ?> </small></td>
-                                            <td align="center"><small><?= $p['negara_bekerja']; ?></small> </td>
-                                            <td align="center">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Aksi
-                                                </button>
-                                                <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                                    <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="dropdown-item"> Edit</a>
-                                                    <a href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="dropdown-item">Daftar Hadir</i></a>
-                                                    <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="dropdown-item">Kwitansi</i></a>
-                                                </div>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <?php $i++; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead align="center">
+                            <tr>
+                                <th rowspan="2" width="4%"> No</th>
+                                <th rowspan="2">Tanggal</th>
+                                <th rowspan="2" width="21%">Nama (umur)</th>
+                                <th colspan="3" width="40%">Alamat</th>
+                                <th rowspan="2" width="19%">Negara Bekerja </th>
+                                <th rowspan="2" width="18%">Aksi</th>
+                            </tr>
+                            <tr>
+                                <th>Desa</th>
+                                <th>Kecamatan</th>
+                                <th>Kab./Kota</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1; ?>
+                            <?php foreach ($pmi as $p) : ?>
+                                <tr>
+                                    <td align="center"><?= $i; ?></td>
+                                    <td><small><?= $p['date_created']; ?></small> </td>
+
+                                    <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
+                                    <td><?= $p['nama']; ?> <sup>
+                                            (<?php $lahir    = new DateTime($p['tgl_lahir']);
+                                                $today        = new DateTime();
+                                                $umur = $today->diff($lahir);
+                                                echo $umur->y;
+                                                // echo " Tahun, ";
+                                                // echo $umur->m;
+                                                // echo " Bulan, dan ";
+                                                // echo $umur->d;
+                                                // echo " Hari";
+                                                ?>)</sup> </td>
+                                    <td align="center"><small> <?= $p['nama_kelurahan']; ?> </small></td>
+                                    <td align="center"><small> <?= $p['nama_kecamatan']; ?> </small></td>
+                                    <td align="center"> <small> <?= $p['nama_kabupaten']; ?> </small></td>
+                                    <td align="center"><small><?= $p['negara_bekerja']; ?></small> </td>
+                                    <td align="center">
+                                        <!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Aksi
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+
+                                        </div> -->
+                                        <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="btn btn-sm btn-success">Daf.Hadir</i></a>
+                                        <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-info">Kwitansi</i></a> <br>
+                                        <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                        <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <?php $i++; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
+</div>
+
+</div>
+<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

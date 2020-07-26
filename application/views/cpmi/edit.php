@@ -34,6 +34,14 @@
                         <div>
                             <form action="<?= base_url('cpmi/edit/' . $edit_cpmi->id); ?>" method="post">
                                 <div class="modal-body">
+                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="<?= $edit_cpmi->date_created ?>" id="tanggal_data" name="tanggal_data">
+                                            <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
@@ -313,9 +321,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                                        <label for="jabatan" class="col-sm-3 col-form-label">Sektor Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jabatan" placeholder="Masukkan Jabatan" name="jabatan" value="<?= $edit_cpmi->jabatan ?>">
+                                            <select name="jabatan" id="pendidikan" class="form-control">
+                                                <option value="FORMAL" <?php if ($edit_cpmi->jabatan == 'FORMAL') {
+                                                                            echo 'selected';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>>FORMAL </option>
+                                                <option value="INFORMAL" <?php if ($edit_cpmi->jabatan == 'INFORMAL') {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>>INFORMAL </option>
+                                            </select>
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -369,8 +388,12 @@
                                     <div class="form-group row">
                                         <label for="negara_penempatan" class="col-sm-3 col-form-label">Negara Penempatan</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="negara_penempatan" placeholder="Negara tempat bekerja" name="negara_penempatan" value="<?= $edit_cpmi->negara_penempatan ?>">
-                                            <?= form_error('negara_penempatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <select class="custom-select" name="negara_penempatan" id="negara_penempatan" class="form-control">
+                                                <option value="">~ Pilih Negara ~</option>
+                                                <?php foreach ($negara as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

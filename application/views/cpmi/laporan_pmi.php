@@ -15,9 +15,15 @@
     </div>
 
     <!-- parsing data -->
-    <?php foreach ($formal as $tot_formal); ?>
-    <?php foreach ($a as $aa); ?>
-    <?php foreach ($b as $bb); ?>
+    <?php foreach ($data_taiwan_lk as $taiwan_lk); ?>
+    <?php foreach ($data_taiwan_pr as $taiwan_pr); ?>
+    <?php foreach ($data_hongkong_lk as $hongkong_lk); ?>
+    <?php foreach ($data_hongkong_pr as $hongkong_pr); ?>
+    <?php foreach ($data_sin_lk as $sin_lk); ?>
+    <?php foreach ($data_sin_pr as $sin_pr); ?>
+    <?php foreach ($data_may_lk as $may_lk); ?>
+    <?php foreach ($data_may_pr as $may_pr); ?>
+
 
     <div class="row">
         <div class="col-lg">
@@ -75,14 +81,41 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
-                                        <th> No</th>
-                                        <th>Nama_PMI </th>
-                                        <th>Domisili</th>
-                                        <!-- <th>L/P</th> -->
-                                        <th>Perusahaan</th>
-                                        <th>Pengguna Jasa </th>
-                                        <th>Negara</th>
-                                        <th>&nbsp;Aksi__&nbsp;</th>
+                                        <th rowspan="2"> NO </th>
+                                        <th rowspan="2">NAMA_PPPMI</th>
+                                        <th>STATUS</th>
+                                        <th colspan="2">TAIWAN</th>
+                                        <th colspan="2">HONGKONG</th>
+                                        <th colspan="2">SIN</th>
+                                        <th colspan="2">MALAYSIA</th>
+                                        <th colspan="2">BRUNEI_D.</th>
+                                        <th colspan="2">LAINNYA</th>
+                                        <th colspan="2">SEKTOR</th>
+                                        <th colspan="2">DOMISILI</th>
+                                        <th colspan="2">JUMLAH</th>
+                                        <th rowspan="2">TOTAL</th>
+                                        <!-- <th>&nbsp;Aksi__&nbsp;</th> -->
+                                    </tr>
+                                    <tr>
+                                        <th>(P/C)</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> Formal</th>
+                                        <th> Informal</th>
+                                        <th> Jatim</th>
+                                        <th> L.Jatim</th>
+                                        <th> L</th>
+                                        <th> P</th>
                                     </tr>
                                 </thead>
                                 <tbody align="center">
@@ -90,18 +123,41 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
+                                            <td><small> <?= $p['nama_perusahaan']; ?> </small></td>
+                                            <td><small> <?= $p['status']; ?> </small></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo $sin_lk->sin_lk; ?></td>
+                                            <td><?php echo $sin_pr->sin_pr; ?><br><?php echo $sin_lk->sin_lk; ?><br><?php echo $sin_lk->sin_lk; ?></td>
+                                            <td></td>
+                                            <td></td>>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <!-- <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['wilayah']; ?> </small> </td>
-                                            <!-- <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
-                                            <td><small> <?= $p['nama_perusahaan']; ?> </small> </td>
-                                            <td><small> <?= $p['pengguna_jasa']; ?> </small> </td>
-                                            <td><small> <?= $p['nama_negara']; ?> </small> </td>
+                                            <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
+                                            <!-- <td><small> <?= $p['nama_perusahaan']; ?> </small> </td> -->
+                                            <!-- <td><small> <?= $p['pengguna_jasa']; ?> </small> </td> -->
+                                            <!-- <td><small> <?= $p['negara_penempatan']; ?> </small> </td> -->
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
-                                            <td>
+                                            <!-- <td>
                                                 <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan']; ?>" target="_blank" class="btn btn-sm btn-info"> Laporan</i></a>
                                                 <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -120,70 +176,3 @@
 <!-- End of Main Content -->
 
 <!--  <!-- modalhapus -->
-<?php foreach ($data_cpmi as $p) : ?>
-
-    <div class="modal fade" id="modalHapus<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <center>
-                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
-                    <form action="<?= base_url('cpmi/hapus/' . $p['id']); ?>">
-                        <div class="modal-body">Data&nbsp; <b>
-                                <font color="red"><?= $p['nama_pmi']; ?></font>
-                            </b> dari <b>
-                                <font color="red"><?= $p['nama_perusahaan']; ?></font>
-                            </b> akan dihapus </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                            <button class="btn btn-danger" type="submit">Hapus</button>
-                        </div>
-                    </form>
-                </center>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
-
-<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Import Berkas</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <?= form_open_multipart('exportimport/uploaddata_cpmi') ?>
-                    <div class="form-group column">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="importexcel" name="importexcel" accept=".xlsx, .xls" aria-describedby="uploadHelp">
-                            <label class="custom-file-label" for="image">Pilih Berkas</label>
-                            <small id="uploadHelp" class="form-text text-muted"> <i>
-                                    <font color="orange">file format hanya .xls .xlsx (pilih dokumen excel anda terlebih dahulu!!) </font>
-                                </i></small>
-                        </div>
-                        <hr>
-                        <center>
-                            <button type="submit" class="btn btn-info btn-icon-split">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="text">IMPORT</span>
-                            </button>
-                        </center>
-                    </div>
-                    <?= form_close();  ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
