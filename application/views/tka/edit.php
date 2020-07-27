@@ -48,7 +48,11 @@
 
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                    <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $edit_tka->id_perusahaan) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>> <?= $p['nama_perusahaan']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -58,7 +62,7 @@
                                     <div class="form-group row">
                                         <label for="nama_tka" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="nama_tka" placeholder="Masukkan Nama " value="<?= $edit_tka->nama_tka ?>" name="negara">
+                                            <input type="text" class="form-control" id="nama_tka" placeholder="Masukkan Nama " value="<?= $edit_tka->nama_tka ?>" name="nama_tka">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

@@ -37,7 +37,7 @@
         <thead>
             <tr>
                 <th> -->
-    <p align="center"> <b>LAPORAN BULANAN PPTKIS PENEMPATAN CALON TKI KE LUAR NEGERI</b> </p>
+    <p align="center"> <b>LAPORAN BULANAN PPPMI PENEMPATAN CALON TKI KE LUAR NEGERI</b> </p>
     <!-- </th>
             </tr>
             <tr>

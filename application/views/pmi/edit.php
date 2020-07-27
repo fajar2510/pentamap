@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;">Edit Data <?= $title; ?> <?= date('Y'); ?></h3>
+        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
         <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
@@ -78,16 +78,34 @@
                                     <div class="form-group row">
                                         <label for="jk" class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
-                                            <?php
-                                            $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="prov"  onChange="tampilKabupaten()"';
-                                            echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
-                                            ?>
+                                            <!-- <?php
+                                                    $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="prov"  onChange="tampilKabupaten()"';
+                                                    echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
+                                                    ?> -->
+                                            <select class="custom-select" name="prov" id="provinsi_id" class="form-control input-sm" onChange="tampilKabupaten()">
+                                                <?php foreach ($provinsi_select as $row) : ?>
+                                                    <option value="<?= $row['id_provinsi']; ?>" <?php if ($row['id_provinsi'] == $pmi->provinsi) {
+                                                                                                    echo 'selected';
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>> <?= $row['nama_provinsi']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <?php
-                                            $style_kabupaten = 'class="form-control input-sm" name="kab" id="kabupaten_id" onChange="tampilKecamatan()"';
-                                            echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
-                                            ?>
+                                            <!-- <?php
+                                                    $style_kabupaten = 'class="form-control input-sm" name="kab" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                                    echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
+                                                    ?> -->
+                                            <select class="custom-select" name="kab" id="kabupaten_id" class="form-control input-sm" onChange="tampilKecamatan()">
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $pmi->kabupaten) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -95,15 +113,34 @@
                                         <label for="" class="control-label col-sm-3"></label>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kecamatan = 'class="form-control input-sm" name="kec" id="kecamatan_id" onChange="tampilKelurahan()"';
-                                            echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
-                                            ?>
+                                                    $style_kecamatan = 'class="form-control input-sm" name="kec" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                                    echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
+                                                    ?>
+                                            
+                                            <!-- <select class="custom-select" name="kec" id="kecamatan_id" class="form-control input-sm" onChange="tampilKelurahan()">
+                                                <?php foreach ($kecamatan as $row) : ?>
+                                                    <option value="<?= $row['id_kecamatan']; ?>" <?php if ($row['id_kecamatan'] == $pmi->kecamatan) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kecamatan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
                                         </div>
                                         <div class="col-sm-4">
                                             <?php
-                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
-                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
-                                            ?>
+                                                    $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
+                                                    echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
+                                                    ?>
+                                            <!-- <select class="custom-select" name="desa" id="kelurahan_id" class="form-control input-sm">
+                                                <?php foreach ($kelurahan as $row) : ?>
+                                                    <option value="<?= $row['id_kelurahan']; ?>" <?php if ($row['id_kelurahan'] == $pmi->kelurahan) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kelurahan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
                                         </div>
                                     </div>
                                     <div class="form-group row">

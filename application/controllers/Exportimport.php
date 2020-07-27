@@ -130,6 +130,7 @@ class Exportimport extends CI_Controller
     {
         $mpdf = new \Mpdf\Mpdf();
         $data_pmi = $this->Master->getPmi_per_negara($negara);
+        // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
         $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
         $mpdf->WriteHTML($data);
@@ -158,16 +159,29 @@ class Exportimport extends CI_Controller
         $mpdf->Output();
     }
 
-    public function export_pdf_cpmi($perusahaan,$negara)
+    public function export_pdf_cpmi($perusahaan, $negara)
     {
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan,$negara);
-        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($perusahaan,$negara);
+        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan, $negara);
+        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($perusahaan, $negara);
         $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara], TRUE);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+    }
+
+    public function export_pdf_pppmi()
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $data_cpmi = $this->Penempatan->get_cpmi();
+        $data = $this->load->view('export/pppmi_data', ['semua_data_cpmi' => $data_cpmi], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }

@@ -31,13 +31,13 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Judul</th>
-                                    <th scope="col">Menu</th>
-                                    <th scope="col">Url</th>
-                                    <th scope="col">Icon</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Aksi</th>
+                                    <th width="5%" scope="col">#</th>
+                                    <th width="15%" scope="col">Judul</th>
+                                    <th width="15%" scope="col">Menu</th>
+                                    <th width="20%" scope="col">Url</th>
+                                    <th width="20%" scope="col">Icon</th>
+                                    <th width="15%" scope="col">Status</th>
+                                    <th width="10%" scope="col">Aksi</th>
 
                                 </tr>
                             </thead>
@@ -51,9 +51,9 @@
                                         <td><?= $sm['url']; ?></td>
                                         <td><?= $sm['icon']; ?></td>
                                         <td> <?php if ($sm['is_active'] == 1) {
-                                                    echo 'Aktif';
+                                                    echo '<div class="bg-success text-white p-2 "> <small?>AKTIF</small></div>';
                                                 } else {
-                                                    echo 'Tidak Aktif';
+                                                    echo '<div class="bg-secondary text-white p-2 "><small>TIDAK AKTIF</small></div>';
                                                 } ?>
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modalEdit<?= $sm['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
@@ -181,7 +181,11 @@
                                 <select name="menu_id" id="menu_id" class="form-control">
                                     <option value=""> Pilih Menu </option>
                                     <?php foreach ($menu as $m) : ?>
-                                        <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
+                                        <option value="<?= $m['id']; ?>" <?php if ($m['id'] == $sm['menu_id']) {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>> <?= $m['menu']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

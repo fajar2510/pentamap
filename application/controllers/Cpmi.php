@@ -31,7 +31,7 @@ class Cpmi extends CI_Controller
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
 
-        $data['title'] = 'Data Perusahaan Penempatan Pekerja Migran Indonesia ';
+        $data['title'] = 'Data Perusahaan Penempatan Pekerja Migran Indonesia (P3MI) ';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -224,7 +224,7 @@ class Cpmi extends CI_Controller
 
         // load data wilayah
 
-        $data['data_cpmi'] = $this->Penempatan->get_distinct_cpmi();
+        $data['data_pppmi'] = $this->Penempatan->get_lap_pppmi();
         // count
         $data['data_taiwan_lk'] = $this->Penempatan->get_taiwan_lk();
         $data['data_taiwan_pr'] = $this->Penempatan->get_taiwan_pr();

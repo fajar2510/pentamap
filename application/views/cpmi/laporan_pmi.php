@@ -55,19 +55,19 @@
                             </div>
                         </div>
                         <div class="dropdown mb-0">
-                            <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </button>
-                            <!-- <a href="<?= base_url('exportimport/export_pdf_cpmi'); ?>" target="_blank" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            </button> -->
+                            <a href="<?= base_url('exportimport/export_pdf_pppmi'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    <i class="fa fa-print" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
                             </a>
-                            <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
@@ -120,22 +120,20 @@
                                 </thead>
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($data_cpmi as $p) : ?>
+                                    <?php foreach ($data_pppmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td><small> <?= $p['nama_perusahaan']; ?> </small></td>
                                             <td><small> <?= $p['status']; ?> </small></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><?php echo $sin_lk->sin_lk; ?></td>
-                                            <td><?php echo $sin_pr->sin_pr; ?><br><?php echo $sin_lk->sin_lk; ?><br><?php echo $sin_lk->sin_lk; ?></td>
-                                            <td></td>
-                                            <td></td>>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><small> <?= $p['total_lk']; ?> </small></td>
+                                            <td><small> <?= $p['total_pr']; ?> </small></td>
+                                            <td><small> <?= $p['total_lk']; ?> </small></td>
+                                            <td><small> <?= $p['total_pr']; ?> </small></td>
+                                            <td><small> <?= $p['total_lk']; ?> </small></td>
+                                            <td><small> <?= $p['total_pr']; ?> </small></td>
+                                            <td><small> <?= $p['total_lk']; ?> </small></td>
+                                            <td><small> <?= $p['total_pr']; ?> </small></td>
+                                            <td><small> <?= $p['total_lk']; ?> </small></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

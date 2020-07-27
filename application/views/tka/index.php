@@ -51,24 +51,24 @@
 
 
                         <div class="dropdown mb-0">
-                            <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </button>
-                            <a href="<?= base_url('exportimport/export_pdf_tka'); ?>" target="_blank" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            </button> -->
+                            <a href="<?= base_url('exportimport/export_pdf_tka'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    <i class="fa fa-print" aria-hidden="true"></i>
                                 </span>
-                                <span class="text">PDF</span>
+                                <span class="text"><b>PDF</b> </span>
                             </a>
-                            <a href="<?= base_url('exportimport/export_excel_tka'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <a href="<?= base_url('exportimport/export_excel_tka'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">CSV</span>
-                            </a>
+                            </a> -->
                         </div>
 
                     </div>

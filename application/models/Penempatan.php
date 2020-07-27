@@ -48,6 +48,24 @@ class Penempatan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function get_lap_pppmi()
+    {
+        $query =
+            "SELECT nama_perusahaan,status,negara_penempatan,wilayah, 
+        COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
+        COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
+        COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
+        COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
+        FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
+        JOIN tb_negara ON negara_penempatan = tb_negara.id 
+        GROUP BY perusahaan,negara_penempatan,wilayah";
+        //     "SELECT perusahaan,negara_penempatan,jenis_kelamin,nama_perusahaan,status,nama_negara,jabatan,wilayah,COUNT(*) AS total 
+        // FROM tb_cpmi JOIN tb_perusahaan ON perusahaan=tb_perusahaan.id 
+        // JOIN tb_negara ON negara_penempatan=tb_negara.id 
+        // GROUP BY perusahaan,negara_penempatan,jenis_kelamin,jabatan,wilayah";
+        return $this->db->query($query)->result_array();
+    }
+
     public function get_pdf_cpmi($perusahaan, $negara)
     {
         $query =

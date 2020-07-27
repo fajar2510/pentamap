@@ -61,13 +61,6 @@ class Master extends CI_Model
     public function getPmiJoinWilayah()
     {
 
-
-        // $taw = ".$awal[2] . " - " . $awal[0] . " - " . $awal[1].";
-        // $akh = ".$akhir[2] . " - " . $akhir[0] . " - " . $akhir[1].";
-        // $tanggal = array(
-        //     'awal' => $tawal,
-        //     'akhir' => $takhir,
-        // );
         if (isset($_POST['filter'])) {
             $post = $this->input->post();
             $tawal = $post['tawal'];
@@ -88,10 +81,13 @@ class Master extends CI_Model
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
                     ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
-                    WHERE `date_created` BETWEEN '$wal' AND '$hir'
+                    WHERE `date_created` BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
                 ";
             return $this->db->query($query)->result_array();
         } else {
+
+
+
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
                 , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
@@ -102,7 +98,7 @@ class Master extends CI_Model
                     JOIN `kecamatan`
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`  ORDER BY `date_created` DESC
                 ";
             return $this->db->query($query)->result_array();
         }
@@ -120,7 +116,11 @@ class Master extends CI_Model
                     JOIN `kecamatan`
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` WHERE `negara_bekerja` = '$negara'
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    WHERE `negara_bekerja` = '$negara' 
+                    -- AND `date_created` = date('m')  
+                   
+                    ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
     }

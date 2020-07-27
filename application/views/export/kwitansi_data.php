@@ -5,6 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Kwitansi PMI-B </title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        table,
+        th {
+            height: 5px;
+            border: 0px solid black;
+            padding: 8px;
+        }
+
+        td {
+            border: 0px solid black;
+            padding: 4px;
+            text-align: justify;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,18 +33,62 @@
                 <font color="grey"> Tanggal cetak : <?= date('d-m-Y'); ?></font>
             </i> </small></span>
     <br>
-    <table width="100%">
+    <table>
         <thead>
             <tr>
-                <th>
-                    <h2> <u>KWITANSI</u> </h2>
-                </th>
+                <td>NAMA</td>
+                <td>:</td>
+                <td>LUKMAN AJANG</td>
+                <td>FOTO</td>
+            </tr>
+            <tr>
+                <td>TANGGAL LAHIR (USIA)</td>
+                <td>:</td>
+                <td>12-09-12 (24) tahun</td>
+            </tr>
+            <tr>
+                <td>JENIS KELAMIN</td>
+            </tr>
+            <tr>
+                <td>DESA</td>
+            </tr>
+            <tr>
+                <td>KECAMATAN</td>
+            </tr>
+            <tr>
+                <td>KABUPATEN/KOTA</td>
+            </tr>
+            <tr>
+                <td>NEGARA TEMPAT BEKERJA</td>
+            </tr>
+            <tr>
+                <td>JENIS PEKERJAAN</td>
+            </tr>
+            <tr>
+                <td>KEBERANGKATAN MELALUI</td>
+            </tr>
+            <tr>
+                <td>PENGIRIM</td>
+            </tr>
+            <tr>
+                <td>LAMA BEKERJA</td>
+            </tr>
+        </thead>
+    </table>
+    <!-- <table width="100%">
+        <thead>
+            <tr>
+                <th> -->
+    <p align="center">
+        <b> <big><u>KWITANSI</u> </big> </b>
+    </p>
+    <!-- </th>
             </tr>
             <tr>
                 <th></th>
             </tr>
         </thead>
-    </table>
+    </table> -->
     <br>
     <table class="table" width="100%">
         <thead>

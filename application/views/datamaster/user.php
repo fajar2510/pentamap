@@ -174,8 +174,13 @@
                             <div class="col-sm-5">
                                 <select name="role" id="role" class="form-control">
                                     <option value=""> Pilih Role </option>
-                                    <?php foreach ($role as $ur) : ?>
-                                        <option value="<?= $ur['id']; ?>"> <?= $ur['role']; ?></option>
+                                   
+                                    <?php foreach ($role as $p) : ?>
+                                        <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $ur['role_id']) {
+                                                                                echo 'selected';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>> <?= $p['role']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

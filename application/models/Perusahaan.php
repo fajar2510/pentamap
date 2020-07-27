@@ -26,10 +26,10 @@ class Perusahaan extends CI_Model
     public function get_TkaPerusahaan()
     {
         $query =
-            "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`
+        "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`, `tb_perusahaan`.`alamat`
                     FROM `tb_tka` 
-                    JOIN `tb_perusahaan`
-                    ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
+                    JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
+                      ORDER BY `id_perusahaan` ASC
                 ";
         return $this->db->query($query)->result_array();
     }
@@ -37,8 +37,9 @@ class Perusahaan extends CI_Model
     public function get_TkaPerusahaanById($id)
     {
         $query =
-            "SELECT `tb_tka`.*
+            "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`, `tb_perusahaan`.`alamat`
                     FROM `tb_tka` 
+                    JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                      WHERE `tb_tka`.`id`='$id'
                 ";
         return $this->db->query($query)->row();

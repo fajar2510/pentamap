@@ -15,10 +15,7 @@
     </div>
 
     <!-- parsing data -->
-    <?php foreach ($formal as $tot_formal); ?>
-    <?php foreach ($a as $aa); ?>
-    <?php foreach ($b as $bb); ?>
-
+    
     <div class="row">
         <div class="col-lg">
             <?php if (validation_errors()) : ?>
@@ -49,24 +46,12 @@
                             </div>
                         </div>
                         <div class="dropdown mb-0">
-                            <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </button> -->
-                            <!-- <a href="<?= base_url('exportimport/export_pdf_cpmi'); ?>" target="_blank" class="btn btn-danger " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                </span>
-                                <span class="text">PDF</span>
-                            </a>
-                            <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </span>
-                                <span class="text">CSV</span>
-                            </a> -->
+                            </button>
                         </div>
 
                     </div>
@@ -76,12 +61,7 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <th>Nama_PMI </th>
-                                        <th>Domisili</th>
-                                        <!-- <th>L/P</th> -->
-                                        <th>Perusahaan</th>
-                                        <!-- <th>Pengguna Jasa </th> -->
-                                        <th>Negara</th>
+                                        <th>Nama Negara</th>
                                         <th>&nbsp;Aksi__&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -90,15 +70,9 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
-                                            <td><small> <?= $p['wilayah']; ?> </small> </td>
-                                            <!-- <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
-                                            <td><small> <?= $p['nama_perusahaan']; ?> </small> </td>
-                                            <!-- <td><small> <?= $p['pengguna_jasa']; ?> </small> </td> -->
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
-                                            <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
-                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan']; ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-book" aria-hidden="true"></i> <b>P3MI</b></i></a>
+                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan']; ?>" target="_blank" class="btn btn-sm btn-info"> Laporan</i></a>
                                                 <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>

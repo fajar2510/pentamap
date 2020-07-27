@@ -115,11 +115,10 @@ class Tka extends CI_Controller
         $data['edit_tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
 
 
-        $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
+        $this->form_validation->set_rules('nama_tka', 'Nama TKA', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('id_perusahaan', 'Perusahaan', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat Perusahaan', 'required');;
+        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
         $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');
         $this->form_validation->set_rules('masa_rptka', 'Masa Berlaku RPTKA', 'required');
@@ -136,14 +135,11 @@ class Tka extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'nama_tka' => $this->input->post('nama'),
+                'nama_tka' => $this->input->post('nama_tka'),
                 'jenis_kel' => $this->input->post('gender'),
-                'nama_perusahaan' => $this->input->post('nama_perusahaan'),
-                'status' => $this->input->post('status'),
-                'alamat' => $this->input->post('alamat'),
+                'id_perusahaan' => $this->input->post('perusahaan'),
                 'kewarganegaraan' => $this->input->post('negara'),
                 'jabatan' => $this->input->post('jabatan'),
-                'sektor' => $this->input->post('sektor'),
                 'no_rptka' => $this->input->post('no_rptka'),
                 'masa_rptka' => $this->input->post('masa_rptka'),
                 'no_imta' => $this->input->post('no_imta'),

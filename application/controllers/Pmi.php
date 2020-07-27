@@ -163,6 +163,11 @@ class Pmi extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
+
+        $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
+        $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
+        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
         // Load model pmi
         $data['pmi'] = $this->Master->getPmiById($id);
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
@@ -182,7 +187,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
+            $data['title'] = 'Edit Data Pemulangan (PMI-B) Non-Prosedural ';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

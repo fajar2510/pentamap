@@ -49,7 +49,11 @@
                                             <select name="perusahaan" id="perusahaan" class="form-control">
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                    <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $edit_cpmi->perusahaan) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>> <?= $p['nama_perusahaan']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -356,12 +360,12 @@
                                                                         echo 'selected';
                                                                     } else {
                                                                         echo '';
-                                                                    } ?>>SMA (Sekolah Menengah Atas)</option>
+                                                                    } ?>>SMA/SMU (Sekolah Menengah Atas)</option>
                                                 <option value="S1/S2" <?php if ($edit_cpmi->pendidikan_formal == 'S1/S2') {
                                                                             echo 'selected';
                                                                         } else {
                                                                             echo '';
-                                                                        } ?>>S1/S2 (Strata 1-2)</option>
+                                                                        } ?>>S1/S2/Insiyur (Strata 1-2)</option>
                                                 <option value="-" <?php if ($edit_cpmi->pendidikan_formal == '-') {
                                                                         echo 'selected';
                                                                     } else {
@@ -391,7 +395,11 @@
                                             <select class="custom-select" name="negara_penempatan" id="negara_penempatan" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_cpmi->negara_penempatan) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
