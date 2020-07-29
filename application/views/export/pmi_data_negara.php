@@ -28,11 +28,45 @@
             /* height: 50px; */
             border: 1px solid black;
             padding: 10px;
-            text-align: center; 
+            text-align: center;
         }
     </style>
 </head>
 <?php foreach ($semua_data_pmi as $p); ?>
+
+<?php
+function bulanIndo($bulanInggris)
+{
+    switch ($bulanInggris) {
+        case '01':
+            return 'Januari';
+        case '02':
+            return 'Februari';
+        case '03':
+            return 'Maret';
+        case '04':
+            return 'April';
+        case '05':
+            return 'Mei';
+        case '06':
+            return 'Juni';
+        case '07':
+            return 'Juli';
+        case '08':
+            return 'Agustus';
+        case '09':
+            return 'September';
+        case '10':
+            return 'Oktober';
+        case '11':
+            return 'November';
+        case '12':
+            return 'Desember';
+        default:
+            return 'Bulan tidak valid';
+    }
+}
+?>
 
 <body>
     <span><small> <i>
@@ -44,7 +78,12 @@
                 <tr style="border: 0px;">
                     <td align="center"> -->
             <p align="center"><b>DAFTAR HADIR PEMULANGAN<br>
-                    PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $p['negara_bekerja']; ?> <br>
+                    PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $p['negara_bekerja']; ?>
+                    <?php
+                    $bln = explode('-',  $p['date_created']);
+                    $bulanBahasaInggris = date('m');
+                    $bulanBahasaIndonesia = bulanIndo($bulanBahasaInggris);
+                    ?> <?= bulanIndo($bln[1]) ?><br>
                     TAHUN <?= date('Y'); ?></b></p>
             <!-- 
                     </td>

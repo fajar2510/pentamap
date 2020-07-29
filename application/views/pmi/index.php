@@ -104,7 +104,7 @@
                                     <td align="center"><small> <?= $p['nama_kelurahan']; ?>, <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?> </small></td>
                                     <td align="center"><small><?= $p['negara_bekerja']; ?></small> </td>
                                     <td align="center">
-                                        <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja']; ?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-book" aria-hidden="true"></i></i></a>
+                                        <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] .'/'. $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-book" aria-hidden="true"></i></i></a>
                                         <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-info"> <b>KWITANSI</b> </i></i></i></i></a>
                                         <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                         <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

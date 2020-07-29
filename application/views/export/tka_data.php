@@ -28,6 +28,40 @@
     </style>
 </head>
 
+<?php
+function bulanIndo($bulanInggris)
+{
+    switch ($bulanInggris) {
+        case '01':
+            return 'Januari';
+        case '02':
+            return 'Februari';
+        case '03':
+            return 'Maret';
+        case '04':
+            return 'April';
+        case '05':
+            return 'Mei';
+        case '06':
+            return 'Juni';
+        case '07':
+            return 'Juli';
+        case '08':
+            return 'Agustus';
+        case '09':
+            return 'September';
+        case '10':
+            return 'Oktober';
+        case '11':
+            return 'November';
+        case '12':
+            return 'Desember';
+        default:
+            return 'Bulan tidak valid';
+    }
+}
+?>
+
 <body>
     <span><small> <i>
                 <font color="grey">Tanggal cetak : <?= date('d-m-Y'); ?> </font>
@@ -37,8 +71,11 @@
             <tr>
                 <th> -->
     <center>
-        <p align="center"> <b>LAPORAN TKA (TENAGA KERJA ASING) DAN PERUSAHAAN PENEMPATAN <br>
-                TAHUN <?= date('Y'); ?> </b>
+        <p align="center"> <b>LAPORAN TKA (TENAGA KERJA ASING) DAN PERUSAHAAN PENEMPATAN
+                <?php
+                $bln = explode('/',  $tanggal);
+                ?> <?= bulanIndo($bln[0]) ?><br>
+                TAHUN <?= $bln[2]; ?> </b>
         </p>
     </center>
     <!-- </th>

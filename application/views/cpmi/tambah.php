@@ -48,8 +48,8 @@
                                         <div class="col-sm-5">
                                             <select name="perusahaan" id="perusahaan" class="form-control">
                                                 <option value="">~ Pilih Perusahaan ~</option>
-                                                <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php foreach ($perusahaan as $per) : ?> 
+                                                    <option value="<?= $per['id']; ?>"> <?= $per['nama_perusahaan']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

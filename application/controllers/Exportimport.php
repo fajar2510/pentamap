@@ -173,10 +173,10 @@ class Exportimport extends CI_Controller
     }
 
 
-    public function pmi_negara($negara)
+    public function pmi_negara($negara, $date)
     {
         $mpdf = new \Mpdf\Mpdf();
-        $data_pmi = $this->Master->get_filter($negara);
+        $data_pmi = $this->Master->getPmi_per_negara($negara, $date);
         // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
         $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
@@ -186,7 +186,7 @@ class Exportimport extends CI_Controller
 
     public function export_pdf_kwitansi($id)
     {
-        $mpdf = new \Mpdf\Mpdf(); 
+        $mpdf = new \Mpdf\Mpdf();
         $data_kwitansi = $this->Master->getPmiById($id);
         $data = $this->load->view('export/kwitansi_data', ['semua_data_kwitansi' => $data_kwitansi], TRUE);
         $mpdf->WriteHTML($data);
@@ -195,13 +195,15 @@ class Exportimport extends CI_Controller
 
     public function export_pdf_tka()
     {
+        // echo $_POST['awal'];
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_tka = $this->Perusahaan->get_TkaPerusahaan();
-        $data = $this->load->view('export/tka_data', ['semua_data_tka' => $data_tka], TRUE);
+        $data_tka['tanggal'] = $_POST['awal'];
+        $data_tka['semua_data_tka'] = $this->Perusahaan->get_TkaPerusahaanByMonthYear($_POST['awal']);
+        $data = $this->load->view('export/tka_data',$data_tka, TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
@@ -232,6 +234,4 @@ class Exportimport extends CI_Controller
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
-
-    
 }

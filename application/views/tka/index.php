@@ -31,38 +31,36 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
-                            <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-filter"></i>
-                                </span>
-                                <span class="text">Filter</span>
-                            </a>
-                            <div>
-                                <div class="container">
-                                    Rentang Awal: <input id="startDate" width="276" />
-                                    Rentang Akhir: <input id="endDate" width="276" />
-                                </div>
-                            </div>
-
-
-
+                            <form action="<?= base_url('exportimport/export_pdf_tka') ?>" method="post">
+                                <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-filter"></i>
+                                    </span>
+                                    <span class="text">Filter</span>
+                                </a>
+                                <div>
+                                    <div class="container"> -->
+                                        Rentang Awal: <input type="text" width="276" name="awal" class="form-control" />
+                                    <!-- </div>
+                                </div> -->
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-print"></i>
+                                    </span>
+                                    <span class="text">PDF</span>
+                                </button>
+                            </form>
                         </div>
 
 
                         <div class="dropdown mb-0">
-                            <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="text">Import</span>
-                            </button> -->
-                            <a href="<?= base_url('exportimport/export_pdf_tka'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+
+                            <!-- <a class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </span>
                                 <span class="text"><b>PDF</b> </span>
-                            </a>
+                            </a> -->
                             <!-- <a href="<?= base_url('exportimport/export_excel_tka'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
@@ -70,7 +68,7 @@
                                 <span class="text">CSV</span>
                             </a> -->
                         </div>
-
+                        <!-- </form> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

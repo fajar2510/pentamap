@@ -146,6 +146,11 @@
             return $('#endDate').val();
         }
     });
+    $('#awalkkk').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        minDate: today,
+    });
     $('#endDate').datepicker({
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome',

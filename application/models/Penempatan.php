@@ -147,9 +147,10 @@ class Penempatan extends CI_Model
     public function get_perusahaan()
     {
         $query =
-        "SELECT DISTINCT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI' GROUP BY `nama_perusahaan`,`status`";
+        "SELECT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
         return $this->db->query($query)->result_array();
     }
+    
 
     public function getTotFormalByPenempatan()
     {
