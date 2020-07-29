@@ -53,7 +53,7 @@ class Penempatan extends CI_Model
     {
         $query =
 
-        "SELECT nama_perusahaan,status,negara_penempatan,nama_negara, 
+            "SELECT nama_perusahaan,status,negara_penempatan,nama_negara, 
         COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
         COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
         COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
@@ -99,7 +99,7 @@ class Penempatan extends CI_Model
          FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
          JOIN tb_negara ON negara_penempatan = tb_negara.id 
          JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
-         WHERE negara_penempatan = '254'  GROUP BY perusahaan"; 
+         WHERE negara_penempatan = '254'  GROUP BY perusahaan";
         return $this->db->query($query)->result_array();
     }
 
@@ -117,8 +117,9 @@ class Penempatan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function get_pdf_cpmi($perusahaan, $negara)
+    public function get_pdf_cpmi($perusahaan, $negara, $date)
     {
+        $bln = explode('-', $date);
         $query =
             "SELECT   `tb_cpmi`.*,  `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`,
             `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
@@ -127,7 +128,8 @@ class Penempatan extends CI_Model
              JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id`
               JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
 
-             WHERE `perusahaan`='$perusahaan' AND `negara_penempatan` = '$negara'
+             WHERE `perusahaan`='$perusahaan' AND `negara_penempatan` = '$negara' AND 
+             MONTH(tb_cpmi.date_created) = '$bln[1]' ORDER BY `tb_cpmi`.`date_created` DESC 
             ";
         return $this->db->query($query)->result_array();
     }
@@ -147,10 +149,18 @@ class Penempatan extends CI_Model
     public function get_perusahaan()
     {
         $query =
-        "SELECT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
+            "SELECT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
         return $this->db->query($query)->result_array();
     }
-    
+
+    public function get_perusahaanPMI()
+    {
+        $query =
+            "SELECT * FROM tb_perusahaan WHERE fungsi= 'PMI'
+        ";
+        return $this->db->query($query)->result_array();
+    }
+
 
     public function getTotFormalByPenempatan()
     {
@@ -172,7 +182,10 @@ class Penempatan extends CI_Model
 
     public function getTotalCPMI_byNegara($perusahaan, $negara)
     {
-        $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi WHERE negara_penempatan='$negara' AND perusahaan = '$perusahaan'");
+
+        $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi 
+        WHERE negara_penempatan='$negara' AND perusahaan = '$perusahaan' 
+         ");
         return $data->result();
     }
 

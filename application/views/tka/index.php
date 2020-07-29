@@ -40,10 +40,10 @@
                                 </a>
                                 <div>
                                     <div class="container"> -->
-                                        Rentang Awal: <input type="text" width="276" name="awal" class="form-control" />
-                                    <!-- </div>
+                                Filter : <input type="text" width="276" name="awal" id="awal" >
+                                <!-- </div>
                                 </div> -->
-                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-print"></i>
                                     </span>

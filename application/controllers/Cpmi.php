@@ -19,6 +19,7 @@ class Cpmi extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+        
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -58,7 +59,7 @@ class Cpmi extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         // load data 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
-        $data['perusahaan'] = $this->Penempatan->get_perusahaan();
+        $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
 
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
 
@@ -140,7 +141,7 @@ class Cpmi extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
-        $data['perusahaan'] = $this->Penempatan->get_perusahaan();
+        $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
 
 

@@ -153,7 +153,7 @@ class Master extends CI_Model
     }
 
 
-    public function getPmi_per_negara($negara, $date)
+    public function getPmi_per_negara($negara, $date) 
     {
         $bln = explode('-', $date);
         $query =

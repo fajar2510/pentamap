@@ -51,29 +51,29 @@
     {
         switch ($bulanInggris) {
             case '01':
-                return 'Januari';
+                return 'JANUARI';
             case '02':
-                return 'Februari';
+                return 'FEBRUARI';
             case '03':
-                return 'Maret';
+                return 'MARET';
             case '04':
-                return 'April';
+                return 'APRIL';
             case '05':
-                return 'Mei';
+                return 'MEI';
             case '06':
-                return 'Juni';
+                return 'JUNI';
             case '07':
-                return 'Juli';
+                return 'JULI';
             case '08':
-                return 'Agustus';
+                return 'AGUSTUS';
             case '09':
-                return 'September';
+                return 'SEPTEMBER';
             case '10':
-                return 'Oktober';
+                return 'OKTOBER';
             case '11':
-                return 'November';
+                return 'NOVEMBER';
             case '12':
-                return 'Desember';
+                return 'DESEMBER';
             default:
                 return 'Bulan tidak valid';
         }
@@ -87,12 +87,11 @@
             <b>Negara Tujuan_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $row['nama_negara'] ?></b>
             <br> <b>Bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                 <?php
+                $bln = explode('-',  $row['date_created']);
                 $bulanBahasaInggris = date('m');
                 $bulanBahasaIndonesia = bulanIndo($bulanBahasaInggris);
-
-                // echo "Bahasa Inggris: {$bulanBahasaInggris} <br>";
-                echo " {$bulanBahasaIndonesia}";
-                ?> <?= date('Y') ?></b> <br><b>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: <?php echo $total_cpmi->cpmi ?> orang</b></small></p>
+                ?> <?= bulanIndo($bln[1]) ?> <?= $bln[0]; ?></b> <br>
+            <b>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: <?php echo $total_cpmi->cpmi ?> orang</></small></p>
 
     <table width="100%">
         <thead>

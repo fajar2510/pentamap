@@ -146,7 +146,7 @@
             return $('#endDate').val();
         }
     });
-    $('#awalkkk').datepicker({
+    $('#awal').datepicker({
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome',
         minDate: today,

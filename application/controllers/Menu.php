@@ -147,7 +147,8 @@ class Menu extends CI_Controller
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
-        $data['cpmi'] = $this->Penempatan->getTotalCPMI();$data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // $data['subMenu'] = $this->Master->getSubMenuJoinMenu();
