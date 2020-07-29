@@ -26,10 +26,11 @@ class Penempatan extends CI_Model
             //     ON tb_cpmi.negara_penempatan = tb_negara.id
             //     ORDER BY tb_cpmi.negara_penempatan ASC";
             "SELECT  `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`,
-            `tb_negara`.`nama_negara`
+            `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
             FROM `tb_cpmi` 
             JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id` 
+             JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
             
          ";
         return $this->db->query($query)->result_array();
@@ -51,18 +52,68 @@ class Penempatan extends CI_Model
     public function get_lap_pppmi()
     {
         $query =
-            "SELECT nama_perusahaan,status,negara_penempatan,wilayah, 
+
+        "SELECT nama_perusahaan,status,negara_penempatan,nama_negara, 
         COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
         COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
         COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
-        COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
-        FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
+        COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal , 
+        COUNT(*) as 'total' FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
         JOIN tb_negara ON negara_penempatan = tb_negara.id 
-        GROUP BY perusahaan,negara_penempatan,wilayah";
+        JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
+        WHERE negara_penempatan = tb_negara.id 
+        GROUP BY perusahaan,negara_penempatan";
+        //     "SELECT nama_perusahaan,status,negara_penempatan,nama_kabupaten, 
+        // COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
+        // COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
+        // COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
+        // COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
+        // FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
+        // JOIN tb_negara ON negara_penempatan = tb_negara.id 
+        // JOIN kabupaten ON wilayah = kabupaten.id_kabupaten
+        // GROUP BY perusahaan,negara_penempatan,wilayah";
         //     "SELECT perusahaan,negara_penempatan,jenis_kelamin,nama_perusahaan,status,nama_negara,jabatan,wilayah,COUNT(*) AS total 
         // FROM tb_cpmi JOIN tb_perusahaan ON perusahaan=tb_perusahaan.id 
         // JOIN tb_negara ON negara_penempatan=tb_negara.id 
         // GROUP BY perusahaan,negara_penempatan,jenis_kelamin,jabatan,wilayah";
+        // bisa bisa
+        // SELECT nama_perusahaan,status,negara_penempatan, 
+        // COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
+        // COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
+        // COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
+        // COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
+        // FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id J
+        // OIN tb_negara ON negara_penempatan = tb_negara.id 
+        // JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
+        // WHERE negara_penempatan = '254'
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_data_hongkong()
+    {
+        $query = "  SELECT DISTINCT nama_perusahaan,status,negara_penempatan, 
+         COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
+         COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
+         COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
+         COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
+         FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
+         JOIN tb_negara ON negara_penempatan = tb_negara.id 
+         JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
+         WHERE negara_penempatan = '254'  GROUP BY perusahaan"; 
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_data_sin()
+    {
+        $query = "  SELECT DISTINCT nama_perusahaan,status,negara_penempatan, 
+         COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
+         COUNT(CASE jenis_kelamin WHEN 'P' THEN 1 END) AS total_pr, 
+         COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
+         COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
+         FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
+         JOIN tb_negara ON negara_penempatan = tb_negara.id 
+         JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
+         WHERE negara_penempatan = '249' GROUP BY perusahaan";
         return $this->db->query($query)->result_array();
     }
 
@@ -70,10 +121,12 @@ class Penempatan extends CI_Model
     {
         $query =
             "SELECT   `tb_cpmi`.*,  `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`,
-            `tb_negara`.`nama_negara`
+            `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
             FROM `tb_cpmi` 
             JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id`
-             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id` 
+             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id`
+              JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
+
              WHERE `perusahaan`='$perusahaan' AND `negara_penempatan` = '$negara'
             ";
         return $this->db->query($query)->result_array();
@@ -82,9 +135,10 @@ class Penempatan extends CI_Model
     public function get_edit_cpmi($id)
     {
         $query = "SELECT `tb_cpmi`.*, `tb_perusahaan`. `nama_perusahaan`,
-                    `tb_perusahaan`.`fungsi`
+                    `tb_perusahaan`.`fungsi`, `kabupaten`.`nama_kabupaten`
                     FROM `tb_cpmi` JOIN `tb_perusahaan`
                     ON `tb_cpmi`. `perusahaan` = `tb_perusahaan`. `id`
+                     JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
                     WHERE `tb_cpmi` .`id`= '$id'
                 ";
         return $this->db->query($query)->row();
@@ -93,7 +147,7 @@ class Penempatan extends CI_Model
     public function get_perusahaan()
     {
         $query =
-            "SELECT `tb_perusahaan`.*FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
+        "SELECT DISTINCT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI' GROUP BY `nama_perusahaan`,`status`";
         return $this->db->query($query)->result_array();
     }
 
@@ -127,6 +181,12 @@ class Penempatan extends CI_Model
         return $data->result();
     }
 
+    public function getTotalPHK()
+    {
+        $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk ");
+        return $data->result();
+    }
+
     // laporan AN PMI 
     public function get_taiwan_lk()
     {
@@ -136,39 +196,6 @@ class Penempatan extends CI_Model
     public function get_taiwan_pr()
     {
         $data = $this->db->query("SELECT COUNT(id) as taiwan_pr FROM tb_cpmi WHERE negara_penempatan='254' AND jenis_kelamin='P'");
-        return $data->result();
-    }
-
-    public function get_hongkong_lk()
-    {
-        $data = $this->db->query("SELECT COUNT(id) as hongkong_lk FROM tb_cpmi WHERE negara_penempatan='252' AND jenis_kelamin='L'");
-        return $data->result();
-    }
-    public function get_hongkong_pr()
-    {
-        $data = $this->db->query("SELECT COUNT(id) as hongkong_pr FROM tb_cpmi WHERE negara_penempatan='252' AND jenis_kelamin='P'");
-        return $data->result();
-    }
-
-    public function get_sin_lk()
-    {
-        $data = $this->db->query("SELECT COUNT(tb_cpmi.id) as sin_lk FROM tb_cpmi JOIN tb_perusahaan ON tb_cpmi.perusahaan= tb_perusahaan.id WHERE negara_penempatan='249' AND jenis_kelamin='L' AND tb_cpmi.perusahaan=tb_perusahaan.id");
-        return $data->result();
-    }
-    public function get_sin_pr()
-    {
-        $data = $this->db->query("SELECT COUNT(id) as sin_pr FROM tb_cpmi WHERE negara_penempatan='249' AND jenis_kelamin='P'");
-        return $data->result();
-    }
-
-    public function get_may_lk()
-    {
-        $data = $this->db->query("SELECT COUNT(id) as may_lk FROM tb_cpmi WHERE negara_penempatan='248' AND jenis_kelamin='L'");
-        return $data->result();
-    }
-    public function get_may_pr()
-    {
-        $data = $this->db->query("SELECT COUNT(id) as may_pr FROM tb_cpmi WHERE negara_penempatan='248' AND jenis_kelamin='P'");
         return $data->result();
     }
 }

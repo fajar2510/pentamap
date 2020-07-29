@@ -65,7 +65,6 @@
                                                 <option value=""> ~ Pilih Fungsi ~ </option>
                                                 <option value="TKA">Penempatan TKA</option>
                                                 <option value="PMI">Penempatan PMI</option>
-                                                <option value="-">-</option>
                                             </select>
                                         </div>
                                     </div>

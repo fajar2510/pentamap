@@ -81,7 +81,8 @@ class Master extends CI_Model
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
                     ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
-                    WHERE `date_created` BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
+                    WHERE `date_created` 
+                    BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
                 ";
             return $this->db->query($query)->result_array();
         } else {
@@ -104,6 +105,54 @@ class Master extends CI_Model
         }
     }
 
+    public function get_filter($negara)
+    {
+
+        if (isset($_POST['filter'])) {
+            $post = $this->input->post();
+            $tawal = $post['tawal'];
+            $aw = date_create($tawal);
+            $wal = date_format($aw, 'Y-m-d');
+
+            $takhir = $post['takhir'];
+            $akh = date_create($takhir);
+            $hir = date_format($akh, 'Y-m-d');
+            $query =
+                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                    FROM `tb_pmi` JOIN `provinsi`
+                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    JOIN `kabupaten`
+                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `kecamatan`
+                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    JOIN `kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    WHERE `negara_bekerja` = '$negara' AND `date_created` 
+                    BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
+                ";
+            return $this->db->query($query)->result_array();
+        } else {
+
+
+
+            $query =
+                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                    FROM `tb_pmi` JOIN `provinsi`
+                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    JOIN `kabupaten`
+                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `kecamatan`
+                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    JOIN `kelurahan`
+                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`  ORDER BY `date_created` DESC
+                ";
+            return $this->db->query($query)->result_array();
+        }
+    }
+
+
     public function getPmi_per_negara($negara)
     {
         $query =
@@ -117,10 +166,7 @@ class Master extends CI_Model
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
                     ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
-                    WHERE `negara_bekerja` = '$negara' 
-                    -- AND `date_created` = date('m')  
-                   
-                    ORDER BY `date_created` DESC
+                    WHERE `negara_bekerja` = '$negara'  ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
     }
@@ -130,11 +176,15 @@ class Master extends CI_Model
     // query ambil id PMI
     public function getPmiById($id)
     {
-        $query = "SELECT * FROM tb_pmi WHERE id='$id'
+        $query = "SELECT tb_pmi. * , kabupaten.nama_kabupaten,kecamatan.nama_kecamatan, kelurahan.nama_kelurahan 
+        FROM tb_pmi 
+        JOIN kabupaten ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+        JOIN kecamatan ON tb_pmi.kecamatan = kecamatan.id_kecamatan 
+        JOIN kelurahan ON tb_pmi.desa = kelurahan.id_kelurahan 
+        WHERE tb_pmi.id='$id'
                 ";
         return $this->db->query($query)->row();
     }
-
     //query data Chainded Wilayah Prov, Kab, Kec, Kelurahan Indonesia
     public function getW_Prov()
     {
@@ -177,5 +227,19 @@ class Master extends CI_Model
         $query = "SELECT * FROM tb_negara
                 ";
         return $this->db->query($query)->result_array();
+    }
+
+    public function get_tb_phk()
+    {
+        $query = "SELECT * FROM tb_phk JOIN kabupaten ON tb_phk.wilayah = kabupaten.id_kabupaten
+                ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_phkById($id)
+    {
+        $query = "SELECT * FROM tb_phk WHERE tb_phk.id_phk = '$id'
+                ";
+        return $this->db->query($query)->row();
     }
 }

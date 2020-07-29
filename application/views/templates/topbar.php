@@ -26,6 +26,7 @@
                     <?php foreach ($tka as $total_tka); ?>
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
+                    <?php foreach ($phk as $total_phk); ?>
 
 
                     <marquee behavior="scroll" direction="right" scrollamount="5" width="130%">
@@ -36,7 +37,7 @@
                                     <span class="border-left"> &nbsp;<?php echo $total_cpmi->cpmi; ?></span> &nbsp; <b>TKA</b>
                                     <span class="border-left"> &nbsp;<?php echo $total_tka->tka; ?> </span> &nbsp; <b>PMI-B </b>
                                     <span class="border-left"> &nbsp;<?php echo $total_pmib->pmib; ?> </span> &nbsp; <b>Pengangguran </b>
-                                    <span class="border-left"> &nbsp;0 </span>
+                                    <span class="border-left"> &nbsp;<?php echo $total_phk->phk; ?> </span>
                                 </small>
                             </div>
 

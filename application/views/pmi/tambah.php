@@ -34,7 +34,15 @@
                         <div>
                             <form action="<?= base_url('pmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-
+                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
+                                            <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <p> <small><b> DATA PMI-B</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                         <div class="col-sm-8">

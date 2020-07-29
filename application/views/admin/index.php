@@ -12,6 +12,7 @@
     <?php foreach ($tka as $total_tka); ?>
     <?php foreach ($pmib as $total_pmib); ?>
     <?php foreach ($cpmi as $total_cpmi); ?>
+    <?php foreach ($phk as $total_phk); ?>
 
     <!-- Content Row -->
     <div class="row">
@@ -70,8 +71,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Belum Bekerja</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0 <span><small>orang</small> </span> </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja ter-PHK</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_phk->phk; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-credit-card fa-2x text-gray-300"></i>

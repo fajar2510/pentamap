@@ -15,14 +15,7 @@
     </div>
 
     <!-- parsing data -->
-    <?php foreach ($data_taiwan_lk as $taiwan_lk); ?>
-    <?php foreach ($data_taiwan_pr as $taiwan_pr); ?>
-    <?php foreach ($data_hongkong_lk as $hongkong_lk); ?>
-    <?php foreach ($data_hongkong_pr as $hongkong_pr); ?>
-    <?php foreach ($data_sin_lk as $sin_lk); ?>
-    <?php foreach ($data_sin_pr as $sin_pr); ?>
-    <?php foreach ($data_may_lk as $may_lk); ?>
-    <?php foreach ($data_may_pr as $may_pr); ?>
+
 
 
     <div class="row">
@@ -84,15 +77,9 @@
                                         <th rowspan="2"> NO </th>
                                         <th rowspan="2">NAMA_PPPMI</th>
                                         <th>STATUS</th>
-                                        <th colspan="2">TAIWAN</th>
-                                        <th colspan="2">HONGKONG</th>
-                                        <th colspan="2">SIN</th>
-                                        <th colspan="2">MALAYSIA</th>
-                                        <th colspan="2">BRUNEI_D.</th>
-                                        <th colspan="2">LAINNYA</th>
+                                        <th colspan="2">JK</th>
                                         <th colspan="2">SEKTOR</th>
-                                        <th colspan="2">DOMISILI</th>
-                                        <th colspan="2">JUMLAH</th>
+                                        <th rowspan="2">NEGARA </th>
                                         <th rowspan="2">TOTAL</th>
                                         <!-- <th>&nbsp;Aksi__&nbsp;</th> -->
                                     </tr>
@@ -100,62 +87,27 @@
                                         <th>(P/C)</th>
                                         <th> L</th>
                                         <th> P</th>
-                                        <th> L</th>
-                                        <th> P</th>
-                                        <th> L</th>
-                                        <th> P</th>
-                                        <th> L</th>
-                                        <th> P</th>
-                                        <th> L</th>
-                                        <th> P</th>
-                                        <th> L</th>
-                                        <th> P</th>
                                         <th> Formal</th>
                                         <th> Informal</th>
-                                        <th> Jatim</th>
-                                        <th> L.Jatim</th>
-                                        <th> L</th>
-                                        <th> P</th>
+
                                     </tr>
                                 </thead>
+
+
                                 <tbody align="center">
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_pppmi as $p) : ?>
+
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td><small> <?= $p['nama_perusahaan']; ?> </small></td>
                                             <td><small> <?= $p['status']; ?> </small></td>
                                             <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td><small> <?= $p['total_pr']; ?> </small></td>
-                                            <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td><small> <?= $p['total_pr']; ?> </small></td>
-                                            <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td><small> <?= $p['total_pr']; ?> </small></td>
-                                            <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td><small> <?= $p['total_pr']; ?> </small></td>
-                                            <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <!-- <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
-                                            <td><small> <?= $p['wilayah']; ?> </small> </td>
-                                            <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
-                                            <!-- <td><small> <?= $p['nama_perusahaan']; ?> </small> </td> -->
-                                            <!-- <td><small> <?= $p['pengguna_jasa']; ?> </small> </td> -->
-                                            <!-- <td><small> <?= $p['negara_penempatan']; ?> </small> </td> -->
-                                            <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
-                                            <!-- <td>
-                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan']; ?>" target="_blank" class="btn btn-sm btn-info"> Laporan</i></a>
-                                                <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
-                                            </td> -->
+                                            <td><small> <?= $p['total_pr']; ?></td>
+                                            <td><small> <?= $p['total_formal']; ?></small> </td>
+                                            <td><small> <?= $p['total_informal']; ?></small></td>
+                                            <td> <small> <?= $p['nama_negara']; ?> </td>
+                                            <td><?= $p['total']; ?></td>
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>

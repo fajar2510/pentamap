@@ -27,6 +27,7 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         //load with templating view
         $this->load->view('templates/header', $data);
@@ -48,6 +49,7 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
 
@@ -85,6 +87,7 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -101,6 +104,7 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $menu_id = $this->input->post('menuId');
         $role_id = $this->input->post('roleId');
@@ -142,6 +146,7 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['role_id'] = $this->Master->getRoleById($id);
 

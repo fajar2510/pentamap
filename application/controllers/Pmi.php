@@ -24,6 +24,7 @@ class Pmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // Load Model User Role
 
@@ -71,6 +72,7 @@ class Pmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         //load data negara
         $data['negara'] = $this->db->get('tb_negara')->result_array();
@@ -94,6 +96,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
         $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
+        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
@@ -118,7 +121,7 @@ class Pmi extends CI_Controller
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),
                 'lama_bekerja' => $this->input->post('lama', true),
-                'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data'),
             ];
             // cek jika ada gambar yang akan di upload
             // masih salah dan belum bisa upload gambar
@@ -161,14 +164,16 @@ class Pmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
         $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
         $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
         $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
-        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
-        // Load model pmi
+
+        // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
+        // // Load model pmi
         $data['pmi'] = $this->Master->getPmiById($id);
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
@@ -176,15 +181,16 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
-        $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
         $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
         $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
         $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
+        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Edit Data Pemulangan (PMI-B) Non-Prosedural ';
@@ -199,16 +205,16 @@ class Pmi extends CI_Controller
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
                 'alamat' => $this->input->post('alamat', true),
-                'provinsi' => $this->input->post('provinsi_id', true),
-                'kabupaten' => $this->input->post('kabupaten_id', true),
-                'kecamatan' => $this->input->post('kecamatan_id', true),
+                'provinsi' => $this->input->post('provinsi', true),
+                'kabupaten' => $this->input->post('kabupaten', true),
+                'kecamatan' => $this->input->post('kecamatan', true),
                 'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),
                 'lama_bekerja' => $this->input->post('lama', true),
-                // 'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data'),
             ];
             // cek gambar upload
             $upload_image = $_FILES['image']['name'];
@@ -246,5 +252,4 @@ class Pmi extends CI_Controller
             alert-success" role="alert"> Your selected PMI has succesfully deleted, be carefull for manage data. </div>');
         redirect('pmi/');
     }
-   
 }

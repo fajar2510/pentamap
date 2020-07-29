@@ -9,6 +9,7 @@ class Datamaster extends CI_Controller
         parent::__construct();
         $this->load->model('Master');
         $this->load->model('Penempatan');
+        $this->load->model('Perusahaan');
     }
 
     // FUNCTION USER START
@@ -24,6 +25,7 @@ class Datamaster extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['user'] = $this->db->get()->row_array();
 
@@ -87,6 +89,7 @@ class Datamaster extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // Load model pmi
         $data['userid'] = $this->Master->getUserById($id);
@@ -156,8 +159,9 @@ class Datamaster extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
-        $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
+        $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaanIndex();
 
         $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
         $this->load->view('templates/header', $data);
@@ -179,6 +183,7 @@ class Datamaster extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
@@ -223,6 +228,7 @@ class Datamaster extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // Load model pmi
         $data['perusahaan'] = $this->Master->getPerusahaanById($id);

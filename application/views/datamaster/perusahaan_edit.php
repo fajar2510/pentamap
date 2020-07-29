@@ -72,11 +72,6 @@
                                                                     } else {
                                                                         echo '';
                                                                     } ?>>Penempatan PMI</option>
-                                                <option value="-" <?php if ($perusahaan->fungsi == '-') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>-</option>
                                             </select>
                                         </div>
                                     </div>

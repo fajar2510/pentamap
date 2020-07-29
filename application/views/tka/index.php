@@ -78,15 +78,16 @@
                                 <thead align="center">
                                     <tr>
                                         <th rowspan="2">No.</th>
-                                        <th rowspan="2">Perusahaan</th>
-                                        <!-- <th rowspan="2">Alamat Perusahaan</th> -->
-                                        <th colspan="5">Data TKA</th>
+                                        <th rowspan="2">Tanggal </th>
+                                        <th rowspan="2">Perusahaan</>
+                                            <!-- <th rowspan="2">Alamat Perusahaan</th> -->
+                                        <th colspan="4">Data TKA</th>
                                         <th rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
                                         <th>Nama</th>
                                         <th>Negara</th>
-                                        <th>Jabatan</th>
+                                        <!-- <th>Jabatan</th> -->
                                         <th>JK</th>
                                         <!-- <th>No. RPTKA</th>
                                         <th>Masa Berlaku</th>
@@ -100,17 +101,19 @@
                                     <?php foreach ($tb_tka as $t) : ?>
                                         <tr align="left">
                                             <th><?= $i; ?></th>
+
+                                            <td> <small> <?= $t['date_created']; ?> </small></td>
                                             <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
                                             <!-- <td> <small> <?= $t['alamat']; ?> </small></td> -->
                                             <td> <small> <?= $t['nama_tka']; ?> </small> </td>
                                             <td><small> <?= $t['kewarganegaraan']; ?> </small></td>
-                                            <td> <small> <?= $t['jabatan']; ?> </small></td>
+                                            <!-- <td> <small> <?= $t['jabatan']; ?> </small></td> -->
                                             <td><small> <?= $t['jenis_kel']; ?> </small></td>
                                             <!-- <td> <small><?= $t['no_rptka']; ?> </small></td>
                                             <td> <small><?= $t['masa_rptka']; ?></small></td>
                                             <td> <small><?= $t['no_imta']; ?> </small></td>
                                             <td><small><?= $t['masa_imta']; ?></small></td> -->
-                                            <td> <small> <?= $t['lokasi_kerja']; ?></small> </td>
+                                            <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>

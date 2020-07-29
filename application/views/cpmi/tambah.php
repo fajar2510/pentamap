@@ -99,46 +99,9 @@
                                         <div class="col-sm-3">
                                             <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
                                                 <option value="">~ Pilih Lokasi Kota ~</option>
-                                                <option value="Bangkalan">Bangkalan</option>
-                                                <option value="Banyuwangi">Banyuwangi</option>
-                                                <option value="Blitar">Blitar</option>
-                                                <option value="Bojonegoro">Bojonegoro</option>
-                                                <option value="Bondowoso">Bondowoso</option>
-                                                <option value="Gresik">Gresik</option>
-                                                <option value="Jember">Jember</option>
-                                                <option value="Jombang">Jombang</option>
-                                                <option value="Kediri">Kediri</option>
-                                                <option value="Kota Batu">Kota Batu</option>
-                                                <option value="Kota Blitar">Kota Blitar</option>
-                                                <option value="Kota Kediri">Kota Kediri</option>
-                                                <option value="Kota Madiun">Kota Madiun</option>
-                                                <option value="Kota Malang">Kota Malang</option>
-                                                <option value="Kota Mojokerto">Kota Mojokerto</option>
-                                                <option value="Kota Pasuruan">Kota Pasuruan</option>
-                                                <option value="Kota Probolinggo">Kota Probolinggo</option>
-                                                <option value="Kota Surabaya">Kota Surabaya</option>
-                                                <option value="Lamongan">Lamongan</option>
-                                                <option value="Lumajang">Lumajang</option>
-                                                <option value="Madiun">Madiun</option>
-                                                <option value="Magetan">Magetan</option>
-                                                <option value="Malang">Malang</option>
-                                                <option value="Mojokerto">Mojokerto</option>
-                                                <option value="Nganjuk">Nganjuk</option>
-                                                <option value="Ngawi">Ngawi</option>
-                                                <option value="Pacitan">Pacitan</option>
-                                                <option value="Pamekasan">Pamekasan</option>
-                                                <option value="Pasuruan">Pasuruan</option>
-                                                <option value="Ponorogo">Ponorogo</option>
-                                                <option value="Probolinggo">Probolinggo</option>
-                                                <option value="Sampang">Sampang</option>
-                                                <option value="Sidoarjo">Sidoarjo</option>
-                                                <option value="Situbondo">Situbondo</option>
-                                                <option value="Sumenep">Sumenep</option>
-                                                <option value="Trenggalek">Trenggalek</option>
-                                                <option value="Tuban">Tuban</option>
-                                                <option value="Tulungagung">Tulungagung</option>
-
-                                                <option value="Luar Jatim">*LUAR JATIM</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
                                             </select>
                                             <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
                                             <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>

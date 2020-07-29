@@ -28,7 +28,7 @@
             /* height: 50px; */
             border: 1px solid black;
             padding: 10px;
-            text-align: center;
+            text-align: center; 
         }
     </style>
 </head>

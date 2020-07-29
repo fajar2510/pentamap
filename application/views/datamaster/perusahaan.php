@@ -33,7 +33,7 @@
 
 
                         <div class="dropdown mb-0">
-                            <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
@@ -49,7 +49,7 @@
                                 <a class="dropdown-item" href="#">Excel</a>
                                 <a class="dropdown-item" href="#">PDF</a>
                             </div>
-                            </>
+                            </> -->
                         </div>
 
                     </div>
@@ -61,9 +61,9 @@
                                         <th> No</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Alamat</th>
-                                        <th>Kontak</th>
+                                        <!-- <th>Kontak</th> -->
                                         <th>Status</th>
-                                        <th>Penempatan</th>
+                                        <th>FOR</th>
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -74,21 +74,25 @@
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td> <small> <?= $p['alamat']; ?></small></td>
-                                            <td>
+                                            <!-- <td>
                                                 <?php if ($p['kontak'] == null) {
                                                     echo '-';
                                                 } else {
                                                     echo $p['kontak'];
                                                 } ?>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
-                                                    echo 'Pusat';
+                                                    echo '<div class="bg-primary text-white p-1 "> <small?>PUSAT</small></div>';
                                                 } else {
-                                                    echo 'Cabang';
+                                                    echo '<div class="bg-secondary text-white p-1 "> <small?>CABANG</small></div>';
                                                 } ?>
                                             </td>
-                                            <td><?= $p['fungsi']; ?></td>
+                                            <td><?php if ($p['fungsi'] == 'TKA') {
+                                                    echo '<div class="bg-secondary text-white p-1 "> <small?>TKA</small></div>';
+                                                } else {
+                                                    echo '<div class="bg-info text-white p-1 "> <small?>PMI</small></div>';
+                                                } ?></td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>

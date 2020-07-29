@@ -24,6 +24,7 @@ class Menu extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -57,6 +58,7 @@ class Menu extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
         $data['menu_id'] = $this->Master->getMenuById($id);
@@ -104,6 +106,7 @@ class Menu extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['subMenu'] = $this->Menu_model->getSubMenu();
         $data['menu'] = $this->db->get('user_menu')->result_array();
@@ -144,7 +147,8 @@ class Menu extends CI_Controller
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
-        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();$data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // $data['subMenu'] = $this->Master->getSubMenuJoinMenu();
         $data['subMenu'] = $this->Menu_model->getSubMenu();

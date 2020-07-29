@@ -82,13 +82,17 @@
 
     <?php foreach ($semua_data_cpmi as $row); ?>
     <?php foreach ($data_total_orang as $total_cpmi); ?>
-    <p align="left"><small><b>Nama Perusahaan &nbsp; : <?= $row['nama_perusahaan'] ?></b> <br> <b>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?= $row['alamat'] ?></b> <br> <b>Negara Tujuan_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $row['nama_negara'] ?></b> <br> <b>Bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $bulanBahasaInggris = date('m');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $bulanBahasaIndonesia = bulanIndo($bulanBahasaInggris);
+    <p align="left"><small><b>Nama Perusahaan &nbsp; : <?= $row['nama_perusahaan'] ?></b> <br>
+            <b>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?= $row['alamat'] ?></b> <br>
+            <b>Negara Tujuan_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $row['nama_negara'] ?></b>
+            <br> <b>Bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                <?php
+                $bulanBahasaInggris = date('m');
+                $bulanBahasaIndonesia = bulanIndo($bulanBahasaInggris);
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    // echo "Bahasa Inggris: {$bulanBahasaInggris} <br>";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo " {$bulanBahasaIndonesia}";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?> <?= date('Y') ?></b> <br><b>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: <?php echo $total_cpmi->cpmi ?> orang</b></small></p>
+                // echo "Bahasa Inggris: {$bulanBahasaInggris} <br>";
+                echo " {$bulanBahasaIndonesia}";
+                ?> <?= date('Y') ?></b> <br><b>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: <?php echo $total_cpmi->cpmi ?> orang</b></small></p>
 
     <table width="100%">
         <thead>
@@ -118,7 +122,7 @@
                     <td align="center"><small> <b> <?= $row['pengguna_jasa'] ?></b> <br> <?= $row['alamat_pengguna_jasa'] ?></small></td>
                     <td><small> <?= $row['gaji'] ?></small></td>
                     <td><small> <?= $row['paspor'] ?></small></td>
-                    <td align="center"><small> <?= $row['negara_penempatan'] ?></small></td>
+                    <td align="center"><small> <?= $row['nama_negara'] ?></small></td>
                     <td align="center"><small> <?= $row['kode_pesawat'] ?></small></td>
                 </tr>
                 <?php $i++; ?>

@@ -10,6 +10,7 @@ class Cpmi extends CI_Controller
 
         $this->load->model('Master');
         $this->load->model('Penempatan');
+        $this->load->model('Perusahaan');
     }
 
     public function index()
@@ -23,6 +24,7 @@ class Cpmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data wilayah
 
@@ -50,9 +52,10 @@ class Cpmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         // load data 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
@@ -73,6 +76,7 @@ class Cpmi extends CI_Controller
         $this->form_validation->set_rules('kode_pesawat', 'Kode Pesawat', 'required');
         $this->form_validation->set_rules('pengguna_jasa', 'Pengguna Jasa', 'required');
         $this->form_validation->set_rules('alamat_pengguna_jasa', 'Alamat Pengguna Jasa', 'required');
+        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
 
 
 
@@ -102,7 +106,7 @@ class Cpmi extends CI_Controller
                 'pengguna_jasa' => $this->input->post('pengguna_jasa'),
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
 
-                'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data'),
             ];
 
             // $data_perusahaan_negara = [
@@ -113,7 +117,7 @@ class Cpmi extends CI_Controller
             $this->db->insert('tb_cpmi', $data);
             // $this->db->insert('tb_perusahaan_negara', $data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data PPPMI succesfully Added! </div>');
+                alert-success" role="alert"> Data CPMI succesfully Added! </div>');
             redirect('cpmi');
         }
     }
@@ -129,9 +133,11 @@ class Cpmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         $data['perusahaan'] = $this->Penempatan->get_perusahaan();
@@ -148,16 +154,16 @@ class Cpmi extends CI_Controller
         $this->form_validation->set_rules('lokasi', 'Lokasi Wilayah PMI', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan Kerja', 'required');
         $this->form_validation->set_rules('pendidikan', 'Pendidikan Terakhir', 'required');
-        $this->form_validation->set_rules(
-            'gaji',
-            'Gaji PMI',
-            'required'
-        );
+        $this->form_validation->set_rules('gaji',  'Gaji PMI', 'required');
+
         $this->form_validation->set_rules('paspor', 'Nomor Paspor', 'required');
         $this->form_validation->set_rules('negara_penempatan', 'Negara Penempatan', 'required');
         $this->form_validation->set_rules('kode_pesawat', 'Kode Pesawat', 'required');
         $this->form_validation->set_rules('pengguna_jasa', 'Pengguna Jasa', 'required');
         $this->form_validation->set_rules('alamat_pengguna_jasa', 'Alamat Pengguna Jasa', 'required');
+        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
+
+
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Edit Data Form Laporan TKA per Perusahaan';
             $this->load->view('templates/header', $data);
@@ -183,6 +189,7 @@ class Cpmi extends CI_Controller
                 'kode_pesawat' => $this->input->post('kode_pesawat'),
                 'pengguna_jasa' => $this->input->post('pengguna_jasa'),
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
+                'date_created' => $this->input->post('tanggal_data'),
             ];
 
             // $data_perusahaan_negara = [
@@ -195,7 +202,7 @@ class Cpmi extends CI_Controller
 
             // $this->db->update('tb_perusahaan_negara',$data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data PPPMI succesfully Updated! </div>');
+                alert-success" role="alert"> Data CPMI succesfully Updated! </div>');
             redirect('cpmi');
         }
     }
@@ -206,7 +213,7 @@ class Cpmi extends CI_Controller
         $this->db->delete('tb_cpmi');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected PPPMI has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Your selected CPMI has succesfully deleted, be carefull for manage data. </div>');
         redirect('cpmi');
     }
 
@@ -221,22 +228,13 @@ class Cpmi extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data wilayah
-
+        $data['perusahaan_pmi'] = $this->Penempatan->get_perusahaan();
         $data['data_pppmi'] = $this->Penempatan->get_lap_pppmi();
-        // count
-        $data['data_taiwan_lk'] = $this->Penempatan->get_taiwan_lk();
-        $data['data_taiwan_pr'] = $this->Penempatan->get_taiwan_pr();
-        $data['data_hongkong_lk'] = $this->Penempatan->get_hongkong_lk();
-        $data['data_hongkong_pr'] = $this->Penempatan->get_hongkong_pr();
-        $data['data_sin_lk'] = $this->Penempatan->get_sin_lk();
-        $data['data_sin_pr'] = $this->Penempatan->get_sin_pr();
-        $data['data_may_lk'] = $this->Penempatan->get_may_lk();
-        $data['data_may_pr'] = $this->Penempatan->get_may_pr();
-        // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
-        // $data['a'] =  $this->Penempatan->getTotalTKA();
-        // $data['b'] =  $this->Penempatan->getTotalPMIB();
+        $data['data_hongkong'] = $this->Penempatan->get_data_hongkong();
+        $data['data_sin'] = $this->Penempatan->get_data_sin();
 
         $data['title'] = 'Data AN Penempatan Pekerja Migran Indonesia ';
         $this->load->view('templates/header', $data);

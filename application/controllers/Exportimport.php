@@ -14,6 +14,7 @@ class Exportimport extends CI_Controller
         $this->load->model('Perusahaan');
         $this->load->model('Master');
         $this->load->model('Tka');
+        $this->load->model('Phk');
     }
 
     public function import_data_pmi()
@@ -63,6 +64,7 @@ class Exportimport extends CI_Controller
             echo "message :" . $this->upload->display_errors();
         }
     }
+
     public function import_data_tka()
     {
         $config['upload_path'] = './assets/exportimport/import/';
@@ -115,6 +117,51 @@ class Exportimport extends CI_Controller
         }
     }
 
+    public function import_data_phk()
+    {
+        $config['upload_path'] = './assets/exportimport/import/';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['file_name'] = 'doc' . time();
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('importexcel')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('assets/exportimport/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    if ($numRow > 1) {
+                        $data_phk = array(
+                            'wilyah' => $row->getCellAtIndex(1),
+                            'kpj' => $row->getCellAtIndex(2),
+                            'nama_tk' => $row->getCellAtIndex(3),
+                            'alamat' => $row->getCellAtIndex(4),
+                            'kontak' => $row->getCellAtIndex(5),
+                            'kode_kantor' => $row->getCellAtIndex(6),
+                            'nomor_identitas' => $row->getCellAtIndex(7),
+                            'kode_segmen' => $row->getCellAtIndex(8),
+                            'nama_perusahaan' => $row->getCellAtIndex(9),
+                            'date_created' => date('Y-m-d'),
+                        );
+                        $this->Phk->import_data($data_phk);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('assets/exportimport/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Congratulation! Import Data has been succesfully. </div>');
+                redirect('pmi');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-danger" role="alert"> Error. You dont select any document </div>');
+            redirect('pmi');
+
+            echo "message :" . $this->upload->display_errors();
+        }
+    }
 
     public function export_pdf_pmi()
     {
@@ -129,7 +176,7 @@ class Exportimport extends CI_Controller
     public function pmi_negara($negara)
     {
         $mpdf = new \Mpdf\Mpdf();
-        $data_pmi = $this->Master->getPmi_per_negara($negara);
+        $data_pmi = $this->Master->get_filter($negara);
         // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
         $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
@@ -139,7 +186,7 @@ class Exportimport extends CI_Controller
 
     public function export_pdf_kwitansi($id)
     {
-        $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf(); 
         $data_kwitansi = $this->Master->getPmiById($id);
         $data = $this->load->view('export/kwitansi_data', ['semua_data_kwitansi' => $data_kwitansi], TRUE);
         $mpdf->WriteHTML($data);
@@ -185,4 +232,6 @@ class Exportimport extends CI_Controller
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
+
+    
 }

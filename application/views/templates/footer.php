@@ -32,7 +32,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih "Logout" jika ingin mengakhiri sesi.</div>
+                <div class="modal-body">Pilih " <b> Logout </b>" jika ingin mengakhiri sesi.</div>
                 <img src="<?= base_url('assets/img/favicon/logout.png') ?>" alt="Logout" width="230" height="200">
 
                 <div class="modal-footer">
