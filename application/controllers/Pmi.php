@@ -148,7 +148,7 @@ class Pmi extends CI_Controller
             $this->db->insert('tb_pmi', $data);
             // show alert
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! Data PMI has been added succesfully. </div>');
+            alert-success" role="alert"> Berhasil! Data PMI telah ditambahkan. </div>');
             redirect('pmi');
         }
     }
@@ -237,7 +237,7 @@ class Pmi extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('tb_pmi', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! PMI data has been update . </div>');
+            alert-success" role="alert"> Diperbarui ! Data telah berhasil diperbarui </div>');
             redirect('pmi');
         }
     }
@@ -249,7 +249,7 @@ class Pmi extends CI_Controller
         $this->db->delete('tb_pmi');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected PMI has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Data yang dipilih telah dihapus </div>');
         redirect('pmi/');
     }
 }

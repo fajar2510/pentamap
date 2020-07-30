@@ -97,7 +97,7 @@ class Tka extends CI_Controller
 
             $this->db->insert('tb_tka', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA succesfully Added! </div>');
+                alert-success" role="alert"> Data TKA telah ditambahkan </div>');
             redirect('tka');
         }
     }
@@ -162,7 +162,7 @@ class Tka extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('tb_tka', $data);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA succesfully Updated! </div>');
+                alert-success" role="alert"> Data TKA berhasil diperbarui ! </div>');
             redirect('tka');
         }
     }
@@ -173,7 +173,7 @@ class Tka extends CI_Controller
         $this->db->delete('tb_tka');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected TKA has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Data yang dipilih telah dihapus </div>');
         redirect('tka');
     }
 }

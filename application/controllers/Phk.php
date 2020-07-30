@@ -86,7 +86,7 @@ class Phk extends CI_Controller
             $this->db->insert('tb_phk', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! Data Tenaga Kerja PHK has been added succesfully. </div>');
+            alert-success" role="alert"> Berhasil! Data Tenaga Kerja yang ter-PHK telah ditambahkan. </div>');
             redirect('phk');
         }
     }
@@ -147,7 +147,7 @@ class Phk extends CI_Controller
             $this->db->update('tb_phk', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data Tenaga Kerja PHK has been updated! </div>');
+            alert-success" role="alert"> Data Tenaga Kerja PHK telah diperbarui! </div>');
             redirect('phk');
         }
     }
@@ -159,7 +159,7 @@ class Phk extends CI_Controller
         $this->db->delete('tb_phk');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected  Data  has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Data yang dipilih telah berhasil dihapus </div>');
         redirect('phk');
     }
 }

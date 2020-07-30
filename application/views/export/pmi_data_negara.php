@@ -83,7 +83,7 @@ function bulanIndo($bulanInggris)
                     $bln = explode('-',  $p['date_created']);
                     $bulanBahasaInggris = date('m');
                     $bulanBahasaIndonesia = bulanIndo($bulanBahasaInggris);
-                    ?> <?= bulanIndo($bln[1]) ?><br>
+                    ?><br> BULAN <?= bulanIndo($bln[1]) ?>
                     TAHUN <?= date('Y'); ?></b></p>
             <!-- 
                     </td>

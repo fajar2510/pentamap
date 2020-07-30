@@ -118,7 +118,7 @@ class Cpmi extends CI_Controller
             $this->db->insert('tb_cpmi', $data);
             // $this->db->insert('tb_perusahaan_negara', $data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data CPMI succesfully Added! </div>');
+                alert-success" role="alert"> Data CPMI berhasil ditambahkan! </div>');
             redirect('cpmi');
         }
     }
@@ -193,17 +193,13 @@ class Cpmi extends CI_Controller
                 'date_created' => $this->input->post('tanggal_data'),
             ];
 
-            // $data_perusahaan_negara = [
-            //     'perusahaan' => $this->input->post('perusahaan'),
-            //     'negara_penempatan' => $this->input->post('negara_penempatan'),
-            // ];
 
             $this->db->where('id', $id);
             $this->db->update('tb_cpmi', $data);
 
             // $this->db->update('tb_perusahaan_negara',$data_perusahaan_negara);
             $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data CPMI succesfully Updated! </div>');
+                alert-success" role="alert"> Data CPMI berhasil diperbarui ! </div>');
             redirect('cpmi');
         }
     }
@@ -214,7 +210,7 @@ class Cpmi extends CI_Controller
         $this->db->delete('tb_cpmi');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected CPMI has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Data yang dipilih berhasil dihapus. </div>');
         redirect('cpmi');
     }
 
@@ -237,7 +233,7 @@ class Cpmi extends CI_Controller
         $data['data_hongkong'] = $this->Penempatan->get_data_hongkong();
         $data['data_sin'] = $this->Penempatan->get_data_sin();
 
-        $data['title'] = 'Data AN Penempatan Pekerja Migran Indonesia ';
+        $data['title'] = 'Data AN Perusahaan Penempatan Pekerja Migran Indonesia (P3MI) ';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

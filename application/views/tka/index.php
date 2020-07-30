@@ -31,7 +31,7 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <form action="<?= base_url('exportimport/export_pdf_tka') ?>" method="post">
+                            <form action="<?= base_url('exportimport/export_pdf_tka') ?>" method="post" target="_blank">
                                 <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-filter"></i>
@@ -40,7 +40,7 @@
                                 </a>
                                 <div>
                                     <div class="container"> -->
-                                Filter : <input type="text" width="276" name="awal" id="awal" >
+                                Filter : <input type="text" width="276" name="awal" id="awal">
                                 <!-- </div>
                                 </div> -->
                                 <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">

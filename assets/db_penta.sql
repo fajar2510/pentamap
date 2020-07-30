@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2020 at 06:39 PM
+-- Generation Time: Jul 30, 2020 at 04:13 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -89101,7 +89101,11 @@ CREATE TABLE `tb_cpmi` (
 
 INSERT INTO `tb_cpmi` (`id`, `nama_pmi`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `perusahaan`, `alamat`, `wilayah`, `jabatan`, `pendidikan_formal`, `pengguna_jasa`, `alamat_pengguna_jasa`, `gaji`, `paspor`, `negara_penempatan`, `kode_pesawat`, `date_created`) VALUES
 (5, 'MUADY', 'L', 'Banyuwangi', '1984-11-21', 14, 'SUMBERWANGI 04/19 DS. WONOSOBO, SRONO-BANYUWANGI', 46678, 'FORMAL', 'SMP', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 249, 'AIR ASIA AIRLINES QZ392', '2020-07-25'),
-(12, 'Fa', 'L', 'Banyuwangi', '2000-07-31', 14, 'e', 42386, 'FORMAL', 'SMA', 'PESONA METRO SDN BHD ', 'e', 'Rm 40000', '5123212', 249, '613fewt2342', '2020-07-15');
+(13, 'PURWANTO', 'L', 'Madiun', '1983-01-01', 14, 'DS. KARAGPATIHAN 04/02 BALONG, PONOROGO', 42570, 'FORMAL', 'SMA', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 248, 'AIR ASIA AIRLINES QZ392', '2020-03-01'),
+(14, 'DWI WAHYUNI', 'P', 'Ngawi', '2001-02-01', 14, 'KARANGGUPITO 01/03 KENDAL, NGAWI', 48110, 'FORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104  SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C5777222', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
+(15, 'TETEN KUSUMA DEWI', 'P', 'Magetan', '2000-06-13', 14, 'DS. NGILIRAN 04/03 PANEKAN, MAGETAN', 47856, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070249', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
+(16, 'AYU NILAM FATMASARI', 'P', 'Ngawi', '1996-06-25', 14, 'DS. KATIKAN 05/07 KEDUNGGALAR, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070247', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
+(17, 'TITRI IDA JUNA', 'P', 'Ngawi', '2000-01-01', 14, 'DS. TEGUHAN 08/01 PARON, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070242', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01');
 
 -- --------------------------------------------------------
 
@@ -89166,7 +89170,8 @@ INSERT INTO `tb_perusahaan` (`id`, `nama_perusahaan`, `alamat`, `status`, `konta
 (17, 'PT Oxyplast Indonesia', 'Jl Raya Beji Bangil KM 4, Beji Pasuruan', 'P', '-', 'TKA', '2020-07-29'),
 (18, 'PT Shou Fong Lastindo', 'Jl Raya Panderejo, Gempol Pasuruan', 'P', '', 'TKA', '2020-07-29'),
 (19, 'PT Sino Rush Indonesia', 'Perum Unimas Garden Kav C5-C6 Waru Sidoarjo', 'P', '-', 'TKA', '2020-07-29'),
-(20, 'PT Woodone Integra Indonesia', 'Jl Raya Industri No 678 Ds Betro Sedati', 'P', '-', 'TKA', '2020-07-29');
+(20, 'PT Woodone Integra Indonesia', 'Jl Raya Industri No 678 Ds Betro Sedati', 'P', '-', 'TKA', '2020-07-29'),
+(21, 'PT. ANUGERAH USAHA JAYA', 'JL. TELUK ETNA KAV.IV NO.36 ARJOSARI, BLIMBING, MALANG, JAWA TIMUR', 'P', '-', 'PMI', '2020-07-30');
 
 -- --------------------------------------------------------
 
@@ -89194,7 +89199,8 @@ CREATE TABLE `tb_phk` (
 
 INSERT INTO `tb_phk` (`id_phk`, `nama_tk`, `nomor_identitas`, `kpj`, `kontak`, `alamat`, `wilayah`, `nama_perusahaan`, `kode_kantor`, `kode_segmen`, `date_created`) VALUES
 (3, 'SUPRAYITNO', '3525161002910001', '11022945817', '081311760089', 'JL. AMAK KHASIM 3-T', 49656, 'WILMAR NABATI INDONESIA STAF', '081311760089', 'PU', '2020-07-29'),
-(4, 'MOH. HASAN BASHORI', '3524261510770001', '11022946138', '081333174435', 'MELUWUR', 49656, 'UNGGUL MULIA MANDIRI', '081333174435', 'PU', '2020-07-29');
+(4, 'MOH. HASAN BASHORI', '3524261510770001', '11022946138', '081333174435', 'MELUWUR', 49656, 'UNGGUL MULIA MANDIRI', '081333174435', 'PU', '2020-07-29'),
+(5, 'MUNAWATI', '3516166504690004', '11022948332', '08563472597', 'SIDOLEGI', 46678, 'ALAM INROTAMA', '08563472597', 'PU', '2020-07-30');
 
 -- --------------------------------------------------------
 
@@ -89227,12 +89233,14 @@ CREATE TABLE `tb_pmi` (
 --
 
 INSERT INTO `tb_pmi` (`id`, `nama`, `tgl_lahir`, `gender`, `alamat`, `provinsi`, `kabupaten`, `kecamatan`, `desa`, `negara_bekerja`, `jenis_pekerjaan`, `berangkat_melalui`, `pengirim`, `lama_bekerja`, `image`, `status`, `date_created`) VALUES
-(148, 'Nur Hidayat', '1999-04-02', 'L', 'Desa Waruk , Kec. Pangkur, Kab.Ngawi RT 02 RW 01 NO.05 KodePos 62381', 42385, 48110, 48292, 48298, 'Malaysia', 'Buruh', 'Surabaya', 'PT Gemilang', '2 tahun 3 bulan', '1588_-_Judge-512.png', 'NON-PROSEDURAL', '2020-07-23'),
-(149, 'Saiful Teguh', '1989-04-07', 'L', 'Desa Waruk , Kec. Pangkur, Kab.Ngawi RT 03 RW 01 NO.01 KodePos 62387', 42385, 51145, 51162, 51164, 'Malaysia', 'Teknisi Mesin', 'Batam', 'PT Daulat Rakyat', '2 tahun 9 bulan', 'atung-8dafb596ca53bd1e877ded6a390ed956.png', 'NON-PROSEDURAL', '2020-07-23'),
-(150, 'Marni Sumirah', '1993-12-30', 'P', 'Desa Waruk , Kec. Pangkur, Kab.Ngawi RT 05 RW 04 NO.02 KodePos 62388', 42385, 51327, 51348, 51355, 'Jepang', 'PRT/Asuh', 'Surabaya', 'PT Gemilang', '1 tahun 2 bulan', '218_Guideformothers.png', 'NON-PROSEDURAL', '2020-07-23'),
-(151, 'Gandhis Uswah', '1976-04-08', 'P', 'Desa Waruk , Kec. Pangkur, Kab.Ngawi RT 02 RW 01 NO.15 KodePos 62389', 42385, 51306, 51316, 51320, 'Taiwan', 'PRT/Asuh', 'Surabaya', 'PT Gemilang', '11 bulan', '225769529e8ee6c.jpg', 'NON-PROSEDURAL', '2020-07-28'),
-(157, 'Savhira Indah', '1990-09-05', 'P', 'Jatinegara 05 gg 02 no 4', 42385, 48805, 49033, 49048, 'Taiwan', 'Mahasiswa Pengajar', 'Surabaya', 'Agen', '1 tahun 3 bulan', '11.jpg', 'NON-PROSEDURAL', '2020-07-27'),
-(158, 'Lukman Ajang', '1998-01-01', 'L', 'Arjasa, Sumenep, Madura', 42385, 50735, 51047, 51061, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '2 tahun', 'aa.jpg', 'NON-PROSEDURAL', '2020-04-11');
+(158, 'Lukman Ajang', '1998-01-01', 'L', 'Arjasa, Sumenep, Madura', 42385, 50735, 51047, 51061, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '2 tahun', 'aa.jpg', 'NON-PROSEDURAL', '2020-04-11'),
+(160, 'MUSAHWI', '1972-01-05', 'L', 'Angkatan Arjasa Sumenep', 42385, 50735, 51047, 51054, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '2 tahun', 'aaaa.jpg', 'NON-PROSEDURAL', '2020-04-11'),
+(161, 'SUWARNO', '1976-05-31', 'L', 'Madura', 42385, 50735, 51032, 51040, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '1 tahun 9 bulan', 'aggawe.jpg', 'NON-PROSEDURAL', '2020-04-11'),
+(162, 'TUKIMIN', '1972-06-05', 'L', 'Madura', 42385, 50735, 51085, 84963, 'Malaysia', 'Tukang Bangunan', 'Pangkal Pinang', 'Tekong', '1 tahun 10 bulan', 'qweqw.jpg', 'NON-PROSEDURAL', '2020-04-11'),
+(163, 'SAPTA DESTARI', '1972-01-02', 'L', 'Madura', 42385, 50735, 51047, 51060, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '2 tahun', 'qwew.jpg', 'NON-PROSEDURAL', '2020-04-11'),
+(164, 'SEMINTEN', '1980-07-01', 'P', 'Madura', 42385, 50532, 50700, 50709, 'Malaysia', 'Cleaning Service', 'Tanjung Pinang', 'Pelancong', '5 tahun', 'asdsd.jpg', 'NON-PROSEDURAL', '2020-03-27'),
+(165, 'MUHAMMAD FIKRI', '2006-12-24', 'L', 'Madura', 42385, 50532, 50700, 50709, 'Malaysia', '- (anak)', '-', '-', '-', 'qweqweq.jpg', 'NON-PROSEDURAL', '2020-03-27'),
+(166, 'Bagus Hari Jaya', '1990-09-05', 'L', 'Probolinggo', 42385, 45561, 45772, 45783, 'Taiwan', 'Buruh Pabrik', 'Batam', 'Tekong', '3 tahun 5 bulan', '1588_-_Judge-5121.png', 'NON-PROSEDURAL', '2020-07-30');
 
 -- --------------------------------------------------------
 
@@ -89298,7 +89306,12 @@ CREATE TABLE `tb_tka` (
 INSERT INTO `tb_tka` (`id`, `id_perusahaan`, `nama_tka`, `jenis_kel`, `kewarganegaraan`, `jabatan`, `no_rptka`, `masa_rptka`, `no_imta`, `masa_imta`, `lokasi_kerja`, `date_created`) VALUES
 (42, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
 (43, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
-(44, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29');
+(44, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
+(45, 1, 'Yeo Cheng Tiong', 'L', 'Singapura', 'Technical Advisor Research and Development', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-11'),
+(46, 1, 'Syed Shah Fahad Hussain', 'L', 'India', 'Marketing Manager ', '-', '2020-07-31', '50655547', '2020-05-22', 46306, '2020-03-11'),
+(47, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
+(48, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
+(49, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01');
 
 -- --------------------------------------------------------
 
@@ -89577,7 +89590,7 @@ ALTER TABLE `negara_all`
 -- AUTO_INCREMENT for table `tb_cpmi`
 --
 ALTER TABLE `tb_cpmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tb_negara`
@@ -89589,19 +89602,19 @@ ALTER TABLE `tb_negara`
 -- AUTO_INCREMENT for table `tb_perusahaan`
 --
 ALTER TABLE `tb_perusahaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tb_phk`
 --
 ALTER TABLE `tb_phk`
-  MODIFY `id_phk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_phk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_pmi`
 --
 ALTER TABLE `tb_pmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `tb_pptkis`
@@ -89613,7 +89626,7 @@ ALTER TABLE `tb_pptkis`
 -- AUTO_INCREMENT for table `tb_tka`
 --
 ALTER TABLE `tb_tka`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user`

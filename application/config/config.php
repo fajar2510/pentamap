@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/penta/';
+$config['base_url'] = 'https://7b0651ace498.ngrok.io/penta';
 
 /*
 |--------------------------------------------------------------------------

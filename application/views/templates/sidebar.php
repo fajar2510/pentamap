@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary  sidebar sidebar-dark accordion" id="accordionSidebar">
 <br>
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('admin'); ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('beranda'); ?>">
         <div class="sidebar-brand-icon">
             <!-- <i class="far fa-building"></i> -->
             <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="60px" height="70">
@@ -64,14 +64,14 @@
 
         <?php endforeach; ?>
 
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-fw fa-sign-out-alt"></i>
                 <span>Logout</span></a>
-        </li> -->
+        </li>
 
         <!-- Divider -->
-        <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+        <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">

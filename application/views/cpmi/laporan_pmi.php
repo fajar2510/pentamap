@@ -6,12 +6,12 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
-        <a href="<?= base_url('cpmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <!-- <a href="<?= base_url('cpmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
-        </a>
+        </a> -->
     </div>
 
     <!-- parsing data -->
@@ -34,7 +34,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
 
-                            <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-filter"></i>
                                 </span>
@@ -45,7 +45,7 @@
                                     Rentang Awal: <input id="startDate" width="276" />
                                     Rentang Akhir: <input id="endDate" width="276" />
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="dropdown mb-0">
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
@@ -54,12 +54,12 @@
                                 </span>
                                 <span class="text">Import</span>
                             </button> -->
-                            <a href="<?= base_url('exportimport/export_pdf_pppmi'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            <!-- <a href="<?= base_url('exportimport/export_pdf_pppmi'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
-                            </a>
+                            </a> -->
                             <!-- <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>

@@ -211,7 +211,7 @@ class Datamaster extends CI_Controller
             $this->db->insert('tb_perusahaan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! Perusahaan has been added succesfully. </div>');
+            alert-success" role="alert"> Berhasil ! Perusahaan telah ditambahkan. </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -261,7 +261,7 @@ class Datamaster extends CI_Controller
             $this->db->update('tb_perusahaan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Perusahaan has been updated! </div>');
+            alert-success" role="alert"> Perusahaan telah diperbarui ! </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -273,7 +273,7 @@ class Datamaster extends CI_Controller
         $this->db->delete('tb_perusahaan');
 
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected has succesfully deleted, be carefull for manage data. </div>');
+            alert-success" role="alert"> Data yang dipilih telah dihapus. </div>');
         redirect('datamaster/perusahaan');
     }
 }

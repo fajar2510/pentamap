@@ -7,8 +7,8 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Penempatan');
         is_logged_in();
+        $this->load->model('Penempatan');
     }
 
 
@@ -22,6 +22,7 @@ class User extends CI_Controller
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
+
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
