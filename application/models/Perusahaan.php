@@ -38,7 +38,7 @@ class Perusahaan extends CI_Model
                     FROM `tb_tka` 
                     JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                     JOIN `kabupaten` ON `tb_tka`.`lokasi_kerja` = `kabupaten`.`id_kabupaten`
-                      ORDER BY `id_perusahaan` ASC
+                      ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
     }
