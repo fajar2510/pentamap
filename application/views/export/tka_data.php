@@ -71,10 +71,10 @@ function bulanIndo($bulanInggris)
             <tr>
                 <th> -->
     <center>
-        <p align="center"> <b>LAPORAN TKA (TENAGA KERJA ASING) DAN PERUSAHAAN PENEMPATAN BULAN
+        <p align="center"> <b>LAPORAN TKA DAN PENEMPATAN PERUSAHAAN <br> BULAN
                 <?php
                 $bln = explode('/',  $tanggal);
-                ?> <?= bulanIndo($bln[0]) ?><br>
+                ?> <?= bulanIndo($bln[0]) ?>
                 TAHUN <?= $bln[2]; ?> </b>
         </p>
     </center>
