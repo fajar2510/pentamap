@@ -86,50 +86,84 @@
 
 
     </div>
-    <!-- /.container-fluid -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="<?php echo base_url() ?>assets/img/favicon/indo.jpg" alt="" width="200px" height="500px" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>MAP VIEW UNDER CONTRUCTION, DEVELOP SOON</h5>
-                    <p>AKAN MENAMPILKAN DATA TKA PMI PMI-B PHK PER WILAYAH KABUPATEN SE-JAWA TIMUR DENGAN MODE PETA GIS ,GEOGRAPICAL INTERFACE SYSTEM</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="<?php echo base_url() ?>assets/img/favicon/map1.png" alt="" width="200px" height="500px"" alt=" Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>PENTA DISNAKERTRANS JATIM</h5>
-                    <p>...</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="<?php echo base_url() ?>assets/img/favicon/map2.png" alt="" width="200px" height="500px"" alt=" Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>GO GO GO </h5>
-                    <p>...</p>
-                </div>
-            </div>
+
+    <div class="row">
+        <div class="col-md-12">
+        <div id="mapp"></div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+        </div>
+
+
     <script>
         $('.carousel').carousel({
             interval: 1000
         })
     </script>
+<script type="text/javascript">
+// var L = window.L;
+
+var map = L.map('mapp').setView([-7.2773934,111.7170372], 8);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+$.getJSON("<?=base_url()?>beranda/kabupaten", function(data){
+    $.each(data, function(i, field){
+        
+        var lat=parseFloat(data[i].kabupaten_lat);
+        var long=parseFloat(data[i].kabupaten_long);
+
+    L.marker([long,lat]).addTo(map)
+    .bindPopup(data[i].nama_kabupaten)
+    .openPopup();
+
+    });
+  });
+
+
+</script>
+
+<script>
+  var map = L.map('map').setView([-33.87, 150.77], 10);
+  var layer = L.esri.basemapLayer('Topographic').addTo(map);
+  var layerLabels;
+
+  function setBasemap (basemap) {
+    if (layer) {
+      map.removeLayer(layer);
+    }
+
+    layer = L.esri.basemapLayer(basemap);
+
+    map.addLayer(layer);
+
+    if (layerLabels) {
+      map.removeLayer(layerLabels);
+    }
+
+    if (
+      basemap === 'ShadedRelief' ||
+      basemap === 'Oceans' ||
+      basemap === 'Gray' ||
+      basemap === 'DarkGray' ||
+      basemap === 'Terrain'
+    ) {
+      layerLabels = L.esri.basemapLayer(basemap + 'Labels');
+      map.addLayer(layerLabels);
+    } else if (basemap.includes('Imagery')) {
+      layerLabels = L.esri.basemapLayer('ImageryLabels');
+      map.addLayer(layerLabels);
+    }
+  }
+
+  document
+    .querySelector('#basemaps')
+    .addEventListener('change', function (e) {
+      var basemap = e.target.value;
+      setBasemap(basemap);
+    });
+</script>
 
 </div>
 <!-- End of Main Content -->

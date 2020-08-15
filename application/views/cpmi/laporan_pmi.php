@@ -74,43 +74,74 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
-                                        <th rowspan="2"> NO </th>
+                                    <th rowspan="2"> NO </th>
                                         <th rowspan="2">NAMA_PPPMI</th>
                                         <th>STATUS</th>
-                                        <th colspan="2">JK</th>
+                                        <th colspan="2">TAIWAN</th>
+                                        <th colspan="2">HONGKONG</th>
+                                        <th colspan="2">SING</th>
+                                        <th colspan="2">MALAYSIA</th>
+                                        <th colspan="2">BRUNEI_D.</th>
+                                        <th colspan="2">LAINNYA</th>
                                         <th colspan="2">SEKTOR</th>
-                                        <th rowspan="2">NEGARA </th>
+                                        <th colspan="2">DOMISILI</th>
+                                        <th colspan="2">JUMLAH</th>
                                         <th rowspan="2">TOTAL</th>
-                                        <!-- <th>&nbsp;Aksi__&nbsp;</th> -->
                                     </tr>
                                     <tr>
                                         <th>(P/C)</th>
                                         <th> L</th>
                                         <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
+                                        <th> L</th>
+                                        <th> P</th>
                                         <th> Formal</th>
                                         <th> Informal</th>
-
+                                        <th> Jatim</th>
+                                        <th> L.Jatim</th>
+                                        <th> L</th>
+                                        <th> P</th>
                                     </tr>
                                 </thead>
 
 
                                 <tbody align="center">
                                     <?php $i = 1; ?>
-                                    <?php foreach ($data_pppmi as $p) : ?>
-
+                                    <?php foreach ($data_an as $pp) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></th>
-                                            <td><small> <?= $p['nama_perusahaan']; ?> </small></td>
-                                            <td><small> <?= $p['status']; ?> </small></td>
-                                            <td><small> <?= $p['total_lk']; ?> </small></td>
-                                            <td><small> <?= $p['total_pr']; ?></td>
-                                            <td><small> <?= $p['total_formal']; ?></small> </td>
-                                            <td><small> <?= $p['total_informal']; ?></small></td>
-                                            <td> <small> <?= $p['nama_negara']; ?> </td>
-                                            <td><?= $p['total']; ?></td>
-                                        </tr>
+                    <th scope="row"><?= $i; ?></th>
+                    <td><?= $pp->nama_perusahaan; ?></td>
+                    <td><?= $pp->status; ?></td>
+                    <td><?= $pp->lt; ?></td>
+                    <td><?= $pp->pt; ?></td>
+                    <td><?= $pp->lh; ?></td>
+                    <td><?= $pp->ph; ?></td>
+                    <td><?= $pp->ls; ?></td>
+                    <td><?= $pp->ps; ?></td>
+                    <td><?= $pp->lm; ?></td>
+                    <td><?= $pp->pm; ?></td>
+                    <td><?= $pp->lb; ?></td>
+                    <td><?= $pp->pb; ?></td>
+                    <td><?= $pp->ll; ?></td>
+                    <td><?= $pp->lp; ?></td>
+                    <td><?= $pp->formal; ?></td>
+                    <td><?= $pp->informal; ?></td>
+                    <td><?= $pp->ljatim; ?></td>
+                    <td><?= $pp->jatim; ?></td>
+                    <td><?= $pp->lta; ?></td>
+                    <td><?= $pp->pta; ?></td>
+                    <td><?= $pp->total; ?></td>
+
+                </tr>
                                         <?php $i++; ?>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

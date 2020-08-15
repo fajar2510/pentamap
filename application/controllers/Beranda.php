@@ -37,4 +37,13 @@ class Beranda extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function kabupaten()
+    {
+        $query =
+            "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
+        ";
+        $data=$this->db->query($query)->result();
+        echo json_encode($data);
+    }
+
 }

@@ -85,6 +85,18 @@ class Phk extends CI_Controller
 
             $this->db->insert('tb_phk', $data);
 
+            $kabupaten = $this->input->post('wilayah', true);
+            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+
+           $jumlah = $jumlah_phk->row()->phk;
+
+            $update = [   
+                'jumlah_phk' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
+
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Berhasil! Data Tenaga Kerja yang ter-PHK telah ditambahkan. </div>');
             redirect('phk');
@@ -156,7 +168,22 @@ class Phk extends CI_Controller
     public function hapus($id)
     {
         $this->db->where('id_phk', $id);
+
+        $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
+        $kabupaten = $phk->row()->wilayah;
+
         $this->db->delete('tb_phk');
+
+            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+
+           $jumlah = $jumlah_phk->row()->phk;
+
+            $update = [   
+                'jumlah_phk' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Data yang dipilih telah berhasil dihapus </div>');

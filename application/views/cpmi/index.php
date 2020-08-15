@@ -15,7 +15,7 @@
     </div>
 
     <!-- parsing data -->
-    <?php foreach ($formal as $tot_formal); ?>
+    <!-- <?php foreach ($formal as $tot_formal); ?> -->
     <?php foreach ($a as $aa); ?>
     <?php foreach ($b as $bb); ?>
 

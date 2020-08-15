@@ -30,7 +30,7 @@ class Cpmi extends CI_Controller
         // load data wilayah
 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
-        $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
+        // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
 
@@ -222,6 +222,8 @@ class Cpmi extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // load data count cpmi pmi tka pengangguran
+
+        // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
@@ -232,6 +234,7 @@ class Cpmi extends CI_Controller
         $data['data_pppmi'] = $this->Penempatan->get_lap_pppmi();
         $data['data_hongkong'] = $this->Penempatan->get_data_hongkong();
         $data['data_sin'] = $this->Penempatan->get_data_sin();
+        $data['data_an'] = $this->Penempatan->data_an();
 
         $data['title'] = 'Data AN Perusahaan Penempatan Pekerja Migran Indonesia (P3MI) ';
         $this->load->view('templates/header', $data);

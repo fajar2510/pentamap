@@ -96,6 +96,19 @@ class Tka extends CI_Controller
             ];
 
             $this->db->insert('tb_tka', $data);
+
+            $kabupaten = $this->input->post('lokasi');
+            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
+
+           $jumlah = $jumlah_tka->row()->tka;
+
+            $update = [   
+                'jumlah_tka' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
+
             $this->session->set_flashdata('message', '<div class="alert 
                 alert-success" role="alert"> Data TKA telah ditambahkan </div>');
             redirect('tka');
@@ -170,7 +183,22 @@ class Tka extends CI_Controller
     public function hapus($id)
     {
         $this->db->where('id', $id);
+
+        $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
+        $kabupaten = $tka->row()->lokasi_kerja;
+
         $this->db->delete('tb_tka');
+
+            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
+
+           $jumlah = $jumlah_tka->row()->tka;
+
+            $update = [   
+                'jumlah_tka' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Data yang dipilih telah dihapus </div>');

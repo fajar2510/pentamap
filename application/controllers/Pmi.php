@@ -123,6 +123,7 @@ class Pmi extends CI_Controller
                 'lama_bekerja' => $this->input->post('lama', true),
                 'date_created' => $this->input->post('tanggal_data'),
             ];
+
             // cek jika ada gambar yang akan di upload
             // masih salah dan belum bisa upload gambar
             // cek jika ada gambar yang akan di upload
@@ -146,6 +147,18 @@ class Pmi extends CI_Controller
             }
 
             $this->db->insert('tb_pmi', $data);
+
+            $kabupaten = $this->input->post('kabupaten_id', true);
+            $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+
+           $jumlah = $jumlah_pmib->row()->pmib;
+
+            $update = [   
+                'jumlah_pmib' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
             // show alert
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Berhasil! Data PMI telah ditambahkan. </div>');
@@ -246,7 +259,22 @@ class Pmi extends CI_Controller
     public function deletePmi($id)
     {
         $this->db->where('id', $id);
+
+        $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
+        $kabupaten = $pmi->row()->kabupaten;
+
         $this->db->delete('tb_pmi');
+
+        $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+
+        $jumlah = $jumlah_pmib->row()->pmib;
+
+        $update = [   
+            'jumlah_pmib' => $jumlah,
+        ];
+
+        $this->db->where('id_kabupaten', $kabupaten);
+        $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Data yang dipilih telah dihapus </div>');
