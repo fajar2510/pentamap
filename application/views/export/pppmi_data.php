@@ -26,6 +26,40 @@
             text-align: justify;
         }
     </style>
+
+    <?php
+    function bulanIndo($bulanInggris)
+    {
+        switch ($bulanInggris) {
+            case '01':
+                return 'JANUARI';
+            case '02':
+                return 'FEBRUARI';
+            case '03':
+                return 'MARET';
+            case '04':
+                return 'APRIL';
+            case '05':
+                return 'MEI';
+            case '06':
+                return 'JUNI';
+            case '07':
+                return 'JULI';
+            case '08':
+                return 'AGUSTUS';
+            case '09':
+                return 'SEPTEMBER';
+            case '10':
+                return 'OKTOBER';
+            case '11':
+                return 'NOVEMBER';
+            case '12':
+                return 'DESEMBER';
+            default:
+                return 'Bulan tidak valid';
+        }
+    }
+    ?>
 </head>
 
 <body>
@@ -37,7 +71,12 @@
         <thead>
             <tr>
                 <th> -->
-    <p align="center"> <b>LAPORAN BULANAN PPPMI PENEMPATAN CALON TKI KE LUAR NEGERI</b> </p>
+    <p align="center"> <b>LAPORAN PPPMI PENEMPATAN CALON TKI KE LUAR NEGERI <br> BULAN
+            <?php
+            $bln = explode('/',  $tanggal);
+            ?> <?= bulanIndo($bln[0]) ?>
+            TAHUN <?= $bln[2]; ?>
+        </b> </p>
     <!-- </th>
             </tr>
             <tr>
@@ -46,39 +85,7 @@
         </thead>
     </table> -->
 
-    <?php
-    function bulanIndo($bulanInggris)
-    {
-        switch ($bulanInggris) {
-            case '01':
-                return 'Januari';
-            case '02':
-                return 'Februari';
-            case '03':
-                return 'Maret';
-            case '04':
-                return 'April';
-            case '05':
-                return 'Mei';
-            case '06':
-                return 'Juni';
-            case '07':
-                return 'Juli';
-            case '08':
-                return 'Agustus';
-            case '09':
-                return 'September';
-            case '10':
-                return 'Oktober';
-            case '11':
-                return 'November';
-            case '12':
-                return 'Desember';
-            default:
-                return 'Bulan tidak valid';
-        }
-    }
-    ?>
+
     <!-- 
     <?php foreach ($semua_data_cpmi as $row); ?>
     <?php foreach ($data_total_orang as $total_cpmi); ?> -->
@@ -94,11 +101,11 @@
         <thead align="center">
             <tr>
                 <th rowspan="2"> NO </th>
-                <th rowspan="2">NAMA_PPPMI</th>
+                <th rowspan="2">NAMA_PPPMI__</th>
                 <th>STATUS</th>
                 <th colspan="2">TAIWAN</th>
                 <th colspan="2">HONGKONG</th>
-                <th colspan="2">SING</th>
+                <th colspan="2">SIN</th>
                 <th colspan="2">MALAYSIA</th>
                 <th colspan="2">BRUNEI_D.</th>
                 <th colspan="2">LAINNYA</th>
@@ -131,33 +138,35 @@
         </thead>
         <tbody align="center">
             <?php $i = 1; ?>
-            <?php foreach ($data_pppmi as $row) : ?>
+            <?php foreach ($semua_data_cpmi as $pp) : ?>
                 <tr>
                     <th scope="row"><?= $i; ?></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td align="left"> <small> <?= $pp['nama_perusahaan']; ?></small></td>
+                    <td align="center"><?= $pp['status']; ?></td>
+                    <td align="center"><?= $pp['lt']; ?></td>
+                    <td align="center"><?= $pp['pt']; ?></td>
+                    <td align="center"><?= $pp['lh']; ?></td>
+                    <td align="center"><?= $pp['ph']; ?></td>
+                    <td align="center"><?= $pp['ls']; ?></td>
+                    <td align="center"><?= $pp['ps']; ?></td>
+                    <td align="center"><?= $pp['lm']; ?></td>
+                    <td align="center"><?= $pp['pm']; ?></td>
+                    <td align="center"><?= $pp['lb']; ?></td>
+                    <td align="center"><?= $pp['pb']; ?></td>
+                    <td align="center"><?= $pp['ll']; ?></td>
+                    <td align="center"><?= $pp['lp']; ?></td>
+                    <td align="center"><?= $pp['formal']; ?></td>
+                    <td align="center"><?= $pp['informal']; ?></td>
+                    <td align="center"><?= $pp['ljatim']; ?></td>
+                    <td align="center"><?= $pp['jatim']; ?></td>
+                    <td align="center"><?= $pp['lta']; ?></td>
+                    <td align="center"><?= $pp['pta']; ?></td>
+                    <td align="center"><?= $pp['total']; ?></td>
 
                 </tr>
+                <?php $i++; ?>
             <?php endforeach; ?>
-            <?php $i++; ?>
+
         </tbody>
     </table>
 

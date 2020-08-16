@@ -168,6 +168,7 @@ class Penempatan extends CI_Model
     //     return $data->result();
     // }
 
+
     public function getTotalTKA()
     {
         $data = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka ");
@@ -212,8 +213,41 @@ class Penempatan extends CI_Model
         $data = $this->db->query("SELECT COUNT(id) as taiwan_pr FROM tb_cpmi WHERE negara_penempatan='254' AND jenis_kelamin='P'");
         return $data->result();
     }
-     public function data_an()
-     {
+
+
+    public function get_PPPMIByMonthYear($date)
+    {
+        $bln = explode('/', $date);
+        $query =
+            "SELECT tb_cpmi.perusahaan, tb_cpmi.date_created, tb_perusahaan.nama_perusahaan, tb_perusahaan.status, 
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='254' THEN 1 ELSE 0 END) as lt,
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='252' THEN 1 ELSE 0 END) as lh,
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='249' THEN 1 ELSE 0 END) as ls,
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='248' THEN 1 ELSE 0 END) as lm,
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='250' THEN 1 ELSE 0 END) as lb,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan='254' THEN 1 ELSE 0 END) as pt,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan='252' THEN 1 ELSE 0 END) as ph,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan='249' THEN 1 ELSE 0 END) as ps,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan='248' THEN 1 ELSE 0 END) as pm,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan='250' THEN 1 ELSE 0 END) as pb,
+                                SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan!='254' AND '252' AND '249' AND '248' AND '250' THEN 1 ELSE 0 END) as ll,
+                                SUM(CASE WHEN jenis_kelamin='P' AND negara_penempatan!='254' AND '252' AND '249' AND '248' AND '250' THEN 1 ELSE 0 END) as lp,
+                                SUM(CASE WHEN jenis_kelamin='L' AND jabatan='FORMAL' THEN 1 ELSE 0 END) as formal,
+                                SUM(CASE WHEN jenis_kelamin='P' AND jabatan='INFORMAL' THEN 1 ELSE 0 END) as informal,
+                                SUM(CASE WHEN wilayah!='42385' THEN 1 ELSE 0 END) as ljatim,
+                                SUM(CASE WHEN wilayah='42385' THEN 1 ELSE 0 END) as jatim,
+                                SUM(CASE WHEN jenis_kelamin='L' THEN 1 ELSE 0 END) as lta,
+                                SUM(CASE WHEN jenis_kelamin='P' THEN 1 ELSE 0 END) as pta,
+                                COUNT(perusahaan) as total 
+                                FROM tb_cpmi 
+                                JOIN tb_perusahaan ON tb_cpmi.perusahaan = tb_perusahaan.id 
+                                WHERE MONTH(tb_cpmi.date_created) = '$bln[0]' AND YEAR(tb_cpmi.date_created) = '$bln[2]'
+                                GROUP BY perusahaan";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function data_an()
+    {
         $data = $this->db->query("SELECT tb_cpmi.perusahaan, tb_perusahaan.nama_perusahaan, tb_perusahaan.status, 
                                 SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='254' THEN 1 ELSE 0 END) as lt,
                                 SUM(CASE WHEN jenis_kelamin='L' AND negara_penempatan='252' THEN 1 ELSE 0 END) as lh,
@@ -237,6 +271,5 @@ class Penempatan extends CI_Model
                                 FROM tb_cpmi JOIN tb_perusahaan ON tb_cpmi.perusahaan = tb_perusahaan.id 
                                 GROUP BY perusahaan");
         return $data->result();
-     }
-
+    }
 }

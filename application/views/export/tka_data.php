@@ -69,7 +69,7 @@ function bulanIndo($bulanInggris)
     <!-- <table class="table" width="100%">
         <thead>
             <tr>
-                <th> -->
+                <th> --> 
     <center>
         <p align="center"> <b>LAPORAN TKA DAN PENEMPATAN PERUSAHAAN <br> BULAN
                 <?php

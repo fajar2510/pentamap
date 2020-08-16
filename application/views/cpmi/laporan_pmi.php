@@ -33,19 +33,25 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
-                            <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-filter"></i>
-                                </span>
-                                <span class="text">Filter</span>
-                            </a>
-                            <div>
-                                <div class="container">
-                                    Rentang Awal: <input id="startDate" width="276" />
-                                    Rentang Akhir: <input id="endDate" width="276" />
-                                </div>
-                            </div> -->
+                            <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
+                                <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-filter"></i>
+                                    </span>
+                                    <span class="text">Filter</span>
+                                </a>
+                                <div>
+                                    <div class="container"> -->
+                                Filter : <input type="text" width="276" name="awal" id="awal">
+                                <!-- </div>
+                                </div> -->
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-print"></i>
+                                    </span>
+                                    <span class="text">Cetak PDF</span>
+                                </button>
+                            </form>
                         </div>
                         <div class="dropdown mb-0">
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
@@ -74,8 +80,8 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
-                                    <th rowspan="2"> NO </th>
-                                        <th rowspan="2">NAMA_PPPMI</th>
+                                        <th rowspan="2"> NO </th>
+                                        <th rowspan="2">NAMA_PPPMI__</th>
                                         <th>STATUS</th>
                                         <th colspan="2">TAIWAN</th>
                                         <th colspan="2">HONGKONG</th>
@@ -116,32 +122,32 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_an as $pp) : ?>
                                         <tr>
-                    <th scope="row"><?= $i; ?></th>
-                    <td><?= $pp->nama_perusahaan; ?></td>
-                    <td><?= $pp->status; ?></td>
-                    <td><?= $pp->lt; ?></td>
-                    <td><?= $pp->pt; ?></td>
-                    <td><?= $pp->lh; ?></td>
-                    <td><?= $pp->ph; ?></td>
-                    <td><?= $pp->ls; ?></td>
-                    <td><?= $pp->ps; ?></td>
-                    <td><?= $pp->lm; ?></td>
-                    <td><?= $pp->pm; ?></td>
-                    <td><?= $pp->lb; ?></td>
-                    <td><?= $pp->pb; ?></td>
-                    <td><?= $pp->ll; ?></td>
-                    <td><?= $pp->lp; ?></td>
-                    <td><?= $pp->formal; ?></td>
-                    <td><?= $pp->informal; ?></td>
-                    <td><?= $pp->ljatim; ?></td>
-                    <td><?= $pp->jatim; ?></td>
-                    <td><?= $pp->lta; ?></td>
-                    <td><?= $pp->pta; ?></td>
-                    <td><?= $pp->total; ?></td>
+                                            <th scope="row"><?= $i; ?></th>
+                                            <td align="left"> <small><?= $pp->nama_perusahaan; ?></small> </td>
+                                            <td><?= $pp->status; ?></td>
+                                            <td><?= $pp->lt; ?></td>
+                                            <td><?= $pp->pt; ?></td>
+                                            <td><?= $pp->lh; ?></td>
+                                            <td><?= $pp->ph; ?></td>
+                                            <td><?= $pp->ls; ?></td>
+                                            <td><?= $pp->ps; ?></td>
+                                            <td><?= $pp->lm; ?></td>
+                                            <td><?= $pp->pm; ?></td>
+                                            <td><?= $pp->lb; ?></td>
+                                            <td><?= $pp->pb; ?></td>
+                                            <td><?= $pp->ll; ?></td>
+                                            <td><?= $pp->lp; ?></td>
+                                            <td><?= $pp->formal; ?></td>
+                                            <td><?= $pp->informal; ?></td>
+                                            <td><?= $pp->ljatim; ?></td>
+                                            <td><?= $pp->jatim; ?></td>
+                                            <td><?= $pp->lta; ?></td>
+                                            <td><?= $pp->pta; ?></td>
+                                            <td><?= $pp->total; ?></td>
 
-                </tr>
+                                        </tr>
                                         <?php $i++; ?>
-                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

@@ -229,8 +229,10 @@ class Exportimport extends CI_Controller
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_cpmi();
-        $data = $this->load->view('export/pppmi_data', ['semua_data_cpmi' => $data_cpmi], TRUE);
+        $data_cpmi['tanggal'] = $_POST['awal'];
+        $data_cpmi['semua_data_cpmi'] = $this->Penempatan->get_PPPMIByMonthYear($_POST['awal']);
+        // $data_cpmi = $this->Penempatan->get_cpmi();
+        $data = $this->load->view('export/pppmi_data', $data_cpmi, TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }

@@ -47,7 +47,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-print"></i>
                                     </span>
-                                    <span class="text">PDF</span>
+                                    <span class="text">Cetak PDF</span>
                                 </button>
                             </form>
                         </div>

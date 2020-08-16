@@ -201,65 +201,61 @@
 </script>
 
 <script type="text/javascript">
-// var L = window.L;
+    // var L = window.L;
 
-var map = L.map('mapp').setView([-7.6709737,112.3288216], 8);
+    var map = L.map('mapp').setView([-7.6709737, 112.3288216], 8);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-var leafleticon = L.icon ({
-    iconUrl: 'assets/img/map.png',
-    iconSize: [38,45]
-})
+    var leafleticon = L.icon({
+        iconUrl: 'assets/img/map.png',
+        iconSize: [38, 45]
+    })
 
-$.getJSON("<?=base_url()?>beranda/kabupaten", function(data){
-    $.each(data, function(i, field){
-        
-        var lat = parseFloat(data[i].kabupaten_lat);
-        var long = parseFloat(data[i].kabupaten_long);
+    $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
+        $.each(data, function(i, field) {
 
-        var phk = data[i].jumlah_phk;
-        var pmib = data[i].jumlah_pmib;
-        var pmi = data[i].jumlah_pmi;
-        var tka = data[i].jumlah_tka;
+            var lat = parseFloat(data[i].kabupaten_lat);
+            var long = parseFloat(data[i].kabupaten_long);
 
-        if(phk=='' || null)
-        {
-            phk = 0;
-        }else{
-            phk = data[i].jumlah_phk;
-        }
+            var phk = data[i].jumlah_phk;
+            var pmib = data[i].jumlah_pmib;
+            var pmi = data[i].jumlah_pmi;
+            var tka = data[i].jumlah_tka;
 
-        if(pmib=='' || null)
-        {
-            pmib = 0;
-        }else{
-            pmib = data[i].jumlah_pmib;
-        }
+            if (phk == '' || null) {
+                phk = 0;
+            } else {
+                phk = data[i].jumlah_phk;
+            }
 
-        if(pmi=='' || null)
-        {
-            pmi = 0;
-        }else{
-            pmi = data[i].jumlah_pmi;
-        }
+            if (pmib == '' || null) {
+                pmib = 0;
+            } else {
+                pmib = data[i].jumlah_pmib;
+            }
 
-        if(tka=='' || null)
-        {
-            tka = 0;
-        }else{
-            tka = data[i].jumlah_tka;
-        }
-        bangunanMarker =  L.marker([long, lat],{icon: leafleticon}).addTo(map)
-                        .bindPopup("<u><b><center>"+data[i].nama_kabupaten+"</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr><td>Jumlah Pekerja PHK</td><td><center>"+phk+"</center></td></tr><tr><td>Jumlah PMI-B</td><td><center>"+pmib+"</center></td></tr><tr><td>Jumlah TKA</td><td><center>"+tka+"</center></td></tr><tr><td>Jumlah PMI</td><td><center>"+pmi+"</center></td></tr></table>")
-                        .openPopup();
+            if (pmi == '' || null) {
+                pmi = 0;
+            } else {
+                pmi = data[i].jumlah_pmi;
+            }
 
+            if (tka == '' || null) {
+                tka = 0;
+            } else {
+                tka = data[i].jumlah_tka;
+            }
+            bangunanMarker = L.marker([long, lat], {
+                    icon: leafleticon
+                }).addTo(map)
+                .bindPopup("<u><b><center>" + data[i].nama_kabupaten + "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr><td>Jumlah Pekerja PHK</td><td><center>" + phk + "</center></td></tr><tr><td>Jumlah PMI-B</td><td><center>" + pmib + "</center></td></tr><tr><td>Jumlah TKA</td><td><center>" + tka + "</center></td></tr><tr><td>Jumlah PMI</td><td><center>" + pmi + "</center></td></tr></table>")
+                .openPopup();
+
+        });
     });
-  });
-
-
 </script>
 
 

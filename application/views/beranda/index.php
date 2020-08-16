@@ -18,13 +18,13 @@
     <div class="row">
 
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-1 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">CPMI [Calon P.Migran Ind]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_cpmi->cpmi; ?> <span><small>orang</small> </span> </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_cpmi->cpmi; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -34,13 +34,13 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-1 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TKA [Tenaga Kerja Asing]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_tka->tka; ?> <span><small>orang</small> </span> </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_tka->tka; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-injured fa-2x text-gray-300"></i>
@@ -51,13 +51,13 @@
         </div>
 
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-1 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMI-B [PMI Bermasalah]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pmib->pmib; ?> <span><small>orang</small> </span></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_pmib->pmib; ?> <span><small>orang</small> </span></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-id-card fa-2x text-gray-300"></i>
@@ -66,14 +66,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-1 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja ter-PHK</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_phk->phk; ?> <span><small>orang</small> </span> </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_phk->phk; ?> <span><small>orang</small> </span> </div>
                         </div>
+
                         <div class="col-auto">
                             <i class="fas fa-credit-card fa-2x text-gray-300"></i>
                         </div>
@@ -86,84 +87,50 @@
 
 
     </div>
+    <hr>
 
     <div class="row">
+        <div class="col-md-10">
+            <center>
+                <p> <b>PETA TENAGA KERJA PROVINSI JATIM <?= date('Y'); ?> </b> | DISNAKERTRANS JATIM </p>
+            </center>
+        </div>
+
+        <div class="col-md-2">
+            <select class="form-control" name="tahun">
+                <option value="<?= date('Y'); ?>"><?= date('Y'); ?></option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
-        <div id="mapp"></div>
+            <div id="mapp"></div>
         </div>
-        </div>
+    </div>
 
-
-    <script>
-        $('.carousel').carousel({
-            interval: 1000
-        })
-    </script>
-<script type="text/javascript">
-// var L = window.L;
-
-var map = L.map('mapp').setView([-7.2773934,111.7170372], 8);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-$.getJSON("<?=base_url()?>beranda/kabupaten", function(data){
-    $.each(data, function(i, field){
-        
-        var lat=parseFloat(data[i].kabupaten_lat);
-        var long=parseFloat(data[i].kabupaten_long);
-
-    L.marker([long,lat]).addTo(map)
-    .bindPopup(data[i].nama_kabupaten)
-    .openPopup();
-
-    });
-  });
-
-
-</script>
-
-<script>
-  var map = L.map('map').setView([-33.87, 150.77], 10);
-  var layer = L.esri.basemapLayer('Topographic').addTo(map);
-  var layerLabels;
-
-  function setBasemap (basemap) {
-    if (layer) {
-      map.removeLayer(layer);
-    }
-
-    layer = L.esri.basemapLayer(basemap);
-
-    map.addLayer(layer);
-
-    if (layerLabels) {
-      map.removeLayer(layerLabels);
-    }
-
-    if (
-      basemap === 'ShadedRelief' ||
-      basemap === 'Oceans' ||
-      basemap === 'Gray' ||
-      basemap === 'DarkGray' ||
-      basemap === 'Terrain'
-    ) {
-      layerLabels = L.esri.basemapLayer(basemap + 'Labels');
-      map.addLayer(layerLabels);
-    } else if (basemap.includes('Imagery')) {
-      layerLabels = L.esri.basemapLayer('ImageryLabels');
-      map.addLayer(layerLabels);
-    }
-  }
-
-  document
-    .querySelector('#basemaps')
-    .addEventListener('change', function (e) {
-      var basemap = e.target.value;
-      setBasemap(basemap);
-    });
-</script>
+    <div>
+        <hr>
+        <p> <b> Petunjuk :</b></p>
+        <ul>
+            <li>
+                <i>
+                    1. Klik Ikon yang mewakili wilayah atau kabupaten kota provinsi Jawa Timur
+                </i>
+            </li>
+            <li>
+                <i>
+                    2. Geser ,Zoom out/Zoom in untuk memberikan pandangan yang lebih baik
+                </i>
+            </li>
+            <li>
+                <i>
+                    3. Setiap wilayah di Jawa Timur akan menampilkan data jumlah PMI, PMI-B, TKA, dan Tenga Kerja ter-PHK
+                </i>
+            </li>
+        </ul>
+    </div>
 
 </div>
 <!-- End of Main Content -->
