@@ -7,7 +7,7 @@ class Beranda extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-       
+
         $this->load->model('Master');
         $this->load->model('Penempatan');
     }
@@ -39,11 +39,15 @@ class Beranda extends CI_Controller
 
     public function kabupaten()
     {
+        $tahun = $this->input->post('tahun');
+
+        // if()
+        // {
         $query =
             "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
         ";
-        $data=$this->db->query($query)->result();
+        // }
+        $data = $this->db->query($query)->result();
         echo json_encode($data);
     }
-
 }

@@ -257,7 +257,24 @@
         });
     });
 </script>
+<script>
+    $(function() {
 
+        $('#tahun_pilih').on('change', function() {
+            var tahun = $(this).val();
+            $('#tahun_peta').html(tahun);
+            // 
+        });
+    });
+
+    function tahun() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>beranda/kabupaten",
+            data: 'tahun=' + $('#tahun_pilih').val(),
+        });
+    }
+</script>
 
 
 

@@ -92,13 +92,14 @@
     <div class="row">
         <div class="col-md-10">
             <center>
-                <p> <b>PETA TENAGA KERJA PROVINSI JATIM <?= date('Y'); ?> </b> | DISNAKERTRANS JATIM </p>
+                <p> <b>PETA TENAGA KERJA PROVINSI JATIM <div id="tahun_peta"><?= date('Y'); ?></div> </b> | DISNAKERTRANS JATIM </p>
             </center>
         </div>
 
         <div class="col-md-2">
-            <select class="form-control" name="tahun">
-                <option value="<?= date('Y'); ?>"><?= date('Y'); ?></option>
+            <select class="form-control" id="tahun_pilih" name="tahun">
+                <option value="all">-Pilih Tahun-</option>
+                <option value="2020">2020</option>
                 <option value="2019">2019</option>
                 <option value="2018">2018</option>
             </select>
