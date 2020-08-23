@@ -1,8 +1,6 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-
+    <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-600"><?= $title; ?></h1>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
@@ -15,9 +13,9 @@
     <?php foreach ($phk as $total_phk); ?>
 
     <!-- Content Row -->
+
+    <!-- total start -->
     <div class="row">
-
-
         <div class="col-xl-3 col-md-1 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -84,15 +82,17 @@
         </div>
 
         <!-- Content Row -->
-
-
     </div>
+    <!-- total end -->
+
     <hr>
 
+
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10  mb-3">
             <center>
-                <p> <b>PETA TENAGA KERJA PROVINSI JATIM <div id="tahun_peta"><?= date('Y'); ?></div> </b> | DISNAKERTRANS JATIM </p>
+
+                <h6> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> PETA TENAGA KERJA PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></b></h6>
             </center>
         </div>
 
@@ -101,7 +101,6 @@
                 <option value="all">-Pilih Tahun-</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
-                <option value="2018">2018</option>
             </select>
         </div>
     </div>
@@ -132,6 +131,8 @@
             </li>
         </ul>
     </div>
+
+
 
 </div>
 <!-- End of Main Content -->
