@@ -153,7 +153,7 @@ class Master extends CI_Model
     }
 
 
-    public function getPmi_per_negara($negara, $date) 
+    public function getPmi_per_negara($negara, $date)
     {
         $bln = explode('-', $date);
         $query =
@@ -242,5 +242,14 @@ class Master extends CI_Model
         $query = "SELECT * FROM tb_phk WHERE tb_phk.id_phk = '$id'
                 ";
         return $this->db->query($query)->row();
+    }
+
+    public function tabel()
+    {
+        $query =
+            "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
+        ";
+
+        return $this->db->query($query)->result_array();
     }
 }

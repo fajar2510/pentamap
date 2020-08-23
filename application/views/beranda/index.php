@@ -104,33 +104,73 @@
             </select>
         </div>
     </div>
+
+
+
     <div class="row">
         <div class="col-md-12">
             <div id="mapp"></div>
+            <div>
+                <hr>
+                <p> <b> Petunjuk :</b></p>
+                <ul>
+                    <li>
+                        <i>
+                            1. Klik Ikon yang mewakili wilayah atau kabupaten kota provinsi Jawa Timur
+                        </i>
+                    </li>
+                    <li>
+                        <i>
+                            2. Geser ,Zoom out/Zoom in untuk memberikan pandangan yang lebih baik
+                        </i>
+                    </li>
+                    <li>
+                        <i>
+                            3. Setiap wilayah di Jawa Timur akan menampilkan data jumlah PMI, PMI-B, TKA, dan Tenga Kerja ter-PHK
+                        </i>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <center>
+                            <h6> <b>TABEL VIEW DATA TENAGA KERJA PROVINSI JAWA TIMUR </b> </h6>
+                        </center>
+                        <thead align="center">
+                            <tr>
+                                <th width="3%"> No</th>
+                                <th width="5%">Nama Kabupaten</th>
+                                <th width="20%">Jumlah PHK</th>
+                                <th width="28%">Jumlah PMI</th>
+                                <th width="28%">Jumlah PMIB</th>
+                                <th width="28%">Jumlah TKA</th>
+                                <th width="28%">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1; ?>
+                            <?php foreach ($tabel as $p) : ?>
+                                <tr>
+                                    <td align="center"><?= $i; ?></td>
+                                    <td><small><?= $p['nama_kabupaten']; ?></small> </td>
+                                    <td align="center"><small> <?= $p['jumlah_phk']; ?></small></td>
+                                    <td align="center"><small><?= $p['jumlah_pmi']; ?></small> </td>
+                                    <td align="center"><small> <?= $p['jumlah_pmib']; ?></small></td>
+                                    <td align="center"><small><?= $p['jumlah_tka']; ?></small> </td>
+                                    <td align="center"><small><?= $p['jumlah_tka'] + $p['jumlah_phk'] + $p['jumlah_pmi'] + $p['jumlah_pmib']; ?></small> </td>
+                                </tr>
+                                <?php $i++; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div>
-        <hr>
-        <p> <b> Petunjuk :</b></p>
-        <ul>
-            <li>
-                <i>
-                    1. Klik Ikon yang mewakili wilayah atau kabupaten kota provinsi Jawa Timur
-                </i>
-            </li>
-            <li>
-                <i>
-                    2. Geser ,Zoom out/Zoom in untuk memberikan pandangan yang lebih baik
-                </i>
-            </li>
-            <li>
-                <i>
-                    3. Setiap wilayah di Jawa Timur akan menampilkan data jumlah PMI, PMI-B, TKA, dan Tenga Kerja ter-PHK
-                </i>
-            </li>
-        </ul>
-    </div>
+
 
 
 

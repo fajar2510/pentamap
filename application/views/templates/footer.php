@@ -225,33 +225,43 @@
             var pmi = data[i].jumlah_pmi;
             var tka = data[i].jumlah_tka;
 
+            var logo = data[i].logo_kab;
+
             if (phk == '' || null) {
-                phk = 0;
+                phk = parseInt("0");
             } else {
-                phk = data[i].jumlah_phk;
+                phk = parseInt(data[i].jumlah_phk);
             }
 
             if (pmib == '' || null) {
-                pmib = 0;
+                pmib = parseInt("0");
             } else {
-                pmib = data[i].jumlah_pmib;
+                pmib = parseInt(data[i].jumlah_pmib);
             }
 
             if (pmi == '' || null) {
-                pmi = 0;
+                pmi = parseInt("0");
             } else {
-                pmi = data[i].jumlah_pmi;
+                pmi = parseInt(data[i].jumlah_pmi);
             }
 
             if (tka == '' || null) {
-                tka = 0;
+                tka = parseInt("0");
             } else {
-                tka = data[i].jumlah_tka;
+                tka = parseInt(data[i].jumlah_tka);
             }
+
+            if (jumlah == '' || null) {
+                jumlah = 0;
+            } else {
+                jumlah = parseInt(data[i].jumlah_phk);
+            }
+
+            var jumlah = phk + pmib + pmi + tka;
             bangunanMarker = L.marker([long, lat], {
                     icon: leafleticon
                 }).addTo(map)
-                .bindPopup("<u><b><center>" + data[i].nama_kabupaten + "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr><td>Jumlah Pekerja PHK</td><td><center>" + phk + "</center></td></tr><tr><td>Jumlah PMI-B</td><td><center>" + pmib + "</center></td></tr><tr><td>Jumlah TKA</td><td><center>" + tka + "</center></td></tr><tr><td>Jumlah PMI</td><td><center>" + pmi + "</center></td></tr></table>")
+                .bindPopup("<u><b><center>" + data[i].nama_kabupaten + "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr><td>Jumlah Pekerja PHK</td><td><center>" + phk + "</center></td></tr><tr><td>Jumlah PMI-B</td><td><center>" + pmib + "</center></td></tr><tr><td>Jumlah TKA</td><td><center>" + tka + "</center></td></tr><tr><td>Jumlah PMI</td><td><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>")
                 .openPopup();
 
         });
@@ -263,15 +273,28 @@
         $('#tahun_pilih').on('change', function() {
             var tahun = $(this).val();
             $('#tahun_peta').html(tahun);
-            // 
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>beranda/kabupaten",
+                data: {
+                    tahun: tahun
+                },
+                success: function(hasil) {
+                    $('#mapp').html(hasil);
+                }
+            });
         });
     });
 
     function tahun() {
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>beranda/kabupaten",
+            url: "<?= base_url() ?>beranda/kabupaten",
             data: 'tahun=' + $('#tahun_pilih').val(),
+            dataType: "json",
+            success: function(hasil) {
+                $('#mapp').html(hasil);
+            }
         });
     }
 </script>
