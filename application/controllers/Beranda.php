@@ -43,7 +43,8 @@ class Beranda extends CI_Controller
     {
         // $tahun = $this->input->post('tahun');
         $query =
-            "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
+            "SELECT *
+            FROM kabupaten WHERE id_provinsi= '42385' 
         ";
 
         // if ($tahun == "all") {
@@ -57,5 +58,44 @@ class Beranda extends CI_Controller
         // }
         $data = $this->db->query($query)->result();
         echo json_encode($data);
+    }
+    public function phk()
+    {
+        $query =
+            "SELECT *, max(jumlah_phk) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
+        ";
+
+        $phk = $this->db->query($query)->result();
+        echo json_encode($phk);
+    }
+
+    public function pmi()
+    {
+        $query =
+            "SELECT *,max(jumlah_pmi) as pmi_max FROM kabupaten WHERE id_provinsi= '42385' GROUP BY nama_kabupaten
+        ";
+
+        $pmi = $this->db->query($query)->result();
+        echo json_encode($pmi);
+    }
+
+    public function pmib()
+    {
+        $query =
+            "SELECT max(jumlah_pmib) FROM kabupaten WHERE id_provinsi= '42385'
+        ";
+
+        $pmib = $this->db->query($query)->result();
+        echo json_encode($pmib);
+    }
+
+    public function tka()
+    {
+        $query =
+            "SELECT max(jumlah_tka) FROM kabupaten WHERE id_provinsi= '42385'
+        ";
+
+        $tka = $this->db->query($query)->result();
+        echo json_encode($tka);
     }
 }

@@ -209,13 +209,85 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var leafleticon = L.icon({
-        iconUrl: 'assets/img/map.png',
-        iconSize: [38, 45]
-    })
+    // use the detect retina option to load retina tiles for this layer.
+    // L.esri.basemapLayer('DarkGray', {
+    //     detectRetina: true
+    // }).addTo(map);
+    // L.esri.basemapLayer('DarkGrayLabels').addTo(map);
+
+    var latlngs = [
+        [-8.210225, 110.820616],
+        [-7.879864, 111.295774],
+        [-7.427994, 111.125486],
+        [-7.248205, 111.188658],
+        [-7.346281, 111.427610],
+        [-7.180084, 111.570432],
+        [-7.002922, 111.606138],
+        [-6.926585, 111.570432],
+        [-6.749327, 111.685789],
+        [-6.762965, 111.965940],
+        [-6.888412, 112.100523],
+        [-6.850236, 112.564695],
+        [-6.861144, 113.929746],
+        [-7.120129, 114.783933],
+        [-7.844494, 114.468076],
+        [-8.434495, 114.358213],
+        [-8.657214, 114.577940],
+        [-8.763096, 114.580686],
+        [-8.744094, 114.338987],
+        [-8.630061, 114.325254],
+        [-8.507844, 113.5822181],
+        [-8.288566, 113.205936],
+        [-8.443456, 112.642887],
+        [-8.302156, 111.89581],
+        [-8.370095, 111.673344],
+        [-8.231487, 111.080082],
+        [-8.207021, 110.893314],
+    ];
+    var polygon = L.polygon(latlngs, {
+        color: 'white'
+    }).addTo(map);
+
+    var latlngs2 = [
+        [-8.210225, 110.820616],
+
+    ];
+    var polygon = L.polygon(latlngs2, {
+        color: 'blue'
+    }).addTo(map);
+
+
+    // $.getJSON("<?= base_url() ?>beranda/phk", function(phk) {
+    //     $.each(phk, function(i, field) {
+    //         var phk_max = phk[i].jumlah_phk;
+    //     });
+    // });
+
+    // $.getJSON("<?= base_url() ?>beranda/pmi", function(pmi) {
+    //     $.each(pmi, function(i, field) {
+    //         var pmi_max = pmi[i].jumlah_pmi;
+    //     });
+    // });
+
+    // $.getJSON("<?= base_url() ?>beranda/pmib", function(pmib) {
+    //     $.each(pmib, function(i, field) {
+    //         var pmib_max = pmib[i].jumlah_pmib;
+    //     });
+    // });
+
+    // $.getJSON("<?= base_url() ?>beranda/tka", function(tka) {
+    //     $.each(tka, function(i, field) {
+    //         var tka_max = tka[i].jumlah_tka;
+    //     });
+    // });
 
     $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
         $.each(data, function(i, field) {
+
+            var leafleticon = L.icon({
+                iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
+                iconSize: [38, 45]
+            })
 
             var lat = parseFloat(data[i].kabupaten_lat);
             var long = parseFloat(data[i].kabupaten_long);
@@ -227,28 +299,62 @@
 
             var logo = data[i].logo_kab;
 
-            if (phk == '' || null) {
+            if (phk == "0") {
                 phk = parseInt("0");
+
             } else {
                 phk = parseInt(data[i].jumlah_phk);
+                var circle = L.circle([long, lat], 14000, {
+
+                    color: '#F93333',
+
+
+                    fillOpacity: 0.5
+
+                }).addTo(map);
             }
 
-            if (pmib == '' || null) {
+            if (pmib == "0") {
                 pmib = parseInt("0");
+
             } else {
                 pmib = parseInt(data[i].jumlah_pmib);
+                var circle = L.circle([long, lat], 16000, {
+
+                    color: 'yellow',
+
+                    fillColor: 'yellow',
+                    fillOpacity: 0.5
+
+                }).addTo(map);
             }
 
-            if (pmi == '' || null) {
+            if (pmi == "0") {
                 pmi = parseInt("0");
             } else {
                 pmi = parseInt(data[i].jumlah_pmi);
+                var circle = L.circle([long, lat], 10000, {
+
+                    color: '#1464C4',
+                    fillColor: '#1464C4',
+
+                    fillOpacity: 0.5
+
+                }).addTo(map);
             }
 
-            if (tka == '' || null) {
+            if (tka == "0") {
                 tka = parseInt("0");
             } else {
                 tka = parseInt(data[i].jumlah_tka);
+                var circle = L.circle([long, lat], 12000, {
+
+                    color: '#0BF367',
+
+
+                    fillOpacity: 0.5
+
+                }).addTo(map);
             }
 
             if (jumlah == '' || null) {
@@ -259,10 +365,17 @@
 
             var jumlah = phk + pmib + pmi + tka;
             bangunanMarker = L.marker([long, lat], {
-                    icon: leafleticon
+                    icon: leafleticon,
+                    title: "hahah",
                 }).addTo(map)
-                .bindPopup("<u><b><center>" + data[i].nama_kabupaten + "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr><td>Jumlah Pekerja PHK</td><td><center>" + phk + "</center></td></tr><tr><td>Jumlah PMI-B</td><td><center>" + pmib + "</center></td></tr><tr><td>Jumlah TKA</td><td><center>" + tka + "</center></td></tr><tr><td>Jumlah PMI</td><td><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>")
-                .openPopup();
+                .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
+                    "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#F93333'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk + "</center></td></tr><tr style='background-color:#F3DB0B'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib + "</center></td></tr><tr style='background-color:#0BF367'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka + "</center></td></tr><tr style='background-color:#1464C4'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>")
+                .openPopup().bindTooltip(data[i].nama_kabupaten, {
+                    permanent: true,
+                    direction: 'bottom',
+                    opacity: 0.7
+                });
+
 
         });
     });

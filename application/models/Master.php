@@ -247,7 +247,7 @@ class Master extends CI_Model
     public function tabel()
     {
         $query =
-            "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
+            "SELECT * FROM kabupaten WHERE id_provinsi= '42385' ORDER BY nama_kabupaten ASC
         ";
 
         return $this->db->query($query)->result_array();
