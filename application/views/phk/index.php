@@ -64,11 +64,12 @@
                                 <thead>
                                     <tr>
                                         <th> No</th>
-                                        <th>Nama TK</th>
-                                        <th>No.Identitas</th>
-                                        <th>Wilayah</th>
-                                        <th>Kontak</th>
+                                        <th>Nama</th>
+                                        <th>Asal</th>
                                         <th>Perusahaan</th>
+                                        <th>Kebutuhan Khusus</th>
+                                        <th>Status</th>
+                                        <!-- <th>Kontak</th> -->
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -76,12 +77,13 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_phk as $p) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></th>
-                                            <td> <?= $p['nama_tk']; ?>
-                                            <td> <small> <?= $p['nomor_identitas']; ?></small></td>
+                                            <th scope="row"><?= $i; ?></small> </th>
+                                            <td><small>  <?= $p['nama_tk']; ?>
+                                            <!-- <td><small> <?= $p['kontak']; ?></small></td> -->
                                             <td><small> <?= $p['nama_kabupaten']; ?></small> </td>
-                                            <td><small> <?= $p['kontak']; ?></small></td>
                                             <td><small> <?= $p['nama_perusahaan']; ?></small></td>
+                                            <td><small> <?= $p['ragam_disabilitas']; ?>. <?= $p['jenis_disabilitas']; ?></small> </td>
+                                            <td> <small> <?= $p['status_kerja']; ?></small></td>
                                             <td>
 
                                                 <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>

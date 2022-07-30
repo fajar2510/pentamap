@@ -64,6 +64,7 @@
 
 <!-- <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script> -->
 <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
 
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -99,6 +100,7 @@
         });
     });
 </script>
+
 
 <!-- untuk ubah status hak akses dengan realtime -->
 <script>
@@ -369,17 +371,17 @@
                     title: "hahah",
                 }).addTo(map)
                 .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                    "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#F93333'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk + "</center></td></tr><tr style='background-color:#F3DB0B'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib + "</center></td></tr><tr style='background-color:#0BF367'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka + "</center></td></tr><tr style='background-color:#1464C4'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>")
+                    "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#F93333'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk + "</center></td></tr><tr style='background-color:#F3DB0B'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib + "</center></td></tr><tr style='background-color:#0BF367'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka + "</center></td></tr><tr style='background-color:#1464C4'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>" +
+                    "<a href='https://www.google.com/'>Google</a>")
                 .openPopup().bindTooltip(data[i].nama_kabupaten, {
                     permanent: true,
                     direction: 'bottom',
                     opacity: 0.7
                 });
-
-
         });
     });
 </script>
+
 <script>
     $(function() {
 
@@ -412,7 +414,27 @@
     }
 </script>
 
+<!-- AUTO COMPLETE -->
+<script  type="text/javascript">
+            //autocomplete tenaga kerja lokal add
+            $(function () {
+                $("id_perusahaan").autocomplete({
+                    source: "<?php echo base_url() ?>/index.php",
+                    minLength: 1
+                });
+            })
+</script>
 
+<script>
+    function detail_perusahaan(){
+        $p = "SELECT nama_perusahaan FROM tb_perusahaan";
+        $querydp = $this->db->querydp($p);
+        foreach ($querydp->result() as $nama)  {
+            $return_arr[] = $nama->nama_perusahaan;
+        }
+        echo json_encode($return_arr);
+    }
+</script>
 
 </body>
 

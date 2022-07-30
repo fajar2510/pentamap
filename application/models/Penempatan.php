@@ -18,6 +18,7 @@ class Penempatan extends CI_Model
     public function get_cpmi()
     {
         $query =
+
             // "SELECT DISTINCT tb_cpmi.negara_penempatan, tb_cpmi.perusahaan, tb_perusahaan.nama_perusahaan, tb_negara.nama_negara
             //     FROM tb_cpmi 
             //     INNER JOIN tb_perusahaan
@@ -25,10 +26,10 @@ class Penempatan extends CI_Model
             //     INNER JOIN tb_negara
             //     ON tb_cpmi.negara_penempatan = tb_negara.id
             //     ORDER BY tb_cpmi.negara_penempatan ASC";
-            "SELECT  `tb_cpmi`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`fungsi`,
+            "SELECT  `tb_cpmi`.*, 
             `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
             FROM `tb_cpmi` 
-            JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
+            -- JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id` 
              JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
             
@@ -36,16 +37,31 @@ class Penempatan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function get_distinct_cpmi()
+    public function get_edit_cpmi($id)
     {
-        $query =
-            "SELECT DISTINCT   tb_perusahaan.nama_perusahaan, tb_perusahaan.status
-            FROM tb_cpmi 
-            INNER JOIN tb_perusahaan
-            ON tb_cpmi.perusahaan = tb_perusahaan.id
-            INNER JOIN tb_negara
-            ON tb_cpmi.negara_penempatan = tb_negara.id
-            ORDER BY tb_cpmi.negara_penempatan ASC";
+        $query = "SELECT `tb_cpmi`.*, `kabupaten`.`nama_kabupaten`
+                    FROM `tb_cpmi` 
+                    JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
+                    WHERE `tb_cpmi` .`id`= '$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+    // public function get_distinct_cpmi()
+    // {
+    //     $query =
+    //         "SELECT DISTINCT   tb_perusahaan.nama_perusahaan, tb_perusahaan.status
+    //         FROM tb_cpmi 
+    //         INNER JOIN tb_perusahaan
+    //         ON tb_cpmi.perusahaan = tb_perusahaan.id
+    //         INNER JOIN tb_negara
+    //         ON tb_cpmi.negara_penempatan = tb_negara.id
+    //         ORDER BY tb_cpmi.negara_penempatan ASC";
+    //     return $this->db->query($query)->result_array();
+    // }
+
+    public function get_Jatim()
+    {
+        $query = "SELECT * FROM `kabupaten` WHERE id_provinsi = '42385'";
         return $this->db->query($query)->result_array();
     }
 
@@ -134,32 +150,22 @@ class Penempatan extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function get_edit_cpmi($id)
-    {
-        $query = "SELECT `tb_cpmi`.*, `tb_perusahaan`. `nama_perusahaan`,
-                    `tb_perusahaan`.`fungsi`, `kabupaten`.`nama_kabupaten`
-                    FROM `tb_cpmi` JOIN `tb_perusahaan`
-                    ON `tb_cpmi`. `perusahaan` = `tb_perusahaan`. `id`
-                     JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
-                    WHERE `tb_cpmi` .`id`= '$id'
-                ";
-        return $this->db->query($query)->row();
-    }
+   
 
-    public function get_perusahaan()
-    {
-        $query =
-            "SELECT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
-        return $this->db->query($query)->result_array();
-    }
+    // public function get_perusahaan()
+    // {
+    //     $query =
+    //         "SELECT `nama_perusahaan`,`status` FROM `tb_perusahaan` WHERE `fungsi`='PMI'";
+    //     return $this->db->query($query)->result_array();
+    // }
 
-    public function get_perusahaanPMI()
-    {
-        $query =
-            "SELECT * FROM tb_perusahaan WHERE fungsi= 'PMI'
-        ";
-        return $this->db->query($query)->result_array();
-    }
+    // public function get_perusahaanPMI()
+    // {
+    //     $query =
+    //         "SELECT * FROM tb_perusahaan WHERE fungsi= 'PMI'
+    //     ";
+    //     return $this->db->query($query)->result_array();
+    // }
 
 
     // public function getTotFormalByPenempatan()

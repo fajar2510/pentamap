@@ -19,7 +19,8 @@
                                     <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45">
                                     <hr>
                                     <h1 class="h4 text-gray-900 mb-4"> <b>PENTA</b> |
-                                        <span>DISNAKERTRANS</span> </h1>
+                                        <span>DISNAKERTRANS</span>
+                                    </h1>
 
                                 </div>
 
@@ -27,19 +28,20 @@
 
                                 <form class="user" method="post" action="<?= base_url('auth'); ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan E-mail..." value="<?= set_value('email'); ?>">
+                                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan E-mail..." value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukkan Password">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                                         <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
+                                    <!-- class="form-control form-control-user" tampilan menarik kolom -->
                                     <hr>
-                                    <button type="submit" class="btn btn-primary btn-icon-split btn-user btn-block center-block py-2 px-3 ">
-                                        <span class=" icon text-white-50">
+                                    <button type="submit" class="btn btn-primary btn-icon-split btn-block center-block py-2 px-3 ">
+                                        <!-- <span class=" icon text-white-50">
                                             <i class="fas fa-sign-in-alt"></i>
-                                        </span>
-                                        <span class="text" style="font-family:'Roboto';font-size:15;"><b>M A S U K</b></span>
+                                        </span> -->
+                                        <span class="text" style="font-family:'Arial Black';font-size:15;">MASUK</span>
                                     </button>
                                 </form>
                                 <!-- <hr>

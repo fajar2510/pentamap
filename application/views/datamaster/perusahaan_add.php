@@ -35,44 +35,103 @@
                         <div>
                             <form action="<?= base_url('datamaster/perusahaan_add'); ?>" method="post">
                                 <div class="modal-body">
+                                <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT/Perusahaan" name="nama_perusahaan" value="<?= set_value('nama'); ?>">
+                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" >
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="nama_pimpinan" class="col-sm-3 col-form-label">Pimpinan</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="nama_pimpinan" placeholder="Masukkan Nama Pimpinan" name="nama_pimpinan" >
+                                            <?= form_error('nama_pimpinan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="3"></textarea>
+                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap . . ." name="alamat" rows="3"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                    
+                                    <p> <small><b> KONTAK PERSON</b></small></p>
                                     <div class="form-group row">
-                                        <label for="kontak" class="col-sm-3 col-form-label">Kontak</label>
-
+                                        <label for="nama_kontak_person" class="col-sm-3 col-form-label">Nama Kontak</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" value="<?= set_value('kontak'); ?>">
-                                            <small id="uploadHelp1" class="form-text text-muted"> <i> *alamat e-mail/no.telp yang dapat dihubungi </i></small>
+                                            <input type="text" class="form-control" id="nama_kontak_person" placeholder="nama kontak person" name="nama_kontak_person" >
+                                            <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="kontak" class="col-sm-3 col-form-label">No.Telp 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" >
+                                           
                                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="fungsi" class="col-sm-3 col-form-label">Fungsi</label>
+                                        <label for="no_kontak_person" class="col-sm-3 col-form-label">No.Telp 2</label>
+                                        <div class="col-sm-4">
+                                            <input type="tel" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
+                                           
+                                            <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email_perusahaan" class="col-sm-3 col-form-label">E-mail</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="email_perusahaan" placeholder="e-mail" name="email_perusahaan" >
+                                            <?= form_error('email_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <p> <small><b> DATA SEKTOR</b></small></p>
+                                    <div class="form-group row">
+                                    <label for="fungsi" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-3">
                                             <select name="fungsi" id="fungsi" class="form-control">
-                                                <option value=""> ~ Pilih Fungsi ~ </option>
-                                                <option value="TKA">Penempatan TKA</option>
-                                                <option value="PMI">Penempatan PMI</option>
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
+                                            <?= form_error('fungsi', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor Perusahaan</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="sektor_perusahaan" placeholder="sektor/bidang" name="sektor_perusahaan" >
+                                            <?= form_error('sektor_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div><div class="form-group row">
+                                        <label for="jenis_perusahaan" class="col-sm-3 col-form-label">Jenis Luasan Perusahaan</label>
+                                        <div class="col-sm-3">
+                                            <select name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">
+                                                <option value="Kecil">Kecil</option>
+                                                <option value="Menengah">Menengah</option>
+                                                <option value="Besar">Besar</option>
+                                                <option value="BUMN">BUMN</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="status" class="col-sm-3 col-form-label">Status</label>
+                                        <label for="kode_kantor" class="col-sm-3 col-form-label">Kode Kantor</label>
                                         <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="kode_kantor" placeholder="" name="kode_kantor" >
+                                            <?= form_error('kode_kantor', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="status" class="col-sm-3 col-form-label">Status Kantor</label>
+                                        <div class="col-sm-2">
                                             <select name="status" id="status" class="form-control">
-                                                <option value=""> ~ Pilih Status ~ </option>
                                                 <option value="P"> Pusat </option>
                                                 <option value="C"> Cabang </option>
                                             </select>

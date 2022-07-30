@@ -3,15 +3,16 @@
 <br>
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('beranda'); ?>">
-        <div class="sidebar-brand-icon">
-            <!-- <i class="far fa-building"></i> -->
-            <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="60px" height="70">
-        </div>
+        
+        <div class="sidebar-brand-icon"> 
+            <!-- <i class="far fa-building"></i> </div> -->
+            <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="logo-disnakertrans-jatim" width="55px" height="65">
+        </div> 
         <div class="sidebar-brand-text mx-3">P E N T A <br>
-            <small> DISNAKERTRANS</small>
+            <small> <p>DISNAKERTRANS </br> Jawa Timur</p></small>
         </div>
+          
     </a>
-
     <!-- Divider -->
     <hr class="sidebar-divider mt-3">
 

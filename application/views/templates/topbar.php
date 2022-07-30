@@ -29,15 +29,16 @@
                     <?php foreach ($phk as $total_phk); ?>
 
 
-                    <marquee behavior="scroll" direction="right" scrollamount="5" width="130%">
+                    <marquee behavior="stop" direction="stop" scrollamount="0" width="130%">
                         <div class="form-group row">
                             <div class="col-sm-2">
                                 <small>
-                                    <img src="http://www.myiconfinder.com/uploads/iconsets/621654299bc0f478fe3c1be4924d727d.png" width="30" height="30" alt="pmi" class="rounded-circle"> <b> &nbsp;CPMI </b>
-                                    <span class="border-left"> &nbsp;<?php echo $total_cpmi->cpmi; ?></span> &nbsp; <b>TKA</b>
-                                    <span class="border-left"> &nbsp;<?php echo $total_tka->tka; ?> </span> &nbsp; <b>PMI-B </b>
-                                    <span class="border-left"> &nbsp;<?php echo $total_pmib->pmib; ?> </span> &nbsp; <b>Pengangguran </b>
-                                    <span class="border-left"> &nbsp;<?php echo $total_phk->phk; ?> </span>
+                                    <!-- <img src="<?php echo base_url() ?>assets/img/favicon/idn-flag.png" width="30" height="30" alt="pmi" class="rounded-circle"> -->
+                                    <span>Total Results:</span> <font color="3561EC"><b>&nbsp;&nbsp;CPMI </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_cpmi->cpmi; ?></font></span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>TKA </b></font> 
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_tka->tka; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PMI-B </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_pmib->pmib; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PHK </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_phk->phk; ?></font> </span>
                                 </small>
                             </div>
 
@@ -62,7 +63,7 @@
             <center>
 
 
-                <marquee behavior="scroll" direction="right" scrollamount="4">
+                <!-- <marquee behavior="scroll" direction="right" scrollamount="4"> -->
 
                     <?php
                     $tanggal = mktime(date("m"), date("d"), date("Y"));
@@ -81,7 +82,7 @@
                         echo "<b>, <b> Selamat Malam zZZ</b>";
                     }
                     ?>
-                </marquee>
+                <!-- </marquee> -->
 
             </center>
 

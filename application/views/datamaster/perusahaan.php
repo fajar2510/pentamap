@@ -10,7 +10,7 @@
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
-            <span class="text">Tambah</span>
+            <span class="text">Tambah</span> 
         </a>
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
@@ -62,8 +62,8 @@
                                         <th>Nama Perusahaan</th>
                                         <th>Alamat</th>
                                         <!-- <th>Kontak</th> -->
-                                        <th>Status</th>
-                                        <th>FOR</th>
+                                        <th>Kantor</th>
+                                        <th>Lokasi</th>
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -83,17 +83,19 @@
                                             </td> -->
                                             <td>
                                                 <?php if ($p['status'] == 'P') {
-                                                    echo '<div class="bg-primary text-white p-1 "> <small?>PUSAT</small></div>';
+                                                    echo '<div> <small?>Pusat</small></div>';
                                                 } else {
-                                                    echo '<div class="bg-secondary text-white p-1 "> <small?>CABANG</small></div>';
+                                                    echo '<div> <small?>Cabang</small></div>';
                                                 } ?>
                                             </td>
-                                            <td><?php if ($p['fungsi'] == 'TKA') {
-                                                    echo '<div class="bg-secondary text-white p-1 "> <small?>TKA</small></div>';
+                                            <td><small><?= $p['nama_kabupaten']; ?> </small></td> 
+                                            <td> 
+                                            <!-- <td><?php if ($p['fungsi'] == '1') {
+                                                    echo '<div> <small?>Luar Negeri</small></div>';
                                                 } else {
-                                                    echo '<div class="bg-info text-white p-1 "> <small?>PMI</small></div>';
+                                                    echo '<div> <small?>Lokal</small></div>';
                                                 } ?></td>
-                                            <td>
+                                            <td> -->
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

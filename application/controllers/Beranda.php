@@ -44,7 +44,10 @@ class Beranda extends CI_Controller
         // $tahun = $this->input->post('tahun');
         $query =
             "SELECT *
-            FROM kabupaten WHERE id_provinsi= '42385' 
+            FROM kabupaten 
+            -- JOIN tb_tka 
+            -- ON kabupaten.id_kabupaten = tb_tka.lokasi_kerja
+            WHERE id_provinsi= '42385' 
         ";
 
         // if ($tahun == "all") {

@@ -44,18 +44,10 @@
                                     </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
-                                        <div class="col-sm-5">
-                                            <select name="perusahaan" id="perusahaan" class="form-control">
-                                                <option value="">~ Pilih Perusahaan ~</option>
-                                                <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $edit_cpmi->perusahaan) {
-                                                                                            echo 'selected';
-                                                                                        } else {
-                                                                                            echo '';
-                                                                                        } ?>> <?= $p['nama_perusahaan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="Edit Nama PT" name="perusahaan" value="<?= $edit_cpmi->perusahaan ?>">
+                                            <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <hr>

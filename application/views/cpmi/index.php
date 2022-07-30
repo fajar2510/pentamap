@@ -94,8 +94,9 @@
                                             <td> <small> <?= $p['date_created']; ?> </small> </td>
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['nama_kabupaten']; ?> </small> </td>
+                                            <td><small> <?= $p['perusahaan']; ?> </small> </td>
                                             <!-- <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
-                                            <td><small> <?= $p['nama_perusahaan']; ?> </small> </td>
+                                            <!-- <td><small> <?= $p['nama_perusahaan']; ?> </small> </td> -->
                                             <!-- <td><small> <?= $p['pengguna_jasa']; ?> </small> </td> -->
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
@@ -138,9 +139,9 @@
                     <form action="<?= base_url('cpmi/hapus/' . $p['id']); ?>">
                         <div class="modal-body">Data&nbsp; <b>
                                 <font color="red"><?= $p['nama_pmi']; ?></font>
-                            </b> dari <b>
-                                <font color="red"><?= $p['nama_perusahaan']; ?></font>
-                            </b> akan dihapus </div>
+                            </b> perusahaan <b>
+                                <font color="red"><?= $p['perusahaan']; ?></font>
+                            </b> akan dihapus permanen </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-danger" type="submit">Hapus</button>

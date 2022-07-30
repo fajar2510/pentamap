@@ -148,7 +148,7 @@ class Datamaster extends CI_Controller
     }
     // FUNCTION USER END
 
-    // FUNCTION DOCTOR START
+    // FUNCTION Perusahaan START
     public function perusahaan()
     {
 
@@ -161,9 +161,10 @@ class Datamaster extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
-        $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaanIndex();
+        $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaan_jatim();
+        // $data['kabupaten'] = $this->Perusahaan->get_perusahaan_jatim();
 
-        $data['title'] = 'Data Perusahaan Terdaftar DISNAKERTRANS';
+        $data['title'] = 'Data Perusahaan Wilayah Jawa Timur';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -178,21 +179,30 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
+        $this->form_validation->set_rules('kontak', 'Kontak 1', 'trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
-        $this->form_validation->set_rules('fungsi', 'Fungsi', 'required|trim');
+        $this->form_validation->set_rules('fungsi', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
+        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
+        $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim');
+        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Data Perusahaan';
+            $data['title'] = 'Tambah Perusahaan Wilayah Jatim';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -201,17 +211,24 @@ class Datamaster extends CI_Controller
         } else {
             $data = [
                 'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'kode_kantor' => $this->input->post('kode_kantor', true),
                 'alamat' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
                 'fungsi' => $this->input->post('fungsi', true),
+                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                'sektor_perusahaan' => $this->input->post('sektor_perusahaan', true),
+                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
                 'date_created' => date('Y-m-d'),
             ];
 
             $this->db->insert('tb_perusahaan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil ! Perusahaan telah ditambahkan. </div>');
+            alert-success" role="alert"> Berhasil ! Data Perusahaan telah ditambahkan. </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -223,6 +240,7 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+        // $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaan_jatim();
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -231,13 +249,22 @@ class Datamaster extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // Load model pmi
-        $data['perusahaan'] = $this->Master->getPerusahaanById($id);
+        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan_jatim();
+        $data['edit_perusahaan'] = $this->Master->getPerusahaanById($id);
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
-        $this->form_validation->set_rules('status', 'Status', 'required|trim');
-        $this->form_validation->set_rules('fungsi', 'Fungsi', 'required|trim');
+        $this->form_validation->set_rules('kontak', 'Kontak 1', 'trim');
+        $this->form_validation->set_rules('status', 'Status Kantor', 'required|trim');
+        $this->form_validation->set_rules('fungsi', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
+        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
+        $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim');
+        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
@@ -247,13 +274,22 @@ class Datamaster extends CI_Controller
             $this->load->view('templates/topbar', $data);
             $this->load->view('datamaster/perusahaan_edit', $data);
             $this->load->view('templates/footer', $data);
+            
         } else {
             $data = [
                 'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'kode_kantor' => $this->input->post('kode_kantor', true),
                 'alamat' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'status' => $this->input->post('status', true),
                 'fungsi' => $this->input->post('fungsi', true),
+                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                'sektor_perusahaan' => $this->input->post('sektor_perusahaan', true),
+                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
+                'date_created' => date('Y-m-d'),
             ];
 
 
@@ -261,7 +297,7 @@ class Datamaster extends CI_Controller
             $this->db->update('tb_perusahaan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Perusahaan telah diperbarui ! </div>');
+            alert-success" role="alert"> Data Perusahaan telah diperbarui ! </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -276,4 +312,6 @@ class Datamaster extends CI_Controller
             alert-success" role="alert"> Data yang dipilih telah dihapus. </div>');
         redirect('datamaster/perusahaan');
     }
+
+    
 }

@@ -3,12 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Perusahaan extends CI_Model
 {
-
-    public function get_perusahaan()
+    public function get_perusahaan_jatim()
     {
-        $query = "SELECT * FROM tb_perusahaan WHERE fungsi = 'TKA'";
+        $query =
+            "SELECT * FROM tb_perusahaan JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
+            ORDER BY date_created  DESC
+                ";
         return $this->db->query($query)->result_array();
     }
+
+    // public function get_perusahaan()
+    // {
+    //     $query = "SELECT * FROM tb_perusahaan WHERE fungsi = 'TKA'";
+    //     return $this->db->query($query)->result_array();
+    // }
 
     public function get_perusahaanIndex()
     {

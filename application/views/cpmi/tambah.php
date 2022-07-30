@@ -44,14 +44,10 @@
                                     </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan PPMI</label>
-                                        <div class="col-sm-5">
-                                            <select name="perusahaan" id="perusahaan" class="form-control">
-                                                <option value="">~ Pilih Perusahaan ~</option>
-                                                <?php foreach ($perusahaan as $per) : ?>  
-                                                    <option value="<?= $per['id']; ?>"> <?= $per['nama_perusahaan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                    <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT" name="perusahaan">
+                                            <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <hr>

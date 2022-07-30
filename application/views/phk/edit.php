@@ -24,8 +24,6 @@
             <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
-
-
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
@@ -37,21 +35,21 @@
                                 <div class="modal-body">
                                     <p> <small><b> DATA TENAGA KERJA</b></small></p>
                                     <div class="form-group row">
-                                        <label for="nama_tk" class="col-sm-3 col-form-label">Nama Tenaga Kerja</label>
+                                        <label for="nama_tk" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama" name="nama_tk" value="<?= $edit_phk->nama_tk ?>">
+                                            <input type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama Lengkap" name="nama_tk" value="<?= $edit_phk->nama_tk ?>">
                                             <?= form_error('nama_tk', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="no_identitas" class="col-sm-3 col-form-label">No.Identitas</label>
+                                        <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas" value="<?= $edit_phk->nomor_identitas ?>">
                                             <?= form_error('no_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ</label>
+                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ (BPJS)</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" id="kpj" placeholder="No.KPJ" name="kpj" value="<?= $edit_phk->kpj ?>">
                                             <?= form_error('kpj', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -60,12 +58,12 @@
                                     <div class=" form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="2"><?= $edit_phk->alamat ?></textarea>
+                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap. . . " name="alamat" rows="2"><?= $edit_phk->alamat ?></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="wilayah" class="col-sm-3 col-form-label">Wilayah/Kota</label>
+                                        <label for="wilayah" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-4">
                                             <select class="custom-select" name="wilayah" id="wilayah" class="form-control input-sm">
                                                 <?php foreach ($kabupaten as $row) : ?>
@@ -76,16 +74,33 @@
                                                                                                     } ?>> <?= $row['nama_kabupaten']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <small id="help2" class="form-text text-muted"> <i> *wilayah jawa timur </i></small>
-                                            <?= form_error('wilayah', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
+                                            <?= form_error('kabupaten/kota', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="kontak" class="col-sm-3 col-form-label">Kontak</label>
+                                        <label for="kontak" class="col-sm-3 col-form-label">No. Telepon</label>
                                         <div class="col-sm-5">
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="08xxx" name="kontak" value="<?= $edit_phk->kontak ?>">
-                                            <small id="uploadHelp1" class="form-text text-muted"> <i> *alamat e-mail/no.telp yang dapat dihubungi </i></small>
-                                            <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            
+                                            <?= form_error('no.telepon', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="status_bekerja" class="col-sm-3 col-form-label">Masih bekerja?</label>
+                                        <div class="col-sm-3">
+                                            <select name="status_kerja" id="status_kerja" class="form-control">
+                                                <option value="phk" <?php if ($edit_phk->status_kerja == 'phk') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>non aktif</option>
+                                                <option value="aktif" <?php if ($edit_phk->status_kerja == 'aktif') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>aktif</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
@@ -96,18 +111,47 @@
                                             <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="kode_kantor" class="col-sm-3 col-form-label">Kode Kantor</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_kantor" placeholder="Kode Kantor" name="kode_kantor" value="<?= $edit_phk->kode_kantor ?>">
-                                            <?= form_error('kode_kantor', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group row">
                                         <label for="kode_segmen" class="col-sm-3 col-form-label">Kode Segmen</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_segmen" placeholder="Kode Segmen" name="kode_segmen" value="<?= $edit_phk->kode_segmen ?>">
                                             <?= form_error('kode_segmen', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="disabilitas" class="col-sm-3 col-form-label">Penyandang Disabilitas ?</label>
+                                        <div class="col-sm-3">
+                                            <select name="disabilitas" id="disabilitas" class="form-control">
+                                                <option value="Fisik" <?php if ($edit_phk->ragam_disabilitas == 'Fisik') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Fisik</option>
+                                                <option value="Sensorik" <?php if ($edit_phk->ragam_disabilitas == 'Sensorik') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Sensorik</option>
+                                                <option value="Mental" <?php if ($edit_phk->ragam_disabilitas == 'Mental') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Mental</option>
+                                                <option value="Ganda" <?php if ($edit_phk->ragam_disabilitas == 'Ganda') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Ganda</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rincian" class="col-sm-3 col-form-label">Rincian</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="rincian" placeholder="Rincian . . ." name="rincian" value="<?= $edit_phk->jenis_disabilitas ?>">
+                                            <?= form_error('rincian', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -125,9 +169,7 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
-
 </div>
 <!-- End of Main Content -->

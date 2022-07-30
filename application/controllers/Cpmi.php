@@ -10,7 +10,7 @@ class Cpmi extends CI_Controller
 
         $this->load->model('Master');
         $this->load->model('Penempatan');
-        $this->load->model('Perusahaan');
+        // $this->load->model('Perusahaan');
     }
 
     public function index()
@@ -34,7 +34,7 @@ class Cpmi extends CI_Controller
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
 
-        $data['title'] = 'Data Perusahaan Penempatan Pekerja Migran Indonesia (P3MI) ';
+        $data['title'] = 'Data Penempatan Calon Pekerja Migran Indonesia (CPMI) ke Luar Negeri ';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -56,10 +56,10 @@ class Cpmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['kabupaten'] = $this->Penempatan->get_Jatim();
         // load data 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
-        $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
+        // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
 
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
 
@@ -82,7 +82,7 @@ class Cpmi extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Data PPPMI (Perusahan Penempatan Pekerja Migran Indonesia)';
+            $data['title'] = 'Form Data Penempatan Calon Pekerja Migran Indonesia (CPMI) ke Luar Negeri';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -138,10 +138,10 @@ class Cpmi extends CI_Controller
 
         // load data 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
-        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['kabupaten'] = $this->Penempatan->get_Jatim();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
-        $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
+        // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
 
 
@@ -166,7 +166,7 @@ class Cpmi extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Form Laporan TKA per Perusahaan';
+            $data['title'] = 'Edit Data Calon Pekerja Migran Indonesia (CPMI) di Luar Negeri';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

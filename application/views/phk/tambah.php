@@ -35,86 +35,122 @@
                         <div>
                             <form action="<?= base_url('phk/tambah'); ?>" method="post">
                                 <div class="modal-body">
+                                    
+                                <div class="ui-widget">
+                                    <label for="tags">PERUSAHAAN: </label>
+                                    <input id="tags">
+                                </div>
+ 
+
                                     <p> <small><b> DATA TENAGA KERJA</b></small></p>
                                     <div class="form-group row">
-                                        <label for="nama_tk" class="col-sm-3 col-form-label">Nama Tenaga Kerja</label>
+                                        <label for="nama_tk" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama" name="nama_tk" value="<?= set_value('nama'); ?>">
+                                            <input type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama Lengkap" name="nama_tk" ">
                                             <?= form_error('nama_tk', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="no_identitas" class="col-sm-3 col-form-label">No.Identitas</label>
+                                        <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="" name="no_identitas">
                                             <?= form_error('no_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group row">
-                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ</label>
+                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ (BPJS)</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control"  id="kpj" placeholder="No.KPJ" name="kpj">
+                                            <input type="text" class="form-control"  id="kpj" placeholder="" name="kpj">
                                             <?= form_error('kpj', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Jln. No. . . " name="alamat" rows="2"></textarea>
+                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap . . ." name="alamat" rows="2"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="wilayah" class="col-sm-3 col-form-label">Wilayah/Kota</label>
+                                        <label for="wilayah" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-4">
                                             <select name="wilayah" id="wilayah" class="form-control">
-                                                <option value="">~ Pilih Wilayah ~</option>
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <small id="help2" class="form-text text-muted"> <i> *wilayah jawa timur </i></small>
+                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
                                             <?= form_error('wilayah', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="kontak" class="col-sm-3 col-form-label">Kontak</label>
+                                        <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="08xxx" name="kontak">
-                                            <small id="uploadHelp1" class="form-text text-muted"> <i> *alamat e-mail/no.telp yang dapat dihubungi </i></small>
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak">
                                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
+                                    </div><div class="form-group row">
+                                        <label for="status_kerja" class="col-sm-3 col-form-label">Masih Bekerja?</label>
+                                        <div class="col-sm-3">
+                                            <select name="status_kerja" id="status_kerja" class="form-control">
+                                                <option value="aktif">Aktif (masih bekerja)</option>
+                                                <option value="phk">Tidak Aktif (ter-PHK)</option>
+                                            </select>
+                                        </div>
                                     </div>
+
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="perusahaan" placeholder="Nama Perusahaan" name="perusahaan">
-                                            <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <select name="perusahaan" id="perusahaan" class="form-control">
+                                                <option value="">~ Pilih Perusahaan ~</option>
+                                                <?php foreach ($perusahaan as $p) : ?>
+                                                    <option value="<?= $p['id']; ?>"> <?= $p['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="kode_kantor" class="col-sm-3 col-form-label">Kode Kantor</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_kantor" placeholder="Kode Kantor" name="kode_kantor">
-                                            <?= form_error('kode_kantor', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group row">
                                         <label for="kode_segmen" class="col-sm-3 col-form-label">Kode Segmen</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_segmen" placeholder="Kode Segmen" name="kode_segmen">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_segmen" placeholder="" name="kode_segmen">
                                             <?= form_error('kode_segmen', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-save"></i>
-                                        </span>
-                                        <span class="text">Simpan Data</span>
-                                    </button>
+                                    
+
+                                    <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
+                                    <div class="form-group row">
+                                        <label for="disabilitas" class="col-sm-3 col-form-label">Penyandang Disabilitas ?</label>
+                                        <div class="col-sm-3">
+                                            <select name="disabilitas" id="disabilitas" class="form-control">
+                                                <option value="-">Tidak</option>
+                                                <option value="Sensorik">Sensorik</option>
+                                                <option value="Fisik">Fisik</option>
+                                                <option value="Mental">Mental</option>
+                                                <option value="Sensorik">Ganda</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rincian" class="col-sm-3 col-form-label">Rincian</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="rincian" placeholder="Rincian . . ." name="rincian">
+                                            <?= form_error('rincian', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div   div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-save"></i>
+                                            </span>
+                                            <span class="text">Tambahkan</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -122,9 +158,7 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
-
 </div>
 <!-- End of Main Content -->
