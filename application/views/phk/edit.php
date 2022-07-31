@@ -121,9 +121,14 @@
                                     </div>
                                     <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
                                     <div class="form-group row">
-                                        <label for="disabilitas" class="col-sm-3 col-form-label">Penyandang Disabilitas ?</label>
+                                        <label for="disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
                                         <div class="col-sm-3">
                                             <select name="disabilitas" id="disabilitas" class="form-control">
+                                            <option value="-" <?php if ($edit_phk->ragam_disabilitas == '-') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>-Tidak-</option>
                                                 <option value="Fisik" <?php if ($edit_phk->ragam_disabilitas == 'Fisik') {
                                                                         echo 'selected';
                                                                     } else {
@@ -134,6 +139,11 @@
                                                                     } else {
                                                                         echo '';
                                                                     } ?>>Sensorik</option>
+                                                <option value="Intelektual" <?php if ($edit_phk->ragam_disabilitas == 'Intelektual') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Intelektual</option>
                                                 <option value="Mental" <?php if ($edit_phk->ragam_disabilitas == 'Mental') {
                                                                         echo 'selected';
                                                                     } else {
@@ -148,8 +158,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="rincian" class="col-sm-3 col-form-label">Rincian</label>
-                                        <div class="col-sm-7">
+                                        <label for="rincian" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control" id="rincian" placeholder="Rincian . . ." name="rincian" value="<?= $edit_phk->jenis_disabilitas ?>">
                                             <?= form_error('rincian', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
