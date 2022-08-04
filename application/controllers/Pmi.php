@@ -32,7 +32,7 @@ class Pmi extends CI_Controller
         // $data['pmi'] = $this->Master->get_PMI();
 
         //load data view
-        $data['title'] = 'Data Pemulangan PMI-B Non-Prosedural';
+        $data['title'] = 'PMI Bermasalah';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -99,7 +99,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Pemulangan Pekerja Migran Indonesia (PMI-B) Non-Prosedural ';
+            $data['title'] = 'PMI Bermasalah';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -206,7 +206,7 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Pemulangan (PMI-B) Non-Prosedural ';
+            $data['title'] = 'PMI Bermasalah';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

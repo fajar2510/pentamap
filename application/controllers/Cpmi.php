@@ -34,7 +34,7 @@ class Cpmi extends CI_Controller
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
 
-        $data['title'] = 'Data Penempatan Calon Pekerja Migran Indonesia (CPMI) ke Luar Negeri ';
+        $data['title'] = 'Penempatan Calon PMI';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -82,7 +82,7 @@ class Cpmi extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Data Penempatan Calon Pekerja Migran Indonesia (CPMI) ke Luar Negeri';
+            $data['title'] = 'Penempatan Calon PMI';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -230,13 +230,13 @@ class Cpmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data wilayah
-        $data['perusahaan_pmi'] = $this->Penempatan->get_perusahaan();
+        // $data['perusahaan_pmi'] = $this->Penempatan->get_perusahaan();
         $data['data_pppmi'] = $this->Penempatan->get_lap_pppmi();
         $data['data_hongkong'] = $this->Penempatan->get_data_hongkong();
         $data['data_sin'] = $this->Penempatan->get_data_sin();
         $data['data_an'] = $this->Penempatan->data_an();
 
-        $data['title'] = 'Data AN Perusahaan Penempatan Pekerja Migran Indonesia (P3MI) ';
+        $data['title'] = 'Data AN PPPMI';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

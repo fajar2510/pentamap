@@ -1,6 +1,7 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary  sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion"  id="accordionSidebar">
 <br>
+<!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('beranda'); ?>">
         

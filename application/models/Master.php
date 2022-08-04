@@ -27,6 +27,19 @@ class Master extends CI_Model
         return $this->db->query($query)->row();
     }
 
+    public function getSektor()
+    {
+        $query = "SELECT * FROM jenis_sektor_usaha ORDER BY `id_sektor` DESC";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function getSektorById($id)
+    {
+        $query = "SELECT * FROM jenis_sektor_usaha WHERE jenis_sektor_usaha.id_sektor = '$id'
+                ";
+        return $this->db->query($query)->row();
+    }
+
     public function getSubMenuJoinMenu()
     {
         $query = "SELECT  `user_sub_menu`. *, `user_menu`.`menu`
@@ -57,6 +70,9 @@ class Master extends CI_Model
                 ";
         return $this->db->query($query)->row();
     }
+
+
+
     // query data PMI
     public function getPmiJoinWilayah()
     {

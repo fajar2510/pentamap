@@ -14,7 +14,7 @@ class Beranda extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Beranda';
+        $data['title'] = 'Peta Tenaga Kerja';
 
         // mengambil data user login
         $this->db->select('user.*,user_role.role');

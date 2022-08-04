@@ -10,6 +10,7 @@ class Datamaster extends CI_Controller
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
+        $this->load->model('Sektor');
     }
 
     // FUNCTION USER START
@@ -91,7 +92,7 @@ class Datamaster extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
-        // Load model pmi
+        // Load model user edit
         $data['userid'] = $this->Master->getUserById($id);
         $data['user_role'] = $this->Master->getRole();
 
@@ -148,6 +149,118 @@ class Datamaster extends CI_Controller
     }
     // FUNCTION USER END
 
+
+  // FUNCTION USER START
+  public function sektor()
+  {
+      // mengambil data user login
+      $this->db->select('user.*,user_role.role');
+      $this->db->from('user');
+      $this->db->join('user_role', 'user.role_id = user_role.id');
+      $this->db->where('email', $this->session->userdata('email'));
+
+      // load data count cpmi pmi tka pengangguran
+      $data['tka'] = $this->Penempatan->getTotalTKA();
+      $data['pmib'] = $this->Penempatan->getTotalPMIB();
+      $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+      $data['phk'] = $this->Penempatan->getTotalPHK();
+
+      $data['user'] = $this->db->get()->row_array();
+
+      $data['user'] = $this->db->get_where('user', ['email' =>
+      $this->session->userdata('email')])->row_array();
+      $data['role'] = $this->db->get('user_role')->result_array();
+
+    //   Load Model Sektor
+      $data['data_sektor'] = $this->Master->getSektor();
+
+
+      $this->form_validation->set_rules('nama_sektor', 'Nama Sektor', 'required|trim');
+      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+
+
+      if ($this->form_validation->run() == false) {
+          $data['title'] = 'Jenis Sektor Usaha';
+          $this->load->view('templates/header', $data);
+          $this->load->view('templates/sidebar', $data);
+          $this->load->view('templates/topbar', $data);
+          $this->load->view('datamaster/sektor', $data);
+          $this->load->view('templates/footer');
+      } else {
+          $data = [
+              'nama_sektor' => htmlspecialchars($this->input->post('nama_sektor', true)),
+              'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
+              'date_created' => date('Y-m-d'),
+          ];
+          $this->db->insert('jenis_sektor_usaha', $data);
+
+          $this->session->set_flashdata('message', '<div class="alert 
+          alert-success" role="alert"> Congratulation! Sektor Usaha has been created. </div>');
+          redirect('datamaster/sektor');
+      }
+  }
+
+  public function sektor_edit($id)
+  {
+      // mengambil data user login
+      $this->db->select('user.*,user_role.role');
+      $this->db->from('user');
+      $this->db->join('user_role', 'user.role_id = user_role.id');
+      $this->db->where('email', $this->session->userdata('email'));
+      $data['user'] = $this->db->get()->row_array();
+
+      // load data count cpmi pmi tka pengangguran
+      $data['tka'] = $this->Penempatan->getTotalTKA();
+      $data['pmib'] = $this->Penempatan->getTotalPMIB();
+      $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+      $data['phk'] = $this->Penempatan->getTotalPHK();
+
+      // Load model sektor
+      $data['data_sektor'] = $this->Master->getSektor();
+    //   $data['edit_sektor'] = $this->Master->getSektorById($id);
+    //   $data['user_role'] = $this->Master->getRole();
+
+
+      $this->form_validation->set_rules('nama_sektor', 'Nama Sektor', 'required|trim');
+      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+
+
+      if ($this->form_validation->run() == false) {
+          $data['title'] = 'Jenis Sektor Usaha';
+          $this->load->view('templates/header', $data);
+          $this->load->view('templates/sidebar', $data);
+          $this->load->view('templates/topbar', $data);
+          $this->load->view('datamaster/sektor', $data);
+          $this->load->view('templates/footer', $data);
+      } else {
+          $data = [
+              'nama_sektor' => htmlspecialchars($this->input->post('nama_sektor', true)),
+              'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
+          ];
+
+
+          $this->db->where('id_sektor', $id);
+          $this->db->update('jenis_sektor_usaha', $data);
+
+          $this->session->set_flashdata('message', '<div class="alert 
+          alert-success" role="alert"> Sektor Usaha has been updated! </div>');
+          redirect('datamaster/sektor');
+      }
+  }
+
+
+  public function delete_sektor($id)
+  {
+      $this->db->where('id_sektor', $id);
+      $this->db->delete('jenis_sektor_usaha');
+
+      $this->session->set_flashdata('message', '<div class="alert 
+          alert-success" role="alert"> Your selected sektor has succesfully deleted, be carefull for manage data. </div>');
+      redirect('datamaster/sektor');
+  }
+  // FUNCTION Sektor END
+
+
     // FUNCTION Perusahaan START
     public function perusahaan()
     {
@@ -164,7 +277,7 @@ class Datamaster extends CI_Controller
         $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaan_jatim();
         // $data['kabupaten'] = $this->Perusahaan->get_perusahaan_jatim();
 
-        $data['title'] = 'Data Perusahaan Wilayah Jawa Timur';
+        $data['title'] = 'Data Perusahaan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -176,10 +289,15 @@ class Datamaster extends CI_Controller
 
     public function perusahaan_add()
     {
+        //load data sesi user
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        //load data combo box
+        // $data['tb_perusahaan'] = $this->db->get('tb_perusahaan')->result_array();
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -187,7 +305,7 @@ class Datamaster extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
         
-
+        //form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'trim');
         $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
@@ -197,12 +315,12 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
         $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
         $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
-        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|valid_email');
         $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
         $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Perusahaan Wilayah Jatim';
+            $data['title'] = 'Data Perusahaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -240,7 +358,6 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
-        // $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaan_jatim();
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -248,10 +365,11 @@ class Datamaster extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
-        // Load model pmi
+        // Load model perusahaan
         // $data['perusahaan'] = $this->Perusahaan->get_perusahaan_jatim();
         $data['edit_perusahaan'] = $this->Master->getPerusahaanById($id);
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'trim');
@@ -262,13 +380,13 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
         $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
         $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
-        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|valid_email');
         $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
         $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Perusahaan';
+            $data['title'] = 'Data Perusahaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

@@ -29,7 +29,7 @@ class Phk extends CI_Controller
 
         $data['data_phk'] = $this->Master->get_tb_phk();
 
-        $data['title'] = 'Data Tenaga Kerja Lokal';
+        $data['title'] = 'Tenaga Kerja Lokal';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -67,7 +67,7 @@ class Phk extends CI_Controller
         $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Data Tenaga Kerja Lokal';
+            $data['title'] = 'Tenaga Kerja Lokal';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -147,7 +147,7 @@ class Phk extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Tenaga Kerja Lokal';
+            $data['title'] = 'Tenaga Kerja Lokal';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

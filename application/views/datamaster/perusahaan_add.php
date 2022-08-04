@@ -107,7 +107,12 @@
                                     <div class="form-group row">
                                         <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor Perusahaan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="sektor_perusahaan" placeholder="sektor/bidang" name="sektor_perusahaan" >
+                                        <select name="fungsi" id="fungsi" class="form-control">
+                                                <option value="">~ Pilih Jenis Sektor Usaha ~</option>
+                                                <?php foreach ($jenis_sektor_usaha as $row) : ?>
+                                                    <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; <p><small><i><?= $row['keterangan']; ?> </i></small></p></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                             <?= form_error('sektor_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div><div class="form-group row">

@@ -31,7 +31,7 @@ class Tka extends CI_Controller
         // load data wilayah
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
 
-        $data['title'] = 'Data TKA per Perusahaan';
+        $data['title'] = 'Tenaga Kerja Asing';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -73,7 +73,7 @@ class Tka extends CI_Controller
         $this->form_validation->set_rules('tanggal_data', 'Tangal Data Inputan', 'required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Form Penempatan TKA dan Perusahaan Provinsi Jawa Timur';
+            $data['title'] = 'Tenaga Kerja Asing';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -151,7 +151,7 @@ class Tka extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Form Laporan TKA per Perusahaan';
+            $data['title'] = 'Tenaga Kerja Asing';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

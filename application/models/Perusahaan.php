@@ -6,17 +6,19 @@ class Perusahaan extends CI_Model
     public function get_perusahaan_jatim()
     {
         $query =
-            "SELECT * FROM tb_perusahaan JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
-            ORDER BY date_created  DESC
+            "SELECT * FROM tb_perusahaan 
+            JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
+            JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
+            ORDER BY tb_perusahaan.id  DESC
                 ";
         return $this->db->query($query)->result_array();
     }
 
-    // public function get_perusahaan()
-    // {
-    //     $query = "SELECT * FROM tb_perusahaan WHERE fungsi = 'TKA'";
-    //     return $this->db->query($query)->result_array();
-    // }
+    public function get_perusahaan()
+    {
+        $query = "SELECT * FROM tb_perusahaan WHERE fungsi = 'TKA'";
+        return $this->db->query($query)->result_array();
+    }
 
     public function get_perusahaanIndex()
     {

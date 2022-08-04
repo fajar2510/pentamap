@@ -61,7 +61,7 @@
                                         <th> No</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Alamat</th>
-                                        <!-- <th>Kontak</th> -->
+                                        <th>Jenis Sektor</th>
                                         <th>Kantor</th>
                                         <th>Lokasi</th>
                                         <th width="12%">Aksi</th>
@@ -74,6 +74,7 @@
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td> <small> <?= $p['alamat']; ?></small></td>
+                                            <td> <?= $p['nama_sektor']; ?>
                                             <!-- <td>
                                                 <?php if ($p['kontak'] == null) {
                                                     echo '-';
