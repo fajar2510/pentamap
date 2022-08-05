@@ -11,6 +11,8 @@ class Reward extends CI_Controller
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
         $this->load->model('Lokal');
+        $this->load->model('RewardModel');
+        $this->load->model('Sektor');
     } // FUNCTION USER START
 
     // FUNCTION DOCTOR START
@@ -26,14 +28,13 @@ class Reward extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
         
+        $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
 
-        $data['data_phk'] = $this->Master->get_tb_phk();
-
-        $data['title'] = 'Data Tenaga Kerja Lokal';
+        $data['title'] = 'Penghargaan Perusahaan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('phk/index', $data);
+        $this->load->view('reward/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -52,7 +53,8 @@ class Reward extends CI_Controller
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
-        $data['tambah_phk'] = $this->Master->get_tb_phk();
+        $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
+        // $data['tambah_phk'] = $this->Master->get_tb_phk();
 
         $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
         $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
@@ -67,11 +69,11 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Data Tenaga Kerja Lokal';
+            $data['title'] = 'Penghargaan Perusahaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('phk/tambah', $data);
+            $this->load->view('reward/tambah', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -89,24 +91,24 @@ class Reward extends CI_Controller
                 'date_created' => date('Y-m-d'),
             ];
 
-            $this->db->insert('tb_phk', $data);
+            $this->db->insert('tb_reward', $data);
 
-            $kabupaten = $this->input->post('wilayah', true);
-            // jumlah phk masih salah ya ingat
-            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+        //     $kabupaten = $this->input->post('wilayah', true);
+        //     // jumlah phk masih salah ya ingat
+        //     $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
 
-           $jumlah = $jumlah_phk->row()->phk;
+        //    $jumlah = $jumlah_phk->row()->phk;
 
-            $update = [   
-                'jumlah_phk' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_phk' => $jumlah,
+        //     ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+        //     $this->db->where('id_kabupaten', $kabupaten);
+        //     $this->db->update('kabupaten', $update);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil! Data Tenaga Kerja Lokal telah ditambahkan. </div>');
-            redirect('phk');
+            alert-success" role="alert"> Berhasil! Data Usulan telah ditambahkan. </div>');
+            redirect('reward');
         }
     }
     // FUNCTION  add END
@@ -151,7 +153,7 @@ class Reward extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('phk/edit', $data);
+            $this->load->view('reward/reward_edit', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
@@ -170,38 +172,38 @@ class Reward extends CI_Controller
             ];
 
 
-            $this->db->where('id_phk', $id);
-            $this->db->update('tb_phk', $data);
+            $this->db->where('id_reward', $id);
+            $this->db->update('tb_reward', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Data Tenaga Kerja Lokal telah diperbarui! </div>');
-            redirect('phk');
+            redirect('reward');
         }
     }
 
 
     public function hapus($id)
     {
-        $this->db->where('id_phk', $id);
+        $this->db->where('id_reward', $id);
 
-        $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
-        $kabupaten = $phk->row()->wilayah;
+        $reward =  $this->db->query("SELECT * FROM tb_reward WHERE id_reward='$id'");
+        $kabupaten = $reward->row()->wilayah;
 
-        $this->db->delete('tb_phk');
+        $this->db->delete('tb_reward');
 
-            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+        //     $jumlah_reward = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS reward FROM tb_reward");
 
-           $jumlah = $jumlah_phk->row()->phk;
+        //    $jumlah = $jumlah_reward->row()->reward;
 
-            $update = [   
-                'jumlah_phk' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_phk' => $jumlah,
+        //     ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+        //     $this->db->where('id_kabupaten', $kabupaten);
+        //     $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Data yang dipilih telah berhasil dihapus </div>');
-        redirect('phk');
+        redirect('reward');
     }
 }

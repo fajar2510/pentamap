@@ -115,7 +115,8 @@
                                             </select>
                                             <?= form_error('sektor_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div><div class="form-group row">
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="jenis_perusahaan" class="col-sm-3 col-form-label">Jenis Luasan Perusahaan</label>
                                         <div class="col-sm-3">
                                             <select name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">

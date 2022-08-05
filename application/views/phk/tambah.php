@@ -34,13 +34,7 @@
                     <div class="card-body">
                         <div>
                             <form action="<?= base_url('phk/tambah'); ?>" method="post">
-                                <div class="modal-body">
-                                    
-                                <div class="ui-widget">
-                                    <label for="tags">PERUSAHAAN: </label>
-                                    <input id="tags">
-                                </div>
- 
+                                <div class="modal-body"> 
 
                                     <p> <small><b> DATA TENAGA KERJA</b></small></p>
                                     <div class="form-group row">
