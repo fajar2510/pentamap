@@ -7,24 +7,28 @@ class RewardModel extends CI_Model
     {
         $query =
             "SELECT * FROM tb_reward 
-            -- JOIN kabupaten ON tb_reward.kabupaten_kota = kabupaten.id_kabupaten 
+            JOIN kabupaten ON tb_reward.kabupaten_kota = kabupaten.id_kabupaten 
             -- JOIN tb_perusahaan ON tb_reward.nama_perusahaan = tb_perusahaan.id
             JOIN jenis_sektor_usaha ON tb_reward.sektor_usaha = jenis_sektor_usaha.id_sektor
-            ORDER BY tb_reward.date_created  DESC
+            ORDER BY tb_reward.id_reward  DESC
                 ";
         return $this->db->query($query)->result_array();
     }
 
-    public function get_add_reward()
+    public function get_tb_reward()
     {
         $query =
             "SELECT * FROM tb_reward 
-            -- JOIN kabupaten ON tb_reward.kabupaten_kota = kabupaten.id_kabupaten 
-            JOIN tb_perusahaan ON tb_reward.nama_perusahaan = tb_perusahaan.id
-            JOIN jenis_sektor_usaha ON tb_reward.sektor_usaha = jenis_sektor_usaha.id_sektor
-            ORDER BY tb_reward.date_created  DESC
+            ORDER BY tb_reward.id_reward  ASC
                 ";
         return $this->db->query($query)->result_array();
+    }
+
+    public function get_rewardById($id)
+    {
+        $query = "SELECT * FROM tb_reward WHERE tb_reward.id_reward = '$id'
+                ";
+        return $this->db->query($query)->row();
     }
 
 }

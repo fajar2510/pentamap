@@ -63,7 +63,7 @@
                                         <th>Kota/kabupaten</th>
                                         <th>Disabilitas</th>
                                         <th>Total</th>
-                                        <th>Presentase</th>
+                                        <th>Presentase %</th>
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -73,13 +73,13 @@
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $r['nama_perusahaan']; ?></td>
-                                            <td> <small> <?= $r['kabupaten_kota']; ?></small></td>
-                                            <td> <?= $r['disabilitas_L']; ?> <?= $r['disabilitas_P']; ?></td>
-                                            <td> <?= $r['tenaga_kerja_L']; ?> <?= $r['tenaga_kerja_P']; ?></td>
-                                            <td> <?= $r['presentase']; ?></td>
+                                            <td> <small> <?= $r['nama_kabupaten']; ?></small></td>
+                                            <td><center><?= $r['disabilitas_total']; ?></center>  </td>
+                                            <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
+                                            <td> <center><?= $r['presentase']; ?> %</center> </td>
                                             <td>
-                                                <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <a href="<?= base_url('reward') . $r['id_reward']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
+                                                <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -101,9 +101,9 @@
 <!-- End of Main Content -->
 
 
-<?php foreach ($data_reward as $r) : ?>
+<?php foreach ($tb_reward as $re) : ?>
     <!-- modalhapus -->
-    <div class="modal fade" id="modalHapus<?= $r['id_reward']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+    <div class="modal fade" id="modalHapus<?= $re['id_reward']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,10 +115,10 @@
                 </div>
                 <center>
                     <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
-                    <form action="<?= base_url('reward/' . $r['id_reward']); ?>">
+                    <form action="<?= base_url('reward/hapus/' . $re['id_reward']); ?>">
                         <div class="modal-body">Data&nbsp; <b>
-                                <font color="red"><?= $r['nama_perusahaan']; ?></font>
-                            </b> akan dihapus </div>
+                                <font color="red"><?= $re['nama_perusahaan']; ?> </font>
+                            </b> akan dihapus</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-danger" type="submit">Hapus</button>

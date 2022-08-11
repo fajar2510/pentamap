@@ -13,6 +13,7 @@ class Reward extends CI_Controller
         $this->load->model('Lokal');
         $this->load->model('RewardModel');
         $this->load->model('Sektor');
+        $this->load->model('Disabilitas');
     } // FUNCTION USER START
 
     // FUNCTION DOCTOR START
@@ -29,6 +30,7 @@ class Reward extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
         
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        $data['tb_reward'] = $this->RewardModel->get_tb_reward();
 
         $data['title'] = 'Penghargaan Perusahaan';
         $this->load->view('templates/header', $data);
@@ -54,19 +56,29 @@ class Reward extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
+        $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        // $data['hapus_reward'] = $this->RewardModel->get_tb_reward();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
 
-        $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
-        $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
-        $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'required|trim');
-        $this->form_validation->set_rules('kode_segmen', 'Kode Segmen', 'trim');
-        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
-        $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'trim');
-        $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan', 'required|trim');
+        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
+        $this->form_validation->set_rules('no_kontak_person', 'Nomor telepon kontak person', 'trim');
+        $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('no_perusahaan', 'Nomor Telepon Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('email_perusahaan', 'E-mail Perusahaan', 'trim');
+        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'trim');
+        $this->form_validation->set_rules('sektor_usaha', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('disabilitas_L', 'Disabilitas Laki-laki', 'trim');
+        $this->form_validation->set_rules('disabilitas_P', 'Disabilitas Perempuan', 'trim');
+        $this->form_validation->set_rules('disabilitas_total', 'Disabilitas Total', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_L', 'Total tenaga kerja Laki-laki', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_P', 'Total tenaga kerja Perempuan', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_total', 'Tenaga kerja total', 'trim');
+        $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
+        $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan Perusahaan';
@@ -77,17 +89,25 @@ class Reward extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'wilayah' => $this->input->post('wilayah', true),
-                'kpj' => $this->input->post('kpj', true),
-                'nama_tk' => $this->input->post('nama_tk', true),
-                'alamat' => $this->input->post('alamat', true),
-                'kontak' => $this->input->post('kontak', true),
-                'nomor_identitas' => $this->input->post('no_identitas', true),
-                'kode_segmen' => $this->input->post('kode_segmen', true),
-                'nama_perusahaan' => $this->input->post('perusahaan', true),
-                'status_kerja' => $this->input->post('status_kerja', true),
-                'ragam_disabilitas' => $this->input->post('disabilitas', true),
-                'jenis_disabilitas' => $this->input->post('rincian', true),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'kabupaten_kota' => $this->input->post('kabupaten_kota', true),
+                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                'alamat_perusahaan' => $this->input->post('alamat_perusahaan', true),
+                'no_perusahaan' => $this->input->post('no_perusahaan', true),
+                'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
+                'sektor_usaha' => $this->input->post('sektor_usaha', true),
+                'disabilitas_L' => $this->input->post('disabilitas_L', true),
+                'disabilitas_P' => $this->input->post('disabilitas_P', true),
+                'disabilitas_total' => $this->input->post('disabilitas_total', true),
+                'tenaga_kerja_L' => $this->input->post('tenaga_kerja_L', true),
+                'tenaga_kerja_P' => $this->input->post('tenaga_kerja_P', true),
+                'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
+                'presentase' => $this->input->post('presentase', true),
+                'ragam_disabilitas' => $this->input->post('ragam_disabilitas', true),
+                'jenis_disabilitas' => $this->input->post('jenis_disabilitas', true),
                 'date_created' => date('Y-m-d'),
             ];
 
@@ -128,47 +148,61 @@ class Reward extends CI_Controller
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
-        $data['tambah_phk'] = $this->Master->get_tb_phk();
-        
+        $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
 
-        // Load model lokal
-        // $data['phk'] = $this->Master->get_tb_phk();
-        $data['edit_phk'] = $this->Master->get_phkById($id);
+        $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
-        $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
-        $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
-        $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'required|trim');
-        $this->form_validation->set_rules('kode_segmen', 'Kode Segmen', 'trim');
-        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
-        $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'trim');
-        $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
+        // form validation
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan', 'required|trim');
+        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
+        $this->form_validation->set_rules('no_kontak_person', 'Nomor telepon kontak person', 'trim');
+        $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('no_perusahaan', 'Nomor Telepon Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('email_perusahaan', 'E-mail Perusahaan', 'trim');
+        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'trim');
+        $this->form_validation->set_rules('sektor_usaha', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('disabilitas_L', 'Disabilitas Laki-laki', 'trim');
+        $this->form_validation->set_rules('disabilitas_P', 'Disabilitas Perempuan', 'trim');
+        $this->form_validation->set_rules('disabilitas_total', 'Disabilitas Total', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_L', 'Total tenaga kerja Laki-laki', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_P', 'Total tenaga kerja Perempuan', 'trim');
+        $this->form_validation->set_rules('tenaga_kerja_total', 'Tenaga kerja total', 'trim');
+        $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
+        $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Tenaga Kerja Lokal';
+            $data['title'] = 'Penghargaan Perusahaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('reward/reward_edit', $data);
+            $this->load->view('reward/edit', $data);
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'wilayah' => $this->input->post('wilayah', true),
-                'kpj' => $this->input->post('kpj', true),
-                'nama_tk' => $this->input->post('nama_tk', true),
-                'alamat' => $this->input->post('alamat', true),
-                'kontak' => $this->input->post('kontak', true),
-                'nomor_identitas' => $this->input->post('no_identitas', true),
-                'kode_segmen' => $this->input->post('kode_segmen', true),
-                'nama_perusahaan' => $this->input->post('perusahaan', true),
-                'status_kerja' => $this->input->post('status_kerja', true),
-                'ragam_disabilitas' => $this->input->post('disabilitas', true),
-                'jenis_disabilitas' => $this->input->post('rincian', true),
-                'date_created' => date('Y-m-d'),
+                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'kabupaten_kota' => $this->input->post('kabupaten_kota', true),
+                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                'alamat_perusahaan' => $this->input->post('alamat_perusahaan', true),
+                'no_perusahaan' => $this->input->post('no_perusahaan', true),
+                'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
+                'sektor_usaha' => $this->input->post('sektor_usaha', true),
+                'disabilitas_L' => $this->input->post('disabilitas_L', true),
+                'disabilitas_P' => $this->input->post('disabilitas_P', true),
+                'disabilitas_total' => $this->input->post('disabilitas_total', true),
+                'tenaga_kerja_L' => $this->input->post('tenaga_kerja_L', true),
+                'tenaga_kerja_P' => $this->input->post('tenaga_kerja_P', true),
+                'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
+                'presentase' => $this->input->post('presentase', true),
+                'ragam_disabilitas' => $this->input->post('ragam_disabilitas', true),
+                'jenis_disabilitas' => $this->input->post('jenis_disabilitas', true),
             ];
 
 
@@ -184,12 +218,14 @@ class Reward extends CI_Controller
 
     public function hapus($id)
     {
+        
         $this->db->where('id_reward', $id);
-
-        $reward =  $this->db->query("SELECT * FROM tb_reward WHERE id_reward='$id'");
-        $kabupaten = $reward->row()->wilayah;
-
         $this->db->delete('tb_reward');
+
+        // $reward =  $this->db->query("SELECT * FROM tb_reward WHERE id_reward='$id'");
+        // $kabupaten = $reward->row()->wilayah;
+
+        
 
         //     $jumlah_reward = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS reward FROM tb_reward");
 

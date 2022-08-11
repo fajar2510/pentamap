@@ -89,13 +89,27 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
-<!-- date picker hanya tahun -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> -->
+<!-- untuk menjumlahkan data disabilitas dan total tenaga kerja -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#disabilitas_L, #disabilitas_P,#tenaga_kerja_L, #tenaga_kerja_P",).keyup(function() {
+            var disabilitas_P  = $("#disabilitas_P").val();
+            var disabilitas_L = $("#disabilitas_L").val();
+            var tenaga_kerja_P  = $("#tenaga_kerja_P").val();
+            var tenaga_kerja_L = $("#tenaga_kerja_L").val();
 
+            var disabilitas_total = parseInt(disabilitas_P) + parseInt(disabilitas_L);
+            $("#disabilitas_total").val(disabilitas_total);
+
+            var tenaga_kerja_total = parseInt(tenaga_kerja_P) + parseInt(tenaga_kerja_L);
+            $("#tenaga_kerja_total").val(tenaga_kerja_total);
+
+            var presentase  = (parseInt(disabilitas_total) / parseInt(tenaga_kerja_total)) * 100;
+            $("#presentase").val(presentase);
+        });
+    });
+</script>
 
 
 <!-- untuk mengambil input tanggal -->

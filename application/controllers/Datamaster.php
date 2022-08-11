@@ -11,6 +11,7 @@ class Datamaster extends CI_Controller
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
         $this->load->model('Sektor');
+        $this->load->model('Disabilitas');
     }
 
     // FUNCTION USER START
@@ -259,6 +260,118 @@ class Datamaster extends CI_Controller
       redirect('datamaster/sektor');
   }
   // FUNCTION Sektor END
+
+    // FUNCTION Disabilitas START
+    public function disabilitas()
+    {
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+  
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+  
+        $data['user'] = $this->db->get()->row_array();
+  
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+  
+      //   Load Model Sektor
+        $data['data_disabilitas'] = $this->Disabilitas->get_disabilitas();
+  
+  
+        $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+  
+  
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Disabilitas';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/disabilitas', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'ragam_disabilitas' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
+                'jenis_disabilitas' => htmlspecialchars($this->input->post('jenis_disabilitas', true)),
+                'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
+            ];
+            $this->db->insert('tb_disabilitas', $data);
+  
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Success ! Data has been created. </div>');
+            redirect('datamaster/disabilitas');
+        }
+    }
+  
+    public function disabilitas_edit($id)
+    {
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+        $data['user'] = $this->db->get()->row_array();
+  
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+  
+        // Load model disabilitas
+        $data['data_disabilitas'] = $this->Disabilitas->get_disabilitas();
+        // $data['edit_disabilitas'] = $this->Disabilitas->get_edit_disabilitas($id);
+      //   $data['edit_sektor'] = $this->Master->getSektorById($id);
+      //   $data['user_role'] = $this->Master->getRole();
+  
+      $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
+      $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
+      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+  
+  
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Disabilitas';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/disabilitas', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $data = [
+                'ragam_disabilitas' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
+                'jenis_disabilitas' => htmlspecialchars($this->input->post('jenis_disabilitas', true)),
+                'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
+            ];
+  
+            $this->db->where('id_dis', $id);
+            $this->db->update('tb_disabilitas', $data);
+  
+            $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Data has been updated! </div>');
+            redirect('datamaster/disabilitas');
+        }
+    }
+  
+  
+    public function delete_disabilitas($id)
+    {
+        $this->db->where('id_dis', $id);
+        $this->db->delete('tb_disabilitas');
+  
+        $this->session->set_flashdata('message', '<div class="alert 
+            alert-success" role="alert"> Your selected data has succesfully deleted, be carefull for manage data. </div>');
+        redirect('datamaster/disabilitas');
+    }
+    // FUNCTION Disabilitas END
 
 
     // FUNCTION Perusahaan START

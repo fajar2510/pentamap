@@ -5,7 +5,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
-        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
