@@ -27,20 +27,16 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-0">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-0"></div>
 
-                    </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('reward/tambah'); ?>" method="post" name="autoSmForm">
+                            <form action="<?= base_url('reward/tambah'); ?>" method="post" >
                                 <div class="modal-body"> 
-                                
-                                    <p> <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
-                                   
-                                    <div class="form-group row">
+                                <p> <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
+                                    <!-- <div class="form-group row">
                                         <label for="usulan_tahun" class="col-sm-3 col-form-label">Tahun Usulan</label>
                                         <div class="col-sm-2">
                                             <?php 
@@ -52,7 +48,7 @@
                                             ; ?>
                                             <?= form_error('usulan_tahun', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
@@ -202,9 +198,11 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
+                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam Disabilitas</label>
                                         <div class="col-sm-7">
 
+                                             
+                                            
                                             <textarea class="form-control" id="ragam_disabilitas" placeholder=" . . ." name="ragam_disabilitas" rows="2"></textarea>
                                             <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

@@ -6,7 +6,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h4 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h4>
-        <a href="<?= base_url('tka/'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <a href="<?= base_url('tka/'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>

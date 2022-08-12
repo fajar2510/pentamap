@@ -57,6 +57,8 @@ class Reward extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+
+        $data["ragam_disabilitas"] = $this->db->get_where('tb_disabilitas')->result();
         // $data['hapus_reward'] = $this->RewardModel->get_tb_reward();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
 
@@ -127,7 +129,7 @@ class Reward extends CI_Controller
         //     $this->db->update('kabupaten', $update);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil! Data Usulan telah ditambahkan. </div>');
+            alert-success" role="alert"> Berhasil! Data telah ditambahkan. </div>');
             redirect('reward');
         }
     }
@@ -210,7 +212,7 @@ class Reward extends CI_Controller
             $this->db->update('tb_reward', $data);
 
             $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data Tenaga Kerja Lokal telah diperbarui! </div>');
+            alert-success" role="alert"> Berhasil data telah diperbarui! </div>');
             redirect('reward');
         }
     }
@@ -242,4 +244,13 @@ class Reward extends CI_Controller
             alert-success" role="alert"> Data yang dipilih telah berhasil dihapus </div>');
         redirect('reward');
     }
+
+    // function get_disabilitas_by_ragam(){
+	// 	$id_dis=$this->input->post('id_dis');
+    // 	$data=$this->RewardModel->get_disabilitas_by_ragam($id_dis)->result();
+    // 	foreach ($data as $result) {
+    // 		$value[] = (float) $result->id_dis;
+    // 	}
+    // 	echo json_encode($value);
+	// }
 }

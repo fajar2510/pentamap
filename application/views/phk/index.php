@@ -85,7 +85,7 @@
                                             <td><small> <?= $p['ragam_disabilitas']; ?>. <?= $p['jenis_disabilitas']; ?></small> </td>
                                             <td> <small> <?= $p['status_kerja']; ?></small></td>
                                             <td>
-
+                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -131,6 +131,82 @@
                         </div>
                     </form>
                 </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- penampil view info data -->
+<?php foreach ($data_phk as $p) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $p['id_phk']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_tk']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">NIK </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nomor_identitas']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kel']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">KPJ (BPJS) </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kpj']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">No.Telp. (kontak) </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kontak']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Alamat </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kode Segmen</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_segmen']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Status </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['status_kerja']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Ragam Disabilitas </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['ragam_disabilitas']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jenis Disabilitas </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_disabilitas']; ?> </label>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

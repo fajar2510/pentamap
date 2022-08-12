@@ -31,12 +31,12 @@
                             <?= form_error('new_password2', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="form-group row justify justify-content-end">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <button type="submit" class="btn btn-primary btn-icon-split btn-user btn-block">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-save"></i>
                                     </span>
-                                    <span class="text">Ubah</span>
+                                    <span class="text">Konfirmasi</span>
                                 </button>
 
                             </div>

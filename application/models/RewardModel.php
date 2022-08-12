@@ -31,4 +31,15 @@ class RewardModel extends CI_Model
         return $this->db->query($query)->row();
     }
 
+    //GET PRODUCT BY reward ID
+	function get_reward_by_ragam($id_dis){
+		$this->db->select('*');
+		$this->db->from('tb_reward');
+		// $this->db->join('detail', 'detail_product_id=product_id');
+		// $this->db->join('package', 'id_dis=detail_id_dis');
+		$this->db->where('id_dis',$id_dis);
+		$query = $this->db->get();
+		return $query;
+	}
+
 }

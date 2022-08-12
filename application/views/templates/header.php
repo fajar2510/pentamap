@@ -21,14 +21,9 @@
   <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet">
   <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+  
 
-  <!-- Load Esri Leaflet from CDN -->
-  <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js" integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ==" crossorigin=""></script>
-
-  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js-select2/css/bootstrap-select.css');?>">
 
   <style type="text/css">
     /* body { margin:0; padding:0; } */
@@ -38,7 +33,7 @@
   </style>
 </head>
 
-
+<!-- batas body -->
 <body id="page-top">
 
   <!-- Page Wrapper -->

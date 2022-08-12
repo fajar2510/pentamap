@@ -6,7 +6,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h3 style="font-family:'Roboto';font-size:15;">Edit Data <?= $title; ?> <?= date('Y'); ?></h3>
-        <a href="<?= base_url('tka'); ?>" class="btn btn-secondary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <a href="<?= base_url('tka'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>

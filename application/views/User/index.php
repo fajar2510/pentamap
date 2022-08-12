@@ -20,7 +20,7 @@
                 <div class="col-md-2">
                     <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img" alt="My Profile Photos">
                     <hr>
-                    <a href="<?= base_url('user/edit'); ?>" class="btn btn-secondary btn-icon-split btn-block">
+                    <a href="<?= base_url('user/edit'); ?>" class="btn btn-primary btn-icon-split btn-block">
                         <span class="icon text-white-50">
                             <i class="fas fa-user-edit"></i>
                         </span>
