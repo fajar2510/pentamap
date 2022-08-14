@@ -64,8 +64,8 @@
     <!-- Bootstrap core JavaScript-->
     
     <!-- Load Esri Leaflet Map  -->
-    <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js" integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ==" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!-- <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js" integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script> -->
 
     <!-- Load JS  -->
     <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
@@ -90,58 +90,61 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.4.1.min.js');?>"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url('assets/js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
 
     <!-- select2 multiple form -->
     <!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
     <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap-select.js"></script>
 
+    <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
+
     <!-- select2 multiple form -->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.bootstrap-select').selectpicker();
 
-			//GET UPDATE
-			$('.update-record').on('click',function(){
-				var id_dis = $(this).data('id_dis');
-				var ragam_disabilitas = $(this).data('ragam_disabilitas');
-				$(".strings").val('');
-				$('#UpdateModal').modal('show');
-				$('[name="edit_id"]').val(id_dis);
-				$('[name="package_edit"]').val(ragam_disabilitas);
+            //GET UPDATE
+			// $('.update-record').on('click',function(){
+			// 	var package_id = $(this).data('package_id');
+			// 	var package_name = $(this).data('package_name');
+			// 	$(".strings").val('');
+			// 	$('#UpdateModal').modal('show');
+			// 	$('[name="edit_id"]').val(package_id);
+			// 	$('[name="package_edit"]').val(package_name);
                 //AJAX REQUEST TO GET SELECTED PRODUCT
-                $.ajax({
-                    url: "<?php echo site_url('reward/get_disabilitas_by_ragam');?>",
-                    method: "POST",
-                    data :{id_dis:id_dis},
-                    cache:false,
-                    success : function(data){
-                        var item=data;
-                        var val1=item.replace("[","");
-                        var val2=val1.replace("]","");
-                        var values=val2;
-                        $.each(values.split(","), function(i,e){
-                            $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
-                            $(".strings").selectpicker('refresh');
+            //     $.ajax({
+            //         url: "<?php echo site_url('reward/get_ragam_disabilitas');?>",
+            //         method: "POST",
+            //         data :{id_dis:id_dis},
+            //         cache:false,
+            //         success : function(data){
+            //             var item=data;
+            //             var val1=item.replace("[","");
+            //             var val2=val1.replace("]","");
+            //             var values=val2;
+            //             $.each(values.split(","), function(i,e){
+            //                 $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+            //                 $(".strings").selectpicker('refresh');
 
-                        });
-                    }
+            //             });
+            //         }
                     
-                });
-                return false;
-			});
+            //     });
+            //     return false;
+			// });
 
 			//GET CONFIRM DELETE
-			$('.delete-record').on('click',function(){
-				var id_dis = $(this).data('id_dis');
-				$('#DeleteModal').modal('show');
-				$('[name="delete_id"]').val(id_dis);
-			});
+		// 	$('.delete-record').on('click',function(){
+		// 		var id_dis = $(this).data('id_dis');
+		// 		$('#DeleteModal').modal('show');
+		// 		$('[name="delete_id"]').val(id_dis);
+		// 	});
 
-		});
+		// });
 	</script>
 
+        <!-- perhitungan otomasi jumlah disabilitas dan total tenaga kerja di perusahaan -->
     <script type="text/javascript">
         $(document).ready(function() {
             $("#disabilitas_L, #disabilitas_P,#tenaga_kerja_L, #tenaga_kerja_P",).keyup(function() {
@@ -161,6 +164,7 @@
                 $("#presentase").val(presentase.toFixed(1));
             });
         });
+    
     </script>
 
 
@@ -283,6 +287,20 @@
         }
     </script>
 
+   
+
+    <!-- AUTO COMPLETE -->
+    <script  type="text/javascript">
+                //autocomplete tenaga kerja lokal add
+                $(function () {
+                    $("id_perusahaan").autocomplete({
+                        source: "<?php echo base_url() ?>/index.php",
+                        minLength: 1
+                    });
+                })
+    </script>
+
+    <!-- script map utama -->
     <script type="text/javascript">
         // var L = window.L;
 
@@ -462,7 +480,9 @@
             });
         });
     </script>
+     <!-- script map utama -->
 
+    <!-- script map filter tahun -->
     <script>
         $(function() {
 
@@ -494,27 +514,30 @@
             });
         }
     </script>
+      <!-- script map filter tahun -->
 
-    <!-- AUTO COMPLETE -->
-    <script  type="text/javascript">
-                //autocomplete tenaga kerja lokal add
-                $(function () {
-                    $("id_perusahaan").autocomplete({
-                        source: "<?php echo base_url() ?>/index.php",
-                        minLength: 1
-                    });
-                })
-    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#perusahaan").autocomplete({
+                source : "<?php echo site_url('reward/get_autofill/?'); ?>",
+                select : function(event, ui) {
 
-    <script>
-        function detail_perusahaan(){
-            $p = "SELECT nama_perusahaan FROM tb_perusahaan";
-            $querydp = $this->db->querydp($p);
-            foreach ($querydp->result() as $nama)  {
-                $return_arr[] = $nama->nama_perusahaan;
-            }
-            echo json_encode($return_arr);
-        }
+                    $('[name="nama_perusahaan"]'). val(ui.item.label);
+                    $('[name="kabupaten_kota"]'). val(ui.item.kabupaten_kota);
+                    $('[name="nama_perusahaan"]'). val(ui.item.nama_perusahaan);
+                    $('[name="nama_pimpinan"]'). val(ui.item.nama_pimpinan);
+                    $('[name="nama_kontak_person"]'). val(ui.item.nama_kontak_person);
+                    $('[name="no_kontak_person"]'). val(ui.item.no_kontak_person);
+                    $('[name="alamat_perusahaan"]'). val(ui.item.alamat_perusahaan);
+                    $('[name="no_perusahaan"]'). val(ui.item.no_perusahaan);
+                    $('[name="email_perusahaan"]'). val(ui.item.email_perusahaan);
+                    $('[name="jenis_perusahaan"]'). val(ui.item.jenis_perusahaan);
+                    $('[name="sektor_usaha"]'). val(ui.item.sektor_usaha);
+
+                }
+            });
+        });
+
     </script>
 
 

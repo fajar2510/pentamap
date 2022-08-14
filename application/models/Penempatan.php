@@ -204,7 +204,7 @@ class Penempatan extends CI_Model
 
     public function getTotalPHK()
     {
-        $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk ");
+        $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='phk' ");
         return $data->result();
     }
 

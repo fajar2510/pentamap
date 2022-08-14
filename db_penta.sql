@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jul 2022 pada 12.09
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.7
+-- Waktu pembuatan: 13 Agu 2022 pada 13.03
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_penta`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jenis_sektor_usaha`
+--
+
+CREATE TABLE `jenis_sektor_usaha` (
+  `id_sektor` int(11) NOT NULL,
+  `nama_sektor` varchar(100) NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jenis_sektor_usaha`
+--
+
+INSERT INTO `jenis_sektor_usaha` (`id_sektor`, `nama_sektor`, `keterangan`, `date_created`) VALUES
+(8, 'Pertanian', 'Tanaman Pangan, Perkebunan, Peternakan, Perikanan, Kehutanan, dll.', '2022-08-02'),
+(9, 'Pertambangan', 'Batubara, Minyak dan Gas Bumi, Biji Logam,  Batu-batuan, Tanah Liat, Pasir,  Garam,  Mineral, Bahan Kimia, dan Bahan Pupuk,  Gips, Aspal, dan Gamping.', '2022-08-02'),
+(10, 'Industri Dasar &amp; Kimia', 'Semen, Keramik, Porselen, Kaca; Logam ,sejenisnya &amp; Plastik, Kemasan, Pakan Ternak, Kayu dan Pengolahannya, Pulp dan Kertas,dll.', '2022-08-02'),
+(11, 'Aneka Industri', 'Mesin dan Alat Berat, Otomotif, Tekstil dan Garmen, Alas Kaki, Kabel, dan Elektronika.', '2022-08-02'),
+(12, 'Industri Barang Konsumsi', 'Makanan dan Minuman, Rokok, Farmasi, Kosmetik dan Barang Keperluan Rumah Tangga, Peralatan Rumah Tangga, dll.', '2022-08-02'),
+(13, 'Properti, Real Estate &amp; Konstruksi Bangunan', 'Properti dan Real Estat, Konstruksi Bangunan, dll.', '2022-08-02'),
+(14, 'Infrastruktur, Utilitas dan Transportasi', 'Energi, Jalan Tol, Pelabuhan, Bandara, Telekomunikasi, Transportasi, Konstruksi Nonbangunan, dll.', '2022-08-02'),
+(15, 'Keuangan', 'Bank, Lembaga Pembiayaan, Asuransi, dan Perusahaan Bursa Efek', '2022-08-02'),
+(16, 'Perdagangan ,Jasa &amp; Inverstasi', 'Toko, Eceran, Restoran, Hotel &amp; Pariwisata, Advertising, Printing, &amp; Media; Kesehatan; Jasa Komputer; Investasi, dll.', '2022-08-02'),
+(18, '-', '-', '2022-08-13');
 
 -- --------------------------------------------------------
 
@@ -88855,6 +88884,32 @@ INSERT INTO `tb_cpmi` (`id`, `nama_pmi`, `jenis_kelamin`, `tempat_lahir`, `tangg
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_disabilitas`
+--
+
+CREATE TABLE `tb_disabilitas` (
+  `id_dis` int(11) NOT NULL,
+  `ragam_disabilitas` enum('Fisik','Sensorik','Intelektual','Mental','Ganda') NOT NULL,
+  `jenis_disabilitas` varchar(50) NOT NULL,
+  `keterangan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_disabilitas`
+--
+
+INSERT INTO `tb_disabilitas` (`id_dis`, `ragam_disabilitas`, `jenis_disabilitas`, `keterangan`) VALUES
+(1, 'Fisik', 'Tuna Daksa', 'Kelainan tubuh, dari lahir, kecelakaan, penyakit dll'),
+(2, 'Sensorik', 'Tuna Rungu', 'Kelainan Fungsi Pendengaran'),
+(3, 'Sensorik', 'Tuna Wicara', 'Kelainan Fungsi Bicara'),
+(6, 'Sensorik', 'Tuna Netra', 'Kelainan Fungsi Penglihatan'),
+(7, 'Intelektual', 'Tuna Grahita', 'IQ dibawah rata-rata, sulit berkomunikasi, down syndrome'),
+(8, 'Mental', 'Tuna Laras', 'gangguan Bipolar, kecemasan, depresi, sulit konsentrasi'),
+(9, 'Ganda', '-', 'campuran dari beberapa disabilitas fisik, sensorik, intelektual ,dan mental');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_negara`
 --
 
@@ -88890,9 +88945,15 @@ INSERT INTO `tb_negara` (`id`, `nama_negara`) VALUES
 CREATE TABLE `tb_perusahaan` (
   `id` int(11) NOT NULL,
   `nama_perusahaan` varchar(50) NOT NULL,
+  `nama_pimpinan` varchar(50) NOT NULL,
+  `nama_kontak_person` varchar(50) NOT NULL,
+  `no_kontak_person` varchar(50) NOT NULL,
+  `email_perusahaan` varchar(60) NOT NULL,
   `kode_kantor` varchar(30) NOT NULL,
+  `sektor_perusahaan` int(11) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `status` enum('P','C') NOT NULL,
+  `jenis_perusahaan` enum('Kecil','Menengah','Besar','BUMN') NOT NULL,
   `kontak` varchar(25) NOT NULL,
   `fungsi` int(11) NOT NULL,
   `date_created` date NOT NULL
@@ -88902,22 +88963,22 @@ CREATE TABLE `tb_perusahaan` (
 -- Dumping data untuk tabel `tb_perusahaan`
 --
 
-INSERT INTO `tb_perusahaan` (`id`, `nama_perusahaan`, `kode_kantor`, `alamat`, `status`, `kontak`, `fungsi`, `date_created`) VALUES
-(1, 'PT Aneka Indomakmur', '4233', 'Jl Surowongso 415 A, Desa Karangbong Kec. Gedangan', 'P', '0892312322', 47634, '2020-07-14'),
-(7, 'PT. Pabrik Kertas Indonesia', '', '3, Jl. Kertopaten Surabaya', 'P', '-', 49656, '2020-07-26'),
-(8, 'PT Bumi Rotanjaya', '3512', 'Desa Wonosari Kecamatan Ngoro', 'P', '-', 49656, '2020-07-26'),
-(9, 'PT Indonesia Multi Colour Printing', '', 'Jl. Rungkut Industri Surabaya', 'P', '-', 51358, '2020-07-26'),
-(10, 'PT Diana Prima Perkasa', '1023', 'Jl. Tunjungan No.5-7 Tunjungan center lt. IV', 'P', '-', 49656, '2020-07-26'),
-(11, 'PT. International Packaging Manufacturing', '', 'Jl. Berbek Industri 2/26, SIER, Waru, Sidoarjo', 'P', '-', 1, '2020-07-26'),
-(12, 'PT Lezen Indonesia', '4241', 'Jl Rajawali Blok Industri no 9', 'P', '-', 0, '2020-07-26'),
-(14, 'PT. ADHI MAKMUR OENGGOEL INSANI', '', 'Jalan Jatisari Besar 3 No. 4 Pepelegi Waru Sidoarjo', 'P', '-', 0, '2020-07-19'),
-(15, 'PT. AKARINKA UTAMA SEJAHTERA', '', 'Jalan Jatisari Besar 3 No. 4 Pepelegi Waru Sidoarjo', 'P', '-', 0, '2020-07-13'),
-(16, 'PT. Mutiara Timur', '', 'PT. Mutiara Timur', 'C', '-', 0, '2020-07-29'),
-(17, 'PT Oxyplast Indonesia', '', 'Jl Raya Beji Bangil KM 4, Beji Pasuruan', 'P', '-', 0, '2020-07-29'),
-(18, 'PT Shou Fong Lastindo', '', 'Jl Raya Panderejo, Gempol Pasuruan', 'P', '', 0, '2020-07-29'),
-(19, 'PT Sino Rush Indonesia', '', 'Perum Unimas Garden Kav C5-C6 Waru Sidoarjo', 'P', '-', 0, '2020-07-29'),
-(20, 'PT Woodone Integra Indonesia', '', 'Jl Raya Industri No 678 Ds Betro Sedati', 'P', '-', 0, '2020-07-29'),
-(21, 'PT. Anugrah Usaha Jaya', '', 'JL. TELUK ETNA KAV.IV NO.36 ARJOSARI, BLIMBING, MALANG, JAWA TIMUR', 'P', '-', 0, '2020-07-30');
+INSERT INTO `tb_perusahaan` (`id`, `nama_perusahaan`, `nama_pimpinan`, `nama_kontak_person`, `no_kontak_person`, `email_perusahaan`, `kode_kantor`, `sektor_perusahaan`, `alamat`, `status`, `jenis_perusahaan`, `kontak`, `fungsi`, `date_created`) VALUES
+(1, 'PT Aneka Indomakmur', '', '', '', '', '4233', 8, 'Jl Surowongso 415 A, Desa Karangbong Kec. Gedangan', 'P', 'BUMN', '0892312322', 47634, '2022-08-06'),
+(7, 'PT. Pabrik Kertas Indonesia', 'Rendy Dermawan', 'Icha Nirala M', '0828423123', 'jayakertasabadi@yahoo.com', '0923', 18, '3, Jl. Kertopaten Surabaya', 'C', 'Besar', '-', 49656, '2020-07-26'),
+(8, 'PT Bumi Rotanjaya', '', '', '', '', '3512', 18, 'Desa Wonosari Kecamatan Ngoro', 'P', 'Kecil', '-', 49656, '2020-07-26'),
+(9, 'PT Indonesia Multi Colour Printing', '', '', '', '', '', 18, 'Jl. Rungkut Industri Surabaya', 'P', 'Kecil', '-', 51358, '2020-07-26'),
+(10, 'PT Diana Prima Perkasa', '', '', '', '', '1023', 15, 'Jl. Tunjungan No.5-7 Tunjungan center lt. IV', 'P', 'Kecil', '-', 49656, '2022-08-13'),
+(11, 'PT. International Packaging Manufacturing', '', '', '', '', '', 18, 'Jl. Berbek Industri 2/26, SIER, Waru, Sidoarjo', 'P', 'Kecil', '-', 1, '2020-07-26'),
+(12, 'PT Lezen Indonesia', '', '', '', '', '4241', 18, 'Jl Rajawali Blok Industri no 9', 'P', 'Kecil', '-', 0, '2020-07-26'),
+(14, 'PT. ADHI MAKMUR OENGGOEL INSANI', '', '', '', '', '', 18, 'Jalan Jatisari Besar 3 No. 4 Pepelegi Waru Sidoarjo', 'P', 'Kecil', '-', 0, '2020-07-19'),
+(15, 'PT. AKARINKA UTAMA SEJAHTERA', '', '', '', '', '', 18, 'Jalan Jatisari Besar 3 No. 4 Pepelegi Waru Sidoarjo', 'P', 'Kecil', '-', 0, '2020-07-13'),
+(16, 'PT. Mutiara Timur', '', '', '', '', '', 18, 'PT. Mutiara Timur', 'C', 'Kecil', '-', 0, '2020-07-29'),
+(17, 'PT Oxyplast Indonesia', '', '', '', '', '', 18, 'Jl Raya Beji Bangil KM 4, Beji Pasuruan', 'P', 'Kecil', '-', 0, '2020-07-29'),
+(18, 'PT Shou Fong Lastindo', '', '', '', '', '', 18, 'Jl Raya Panderejo, Gempol Pasuruan', 'P', 'Kecil', '', 0, '2020-07-29'),
+(19, 'PT Sino Rush Indonesia', '', '', '', '', '', 18, 'Perum Unimas Garden Kav C5-C6 Waru Sidoarjo', 'P', 'Kecil', '-', 0, '2020-07-29'),
+(20, 'PT Woodone Integra Indonesia', '', '', '', '', '', 18, 'Jl Raya Industri No 678 Ds Betro Sedati', 'P', 'Kecil', '-', 0, '2020-07-29'),
+(21, 'PT. Anugrah Usaha Jaya', '', '', '', '', '', 18, 'JL. TELUK ETNA KAV.IV NO.36 ARJOSARI, BLIMBING, MALANG, JAWA TIMUR', 'P', 'Kecil', '-', 0, '2020-07-30');
 
 -- --------------------------------------------------------
 
@@ -88929,6 +88990,7 @@ CREATE TABLE `tb_phk` (
   `id_phk` int(11) NOT NULL,
   `nama_tk` varchar(60) NOT NULL,
   `nomor_identitas` varchar(30) NOT NULL,
+  `jenis_kel` enum('L','P') NOT NULL,
   `kpj` varchar(50) NOT NULL,
   `kontak` varchar(25) NOT NULL,
   `alamat` varchar(120) NOT NULL,
@@ -88936,7 +88998,7 @@ CREATE TABLE `tb_phk` (
   `nama_perusahaan` int(11) NOT NULL,
   `kode_segmen` varchar(10) NOT NULL,
   `status_kerja` enum('phk','aktif') NOT NULL,
-  `ragam_disabilitas` enum('Sensorik','Fisik','Mental','Ganda','-') NOT NULL,
+  `ragam_disabilitas` enum('Sensorik','Fisik','Mental','Ganda','-','Intelektual') NOT NULL,
   `jenis_disabilitas` varchar(100) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -88945,12 +89007,12 @@ CREATE TABLE `tb_phk` (
 -- Dumping data untuk tabel `tb_phk`
 --
 
-INSERT INTO `tb_phk` (`id_phk`, `nama_tk`, `nomor_identitas`, `kpj`, `kontak`, `alamat`, `wilayah`, `nama_perusahaan`, `kode_segmen`, `status_kerja`, `ragam_disabilitas`, `jenis_disabilitas`, `date_created`) VALUES
-(3, 'SUPRAYITNO', '3525161002910001', '11022945817', '081311760089', 'JL. AMAK KHASIM 3-T', 49656, 7, 'PU', 'phk', 'Sensorik', 'Tuna Rungu', '2020-07-29'),
-(4, 'MOH. HASAN BASHORI', '3524261510770001', '11022946138', '081333174435', 'MELUWUR', 49656, 16, 'PU', 'phk', 'Mental', 'Autis', '2020-07-29'),
-(5, 'MUNAWATI', '3516166504690004', '11022948332', '08563472597', 'SIDOLEGI', 46678, 16, 'PU', 'aktif', '', '-', '2020-07-30'),
-(9, 'r332dss', 't2323', '333', '33', '2rrfsdfs', 47329, 7, '3434f', 'aktif', 'Mental', 'autisme', '2022-07-25'),
-(10, 'QWEWEW', 'WE', 'EQWE', '14221', 'WEWEQ', 47329, 9, 'R', 'aktif', 'Ganda', 's', '2022-07-25');
+INSERT INTO `tb_phk` (`id_phk`, `nama_tk`, `nomor_identitas`, `jenis_kel`, `kpj`, `kontak`, `alamat`, `wilayah`, `nama_perusahaan`, `kode_segmen`, `status_kerja`, `ragam_disabilitas`, `jenis_disabilitas`, `date_created`) VALUES
+(3, 'SUPRAYITNO', '3525161002910001', 'L', '11022945817', '081311760089', 'JL. AMAK KHASIM 3-T', 49656, 7, 'PU', 'phk', 'Sensorik', 'Tuna Rungu', '2020-07-29'),
+(4, 'MOH. HASAN BASHORI', '3524261510770001', 'L', '11022946138', '081333174435', 'MELUWUR', 49656, 16, 'PU', 'phk', 'Mental', 'Autis', '2020-07-29'),
+(5, 'MUNAWATI', '3516166504690004', 'P', '11022948332', '08563472597', 'SIDOLEGI', 46678, 16, 'PU', 'aktif', '', '-', '2020-07-30'),
+(9, 'r332dss', 't2323', 'L', '333', '33', '2rrfsdfs', 47329, 7, '3434f', 'aktif', 'Sensorik', 'autisme', '2022-07-28'),
+(10, 'QWEWEW', 'WE', 'L', 'EQWE', '14221', 'WEWEQ', 47329, 9, 'R', 'aktif', 'Ganda', 's', '2022-07-25');
 
 -- --------------------------------------------------------
 
@@ -88990,7 +89052,47 @@ INSERT INTO `tb_pmi` (`id`, `nama`, `tgl_lahir`, `gender`, `alamat`, `provinsi`,
 (163, 'SAPTA DESTARI', '1972-01-02', 'L', 'Madura', 42385, 50735, 51047, 51060, 'Malaysia', 'Tukang Bangunan', 'Batam', 'Tekong', '2 tahun', 'qwew.jpg', 'NON-PROSEDURAL', '2020-04-11'),
 (164, 'SEMINTEN', '1980-07-01', 'P', 'Madura', 42385, 50532, 50700, 50709, 'Malaysia', 'Cleaning Service', 'Tanjung Pinang', 'Pelancong', '5 tahun', 'asdsd.jpg', 'NON-PROSEDURAL', '2020-03-27'),
 (165, 'MUHAMMAD FIKRI', '2006-12-24', 'L', 'Madura', 42385, 50532, 50700, 50709, 'Malaysia', '- (anak)', '-', '-', '-', 'qweqweq.jpg', 'NON-PROSEDURAL', '2020-03-27'),
-(166, 'Bagus Hari Jaya', '1990-09-05', 'L', 'Probolinggo', 42385, 45561, 45772, 45783, 'Taiwan', 'Buruh Pabrik', 'Batam', 'Tekong', '3 tahun 5 bulan', '1588_-_Judge-5121.png', 'NON-PROSEDURAL', '2020-07-30');
+(166, 'Bagus Hari Jaya', '1990-09-05', 'L', 'Probolinggo KM23 NO.024', 42385, 45561, 45772, 0, 'Taiwan', 'Buruh Pabrik', 'Batam', 'Tekong', '3 tahun 5 bulan', '1588_-_Judge-5121.png', 'NON-PROSEDURAL', '2020-07-30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_reward`
+--
+
+CREATE TABLE `tb_reward` (
+  `id_reward` int(11) NOT NULL,
+  `nama_perusahaan` varchar(60) NOT NULL,
+  `kabupaten_kota` varchar(60) NOT NULL,
+  `nama_pimpinan` varchar(70) NOT NULL,
+  `nama_kontak_person` varchar(55) NOT NULL,
+  `no_kontak_person` varchar(20) NOT NULL,
+  `alamat_perusahaan` varchar(100) NOT NULL,
+  `no_perusahaan` varchar(20) NOT NULL,
+  `email_perusahaan` varchar(55) NOT NULL,
+  `jenis_perusahaan` enum('Kecil','Menengah','Besar','Besar(BUMN)') NOT NULL,
+  `sektor_usaha` int(11) NOT NULL,
+  `disabilitas_L` int(11) NOT NULL,
+  `disabilitas_P` int(11) NOT NULL,
+  `disabilitas_total` int(11) NOT NULL,
+  `tenaga_kerja_L` int(11) NOT NULL,
+  `tenaga_kerja_P` int(11) NOT NULL,
+  `tenaga_kerja_total` int(11) NOT NULL,
+  `presentase` varchar(20) NOT NULL,
+  `ragam_disabilitas` varchar(255) NOT NULL,
+  `jenis_disabilitas` varchar(255) NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_reward`
+--
+
+INSERT INTO `tb_reward` (`id_reward`, `nama_perusahaan`, `kabupaten_kota`, `nama_pimpinan`, `nama_kontak_person`, `no_kontak_person`, `alamat_perusahaan`, `no_perusahaan`, `email_perusahaan`, `jenis_perusahaan`, `sektor_usaha`, `disabilitas_L`, `disabilitas_P`, `disabilitas_total`, `tenaga_kerja_L`, `tenaga_kerja_P`, `tenaga_kerja_total`, `presentase`, `ragam_disabilitas`, `jenis_disabilitas`, `date_created`) VALUES
+(5, 'gawetew', '48110', 'ewt', 'ewre', '313', 'gsge', '12423', 'gawe', 'Besar', 10, 4, 2, 6, 123, 64, 187, '3.2', 'dga', 'gag', '2022-08-08'),
+(7, 'asAS', '43069', 'SADSD', 'DSAD', '21321', 'SDASD', '231', 'SADSD', 'Besar(BUMN)', 16, 5, 4, 9, 87, 76, 163, '5.5', 'SDA', 'DASD', '2022-08-09'),
+(8, 'dddddew', '43360', 'ayooo', 'ica', '211232', 'adfdfawe', 'eeewe', 'eeew', 'Besar', 8, 2, 2, 4, 62, 52, 114, '3.5', 'dfgsgg', 'erergserer', '2022-08-09'),
+(9, 'PT Sinar Mas Jayaputra', '51268', 'Djoyo Kusumo Adjie', 'Rini Asiyah S', '0837182931', 'Jln. Nagrek ,KM 32 Pasuruan Bangil', '+318392334', 'sinarmasjayaputra@gmail.com', 'Besar', 12, 6, 3, 9, 92, 54, 146, '6.2', 'Sensorik, Fisik', 'Tuna Rungu, Tuna Daksa, Tuna Wicara', '2022-08-10');
 
 -- --------------------------------------------------------
 
@@ -89005,6 +89107,7 @@ CREATE TABLE `tb_tka` (
   `jenis_kel` enum('L','P') NOT NULL,
   `kewarganegaraan` varchar(50) NOT NULL,
   `jabatan` varchar(60) NOT NULL,
+  `kontak` varchar(60) NOT NULL,
   `no_rptka` varchar(30) NOT NULL,
   `masa_rptka` date NOT NULL,
   `no_imta` varchar(50) NOT NULL,
@@ -89017,15 +89120,15 @@ CREATE TABLE `tb_tka` (
 -- Dumping data untuk tabel `tb_tka`
 --
 
-INSERT INTO `tb_tka` (`id`, `id_perusahaan`, `nama_tka`, `jenis_kel`, `kewarganegaraan`, `jabatan`, `no_rptka`, `masa_rptka`, `no_imta`, `masa_imta`, `lokasi_kerja`, `date_created`) VALUES
-(42, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
-(43, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
-(44, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
-(45, 1, 'Yeo Cheng Tiong', 'L', 'Singapura', 'Technical Advisor Research and Development', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-11'),
-(46, 1, 'Syed Shah Fahad Hussain', 'L', 'India', 'Marketing Manager ', '-', '2020-07-31', '50655547', '2020-05-22', 46306, '2020-03-11'),
-(47, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
-(48, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
-(49, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01');
+INSERT INTO `tb_tka` (`id`, `id_perusahaan`, `nama_tka`, `jenis_kel`, `kewarganegaraan`, `jabatan`, `kontak`, `no_rptka`, `masa_rptka`, `no_imta`, `masa_imta`, `lokasi_kerja`, `date_created`) VALUES
+(42, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
+(43, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
+(44, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-29'),
+(45, 1, 'Yeo Cheng Tiong', 'L', 'Singapura', 'Technical Advisor Research and Development', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-03-11'),
+(46, 1, 'Syed Shah Fahad Hussain', 'L', 'India', 'Marketing Manager ', '', '-', '2020-07-31', '50655547', '2020-05-22', 46306, '2020-03-11'),
+(47, 7, 'Romeo, M. Consolacion', 'L', 'Filipina', 'Mechanical Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
+(48, 7, 'Hsieh Wan Li', 'L', 'Taiwan', 'Mechanical Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01'),
+(49, 7, 'Wu Wen Cheng', 'L', 'Taiwan', 'Engineer Manager', '', '-', '2020-07-31', '-', '2020-07-31', 46678, '2020-06-01');
 
 -- --------------------------------------------------------
 
@@ -89144,7 +89247,7 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 'Dashboard Admin', 'admin', 'fas fa-fw fa-home', 1),
+(1, 1, 'Beranda', 'admin', 'fas fa-fw fa-home', 1),
 (2, 98, 'Profil', 'user', 'fas fa-fw fa-user', 1),
 (3, 98, 'Edit Profile', 'user/edit', 'fas fa-fw fa-user-edit', 0),
 (4, 99, 'Pengaturan Menu', 'menu', 'fas fa-fw fa fa-cogs', 1),
@@ -89153,17 +89256,26 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (11, 2, 'Data Pengguna', 'datamaster/user', 'fas fa-fw fa fa-users', 1),
 (35, 3, 'Peta Tenaga Kerja', 'beranda', 'fas fa-fw fa fa-home', 1),
 (37, 98, 'Ubah Password', 'user/changePassword', 'fas fa-fw fa-unlock-alt', 1),
-(38, 3, 'Data Perusahaan', 'datamaster/perusahaan', 'fa fa-fw fa-building', 1),
-(39, 3, 'Pekerja Lokal Jatim', 'phk', 'fas fa-fw fa fa-users', 1),
+(38, 2, 'Data Perusahaan', 'datamaster/perusahaan', 'fa fa-fw fa-building', 1),
+(39, 3, 'Tenaga Kerja Lokal', 'phk', 'fas fa-fw fa fa-users', 1),
 (42, 3, 'PMI Bermasalah', 'pmi', 'fas fa-fw fa-person-booth', 1),
 (45, 3, 'Tenaga Kerja Asing', 'tka', 'fa fa-fw fa-briefcase', 1),
 (46, 3, 'Penempatan Calon PMI', 'cpmi', 'fas fa-fw fa-building', 1),
 (50, 2, 'Data Pengangguran', 'pmi/pengangguran', 'fa fa-fw fa-users', 0),
-(52, 3, 'Data AN PPPMI', 'cpmi/laporan_pmi', 'fas fa-fw fa fa-address-book', 1);
+(52, 3, 'Data AN PPPMI', 'cpmi/laporan_pmi', 'fas fa-fw fa fa-address-book', 1),
+(57, 3, 'Penghargaan Perusahaan', 'reward', 'fa fa-fw fa-solid fa-building-circle-check', 1),
+(58, 2, 'Jenis Sektor Usaha', 'datamaster/sektor', 'fa fa-fw fa-solid fa-industry', 1),
+(59, 2, 'Disabilitas', 'datamaster/disabilitas', 'fa fa-fw fa-solid fa-person-cane', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `jenis_sektor_usaha`
+--
+ALTER TABLE `jenis_sektor_usaha`
+  ADD PRIMARY KEY (`id_sektor`);
 
 --
 -- Indeks untuk tabel `kabupaten`
@@ -89196,6 +89308,12 @@ ALTER TABLE `tb_cpmi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `tb_disabilitas`
+--
+ALTER TABLE `tb_disabilitas`
+  ADD PRIMARY KEY (`id_dis`);
+
+--
 -- Indeks untuk tabel `tb_negara`
 --
 ALTER TABLE `tb_negara`
@@ -89218,6 +89336,12 @@ ALTER TABLE `tb_phk`
 --
 ALTER TABLE `tb_pmi`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tb_reward`
+--
+ALTER TABLE `tb_reward`
+  ADD PRIMARY KEY (`id_reward`);
 
 --
 -- Indeks untuk tabel `tb_tka`
@@ -89260,10 +89384,22 @@ ALTER TABLE `user_sub_menu`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `jenis_sektor_usaha`
+--
+ALTER TABLE `jenis_sektor_usaha`
+  MODIFY `id_sektor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_cpmi`
 --
 ALTER TABLE `tb_cpmi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_disabilitas`
+--
+ALTER TABLE `tb_disabilitas`
+  MODIFY `id_dis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_negara`
@@ -89275,7 +89411,7 @@ ALTER TABLE `tb_negara`
 -- AUTO_INCREMENT untuk tabel `tb_perusahaan`
 --
 ALTER TABLE `tb_perusahaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_phk`
@@ -89290,6 +89426,12 @@ ALTER TABLE `tb_pmi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_reward`
+--
+ALTER TABLE `tb_reward`
+  MODIFY `id_reward` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_tka`
 --
 ALTER TABLE `tb_tka`
@@ -89299,13 +89441,13 @@ ALTER TABLE `tb_tka`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
@@ -89323,7 +89465,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

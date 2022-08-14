@@ -44,7 +44,6 @@
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-
                                     <p> <small><b> DATA PMI-B</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>

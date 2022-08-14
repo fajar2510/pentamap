@@ -114,6 +114,7 @@
                                             <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
                                             <td>
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $t['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -134,7 +135,81 @@
 </div>
 <!-- End of Main Content -->
 
-
+<!-- penampil view info data -->
+<?php foreach ($tb_tka as $t) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $t['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $t['nama_tka']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Perusahaan</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jenis_kel']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Negara </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kewarganegaraan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kontak</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kontak']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jabatan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_kabupaten']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">No. RPTKA</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_rptka']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Masa RPTKA </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_rptka']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">No. IMTA </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_imta']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Masa IMTA </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_imta']; ?> </label>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <!-- modalhapus -->
 <?php foreach ($tb_tka as $t) : ?>

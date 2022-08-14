@@ -202,6 +202,7 @@ class Master extends CI_Model
                 ";
         return $this->db->query($query)->row();
     }
+
     //query data Chainded Wilayah Prov, Kab, Kec, Kelurahan Indonesia
     public function getW_Prov()
     {

@@ -108,19 +108,16 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Data Info Perusahaan</h5>
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
                 </div>
                 <div class="container">
                     <div class="modal-body">
-                        <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
+                        <p > <small><b> DATA INDEKS <?= $title; ?></b></small></p>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Nama Perusahaan </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $r['nama_perusahaan']; ?></label>
                         </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['nama_kabupaten']; ?></label>
-                        </div>
+                        
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Nama Pimpinan </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['nama_pimpinan']; ?></label>
@@ -144,6 +141,11 @@
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Sektor </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['nama_sektor']; ?></label>
+                        </div>
+                        
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['nama_kabupaten']; ?></label>
                         </div>
 
                         <p> <small><b> KONTAK PERSON</b></small></p>

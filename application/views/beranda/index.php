@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-600"><?= $title; ?></h1>
+        <!-- disini cadangan title -->
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
 
@@ -14,89 +14,12 @@
 
     <!-- Content Row -->
 
-    <!-- total start -->
     <div class="row">
-        <!-- <div class="col-xl-3 col-md-1 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">CPMI [Calon P.Migran Ind]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_cpmi->cpmi; ?> <span><small>orang</small> </span> </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-10">
+            <h6> <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> <?= $title; ?> PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></h1>
         </div>
 
-        <div class="col-xl-3 col-md-1 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TKA [Tenaga Kerja Asing]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_tka->tka; ?> <span><small>orang</small> </span> </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-injured fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-xl-3 col-md-1 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">PMI-B [PMI Bermasalah]</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_pmib->pmib; ?> <span><small>orang</small> </span></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-id-card fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-1 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja ter-PHK</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><small>total</small> <?php echo $total_phk->phk; ?> <span><small>orang</small> </span> </div>
-                        </div>
-
-                        <div class="col-auto">
-                            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Content Row -->
-    </div>
-    <!-- total end -->
-
-    
-
-
-    <div class="row">
-        <div class="col-md-10  mb-3">
-            <center>
-
-                <h6> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> PETA TENAGA KERJA PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></b></h6>
-            </center>
-        </div>
-
-        <div class="col-md-2">
+        <div class="col-md-12">
             <select class="form-control" id="tahun_pilih" name="tahun">
                 <option value="all">-Pilih Tahun-</option>
                 <option value="2020">2020</option>
@@ -104,13 +27,18 @@
             </select>
         </div>
     </div>
+    <br>
 
-    <hr>
+    <!-- <hr> -->
 
     <div class="row">
         <div class="col-md-12">
+            
+            <!-- tampilan map -->
             <div id="mapp"></div>
-            <div>
+            <!-- tampilan map -->
+
+            <!-- <div>
                 <hr>
                 <p> <b> Petunjuk :</b></p>
                 <ul>
@@ -130,9 +58,9 @@
                         </i>
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <hr>
-            <div class="card-body">
+            <!-- <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <center>
@@ -166,12 +94,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-
-
-
 
 
 </div>

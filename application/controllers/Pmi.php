@@ -78,6 +78,7 @@ class Pmi extends CI_Controller
         $data['negara'] = $this->db->get('tb_negara')->result_array();
         // Load model PMI
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
+        // $data['foto'] = $this->Master->get_foto($id);
         //LOAD data chained dropdown
         $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 

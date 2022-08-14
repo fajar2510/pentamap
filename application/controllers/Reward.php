@@ -14,6 +14,7 @@ class Reward extends CI_Controller
         $this->load->model('RewardModel');
         $this->load->model('Sektor');
         $this->load->model('Disabilitas');
+        $this->load->model('Autofill');
     } // FUNCTION USER START
 
     // FUNCTION DOCTOR START
@@ -57,10 +58,12 @@ class Reward extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
 
-        $data["ragam_disabilitas"] = $this->db->get_where('tb_disabilitas')->result();
+        // $data["ragam_disabilitas"] = $this->db->get_where('tb_disabilitas')->result();
         // $data['hapus_reward'] = $this->RewardModel->get_tb_reward();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
+        
 
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
@@ -114,19 +117,7 @@ class Reward extends CI_Controller
             ];
 
             $this->db->insert('tb_reward', $data);
-
-        //     $kabupaten = $this->input->post('wilayah', true);
-        //     // jumlah phk masih salah ya ingat
-        //     $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
-
-        //    $jumlah = $jumlah_phk->row()->phk;
-
-        //     $update = [   
-        //         'jumlah_phk' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id_kabupaten', $kabupaten);
-        //     $this->db->update('kabupaten', $update);
+            
 
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Berhasil! Data telah ditambahkan. </div>');
@@ -224,33 +215,47 @@ class Reward extends CI_Controller
         $this->db->where('id_reward', $id);
         $this->db->delete('tb_reward');
 
-        // $reward =  $this->db->query("SELECT * FROM tb_reward WHERE id_reward='$id'");
-        // $kabupaten = $reward->row()->wilayah;
-
-        
-
-        //     $jumlah_reward = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS reward FROM tb_reward");
-
-        //    $jumlah = $jumlah_reward->row()->reward;
-
-        //     $update = [   
-        //         'jumlah_phk' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id_kabupaten', $kabupaten);
-        //     $this->db->update('kabupaten', $update);
-
         $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data yang dipilih telah berhasil dihapus </div>');
+            alert-success" role="alert"> Dihapus sukses. Data telah berhasil dihapus </div>');
         redirect('reward');
     }
 
-    // function get_disabilitas_by_ragam(){
-	// 	$id_dis=$this->input->post('id_dis');
-    // 	$data=$this->RewardModel->get_disabilitas_by_ragam($id_dis)->result();
-    // 	foreach ($data as $result) {
-    // 		$value[] = (float) $result->id_dis;
-    // 	}
-    // 	echo json_encode($value);
-	// }
-}
+    function get_autofill()
+    {
+        if (isset($_GET['term'])) {
+            $result = $this->Autofill->search_perusahaan($_GET['term']);
+            if (count ($result) > 0) {
+                foreach ($result as $row) 
+                    // $arr_result[] = $row->nama_perusahaan;
+                    
+                    $arr_result[] = array(
+
+                        'label'             => $row->nama_perusahaan,
+                        'nama_perusahaan'   => $row->nama_perusahaan,
+                        'kabupaten_kota'    => $row->fungsi,
+                        'nama_pimpinan'     => $row->nama_pimpinan,
+                        'nama_kontak_person'=> $row->nama_kontak_person,
+                        'no_kontak_person'  => $row->no_kontak_person,
+                        'alamat_perusahaan' => $row->alamat,
+                        'no_perusahaan'     => $row->kontak, 
+                        'email_perusahaan'  => $row->email_perusahaan,
+                        'jenis_perusahaan'  => $row->jenis_perusahaan,
+                        'sektor_usaha'      => $row->sektor_perusahaan,
+                    );
+                    echo json_encode ($arr_result);
+                }
+                
+            }
+        }
+    }
+
+    function get_ragam_disabilitas(){
+		$id_dis=$this->input->post('id_dis');
+    	$data=$this->Disabilitas->get_ragam_disabilitas($id_)->result();
+    	foreach ($data as $result) {
+    		$value[] = (float) $result->id_dis;
+    	}
+    	echo json_encode($value);
+	}
+
+    

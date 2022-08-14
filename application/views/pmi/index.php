@@ -74,7 +74,7 @@
                         <thead align="center">
                             <tr>
                                 <th> No</th>
-                                <th>Tanggal</th>
+                                <!-- <th>Tanggal</th> -->
                                 <th>Nama (umur)</th>
                                 <th>Alamat</th>
                                 <th>Negara</th>
@@ -86,7 +86,7 @@
                             <?php foreach ($pmi as $p) : ?>
                                 <tr>
                                     <td align="center"><?= $i; ?></td>
-                                    <td><small><?= $p['date_created']; ?></small> </td>
+                                    <!-- <td><small><?= $p['date_created']; ?></small> </td> -->
 
                                     <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                     <td><?= $p['nama']; ?> <sup>
@@ -99,12 +99,13 @@
                                                 // echo " Bulan, dan ";
                                                 // echo $umur->d;
                                                 // echo " Hari";
-                                                ?>)</sup> </td>
+                                                ?>)th</sup> </td>
                                     <td ><small> <?= $p['nama_kelurahan']; ?>, <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?> </small></td>
                                     <td align="center"><?= $p['negara_bekerja']; ?></td>
                                     <td align="center">
                                         <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-success"> lap. <i class="fa fa-book" aria-hidden="true"></i></i></a>
-                                        <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-light"> receipt <i class="fa-solid fa-receipt"></i></a>
+                                        <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-light"> nota<i class="fa-solid fa-receipt"></i></a>
+                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                         <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                         <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                     </td>
@@ -126,7 +127,94 @@
 <!-- End of Main Content -->
 
 
-<!-- batas akhir -->
+<!-- penampil view info data -->
+<?php foreach ($pmi as $p) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-sm-8">
+                                <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Nama </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama']; ?></label> 
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['gender'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $p['gender']; ?>&nbsp;)</label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tgl_lahir']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Alamat Lengkap</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                                    
+                                </div>
+                                <div class="row" >
+                                    <label for="name" class="col-sm-4 col-form-label"></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_provinsi']; ?> , &nbsp;<?= $p['nama_kabupaten']; ?> , &nbsp;<?= $p['nama_kecamatan']; ?> . &nbsp;<?= $p['nama_kelurahan']; ?></label>
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Negara Bekerja</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['negara_bekerja']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jenis Pekerjaan</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_pekerjaan']; ?></label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Berangkat dari </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['berangkat_melalui']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Pengirim</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pengirim']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Lama bekerja </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['lama_bekerja']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Status  </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['status']; ?></label>
+                                </div>
+                                    </div>
+                            <div class="col" >
+                                <p > <small><b> <br> </b></small></p>
+                                <img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" class="img-thumbnail" alt="Picture" width="200" height="300">
+                                <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama']; ?></small></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <?php foreach ($pmi as $p) : ?>
     <!-- modalhapus -->

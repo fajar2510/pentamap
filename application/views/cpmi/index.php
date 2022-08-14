@@ -15,7 +15,7 @@
     </div>
 
     <!-- parsing data -->
-    <!-- <?php foreach ($formal as $tot_formal); ?> -->
+    <!-- <?php foreach ($formal as $pot_formal); ?> -->
     <?php foreach ($a as $aa); ?>
     <?php foreach ($b as $bb); ?>
 
@@ -101,7 +101,8 @@
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
-                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-book" aria-hidden="true"></i> <b>LAP.</b></i></a>
+                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary"><i class="fa fa-book" aria-hidden="true"></i> <b>LAP.</b></i></a>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -121,6 +122,99 @@
 
 </div>
 <!-- End of Main Content -->
+
+<!-- penampil view info data -->
+<?php foreach ($data_cpmi as $p) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_pmi']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kelamin']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Tempat Lahir </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tempat_lahir']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tanggal_lahir']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Domisili</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Asal</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jabatan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Pendidikan Formal </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pendidikan_formal']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Gaji</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['gaji']; ?></label>
+                        </div>
+                        
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Paspor </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['paspor']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Negara Penempatan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kode Penerbangan</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_pesawat']; ?></label>
+                        </div>
+                        <div class="row"><br></div>
+                        <p > <small><b> DATA PENGGUNA JASA </b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama/Instansi </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pengguna_jasa']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Alamat  </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_pengguna_jasa']; ?></label>
+                        </div>
+                        
+                      
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <!--  <!-- modalhapus -->
 <?php foreach ($data_cpmi as $p) : ?>

@@ -49,10 +49,16 @@
                                             <?= form_error('usulan_tahun', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div> -->
+                                    <!-- <div class="form-group row">
+                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label">Cari Perusahaan</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="" >
+                                        </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="" name="nama_perusahaan">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -66,7 +72,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                             
-                                        </div>
+                                        </div> 
                                         <div>
                                         <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
                                             <?= form_error('kabupaten_kota', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -87,7 +93,7 @@
                                             <input type="text" class="form-control"  id="nama_kontak_person" placeholder="" name="nama_kontak_person">
                                             <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                        <label for="no_kontak_person" class="col-sm-1 col-form-label">No.Telp.</label>
+                                        <label for="no_kontak_person" class="col-sm-1 col-form-label">No.Telp</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
                                             <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -132,9 +138,9 @@
                                         <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-8">
                                         <select name="sektor_usaha" id="sektor_usaha" class="form-control">
-                                                <option value="">~ Pilih Jenis Sektor Usaha ~</option>
+                                                <!-- <option value="">~ Pilih Jenis Sektor Usaha ~</option> -->
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
-                                                    <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp;| &nbsp;<?= $row['keterangan']; ?> </option>
+                                                    <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; &nbsp;<?= $row['keterangan']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('sektor_usaha', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -201,8 +207,10 @@
                                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam Disabilitas</label>
                                         <div class="col-sm-7">
 
-                                             
-                                            
+                            
+
+                                            </select>
+
                                             <textarea class="form-control" id="ragam_disabilitas" placeholder=" . . ." name="ragam_disabilitas" rows="2"></textarea>
                                             <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

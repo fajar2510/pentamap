@@ -35,7 +35,7 @@
                                     <th>#</th>
                                     <th>Nama Sektor</th>
                                     <th>Keterangan</th>
-                                    <th>Aksi</th>
+                                    <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -108,12 +108,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor Perusahaan</label>
+                                        <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="sektor_perusahaan" placeholder="sektor/bidang" name="sektor_perusahaan" value="<?= $edit_perusahaan->sektor_perusahaan?>">
+                                            <select class="custom-select" name="sektor_perusahaan" id="sektor_perusahaan" class="form-control input-sm">
+                                                <?php foreach ($jenis_sektor_usaha as $jsu) : ?>
+                                                    <option value="<?= $jsu['id_sektor']; ?>" <?php if ($jsu['id_sektor'] == $edit_perusahaan->sektor_perusahaan) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $jsu['nama_sektor']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                             <?= form_error('sektor_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label for="jenis_perusahaan" class="col-sm-3 col-form-label">Jenis Perusahaan</label>
                                         <div class="col-sm-2">

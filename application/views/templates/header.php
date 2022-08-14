@@ -20,10 +20,14 @@
 
   <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet">
   <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
   
 
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js-select2/css/bootstrap-select.css');?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/jquery-ui/jquery-ui.min.css');?>">
+
+
+
 
   <style type="text/css">
     /* body { margin:0; padding:0; } */

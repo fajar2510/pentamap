@@ -38,7 +38,7 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward->nama_perusahaan; ?>">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward->nama_perusahaan; ?>">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

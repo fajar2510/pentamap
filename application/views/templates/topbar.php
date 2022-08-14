@@ -29,7 +29,7 @@
                     <?php foreach ($phk as $total_phk); ?>
 
 
-                    <marquee behavior="stop" direction="stop" scrollamount="0" width="130%">
+                    <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
                             <div class="col-sm-2">
                                 <small>

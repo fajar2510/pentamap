@@ -98,6 +98,7 @@
                                                 } ?></td>
                                             <td> -->
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -118,6 +119,88 @@
 </div>
 <!-- End of Main Content -->
 
+<!-- penampil view info data -->
+<?php foreach ($tb_perusahaan as $p) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info Perusahaan</h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Perusahaan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Pimpinan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_pimpinan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Alamat </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">No.Telp. Perusahaan </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kontak']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">E-mail </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['email_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Status Kantor </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['status'] == 'P') {
+                                                    echo 'Pusat';
+                                                } else {
+                                                    echo 'Cabang';
+                                                } ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Kode Kantor </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_kantor']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Jenis(Skala) </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_perusahaan']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Sektor </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_sektor']; ?> &nbsp;<?= $p['keterangan']; ?></label>
+                        </div>
+
+                        <p> <small><b> KONTAK PERSON</b></small></p>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">Nama Kontak Person </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kontak_person']; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">No. Kontak Person </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['no_kontak_person']; ?></label>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <?php foreach ($tb_perusahaan as $p) : ?>
     <!-- modalhapus -->
