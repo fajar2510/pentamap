@@ -204,19 +204,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
-                    </button>
+                    </button> -->
 
                 </div>
                 <center>
-                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
+                    <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="210" height="150">
                     <form action="<?= base_url('reward/hapus/' . $re['id_reward']); ?>">
-                        <div class="modal-body">Data&nbsp; <b>
-                                <font color="red"><?= $re['nama_perusahaan']; ?> </font>
-                            </b> akan dihapus</div>
+                        <div class="modal-body">Hapus &nbsp; <b>
+                                <font color="black"><?= $re['nama_perusahaan']; ?> &nbsp;?</font>
+                           </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </div>
                     </form>

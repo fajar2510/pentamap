@@ -39,6 +39,10 @@
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward->nama_perusahaan; ?>">
+                                            <input type="hidden" name="id_perusahaan" value="<?= $edit_reward->id; ?>">
+                                            <input type="hidden" name="id_reward" value="<?= $edit_reward->id_reward; ?>">
+                                            <!-- <?php foreach ($max_id as $idx); ?> -->
+                                            <!-- <input type="text" value="  <?php echo $idx->max_id; ?>" name="id_perusahaan_baru" > -->
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -47,7 +51,7 @@
                                         <div class="col-sm-4">
                                             <select class="custom-select" name="kabupaten_kota" id="kabupaten_kota" class="form-control input-sm">
                                                 <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $edit_reward->kabupaten_kota) {
+                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $edit_reward->nama_kabupaten) {
                                                                                                         echo 'selected';
                                                                                                     } else {
                                                                                                         echo '';
@@ -86,7 +90,7 @@
                                     <div class="form-group row">
                                         <label for="alamat_perusahaan" class="col-sm-3 col-form-label">Alamat Perusahaan</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat_perusahaan" placeholder="alamat lengkap . . ." name="alamat_perusahaan" rows="2" ><?= $edit_reward->alamat_perusahaan; ?></textarea>
+                                            <textarea class="form-control" id="alamat_perusahaan" placeholder="alamat lengkap . . ." name="alamat_perusahaan" rows="2" ><?= $edit_reward->alamat; ?></textarea>
                                             <?= form_error('alamat_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -94,7 +98,7 @@
                                     <div class="form-group row">
                                         <label for="no_perusahaan" class="col-sm-3 col-form-label">No.Telp. Perusahaan</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan" value="<?= $edit_reward->no_perusahaan; ?>">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan" value="<?= $edit_reward->kontak; ?>">
                                             <?= form_error('no_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -138,7 +142,7 @@
                                         <div class="col-sm-5">
                                             <select class="custom-select" name="sektor_usaha" id="sektor_usaha" class="form-control input-sm">
                                                 <?php foreach ($jenis_sektor_usaha as $jsu) : ?>
-                                                    <option value="<?= $jsu['id_sektor']; ?>" <?php if ($jsu['id_sektor'] == $edit_reward->sektor_usaha) {
+                                                    <option value="<?= $jsu['id_sektor']; ?>" <?php if ($jsu['id_sektor'] == $edit_reward->sektor_perusahaan) {
                                                                                                         echo 'selected';
                                                                                                     } else {
                                                                                                         echo '';
@@ -220,11 +224,11 @@
                                         </div>
                                     </div>
                                     <div   div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary btn-icon-split">
+                                        <button type="submit" class="btn btn-success btn-icon-split">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-save"></i>
                                             </span>
-                                            <span class="text">Tambahkan</span>
+                                            <span class="text">Sunting</span>
                                         </button>
                                     </div>
                                 </div>

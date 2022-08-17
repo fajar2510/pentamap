@@ -52,8 +52,11 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
+                                        
                                             <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
-                                            <input type="hidden" name="id_perusahaan">
+                                            <input type="text" name="id_perusahaan">
+                                            <?php foreach ($max_id as $idx); ?>
+                                            <input type="text" value="  <?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div ass="col-sm-1">

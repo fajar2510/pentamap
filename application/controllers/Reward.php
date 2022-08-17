@@ -59,6 +59,7 @@ class Reward extends CI_Controller
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
         $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
+        $data['max_id'] = $this->RewardModel->max_id_perusahaan();
         
         // validation form
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
@@ -90,14 +91,15 @@ class Reward extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             if ($this->input->post('id_perusahaan') == null) {
-                $id_perusahaan_baru = $this->RewardModel->max_id_perusahaan();
-            }else{
-                $id_perusahaan_baru = $this->input->post('id_perusahaan', true);
-                // var_dump($id_perusahaan_lama);
+                $id_perusahaan =$this->input->post('id_perusahaan_baru', true);;
+                // $id_perusahaan_baru = $mysqli->insert_id;
+                // var_dump( $id_perusahaan_baru);
                 // die;
+            }else{
+                $id_perusahaan = $this->input->post('id_perusahaan', true);
                 }
                 $data_reward = [
-                    'perusahaan_id' => $id_perusahaan_baru,
+                    'perusahaan_id' => $id_perusahaan,
                     'disabilitas_L' => $this->input->post('disabilitas_L', true),
                     'disabilitas_P' => $this->input->post('disabilitas_P', true),
                     'disabilitas_total' => $this->input->post('disabilitas_total', true),
@@ -113,26 +115,36 @@ class Reward extends CI_Controller
             if ($this->input->post('id_perusahaan') == null) {
                 $data_perusahaan = [
                     'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-                    'kabupaten_kota' => $this->input->post('kabupaten_kota', true),
+                    'fungsi' => $this->input->post('kabupaten_kota', true),
                     'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
                     'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
                     'no_kontak_person' => $this->input->post('no_kontak_person', true),
-                    'alamat_perusahaan' => $this->input->post('alamat_perusahaan', true),
-                    'no_perusahaan' => $this->input->post('no_perusahaan', true),
+                    'alamat' => $this->input->post('alamat_perusahaan', true),
+                    'kontak' => $this->input->post('no_perusahaan', true),
                     'email_perusahaan' => $this->input->post('email_perusahaan', true),
                     'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
-                    'sektor_usaha' => $this->input->post('sektor_usaha', true),
+                    'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
+                    'date_created' => date('Y-m-d'),
                 ];
-                var_dump($data_perusahaan, $data_reward);
-                echo"<pre>";
+                // var_dump($data_perusahaan, $data_reward);
+                // echo"<pre>";
+                // die;
+                $id_perusahaan_terpilih = $this->input->post('id_perusahaan', true);
+                var_dump($id_perusahaan_terpilih);
                 die;
                 $this->db->insert('tb_perusahaan', $data_perusahaan);
+                $this->db->where('id', $id_perusahaan_terpilih);
+                $this->db->update('tb_perusahaan', $data);
             }
 
             $this->db->insert('tb_reward', $data_reward);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil! Data telah ditambahkan. </div>');
+            $this->session->set_flashdata('message', 
+            '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('reward');
         }
     }
@@ -188,17 +200,27 @@ class Reward extends CI_Controller
             $this->load->view('reward/edit', $data);
             $this->load->view('templates/footer', $data);
         } else {
-            $data = [
+            $id_perusahaan = $this->input->post('id_perusahaan', true);
+            $id_reward = $this->input->post('id_reward', true);
+            // var_dump($id_reward);
+            // die;
+            $data_perusahaan = [
                 'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-                'kabupaten_kota' => $this->input->post('kabupaten_kota', true),
+                'fungsi' => $this->input->post('kabupaten_kota', true),
                 'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
                 'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
                 'no_kontak_person' => $this->input->post('no_kontak_person', true),
-                'alamat_perusahaan' => $this->input->post('alamat_perusahaan', true),
-                'no_perusahaan' => $this->input->post('no_perusahaan', true),
+                'alamat' => $this->input->post('alamat_perusahaan', true),
+                'kontak' => $this->input->post('no_perusahaan', true),
                 'email_perusahaan' => $this->input->post('email_perusahaan', true),
                 'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
-                'sektor_usaha' => $this->input->post('sektor_usaha', true),
+                'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
+                'date_created' => date('Y-m-d'),
+            ];
+
+            
+
+            $data_reward = [
                 'disabilitas_L' => $this->input->post('disabilitas_L', true),
                 'disabilitas_P' => $this->input->post('disabilitas_P', true),
                 'disabilitas_total' => $this->input->post('disabilitas_total', true),
@@ -208,14 +230,21 @@ class Reward extends CI_Controller
                 'presentase' => $this->input->post('presentase', true),
                 'ragam_disabilitas' => $this->input->post('ragam_disabilitas', true),
                 'jenis_disabilitas' => $this->input->post('jenis_disabilitas', true),
+                'date_created' => date('Y-m-d'),
             ];
+            
+            $this->db->where('id', $id_perusahaan);
+            $this->db->update('tb_perusahaan', $data_perusahaan);
 
+            $this->db->where('id_reward', $id_reward);
+            $this->db->update('tb_reward', $data_reward);
 
-            $this->db->where('id_reward', $id);
-            $this->db->update('tb_reward', $data);
-
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil data telah diperbarui! </div>');
+            $this->session->set_flashdata('message',
+             '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+             <strong>Disunting !</strong> data telah berhasil diupdate.
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>   </div>');
             redirect('reward');
         }
     }
@@ -227,8 +256,12 @@ class Reward extends CI_Controller
         $this->db->where('id_reward', $id);
         $this->db->delete('tb_reward');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Dihapus sukses. Data telah berhasil dihapus </div>');
+        $this->session->set_flashdata('message',
+         '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+         <strong>Dihapus !</strong> data telah berhasil dihapus.
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>   </div>');
         redirect('reward');
     }
 

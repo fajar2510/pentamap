@@ -460,8 +460,11 @@ class Datamaster extends CI_Controller
 
             $this->db->insert('tb_perusahaan', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Berhasil ! Data Perusahaan telah ditambahkan. </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -529,8 +532,11 @@ class Datamaster extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('tb_perusahaan', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data Perusahaan telah diperbarui ! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('datamaster/perusahaan');
         }
     }
@@ -541,8 +547,11 @@ class Datamaster extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('tb_perusahaan');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data yang dipilih telah dihapus. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('datamaster/perusahaan');
     }
 

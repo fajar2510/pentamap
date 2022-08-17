@@ -13,7 +13,6 @@ class RewardModel extends CI_Model
             tb_perusahaan.nama_kontak_person,
             tb_perusahaan.no_kontak_person,
             tb_perusahaan.email_perusahaan,
-            tb_perusahaan.kode_kantor,
             tb_perusahaan.sektor_perusahaan,
             tb_perusahaan.jenis_perusahaan,
             tb_perusahaan.status,
@@ -24,41 +23,55 @@ class RewardModel extends CI_Model
              tb_reward.*,
              jenis_sektor_usaha.nama_sektor
               FROM tb_perusahaan 
-              JOIN jenis_sektor_usaha ON tb_perusahaan.id = jenis_sektor_usaha.id_sektor 
+              JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
               JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
               JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
                 ";
         return $this->db->query($query)->result_array();
     }
 
-    public function get_tb_reward()
+    public function get_tb_reward() // untuk hapus id berdasarkan tb_reward
     {
         $query =
-            "SELECT * FROM tb_reward 
+            "SELECT tb_reward.* , tb_perusahaan.nama_perusahaan
+             FROM tb_reward 
+            JOIN        tb_perusahaan ON tb_reward.perusahaan_id = tb_perusahaan.id
             ORDER BY tb_reward.id_reward  ASC
                 ";
         return $this->db->query($query)->result_array();
     }
 
-    public function get_rewardById($id)
+    public function get_rewardById($id) // untuk edit reward 
     {
-        $query = "SELECT * FROM tb_reward WHERE tb_reward.id_reward = '$id'
+        $query = "SELECT 
+                    tb_perusahaan.id,
+                    tb_perusahaan.nama_perusahaan,
+                    tb_perusahaan.nama_pimpinan,
+                    tb_perusahaan.nama_kontak_person,
+                    tb_perusahaan.no_kontak_person,
+                    tb_perusahaan.email_perusahaan,
+                    tb_perusahaan.sektor_perusahaan,
+                    tb_perusahaan.jenis_perusahaan,
+                    tb_perusahaan.status,
+                    tb_perusahaan.alamat,
+                    tb_perusahaan.kontak,
+                    tb_perusahaan.fungsi,
+                    tb_perusahaan.date_created,
+                    kabupaten.nama_kabupaten, 
+                    tb_reward.*,
+                    jenis_sektor_usaha.nama_sektor
+                    FROM tb_perusahaan 
+                    JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
+                    JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
+                    JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
                 ";
         return $this->db->query($query)->row();
     }
 
     public function max_id_perusahaan()
     {
-        $data = $this->db->query("SELECT MAX(id)+1 FROM tb_perusahaan ");
-        return $data->result();
-       
-        
-        // $this->db->select_max('id');
-        // $this->db->from('tb_perusahaan');
-        // $query = $this->db->get()->row(); 
-        // $id_baru = 1;
-        // $hasil = $query + $id_baru;
-        // return $hasil;
+         $data = $this->db->query("SELECT MAX(id)+1 as max_id FROM tb_perusahaan ");
+         return $data->result();
        
     }
 
