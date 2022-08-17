@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
+        <h3 style="font-family:'Roboto';font-size:15;">Usulan <?= $title; ?> Tahun <?= date('Y'); ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('reward/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -65,6 +65,7 @@
                                         <th>Disabilitas</th>
                                         <th>Total</th>
                                         <th>Presentase %</th>
+                                        <th>Diusulkan pada</th>
                                         <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -78,6 +79,7 @@
                                             <td><center><?= $r['disabilitas_total']; ?></center>  </td>
                                             <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
+                                            <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
@@ -124,11 +126,11 @@
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Alamat </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['alamat_perusahaan']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['alamat']; ?></label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">No.Telp. Perusahaan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['no_perusahaan']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['kontak']; ?></label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">E-mail </label>

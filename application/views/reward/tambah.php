@@ -33,7 +33,7 @@
 
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('reward/tambah'); ?>" method="post" >
+                            <form  id ="myForm" action="<?= base_url('reward/tambah'); ?>" method="post" >
                                 <div class="modal-body"> 
                                 <p> <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
                                     <!-- <div class="form-group row">
@@ -49,18 +49,17 @@
                                             <?= form_error('usulan_tahun', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div> -->
-                                    <!-- <div class="form-group row">
-                                        <label for="nama_perusahaan" class="col-sm-3 col-form-label">Cari Perusahaan</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="perusahaan" placeholder="" >
-                                        </div>
-                                    </div> -->
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
+                                            <input type="hidden" name="id_perusahaan">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
+                                        <div ass="col-sm-1">
+                                            <input class="btn btn btn-light" type = "button" value = "Reset data" onClick = "fun()"/>
+                                        </div>
+                                        
                                     </div>
                                     <div class="form-group row">
                                         <label for="kabupaten_kota" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
@@ -94,7 +93,7 @@
                                             <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <label for="no_kontak_person" class="col-sm-1 col-form-label">No.Telp</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
                                             <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -102,7 +101,7 @@
                                     
                                     <div class="form-group row">
                                         <label for="alamat_perusahaan" class="col-sm-3 col-form-label">Alamat Perusahaan</label>
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-7">
                                             <textarea class="form-control" id="alamat_perusahaan" placeholder="Alamat Lengkap . . ." name="alamat_perusahaan" rows="2"></textarea>
                                             <?= form_error('alamat_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -118,7 +117,7 @@
                                     <div class="form-group row">
                                         <label for="email_perusahaan" class="col-sm-3 col-form-label">Email Perusahaan</label>
                                         <div class="col-sm-5">
-                                            <input type="email_perusahaan" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="cth : emailperusahan@email.com" name="email_perusahaan" >
+                                            <input type="email_perusahaan" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="email@email.com" name="email_perusahaan" >
                                             <?= form_error('email_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

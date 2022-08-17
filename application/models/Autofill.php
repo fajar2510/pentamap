@@ -6,7 +6,7 @@ class Autofill extends CI_Model
     public function search_perusahaan($title){
         $this->db->like('nama_perusahaan', $title);
         $this->db->order_by('nama_perusahaan','ASC');
-        $this->db->limit(10);
+        $this->db->limit(15);
         return $this->db->get('tb_perusahaan')->result();
     }
 

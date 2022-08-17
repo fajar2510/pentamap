@@ -420,16 +420,16 @@ class Datamaster extends CI_Controller
         
         //form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'trim');
-        $this->form_validation->set_rules('alamat', 'Specialist', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'Kontak 1', 'trim');
+        $this->form_validation->set_rules('kode_kantor', 'Kode Kantor', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $this->form_validation->set_rules('kontak', 'Kontak 1', 'required|trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
         $this->form_validation->set_rules('fungsi', 'Kabupaten/kota', 'required|trim');
-        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
-        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
-        $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
-        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|valid_email');
-        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'required|trim');
+        $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'required|trim');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|required');
+        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'required|trim');
         $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
@@ -455,6 +455,8 @@ class Datamaster extends CI_Controller
                 'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
                 'date_created' => date('Y-m-d'),
             ];
+            var_dump ($data);
+            die;
 
             $this->db->insert('tb_perusahaan', $data);
 
@@ -493,7 +495,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan Perusahaan', 'trim');
         $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
         $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
-        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|valid_email');
+        $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|required');
         $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
         $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 

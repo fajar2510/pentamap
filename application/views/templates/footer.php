@@ -521,7 +521,7 @@
             $("#perusahaan").autocomplete({
                 source : "<?php echo site_url('reward/get_autofill/?'); ?>",
                 select : function(event, ui) {
-
+                    $('[name="id_perusahaan"]'). val(ui.item.id_perusahaan);
                     $('[name="nama_perusahaan"]'). val(ui.item.label);
                     $('[name="kabupaten_kota"]'). val(ui.item.kabupaten_kota);
                     $('[name="nama_perusahaan"]'). val(ui.item.nama_perusahaan);
@@ -540,6 +540,12 @@
 
     </script>
 
+    //reset value
+    <script>
+        function fun(){
+        document.getElementById("myForm").reset();
+        } 
+    </script>
 
     </body>
 
