@@ -101,7 +101,7 @@
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
-                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary"><i class="fa fa-book" aria-hidden="true"></i> <b>LAP.</b></i></a>
+                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light"><i class="fa fa-book" aria-hidden="true"></i> <b>lap.</b></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
                                                 <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

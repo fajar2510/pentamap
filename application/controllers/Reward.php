@@ -7,13 +7,14 @@ class Reward extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
         $this->load->model('Lokal');
         $this->load->model('RewardModel');
         $this->load->model('Sektor');
-        $this->load->model('Disabilitas');
+        // $this->load->model('Disabilitas');
         $this->load->model('Autofill');
     } // FUNCTION USER START
 
@@ -58,8 +59,9 @@ class Reward extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
-        $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
+        // $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
         $data['max_id'] = $this->RewardModel->max_id_perusahaan();
+        $data['jenis'] = $this->RewardModel->get_jenis();
         
         // validation form
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
@@ -168,6 +170,7 @@ class Reward extends CI_Controller
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
 
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        
         $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
         // form validation
@@ -265,8 +268,7 @@ class Reward extends CI_Controller
         redirect('reward');
     }
 
-    function get_autofill()
-    {
+    function get_autofill(){
         if (isset($_GET['term'])) {
             $result = $this->Autofill->search_perusahaan($_GET['term']);
             if (count ($result) > 0) {
@@ -292,16 +294,18 @@ class Reward extends CI_Controller
                 }
                 
             }
-        }
     }
 
-    function get_ragam_disabilitas(){
-		$id_dis=$this->input->post('id_dis');
-    	$data=$this->Disabilitas->get_ragam_disabilitas($id_)->result();
-    	foreach ($data as $result) {
-    		$value[] = (float) $result->id_dis;
-    	}
-    	echo json_encode($value);
-	}
+    function get_jenis_disabilitas(){
+        $id_jenis=$this->input->post('id_jenis');
+        $data=$this->RewardModel->get_product_by_package($id_jenis)->result();
+        foreach ($data as $result) {
+            $value[] = (float) $result->id_jenis;
+        }
+        echo json_encode($value);
+    }
+}
+
+    
 
     

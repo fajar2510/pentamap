@@ -35,6 +35,14 @@
                         <div>
                             <form  id ="myForm" action="<?= base_url('reward/tambah'); ?>" method="post" >
                                 <div class="modal-body"> 
+                               
+                                <div class="form-group row">
+                                        <label for="tanggal_data" class="col-sm-3 col-form-label">Di usulkan pada</label>
+                                        <div class="col-2">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
+                                            <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
                                 <p> <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
                                     <!-- <div class="form-group row">
                                         <label for="usulan_tahun" class="col-sm-3 col-form-label">Tahun Usulan</label>
@@ -49,14 +57,15 @@
                                             <?= form_error('usulan_tahun', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div> -->
+                                   
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
                                         
                                             <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
-                                            <input type="text" name="id_perusahaan">
+                                            <input type="hidden" name="id_perusahaan">
                                             <?php foreach ($max_id as $idx); ?>
-                                            <input type="text" value="  <?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
+                                            <input type="hidden" value="  <?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div ass="col-sm-1">
@@ -139,7 +148,7 @@
                                     <div class="form-group row">
                                         <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-8">
-                                        <select name="sektor_usaha" id="sektor_usaha" class="form-control">
+                                        <select name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" >
                                                 <!-- <option value="">~ Pilih Jenis Sektor Usaha ~</option> -->
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
                                                     <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; &nbsp;<?= $row['keterangan']; ?> </option>
@@ -206,24 +215,27 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam Disabilitas</label>
-                                        <div class="col-sm-7">
+                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam & Jenis Disabilitas</label>
+                                        <div class="col-sm-8">
+                    
+                                        <select class="bootstrap-select" class="form-control" name="jenis[]" data-width="100%" data-live-search="true" multiple required>
+                                            <?php foreach ($jenis->result() as $je) :?>
+                                                <option value="<?php echo $je->id_jenis;?>"><?php echo $je->disabilitas_ragam;?> &nbsp; > &nbsp; <?php echo $je->jenis_disabilitas;?></option>
+                                            <?php endforeach;?>
+                                        </select>
 
-                            
-
-                                            </select>
-
-                                            <textarea class="form-control" id="ragam_disabilitas" placeholder=" . . ." name="ragam_disabilitas" rows="2"></textarea>
+                                            <!-- <textarea class="form-control" id="ragam_disabilitas" placeholder=" . . ." name="ragam_disabilitas" rows="2"></textarea> -->
                                             <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="jenis_disabilitas" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
                                         <div class="col-sm-7">
-                                        <textarea class="form-control" id="jenis_disabilitas" placeholder=" . . ." name="jenis_disabilitas" rows="2"></textarea>
+                                            
+                                        <input class="form-control" id="jenis_disabilitas" placeholder=" . . ." name="jenis_disabilitas" rows="2"></input>
                                             <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div   div class="modal-footer">
                                         <button type="submit" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">

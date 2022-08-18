@@ -41,7 +41,7 @@
                                             <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
                                     <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT</label>

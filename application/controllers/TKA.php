@@ -7,7 +7,7 @@ class Tka extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
+        
         $this->load->model('Master');
         $this->load->model('Perusahaan');
         $this->load->model('Penempatan');
@@ -109,8 +109,11 @@ class Tka extends CI_Controller
             $this->db->where('id_kabupaten', $kabupaten);
             $this->db->update('kabupaten', $update);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA telah ditambahkan </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('tka');
         }
     }
@@ -174,8 +177,11 @@ class Tka extends CI_Controller
 
             $this->db->where('id', $id);
             $this->db->update('tb_tka', $data);
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data TKA berhasil diperbarui ! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('tka');
         }
     }
@@ -200,8 +206,11 @@ class Tka extends CI_Controller
             $this->db->where('id_kabupaten', $kabupaten);
             $this->db->update('kabupaten', $update);
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data yang dipilih telah dihapus </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('tka');
     }
 }

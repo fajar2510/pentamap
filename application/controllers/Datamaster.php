@@ -7,6 +7,7 @@ class Datamaster extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -72,8 +73,11 @@ class Datamaster extends CI_Controller
             ];
             $this->db->insert('user', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! user account has been created. </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('datamaster/user');
         }
     }
@@ -132,8 +136,11 @@ class Datamaster extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('user', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> User data has been updated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('datamaster/user');
         }
     }
@@ -144,8 +151,11 @@ class Datamaster extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('user');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected user has succesfully deleted, be carefull for manage data. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('datamaster/user');
     }
     // FUNCTION USER END
@@ -195,8 +205,11 @@ class Datamaster extends CI_Controller
           ];
           $this->db->insert('jenis_sektor_usaha', $data);
 
-          $this->session->set_flashdata('message', '<div class="alert 
-          alert-success" role="alert"> Congratulation! Sektor Usaha has been created. </div>');
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>   </div>');
           redirect('datamaster/sektor');
       }
   }
@@ -243,8 +256,11 @@ class Datamaster extends CI_Controller
           $this->db->where('id_sektor', $id);
           $this->db->update('jenis_sektor_usaha', $data);
 
-          $this->session->set_flashdata('message', '<div class="alert 
-          alert-success" role="alert"> Sektor Usaha has been updated! </div>');
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong> Disunting !</strong> data telah berhasil di update.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>   </div>');
           redirect('datamaster/sektor');
       }
   }
@@ -255,8 +271,11 @@ class Datamaster extends CI_Controller
       $this->db->where('id_sektor', $id);
       $this->db->delete('jenis_sektor_usaha');
 
-      $this->session->set_flashdata('message', '<div class="alert 
-          alert-success" role="alert"> Your selected sektor has succesfully deleted, be carefull for manage data. </div>');
+      $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong> Dihapus !</strong> data telah berhasil dihapus.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>   </div>');
       redirect('datamaster/sektor');
   }
   // FUNCTION Sektor END
@@ -282,7 +301,7 @@ class Datamaster extends CI_Controller
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
   
-      //   Load Model Sektor
+        //   Load Model Sektor
         $data['data_disabilitas'] = $this->Disabilitas->get_disabilitas();
   
   
@@ -455,8 +474,8 @@ class Datamaster extends CI_Controller
                 'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
                 'date_created' => date('Y-m-d'),
             ];
-            var_dump ($data);
-            die;
+            // var_dump ($data);
+            // die;
 
             $this->db->insert('tb_perusahaan', $data);
 

@@ -16,9 +16,10 @@
 
     <div class="row">
         <div class="col-md-10">
+        
             <h6> <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> <?= $title; ?> PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></h1>
         </div>
-
+        
         <div class="col-md-12">
             <select class="form-control" id="tahun_pilih" name="tahun">
                 <option value="all">-Pilih Tahun-</option>
@@ -27,6 +28,12 @@
             </select>
         </div>
     </div>
+
+  
+
+    <?= $this->session->flashdata('message'); ?>
+
+    
     <br>
 
     <!-- <hr> -->

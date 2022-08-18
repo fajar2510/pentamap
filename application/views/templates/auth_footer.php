@@ -7,6 +7,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url() ?>assets/js/sb-admin-2.min.js"></script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(1500, 0).slideUp(200, function(){
+            $(this).remove(); 
+            });
+        }, 3000);
+    </script>
 
     </body>
 

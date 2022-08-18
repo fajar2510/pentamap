@@ -41,8 +41,11 @@ class Menu extends CI_Controller
         } else {
             $this->db->insert('user_menu', ['menu' =>
             $this->input->post('menu')]);
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> New Menu Added! </div>');
+            $this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('menu');
         }
     }
@@ -80,8 +83,11 @@ class Menu extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('user_menu', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Menu has been updated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('menu');
         }
     }
@@ -91,8 +97,11 @@ class Menu extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('user_menu');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected Menu has succesfully deleted, be carefull for manage data. </div>');
+        $this->session->set_flashdata('message', '<div class="warning alert-success alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('menu');
     }
 
@@ -131,8 +140,11 @@ class Menu extends CI_Controller
                 'is_active' => $this->input->post('is_active')
             ];
             $this->db->insert('user_sub_menu', $data);
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> New sub menu Added! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('menu/submenu');
         }
     }
@@ -182,8 +194,11 @@ class Menu extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('user_sub_menu', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Sub Menu has been updated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('menu/submenu');
         }
     }
@@ -193,8 +208,11 @@ class Menu extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('user_sub_menu');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected SubMenu has succesfully deleted, be carefull for manage data. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('menu/submenu');
     }
 }

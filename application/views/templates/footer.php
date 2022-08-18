@@ -28,9 +28,9 @@
                 <center>
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Apakah kamu yakin ?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
-                        </button>
+                        </button> -->
                     </div>
 
                     <div class="modal-body">Pilih " <b> Logout </b>" jika ingin mengakhiri sesi.</div>
@@ -40,14 +40,15 @@
 
                     <!-- tombol pilihan logut -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
-                            <span class="icon text-gray-600">
+                        <button type="button" class="btn btn-light " data-dismiss="modal">
+                            <!-- <span class="icon text-black-600">
                                 <i class="fas fa-window-close"></i>
-                            </span>
+                            </span> -->
                             <span class="text">Batal</span>
                         </button>
+                        <div></div>
                         <form action="<?= base_url('auth/logout'); ?>">
-                            <button type="submit" class="btn btn-danger btn-icon-split">
+                            <button type="submit" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </span>
@@ -100,54 +101,40 @@
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
 
     <!-- select2 multiple form -->
-	<script type="text/javascript">
-		$(document).ready(function(){
+    <script type="text/javascript">
+    $(document).ready(function(){
 			$('.bootstrap-select').selectpicker();
 
-            //GET UPDATE
-			// $('.update-record').on('click',function(){
-			// 	var package_id = $(this).data('package_id');
-			// 	var package_name = $(this).data('package_name');
-			// 	$(".strings").val('');
-			// 	$('#UpdateModal').modal('show');
-			// 	$('[name="edit_id"]').val(package_id);
-			// 	$('[name="package_edit"]').val(package_name);
-                //AJAX REQUEST TO GET SELECTED PRODUCT
-            //     $.ajax({
-            //         url: "<?php echo site_url('reward/get_ragam_disabilitas');?>",
-            //         method: "POST",
-            //         data :{id_dis:id_dis},
-            //         cache:false,
-            //         success : function(data){
-            //             var item=data;
-            //             var val1=item.replace("[","");
-            //             var val2=val1.replace("]","");
-            //             var values=val2;
-            //             $.each(values.split(","), function(i,e){
-            //                 $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
-            //                 $(".strings").selectpicker('refresh');
+			//GET UPDATE
 
-            //             });
-            //         }
-                    
-            //     });
-            //     return false;
-			// });
+                //AJAX REQUEST TO GET SELECTED PRODUCT
+            $.ajax({
+				url: "<?php echo site_url('reward/get_jenis_disabilitas');?>",
+				method: "POST",
+				data :{id_jenis:id_jenis},
+				cache:false,
+				success : function(data){
+					var item=data;
+					var val1=item.replace("[","");
+					var val2=val1.replace("]","");
+					var values=val2;
+					$.each(values.split(","), function(i,e){
+						$(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+						$(".strings").selectpicker('refresh');
+                        });
+                    }                   
+                });
+                return false;
+			});
 
 			//GET CONFIRM DELETE
-		// 	$('.delete-record').on('click',function(){
-		// 		var id_dis = $(this).data('id_dis');
-		// 		$('#DeleteModal').modal('show');
-		// 		$('[name="delete_id"]').val(id_dis);
-		// 	});
-
-		// });
 	</script>
+	
 
         <!-- perhitungan otomasi jumlah disabilitas dan total tenaga kerja di perusahaan -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#disabilitas_L, #disabilitas_P,#tenaga_kerja_L, #tenaga_kerja_P",).keyup(function() {
+            $("#disabilitas_L, #disabilitas_P, #tenaga_kerja_L, #tenaga_kerja_P",).keyup(function() {
                 var disabilitas_P  = $("#disabilitas_P").val();
                 var disabilitas_L = $("#disabilitas_L").val();
                 var tenaga_kerja_P  = $("#tenaga_kerja_P").val();
@@ -300,7 +287,7 @@
                 })
     </script>
 
-    <!-- script map utama -->
+     <!-- script map utama -->
     <script type="text/javascript">
         // var L = window.L;
 
@@ -480,7 +467,7 @@
             });
         });
     </script>
-     <!-- script map utama -->
+    <!-- script map utama -->
 
     <!-- script map filter tahun -->
     <script>
@@ -514,7 +501,7 @@
             });
         }
     </script>
-      <!-- script map filter tahun -->
+
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -540,11 +527,19 @@
 
     </script>
 
-    //reset value
     <script>
         function fun(){
         document.getElementById("myForm").reset();
         } 
+    </script>
+
+
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(2000, 0).slideUp(200, function(){
+            $(this).remove(); 
+            });
+        }, 4000);
     </script>
 
     </body>

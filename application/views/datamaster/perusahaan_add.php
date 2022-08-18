@@ -107,7 +107,7 @@
                                     <div class="form-group row">
                                         <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor Perusahaan</label>
                                         <div class="col-sm-5">
-                                        <select name="fungsi" id="fungsi" class="form-control">
+                                        <select name="sektor_perusahaan" id="sektor_perusahaan" class="form-control">
                                                 <option value="18">~ Pilih Jenis Sektor Usaha ~</option>
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
                                                     <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; <p><small><i><?= $row['keterangan']; ?> </i></small></p></option>

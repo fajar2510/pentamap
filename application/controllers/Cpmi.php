@@ -7,7 +7,7 @@ class Cpmi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
+        
         $this->load->model('Master');
         $this->load->model('Penempatan');
         // $this->load->model('Perusahaan');
@@ -117,8 +117,11 @@ class Cpmi extends CI_Controller
 
             $this->db->insert('tb_cpmi', $data);
             // $this->db->insert('tb_perusahaan_negara', $data_perusahaan_negara);
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data CPMI berhasil ditambahkan! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('cpmi');
         }
     }
@@ -198,8 +201,11 @@ class Cpmi extends CI_Controller
             $this->db->update('tb_cpmi', $data);
 
             // $this->db->update('tb_perusahaan_negara',$data_perusahaan_negara);
-            $this->session->set_flashdata('message', '<div class="alert 
-                alert-success" role="alert"> Data CPMI berhasil diperbarui ! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('cpmi');
         }
     }
@@ -209,8 +215,11 @@ class Cpmi extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('tb_cpmi');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data yang dipilih berhasil dihapus. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('cpmi');
     }
 

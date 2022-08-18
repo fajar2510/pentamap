@@ -67,8 +67,11 @@ class Admin extends CI_Controller
             ];
             $this->db->insert('user_role', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Congratulation! Role Akses has been created. </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('admin/role');
         }
     }
@@ -121,8 +124,11 @@ class Admin extends CI_Controller
         } else {
             $this->db->delete('user_access_menu', $data);
         }
-        $this->session->set_flashdata('message', '<div class="alert 
-        alert-success" role="alert"> Access Changed!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Disunting !</strong> data telah berhasil diupdate.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
     }
 
     public function hapusRole($id)
@@ -130,8 +136,11 @@ class Admin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->delete('user_role');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected Role has succesfully deleted, be carefull for manage data. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('admin/role');
     }
 
@@ -167,8 +176,11 @@ class Admin extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('user_role', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Role Akses has been updated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('admin/role');
         }
     }

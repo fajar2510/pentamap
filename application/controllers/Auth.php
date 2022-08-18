@@ -53,14 +53,31 @@ class Auth extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
+                    
                     if ($user['role_id'] == 1) {
-                        redirect('admin');
+                        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong> Login Berhasil !</strong> kamu telah berhasil login.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>   </div>');
+                        redirect('beranda');
+                        
+                        
                     } else {
-                        redirect('user');
+                        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong> Login Berhasil !</strong> kamu telah berhasil login.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>   </div>');
+                        redirect('beranda');
+                       
                     }
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert 
-                alert-danger" role="alert"> Password yang dimasukkan salah! </div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong> Pengguna tidak ditemukan !</strong> E-mail atau password salah.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>   </div>');
                     redirect('auth');
                 }
             } else {
@@ -69,8 +86,11 @@ class Auth extends CI_Controller
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-danger" role="alert"> E-mail belum terdaftar </div>');
+            $this->session->set_flashdata('message','<div class="warning alert-danger alert-dismissible fade show" role="alert">
+            <strong> E-mail tidak terdaftar !</strong> Masukkan email yang sudah terdaftar.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('auth');
         }
     }
@@ -81,8 +101,11 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
 
-        $this->session->set_flashdata('message', '<div class="alert 
-        alert-success" role="alert"> Kamu telah berhasil keluar </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Logout !</strong> kamu telah berhasil logout.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('auth');
     }
 
@@ -119,7 +142,11 @@ class Auth extends CI_Controller
 
             $this->db->delete('user_token', ['email' => $email]);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password has been changed! Please login.</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> Password disunting !</strong> Silahkan masuk ulang.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('auth');
         }
     }
