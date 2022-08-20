@@ -33,6 +33,13 @@
                         <div>
                             <form action="<?= base_url('reward/edit/' . $edit_reward->id_reward); ?>" method="post">
                             <div class="modal-body"> 
+                                    <div class="form-group row">
+                                        <label for="tanggal_data" class="col-sm-3 col-form-label"> Di usulkan pada</label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="<?= $edit_reward->date_created ?>" id="tanggal_data" name="tanggal_data">
+                                            <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
 
                                     <p> <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
@@ -146,7 +153,7 @@
                                                                                                         echo 'selected';
                                                                                                     } else {
                                                                                                         echo '';
-                                                                                                    } ?>> <?= $jsu['nama_sektor']; ?> </option>
+                                                                                                    } ?>> <?= $jsu['nama_sektor']; ?> &nbsp; : &nbsp;<?= $row['keterangan']; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('sektor_usaha', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -209,18 +216,16 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
-                                        <div class="col-sm-7">
+                                        <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam & Jenis Disabilitas</label>
+                                        <div class="col-sm-8">
+                    
+                                        <select class="bootstrap-select" class="form-control" name="jenis_edit[]" data-width="100%" data-live-search="true" multiple required>
 
-                                            <textarea class="form-control" id="ragam_disabilitas" placeholder="ragam disabilitas  . . ." name="ragam_disabilitas" rows="2"><?= $edit_reward->ragam_disabilitas; ?></textarea>
+                                            <?php foreach ($jenis->result() as $arr) :?>
+                                                <option value="<?php echo $arr->ragam_id;?>"> <?php echo $arr->disabilitas_ragam;?> &nbsp;  &nbsp;<?php echo $arr->jenis_disabilitas;?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                             <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="jenis_disabilitas" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
-                                        <div class="col-sm-7">
-                                        <textarea class="form-control" id="jenis_disabilitas" placeholder="jenis disabilitas . . ." name="jenis_disabilitas" rows="2"><?= $edit_reward->jenis_disabilitas; ?></textarea>
-                                            <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div   div class="modal-footer">

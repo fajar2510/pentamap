@@ -17,6 +17,7 @@ class RewardModel extends CI_Model
                     JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
                     JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
                     JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
+                    -- JOIN dis_jenis ON tb_reward.jenis_disabilitas = dis_jenis.id
               ";
 
         return $this->db->query($query)->result_array();
@@ -45,9 +46,34 @@ class RewardModel extends CI_Model
                     JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
                     JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
                     JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
+                    JOIN dis_jenis ON tb_reward.jenis_disabilitas = tb_perusahaan.id
+                    JOIN dis_ragam ON dis_jenis.ragam_id = dis_ragam.id_ragam
                 ";
+        
+        // var_dump($query);
+        // echo"<pre>";
+        // die;
+        // $jenis = explode(",", $data);
         return $this->db->query($query)->row();
     }
+
+    // UPDATE
+	// function update_jenis($id_reward,$id_jenis){
+	// 	$this->db->trans_start();
+
+	// 		$this->db->delete('dis_jenis', array('ragam_id' => $id_reward));
+
+	// 		$result = array();
+	// 		    foreach($id_jenis AS $key => $val){
+	// 			     $result[] = array(
+	// 			      'ragam_id'  	=> $id_reward,
+	// 			      'jenis_disabilitas'  	=> $_POST['jenis_edit)'][$key]
+	// 			     );
+	// 		    }      
+	// 		//MULTIPLE INSERT TO DETAIL TABLE
+	// 		$this->db->insert_batch('dis_jenis', $result);
+	// 	$this->db->trans_complete();
+	// }
 
     public function max_id_perusahaan()
     {

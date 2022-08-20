@@ -66,7 +66,7 @@
                                         <th>Total</th>
                                         <th>Presentase %</th>
                                         <th>Diusulkan pada</th>
-                                        <th width="12%">Aksi</th>
+                                        <th width="12%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,9 +80,9 @@
                                             <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
                                             <td> <small> <?= $r['date_created']; ?></small></td>
-                                            <td>
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
-                                                <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                            <td class="text-center">
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
+                                                <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning disabled" > <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -175,16 +175,59 @@
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Ragam Disabilitas </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['ragam_disabilitas']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">:  &nbsp; 
+                            <?php  
+                                $arr_ragam = explode(",", $r['jenis_disabilitas']);
+                                foreach($arr_ragam as $arr){
+                                    $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_ragam.disabilitas_ragam
+                                    FROM dis_jenis 
+                                    JOIN dis_ragam
+                                    ON dis_jenis.ragam_id = dis_ragam.id_ragam 
+                                    WHERE id_jenis  = '$arr'";
+
+                                    $arr_result = $this->db->query($query)->result_array();
+                                    foreach ($arr_result as $key => $val) {
+                                        echo $val['disabilitas_ragam'];
+                                            echo ", ";
+                                        }
+                                 }    
+                            ?>
+                            </label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Jenis Disabilitas </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['jenis_disabilitas']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;
+                                <?php  
+                                $jenis = explode(",", $r['jenis_disabilitas']);
+                                foreach($jenis as $jenis){
+                                    $query = "SELECT dis_jenis.jenis_disabilitas
+                                    FROM dis_jenis
+                                    WHERE id_jenis = '$jenis'";
+                                    $test = $this->db->query($query)->result_array();
+                                    // $last_key = end(array_keys($test));
+                                    // $count = count($test);
+                                    // echo $count;
+                                    foreach ($test as $key => $val) {
+                                        // echo $key;
+                                        echo $val['jenis_disabilitas'];
+                                        // if($key != count($test)-1) {
+                                            echo ", ";
+                                            // This is the last $element
+                                    //    }
+                                        // if (next($test)==true) $ret .= ", ";
+                                        // if ($key != $count) {
+                                        //     echo ", ";
+                                        // }
+
+                                    }
+                                }
+                                
+                                ?></label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
                         </span>

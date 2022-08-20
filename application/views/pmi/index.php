@@ -105,7 +105,7 @@
                                     <td align="center">
                                         <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-success"> lap. <i class="fa fa-book" aria-hidden="true"></i></i></a>
                                         <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-light"> nota<i class="fa-solid fa-receipt"></i></a>
-                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
+                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                         <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                         <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                     </td>
@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
                         </span>

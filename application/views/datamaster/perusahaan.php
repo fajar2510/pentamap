@@ -60,11 +60,12 @@
                                     <tr>
                                         <th> No</th>
                                         <th>Nama Perusahaan</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Sektor</th>
-                                        <th>Kantor</th>
+                                        <th>Kode Kantor</th>
                                         <th>Lokasi</th>
-                                        <th width="12%">Aksi</th>
+                                        <th>Sektor</th>
+                                        <th>Kantor</th>
+                                        
+                                        <th width="12%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,7 +74,8 @@
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
-                                            <td> <small> <?= $p['alamat']; ?></small></td>
+                                            <td><?= $p['kode_kantor']; ?></td>
+                                            <td><small><?= $p['nama_kabupaten']; ?> </small></td> 
                                             <td> <?= $p['nama_sektor']; ?>
                                             <!-- <td>
                                                 <?php if ($p['kontak'] == null) {
@@ -89,16 +91,10 @@
                                                     echo '<div> <small?>Cabang</small></div>';
                                                 } ?>
                                             </td>
-                                            <td><small><?= $p['nama_kabupaten']; ?> </small></td> 
-                                            <td> 
-                                            <!-- <td><?php if ($p['fungsi'] == '1') {
-                                                    echo '<div> <small?>Luar Negeri</small></div>';
-                                                } else {
-                                                    echo '<div> <small?>Lokal</small></div>';
-                                                } ?></td>
-                                            <td> -->
+                                            
+                                            <td class="text-center"> 
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                                 <a href="<?= base_url('datamaster/perusahaan_edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -190,7 +186,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
                         </span>

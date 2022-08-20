@@ -32,6 +32,9 @@ class Reward extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
         
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
+        // var_dump($data['data_reward']);
+        // echo"<pre>";
+        // die;
         $data['tb_reward'] = $this->RewardModel->get_tb_reward();
 
         $data['title'] = 'Penghargaan Perusahaan';
@@ -62,6 +65,7 @@ class Reward extends CI_Controller
         // $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
         $data['max_id'] = $this->RewardModel->max_id_perusahaan();
         $data['jenis'] = $this->RewardModel->get_jenis();
+
         
         // validation form
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
@@ -81,8 +85,7 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('tenaga_kerja_P', 'Total tenaga kerja Perempuan', 'trim');
         $this->form_validation->set_rules('tenaga_kerja_total', 'Tenaga kerja total', 'trim');
         $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
-        $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
-        $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('jenis[]', 'Jenis Disabilitas', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan Perusahaan';
@@ -100,6 +103,9 @@ class Reward extends CI_Controller
             }else{
                 $id_perusahaan = $this->input->post('id_perusahaan', true);
                 }
+                    $jenis =implode(',',$this->input->post('jenis', true));
+                    // echo $jenis;
+                    // die;
                 $data_reward = [
                     'perusahaan_id' => $id_perusahaan,
                     'disabilitas_L' => $this->input->post('disabilitas_L', true),
@@ -109,9 +115,8 @@ class Reward extends CI_Controller
                     'tenaga_kerja_P' => $this->input->post('tenaga_kerja_P', true),
                     'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
                     'presentase' => $this->input->post('presentase', true),
-                    'ragam_disabilitas' => $this->input->post('ragam_disabilitas', true),
-                    'jenis_disabilitas' => $this->input->post('jenis_disabilitas', true),
-                    'date_created' => date('Y-m-d'),
+                    'jenis_disabilitas' => $jenis,
+                    'date_created' => $this->input->post('tanggal_data'),
                 ];
                 
             if ($this->input->post('id_perusahaan') == null) {
@@ -131,9 +136,9 @@ class Reward extends CI_Controller
                 // var_dump($data_perusahaan, $data_reward);
                 // echo"<pre>";
                 // die;
-                $id_perusahaan_terpilih = $this->input->post('id_perusahaan', true);
-                var_dump($id_perusahaan_terpilih);
-                die;
+                // $id_perusahaan_terpilih = $this->input->post('id_perusahaan', true);
+                // var_dump($id_perusahaan_terpilih);
+                // die;
                 $this->db->insert('tb_perusahaan', $data_perusahaan);
                 $this->db->where('id', $id_perusahaan_terpilih);
                 $this->db->update('tb_perusahaan', $data);
@@ -170,7 +175,7 @@ class Reward extends CI_Controller
         $data['jenis_sektor_usaha'] = $this->Sektor->get_sektor_usaha();
 
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
-        
+        $data['jenis'] = $this->RewardModel->get_jenis();
         $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
         // form validation
@@ -218,7 +223,7 @@ class Reward extends CI_Controller
                 'email_perusahaan' => $this->input->post('email_perusahaan', true),
                 'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
                 'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
-                'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data'),
             ];
 
             
@@ -304,6 +309,14 @@ class Reward extends CI_Controller
         }
         echo json_encode($value);
     }
+
+    //UPDATE
+	// function update(){
+	// 	$id_reward = $this->input->post('id_reward',TRUE);
+	// 	$id_jenis = $this->input->post('jenis_edit',TRUE);
+	// 	$this->RewardModel->update_jenis($id_reward,$id_jenis);
+	// 	redirect('reward');
+	// }
 }
 
     

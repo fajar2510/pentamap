@@ -34,9 +34,11 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Hak Akses</th>
-                                    <th>Aksi</th>
+                                    <th>Jabatan</th>
+                                    <th>Kontak</th>
+                                    <th>Bio</th>
+                                    <th class="text-center">Profil</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,9 +47,12 @@
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
                                         <td> <?= $ur['name']; ?></td>
-                                        <td> <i> <?= $ur['email']; ?></i></td>
-                                        <td> <?= $ur['role']; ?> </td>
-                                        <td>
+                                        <td> <i> <?= $ur['jabatan']; ?></i></td>
+                                        <td><?= $ur['kontak']; ?></td>
+                                        <td> <?= $ur['bio']; ?> </td>
+                                        <td class="text-center"> <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-profile rounded-circle" width="50" height="50"" alt="Profile Picture"></td>
+                                        <td class="text-center">
+                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $ur['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $ur['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
@@ -75,17 +80,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalEditLabel">Tambah Data Pengguna</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
             <form action="<?= base_url('datamaster/user'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" name="name" value="<?= set_value('name'); ?>">
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" name="name" >
                             <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                        <div class="col-3">
+                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_lahir" name="tanggal_lahir">
+                            <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-3">
+                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                <option value="L"> Laki-Laki </option>
+                                <option value="P"> Perempuan </option>
+                            </select>
+                            <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -106,20 +128,68 @@
                             <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
-
-
                     <div class="form-group row">
-                        <label for="password" class="col-sm-3 col-form-label">Jabatan</label>
+                        <label for="NIK/NIP" class="col-sm-3 col-form-label">NIK/NIP</label>
+                        <div class="col-sm-4">
+                            <input type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK">
+                            <?= form_error('NIK', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="NIP" class="form-control" id="NIP" placeholder="NIP" name="NIP" >
+                            <?= form_error('NIP', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak">
+                            <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="jabatan" placeholder="" name="jabatan">
+                            <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="bio" class="col-sm-3 col-form-label">Bio/tentang kamu</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="bio" placeholder="tentang kamu . . . " name="bio" rows="2"></textarea>
+                            <?= form_error('bio', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Hak Akses</label>
                         <div class="col-sm-5">
                             <select name="role" id="role" class="form-control">
-                                <option value=""> Pilih Jabatan </option>
-                                <?php foreach ($role as $ru) : ?>
+                                <?php foreach ($user_role as $ru) : ?>
                                     <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-
+                    <!-- <div class="form-group row">
+                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
+                            <div class="col-sm-2">
+                                <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
+                            </div>
+                            <div class="col-sm-6">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
+                                <label class="custom-file-label" for="image">Pilih File</label>
+                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
@@ -162,50 +232,113 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                            <div class="col-3">
+                                <input class="form-control" type="date" value="<?= $ur['tanggal_lahir']; ?>" id="tanggal_lahir" name="tanggal_lahir">
+                                <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                            <div class="col-sm-3">
+                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                                <option value="L" <?php if ($ur ['jenis_kelamin'] == 'L') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Laki-Laki</option>
+                                                <option value="P" <?php if ($ur ['jenis_kelamin'] == 'P') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Perempuan</option>
+                                        </select>
+                                <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $ur['email']; ?>">
+                                <input type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $ur['email']; ?>" readonly>
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="NIK/NIP" class="col-sm-3 col-form-label">NIK/NIP</label>
+                            <div class="col-sm-4">
+                                <input type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $ur['NIK']; ?>">
+                                <?= form_error('NIK', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="NIP" class="form-control" id="NIP" placeholder="NIP" name="NIP" value="<?= $ur['NIP']; ?>">
+                                <?= form_error('NIP', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $ur['alamat']; ?></textarea>
+                                <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $ur['kontak']; ?>">
+                                <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="jabatan" placeholder="" name="jabatan" value="<?= $ur['jabatan']; ?>">
+                                <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="bio" class="col-sm-3 col-form-label">Bio/tentang kamu</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="bio" placeholder="tentang kamu . . . " name="bio" rows="2"> <?= $ur['bio']; ?></textarea>
+                                <?= form_error('bio', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="role" class="col-sm-3 col-form-label">Hak Akses</label>
                             <div class="col-sm-5">
                                 <select name="role" id="role" class="form-control">
-                                    <option value=""> Pilih Role </option>
                                    
-                                    <?php foreach ($role as $p) : ?>
-                                        <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $ur['role_id']) {
+                                    <?php foreach ($user_role as $ur) : ?>
+                                        <option value="<?= $ur['id']; ?>" <?php if ($ur['id'] == $ur['role_id']) {
                                                                                 echo 'selected';
                                                                             } else {
                                                                                 echo '';
-                                                                            } ?>> <?= $p['role']; ?> </option>
+                                                                            } ?>> <?= $ur['role']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
-
-                        <!-- <div class=" form-group row">
-                            <label for="password" class="col-sm-2 col-form-label">Role</label>
-                            <div class="col-sm-5">
-                                <select name="role" id="role" class="form-control">
-                                    <option value=""> Pilih Jabatan/Level </option>
-                                    <?php
-                                    while ($data_role = mysqli_fetch_array($ur)) {
-                                        if ($data['role_id'] == $data_role['id']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option $select>" . $data_role['id'] . "</option>";
-                                        // echo "<option value='.$data_role[role_id]' $select>$data_role[role]</option>";
-                                    }
-                                    ?>
-                                </select>
+                        
+                        <!-- <div class="form-group row">
+                            <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
+                                <div class="col-sm-2">
+                                    <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
+                                </div>
+                                <div class="col-sm-6">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
+                                    <label class="custom-file-label" for="image">Pilih File</label>
+                                    <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
+                                </div>
                             </div>
                         </div> -->
-
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="<?= $ur['is_active']; ?>"" name="is_active" id="is_active" checked>
+                                <label class="form-check-label" for="is_active">
+                                    Status User Aktif?
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
@@ -216,12 +349,103 @@
                         </button>
                         <button type="submit" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
+                             <i class="fa-solid fa-pen-to-square"></i>
                             </span>
-                            <span class="text">Perbarui</span>
+                            <span class="text">Update</span>
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- penampil view info data -->
+<?php foreach ($user_role as $ur) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $ur['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-sm-8">
+                                <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Nama </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $ur['name']; ?></label> 
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($ur['jenis_kelamin'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $ur['jenis_kelamin']; ?>&nbsp;)</label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['tanggal_lahir']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Alamat Lengkap</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['alamat']; ?></label>
+                                    
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jabatan</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['jabatan']; ?></label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">NIK / NIP</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['NIK']; ?> &nbsp;/&nbsp;<?= $ur['NIP']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Kontak(HP,Telp.)</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['kontak']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Email  </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['email']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Bio </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['bio']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Hak Akses </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['role']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Status Aktif </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($ur['is_active'] == '1') {
+                                                            echo '<i class="fa-solid fa-toggle-on color-1"></i>  Aktif ' ;
+                                                        } else {
+                                                            echo '<i class="fa-light fa-toggle-off"></i>  Nonaktif ';
+                                                        } ?></label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <p > <small><b> <br> </b></small></p>
+                                <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-thumbnail" alt="Picture" width="200" height="300">
+                                <p class="text-center" ><small> Foto Profil. &nbsp; <?= $ur['name']; ?></small></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -70,7 +70,7 @@
                                         <th>Kebutuhan Khusus</th>
                                         <th>Status</th>
                                         <!-- <th>Kontak</th> -->
-                                        <th width="12%">Aksi</th>
+                                        <th width="12%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,8 +84,8 @@
                                             <td><small> <?= $p['nama_perusahaan']; ?></small></td>
                                             <td><small> <?= $p['ragam_disabilitas']; ?>. <?= $p['jenis_disabilitas']; ?></small> </td>
                                             <td> <small> <?= $p['status_kerja']; ?></small></td>
-                                            <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
+                                            <td class="text-center">
+                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
                                                 <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -200,7 +200,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
                         </span>

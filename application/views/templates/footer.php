@@ -105,15 +105,15 @@
     $(document).ready(function(){
 			$('.bootstrap-select').selectpicker();
 
-			//GET UPDATE
 
                 //AJAX REQUEST TO GET SELECTED PRODUCT
             $.ajax({
 				url: "<?php echo site_url('reward/get_jenis_disabilitas');?>",
 				method: "POST",
-				data :{id_jenis:id_jenis},
+				// data :{id_jenis:id_jenis},
 				cache:false,
 				success : function(data){
+                    log("masuk");
 					var item=data;
 					var val1=item.replace("[","");
 					var val2=val1.replace("]","");
@@ -535,11 +535,23 @@
 
 
     <script>
+        // alert auto close
         window.setTimeout(function() {
             $(".alert").fadeTo(2000, 0).slideUp(200, function(){
             $(this).remove(); 
             });
         }, 4000);
+
+        // checkbox selected
+        function myFunction() {
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            if (checkBox.checked == true){
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+            }
     </script>
 
     </body>

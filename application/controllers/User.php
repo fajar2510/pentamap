@@ -9,12 +9,13 @@ class User extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Penempatan');
+        $this->load->model('Master');
     }
 
 
     public function index()
     {
-        $data['title'] = 'Profil Pengguna';
+        $data['title'] = 'Profil';
 
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
@@ -29,6 +30,9 @@ class User extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        // Load Model User Role
+        $data['user_role'] = $this->Master->getRole(); 
 
 
         $this->load->view('templates/header', $data);

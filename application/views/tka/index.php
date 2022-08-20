@@ -80,13 +80,13 @@
                                         <th rowspan="2">Perusahaan</>
                                             <!-- <th rowspan="2">Alamat Perusahaan</th> -->
                                         <th colspan="4">Data TKA</th>
-                                        <th rowspan="2">Aksi</th>
+                                        <th rowspan="2" class="text-center">Aksi</th>
                                     </tr>
                                     <tr>
                                         <th>Nama</th>
                                         <th>Negara</th>
                                         <!-- <th>Jabatan</th> -->
-                                        <th>JK</th>
+                                        <th>L/P</th>
                                         <!-- <th>No. RPTKA</th>
                                         <th>Masa Berlaku</th>
                                         <th>No. IMTA</th>
@@ -112,9 +112,9 @@
                                             <td> <small><?= $t['no_imta']; ?> </small></td>
                                             <td><small><?= $t['masa_imta']; ?></small></td> -->
                                             <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-info"> <i class="fa fa-info"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                                 <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $t['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
                         </span>

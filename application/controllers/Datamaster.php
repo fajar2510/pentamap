@@ -37,19 +37,27 @@ class Datamaster extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
 
         // Load Model User Role
-        $data['user_role'] = $this->Master->getRole();
+        $data['user_role'] = $this->Master->getRole(); 
 
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This email has already registered!'
+            'is_unique' => 'E-mail sudah digunakan!'
         ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
-            'matches' => 'Password dont match!',
-            'min_length' => 'Password too short!'
+            'matches' => 'Password tidak cocok, ulangi!',
+            'min_length' => 'Password terlalu pendek!'
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         $this->form_validation->set_rules('role', 'Role', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('NIK', 'NIK', 'trim');
+        $this->form_validation->set_rules('NIP', 'NIP', 'trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
+        $this->form_validation->set_rules('kontak', 'Nomor Handphone', 'trim');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim');
+        $this->form_validation->set_rules('bio', 'Bio/tentang kamu', 'trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Data Pengguna';
@@ -68,6 +76,14 @@ class Datamaster extends CI_Controller
                     PASSWORD_DEFAULT
                 ),
                 'role_id' => htmlspecialchars($this->input->post('role', true)),
+                'tanggal_lahir' => htmlspecialchars($this->input->post('tanggal_lahir', true)),
+                'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin', true)),
+                'NIK' => htmlspecialchars($this->input->post('NIK', true)),
+                'NIP' => htmlspecialchars($this->input->post('NIP', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'kontak' => htmlspecialchars($this->input->post('kontak', true)),
+                'jabatan' => htmlspecialchars($this->input->post('jabatan', true)),
+                'bio' => htmlspecialchars($this->input->post('bio', true)),
                 'is_active' => 1,
                 'date_created' => time()
             ];
@@ -103,15 +119,23 @@ class Datamaster extends CI_Controller
 
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This email has already registered!'
-        ]);
+        // $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+        //     'is_unique' => 'E-mail ini sudah digunakan!'
+        // ]);
         // $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
         //     'matches' => 'Password dont match!',
         //     'min_length' => 'Password too short!'
         // ]);
         // $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         $this->form_validation->set_rules('role', 'Role', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('NIK', 'NIK', 'trim');
+        $this->form_validation->set_rules('NIP', 'NIP', 'trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
+        $this->form_validation->set_rules('kontak', 'Nomor Handphone', 'trim');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim');
+        
 
 
         if ($this->form_validation->run() == false) {
@@ -130,6 +154,15 @@ class Datamaster extends CI_Controller
                 //     PASSWORD_DEFAULT
                 // ),
                 'role_id' => htmlspecialchars($this->input->post('role', true)),
+                'tanggal_lahir' => htmlspecialchars($this->input->post('tanggal_lahir', true)),
+                'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin', true)),
+                'NIK' => htmlspecialchars($this->input->post('NIK', true)),
+                'NIP' => htmlspecialchars($this->input->post('NIP', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'kontak' => htmlspecialchars($this->input->post('kontak', true)),
+                'jabatan' => htmlspecialchars($this->input->post('jabatan', true)),
+                'bio' => htmlspecialchars($this->input->post('bio', true)),
+                'is_active' => $this->input->post('is_active')
             ];
 
 
@@ -187,7 +220,7 @@ class Datamaster extends CI_Controller
 
 
       $this->form_validation->set_rules('nama_sektor', 'Nama Sektor', 'required|trim');
-      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+      $this->form_validation->set_rules('keterangan', 'Sub Sektor', 'trim');
 
 
       if ($this->form_validation->run() == false) {
@@ -236,7 +269,7 @@ class Datamaster extends CI_Controller
 
 
       $this->form_validation->set_rules('nama_sektor', 'Nama Sektor', 'required|trim');
-      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
+      $this->form_validation->set_rules('keterangan', 'Sub Sektor', 'trim');
 
 
       if ($this->form_validation->run() == false) {
@@ -300,15 +333,15 @@ class Datamaster extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+        $data['ragam'] = $this->Disabilitas-> get_ragam();
+       
   
         //   Load Model Sektor
-        $data['data_disabilitas'] = $this->Disabilitas->get_disabilitas();
+        $data['data_disabilitas'] = $this->Disabilitas->get_ragam_jenis();
   
   
         $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
         $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
-  
   
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Disabilitas';
@@ -319,11 +352,10 @@ class Datamaster extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'ragam_disabilitas' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
+                'ragam_id' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
                 'jenis_disabilitas' => htmlspecialchars($this->input->post('jenis_disabilitas', true)),
-                'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
             ];
-            $this->db->insert('tb_disabilitas', $data);
+            $this->db->insert('dis_jenis', $data);
   
             $this->session->set_flashdata('message', '<div class="alert 
             alert-success" role="alert"> Success ! Data has been created. </div>');
@@ -347,14 +379,15 @@ class Datamaster extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
   
         // Load model disabilitas
-        $data['data_disabilitas'] = $this->Disabilitas->get_disabilitas();
+        $data['edit_disabilitas'] = $this->Disabilitas->get_ragam_jenis_Byid($id);
+        $data['ragam'] = $this->Disabilitas-> get_ragam();
+
         // $data['edit_disabilitas'] = $this->Disabilitas->get_edit_disabilitas($id);
       //   $data['edit_sektor'] = $this->Master->getSektorById($id);
       //   $data['user_role'] = $this->Master->getRole();
   
       $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
       $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
-      $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
   
   
         if ($this->form_validation->run() == false) {
@@ -366,16 +399,18 @@ class Datamaster extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'ragam_disabilitas' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
+                'ragam_id' => htmlspecialchars($this->input->post('ragam_disabilitas', true)),
                 'jenis_disabilitas' => htmlspecialchars($this->input->post('jenis_disabilitas', true)),
-                'keterangan' => htmlspecialchars($this->input->post('keterangan', true)),
             ];
   
-            $this->db->where('id_dis', $id);
-            $this->db->update('tb_disabilitas', $data);
+            $this->db->where('id_jenis', $id);
+            $this->db->update('dis_jenis', $data);
   
-            $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Data has been updated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
             redirect('datamaster/disabilitas');
         }
     }
@@ -383,11 +418,14 @@ class Datamaster extends CI_Controller
   
     public function delete_disabilitas($id)
     {
-        $this->db->where('id_dis', $id);
-        $this->db->delete('tb_disabilitas');
+        $this->db->where('id_jenis', $id);
+        $this->db->delete('dis_jenis');
   
-        $this->session->set_flashdata('message', '<div class="alert 
-            alert-success" role="alert"> Your selected data has succesfully deleted, be carefull for manage data. </div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
         redirect('datamaster/disabilitas');
     }
     // FUNCTION Disabilitas END

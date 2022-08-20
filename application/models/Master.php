@@ -29,7 +29,7 @@ class Master extends CI_Model
 
     public function getSektor()
     {
-        $query = "SELECT * FROM jenis_sektor_usaha ORDER BY `id_sektor` DESC";
+        $query = "SELECT * FROM jenis_sektor_usaha ORDER BY `id_sektor` ASC";
         return $this->db->query($query)->result_array();
     }
 

@@ -85,7 +85,8 @@
                                             <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak">
                                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div><div class="form-group row">
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="status_kerja" class="col-sm-3 col-form-label">Masih Bekerja?</label>
                                         <div class="col-sm-3">
                                             <select name="status_kerja" id="status_kerja" class="form-control">

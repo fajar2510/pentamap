@@ -37,8 +37,7 @@
                                     <th>#</th>
                                     <th>Ragam Disabilitas</th>
                                     <th>Jenis Disabilitas</th>
-                                    <th>Keterangan</th>
-                                    <th>Aksi</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,12 +45,11 @@
                                 <?php foreach ($data_disabilitas as $row) : ?>
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
-                                        <td> <?= $row['ragam_disabilitas']; ?></td>
+                                        <td> <?= $row['disabilitas_ragam']; ?></td>
                                         <td> <?= $row['jenis_disabilitas']; ?></td>
-                                        <td> <i> <?= $row['keterangan']; ?></i></td>
-                                        <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $row['id_dis']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalHapus<?= $row['id_dis']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                        <td class="text-center">
+                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $row['id_jenis']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalHapus<?= $row['id_jenis']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -85,14 +83,11 @@
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select name="ragam_disabilitas" id="ragam_disabilitas" class="form-control">
-                                <option value="">~ Pilih Ragam Disabilitas ~</option>
-                                <option value="Fisik">Fisik</option>
-                                <option value="Sensorik">Sensorik</option>
-                                <option value="Intelektual">Intelektual</option>
-                                <option value="Mental">Mental</option>
-                                <option value="Ganda">Ganda</option>
+                                <?php foreach ($ragam as $row) : ?>
+                                    <option value="<?= $row['id_ragam']; ?>"> <?= $row['disabilitas_ragam']; ?> </option>
+                                <?php endforeach; ?>
                             </select>
                             <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
@@ -102,13 +97,6 @@
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="jenis_disabilitas" placeholder="Masukkan Jenis" name="jenis_disabilitas" >
                             <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="keterangan" class="col-sm-3 col-form-label">Keterangan</label>
-                        <div class="col-sm-8">
-                        <textarea class="form-control" id="keterangan" placeholder="keterangan" name="keterangan" rows="3"></textarea>
-                            <?= form_error('keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                 </div>
@@ -134,47 +122,29 @@
 
 <?php foreach ($data_disabilitas as $row) : ?>
     <!-- edituserModal -->
-    <div class=" modal fade" id="modalEdit<?= $row['id_dis']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class=" modal fade" id="modalEdit<?= $row['id_jenis']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditLabel">Ubah Jenis Disabilitas</h5>
+                    <h5 class="modal-title" id="modalEditLabel">Ubah Klasifikasi Disabilitas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('datamaster/disabilitas_edit/' . $row['id_dis']); ?>" method="post">
+                <form action="<?= base_url('datamaster/disabilitas_edit/' . $row['id_jenis']); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
-                            <div class="col-sm-4">
-                            <select name="ragam_disabilitas" id="ragam_disabilitas" class="form-control">
-                                                <option value="Fisik" <?php if ($row['ragam_disabilitas'] == 'Fisik') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Fisik</option>
-                                                <option value="Sensorik" <?php if ($row['ragam_disabilitas'] == 'Sensorik') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Sensorik</option>
-                                                <option value="Intelektual" <?php if ($row['ragam_disabilitas'] == 'Intelektual') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Intelektual</option>
-                                                <option value="Mental" <?php if ($row['ragam_disabilitas'] == 'Mental') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Mental</option>
-                                                <option value="Ganda" <?php if ($row['ragam_disabilitas'] == 'Ganda') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Ganda</option>
-                                            </select>
+                            <div class="col-sm-3">
+                                    <select  class="custom-select" name="ragam_disabilitas" id="ragam_disabilitas" class="form-control input-sm">
+                                                <?php foreach ($ragam as $r) : ?>
+                                                    <option value="<?= $r['id_ragam']; ?>" <?php if ($r['id_ragam'] == $row['ragam_id']) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $r['disabilitas_ragam']; ?> </option>
+                                                <?php endforeach; ?>
+                                    </select>
                                 <?= form_error('ragam_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -185,14 +155,6 @@
                                 <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="keterangan" class="col-sm-3 col-form-label">Keterangan</label>
-                            <div class="col-sm-8">
-                            <textarea class="form-control" id="alaketeranganmat" placeholder="keterangan" name="keterangan" rows="3"><?= $row['keterangan']; ?></textarea>
-                                <?= form_error('keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
@@ -217,24 +179,25 @@
 
 <?php foreach ($data_disabilitas as $row) : ?>
     <!-- modalhapus -->
-    <div class="modal fade" id="modalHapus<?= $row['id_dis']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
+    <div class="modal fade" id="modalHapus<?= $row['id_jenis']; ?>" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalHapus">Apakah kamu yakin ?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <!-- <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
-                    </button>
+                    </button> -->
                 </div>
                 <center>
                     <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
-                    <form action="<?= base_url('datamaster/delete_disabilitas/' . $row['id_dis']); ?>">
-                        <div class="modal-body">Data&nbsp;<b>
-                                <font color="red"><?= $row['ragam_disabilitas']; ?> & <?= $row['jenis_disabilitas']; ?></font>
-                            </b> akan dihapus </div>
+                    <form action="<?= base_url('datamaster/delete_disabilitas/' . $row['id_jenis']); ?>">
+                        <div class="modal-body">Ragam jenis disabilitas&nbsp;<b>
+                                <font color="black"><?= $row['disabilitas_ragam']; ?> </font>, &nbsp;<font color="black"> <?= $row['jenis_disabilitas']; ?></font>
+                                <br>
+                            <font color="red">akan dihapus !</b>  </font> </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="id" value=<?= $row['id_dis']; ?>>
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                            <input type="hidden" name="id" value=<?= $row['id_jenis']; ?>>
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </div>
                     </form>
