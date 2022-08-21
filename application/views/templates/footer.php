@@ -173,7 +173,6 @@
     });
     </script>
 
-
     <!-- untuk ubah status hak akses dengan realtime -->
     <script>
         $('.custom-file-input').on('change', function() {
@@ -297,6 +296,181 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        var latlngs = [
+            [-8.210225, 110.820616],
+            [-7.879864, 111.295774],
+            [-7.427994, 111.125486],
+            [-7.248205, 111.188658],
+            [-7.346281, 111.427610],
+            [-7.180084, 111.570432],
+            [-7.002922, 111.606138],
+            [-6.926585, 111.570432],
+            [-6.749327, 111.685789],
+            [-6.762965, 111.965940],
+            [-6.888412, 112.100523],
+            [-6.850236, 112.564695],
+            [-6.861144, 113.929746],
+            [-7.120129, 114.783933],
+            [-7.844494, 114.468076],
+            [-8.434495, 114.358213],
+            [-8.657214, 114.577940],
+            [-8.763096, 114.580686],
+            [-8.744094, 114.338987],
+            [-8.630061, 114.325254],
+            [-8.507844, 113.5822181],
+            [-8.288566, 113.205936],
+            [-8.443456, 112.642887],
+            [-8.302156, 111.89581],
+            [-8.370095, 111.673344],
+            [-8.231487, 111.080082],
+            [-8.207021, 110.893314],
+        ];
+        var polygon = L.polygon(latlngs, {
+            color: 'white'
+        }).addTo(map);
+
+        var latlngs2 = [
+            [-8.210225, 110.820616],
+
+        ];
+        var polygon = L.polygon(latlngs2, {
+            color: 'blue'
+        }).addTo(map);
+
+
+        // $.getJSON("<?= base_url() ?>beranda/phk", function(phk) {
+        //     $.each(phk, function(i, field) {
+        //         var phk_max = phk[i].jumlah_phk;
+        //     });
+        // });
+
+        $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
+            $.each(data, function(i, field) {
+
+                var leafleticon = L.icon({
+                    iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
+                    iconSize: [38, 45]
+                })
+                
+                var lat = parseFloat(data[i].kabupaten_lat);
+                var long = parseFloat(data[i].kabupaten_long);
+                var logo = data[i].logo_kab;
+
+                bangunanMarker = L.marker([long, lat], {
+                        icon: leafleticon,
+                        title: "hahah",
+                    }).addTo(map)
+                    .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
+                        "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#F93333'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center></center></td></tr><tr style='background-color:#F3DB0B'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center></center></td></tr><tr style='background-color:#0BF367'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center></center></td></tr><tr style='background-color:#1464C4'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center></center></td></tr><tr><td>Total</td><td><center></center></td></tr></table>" +
+                        "<button type='button' onclick='btn_lp()' class='btn btn-sm btn-success listp' data-id='"+data[i].id_kabupaten+"'>Data Perusahaan</button>")
+                    .openPopup().bindTooltip(data[i].nama_kabupaten, {
+                        permanent: true,
+                        direction: 'bottom',
+                        opacity: 0.7
+                    });
+            });
+        });
+
+        // LIST PERUSAHAAN
+    </script>
+
+    <script>
+        function btn_lp(){
+            var id_kabupaten = $(".listp").attr("data-id");
+            // var baris_tabel = $(".baris_tabel");
+            $.ajax({
+                    url : "<?php echo site_url('beranda/list_perusahaan');?>",
+                    method : "POST",
+                    data : {id_kabupaten: id_kabupaten},
+                    // async : true,
+                    dataType : 'json',
+                    success: function(data){
+                        var html = "";
+                        for(i=0; i<data.length; i++){
+                        var nama_kabupaten = data[i].nama_kabupaten
+                            html += "<tr><td scope='row'>"+data[i].id+"</td><td>"+data[i].nama_perusahaan+"</td><td><button class='btn btn-primary detailp' data-id='"+data[i].id+"' onclick='btn_detail_lp("+data[i].id+")'><i class='fa fa-search' aria-hidden='true'></i>Detail</button></td></tr>";
+                        }
+                        
+                        $('#baris_tabel').html(html);
+                        $('#nama_kabb').html(nama_kabupaten);
+                        $('#modalPerusahaanlist').modal('show');
+                        // var html = '';
+                        // var i;
+                        // for(i=0; i<data.length; i++){
+                        //     html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
+                        // }
+                        // $('#sub_category').html(html);
+ 
+                    }
+                });
+		}
+
+        function btn_detail_lp(id){
+            var id_prs = id;
+            $.ajax({
+                    url : "<?php echo site_url('beranda/detail_reward_perusahaan');?>",
+                    method : "POST",
+                    data : {id_prs: id_prs},
+                    // async : true,
+                    dataType : 'json',
+                    success: function(data){
+                        // var detail = $.parseJSON(data);
+                        var html="";
+                        for(i=0; i<1; i++){
+                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>:"+data.test[i].nama_perusahaan+"</label></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Pimpinan </label><label class='col-sm-8 col-form-label'>:"+data.jenis[i].nama+"</label></div></div>";
+                        }
+                        $('#detailper').html(html);
+                        $('#modalPerusahaanlist').modal('hide');
+                        $('#detail_reward_perusahaan').modal('show');
+                        
+                        // var html = '';
+                        // var i;
+                        // for(i=0; i<data.length; i++){
+                        //     html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
+                        // }
+                        // $('#sub_category').html(html);
+ 
+                    }
+                });
+		}
+        // $(document).ready(function(){
+ 
+        // $('.btn_lp').on('click', function(){ 
+        //     alert("masuk");
+        //     return false;
+        //     var id=$(this).val();
+        //     $.ajax({
+        //         url : "<?php echo site_url('beranda/list_perusahaan');?>",
+        //         method : "POST",
+        //         data : {id: id},
+        //         async : true,
+        //         dataType : 'json',
+        //         success: function(data){
+        //             var html = '';
+        //             var i;
+        //             for(i=0; i<data.length; i++){
+        //                 html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
+        //             }
+        //             $('#sub_category').html(html);
+
+        //         }
+        //     });
+            // return false;
+        // }); 
+        
+        // });
+    </script>
+
+<script type="text/javascript">
+        // var L = window.L;
+
+        var map = L.map('mapp2').setView([-7.6709737, 112.3288216], 8);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
         // use the detect retina option to load retina tiles for this layer.
         // L.esri.basemapLayer('DarkGray', {
         //     detectRetina: true
@@ -376,7 +550,7 @@
                     iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
                     iconSize: [38, 45]
                 })
-
+                
                 var lat = parseFloat(data[i].kabupaten_lat);
                 var long = parseFloat(data[i].kabupaten_long);
 
@@ -466,11 +640,13 @@
                     });
             });
         });
+
+        // LIST PERUSAHAAN
     </script>
     <!-- script map utama -->
 
     <!-- script map filter tahun -->
-    <script>
+    <!-- <script>
         $(function() {
 
             $('#tahun_pilih').on('change', function() {
@@ -500,7 +676,7 @@
                 }
             });
         }
-    </script>
+    </script> -->
 
 
     <script type="text/javascript">

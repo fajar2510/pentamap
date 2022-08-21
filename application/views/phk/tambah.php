@@ -91,7 +91,7 @@
                                         <div class="col-sm-3">
                                             <select name="status_kerja" id="status_kerja" class="form-control">
                                                 <option value="aktif">Aktif (masih bekerja)</option>
-                                                <option value="phk">Tidak Aktif (ter-PHK)</option>
+                                                <option value="phk">Nonaktif (ter-PHK)</option>
                                             </select>
                                         </div>
                                     </div>

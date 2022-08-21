@@ -42,8 +42,9 @@
         <div class="col-md-12">
             
             <!-- tampilan map -->
-            <div id="mapp"></div>
+            <!-- <div id="mapp"></div> -->
             <!-- tampilan map -->
+            
 
             <!-- <div>
                 <hr>
@@ -66,6 +67,8 @@
                     </li>
                 </ul>
             </div> -->
+            <h1>test</h1>
+            <div id="mapp"></div>
             <hr>
             <!-- <div class="card-body">
                 <div class="table-responsive">
@@ -104,7 +107,65 @@
             </div> -->
         </div>
     </div>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Perusahaan </h5><h5 id="nama_kabb"></h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Perusahaan</th>
+                            <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div id="baris_tabel"></div>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class=" modal fade" id="detail_reward_perusahaan" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Perusahaan</h5>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <div id="detailper">
+                                
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- End of Main Content -->

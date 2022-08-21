@@ -125,7 +125,7 @@ class Datamaster extends CI_Controller
         // $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
         //     'matches' => 'Password dont match!',
         //     'min_length' => 'Password too short!'
-        // ]);
+        // ]);user_role
         // $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         $this->form_validation->set_rules('role', 'Role', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'NIK', 'required|trim');

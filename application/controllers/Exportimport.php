@@ -14,9 +14,12 @@ class Exportimport extends CI_Controller
         $this->load->model('Perusahaan');
         $this->load->model('Master');
         $this->load->model('Tka');
-        $this->load->model('Phk');
+        // $this->load->model('Phk');
+        $this->load->model('Lokal');
+        $this->load->model('RewardModel');
     }
-
+    
+    // import excel csv file
     public function import_data_pmi()
     {
         $config['upload_path'] = './assets/exportimport/import/';
@@ -65,6 +68,7 @@ class Exportimport extends CI_Controller
         }
     }
 
+    // impor excel csv files
     public function import_data_tka()
     {
         $config['upload_path'] = './assets/exportimport/import/';

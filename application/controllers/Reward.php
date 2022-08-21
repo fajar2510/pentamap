@@ -65,6 +65,8 @@ class Reward extends CI_Controller
         // $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
         $data['max_id'] = $this->RewardModel->max_id_perusahaan();
         $data['jenis'] = $this->RewardModel->get_jenis();
+        var_dump($data['jenis']);
+        die;
 
         
         // validation form
@@ -178,6 +180,8 @@ class Reward extends CI_Controller
         $data['jenis'] = $this->RewardModel->get_jenis();
         $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
+        
+
         // form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
@@ -199,9 +203,10 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
         $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
 
-
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan Perusahaan';
+            // var_dump($data);
+            // die;
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -310,13 +315,13 @@ class Reward extends CI_Controller
         echo json_encode($value);
     }
 
-    //UPDATE
-	// function update(){
-	// 	$id_reward = $this->input->post('id_reward',TRUE);
-	// 	$id_jenis = $this->input->post('jenis_edit',TRUE);
-	// 	$this->RewardModel->update_jenis($id_reward,$id_jenis);
-	// 	redirect('reward');
-	// }
+   
+	function update(){
+		$id_reward = $this->input->post('id_reward',TRUE);
+		$id_jenis = $this->input->post('jenis_edit',TRUE);
+		$this->RewardModel->update_jenis($id_reward,$id_jenis);
+		redirect('reward');
+	}
 }
 
     

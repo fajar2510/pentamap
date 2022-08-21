@@ -10,6 +10,7 @@ class Beranda extends CI_Controller
         
         $this->load->model('Master');
         $this->load->model('Penempatan');
+        $this->load->model('RewardModel');
     }
 
     public function index()
@@ -23,6 +24,12 @@ class Beranda extends CI_Controller
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
 
+        $perusahaan =
+            "SELECT *
+            FROM tb_perusahaan 
+            -- WHERE id_provinsi= '42385' 
+        ";
+        $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -62,6 +69,33 @@ class Beranda extends CI_Controller
         $data = $this->db->query($query)->result();
         echo json_encode($data);
     }
+
+    // function get_sub_category(){
+    //     $category_id = $this->input->post('id',TRUE);
+    //     $data = $this->product_model->get_sub_category($category_id)->result();
+    //     echo json_encode($data);
+    // }
+    public function list_perusahaan()
+    {
+        $id=$this->input->post('id_kabupaten');
+        $query =
+            "SELECT *
+            FROM tb_perusahaan 
+            JOIN kabupaten ON kabupaten.id_kabupaten = tb_perusahaan.fungsi
+            WHERE fungsi= $id 
+        ";
+        $data = $this->db->query($query)->result();
+        echo json_encode($data);
+    }
+
+    public function detail_reward_perusahaan()
+    {
+        $id=$this->input->post('id_prs');
+        $data['test'] = $this->RewardModel->get_detail_reward_perusahaan($id);
+        $data['jenis'] = array(["nama" => 20]);
+        echo json_encode($data);
+    }
+
     public function phk()
     {
         $query =

@@ -82,7 +82,7 @@
                                             <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td class="text-center">
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
-                                                <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning disabled" > <i class="fa fa-edit"></i></a>
+                                                <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
