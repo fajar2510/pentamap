@@ -72,13 +72,20 @@ class User extends CI_Controller
             $name = $this->input->post('name');
             $email = $this->input->post('email');
             $bio = $this->input->post('bio');
+            $kontak = $this->input->post('kontak');
+            $tanggal_lahir = $this->input->post('tanggal_lahir');
+            $jenis_kelamin = $this->input->post('jenis_kelamin');
+            $NIK = $this->input->post('NIK');
+            $NIP = $this->input->post('NIP');
+            $alamat = $this->input->post('alamat');
+            $jabatan = $this->input->post('jabatan');
 
             // cek jika ada gambar yang akan di upload
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']      = '2500';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']      = '1024';
                 $config['upload_path']   = './assets/img/profile';
 
                 $this->load->library('upload', $config);
@@ -97,8 +104,16 @@ class User extends CI_Controller
                 }
             }
 
+            
             $this->db->set('name', $name);
             $this->db->set('bio', $bio);
+            $this->db->set('kontak', $kontak);
+            $this->db->set('tanggal_lahir', $tanggal_lahir);
+            $this->db->set('jenis_kelamin', $jenis_kelamin);
+            $this->db->set('NIK', $NIK);
+            $this->db->set('NIP', $NIP);
+            $this->db->set('alamat', $alamat);
+            $this->db->set('jabatan', $jabatan);
 
             $this->db->where('email', $email);
             $this->db->update('user');
@@ -114,7 +129,7 @@ class User extends CI_Controller
 
     public function changePassword()
     {
-        $data['title'] = 'Ubah Kata Sandi/Password';
+        $data['title'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -133,26 +148,26 @@ class User extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('user/changepassword', $data);
+            $this->load->view('user/index', $data);
             $this->load->view('templates/footer');
         } else {
             $current_password = $this->input->post('current_password');
             $new_password = $this->input->post('new_password1');
             if (!password_verify($current_password, $data['user']['password'])) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong> Password saat ini salah !</strong> masukkan password lama dengan benar.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>   </div>');
-                redirect('user/changepassword');
+                redirect('user');
             } else {
                 if ($current_password == $new_password) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong> Password sama !</strong> harap masukkan password yang berbeda.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>   </div>');
-                    redirect('user/changepassword');
+                    redirect('user');
                 } else {
                     // password sudah OK
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -162,11 +177,11 @@ class User extends CI_Controller
                     $this->db->update('user');
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong> Disunting !</strong> data telah berhasil diupdate.
+                    <strong> Berhasil Disunting !</strong> data telah berhasil diupdate.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>   </div>');
-                    redirect('user/changepassword');
+                    redirect('user');
                 }
             }
         }

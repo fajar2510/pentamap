@@ -67,8 +67,8 @@
                                         <th>Nama</th>
                                         <th>Asal</th>
                                         <th>Perusahaan</th>
-                                        <th>Kebutuhan Khusus</th>
-                                        <th>Status</th>
+                                        <th class="text-center">Disabilitas</th>
+                                        <th class="text-center">Status</th>
                                         <!-- <th>Kontak</th> -->
                                         <th width="12%" class="text-center">Aksi</th>
                                     </tr>
@@ -78,14 +78,21 @@
                                     <?php foreach ($data_phk as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></small> </th>
-                                            <td><small>  <?= $p['nama_tk']; ?>
-                                            <!-- <td><small> <?= $p['kontak']; ?></small></td> -->
+                                            <td> <?= $p['nama_tk']; ?>
                                             <td><small> <?= $p['nama_kabupaten']; ?></small> </td>
-                                            <td><small> <?= $p['nama_perusahaan']; ?></small></td>
-                                            <td><small> <?= $p['ragam_disabilitas']; ?>. <?= $p['jenis_disabilitas']; ?></small> </td>
-                                            <td> <small> <?= $p['status_kerja']; ?></small></td>
+                                            <td> <?= $p['nama_perusahaan']; ?></td>
+                                            <td class="text-center"><?php if ($p['disabilitas'] == '1') {
+                                                            echo '<span class="badge badge-info">Iya</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-light">Tidak</span>';
+                                                        } ?> </td>
+                                            <td class="text-center"><?php if ($p['status_kerja'] == 'aktif') {
+                                                            echo '<span class="badge badge-success">Aktif</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-light">Nonaktif (phk)</span>';
+                                                        } ?></span> </td>
                                             <td class="text-center">
-                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
                                                 <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
@@ -186,17 +193,20 @@
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Status </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['status_kerja']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($p['status_kerja'] == 'aktif') {
+                                                            echo '<span class="badge badge-success">Aktif</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-danger">Nonakti(phk)</span>';
+                                                        } ?> </label>
                         </div>
                         <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Ragam Disabilitas </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['ragam_disabilitas']; ?></label>
+                            <label for="name" class="col-sm-3 col-form-label">Peny. Disabilitas </label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['disabilitas'] == '1') {
+                                                            echo '<span class="badge badge-info">Iya</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-light">Tidak</span>';
+                                                        } ?> </label>
                         </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jenis Disabilitas </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_disabilitas']; ?> </label>
-                        </div>
-                       
                     </div>
                 </div>
                 <div class="modal-footer">

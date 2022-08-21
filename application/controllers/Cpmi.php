@@ -61,7 +61,7 @@ class Cpmi extends CI_Controller
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
 
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
+        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
 
         $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
@@ -148,7 +148,7 @@ class Cpmi extends CI_Controller
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
 
 
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'required');
+        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
 
         $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');

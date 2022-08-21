@@ -65,7 +65,6 @@ class Phk extends CI_Controller
         $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
         $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
         $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'trim');
-        $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tenaga Kerja Lokal';
@@ -85,8 +84,7 @@ class Phk extends CI_Controller
                 'kode_segmen' => $this->input->post('kode_segmen', true),
                 'nama_perusahaan' => $this->input->post('perusahaan', true),
                 'status_kerja' => $this->input->post('status_kerja', true),
-                'ragam_disabilitas' => $this->input->post('disabilitas', true),
-                'jenis_disabilitas' => $this->input->post('rincian', true),
+                'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
             ];
 
@@ -147,7 +145,6 @@ class Phk extends CI_Controller
         $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
         $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
         $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'trim');
-        $this->form_validation->set_rules('rincian', 'Rincian jenis', 'trim');
 
 
         if ($this->form_validation->run() == false) {
@@ -168,8 +165,7 @@ class Phk extends CI_Controller
                 'kode_segmen' => $this->input->post('kode_segmen', true),
                 'nama_perusahaan' => $this->input->post('perusahaan', true),
                 'status_kerja' => $this->input->post('status_kerja', true),
-                'ragam_disabilitas' => $this->input->post('disabilitas', true),
-                'jenis_disabilitas' => $this->input->post('rincian', true),
+                'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
             ];
 

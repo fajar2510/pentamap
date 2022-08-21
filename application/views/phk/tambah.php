@@ -119,7 +119,18 @@
                                     
 
                                     <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
-                                    <div class="form-group row">
+                                    <div class="form-group">
+                                        <label for="disablitas" class="col-sm-3 col-form-label">Penyandang disabilitas?</label>
+                                            <div class="col-sm-6">
+                                             <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" name="disabilitas" id="disabilitas" unchecked>
+                                                <label class="form-check-label" for="disabilitas">
+                                                    Iya?
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group row">
                                         <label for="disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
                                         <div class="col-sm-3">
                                             <select name="disabilitas" id="disabilitas" class="form-control">
@@ -138,7 +149,7 @@
                                             <input type="text" class="form-control" id="rincian" placeholder="Rincian . . ." name="rincian">
                                             <?= form_error('rincian', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div   div class="modal-footer">
                                         <button type="submit" class="btn btn-primary btn-icon-split">
                                             <span class="icon text-white-50">

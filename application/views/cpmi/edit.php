@@ -44,7 +44,7 @@
                                     </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
-                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT</label>
+                                        <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT/Organisasi</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="perusahaan" placeholder="Edit Nama PT" name="perusahaan" value="<?= $edit_cpmi->perusahaan ?>">
                                             <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>

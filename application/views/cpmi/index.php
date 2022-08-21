@@ -76,12 +76,12 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <th>Tanggal</th>
+                                        <!-- <th>Tanggal</th> -->
                                         <th>Nama_PMI </th>
                                         <th>Domisili</th>
                                         <!-- <th>L/P</th> -->
-                                        <th>Perusahaan</th>
-                                        <!-- <th>Pengguna Jasa </th> -->
+                                        <!-- <th>Perusahaan</th> -->
+                                        <th>Pengguna Jasa </th>
                                         <th>Negara</th>
                                         <th>&nbsp;Aksi__&nbsp;</th>
                                     </tr>
@@ -91,13 +91,13 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['date_created']; ?> </small> </td>
+                                            <!-- <td> <small> <?= $p['date_created']; ?> </small> </td> -->
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['nama_kabupaten']; ?> </small> </td>
-                                            <td><small> <?= $p['perusahaan']; ?> </small> </td>
+                                            <!-- <td><small> <?= $p['perusahaan']; ?> </small> </td> -->
                                             <!-- <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
                                             <!-- <td><small> <?= $p['nama_perusahaan']; ?> </small> </td> -->
-                                            <!-- <td><small> <?= $p['pengguna_jasa']; ?> </small> </td> -->
+                                            <td><small> <?= $p['pengguna_jasa']; ?> </small> </td>
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>

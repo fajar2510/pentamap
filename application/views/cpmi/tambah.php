@@ -44,9 +44,9 @@
                                     </div> 
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
-                                    <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT</label>
+                                    <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT/Organisasi</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT" name="perusahaan">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT/organisasi" name="perusahaan">
                                             <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -84,17 +84,17 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat PMI</label>
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
                                             <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lokasi" class="col-sm-3 col-form-label">Wilayah/Kota Domisili</label>
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Kabupaten/kota</label>
                                         <div class="col-sm-3">
                                             <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
-                                                <option value="">~ Pilih Lokasi Kota ~</option>
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
                                                 <?php endforeach; ?>
@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Sektor Jabatan</label>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <select name="jabatan" id="pendidikan" class="form-control">
                                                 <option value=""> ~ Pilih Sektor Jabatan ~ </option>
                                                 <option value="FORMAL">FORMAL</option>

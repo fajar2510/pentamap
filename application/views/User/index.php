@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> Pengguna</h1>
 
     <?php if (validation_errors()) : ?>
         <div class="alert alert-danger" role="alert">
@@ -22,14 +22,23 @@
         <div class="col-lg-4">
             <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" alt="Profile Picture"
-                class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">John Smith</h5>
-                <p class="text-muted mb-1">Full Stack Developer</p>
-                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                <a href="" >
+                <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>"  alt="Profile Picture"
+                class="rounded-circle img-fluid img-thumbnail " style="width: 150px;"> </a>
+                
+                
+                <h5 class="my-3"><?= $user['name']; ?></h5>
+                <p class="text-muted mb-0 "> <small> <i><?php if ($user['jenis_kelamin'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $user['jenis_kelamin']; ?>&nbsp;)</i></small></p>
+                <p class="text-muted mb-4"><?= $user['jabatan']; ?></p>
+                <div class="card mb-4">
+                
+                <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary">Edit Profile</button>
+               
+                <button type="button" data-toggle="modal" data-target="#modalPassword" class="btn btn-light ms-1">Edit Password</button>
                 </div>
             </div>
             </div>
@@ -45,6 +54,7 @@
                 <div class="col-sm-9">
                     <p class="text-muted mb-0"><?= $user['name']; ?></p>
                 </div>
+                
                 </div>
                 <hr>
                 <div class="row">
@@ -81,46 +91,30 @@
                 <div class="col-sm-9">
                     <p class="text-muted mb-0"><?= $user['alamat']; ?></p>
                 </div>
-                <div class="col-sm-9">
-                    <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
+                
                 </div>
                 <hr>
                 <div class="row">
                 <div class="col-sm-3">
                     <p class="mb-0">Bio</p>
                 </div>
+                
+                
                 <div class="col-sm-9">
-                    <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
-                </div>
-                <hr>
-                <div class="row">
-                <div class="col-sm-3">
-                    <p class="mb-0">Jenis Kelamin</p>
-                </div>
-                <div class="col-sm-9">
-                    <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
-                </div>
-                <hr>
-                <div class="row">
-                <div class="col-sm-3">
-                    <p class="mb-0">Tanggal Lahir</p>
-                </div>
-                </div>
-                <hr>
-                <div class="row">
-                <div class="col-sm-3">
-                    <p class="mb-0">Jabatan</p>
+                    <p class="text-muted mb-0"><?= $user['bio']; ?></p>
                 </div>
 
                 </div>
                 <hr>
                 <div class="row">
                 <div class="col-sm-3">
-                    <p class="mb-0">Bergabung sejak</p>
+                    <p class="mb-0">Bergabung sejak </p>
                 </div>
+
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0"><?= date('d F Y', $user['date_created']);  ?></p>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -144,7 +138,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditLabel">Ubah Data User</h5>
+                    <h5 class="modal-title" id="modalEditLabel">Edit Profile</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -261,6 +255,70 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- edit password modal -->
+    <div class=" modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditLabel">Edit Password</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+
+                <div class="card shadow mb-1">
+                <div class="card-header py-3">
+                    <form action="<?= base_url('user/changepassword'); ?>" method="post">
+                        <div class="form-group row">
+                            <label for="current_password" class="col-sm-3 col-form-label">Password Sekarang*</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="current_password" placeholder="" name="current_password" >
+                                <small id=" pasnow" class="form-text text-muted"> <i> *Password kamu saat ini. </i></small>
+                                <?= form_error('current_password', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="new_password1" class="col-sm-3 col-form-label">Password Baru*</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="new_password1" placeholder="" name="new_password1" >
+                                <small id=" pashelp" class="form-text text-muted"> <i> *Gunakan karakter unik dan minimal 4 huruf. </i></small>
+                                <?= form_error('new_password1', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="new_password2" class="col-sm-3 col-form-label">Ulangi Password*</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="new_password2" placeholder="" name="new_password2" >
+                                <small id=" ulangihelp" class="form-text text-muted"> <i> *Ulangi untuk konfirmasi password </i></small>
+                                <?= form_error('new_password2', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                                <span class="icon text-gray-600">
+                                    <i class="fas fa-window-close"></i>
+                                </span>
+                                <span class="text">Batal</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-50">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                </span>
+                                <span class="text">Konfirmasi</span>
+                            </button>``
+                        </div>
+                    </form>
+                </div>
+                </div>
+                    
             </div>
         </div>
     </div>

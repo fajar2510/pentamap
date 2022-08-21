@@ -181,10 +181,10 @@
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profil
                         </a>
-                        <a class="dropdown-item" href="<?= base_url('user/edit'); ?>">
+                        <!-- <a class="dropdown-item" href="<?= base_url('user/edit'); ?>">
                             <i class="fas fa-fw fa-user-edit mr-2 text-gray-400"></i>
                             Edit
-                        </a>
+                        </a> -->
                         <!-- <a class="dropdown-item" href="<?= base_url('user/changePassword'); ?>">
                             <i class="fas fa-fw fa-unlock-alt mr-2 text-gray-400"></i>
                             Ubah Password

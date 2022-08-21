@@ -250,7 +250,7 @@ class Master extends CI_Model
     public function get_tb_phk()
     {
         $query = "SELECT  tb_phk . * , tb_phk.nama_tk , tb_phk.wilayah, tb_phk.status_kerja, 
-        tb_phk.ragam_disabilitas, tb_phk.jenis_disabilitas, tb_phk.date_created, tb_perusahaan.nama_perusahaan, kabupaten.nama_kabupaten
+       tb_phk.disabilitas, tb_phk.date_created, tb_perusahaan.nama_perusahaan, kabupaten.nama_kabupaten
         FROM tb_phk
         JOIN kabupaten ON tb_phk.wilayah = kabupaten.id_kabupaten 
         JOIN tb_perusahaan ON tb_phk.nama_perusahaan = tb_perusahaan.id 
