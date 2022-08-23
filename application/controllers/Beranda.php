@@ -84,15 +84,130 @@ class Beranda extends CI_Controller
             JOIN kabupaten ON kabupaten.id_kabupaten = tb_perusahaan.fungsi
             WHERE fungsi= $id 
         ";
-        $data = $this->db->query($query)->result();
+
+        $kab = "SELECT *
+        FROM kabupaten 
+        WHERE id_kabupaten= $id";
+ 
+        $data['perusahaan'] = $this->db->query($query)->result();
+        $data['kab'] = $this->db->query($kab)->result();
+        
         echo json_encode($data);
     }
 
     public function detail_reward_perusahaan()
     {
         $id=$this->input->post('id_prs');
-        $data['test'] = $this->RewardModel->get_detail_reward_perusahaan($id);
-        $data['jenis'] = array(["nama" => 20]);
+        $data['perusahaan'] = $this->RewardModel->get_detail_reward_perusahaan($id);
+        $panjang_array = count( $data['perusahaan']);
+
+        // $r_d=array();
+        // foreach ($data['perusahaan'] as $data_jenis) {
+        //     if ($data_jenis['jenis_disabilitas'] != null) {
+        //         $explode_jd = explode(",", $data_jenis['jenis_disabilitas']);
+        //             $namanya="";
+        //             $index_buatan=0;
+        //             $temp="";
+        //             foreach($explode_jd as $arr){
+        //                 $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_ragam.disabilitas_ragam
+        //                 FROM dis_jenis 
+        //                 JOIN dis_ragam
+        //                 ON dis_jenis.ragam_id = dis_ragam.id_ragam 
+        //                 WHERE id_jenis  = '$arr'";
+        
+        //                 $arr_result = $this->db->query($query)->result_array();
+        //                 foreach ($arr_result as $val) {
+        //                     $index_buatan+=1;
+        //                 if ($val['disabilitas_ragam'] != $temp ) {
+        //                     if ($index_buatan == 1) {
+        //                         $namanya .= "";
+        //                     }else {
+        //                         $namanya .= ",&nbsp;";
+        //                     }
+        //                     $namanya .= $val['disabilitas_ragam']; 
+        //                 }
+        //                 $temp = $val['disabilitas_ragam'];
+        //                 }
+        //             }   
+        //     }
+        //     array_push($r_d, $namanya);
+        // }
+
+        // SINTAX MENAMPILKAN RAGAM DISABILITAS
+        $tanpareward="no";
+        $r_d=array();
+        foreach ($data['perusahaan'] as $data_jenis) {
+            if ($data_jenis['jenis_disabilitas'] != null) {
+                $explode_jd = explode(",", $data_jenis['jenis_disabilitas']);
+                    $namanya="";
+                    $index_buatan=0;
+                    $temp="";
+                    foreach($explode_jd as $arr){
+                        $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_ragam.disabilitas_ragam
+                        FROM dis_jenis 
+                        JOIN dis_ragam
+                        ON dis_jenis.ragam_id = dis_ragam.id_ragam 
+                        WHERE id_jenis  = '$arr'";
+        
+                        $arr_result = $this->db->query($query)->result_array();
+                        foreach ($arr_result as $val) {
+                            $index_buatan+=1;
+                        if ($val['disabilitas_ragam'] != $temp ) {
+                            if ($index_buatan == 1) {
+                                $namanya .= "";
+                            }else {
+                                $namanya .= ",&nbsp;";
+                            }
+                            $namanya .= $val['disabilitas_ragam']; 
+                        }
+                        $temp = $val['disabilitas_ragam'];
+                        }
+                    }   
+                array_push($r_d, $namanya);
+            }
+            else{
+                array_push($r_d, $tanpareward);
+            }
+        }
+        // SINTAX MENAMPILKAN RAGAM DISABILITAS
+
+        // SINTAX MENAMPILKAN JENIS DISABILITAS
+        $j_d=array();
+        foreach ($data['perusahaan'] as $data_jenis) {
+            if ($data_jenis['jenis_disabilitas'] != null) {
+                $explode_jd = explode(",", $data_jenis['jenis_disabilitas']);
+                    $namanya_jenis="";
+                    $index_buatan_jenis=0;
+                    foreach($explode_jd as $arr){
+                        $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_jenis.jenis_disabilitas
+                        FROM dis_jenis 
+                        WHERE id_jenis  = '$arr'";
+        
+                        $arr_result = $this->db->query($query)->result_array();
+                        foreach ($arr_result as $val) {
+                            $index_buatan_jenis+=1;
+                            if ($index_buatan_jenis == 1) {
+                                $namanya_jenis .= "";
+                            }else {
+                                $namanya_jenis .= ",&nbsp;";
+                            }
+                            $namanya_jenis .= $val['jenis_disabilitas']; 
+                        }
+                    }   
+                array_push($j_d, $namanya_jenis);
+            }
+            else{
+                array_push($j_d, $tanpareward);
+            }
+        }
+        // SINTAX MENAMPILKAN JENIS DISABILITAS
+
+        // JENIS DISABILITAS NANTI DIMASUKKAN KESINI
+            for ($i=0; $i<$panjang_array; $i++) {
+                array_push($data['perusahaan'][$i], $r_d[$i]);
+                array_push($data['perusahaan'][$i], $j_d[$i]);
+            }
+        // JENIS DISABILITAS NANTI DIMASUKKAN KESINI
         echo json_encode($data);
     }
 

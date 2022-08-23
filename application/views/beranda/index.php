@@ -20,30 +20,24 @@
             <h6> <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> <?= $title; ?> PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></h1>
         </div>
         
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <select class="form-control" id="tahun_pilih" name="tahun">
                 <option value="all">-Pilih Tahun-</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
             </select>
-        </div>
+        </div> -->
     </div>
 
   
 
     <?= $this->session->flashdata('message'); ?>
-
     
     <br>
-
     <!-- <hr> -->
 
     <div class="row">
         <div class="col-md-12">
-            
-            <!-- tampilan map -->
-            <!-- <div id="mapp"></div> -->
-            <!-- tampilan map -->
             
 
             <!-- <div>
@@ -107,28 +101,14 @@
         </div>
     </div>
     <!-- edituserModal -->
-    <div class="modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class=" modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel"> Daftar Perusahaan  Kabupaten/kota </h5><h5 id="nama_kabb"></h5>
+                    <h5 class="modal-title" id="nama_kabb"></h5><br>
                 </div>
                 <div class="container">
-                    <div class="modal-body">
-                        <table class="table">
-                        <!-- <thead>
-                            <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama Perusahaan</th>
-                            <th scope="col">Aksi</th>
-                            </tr>
-                        </thead> -->
-                        <tbody> 
-                            <small>
-                            <div class="table table-hover table-responsive table-sm" id="baris_tabel"></div>
-                            </small>
-                        </tbody>
-                        </table>
+                    <div class="modal-body" id="baris_tabel">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -147,22 +127,22 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Perusahaan</h5>
+                    <h5 class="modal-title" id="modalInfoLabel">Detail Reward Perusahaan</h5>
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                    </button>
                 </div>
                 <div class="container">
                     <div class="modal-body">
                         <div id="detailper">
                                 
                         </div>
+                        <div id="tabel_list_reward"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
-                        <span class="icon text-white-600">
-                            <i class="fas fa-window-close"></i>
-                        </span>
-                        <span class="text">Tutup</span>
-                    </button>
+                    <div class="modal-footer" id="btn_kembali">
                 </div>
             </div>
         </div>

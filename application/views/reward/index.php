@@ -66,7 +66,7 @@
                                         <th>Total</th>
                                         <th>Presentase %</th>
                                         <th>Diusulkan pada</th>
-                                        <th width="15%" class="text-center">Aksi</th>
+                                        <th width="12%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +81,6 @@
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
                                             <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td class="text-center">
-                                            <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -174,24 +173,38 @@
                             <label for="name" class="col-sm-3 col-form-label">Presentase Disabilitas </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['presentase']; ?> %</label>
                         </div>
+
+                        <!-- GANTI BAGIAN INI SAJA, UPDATE 23-8-2022 -->
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Ragam Disabilitas </label>
                             <label for="name" class="col-sm-8 col-form-label">:  &nbsp; 
                             <?php  
                                 $arr_ragam = explode(",", $r['jenis_disabilitas']);
+                                $namanya="";
+                                $index_buatan=0;
+                                $temp="";
                                 foreach($arr_ragam as $arr){
                                     $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_ragam.disabilitas_ragam
                                     FROM dis_jenis 
                                     JOIN dis_ragam
                                     ON dis_jenis.ragam_id = dis_ragam.id_ragam 
                                     WHERE id_jenis  = '$arr'";
-
+                    
                                     $arr_result = $this->db->query($query)->result_array();
-                                    foreach ($arr_result as $key => $val) {
-                                        echo $val['disabilitas_ragam'];
-                                            echo ", ";
+                                    foreach ($arr_result as $val) {
+                                        $index_buatan+=1;
+                                    if ($val['disabilitas_ragam'] != $temp ) {
+                                        if ($index_buatan == 1) {
+                                            $namanya .= "";
+                                        }else {
+                                            $namanya .= ",&nbsp;";
                                         }
+                                        $namanya .= $val['disabilitas_ragam']; 
+                                    }
+                                    $temp = $val['disabilitas_ragam'];
+                                    }
                                  }    
+                                 echo $namanya;
                             ?>
                             </label>
                         </div>
@@ -200,31 +213,29 @@
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;
                                 <?php  
                                 $jenis = explode(",", $r['jenis_disabilitas']);
-                                foreach($jenis as $jenis){
-                                    $query = "SELECT dis_jenis.jenis_disabilitas
-                                    FROM dis_jenis
-                                    WHERE id_jenis = '$jenis'";
-                                    $test = $this->db->query($query)->result_array();
-                                    // $last_key = end(array_keys($test));
-                                    // $count = count($test);
-                                    // echo $count;
-                                    foreach ($test as $key => $val) {
-                                        // echo $key;
-                                        echo $val['jenis_disabilitas'];
-                                        // if($key != count($test)-1) {
-                                            echo ", ";
-                                            // This is the last $element
-                                    //    }
-                                        // if (next($test)==true) $ret .= ", ";
-                                        // if ($key != $count) {
-                                        //     echo ", ";
-                                        // }
-
+                                $namanya_jenis="";
+                                $index_buatan_jenis=0;
+                                foreach($jenis as $arr){
+                                    $query = "SELECT DISTINCT dis_jenis.ragam_id, dis_jenis.jenis_disabilitas
+                                    FROM dis_jenis 
+                                    WHERE id_jenis  = '$arr'";
+                    
+                                    $arr_result = $this->db->query($query)->result_array();
+                                    foreach ($arr_result as $val) {
+                                        $index_buatan_jenis+=1;
+                                        if ($index_buatan_jenis == 1) {
+                                            $namanya_jenis .= "";
+                                        }else {
+                                            $namanya_jenis .= ",&nbsp;";
+                                        }
+                                        $namanya_jenis .= $val['jenis_disabilitas']; 
                                     }
                                 }
+                                echo $namanya_jenis;
                                 
                                 ?></label>
                         </div>
+                        <!-- GANTI BAGIAN INI SAJA, UPDATE 23-8-2022 -->
                     </div>
                 </div>
                 <div class="modal-footer">

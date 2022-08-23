@@ -1,5 +1,5 @@
 <!-- Footer -->
-        <footer class="sticky-footer bg-white">
+<footer class="sticky-footer bg-white">
             <hr>
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
@@ -91,6 +91,7 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo base_url('assets/js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
 
     <!-- select2 multiple form -->
     <!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
@@ -98,10 +99,8 @@
     <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap-select.js"></script>
 
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
-    
-    
+
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
- 
 
     <!-- select2 multiple form -->
     <script type="text/javascript">
@@ -294,23 +293,10 @@
         // var L = window.L;
 
         var map = L.map('mapp').setView([-7.6709737, 113.3288216], 8.5);
-        // var map = L.map('mapp'. {
-        //     layers: [base],
-        //     tap: false, // ref 
-        //     center: new L.LatLng(-7.6709737, 113.3288216),
-        //     zoom: 5,
-        //     fullscreenControl: true,
-        //     fullscreenControlOptions: {
-        //         position: 'topleft'
-        //     }
-        // });
 
-         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            // subdomains: 'abcd',
-            maxZoom: 18,
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+             maxZoom: 18,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            
-            
         }).addTo(map);
 
         var latlngs = [
@@ -387,33 +373,7 @@
               112.67578124999999
               
             ]
-            // [-8.210225, 110.820616],
-            // [-7.879864, 111.295774],
-            // [-7.427994, 111.125486],
-            // [-7.248205, 111.188658],
-            // [-7.346281, 111.427610],
-            // [-7.180084, 111.570432],
-            // [-7.002922, 111.606138],
-            // [-6.926585, 111.570432],
-            // [-6.749327, 111.685789],
-            // [-6.762965, 111.965940],
-            // [-6.888412, 112.100523],
-            // [-6.850236, 112.564695],
-            // [-6.861144, 113.929746],
-            // [-7.120129, 114.783933],
-            // [-7.844494, 114.468076],
-            // [-8.434495, 114.358213],
-            // [-8.657214, 114.577940],
-            // [-8.763096, 114.580686],
-            // [-8.744094, 114.338987],
-            // [-8.630061, 114.325254],
-            // [-8.507844, 113.5822181],
-            // [-8.288566, 113.205936],
-            // [-8.443456, 112.642887],
-            // [-8.302156, 111.89581],
-            // [-8.370095, 111.673344],
-            // [-8.231487, 111.080082],
-            // [-8.207021, 110.893314],
+      
         ];
         var polygon = L.polygon(latlngs, {
             color: '#D07000'
@@ -684,24 +644,24 @@
 
                 var leafleticon = L.icon({
                     iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    iconSize: [50, 60]
+                    iconSize: [50, 50]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
                 var long = parseFloat(data[i].kabupaten_long);
-                var logo = data[i].logo_kab;
 
                 var phk = data[i].jumlah_phk;
                 var pmib = data[i].jumlah_pmib;
                 var pmi = data[i].jumlah_pmi;
                 var tka = data[i].jumlah_tka;
+                var logo = data[i].logo_kab;
 
                 if (phk == "0") {
                     phk = parseInt("0");
                 } else {
                     phk = parseInt(data[i].jumlah_phk);
                     var circle = L.circle([long, lat], 14000, {
-                        color: '#F93333',
+                        color: '#D61C4E',
                         fillOpacity: 0.5
                     }).addTo(map);
                 }
@@ -710,8 +670,8 @@
                 } else {
                     pmib = parseInt(data[i].jumlah_pmib);
                     var circle = L.circle([long, lat], 16000, {
-                        color: 'yellow',
-                        fillColor: 'yellow',
+                        color: '#FEDB39',
+                        fillColor: '#FEDB39',
                         fillOpacity: 0.5
                     }).addTo(map);
                 }
@@ -720,8 +680,8 @@
                 } else {
                     pmi = parseInt(data[i].jumlah_pmi);
                     var circle = L.circle([long, lat], 10000, {
-                        color: '#1464C4',
-                        fillColor: '#1464C4',
+                        color: '#0096FF',
+                        fillColor: '#0096FF',
                         fillOpacity: 0.5
                     }).addTo(map);
                 }
@@ -730,7 +690,7 @@
                 } else {
                     tka = parseInt(data[i].jumlah_tka);
                     var circle = L.circle([long, lat], 12000, {
-                        color: '#0BF367',
+                        color: '#7DCE13',
                         fillOpacity: 0.5
                     }).addTo(map);
                 }
@@ -739,42 +699,42 @@
                 } else {
                     jumlah = parseInt(data[i].jumlah_phk);
                 }
+
                 var jumlah = phk + pmib + pmi + tka;
                 bangunanMarker = L.marker([long, lat], {
                         icon: leafleticon,
-                        title: "kapubaten/kota",
+                        title: "Kabupaten/kota",
                     }).addTo(map)
                     .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                        "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#F93333'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk +"</center></td></tr><tr style='background-color:#F3DB0B'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib +"</center></td></tr><tr style='background-color:#0BF367'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka +"</center></td></tr><tr style='background-color:#1464C4'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi +"</center></td></tr><tr><td>Total</td><td><center>" + jumlah +"</center></td></tr></table>" +
-                        "<button type='button' onclick='btn_lp()' class='btn btn-outline-success listp' data-id='"+data[i].id_kabupaten+"'>Data Perusahaan</button>")
-                    .openPopup().bindTooltip(data[i].nama_kabupaten, {
+                    "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#D61C4E'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk + "</center></td></tr><tr style='background-color:#FEDB39'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib + "</center></td></tr><tr style='background-color:#7DCE13'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka + "</center></td></tr><tr style='background-color:#0096FF'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>" +
+                        "<button type='button' onclick='btn_lp()' class='btn btn-sm btn-outline-success listp' data-id='"+data[i].id_kabupaten+"'>Data Perusahaan</button>")
+                    .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
                         permanent: true,
                         direction: 'bottom',
-                        opacity: 0.9
+                        opacity: 1
                     });
             });
         });
 
-        // map.locate({setView: true, maxZoom: 16});
+        map.locate({setView: true, maxZoom: 16});
 
         // create a fullscreen button and add it to the map
-        // L.control.fullscreen({
-        //   position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
-        //   title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
-        //   titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
-        //   content: null, // change the content of the button, can be HTML, default null
-        //   forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
-        //   forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
-        //   fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
-        // }).addTo(map);
+        L.control.fullscreen({
+          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
+          title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
+          titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
+          content: null, // change the content of the button, can be HTML, default null
+          forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
+          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
+          fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
+        }).addTo(map);
 
-      
+        // LIST PERUSAHAAN
     </script>
 
     <script>
         function btn_lp(){
             var id_kabupaten = $(".listp").attr("data-id");
-            // var baris_tabel = $(".baris_tabel");
             $.ajax({
                     url : "<?php echo site_url('beranda/list_perusahaan');?>",
                     method : "POST",
@@ -782,28 +742,37 @@
                     // async : true,
                     dataType : 'json',
                     success: function(data){
-                        var html = "";
-                        for(i=0; i<data.length; i++){
-                        var nama_kabupaten = data[i].nama_kabupaten
-                            html += "<tr><td scope='row'>"+(i+1)+"</td><td>"+data[i].nama_perusahaan+"</td><td><button class='btn btn-primary detailp' data-id='"+data[i].id+"' onclick='btn_detail_lp("+data[i].id+")'><i class='fa fa-search' aria-hidden='true'></i>Detail</button></td></tr>";
+                        var html="<center><h5>Daftar Perusahaan</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Nama Perusahaan</th>"
+                        html+="<th scope='col'>Aksi</th></tr></thead><tbody>";
+                        var nama_kabupaten="";
+                        nama_kabupaten += "WILAYAH : "+data.kab[0].nama_kabupaten;
+                        if (data.perusahaan.length == 0) {
+                            html += "<tr><td scope='row' colspan='4'><center>Tidak ada data Perusahaan</center></td></tr>";
+                        }else{
+                            var no=1;
+                            for(i=0; i<data.perusahaan.length; i++)
+                            {
+                                html += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i].nama_perusahaan+"</td><td><button class='btn btn-outline-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i> Riwayat Usulan Penghargaan</button></td></tr>";
+                                no+=1;
+                            }
                         }
-                        
+                        // alert(data.length);
+                        // return false;
+                        html+="</tbody></table>";
                         $('#baris_tabel').html(html);
                         $('#nama_kabb').html(nama_kabupaten);
+                        $('#detail_reward_perusahaan').modal('hide');
                         $('#modalPerusahaanlist').modal('show');
-                        // var html = '';
-                        // var i;
-                        // for(i=0; i<data.length; i++){
-                        //     html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
-                        // }
-                        // $('#sub_category').html(html);
- 
                     }
                 });
 		}
 
         function btn_detail_lp(id){
             var id_prs = id;
+            // var id_prs = $(".listp").attr("data-id");
+            // $('#modalPerusahaanlist').modal('hide');
+            // $('#detail_reward_perusahaan').modal('show');
+            // return false;
             $.ajax({
                     url : "<?php echo site_url('beranda/detail_reward_perusahaan');?>",
                     method : "POST",
@@ -811,34 +780,38 @@
                     // async : true,
                     dataType : 'json',
                     success: function(data){
-                        // var detail = $.parseJSON(data);
                         var html="";
+                        var list_reward="";
+                        var ada_reward=0;
+                        var btn_kembali="";
+                        list_reward+="<br><center><h5>Daftar Reward</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Jenis Disabilitas</th><th scope='col'>Ragam Disabilitas</th>"
+                        list_reward+="<th scope='col'>Tanggal Diusulkan</th></tr></thead><tbody>";
                         for(i=0; i<1; i++){
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>: "+data.test[i].nama_perusahaan+"</label></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Pimpinan </label><label class='col-sm-8 col-form-label'>: "+data.test[i].nama_pimpinan+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Kontak Person </label><label class='col-sm-8 col-form-label'>: "+data.test[i].nama_kontak_person+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>No. Kontak Person </label><label class='col-sm-8 col-form-label'>: "+data.test[i].no_kontak_person+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>E-mail</label><label class='col-sm-8 col-form-label'>: "+data.test[i].email_perusahaan+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Sektor</label><label class='col-sm-8 col-form-label'>: "+data.test[i].nama_sektor+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Alamat</label><label class='col-sm-8 col-form-label'>: "+data.test[i].alamat+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>No. Perusahaan</label><label class='col-sm-8 col-form-label'>: "+data.test[i].kontak+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Status</label><label class='col-sm-8 col-form-label'>: "+data.test[i].status+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Kode Kantor</label><label class='col-sm-8 col-form-label'>: "+data.test[i].kode_kantor+"</label></div></div>";
-                            
+                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_perusahaan+"</label></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Pimpinan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_pimpinan+"</label></div></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Sektor Usaha </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_sektor+"</label></div></div>";
                         }
+                        var no=1;
+                        for(i=0; i<data.perusahaan.length; i++){
+                            if (data.perusahaan[i].id_reward != null) {
+                                list_reward += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i][0]+"</td><td scope='row'>"+data.perusahaan[i][1]+"</td><td scope='row'>"+data.perusahaan[i].tanggal_usul+"</td></tr>";
+                                no+=1;
+                                ada_reward +=1;   
+                            }
+                            else{
+                                list_reward += "<tr><td scope='row' colspan='4'><center>Tidak ada data Reward</center></td></tr>";
+                            }
+                        }
+                        list_reward+="</tbody></table>";
+                        // btn_kembali += "<button type='button' onclick='btn_lp()' data-id='"+data.perusahaan[0].fungsi+"' class='btn btn-light btn-icon-split'></div>";
+                        // btn_kembali += "<span class='icon text-white-600'><i class='fas fa-arrow-left'></i></span><span class='text'>Kembali</span></button>"
+                        // alert(data.perusahaan[0][0]);
+                        // return false;
+                        $('#tabel_list_reward').html(list_reward);
+                        // $('#btn_kembali').html(btn_kembali);
                         $('#detailper').html(html);
                         $('#modalPerusahaanlist').modal('hide');
                         $('#detail_reward_perusahaan').modal('show');
-                        
-
-                      
-                        // var html = '';
-                        // var i;
-                        // for(i=0; i<data.length; i++){
-                        //     html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
-                        // }
-                        // $('#sub_category').html(html);
- 
                     }
                 });
 		}
@@ -870,7 +843,41 @@
         // });
     </script>
 
+
     <!-- script map utama -->
+
+    <!-- script map filter tahun -->
+    <!-- <script>
+        $(function() {
+
+            $('#tahun_pilih').on('change', function() {
+                var tahun = $(this).val();
+                $('#tahun_peta').html(tahun);
+                $.ajax({
+                    type: "POST",
+                    url: "<?= base_url() ?>beranda/kabupaten",
+                    data: {
+                        tahun: tahun
+                    },
+                    success: function(hasil) {
+                        $('#mapp').html(hasil);
+                    }
+                });
+            });
+        });
+
+        function tahun() {
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>beranda/kabupaten",
+                data: 'tahun=' + $('#tahun_pilih').val(),
+                dataType: "json",
+                success: function(hasil) {
+                    $('#mapp').html(hasil);
+                }
+            });
+        }
+    </script> -->
 
 
     <script type="text/javascript">

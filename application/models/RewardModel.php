@@ -50,17 +50,17 @@ class RewardModel extends CI_Model
     {
         // query index reward perusahaaan 
         $query ="SELECT 
-                    tb_perusahaan.nama_perusahaan,tb_perusahaan.nama_pimpinan,tb_perusahaan.nama_kontak_person,tb_perusahaan.no_kontak_person,
-                    tb_perusahaan.email_perusahaan,tb_perusahaan.sektor_perusahaan,tb_perusahaan.jenis_perusahaan,tb_perusahaan.status, tb_perusahaan.kode_kantor,
-                    tb_perusahaan.alamat,tb_perusahaan.kontak,tb_perusahaan.fungsi,
-                    kabupaten.nama_kabupaten, 
-                    tb_reward.*,
-                    jenis_sektor_usaha.nama_sektor
-                    FROM tb_perusahaan 
-                    JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
-                    JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
-                    LEFT JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
-                    WHERE id= $id 
+            tb_perusahaan.nama_perusahaan,tb_perusahaan.nama_pimpinan,tb_perusahaan.nama_kontak_person,tb_perusahaan.no_kontak_person,
+            tb_perusahaan.email_perusahaan,tb_perusahaan.sektor_perusahaan,tb_perusahaan.jenis_perusahaan,tb_perusahaan.status,
+            tb_perusahaan.alamat,tb_perusahaan.kontak,tb_perusahaan.fungsi,kabupaten.nama_kabupaten, jenis_sektor_usaha.nama_sektor,
+            tb_reward.id_reward, tb_reward.disabilitas_L, tb_reward.disabilitas_P, tb_reward.disabilitas_total, 
+            tb_reward.tenaga_kerja_L, tb_reward.tenaga_kerja_P, tb_reward.tenaga_kerja_total, tb_reward.presentase, 
+            tb_reward.jenis_disabilitas, tb_reward.date_created as tanggal_usul
+            FROM tb_perusahaan 
+            JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
+            JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
+            LEFT JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
+            WHERE id= $id 
                     -- JOIN dis_jenis ON tb_reward.jenis_disabilitas = dis_jenis.id
               ";
 
