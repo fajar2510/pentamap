@@ -16,7 +16,30 @@ class RewardModel extends CI_Model
                     FROM tb_perusahaan 
                     JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
                     JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
+                    JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id 
+                    ORDER BY tb_reward.id_reward DESC
+                    -- JOIN dis_jenis ON tb_reward.jenis_disabilitas = dis_jenis.id
+              ";
+
+        return $this->db->query($query)->result_array();
+    }
+
+    public function get_reward_perusahaan_date($date)
+    {
+        // query index reward perusahaaan 
+        $bln = explode('-', $date);
+        $query ="SELECT 
+                    tb_perusahaan.nama_perusahaan,tb_perusahaan.nama_pimpinan,tb_perusahaan.nama_kontak_person,tb_perusahaan.no_kontak_person,
+                    tb_perusahaan.email_perusahaan,tb_perusahaan.sektor_perusahaan,tb_perusahaan.jenis_perusahaan,tb_perusahaan.status,
+                    tb_perusahaan.alamat,tb_perusahaan.kontak,tb_perusahaan.fungsi,
+                    kabupaten.nama_kabupaten, 
+                    tb_reward.*,
+                    jenis_sektor_usaha.nama_sektor
+                    FROM tb_perusahaan 
+                    JOIN jenis_sektor_usaha ON tb_perusahaan.sektor_perusahaan = jenis_sektor_usaha.id_sektor 
+                    JOIN kabupaten ON tb_perusahaan.fungsi = kabupaten.id_kabupaten 
                     JOIN tb_reward ON tb_reward.perusahaan_id = tb_perusahaan.id
+                    WHERE  MONTH(tb_reward.date_created) = '$bln[1]' ORDER BY tb_perusahaan.fungsi DESC
                     -- JOIN dis_jenis ON tb_reward.jenis_disabilitas = dis_jenis.id
               ";
 
@@ -28,7 +51,7 @@ class RewardModel extends CI_Model
         // query index reward perusahaaan 
         $query ="SELECT 
                     tb_perusahaan.nama_perusahaan,tb_perusahaan.nama_pimpinan,tb_perusahaan.nama_kontak_person,tb_perusahaan.no_kontak_person,
-                    tb_perusahaan.email_perusahaan,tb_perusahaan.sektor_perusahaan,tb_perusahaan.jenis_perusahaan,tb_perusahaan.status,
+                    tb_perusahaan.email_perusahaan,tb_perusahaan.sektor_perusahaan,tb_perusahaan.jenis_perusahaan,tb_perusahaan.status, tb_perusahaan.kode_kantor,
                     tb_perusahaan.alamat,tb_perusahaan.kontak,tb_perusahaan.fungsi,
                     kabupaten.nama_kabupaten, 
                     tb_reward.*,

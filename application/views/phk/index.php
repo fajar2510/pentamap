@@ -70,7 +70,7 @@
                                         <th class="text-center">Disabilitas</th>
                                         <th class="text-center">Status</th>
                                         <!-- <th>Kontak</th> -->
-                                        <th width="12%" class="text-center">Aksi</th>
+                                        <th width="14%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,7 +89,7 @@
                                             <td class="text-center"><?php if ($p['status_kerja'] == 'aktif') {
                                                             echo '<span class="badge badge-success">Aktif</span>';
                                                         } else {
-                                                            echo '<span class="badge badge-light">Nonaktif (phk)</span>';
+                                                            echo '<span class="badge badge-light">Nonaktif</span>';
                                                         } ?></span> </td>
                                             <td class="text-center">
                                             <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>

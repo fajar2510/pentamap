@@ -67,7 +67,6 @@
                     </li>
                 </ul>
             </div> -->
-            <h1>test</h1>
             <div id="mapp"></div>
             <hr>
             <!-- <div class="card-body">
@@ -108,24 +107,26 @@
         </div>
     </div>
     <!-- edituserModal -->
-    <div class=" modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Perusahaan </h5><h5 id="nama_kabb"></h5>
+                    <h5 class="modal-title" id="modalInfoLabel"> Daftar Perusahaan  Kabupaten/kota </h5><h5 id="nama_kabb"></h5>
                 </div>
                 <div class="container">
                     <div class="modal-body">
-                    <table class="table">
-                        <thead>
+                        <table class="table">
+                        <!-- <thead>
                             <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama Perusahaan</th>
                             <th scope="col">Aksi</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <div id="baris_tabel"></div>
+                        </thead> -->
+                        <tbody> 
+                            <small>
+                            <div class="table table-hover table-responsive table-sm" id="baris_tabel"></div>
+                            </small>
                         </tbody>
                         </table>
                     </div>

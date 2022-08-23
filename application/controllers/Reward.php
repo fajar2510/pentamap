@@ -65,8 +65,8 @@ class Reward extends CI_Controller
         // $data['ragam_disabilitas'] = $this->Disabilitas->get_ragam_disabilitas();
         $data['max_id'] = $this->RewardModel->max_id_perusahaan();
         $data['jenis'] = $this->RewardModel->get_jenis();
-        var_dump($data['jenis']);
-        die;
+        // var_dump($data['jenis']);
+        // die;
 
         
         // validation form
@@ -98,9 +98,9 @@ class Reward extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             if ($this->input->post('id_perusahaan') == null) {
-                $id_perusahaan =$this->input->post('id_perusahaan_baru', true);;
+                $id_perusahaan =$this->input->post('id_perusahaan_baru', true);
                 // $id_perusahaan_baru = $mysqli->insert_id;
-                // var_dump( $id_perusahaan_baru);
+                // var_dump($id_perusahaan);
                 // die;
             }else{
                 $id_perusahaan = $this->input->post('id_perusahaan', true);
@@ -110,6 +110,7 @@ class Reward extends CI_Controller
                     // die;
                 $data_reward = [
                     'perusahaan_id' => $id_perusahaan,
+                    
                     'disabilitas_L' => $this->input->post('disabilitas_L', true),
                     'disabilitas_P' => $this->input->post('disabilitas_P', true),
                     'disabilitas_total' => $this->input->post('disabilitas_total', true),
@@ -120,6 +121,8 @@ class Reward extends CI_Controller
                     'jenis_disabilitas' => $jenis,
                     'date_created' => $this->input->post('tanggal_data'),
                 ];
+                // var_dump($id_perusahaan);
+                // die;
                 
             if ($this->input->post('id_perusahaan') == null) {
                 $data_perusahaan = [
@@ -138,15 +141,34 @@ class Reward extends CI_Controller
                 // var_dump($data_perusahaan, $data_reward);
                 // echo"<pre>";
                 // die;
-                // $id_perusahaan_terpilih = $this->input->post('id_perusahaan', true);
-                // var_dump($id_perusahaan_terpilih);
-                // die;
+               
                 $this->db->insert('tb_perusahaan', $data_perusahaan);
-                $this->db->where('id', $id_perusahaan_terpilih);
-                $this->db->update('tb_perusahaan', $data);
+                // $this->db->insert('tb_reward', $data_reward);
+                
             }
 
-            $this->db->insert('tb_reward', $data_reward);
+            $id_perusahaan_update = $this->input->post('id_perusahaan', true);
+            // var_dump($id_perusahaan_update);
+            // die;
+
+            $data_perusahaan = [
+                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                'fungsi' => $this->input->post('kabupaten_kota', true),
+                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                'alamat' => $this->input->post('alamat_perusahaan', true),
+                'kontak' => $this->input->post('no_perusahaan', true),
+                'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
+                'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
+                'date_created' => date('Y-m-d'),
+            ];
+            
+                $this->db->where('id', $id_perusahaan_update);
+                $this->db->update('tb_perusahaan', $data_perusahaan);
+
+                $this->db->insert('tb_reward', $data_reward);
 
             $this->session->set_flashdata('message', 
             '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -183,16 +205,16 @@ class Reward extends CI_Controller
         
 
         // form validation
-        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
-        $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan', 'required|trim');
-        $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
-        $this->form_validation->set_rules('no_kontak_person', 'Nomor telepon kontak person', 'trim');
-        $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('no_perusahaan', 'Nomor Telepon Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('email_perusahaan', 'E-mail Perusahaan', 'trim');
-        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'trim');
-        $this->form_validation->set_rules('sektor_usaha', 'Sektor Perusahaan', 'trim');
+        // $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        // $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
+        // $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan', 'required|trim');
+        // $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
+        // $this->form_validation->set_rules('no_kontak_person', 'Nomor telepon kontak person', 'trim');
+        // $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required|trim');
+        // $this->form_validation->set_rules('no_perusahaan', 'Nomor Telepon Perusahaan', 'required|trim');
+        // $this->form_validation->set_rules('email_perusahaan', 'E-mail Perusahaan', 'trim');
+        // $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'trim');
+        // $this->form_validation->set_rules('sektor_usaha', 'Sektor Perusahaan', 'trim');
         $this->form_validation->set_rules('disabilitas_L', 'Disabilitas Laki-laki', 'trim');
         $this->form_validation->set_rules('disabilitas_P', 'Disabilitas Perempuan', 'trim');
         $this->form_validation->set_rules('disabilitas_total', 'Disabilitas Total', 'trim');
@@ -200,8 +222,8 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('tenaga_kerja_P', 'Total tenaga kerja Perempuan', 'trim');
         $this->form_validation->set_rules('tenaga_kerja_total', 'Tenaga kerja total', 'trim');
         $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
-        $this->form_validation->set_rules('ragam_disabilitas', 'Ragam Disabilitas', 'required|trim');
-        $this->form_validation->set_rules('jenis_disabilitas', 'Jenis Disabilitas', 'required|trim');
+        $this->form_validation->set_rules('jenis_edit[]', 'Jenis Disabilitas', 'required|trim');
+       
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan Perusahaan';
@@ -218,19 +240,19 @@ class Reward extends CI_Controller
             // var_dump($id_reward);
             // die;
             $data_perusahaan = [
-                'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-                'fungsi' => $this->input->post('kabupaten_kota', true),
-                'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
-                'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
-                'no_kontak_person' => $this->input->post('no_kontak_person', true),
-                'alamat' => $this->input->post('alamat_perusahaan', true),
-                'kontak' => $this->input->post('no_perusahaan', true),
-                'email_perusahaan' => $this->input->post('email_perusahaan', true),
-                'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
-                'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
-                'date_created' => $this->input->post('tanggal_data'),
+                // 'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
+                // 'fungsi' => $this->input->post('kabupaten_kota', true),
+                // 'nama_pimpinan' => $this->input->post('nama_pimpinan', true),
+                // 'nama_kontak_person' => $this->input->post('nama_kontak_person', true),
+                // 'no_kontak_person' => $this->input->post('no_kontak_person', true),
+                // 'alamat' => $this->input->post('alamat_perusahaan', true),
+                // 'kontak' => $this->input->post('no_perusahaan', true),
+                // 'email_perusahaan' => $this->input->post('email_perusahaan', true),
+                // 'jenis_perusahaan' => $this->input->post('jenis_perusahaan', true),
+                // 'sektor_perusahaan' => $this->input->post('sektor_usaha', true),
+                // 'date_created' => $this->input->post('tanggal_data'),
             ];
-
+            $jenis =implode(',',$this->input->post('jenis_edit', true));
             
 
             $data_reward = [
@@ -241,13 +263,12 @@ class Reward extends CI_Controller
                 'tenaga_kerja_P' => $this->input->post('tenaga_kerja_P', true),
                 'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
                 'presentase' => $this->input->post('presentase', true),
-                'ragam_disabilitas' => $this->input->post('ragam_disabilitas', true),
-                'jenis_disabilitas' => $this->input->post('jenis_disabilitas', true),
+                'jenis_disabilitas' => $jenis,
                 'date_created' => date('Y-m-d'),
             ];
             
-            $this->db->where('id', $id_perusahaan);
-            $this->db->update('tb_perusahaan', $data_perusahaan);
+            // $this->db->where('id', $id_perusahaan);
+            // $this->db->update('tb_perusahaan', $data_perusahaan);
 
             $this->db->where('id_reward', $id_reward);
             $this->db->update('tb_reward', $data_reward);

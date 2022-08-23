@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Agu 2022 pada 03.48
+-- Waktu pembuatan: 22 Agu 2022 pada 00.19
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -88947,14 +88947,14 @@ CREATE TABLE `tb_cpmi` (
 --
 
 INSERT INTO `tb_cpmi` (`id`, `nama_pmi`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `perusahaan`, `alamat`, `wilayah`, `jabatan`, `pendidikan_formal`, `pengguna_jasa`, `alamat_pengguna_jasa`, `gaji`, `paspor`, `negara_penempatan`, `kode_pesawat`, `date_created`) VALUES
-(5, 'MUADY', 'L', 'Banyuwangi', '1984-11-21', 'go dal', 'SUMBERWANGI 04/19 DS. WONOSOBO, SRONO-BANYUWANGI', 42386, 'FORMAL', 'SMP', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 249, 'AIR ASIA AIRLINES QZ392', '2020-07-25'),
-(13, 'PURWANTO', 'L', 'Madiun', '1983-01-01', 'ses', 'DS. KARAGPATIHAN 04/02 BALONG, PONOROGO', 42386, 'FORMAL', 'SMA', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 248, 'AIR ASIA AIRLINES QZ392', '2020-03-01'),
+(5, 'MUADY', 'L', 'Banyuwangi', '1984-11-21', 'Go dal Fang', 'SUMBERWANGI 04/19 DS. WONOSOBO, SRONO-BANYUWANGI', 42386, 'FORMAL', 'SMP', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 249, 'AIR ASIA AIRLINES QZ392', '2020-07-25'),
+(13, 'PURWANTO', 'L', 'Madiun', '1983-01-01', 'Sekuriti Tingkatan', 'DS. KARAGPATIHAN 04/02 BALONG, PONOROGO', 42386, 'FORMAL', 'SMA', 'PESONA METRO SDN BHD ', 'NO 39,JL.SB IINDAH 1/19 TAMAN SUNGAI INDAH 43300,SERI KEMBANGAN, SELANGOR, MALAYSIA', 'RM.1300', 'C5776038', 248, 'AIR ASIA AIRLINES QZ392', '2020-03-01'),
 (14, 'DWI WAHYUNI', 'P', 'Ngawi', '2001-02-01', 'xiE Fentich Feng', 'KARANGGUPITO 01/03 KENDAL, NGAWI', 42386, 'FORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104  SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C5777222', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
 (15, 'TETEN KUSUMA DEWI', 'P', 'Magetan', '2000-06-13', 'Ranfors', 'DS. NGILIRAN 04/03 PANEKAN, MAGETAN', 42386, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070249', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
-(16, 'AYU NILAM FATMASARI', 'P', 'Ngawi', '1996-06-25', '14', 'DS. KATIKAN 05/07 KEDUNGGALAR, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070247', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
-(17, 'TITRI IDA JUNA', 'P', 'Ngawi', '2000-01-01', '14', 'DS. TEGUHAN 08/01 PARON, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070242', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
-(18, 'KARTINIGSIH', 'P', 'Madiun', '1980-08-09', '15', 'Ds. Ngaban Rt.07 Rw.03 Kec.Tanggulangin  Kab. Sidoarjo', 42386, 'INFORMAL', '-', 'PENG JIN HUANG', 'No.146, Chenggong E. Rd., Taiping Dist  Taichung City, Taiwan (R.O.C)', '-', 'C5500048', 254, '-', '2020-05-01'),
-(19, 'SUKANTI ', 'P', 'Malang', '1973-07-24', '15', 'Dsn. Sumberingin Rt.1 Rw.10 Ds. Sumberdem Kec. Wonosari', 43993, 'INFORMAL', '-', 'HU XIANG NING', '4F-2., No.696, Yangchun E. 1 St Rd., Nantun Dist Taichung City, Taiwan (R.O.C)', '-', 'C5494278', 254, '-', '2020-05-01');
+(16, 'AYU NILAM FATMASARI', 'P', 'Ngawi', '1996-06-25', 'Rain Factory', 'DS. KATIKAN 05/07 KEDUNGGALAR, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070247', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
+(17, 'TITRI IDA JUNA', 'P', 'Ngawi', '2000-01-01', 'Mechanic Surgery', 'DS. TEGUHAN 08/01 PARON, NGAWI', 48110, 'INFORMAL', 'SMP', 'PANASONIC SYSTEM NETWORKS (M) SDN BHD', 'PLOT NO.1, KAW. PERINDUSTRIAN SENAI, KB NO.104 SENAI 81400 JOHOR, MALAYSIA', 'RM.1100', 'C6070242', 248, 'AIR ASIA AIRLINES QZ320', '2020-03-01'),
+(18, 'KARTINIGSIH', 'P', 'Madiun', '1980-08-09', 'Stockholm Industry', 'Ds. Ngaban Rt.07 Rw.03 Kec.Tanggulangin  Kab. Sidoarjo', 42386, 'INFORMAL', '-', 'PENG JIN HUANG', 'No.146, Chenggong E. Rd., Taiping Dist  Taichung City, Taiwan (R.O.C)', '-', 'C5500048', 254, '-', '2020-05-01'),
+(19, 'SUKANTI ', 'P', 'Malang', '1973-07-24', 'NeoThin', 'Dsn. Sumberingin Rt.1 Rw.10 Ds. Sumberdem Kec. Wonosari', 43993, 'INFORMAL', '-', 'HU XIANG NING', '4F-2., No.696, Yangchun E. 1 St Rd., Nantun Dist Taichung City, Taiwan (R.O.C)', '-', 'C5494278', 254, '-', '2020-05-01');
 
 -- --------------------------------------------------------
 
@@ -89015,7 +89015,7 @@ CREATE TABLE `tb_perusahaan` (
 INSERT INTO `tb_perusahaan` (`id`, `nama_perusahaan`, `nama_pimpinan`, `nama_kontak_person`, `no_kontak_person`, `email_perusahaan`, `kode_kantor`, `sektor_perusahaan`, `alamat`, `status`, `jenis_perusahaan`, `kontak`, `fungsi`, `date_created`) VALUES
 (1, 'PT Aneka Indomakmur', '-', '-', '-', '-', '4233', 8, 'Jl Surowongso 415 A, Desa Karangbong Kec. Gedangan', 'P', 'BUMN', '0892312322', 47634, '2022-08-06'),
 (7, 'PT. Pabrik Kertas Indonesia', 'Rendy Dermawan', 'Icha Nirala M', '0828423123', 'jayakertasabadi@yahoo.com', '0923', 8, '3, Jl. Kertopaten Surabaya', 'C', 'Besar', '081436235', 49656, '2020-07-26'),
-(8, 'PT Bumi Rotanjaya', '-', '-', '-', '-', '3512', 18, 'Desa Wonosari Kecamatan Ngoro', 'P', 'Kecil', '-', 49656, '2020-07-26'),
+(8, 'PT Bumi Rotanjaya', 'Fajar', '-', '-', '-', '3512', 18, 'Desa Wonosari Kecamatan Ngoro', 'P', 'Kecil', '-', 49656, '2020-07-26'),
 (9, 'PT Indonesia Multi Colour Printing', 'Aryo Kusumo Atmadjoyo', '-', '-', '-', '', 10, 'Jl. Rungkut Industri Surabaya', 'P', 'Besar', '-', 42386, '2022-08-18'),
 (10, 'PT Diana Prima Perkasa', '-', '-', '-', '-', '1023', 15, 'Jl. Tunjungan No.5-7 Tunjungan center lt. IV', 'P', 'Kecil', '-', 49656, '2022-08-13'),
 (11, 'PT. International Packaging Manufacturing', '-', '-', '-', '-', '-', 18, 'Jl. Berbek Industri 2/26, SIER, Waru, Sidoarjo', 'P', 'Kecil', '-', 49656, '2020-07-26'),
@@ -89056,7 +89056,7 @@ CREATE TABLE `tb_phk` (
 --
 
 INSERT INTO `tb_phk` (`id_phk`, `nama_tk`, `nomor_identitas`, `jenis_kel`, `kpj`, `kontak`, `alamat`, `wilayah`, `nama_perusahaan`, `kode_segmen`, `status_kerja`, `disabilitas`, `date_created`) VALUES
-(3, 'SUPRAYITNO', '3525161002910001', 'L', '11022945817', '081311760089', 'JL. AMAK KHASIM 3-T', 49656, 7, 'PU', 'phk', 1, '2022-08-21'),
+(3, 'SUPRAYITNO', '3525161002910001', 'L', '11022945817', '081311760089', 'JL. AMAK KHASIM 3-T', 49656, 7, 'PU', 'phk', 0, '2022-08-21'),
 (4, 'MOH. HASAN BASHORI', '3524261510770001', 'L', '11022946138', '081333174435', 'MELUWUR', 49656, 16, 'PU', 'phk', 1, '2022-08-21'),
 (5, 'MUNAWATI', '3516166504690004', 'P', '11022948332', '08563472597', 'SIDOLEGI', 46678, 16, 'PU', 'aktif', 0, '2020-07-30'),
 (9, 'Winaryo', 't2323', 'L', '333', '33', 'asdasd', 47634, 7, '3434f', 'aktif', 1, '2022-08-18'),

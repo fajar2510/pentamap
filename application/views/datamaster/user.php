@@ -84,7 +84,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button> -->
             </div>
-            <form action="<?= base_url('datamaster/user'); ?>" method="post">
+            <form action="<?= base_url('datamaster/user'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Nama</label>
@@ -177,7 +177,7 @@
                             </select>
                         </div>
                     </div>
-                    <!-- <div class="form-group row">
+                    <div class="form-group row">
                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                             <div class="col-sm-2">
                                 <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
@@ -189,7 +189,7 @@
                                 <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
@@ -213,7 +213,7 @@
 
 <?php foreach ($user_role as $ur) : ?>
     <!-- edituserModal -->
-    <div class=" modal fade" id="modalEdit<?= $ur['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class=" modal fade" id="modalEdit<?= $ur['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -318,7 +318,7 @@
                             </div>
                         </div>
                         
-                        <!-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                                 <div class="col-sm-2">
                                     <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
@@ -330,7 +330,7 @@
                                     <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="<?= $ur['is_active']; ?>"" name="is_active" id="is_active" checked>
@@ -431,7 +431,7 @@
                             </div>
                             <div class="col">
                                 <p > <small><b> <br> </b></small></p>
-                                <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-thumbnail" alt="Picture" width="200" height="300">
+                                <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
                                 <p class="text-center" ><small> Foto Profil. &nbsp; <?= $ur['name']; ?></small></p>
                             </div>
                         </div>

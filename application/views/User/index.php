@@ -24,7 +24,7 @@
             <div class="card-body text-center">
                 <a href="" >
                 <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>"  alt="Profile Picture"
-                class="rounded-circle img-fluid img-thumbnail " style="width: 150px;"> </a>
+                class="rounded-circle img-fluid " style="width: 200px; height: 200px;"> </a>
                 
                 
                 <h5 class="my-3"><?= $user['name']; ?></h5>
@@ -143,7 +143,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('user/edit/' . $user['id']); ?>" method="post">
+                
+                <form action="<?= base_url('user/edit/' . $user['id']); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>

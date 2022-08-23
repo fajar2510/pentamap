@@ -65,8 +65,10 @@
                                             <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
                                             <input type="hidden" name="id_perusahaan">
                                             <?php foreach ($max_id as $idx); ?>
-                                            <input type="hidden" value="  <?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
+                                            <input type="hidden" value="<?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
+                                            
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+
                                         </div>
                                         <div ass="col-sm-1">
                                             <input class="btn btn btn-light" type = "button" value = "Reset data" onClick = "fun()"/>
