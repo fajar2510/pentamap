@@ -15,6 +15,17 @@
         }, 3000);
     </script>
 
+    <!-- Use a button to open the snackbar -->
+    <script>
+        function snackbarlogin() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+    <!-- The actual snackbar -->
+
+
     </body>
 
     </html>

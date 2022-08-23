@@ -40,12 +40,14 @@
                                     </div>
                                     <!-- class="form-control form-control-user" tampilan menarik kolom -->
                                     <hr>
-                                    <button type="submit" class="btn btn-primary btn-icon-split btn-block center-block py-2 px-3 ">
+                                    <button  type="submit" onclick="snackbarlogin()" class="btn btn-primary btn-icon-split btn-block center-block py-2 px-3 ">
                                         <!-- <span class=" icon text-white-50">
+                                            
                                             <i class="fas fa-sign-in-alt"></i>
                                         </span> -->
                                         <span class="text" style="font-family:'Arial Black';font-size:15;">MASUK</span>
                                     </button>
+                                    <div id="snackbar"> Sedang mencoba LOGIN . . . </div>
                                 </form>
                                 <!-- <hr>
                                 <div class="text-center">

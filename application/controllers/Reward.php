@@ -329,7 +329,7 @@ class Reward extends CI_Controller
 
     function get_jenis_disabilitas(){
         $id_jenis=$this->input->post('id_jenis');
-        $data=$this->RewardModel->get_product_by_package($id_jenis)->result();
+        $data=$this->RewardModel->get_jenis_disabilitas($id_jenis)->result();
         foreach ($data as $result) {
             $value[] = (float) $result->id_jenis;
         }

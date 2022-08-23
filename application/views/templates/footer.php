@@ -100,6 +100,7 @@
 
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
 
+    <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
 
     <!-- select2 multiple form -->
@@ -930,6 +931,7 @@
             }
             }
     </script>
+    
 
     </body>
 

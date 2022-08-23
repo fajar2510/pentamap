@@ -170,6 +170,108 @@
 
 <!-- Button trigger modal -->
 
+<!-- penampil view info data -->
+<?php foreach ($pmi as $p) : ?>
+    <!-- edituserModal -->
+    <div class=" modal fade" id="modalInfo<?= $p['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-sm-8">
+                                <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Nama </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama']; ?></label> 
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['gender'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $p['gender']; ?>&nbsp;)</label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tgl_lahir']; ?> 
+                                            (<?php $lahir    = new DateTime($p['tgl_lahir']);
+                                                $today        = new DateTime();
+                                                $umur = $today->diff($lahir);
+                                                echo $umur->y;
+                                                // echo " Tahun, ";
+                                                // echo $umur->m;
+                                                // echo " Bulan, dan ";
+                                                // echo $umur->d;
+                                                // echo " Hari";
+                                                ?>) tahun</label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Alamat Lengkap</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                                    
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label"></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: <small>&nbsp;<?= $p['nama_kelurahan']; ?>, &nbsp;<?= $p['nama_kecamatan']; ?>,
+                                                                &nbsp;<?= $p['nama_kabupaten']; ?>, &nbsp;<?= $p['nama_provinsi']; ?> </small> </label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Negara Bekerja</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['negara_bekerja']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Jenis Pekerjaan</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_pekerjaan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Berangkat melalui  </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['berangkat_melalui']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Pengirim </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pengirim']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Lama bekerja </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['lama_bekerja']; ?></label>
+                                </div>
+                                <!-- <div class="row">
+                                    <label for="name" class="col-sm-4 col-form-label">Status Aktif </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['is_active'] == '1') {
+                                                            echo '<i class="fa-solid fa-toggle-on color-1"></i>  Aktif ' ;
+                                                        } else {
+                                                            echo '<i class="fa-light fa-toggle-off"></i>  Nonaktif ';
+                                                        } ?></label>
+                                </div> -->
+                            </div>
+                            <div class="col">
+                                <p > <small><b> <br> </b></small></p>
+                                <img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
+                                <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama']; ?></small></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
+                        <span class="icon text-white-600">
+                            <i class="fas fa-window-close"></i>
+                        </span>
+                        <span class="text">Tutup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
 <!-- Modal -->
 <div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

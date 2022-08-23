@@ -55,18 +55,23 @@
                     </div>
                     
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class=" table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
+                                    <tr class="pure-table-odd">
+                                        <th rowspan="2"> No</th>
+                                        <th rowspan="2" class="text-center">Kabupaten /kota</th>
+                                        <th rowspan="2" class="text-center">Nama Perusahaan</th>
+                                        <th colspan="3" class="text-center">Disabilitas</th>
+                                        <th rowspan="2" class="text-center">Presentase%</th>
+                                        <th rowspan="2">Diusulkan pada</th>
+                                        <th width="14%" class="text-center" rowspan="2">Aksi</th>
+                                    </tr>
                                     <tr>
-                                        <th> No</th>
-                                        <th>Nama Perusahaan</th>
-                                        <th>Kota/kabupaten</th>
-                                        <th>Disabilitas</th>
+                                        <th> L</th>
+                                        <th>P</th>
                                         <th>Total</th>
-                                        <th>Presentase %</th>
-                                        <th>Diusulkan pada</th>
-                                        <th width="12%" class="text-center">Aksi</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,10 +79,11 @@
                                     <?php foreach ($data_reward as $r) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <?= $r['nama_perusahaan']; ?></td>
                                             <td> <small> <?= $r['nama_kabupaten']; ?></small></td>
-                                            <td><center><?= $r['disabilitas_total']; ?></center>  </td>
-                                            <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
+                                            <td> <?= $r['nama_perusahaan']; ?></td>
+                                            <td><center><?= $r['disabilitas_L']; ?></center>  </td>
+                                            <td><center><?= $r['disabilitas_P']; ?></center>  </td>
+                                            <td> <center><?= $r['disabilitas_total']; ?></center> </td>
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
                                             <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td class="text-center">
@@ -110,16 +116,17 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>  <h5><small><i>diusulkan pada &nbsp;<?= $r['date_created']; ?> </i> </small></h5>
                 </div>
                 <div class="container">
                     <div class="modal-body">
+                      
                         <p > <small><b> DATA INDEKS <?= $title; ?></b></small></p>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Nama Perusahaan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $r['nama_perusahaan']; ?></label>
+                            <p for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $r['nama_perusahaan']; ?></=>
                         </div>
-                        
+                      
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Nama Pimpinan </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $r['nama_pimpinan']; ?></label>

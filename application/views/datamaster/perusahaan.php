@@ -61,12 +61,11 @@
                                         <th> No</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Kabupaten/kota</th>
-                                        <th class="text-center">Pimpinan</th>
-                                       
+                                        <!-- <th class="text-center">Pimpinan</th> -->
                                         <th>Sektor</th>
                                         <th>Kantor</th>
                                         
-                                        <th width="12%" class="text-center">Aksi</th>
+                                        <th width="14%" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,7 +75,7 @@
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <?= $p['nama_perusahaan']; ?>
                                             <td><small><?= $p['nama_kabupaten']; ?> </small></td> 
-                                            <td><?= $p['nama_pimpinan']; ?></td>
+                                            <!-- <td><?= $p['nama_pimpinan']; ?></td> -->
                                            
                                             <td> <?= $p['nama_sektor']; ?>
                                             <!-- <td>
