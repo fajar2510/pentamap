@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head >
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,9 +46,32 @@
   <link href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/purecss@2.1.0/build/base-min.css,npm/purecss@2.1.0/build/grids-min.css,npm/purecss@2.1.0/build/forms-min.css" />
   <link href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
+ <!-- PURE CSS MINIFI -->
+  
+
+<!-- MDB -->
+<!-- Font Awesome -->
+<!-- <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet" />-->
+
+<!-- Google Fonts -->
+<!-- <link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"/> -->
+
+<!-- <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
+  rel="stylesheet" />-->
+
+<!-- <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
+></script> -->
+<!-- MDB -->
   
   
-  <!-- PURE CSS MINIFI -->
+ 
 
 
 
@@ -84,6 +109,10 @@
             padding: 0px;
               /* text-align: center; */
           }
+          section {          
+            padding: 0px;
+              /* text-align: center; */
+          }
           div {          
             padding: 0px;
             margin-top: 0px;
@@ -94,8 +123,79 @@
               /* text-align: center; */
           }
 
+          .dropdown {
+              .dropdown-menu {
+                  transition: all 0.5s;
+                  overflow: hidden;
+                  transform-origin: top center;
+                  transform: scale(1,0);
+                  display: block;
+              }
+              &:hover {
+                  .dropdown-menu {
+                      transform: scale(1);
+                  }
+              }
+          }
+
+          .select {
+              width: 100%;
+              min-width: 15ch;
+              max-width: 30ch;
+              border: 1px solid var(--select-border);
+              border-radius: 0.25em;
+              padding: 0.25em 0.5em;
+              font-size: 1.25rem;
+              cursor: pointer;
+              line-height: 1.1;
+              background-color: #fff;
+              background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+            }
+
+            .select::after {
+              content: "";
+              width: 0.8em;
+              height: 0.5em;
+              background-color: var(--select-arrow);
+              clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            }
+
+            .select--disabled {
+              cursor: not-allowed;
+              background-color: #eee;
+              background-image: linear-gradient(to top, #ddd, #eee 33%);
+            }
+
+            img{
+              max-width:200px;
+            }
+            input[type=file]{
+            padding:10px;
+            background:#2d2d2d;
+          }
+          .edit-foto {
+            position: relative;
+            text-align: center;
+            color: white;
+          }
+          .diatas-gambar {
+            display: inline-block;
+            border-radius: 50%;
+            width: 15%;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 55%;
+          }
+
     </style>
     <!-- style untuk konfigura table border padding dll global -->
+    <style>
+      
+    </style>
+
+    
 
    
 

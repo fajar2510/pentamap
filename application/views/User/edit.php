@@ -50,6 +50,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail" alt="Profile Picture">
+                                    
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="custom-file"> 
@@ -58,9 +59,13 @@
                                         <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 2 MB. </i></small>
                                     </div>
                                 </div>
+
+                                
                             </div>
                         </div>
                     </div>
+
+
                     <div class="form-group row justify justify-content-end">
                         <div class="col-sm-3">
                             <button type="submit" class="btn btn-primary btn-icon-split btn-user">

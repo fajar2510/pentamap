@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;">Usulan <?= $title; ?> Tahun <?= date('Y'); ?> </h3>
+        <h4 style="font-family:'Roboto';">Usulan <?= $title; ?>Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('reward/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -33,7 +33,7 @@
 
 
                         <div class="dropdown mb-0">
-                            <!-- <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                            <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
@@ -41,15 +41,15 @@
                             </a>
                             <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="icon text-white-50">
-                                    <i class="fas fa-print"></i>
+                                   <i class="fa-solid fa-file-arrow-down"></i>
                                 </span>
-                                <span class="text">Eksport</span>
+                                <span class="text">Exsport</span>
                             </button>
                             <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Excel</a>
-                                <a class="dropdown-item" href="#">PDF</a>
+                                <a class="dropdown-item" href="#">Excel.csv</a>
+                                <a class="dropdown-item" href="#">PDF.pdf</a>
                             </div>
-                            </> -->
+                            </>
                         </div>
 
                     </div>

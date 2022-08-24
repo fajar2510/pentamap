@@ -105,6 +105,8 @@ class User extends CI_Controller
             }
 
             
+
+            
             $this->db->set('name', $name);
             $this->db->set('bio', $bio);
             $this->db->set('kontak', $kontak);
@@ -126,6 +128,9 @@ class User extends CI_Controller
             redirect('user');
         }
     }
+
+    
+    
 
     public function changePassword()
     {
