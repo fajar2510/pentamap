@@ -61,7 +61,7 @@
                     </li>
                 </ul>
             </div> -->
-            <div id="mapp"></div>
+            <div id="mapp" style=""></div>
             <hr>
             <!-- <div class="card-body">
                 <div class="table-responsive">

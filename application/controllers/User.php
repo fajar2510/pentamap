@@ -121,7 +121,7 @@ class User extends CI_Controller
             $this->db->update('user');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <strong> Disunting !</strong> Profil telah berhasil diupdate.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>   </div>');

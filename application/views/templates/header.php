@@ -24,7 +24,7 @@
   <!-- font & backup font nunito -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
   <!-- <link href="<?= base_url('assets/'); ?>font/nunito/font-nunito.css" rel="stylesheet"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" /> -->
   <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap&text=RobtMn" rel="stylesheet" /> -->
 
   <!-- css sb admin 2 template this bootstrap -->
@@ -34,8 +34,11 @@
 
   <!-- LEAFLET CSS , PLUGIN -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.css" />
-  <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+  <!-- <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+   crossorigin=""/>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
   <!-- LEAFLET CSS , PLUGIN -->
 
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js-select2/css/bootstrap-select.css');?>">
@@ -44,9 +47,19 @@
   <!-- PURE CSS MINIFI -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/purecss@2.1.0/build/base-min.css,npm/purecss@2.1.0/build/grids-min.css,npm/purecss@2.1.0/build/forms-min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css">
- <!-- PURE CSS MINIFI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/purecss@2.1.0/build/base-min.css,npm/purecss@2.1.0/build/grids-min.css,npm/purecss@2.1.0/build/forms-min.css" />
+ 
+  <!-- backup css local pure css -->
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/pure-css/forms-min.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/pure-css/pure-min.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/pure-css/grids-responsive-min.css" >
+  <!-- PURE CSS MINIFI -->
+
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/select2-FlatTheme/dist/select2-flat-theme.css" >
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/select2-FlatTheme/dist/select2-flat-theme.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+  
   
 
 <!-- MDB -->
@@ -138,7 +151,12 @@
               }
           }
 
+
           .select {
+              text-align-last:right;
+              padding-right: 29px;
+              direction: rtl;
+              /* text-align-last: center; */
               width: 100%;
               min-width: 15ch;
               max-width: 30ch;

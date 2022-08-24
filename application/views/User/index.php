@@ -233,9 +233,9 @@
                         <div class="form-group row">
                             <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                                 <div class="col-sm-3">
-                                    <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture">
+                                <div id="gambar_pertama"><img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture"></div>
                                     
-                                    <img id="fotoBaru" src="http://placehold.it/180" alt="Foto Profil Baru" />                             
+                                <div id="gambar_pertama"><img id="fotoBaru" type="hidden" src="http://placehold.it/180" class="img-thumbnail" alt="Foto Profil Baru" /></div>                             
                                 </div>
                                 <div class="col-sm-5">
                                 <div class="custom-file">

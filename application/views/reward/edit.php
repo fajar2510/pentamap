@@ -148,7 +148,7 @@
                                     
                                     <div class="form-group row">
                                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam & Jenis Disabilitas</label>
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-5">
                     
                                         <select class="bootstrap-select" class="form-control" name="jenis_edit[]" data-width="100%" data-live-search="true" multiple required>
                                             

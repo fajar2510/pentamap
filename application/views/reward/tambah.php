@@ -153,11 +153,11 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-5">
                                         <select name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" >
-                                                <!-- <option value="">~ Pilih Jenis Sektor Usaha ~</option> -->
+                                                <option value="">~ Jenis Sektor  ~</option>
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
-                                                    <option class="dropdown-menu dropdown-menu-right shadow animated--grow-in" value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; : &nbsp;<?= $row['keterangan']; ?> </option>
+                                                    <option  value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('sektor_usaha', '<small class="text-danger pl-3">', '</small>'); ?>

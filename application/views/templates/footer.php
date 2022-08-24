@@ -298,6 +298,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
              maxZoom: 18,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            
         }).addTo(map);
 
         var latlngs = [
@@ -940,12 +941,30 @@
                 reader.onload = function (e) {
                     $('#fotoBaru')
                         .attr('src', e.target.result);
+                    
+                    var gambar_kedua = "<img id='fotoBaru' src='http://placehold.it/180' class='img-thumbnail' alt='Foto Profil Baru' />"
+                    $('#gambar_pertama').html("");
+                    $('#gambar_kedua').html(gambar_kedua);
                 };
 
                 reader.readAsDataURL(input.files[0]);
-            }
-        }
+             }
+          }
+
+          // search combo box from select2 plugin function
+
          
+    </script>
+
+    <script type="text/javascript">
+      $(".js-example-tags").select2({
+        tags: true
+      });
+
+      $('select').select2({
+    theme: 'bootstrap4',
+      });
+
     </script>
     
 
