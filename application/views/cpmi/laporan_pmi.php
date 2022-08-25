@@ -30,7 +30,7 @@
 
 
             <div class="card shadow mb-0">
-                <div class="card-header py-3 ">
+                <div class="card-header py-1 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
                             <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
@@ -42,36 +42,44 @@
                                 </a>
                                 <div>
                                     <div class="container"> -->
-                                Filter : <input type="text" width="276" name="awal" id="awal">
+                                <!-- Filter : <input class="form-control" type="text" width="276" name="awal" id="awal"> -->
+                                <div class="row"> 
+
+                                </div>
+                                <label for="myDate" class="col-sm-3 col-form-label " >Date :</label>
+                                <input name="myDate" id="" class="monthYearPicker form-control" type="">
                                 <!-- </div>
                                 </div> -->
-                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                <!-- <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-print"></i>
                                     </span>
                                     <span class="text">Cetak PDF</span>
-                                </button>
+                                </button> -->
                             </form>
                         </div>
                         <div class="dropdown mb-0">
+                            
+                           
+                             <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="text">CSV</span>
+                            </a>                   
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="text">Import</span>
-                            </button> -->
-                            <!-- <a href="<?= base_url('exportimport/export_pdf_pppmi'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                            </button> 
+                             <a href="<?= base_url('exportimport/export_pdf_pppmi'); ?>" target="_blank" class="btn btn-danger btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">PDF</span>
-                            </a> -->
-                            <!-- <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                <span class="icon text-white-50">
-                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                                </span>
-                                <span class="text">CSV</span>
-                            </a> -->
+                            </a>  -->
+                           
                         </div>
 
                     </div>

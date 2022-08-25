@@ -110,7 +110,7 @@
                                             <select name="sektor_perusahaan" id="sektor_perusahaan" class="form-control">
                                                 <option value="18">~ Pilih Jenis Sektor Usaha ~</option>
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
-                                                    <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> &nbsp; <p><small><i><?= $row['keterangan']; ?> </i></small></p></option>
+                                                    <option value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> </p></option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('sektor_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>

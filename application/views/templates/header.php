@@ -206,7 +206,10 @@
             transform: translate(-50%, -50%);
             opacity: 55%;
           }
-
+          .ui-datepicker-calendar {
+              display: none;
+          }
+          
     </style>
     <!-- style untuk konfigura table border padding dll global -->
     <style>

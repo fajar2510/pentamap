@@ -556,7 +556,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
         $this->form_validation->set_rules('no_kontak_person', 'Kontak 2', 'trim');
         $this->form_validation->set_rules('email_perusahaan', 'Alamat E-mail', 'trim|required');
-        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'trim');
+        $this->form_validation->set_rules('sektor_perusahaan', 'Sektor Perusahaan', 'required|trim');
         $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
 
 

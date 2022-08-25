@@ -24,6 +24,7 @@ class Reward extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $this->session->set_userdata($data);
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -78,7 +79,7 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required|trim');
         $this->form_validation->set_rules('no_perusahaan', 'Nomor Telepon Perusahaan', 'required|trim');
         $this->form_validation->set_rules('email_perusahaan', 'E-mail Perusahaan', 'trim');
-        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'trim');
+        $this->form_validation->set_rules('jenis_perusahaan', 'Jenis Perusahaan', 'required|trim');
         $this->form_validation->set_rules('sektor_usaha', 'Sektor Perusahaan', 'trim');
         $this->form_validation->set_rules('disabilitas_L', 'Disabilitas Laki-laki', 'trim');
         $this->form_validation->set_rules('disabilitas_P', 'Disabilitas Perempuan', 'trim');

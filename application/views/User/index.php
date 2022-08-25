@@ -25,7 +25,7 @@
                 
                 <div class="edit-foto ">
                         <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>"  alt="Profile Picture" 
-                        class="rounded-circle img-fluid " style="width: 200px; height: 200px;"> 
+                        class="rounded-circle img-fluid " style="width: 200px; height: 200px; object-fit: cover;"> 
                         <div class="diatas-gambar font-weight: bold;"> 
                             <!-- <button type="button" data-toggle="modal" data-target="#modalEditPicture" class="btn btn btn-light btn-block"">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -161,6 +161,7 @@
                             <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-3">
                                 <input class="form-control" type="date" value="<?= $user['tanggal_lahir']; ?>" id="tanggal_lahir" name="tanggal_lahir">
+                               
                                 <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -185,7 +186,8 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $user ['email']; ?>" readonly>
+                                <input type="email" class="form-control" id="email" placeholder=" " name="email" value="<?= $user ['email']; ?>" readonly>
+                                <input type="hidden" name="id_user" value="<?= $user ['id']; ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -222,7 +224,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="bio" class="col-sm-3 col-form-label">Bio/tentang kamu</label>
+                            <label for="bio" class="col-sm-3 col-form-label">Bio tentang kamu</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="bio" placeholder="tentang kamu . . . " name="bio" rows="2"> <?= $user['bio']; ?></textarea>
                                 <?= form_error('bio', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -233,7 +235,7 @@
                         <div class="form-group row">
                             <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                                 <div class="col-sm-3">
-                                <div id="gambar_pertama"><img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture"></div>
+                                <div id="gambar_pertama"><img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture" style="width: 200px; height: 200px; object-fit: cover;"></div>
                                     
                                 <div id="gambar_pertama"><img id="fotoBaru" type="hidden" src="http://placehold.it/180" class="img-thumbnail" alt="Foto Profil Baru" /></div>                             
                                 </div>
