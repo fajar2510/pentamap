@@ -103,6 +103,13 @@
     <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
 
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script> -->
+
+    <!-- date picker untuk tahun only -->
+    <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
     <!-- select2 multiple form -->
     <script type="text/javascript">
     $(document).ready(function(){
@@ -167,6 +174,7 @@
             });
         });
     </script>
+
 
     <script>
         $("#datepickerYearOnly").datepicker({
@@ -237,6 +245,16 @@
         });
     </script>
 
+  <script>
+        var now = new Date(new Date().getFullYear(), new Date().getMonth());
+              
+        $('#bulan').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            minDate: now,
+        });]
+    </script>
+
 
     <script>
         function tampilKabupaten() {
@@ -286,7 +304,7 @@
                         source: "<?php echo base_url() ?>/index.php",
                         minLength: 1
                     });
-                })
+                });
     </script>
 
      <!-- script map utama -->
@@ -907,6 +925,7 @@
     </script>
 
     <script>
+        /// for reset form input fill
         function fun(){
         document.getElementById("myForm").reset();
         } 
@@ -932,9 +951,43 @@
             }
           }
 
+          // fungsi tampil lebih banyak data table di tabel
+          // $(document).ready(function() {                   // function error jangan di jalankan yaa
+          //     $('#dataTable').dataTable({
+          //         "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
+          //         "iDisplayLength": 25
+          //     });
+          // } );
 
-            // show picture when choose from librarary
-            function readURL(input) {
+    </script>
+
+    
+    <!-- <script>
+      $("#bulan").datepicker({
+            onSelect: function() { 
+                var dateObject = $(this).datepicker('getDate'); 
+            }
+        });
+    </script> -->
+   
+    <script>
+      // date picker untuk memilih hanya tahun saja
+      var dp= $("#tahun").datepicker({
+          format: "yyyy",
+          viewMode: "years", 
+          minViewMode: "years",
+          autoclose:true
+        });   
+      //changeYear event trigger's
+      dp.on('changeYear', function (e) {    
+        //do something here
+        alert("Tahun dipilih ");
+      });
+    </script>
+
+    <script>
+    // show picture when choose from librarary
+    function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -950,42 +1003,7 @@
                 reader.readAsDataURL(input.files[0]);
              }
           }
-
-          // search combo box from select2 plugin function
-
-         
     </script>
-
-    <script type="text/javascript">
-      $(".js-example-tags").select2({
-        tags: true
-      });
-
-      $('select').select2({
-    theme: 'bootstrap4',
-      });
-
-    </script>
-
-    <script>  
-          $(function() {
-        $('.monthYearPicker').datepicker({
-          changeMonth: true,
-          changeYear: true,
-          showButtonPanel: true,
-          dateFormat: 'MM yy'
-        }).focus(function() {
-          var thisCalendar = $(this);
-          $('.ui-datepicker-calendar').detach();
-          $('.ui-datepicker-close').click(function() {
-      var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-      var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-      thisCalendar.datepicker('setDate', new Date(year, month, 1));
-          });
-        });
-      });
-    </script>
-    
 
     
 

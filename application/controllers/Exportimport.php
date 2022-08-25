@@ -216,13 +216,14 @@ class Exportimport extends CI_Controller
 
     public function export_pdf_tka()
     {
-        // echo $_POST['awal'];
+        var_dump($_POST['bulan']);
+        die;
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_tka['tanggal'] = $_POST['awal'];
+        $data_tka['tanggal'] = $_POST['bulan'];
         $data_tka['semua_data_tka'] = $this->Perusahaan->get_TkaPerusahaanByMonthYear($_POST['awal']);
         $data = $this->load->view('export/tka_data',$data_tka, TRUE);
         $mpdf->WriteHTML($data);

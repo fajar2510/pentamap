@@ -6,11 +6,21 @@ class Wilayah extends CI_Model
     var $tabel_kecamatan = 'kecamatan';
     var $tabel_kelurahan = 'kelurahan';
 
-    function provinsi()
+     function provinsi()
     {
         $this->db->order_by("nama_provinsi", "ASC");
         $query = $this->db->get("wilayah_provinsi");
         return $query->result();
+    }
+
+   public function list_negara()
+    {
+        $query =
+            "SELECT * 
+             FROM tb_negara 
+             ORDER BY tb_negara.nama_negara  ASC ";
+
+        return $this->db->query($query)->result_array();
     }
 
     public function ambil_provinsi()

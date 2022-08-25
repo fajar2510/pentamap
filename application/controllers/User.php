@@ -51,7 +51,6 @@ class User extends CI_Controller
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
-        $data['user_role'] = $this->Master->getRole(); 
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -70,7 +69,6 @@ class User extends CI_Controller
             $this->load->view('user/edit', $data);
             $this->load->view('templates/footer');
         } else {
-            $id = $this->input->post('id_user');
             $name = $this->input->post('name');
             $email = $this->input->post('email');
             $bio = $this->input->post('bio');
@@ -86,7 +84,7 @@ class User extends CI_Controller
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']      = '1024';
                 $config['upload_path']   = './assets/img/profile';
 
@@ -105,12 +103,9 @@ class User extends CI_Controller
                     redirect('user');
                 }
             }
-            // var_dump($id);
-            // die;
 
-
+            
             $this->db->set('name', $name);
-            $this->db->set('email', $email);
             $this->db->set('bio', $bio);
             $this->db->set('kontak', $kontak);
             $this->db->set('tanggal_lahir', $tanggal_lahir);
@@ -120,20 +115,17 @@ class User extends CI_Controller
             $this->db->set('alamat', $alamat);
             $this->db->set('jabatan', $jabatan);
 
-            $this->db->where('user.id', $id);
+            $this->db->where('email', $email);
             $this->db->update('user');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong> Disunting !</strong> Profil telah berhasil diupdate.
+            <strong> Disunting !</strong> data telah berhasil diupdate.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
             redirect('user');
         }
     }
-
-    
-    
 
     public function changePassword()
     {

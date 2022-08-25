@@ -78,7 +78,11 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" name="negara">
+                                            <select name="negara" id="negara" class="form-control">
+                                                <?php foreach ($negara as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

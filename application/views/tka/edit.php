@@ -93,7 +93,17 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" value="<?= $edit_tka->kewarganegaraan ?>" name="negara">
+                                        <select class="custom-select" name="negara" id="negara" class="form-control">
+                                                <option value="">~ Pilih Kewarganegaraan ~</option>
+                                                    <?php foreach ($negara as $n) : ?>
+                                                        <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_tka->kewarganegaraan) {
+                                                                                                echo 'selected';
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>> <?= $n['nama_negara']; ?> </option>
+                                                    <?php endforeach; ?>
+                                            </select>
+                                            <!-- <input type="text" class="form-control" id="negara" placeholder="Masukkan Nama Negara" value="<?= $edit_tka->kewarganegaraan ?>" name="negara"> -->
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

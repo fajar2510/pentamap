@@ -12,6 +12,8 @@
             </span>
             <span class="text">Tambah</span>
         </a> -->
+        
+        
     </div>
 
     <!-- parsing data -->
@@ -32,41 +34,34 @@
             <div class="card shadow mb-0">
                 <div class="card-header py-1 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
+                        
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
                             <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
-                                <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-filter"></i>
+                                <div class="dropdown mb-0">
+                                    <div class="d-flex flex-row " >
+                                    <label for="bulan" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Bulan:</label>
+                                    <input style="margin:10px; font-family:roboto;" name="bulan" id="bulan" class="form-control p-2 " type="month" value= "<?= date('Y-m'); ?>">
+                                    <span style="margin:10px;"> 
+                                            <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                                <span class="icon text-white-50">
+                                                    <i class="fa-solid fa-print"></i>
+                                                </span>
+                                            <span class="text" style = "font-family:roboto; ">Print</span>
+                                            </button>
                                     </span>
-                                    <span class="text">Filter</span>
-                                </a>
-                                <div>
-                                    <div class="container"> -->
-                                <!-- Filter : <input class="form-control" type="text" width="276" name="awal" id="awal"> -->
-                                <div class="row"> 
-
+                                    </div>
                                 </div>
-                                <label for="myDate" class="col-sm-3 col-form-label " >Date :</label>
-                                <input name="myDate" id="" class="monthYearPicker form-control" type="">
-                                <!-- </div>
-                                </div> -->
-                                <!-- <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-print"></i>
-                                    </span>
-                                    <span class="text">Cetak PDF</span>
-                                </button> -->
                             </form>
                         </div>
-                        <div class="dropdown mb-0">
-                            
-                           
-                             <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                        <!-- <div class="dropdown mb-0"> -->
+
+                                
+                             <!-- <a href="<?= base_url('exportimport/export_excel_cpmi'); ?>" target="_blank" class="btn btn-success " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-file-excel-o" aria-hidden="true"></i>
                                 </span>
                                 <span class="text">CSV</span>
-                            </a>                   
+                            </a>                    -->
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
@@ -80,7 +75,7 @@
                                 <span class="text">PDF</span>
                             </a>  -->
                            
-                        </div>
+                        <!-- </div> -->
 
                     </div>
                     <div class="card-body">

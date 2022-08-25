@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800" style = "font-family:roboto; font-size:20px;"><?= $title; ?> Pengguna</h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> Pengguna</h1>
 
     <?php if (validation_errors()) : ?>
         <div class="alert alert-danger" role="alert">
@@ -14,8 +14,9 @@
 
     <?= $this->session->flashdata('message'); ?>
 
-
+   
     <section style="background-color: #FFFFFF;">
+    <!-- <section  class="bg-gradient-light" style="background:url('assets/img/auth/4565.jpg');  background-size:cover"> -->
     <div class="container py-0" >
 
         <div class="row">
@@ -32,7 +33,7 @@
                             </button> -->
                         </div>
                 </div>
-                <p class="my-2 mb-0" style = "font-family:roboto; font-size:20px;"> <b><?= $user['name']; ?></b> </p>
+                <p class="my-2 mb-0" style = " font-size:20px;"> <b><?= $user['name']; ?></b> </p>
                 <p class="text-muted mb-0 "> <small> <i><?php if ($user['jenis_kelamin'] == 'L') {
                                                             echo 'Laki-laki';
                                                         } else if ($user['jenis_kelamin'] == 'P'){ 
@@ -52,9 +53,10 @@
         
         </div>
         <div class="col-lg-8">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="row">
+            <div class="card mb-4 " >
+                <!-- <div class="card-body rounded float-left" style="background:url('assets/img/auth/disnakerlogo.png');  background-size:cover;  "> -->
+                <div class="card-body " >    
+                <div class="row " >
                     <div class="col-sm-3">
                         <p class="mb-0"><i class="fa-solid fa-user-graduate"></i>&nbsp; Nama Lengkap</p>
                     </div>
@@ -114,13 +116,13 @@
                     </div>
                     <hr>
                     <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-handshake"></i>&nbsp;Bergabung sejak </p>
+                    <div class="col-sm-12">
+                        <p class="mb-0">&nbsp; <small> <i> Bergabung sejak&nbsp;<?= date('d F Y', $user['date_created']);  ?></i> </small></p>
                     </div>
 
-                    <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= date('d F Y', $user['date_created']);  ?></p>
-                    </div>
+                    <!-- <div class="col-sm-4">
+                        <p class="text-muted mb-0"></p>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -187,7 +189,7 @@
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
                                 <input type="email" class="form-control" id="email" placeholder=" " name="email" value="<?= $user ['email']; ?>" readonly>
-                                <input type="hidden" name="id_user" value="<?= $user ['id']; ?>">
+                                <!-- <input type="hidden" name="id_user" value="<?= $user ['id']; ?>"> -->
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -378,6 +380,7 @@
             </div>
         </div>
     </div>
+    
 
 
     

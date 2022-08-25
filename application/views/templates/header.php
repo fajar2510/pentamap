@@ -58,8 +58,10 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/select2-FlatTheme/dist/select2-flat-theme.css" >
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/select2-FlatTheme/dist/select2-flat-theme.min.css">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css"> -->
   
+  <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
   
 
 <!-- MDB -->
@@ -96,7 +98,7 @@
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->
-  <style>
+  <style type="text/css">
           table {
               border-collapse: collapse;
               width: 100%;
@@ -212,9 +214,9 @@
           
     </style>
     <!-- style untuk konfigura table border padding dll global -->
-    <style>
-      
-    </style>
+  
+
+    
 
     
 

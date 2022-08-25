@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h4 style="font-family:'Roboto';">Usulan <?= $title; ?>Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
+        <h4 style="font-family:'Roboto';">Usulan <?= $title; ?> dengan Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('reward/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -26,32 +26,38 @@
 
             <?= $this->session->flashdata('message'); ?>
 
+            
+
 
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
-                    <div class="d-sm-flex align-items-center justify-content-end mb-0">
-
-
-                        <div class="dropdown mb-0">
-                            <a href="#" class="btn btn-info btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                    <div class="d-sm-flex align-items-center justify-content-start mb-0">
+                        <!-- <div class="dropdown mb-0">
+                            <a href="#" class="btn btn-success btn-icon-split " style="margin:10px; font-family:roboto;" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
                                 </span>
-                                <span class="text">Import</span>
+                                <span class="text">Import CSV</span>
                             </a>
-                            <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="icon text-white-50">
-                                   <i class="fa-solid fa-file-arrow-down"></i>
-                                </span>
-                                <span class="text">Exsport</span>
-                            </button>
-                            <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                        </div> -->
+                        <div class="dropdown mb-0">
+                            <div class="d-flex flex-row " >
+                            <label for="tahun" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Tahun:</label>
+                            <input style="margin:10px; font-family:roboto;" name="tahun" id="tahun" class="form-control p-2 " type="year" value= "<?= date('Y'); ?>">
+                               <span style="margin:10px;"> 
+                                    <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon text-white-50">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                    <span class="text" style = "font-family:roboto; ">Print</span>
+                                    </button>
+                             </span>
+                            </div>
+                            <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Excel.csv</a>
                                 <a class="dropdown-item" href="#">PDF.pdf</a>
-                            </div>
-                            </>
+                            </div> -->
                         </div>
-
                     </div>
                     
                     <div class="card-body">

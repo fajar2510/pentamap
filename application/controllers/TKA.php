@@ -11,6 +11,7 @@ class Tka extends CI_Controller
         $this->load->model('Master');
         $this->load->model('Perusahaan');
         $this->load->model('Penempatan');
+        $this->load->model('Wilayah');
     }
 
 
@@ -58,6 +59,7 @@ class Tka extends CI_Controller
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['negara'] = $this->Wilayah->list_negara();
 
         $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
@@ -138,6 +140,7 @@ class Tka extends CI_Controller
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
         $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         $data['edit_tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
+        $data['negara'] = $this->Wilayah->list_negara();
 
 
         $this->form_validation->set_rules('nama_tka', 'Nama TKA', 'required');

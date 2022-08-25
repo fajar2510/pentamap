@@ -10,6 +10,7 @@ class Cpmi extends CI_Controller
         
         $this->load->model('Master');
         $this->load->model('Penempatan');
+        $this->load->model('Wilayah');
         // $this->load->model('Perusahaan');
     }
 
@@ -55,7 +56,7 @@ class Cpmi extends CI_Controller
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
-        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
         // load data 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
@@ -140,7 +141,8 @@ class Cpmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data 
-        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        // $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
