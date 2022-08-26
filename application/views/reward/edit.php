@@ -45,14 +45,25 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control"  disabled id="perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward ['nama_perusahaan']; ?>">
+                                            <select class="custom-select" name="nama_perusahaan" id="nama_perusahaan" class="form-control">
+                                          
+                                                <?php foreach ($perusahaan as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_reward ['perusahaan_id']) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>> <?= $n['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <!-- <input type="text" class="form-control"  disabled id="perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward ['nama_perusahaan']; ?>">
                                             <input type="hidden" name="id_perusahaan" value="<?= $edit_reward ['id']; ?>">
-                                            <input type="hidden" name="id_reward" value="<?= $edit_reward ['id_reward']; ?>">
+                                            <input type="hidden" name="id_reward" value="<?= $edit_reward ['id_reward']; ?>"> -->
                                             <!-- <?php foreach ($max_id as $idx); ?> -->
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            <small id="help2" class="form-text text-muted"> <i> *hanya dapat mengubah perusahaan dan jumlah tenaga kerja disabilitas/total</i></small>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="kabupaten_kota" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-4">
                                             <select class="custom-select" disabled name="kabupaten_kota" id="kabupaten_kota" class="form-control input-sm">
@@ -90,7 +101,7 @@
                                             </select>
                                             <?= form_error('sektor_usaha', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <p><small><b>DISABILITAS</b></small></p>
                                                     
                                     <div class="form-group row">

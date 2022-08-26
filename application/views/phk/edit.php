@@ -95,7 +95,7 @@
                                                                     } else {
                                                                         echo '';
                                                                     } ?>>non aktif</option>
-                                                <option value="aktif" <?php if ($edit_phk->status_kerja == 'aktif') {
+                                                <option value="aktif" <?php if ($perusahaan->status_kerja == 'aktif') {
                                                                         echo 'selected';
                                                                     } else {
                                                                         echo '';
@@ -107,7 +107,16 @@
                                     <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="perusahaan" placeholder="Nama Perusahaan" name="perusahaan" value="<?= $edit_phk->nama_perusahaan ?>">
+                                            <select class="custom-select" name="perusahaan" id="perusahaan" class="form-control">
+                                               
+                                                <?php foreach ($perusahaan as $n) : ?>
+                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_phk->nama_perusahaan) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>> <?= $n['nama_perusahaan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                             <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

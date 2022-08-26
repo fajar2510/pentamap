@@ -62,6 +62,56 @@
                 </ul>
             </div> -->
             <div id="mapp" style=""></div>
+
+            <!-- <p>testing </p> 
+            <table class='table' border='0'>
+                <thead><td><b>Keterangan</b></td>
+                    <td><b>Jumlah</b></td>
+                </thead>
+                <tr>
+                    <td style='color:black'>Jumlah Pekerja PHK</td>
+                    <td style='color:#D61C4E'><center>" + phk + "</center></td>
+                </tr>
+                <tr>
+                    <td style='color:black'>  Jumlah PMI-B </td >
+                    <td style='color:#FEDB39'><center>" + pmib + "</center></td></tr>
+                <tr>
+                    <td style='color:black'>Jumlah TKA</td>
+                    <td style='color:#110F0F'><center>" + tka + "</center></td>
+                </tr>
+                <tr>
+                    <td style='color:black'>Jumlah PMI</td>
+                    <td style='color:#0096FF'><center>" + pmi + "</center></td>
+                </tr>
+                <tr>
+                    <td style='color:black'>Total</td>
+                    <td style='color:black'><center><b>" + jumlah + "<b/></center></td>
+                </tr>
+             </table> -->
+
+             <!-- <ul class='list-group'>
+                <li class='list-group-item d-flex justify-content-between align-items-center'>
+                    ter-PHK
+                    <span class='badge badge-danger badge-pill'>" + phk + "</span>
+                </li>
+                <li class='list-group-item d-flex justify-content-between align-items-center'>
+                    PMI-Bermasalah
+                    <span class='badge badge-warning badge-pill'>" + pmib + "</span>
+                </li>
+                <li class='list-group-item d-flex justify-content-between align-items-center'>
+                    PMI
+                    <span class='badge badge-secondary badge-pill'>" + tka + "</span>
+                </li>
+                <li class='list-group-item d-flex justify-content-between align-items-center'>
+                    TKA (Asing)
+                    <span class='badge badge-info badge-pill'>" + pmi + "</span>
+                </li>
+                <li class='list-group-item d-flex justify-content-between align-items-center'>
+                    TOTAL
+                    <span class='badge badge-dark badge-pill'>" + jumlah + "</span>
+                </li>
+            </ul> -->
+
             <hr>
             <!-- <div class="card-body">
                 <div class="table-responsive">

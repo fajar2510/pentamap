@@ -31,8 +31,8 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-start mb-0">
 
-                        <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <form action="<?= base_url('exportimport/export_pdf_tka') ?>" method="post" target="_blank">
+                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-0">
+                            <form action="<?= base_url('exportimport/export_pdf_tka') ?>" method="post" target="_blank"> -->
                                 <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-filter"></i>
@@ -41,17 +41,17 @@
                                 </a>
                                 <div>
                                     <div class="container"> -->
-                                Filter : <input type="text" width="276" name="awal" id="awal">
+                                <!-- Filter : <input type="text" width="276" name="awal" id="awal"> -->
                                 <!-- </div>
                                 </div> -->
-                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                <!-- <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-print"></i>
                                     </span>
                                     <span class="text">Cetak PDF</span>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
 
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
                             <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
@@ -60,7 +60,7 @@
                                     <label for="bulan" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Bulan:</label>
                                     <input style="margin:10px; " name="bulan" id="bulan" class="form-control p-2 " type="month" value= "<?= date('Y-m'); ?>">
                                     <span style="margin:10px;"> 
-                                            <button class="btn btn-info btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-danger btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
                                                 <span class="icon text-white-50">
                                                     <i class="fa-solid fa-print"></i>
                                                 </span>

@@ -1,11 +1,13 @@
+
 <!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column" style="background:url('assets/img/home/blood.jpg');  background-size:cover">
+
+<div id="content-wrapper" class="d-flex flex-column" >
 
     <!-- Main Content -->
     <div id="content" >
 
         <!-- Topbar -->
-        <nav  class=" navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow top-container">
+        <nav  class=" navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow top-container" >
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -194,7 +196,7 @@
                             Log <i><b> (soon)</b></i>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>

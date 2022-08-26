@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion"  id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion"  id="accordionSidebar" >
 <br>
 <!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
@@ -67,7 +67,7 @@
         <?php endforeach; ?>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+            <a class="nav-link" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-fw fa-sign-out-alt"></i>
                 <span>Logout</span></a>
         </li>

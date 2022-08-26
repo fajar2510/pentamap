@@ -103,11 +103,27 @@
                                     <td ><small> <?= $p['nama_kelurahan']; ?>, <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?> </small></td>
                                     <td align="center"><?= $p['negara_bekerja']; ?></td>
                                     <td align="center">
-                                        <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  "> lap. <i class="fa fa-book" aria-hidden="true"></i></i></a>
+                                        
+                                        
+                                        
+                                        <div class="btn-group">
+                                        <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-success"><i class="fa-solid fa-clipboard"></i> Kwitansi</a>
+                                        <button type="button" class="btn btn-light px-1" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
+                                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu ">
+                                            <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a>
+                                            <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
+                                            <div class="dropdown-divider"></div>
+                                            <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
+                                        </div>
+
+                                        <!-- <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  "> lap. <i class="fa fa-book" aria-hidden="true"></i></i></a>
                                         <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-light"> nota<i class="fa-solid fa-receipt"></i></a>
                                         <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                         <a href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning "> <i class="fa fa-edit"></i></a>
-                                        <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                        <button type=" button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button> -->
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

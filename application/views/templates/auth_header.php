@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head >
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,5 +79,5 @@
 
 </head>
 
-<body>
-<!-- <body class="bg-gradient-light" style="background:url('assets/img/auth/4565.jpg');  background-size:cover"> -->
+<!-- <body> -->
+<body class="bg-gradient-light" style="background:url('assets/img/auth/bgputih.jpg');  background-size:cover;   ">

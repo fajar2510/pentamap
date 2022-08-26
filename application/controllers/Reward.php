@@ -206,7 +206,7 @@ class Reward extends CI_Controller
         
 
         // form validation
-        // $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
         // $this->form_validation->set_rules('kabupaten_kota', 'Kabupaten/kota', 'required|trim');
         // $this->form_validation->set_rules('nama_pimpinan', 'Pimpinan', 'required|trim');
         // $this->form_validation->set_rules('nama_kontak_person', 'Nama Kontak Person', 'trim');
@@ -257,6 +257,7 @@ class Reward extends CI_Controller
             
 
             $data_reward = [
+                'perusahaan_id' => $this->input->post('nama_perusahaan', true),
                 'disabilitas_L' => $this->input->post('disabilitas_L', true),
                 'disabilitas_P' => $this->input->post('disabilitas_P', true),
                 'disabilitas_total' => $this->input->post('disabilitas_total', true),

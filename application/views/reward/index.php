@@ -45,7 +45,7 @@
                             <label for="tahun" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Tahun:</label>
                             <input style="margin:10px; font-family:roboto;" name="tahun" id="tahun" class="form-control p-2 " type="year" value= "<?= date('Y'); ?>">
                                <span style="margin:10px;"> 
-                                    <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-danger btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
@@ -71,7 +71,7 @@
                                         <th colspan="3" class="text-center">Disabilitas</th>
                                         <th rowspan="2" class="text-center">Presentase%</th>
                                         <th rowspan="2">Diusulkan pada</th>
-                                        <th width="14%" class="text-center" rowspan="2">Aksi</th>
+                                        <th width="" class="text-center" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
                                         <th> L</th>
@@ -80,23 +80,35 @@
                                         
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody >
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_reward as $r) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <small> <?= $r['nama_kabupaten']; ?></small></td>
-                                            <td> <?= $r['nama_perusahaan']; ?></td>
+                                            <td> <small><?= $r['nama_perusahaan']; ?></small></td>
                                             <td><center><?= $r['disabilitas_L']; ?></center>  </td>
                                             <td><center><?= $r['disabilitas_P']; ?></center>  </td>
                                             <td> <center><?= $r['disabilitas_total']; ?></center> </td>
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
                                             <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td class="text-center">
-                                            <!-- <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></i></a> -->
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
+                                                <!-- Example split danger button -->
+                                                <div class="btn-group">
+                                                <button type="button" class="btn btn-light px-1" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" >  <i class="fa-solid fa-eye"></i></button>
+                                                <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu ">
+                                                    <a class="dropdown-item btn btn-sm btn-info" href="<?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa-solid fa-file-pdf btn btn-sm btn-success"></i> Cetak</a>
+                                                    <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
+                                                </div>
+                                                 <!-- <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i><</a>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

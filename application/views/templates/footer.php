@@ -1,4 +1,5 @@
 <!-- Footer -->
+
 <footer class="sticky-footer bg-white">
             <hr>
             <div class="container my-auto">
@@ -48,12 +49,14 @@
                         </button>
                         <div></div>
                         <form action="<?= base_url('auth/logout'); ?>">
-                            <button type="submit" class="btn btn-primary btn-icon-split">
+                            <button type="submit" onclick="snackbarlogout()" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
-                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                     <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
                                 </span>
                                 <span class="text">Logout</span>
                             </button>
+                            <div id="snackbar"> Sedang LOGOUT . . . </div>
                         </form>
                     </div>
                  </center>
@@ -726,12 +729,13 @@
                         title: "Kabupaten/kota",
                     }).addTo(map)
                     .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                    "</b></u><br><br><table class='table table-bordered' border='1'><thead><td><b>Keterangan</b></td><td><b>Jumlah</b></td></thead><tr style='background-color:#D61C4E'><td style='color:white'>Jumlah Pekerja PHK</td><td style='color:white'><center>" + phk + "</center></td></tr><tr style='background-color:#FEDB39'><td style='color:#312A28'> <b> Jumlah PMI-B <b/></td ><td style='color:#312A28'><center>" + pmib + "</center></td></tr><tr style='background-color:#7DCE13'><td style='color:#110F0F'>Jumlah TKA</td><td style='color:#110F0F'><center>" + tka + "</center></td></tr><tr style='background-color:#0096FF'><td style='color:white'>Jumlah PMI</td><td style='color:white'><center>" + pmi + "</center></td></tr><tr><td>Total</td><td><center>" + jumlah + "</center></td></tr></table>" +
-                        "<button type='button' onclick='btn_lp()' class='btn btn-sm btn-outline-success listp' data-id='"+data[i].id_kabupaten+"'>Data Perusahaan</button>")
-                    .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
+                    "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-secondary badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
+                        "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
+                    .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b><br> <b>  ("+ jumlah +") </b> orang </center>", {
+                      // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
                         permanent: true,
                         direction: 'bottom',
-                        opacity: 1
+                        opacity: 0.9
                     });
             });
         });
@@ -1005,6 +1009,15 @@
           }
     </script>
 
+    <!-- Use a button to open the snackbar -->
+    <script>
+        function snackbarlogout() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+    <!-- The actual snackbar -->
     
 
     </body>
