@@ -150,4 +150,152 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
+
+    public function registration() 
+    { 
+        $this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',[
+            'is_unique' => 'Alamat E-mail sudah digunakan']);
+        $this->form_validation->set_rules('password1', 'Password', 'min_length[4]|matches[password2]|trim|required', [
+            'matches' => 'Password tidak sama,  ulangi lagi',
+            'min_lenght' => 'Password telalu pendek, min 4 huruf/angka'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'matches[password1]|trim|required');
+
+        if ($this->form_validation->run()== false) {
+            $data['title'] = 'Registrasi';
+        $this->load->view('templates/auth_header', $data);
+        $this->load->view('auth/registration');
+        $this->load->view('templates/auth_footer');
+        } else {
+            $email = $this->input->post('email', true);
+            $data = [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($email),
+                'image' => 'default.png',
+                'password' => password_hash(
+                    $this->input->post('password1'),
+                    PASSWORD_DEFAULT
+                ),
+                'role_id' => 2,
+                'is_active' => 0,
+                'date_created' => time()
+            ];
+
+            // siapkan token
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
+                'date_created' => time()
+            ];
+
+            $this->db->insert('user', $data);
+            $this->db->insert('user_token', $user_token);
+
+            $this->_sendEmail($token, 'verify');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Silahkan cek E-mail !</strong> klik link untuk aktivasi akun kamu.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('auth');
+        } 
+    }
+    
+    private function _sendEmail($token, $type) 
+    {
+            $config = [
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_user' => 'savhiraindah@gmail.com',
+                'smtp_pass' => 'oyjocfiavzdqwlrb',
+                'smtp_port' => 465,
+                'smtp_crypto' => 'ssl',
+                'mailtype' => 'html',
+                'charset' => 'utf-8',
+                'wordwrap' => TRUE,
+                'newline' => "\r\n"
+            ];
+        
+            $this->load->library('email', $config);
+
+            $this->email->from('savhiraindah@gmail.com', 'SiPENTA DISNAKER' );
+            $this->email->to($this->input->post('email'));
+
+            if ($type == 'verify') {
+              $this->email->subject('Account Verification');
+            $this->email->message('Click this link to veriy your account :
+             <a href="'. base_url() . 'auth/verify?email=' . $this->input->post('email') . '&
+             token=' . $token . '">Activate</a>');  
+            }
+            
+
+            if ($this->email->send()) {
+                return true;
+            } else {
+                echo $this->email->print_debugger();
+                die;
+            }
+
+    }
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user',['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])
+            ->row_array();
+
+            if ($user_token) {
+                if (time() - $user_token['date_created'] < (60*60*24)) {
+                    $this->db->set('is_active', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('user');
+
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> Aktivasi Berhasil!</strong> ' . $email . ' sudah aktif, silahkan LOGIN.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>   </div>');
+                    redirect('auth');
+                } else {
+                    $this->db->delete('user', ['email' => $email]);
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong> Aktivasi Akun Gagal !</strong> Token Expired (Kadaluarsa).
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>   </div>');
+                    redirect('auth');
+                }
+            } else {
+
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong> Aktivasi Akun Gagal !</strong> Invalid Token.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>   </div>');
+                redirect('auth');
+            }
+        } else {
+
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong> Aktivasi Akun Gagal !</strong> E-mail salah.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('auth');
+        }
+        
+    }
+    
 }

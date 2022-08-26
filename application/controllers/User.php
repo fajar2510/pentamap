@@ -60,13 +60,22 @@ class User extends CI_Controller
 
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
-        $this->form_validation->set_rules('bio', 'Bio', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim');
+        $this->form_validation->set_rules('bio', 'Bio', 'trim');
+        $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tgl Lahir', 'trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'trim');
+        $this->form_validation->set_rules('NIK', 'NIK', 'trim');
+        $this->form_validation->set_rules('NIP', 'NIP', 'trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim');
+        
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('user/edit', $data);
+            $this->load->view('user', $data);
             $this->load->view('templates/footer');
         } else {
             $name = $this->input->post('name');
@@ -119,7 +128,7 @@ class User extends CI_Controller
             $this->db->update('user');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <strong> Disunting !</strong> Profil telah berhasil diupdate.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
