@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" >
 
     <div class="card o-hidden border-0 shadow-lg my-5 col-lg-6 mx-auto">
-        <div class="card-body p-0">
+        <div class="card-body p-0" class="bg-gradient-light" style="background:url('assets/img/auth/asia3.jpg');  background-size:cover; opacity: 98%;  ">
             <!-- Nested Row within Card Body -->
             <div class="row">
                 <div class="col-lg">

@@ -71,7 +71,7 @@
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Pusat Notifikasi (soon)
+                  Pusat Notifikasi (segera hadir)
                 </h6>
                 <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
@@ -193,7 +193,7 @@
                         </a> -->
                         <a class="dropdown-item disabled" disabled >
                             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Log <i><b> (soon)</b></i>
+                            Log <i><b> (segera hadir)</b></i>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">

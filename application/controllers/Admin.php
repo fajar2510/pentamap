@@ -15,6 +15,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = 'Beranda';
+        
 
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
@@ -22,6 +23,7 @@ class Admin extends CI_Controller
         $this->db->join('user_role', 'user.role_id = user_role.id');
         $this->db->where('email', $this->session->userdata('email'));
         $data['user'] = $this->db->get()->row_array();
+       
 
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -43,8 +45,10 @@ class Admin extends CI_Controller
         $data['title'] = 'Hak Akses';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        // echo "<pre>", var_dump($data), "</pre>";
 
         $data['role'] = $this->db->get('user_role')->result_array();
+       
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();

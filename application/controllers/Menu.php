@@ -17,8 +17,10 @@ class Menu extends CI_Controller
     public function index()
     {
         $data['title'] = 'Pengaturan Menu';
-        $data['user'] = $this->db->get_where('user', ['email' =>
+        $data['user'] = $this->db->get_where('user', ['email' => 
         $this->session->userdata('email')])->row_array();
+
+        // echo "<pre>", var_dump($data), "</pre>";
 
         // load data count cpmi pmi tka pengangguran
         $data['tka'] = $this->Penempatan->getTotalTKA();

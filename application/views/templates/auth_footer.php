@@ -29,7 +29,11 @@
     </script>
     <!-- The actual snackbar -->
 
-
+    <script>
+        $(document).ready(function(){
+        $(".preloader").fadeOut();
+        })
+    </script>
     
 
     </html>

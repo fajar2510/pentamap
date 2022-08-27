@@ -62,57 +62,20 @@
                 </ul>
             </div> -->
             <div id="mapp" style=""></div>
+            <hr style="margin-top: 100; margin-bottom: 60 ;">
 
-            <!-- <p>testing </p> 
-            <table class='table' border='0'>
-                <thead><td><b>Keterangan</b></td>
-                    <td><b>Jumlah</b></td>
-                </thead>
-                <tr>
-                    <td style='color:black'>Jumlah Pekerja PHK</td>
-                    <td style='color:#D61C4E'><center>" + phk + "</center></td>
-                </tr>
-                <tr>
-                    <td style='color:black'>  Jumlah PMI-B </td >
-                    <td style='color:#FEDB39'><center>" + pmib + "</center></td></tr>
-                <tr>
-                    <td style='color:black'>Jumlah TKA</td>
-                    <td style='color:#110F0F'><center>" + tka + "</center></td>
-                </tr>
-                <tr>
-                    <td style='color:black'>Jumlah PMI</td>
-                    <td style='color:#0096FF'><center>" + pmi + "</center></td>
-                </tr>
-                <tr>
-                    <td style='color:black'>Total</td>
-                    <td style='color:black'><center><b>" + jumlah + "<b/></center></td>
-                </tr>
-             </table> -->
+            <h6 style="color:red">testing unit</h6>
 
-             <!-- <ul class='list-group'>
-                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                    ter-PHK
-                    <span class='badge badge-danger badge-pill'>" + phk + "</span>
-                </li>
-                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                    PMI-Bermasalah
-                    <span class='badge badge-warning badge-pill'>" + pmib + "</span>
-                </li>
-                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                    PMI
-                    <span class='badge badge-secondary badge-pill'>" + tka + "</span>
-                </li>
-                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                    TKA (Asing)
-                    <span class='badge badge-info badge-pill'>" + pmi + "</span>
-                </li>
-                <li class='list-group-item d-flex justify-content-between align-items-center'>
-                    TOTAL
-                    <span class='badge badge-dark badge-pill'>" + jumlah + "</span>
-                </li>
-            </ul> -->
+
+            <!-- tampilan lama  -->
+<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i].nama_perusahaan+"</td><td><button class='btn btn-outline-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i> Riwayat Usulan Penghargaan</button></td></tr>
+
+            
+            <!-- tampilan baru -->
+
 
             <hr>
+            <!-- <ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center'> "+no+" . "+data.perusahaan[i].nama_perusahaan+" <span><span > <button type='button' class='btn btn-primary btn-sm detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i>rincian</button>   </span><span class='badge badge-danger badge-pill'>" + 0 "</span></span></li></ul> -->
             <!-- <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -177,7 +140,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Detail Reward Perusahaan</h5>
+                    <h5 class="modal-title" id="modalInfoLabel">Riwayat Usulan Penghargaan Disabilitas Perusahaan</h5>
                     <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>

@@ -15,9 +15,9 @@
     <?= $this->session->flashdata('message'); ?>
 
    
-    <section style="background-color: #FFFFFF;">
+    <section style="background-color: #FFFFFF; ">
     <!-- <section  class="bg-gradient-light" style="background:url('assets/img/auth/4565.jpg');  background-size:cover"> -->
-    <div class="container py-0" >
+    <div class="container py-4 px-0" >
 
         <div class="row">
         <div class="col-lg-4">
@@ -55,32 +55,37 @@
         <div class="col-lg-8">
             <div class="card mb-4 " >
                 <!-- <div class="card-body rounded float-left" style="background:url('assets/img/auth/disnakerlogo.png');  background-size:cover;  "> -->
-                <div class="card-body " >    
-                <div class="row " >
+                <div class="card-body "  style="color:#635f5f">    
+                <div class="row ">
                     <div class="col-sm-3">
                         <p class="mb-0"><i class="fa-solid fa-user-graduate"></i>&nbsp; Nama Lengkap</p>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['name']; ?></p>
+                    <div class="col-sm-9 " >
+                        <p class="font-weight-normal">: &nbsp;<?= $user['name']; ?></p>
                     </div>
                     
                     </div>
                     <hr>
-                    <div class="row">
-                    <div class="col-sm-3">
+                    <div class="row p-0" >
+                    <div class="col-sm-3 ">
                         <p class="mb-0"><i class="fa-solid fa-envelope"></i> &nbsp;Email</p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['email']; ?></p>
+                        <p class="font-weight-normal p-0">: &nbsp; <i> <?= $user['email']; ?> </i>
+                        <span class="badge badge-success" style="font-weight:thin;"> <i class="bi bi-patch-check-fill"></i> terverifikasi</span> </p>
                     </div>
                     </div>
                     <hr>
                     <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-address-book">&nbsp;</i>Kontak</p>
+                        <p class="mb-0"><i class="fa-solid fa-address-book">&nbsp;</i>No. Handphone</p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['kontak']; ?></p>
+                        <p class="font-weight-normal">: &nbsp;<?php if ($user['kontak'] == null) {
+                                                            echo '<span class="text-muted"><i>( belum diatur )</i></span>';
+                                                        } else {
+                                                            echo $user['kontak'];
+                                                        } ?></p>
                     </div>
                     </div>
                     <hr>
@@ -89,7 +94,15 @@
                         <p class="mb-0"><i class="fa-solid fa-id-card"></i>&nbsp;NIK/NIP</p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['NIK']; ?>/<?= $user['NIP']; ?></p>
+                        <p class="font-weight-normal">: &nbsp;<?php if ($user['NIK'] == null) {
+                                                            echo '<span class="text-muted"><i>( belum diatur )</i></span>';
+                                                        } else {
+                                                            echo $user['NIK'];
+                                                        } ?> /<span> <span><?php if ($user['NIP'] == null) {
+                                                            echo '<span class="text-muted"><i>( belum diatur )</i></span>';
+                                                        } else {
+                                                            echo $user['NIP'];
+                                                        } ?></span></span></p>
                     </div>
                     </div>
                     <hr>
@@ -98,7 +111,11 @@
                         <p class="mb-0"><i class="fa-solid fa-map-location-dot"></i>&nbsp;Alamat</p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['alamat']; ?></p>
+                        <p class="font-weight-normal">: &nbsp;<?php if ($user['alamat'] == null) {
+                                                            echo '<span class="text-muted"><i>( belum diatur )</i></span>';
+                                                        } else {
+                                                            echo $user['alamat'];
+                                                        } ?></p>
                     </div>
                     
                     </div>
@@ -110,7 +127,11 @@
                     
                     
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0">: &nbsp;<?= $user['bio']; ?></p>
+                        <p class="font-weight-normal">: &nbsp;<?php if ($user['bio'] == null) {
+                                                            echo '<span class="text-muted"><i>( belum diatur )</i></span>';
+                                                        } else {
+                                                            echo $user['bio'];
+                                                        } ?></p>
                     </div>
 
                     </div>

@@ -7,6 +7,7 @@ class Datamaster extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        // is_logged_in();
         
         $this->load->model('Master');
         $this->load->model('Penempatan');
@@ -18,7 +19,14 @@ class Datamaster extends CI_Controller
     // FUNCTION USER START
     public function user()
     {
+        is_logged_in();
+       
         // mengambil data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        // mengambil data user login
+        // echo "<pre>", var_dump($data), "</pre>";
+
         $this->db->select('user.*,user_role.role');
         $this->db->from('user');
         $this->db->join('user_role', 'user.role_id = user_role.id');
@@ -100,6 +108,7 @@ class Datamaster extends CI_Controller
 
     public function user_edit($id)
     {
+        is_logged_in();
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
         $this->db->from('user');
@@ -181,6 +190,7 @@ class Datamaster extends CI_Controller
 
     public function deleteUser($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
         $this->db->delete('user');
 
@@ -197,6 +207,7 @@ class Datamaster extends CI_Controller
   // FUNCTION USER START
   public function sektor()
   {
+        is_logged_in();
       // mengambil data user login
       $this->db->select('user.*,user_role.role');
       $this->db->from('user');
@@ -249,6 +260,7 @@ class Datamaster extends CI_Controller
 
   public function sektor_edit($id)
   {
+    is_logged_in();
       // mengambil data user login
       $this->db->select('user.*,user_role.role');
       $this->db->from('user');
@@ -301,6 +313,7 @@ class Datamaster extends CI_Controller
 
   public function delete_sektor($id)
   {
+    is_logged_in();
       $this->db->where('id_sektor', $id);
       $this->db->delete('jenis_sektor_usaha');
 
@@ -316,6 +329,7 @@ class Datamaster extends CI_Controller
     // FUNCTION Disabilitas START
     public function disabilitas()
     {
+        is_logged_in();
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
         $this->db->from('user');
@@ -365,6 +379,7 @@ class Datamaster extends CI_Controller
   
     public function disabilitas_edit($id)
     {
+        is_logged_in();
         // mengambil data user login
         $this->db->select('user.*,user_role.role');
         $this->db->from('user');
@@ -418,6 +433,7 @@ class Datamaster extends CI_Controller
   
     public function delete_disabilitas($id)
     {
+        is_logged_in();
         $this->db->where('id_jenis', $id);
         $this->db->delete('dis_jenis');
   

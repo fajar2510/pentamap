@@ -81,13 +81,16 @@ class Auth extends CI_Controller
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert 
-                alert-danger" role="alert"> Email ini belum diaktivasi! </div>');
+                $this->session->set_flashdata('message', '<div class="warning alert-danger alert-dismissible fade show" role="alert">
+                <strong> E-mail ini belum di aktivasi !</strong> silakan cek e-mail kamu.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>   </div>');
                 redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message','<div class="warning alert-danger alert-dismissible fade show" role="alert">
-            <strong> E-mail tidak terdaftar !</strong> Masukkan email yang sudah terdaftar.
+            <strong> E-mail tidak terdaftar !</strong> Masukkan email yang benar.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
@@ -163,7 +166,7 @@ class Auth extends CI_Controller
             $this->_sendEmail($token, 'verify');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong> Silahkan cek E-mail !</strong> klik link untuk aktivasi akun kamu.
+            <strong> Silahkan cek E-mail !</strong> kami mengirim sebuah tautan kepada '. $email .' untuk aktivasi akun kamu.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
@@ -234,7 +237,7 @@ class Auth extends CI_Controller
                     $this->db->delete('user_token', ['email' => $email]);
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong> Aktivasi Berhasil!</strong> ' . $email . ' sudah aktif, silahkan LOGIN.
+                    <strong> Aktivasi Berhasil!</strong> akun ' . $email . ' sudah aktif, silahkan LOGIN.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>   </div>');

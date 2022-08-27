@@ -808,7 +808,7 @@
                         var list_reward="";
                         var ada_reward=0;
                         var btn_kembali="";
-                        list_reward+="<br><center><h5>Daftar Reward</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Jenis Disabilitas</th><th scope='col'>Ragam Disabilitas</th>"
+                        list_reward+="<br><center><h5>Rincian</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Jenis Disabilitas</th><th scope='col'>Ragam Disabilitas</th>"
                         list_reward+="<th scope='col'>Tanggal Diusulkan</th></tr></thead><tbody>";
                         for(i=0; i<1; i++){
                             html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_perusahaan+"</label></div>";
@@ -823,7 +823,7 @@
                                 ada_reward +=1;   
                             }
                             else{
-                                list_reward += "<tr><td scope='row' colspan='4'><center>Tidak ada data Reward</center></td></tr>";
+                                list_reward += "<tr><td scope='row' colspan='4'><center>Tidak ada data Penghargaan</center></td></tr>";
                             }
                         }
                         list_reward+="</tbody></table>";
@@ -939,10 +939,10 @@
     <script>
         // alert auto close
         window.setTimeout(function() {
-            $(".alert").fadeTo(2000, 0).slideUp(200, function(){
+            $(".alert").fadeTo(2500, 0).slideUp(200, function(){
             $(this).remove(); 
             });
-        }, 4000);
+        }, 5000);
 
         // checkbox selected
         function myFunction() {
@@ -1018,6 +1018,13 @@
         }
     </script>
     <!-- The actual snackbar -->
+
+        <!-- untuk animasi loading saat memuat halaman -->
+    <script>
+        $(document).ready(function(){
+        $(".preloader").fadeOut();
+        })
+    </script>
     
 
     </body>
