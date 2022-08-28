@@ -72,7 +72,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script> -->
 
     <!-- Load JS  -->
-    <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script>
+    <!-- <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script> -->
     <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
 
     <!-- Load Bootsrap 3 bundle  -->
@@ -103,23 +103,35 @@
 
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
 
+    <!-- LEAFLET CENTER -->
     <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
+
+    <!-- leaflet full screen -->
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script> -->
+    <!-- leflet search -->
+    <script src="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.js"></script>
+
+    <!-- leflet legenda -->
+    <!-- <script src="<?= base_url('assets/'); ?>leaflet/leaflet.Legend/src/leaflet.legend.js"></script> -->
+
+    <!-- leflet label -->
+    <script src="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.js"></script>
+
+    <!-- LEAFLET CENTER -->
 
     <!-- date picker untuk tahun only -->
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
+
+
     <!-- select2 multiple form -->
     <script type="text/javascript">
-    $(document).ready(function(){
-			$('.bootstrap-select').selectpicker();
+      $(document).ready(function(){
+        $('.bootstrap-select').selectpicker();
 
-
-                //AJAX REQUEST TO GET SELECTED PRODUCT
+          //AJAX REQUEST TO GET SELECTED JENIS DAN RAGAM DISABILITAS
             $.ajax({
 				url: "<?php echo site_url('reward/get_jenis_disabilitas');?>",
 				method: "POST",
@@ -139,9 +151,7 @@
                 });
                 return false;
 			});
-
-			//GET CONFIRM DELETE
-	</script>
+	  </script>
 	
 
         <!-- perhitungan otomasi jumlah disabilitas dan total tenaga kerja di perusahaan -->
@@ -248,17 +258,17 @@
         });
     </script>
 
-  <script>
+    <script>
         var now = new Date(new Date().getFullYear(), new Date().getMonth());
               
         $('#bulan').datepicker({
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             minDate: now,
-        });]
+        });
     </script>
 
-
+     <!-- dinamic select option untuk pilih alamat  -->
     <script>
         function tampilKabupaten() {
             kdprop = document.getElementById("provinsi_id").value;
@@ -297,8 +307,6 @@
         }
     </script>
 
-   
-
     <!-- AUTO COMPLETE -->
     <script  type="text/javascript">
                 //autocomplete tenaga kerja lokal add
@@ -310,7 +318,7 @@
                 });
     </script>
 
-     <!-- script map utama -->
+     <!-- script MAP MAP TENAGA KERJA JATIM utama -->
     <script type="text/javascript">
         // var L = window.L;
 
@@ -321,7 +329,9 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             
         }).addTo(map);
-
+        
+        
+        // polygon untuk wilayah jawa timur
         var latlngs = [
             
             [-7.032749742778853,
@@ -655,19 +665,224 @@
 
 
         var latlngs2 = [
-            [-8.210225, 110.820616],
+          [-5.7690358661221355,
+              112.59613037109375
+              
+            ],
+            [-5.809682888294417,
+              112.57415771484375
+              
+            ],
+            [-5.852376180414698,
+              112.58995056152342
+              
+            ],
+            [-5.848619301205019,
+              112.63355255126953
+              
+            ],
+            [-5.844862396761838,
+              112.71800994873047
+              
+            ],
+            [-5.789872099864302,
+              112.73963928222656
+              
+            ],
+            [-5.741708497977726,
+              112.72315979003905
+              
+            ],
+            [-5.718479204355324,
+              112.68367767333983
+              
+            ],
+            [-5.737609279566594,
+              112.67131805419922
+              
+            ],
+            [-5.731460396704462,
+              112.64659881591797
+              
+            ],
+            [-5.748540463122782,
+              112.6156997680664
+              
+            ],
+            [-5.772793276406243,
+              112.60917663574219
+              
+            ],
+            [-5.7690358661221355,
+              112.59613037109375
+              
+            ]
 
         ];
         var polygon = L.polygon(latlngs2, {
             color: '#D07000'
         }).addTo(map);
 
+
+        var latlng3 = [
+          [-7.092716048631412,
+              114.268798828125
+              
+            ],
+            [-7.160850096497242,
+              114.3072509765625
+              
+            ],
+            [-7.171750602122852,
+              114.40338134765625
+              
+            ],
+            [-7.079088026071719,
+              114.36767578124999
+              
+            ],
+            [-7.0545565715284955,
+              114.3182373046875
+              
+            ],
+            [-7.092716048631412,
+              114.268798828125
+              
+            ]
+        ];
+        var polygon = L.polygon(latlng3, {
+            color: '#D07000'
+        }).addTo(map);
+
+        var latlng4 = [
+          [-7.148586716248072,
+              114.52011108398438
+              
+            ],
+            [ -7.144498849647323,
+              114.55856323242188
+             
+            ],
+            [-7.173113146986745,
+              114.59976196289064
+              
+            ],
+            [-7.145861475910591,
+              114.61761474609375
+              
+            ],
+            [-7.132235030578753,
+              114.5379638671875
+              
+            ],
+            [-7.148586716248072,
+              114.52011108398438
+              
+            ]
+
+        ];
+        var polygon = L.polygon(latlng4, {
+          color: '#D07000'
+        }).addTo(map);
+
+        var latlng5 = [
+          [ -6.940059334882694,
+              115.213623046875
+             
+            ],
+            [-6.945512219508057,
+              115.26855468749999
+              
+            ],
+            [-7.00003758074107,
+              115.28228759765624
+              
+            ],
+            [-6.959144154386006,
+              115.31249999999999
+              
+            ],
+            [-6.989133016574015,
+              115.39489746093751
+              
+            ],
+            [-6.9182471651737405,
+              115.33721923828125
+              
+            ],
+            [-6.926426847059551,
+              115.42510986328124
+              
+            ],
+            [-7.019119954643816,
+              115.68603515624999
+              
+            ],
+            [-6.912793965187946,
+              115.56793212890625
+              
+            ],
+            [ -6.839169626342808,
+              115.39764404296875
+             
+            ],
+            [ -6.825534240573385,
+              115.2410888671875
+             
+            ],
+            [-6.86643922958172,
+              115.24658203125
+              
+            ],
+            [-6.890980536470734,
+              115.21087646484375
+              
+            ],
+            [-6.940059334882694,
+              115.213623046875
+              
+            ]
+
+        ];
+        var polygon = L.polygon(latlng5, {
+          color: '#D07000'
+        }).addTo(map);
+
+        var latlng6 = [
+          [-7.156762339693515,
+              115.74783325195311
+              
+            ],
+            [ -7.208537879875225,
+              115.84121704101561
+             
+            ],
+            [-7.170388053181794,
+              115.90164184570312
+              
+            ],
+            [-7.149949330320771,
+              115.78903198242188
+              
+            ],
+            [-7.156762339693515,
+              115.74783325195311
+              
+            ]
+
+        ];
+        var polygon = L.polygon(latlng6, {
+          color: '#D07000'
+        }).addTo(map);
+        
+
+
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
             $.each(data, function(i, field) {
 
                 var leafleticon = L.icon({
                     iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    iconSize: [50, 50]
+                    iconSize: [48, 48]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
@@ -687,6 +902,16 @@
                         color: '#D61C4E',
                         fillOpacity: 0.5
                     }).addTo(map);
+                    // circle.bindPopup("<u><b><center>" + data[i].nama_kabupaten +
+                    // "</b></u><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>Gelombang Merah (PHK) :  <span class='badge badge-danger badge-pill'> "  + phk + " </span></ul> ");
+                    // circle.openPopup().bindTooltip("<u><b><center>" + data[i].nama_kabupaten +
+                    // "</b></u><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>Gelombang Merah (PHK) :  <span class='badge badge-danger badge-pill'> "  + phk + " </span></ul> ", {
+                    //     permanent: false,
+                    //     iconAnchor: [122,65],
+                    //     popupAnchor: [-35, -55],
+                    //     direction: 'left',
+                    //     opacity: 0.9
+                    //   });
                 }
                 if (pmib == "0") {
                     pmib = parseInt("0");
@@ -713,7 +938,7 @@
                 } else {
                     tka = parseInt(data[i].jumlah_tka);
                     var circle = L.circle([long, lat], 12000, {
-                        color: '#7DCE13',
+                        color: '#3CCF4E',
                         fillOpacity: 0.5
                     }).addTo(map);
                 }
@@ -727,21 +952,62 @@
                 bangunanMarker = L.marker([long, lat], {
                         icon: leafleticon,
                         title: "Kabupaten/kota",
-                    }).addTo(map)
-                    .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                    "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-secondary badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                        "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
-                    .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b><br> <b>  ("+ jumlah +") </b> orang </center>", {
-                      // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
-                        permanent: true,
-                        direction: 'bottom',
-                        opacity: 0.9
-                    });
+                            }).addTo(map)
+                            .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
+                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-success badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
+                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
+                            .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b><br> <b>  ("+ jumlah +") </b> orang </center>", {
+                              // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
+                                permanent: true,
+                                direction: 'bottom',
+                                opacity: 0.9,
+                                // className: 'leaflet-tooltip-own' .
+                        });
             });
         });
 
-        map.locate({setView: true, maxZoom: 16});
+        
 
+
+         /*Legend specific*/
+        var legend = L.control({ position: "bottomright" });
+
+        legend.onAdd = function(map) {
+          var div = L.DomUtil.create("div", "legend");
+          div.innerHTML += "<h4>Legenda Peta Tenaga Kerja Jatim</h4>";
+          div.innerHTML += '<svg height="25" width="100%"><line x1="10" y1="10" x2="40" y2="10" style="stroke:peru; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah Jawa Timur</text>]</svg>';
+          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#D61C4E" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">PMI Bermasalah (PMIB)</text></svg>';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Calon Pekerja Migran Indonesia (CPMI)</text></svg>';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="green" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Asing (TKA)</text></svg> ';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Daerah</text></svg>';
+          // div.innerHTML += ' <br><i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>SIG</span><br>';
+
+          return div;
+        };
+        legend.addTo(map);
+
+        // standart zoom view jatim first load
+        map.locate({setView: true, maxZoom: 16});
+        
+        // map search 
+        L.control.search({
+          url: 'search.php?q={s}',
+          textPlaceholder: 'Color...',
+          position: 'topright',
+          hideMarkerOnCollapse: true,
+          marker: {
+            icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
+            circle: {
+              radius: 20,
+              color: '#0a0',
+              opacity: 1
+            }
+          }
+        }).addTo(map);
+
+
+        // full screen map
         // create a fullscreen button and add it to the map
         L.control.fullscreen({
           position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
@@ -753,7 +1019,7 @@
           fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
         }).addTo(map);
 
-        // LIST PERUSAHAAN
+       
     </script>
 
     <script>

@@ -36,7 +36,6 @@
                                     <th>Name</th>
                                     <th>Jabatan</th>
                                     <th>Kontak</th>
-                                    <th>Bio</th>
                                     <th class="text-center">Profil</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -49,10 +48,9 @@
                                         <td> <?= $ur['name']; ?></td>
                                         <td> <i> <?= $ur['jabatan']; ?></i></td>
                                         <td><?= $ur['kontak']; ?></td>
-                                        <td> <?= $ur['bio']; ?> </td>
                                         <td class="text-center"> <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-profile rounded-circle" width="50" height="50"" alt="Profile Picture"></td>
                                         <td class="text-center">
-                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $ur['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
+                                        <button type="button" data-toggle="modal" data-target="#modalInfo<?= $ur['id']; ?>" class="btn btn-sm btn-light"> <i class="fa-solid fa-eye"></i></button>
                                             <!-- <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button> -->
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $ur['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
@@ -466,12 +464,12 @@
                 <center>
                     <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
                     <form action="<?= base_url('datamaster/deleteUser/' . $ur['id']); ?>">
-                        <div class="modal-body">Data&nbsp;<b>
-                                <font color="red"><?= $ur['name']; ?></font>
-                            </b> akan dihapus </div>
+                        <div class="modal-body">Akun&nbsp;<b>
+                                <font color="black"><?= $ur['name']; ?></font>
+                            </b> akan dihapus permanen !</div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" value=<?= $ur['id']; ?>>
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </div>
                     </form>

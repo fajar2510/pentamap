@@ -24,7 +24,7 @@
   <!-- font & backup font nunito -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
   <!-- <link href="<?= base_url('assets/'); ?>font/nunito/font-nunito.css" rel="stylesheet"> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" /> -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
   <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap&text=RobtMn" rel="stylesheet" /> -->
 
   <!-- css sb admin 2 template this bootstrap -->
@@ -35,9 +35,10 @@
   <!-- LEAFLET CSS , PLUGIN -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.css" />
   <!-- <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="crossorigin=""/>
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.css" />
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet.Legend/src/leaflet.legend.css" /> -->
   <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
   <!-- LEAFLET CSS , PLUGIN -->
 
@@ -63,31 +64,7 @@
   <!-- <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  
-  
 
-<!-- MDB -->
-<!-- Font Awesome -->
-<!-- <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet" />-->
-
-<!-- Google Fonts -->
-<!-- <link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"/> -->
-
-<!-- <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
-  rel="stylesheet" />-->
-
-<!-- <script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
-></script> -->
-<!-- MDB -->
-  
-  
  
 
 
@@ -95,7 +72,7 @@
   <style type="text/css">
     /* body { margin:0; padding:0; } */
     #mapp {
-      height: 600px;
+      height: 530px;
     }
   </style>
 
@@ -282,6 +259,75 @@
         transform: translate(-50%,-50%);
         font: 14px arial;
       }
+  </style>
+
+  <style>
+  
+      /*Legend specific*/
+    .legend {
+      padding: 6px 8px;
+      font: 14px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255, 255, 255, 0.8);
+      /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+      /*border-radius: 5px;*/
+      line-height: 24px;
+      color: #555;
+    }
+    .legend h4 {
+      text-align: center;
+      font-size: 16px;
+      margin: 2px 12px 8px;
+      color: #1B2430;
+      font-weight:bold;
+    }
+
+    .legend span {
+      position: relative;
+      bottom: 3px;
+    }
+
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin: 0 8px 0 0;
+      opacity: 0.7;
+    }
+
+    .legend i.icon {
+      background-size: 18px;
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+
+    /* bin tooltip  */
+    .leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: -12px;
+    border-left-color: rgba(255, 255, 255, 1);
+    }
+    .leaflet-tooltip-right:before {
+        left: 0;
+        margin-left: -12px;
+        border-right-color: rgba(255, 255, 255, 1);
+        }
+    .leaflet-tooltip-own {
+        position: absolute;
+        padding: 4px;
+        background-color: rgba(255, 255, 255, 1);
+        border: 0px solid #000;
+        color: #000;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        border-radius: 50%
+    }
+    
+
   </style>
     
 

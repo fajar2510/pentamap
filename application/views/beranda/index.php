@@ -14,32 +14,29 @@
 
     <!-- Content Row -->
 
-    <div class="row">
-        <div class="col-md-10">
-        
-            <h6> <i class="fa fa-map-marker" aria-hidden="true"></i></i> &nbsp; <b> <?= $title; ?> PROVINSI JAWA TIMUR TAHUN <span id="tahun_peta"><?= date('Y'); ?></span></h1>
+    <!-- <div class="row card">
+        <div class="col-md-12">
+        <h6>  &nbsp; <b> <?= $title; ?> Provinsi Jawa Timur <span id="tahun_peta"><?= date('Y'); ?></span></h1>
+            
         </div>
         
-        <!-- <div class="col-md-12">
+        <div class="col-md-12">
             <select class="form-control" id="tahun_pilih" name="tahun">
                 <option value="all">-Pilih Tahun-</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
             </select>
-        </div> -->
-    </div>
+        </div>
+    </div> -->
 
   
 
     <?= $this->session->flashdata('message'); ?>
-    
-    <br>
     <!-- <hr> -->
 
-    <div class="row">
+    <div class=" row">
         <div class="col-md-12">
-            
-
+            <!-- <h5 style="padding-bottom:10;">  &nbsp; <?= $title; ?> Provinsi Jawa Timur <span id="tahun_peta"><?= date('Y'); ?></span></h5> -->
             <!-- <div>
                 <hr>
                 <p> <b> Petunjuk :</b></p>
@@ -61,20 +58,51 @@
                     </li>
                 </ul>
             </div> -->
+
             <div id="mapp" style=""></div>
-            <hr style="margin-top: 100; margin-bottom: 60 ;">
-
-            <h6 style="color:red">testing unit</h6>
-
-
-            <!-- tampilan lama  -->
-<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i].nama_perusahaan+"</td><td><button class='btn btn-outline-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i> Riwayat Usulan Penghargaan</button></td></tr>
-
             
-            <!-- tampilan baru -->
+            <!-- <hr style="margin-top: 100; margin-bottom: 60 ;"> -->
 
+            <!-- <div id="legenda">
+                <svg height="25" width="100%">
+                    <line x1="10" y1="10" x2="40" y2="10" style="stroke:peru; stroke-width:2;"/>
+                    <text x="59" y="15" style="font-family:sans-serif; font-size=16px;">
+                        Garis Batas Wilayah Jawa Timur
+                    </text>]
+                </svg>
+                <svg height="25" width="100%">
+                      <circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#D61C4E" opacity="70%"/> 
+                     <text x="60" y="15" style="font-family:roboto; font-size=16px;">
+                        Tenaga Kerja ter-PHK
+                    </text>
+                </svg> 
+                <svg height="25" width="100%">
+                      <circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> 
+                     <text x="60" y="15" style="font-family:roboto; font-size=16px;">
+                        PMI Bermasalah (PMIB)
+                    </text>
+                </svg> 
+                <svg height="25" width="100%">
+                      <circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> 
+                     <text x="60" y="15" style="font-family:roboto; font-size=16px;">
+                        Calon Pekerja Migran Indonesia (CPMI)
+                    </text>
+                </svg> 
+                <svg height="25" width="100%">
+                      <circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="green" opacity="70%"/> 
+                     <text x="60" y="15" style="font-family:roboto; font-size=16px;">
+                        Tenaga Kerja Asing (TKA)
+                    </text>
+                </svg> 
+                <svg height="25" width="100%">
+                      <circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> 
+                     <text x="60" y="15" style="font-family:roboto; font-size=16px;">
+                        Tenaga Kerja Daerah
+                    </text>
+                </svg>
+            </div> -->
+            
 
-            <hr>
             <!-- <ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center'> "+no+" . "+data.perusahaan[i].nama_perusahaan+" <span><span > <button type='button' class='btn btn-primary btn-sm detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i>rincian</button>   </span><span class='badge badge-danger badge-pill'>" + 0 "</span></span></li></ul> -->
             <!-- <div class="card-body">
                 <div class="table-responsive">

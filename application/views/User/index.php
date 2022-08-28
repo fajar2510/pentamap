@@ -17,12 +17,12 @@
    
     <section style="background-color: #FFFFFF; ">
     <!-- <section  class="bg-gradient-light" style="background:url('assets/img/auth/4565.jpg');  background-size:cover"> -->
-    <div class="container py-4 px-0" >
+    <div class="container py-0 px-0" >
 
         <div class="row">
         <div class="col-lg-4">
             <div class="card mb-4" >
-            <div class="card-body text-center">
+            <div class="card-body text-center ">
                 
                 <div class="edit-foto ">
                         <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>"  alt="Profile Picture" 
@@ -53,9 +53,9 @@
         
         </div>
         <div class="col-lg-8">
-            <div class="card mb-4 " >
+            <div class="card mb-4" >
                 <!-- <div class="card-body rounded float-left" style="background:url('assets/img/auth/disnakerlogo.png');  background-size:cover;  "> -->
-                <div class="card-body "  style="color:#635f5f">    
+                <div class="card-body  "  style="color:#635f5f">    
                 <div class="row ">
                     <div class="col-sm-3">
                         <p class="mb-0"><i class="fa-solid fa-user-graduate"></i>&nbsp; Nama Lengkap</p>
@@ -65,20 +65,41 @@
                     </div>
                     
                     </div>
-                    <hr>
-                    <div class="row p-0" >
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
+                    <div class="row " >
                     <div class="col-sm-3 ">
                         <p class="mb-0"><i class="fa-solid fa-envelope"></i> &nbsp;Email</p>
                     </div>
+                    
                     <div class="col-sm-9">
-                        <p class="font-weight-normal p-0">: &nbsp; <i> <?= $user['email']; ?> </i>
+                        <p class="font-weight-normal">: &nbsp; <i> <?= $user['email']; ?> </i>
                         <span class="badge badge-success" style="font-weight:thin;"> <i class="bi bi-patch-check-fill"></i> terverifikasi</span> </p>
                     </div>
+                    
                     </div>
-                    <hr>
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
+                    <!-- <div class="row " >
+                    <div class="col-sm-3">
+                        <p class="mb-0"><i class="fa-solid fa-user-graduate"></i>&nbsp; Tanggal Lahir</p>
+                    </div>
+                    <div class="col-sm-9 " >
+                        <p class="font-weight-normal">: &nbsp;<?= $user['tanggal_lahir']; ?> 
+                                            (<?php $lahir    = new DateTime($user['tanggal_lahir']);
+                                                $today        = new DateTime();
+                                                
+                                                $a = $today->diff($lahir)->m ;
+                                                // $b = $lahir ->diff($a)->days;
+
+                                                // $b = $today->diff($b)->days +1;
+                                                echo $a;
+                                                ?>) xx</p>
+                                            
+                    </div>
+                    </div>
+                    <hr style="margin-top: 0px; margin-bottom: 5px ;"> -->
                     <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-address-book">&nbsp;</i>No. Handphone</p>
+                        <p class="mb-0"><i class="fa-solid fa-address-book"> &nbsp;</i>No. Handphone</p>
                     </div>
                     <div class="col-sm-9">
                         <p class="font-weight-normal">: &nbsp;<?php if ($user['kontak'] == null) {
@@ -88,10 +109,10 @@
                                                         } ?></p>
                     </div>
                     </div>
-                    <hr>
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
                     <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-id-card"></i>&nbsp;NIK/NIP</p>
+                        <p class="mb-0"><i class="fa-solid fa-id-card"></i> &nbsp;NIK/NIP</p>
                     </div>
                     <div class="col-sm-9">
                         <p class="font-weight-normal">: &nbsp;<?php if ($user['NIK'] == null) {
@@ -105,10 +126,10 @@
                                                         } ?></span></span></p>
                     </div>
                     </div>
-                    <hr>
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
                     <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-map-location-dot"></i>&nbsp;Alamat</p>
+                        <p class="mb-0"><i class="fa-solid fa-map-location-dot"></i> &nbsp;Alamat</p>
                     </div>
                     <div class="col-sm-9">
                         <p class="font-weight-normal">: &nbsp;<?php if ($user['alamat'] == null) {
@@ -119,10 +140,10 @@
                     </div>
                     
                     </div>
-                    <hr>
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
                     <div class="row">
                     <div class="col-sm-3">
-                        <p class="mb-0"><i class="fa-solid fa-quote-left"></i>&nbsp;Bio</p>
+                        <p class="mb-0"><i class="fa-solid fa-quote-left"></i> &nbsp;Catatan</p>
                     </div>
                     
                     
@@ -135,7 +156,7 @@
                     </div>
 
                     </div>
-                    <hr>
+                    <hr style="margin-top: 1px; margin-bottom: 6px ;">
                     <div class="row">
                     <div class="col-sm-12">
                         <p class="mb-0">&nbsp; <small> <i> Bergabung sejak&nbsp;<?= date('d F Y', $user['date_created']);  ?></i> </small></p>
@@ -247,9 +268,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="bio" class="col-sm-3 col-form-label">Bio tentang kamu</label>
+                            <label for="bio" class="col-sm-3 col-form-label">Catatan</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="bio" placeholder="tentang kamu . . . " name="bio" rows="2"> <?= $user['bio']; ?></textarea>
+                                <textarea class="form-control" id="bio" placeholder="catatan . . . " name="bio" rows="2"> <?= $user['bio']; ?></textarea>
                                 <?= form_error('bio', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

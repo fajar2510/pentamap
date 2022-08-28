@@ -60,7 +60,7 @@ class Auth extends CI_Controller
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>   </div>');
-                        redirect('beranda');
+                        redirect('admin');
                         
                         
                     } else {
@@ -110,22 +110,6 @@ class Auth extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>   </div>');
         redirect('auth');
-    }
-
-    public function endSession()
-    {
-        if ( $this->session->unset_userdata('email') == null) {
-
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong> Sesi telah berakhir !</strong> silahkan masuk kembali.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>   </div>');
-            redirect('auth');
-        }
-       
-
-        
     }
 
     public function blocked()
@@ -213,9 +197,9 @@ class Auth extends CI_Controller
             if ($type == 'verify') {
 
                 $this->email->subject('Account Verification');
-                $this->email->message('Click this link to veriy your account :
+                $this->email->message('<b>Click this link to veriy your account :
                 <a href="'. base_url() . 'auth/verify?email=' . $this->input->post('email') . '&
-                token=' . urlencode($token) . '">Activate</a>');  
+                token=' . urlencode($token) . '  " class="btn btn-btn-success btn-block ">Activate</b></a>');  
             } else if($type == 'forgot') {
 
                 $this->email->subject('Reset Password');

@@ -61,7 +61,7 @@ class User extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim');
-        $this->form_validation->set_rules('bio', 'Bio', 'trim');
+        $this->form_validation->set_rules('bio', 'Catatan', 'trim');
         $this->form_validation->set_rules('kontak', 'Kontak', 'trim');
         $this->form_validation->set_rules('tanggal_lahir', 'Tgl Lahir', 'trim');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'trim');

@@ -1,21 +1,22 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion"  id="accordionSidebar" >
-<br>
+
 <!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-start" href="<?= base_url('beranda'); ?>">
+    <a class="sidebar-brand d-flex a" href="<?= base_url('beranda'); ?>">
         
         <div class="sidebar-brand-icon"> 
-            <!-- <i class="far fa-building"></i> </div> -->
-            <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="logo-disnakertrans-jatim" width="55px" height="65">
+            <!-- <i class="bi bi-map"></i> -->
+            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
         </div> 
-        <div class="sidebar-brand-text mx-3">P E N T A <br>
-            <small> <p>DISNAKERTRANS </br> Jawa Timur</p></small>
+        <div class="sidebar-brand-text mx-3 px-1 py-0" style="font-family:roboto; font-size:14px;  text-align: left;">Sistem Informasi Geografis<br>
+            <small> <p  style="font-family:roboto; font-size:9px; ">Tenaga Kerja Jawa Timur</p></small>
         </div>
           
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider mt-3">
+    
 
     <!-- QUERY MENU-->
 
@@ -73,7 +74,7 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">

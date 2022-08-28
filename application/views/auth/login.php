@@ -17,9 +17,12 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45">
+                                    
                                     <hr style="margin-top: 10px; margin-bottom: 10px ;">
                                     <p><small> Sistem Informasi Geografis Tenaga Kerja Jatim</small> </p>
-                                    <h1 class="h4 text-gray-900 mb-4">Login <span></span><b>SiG-PENTA</b>
+                                    <h1 class="h4 text-gray-900 mb-4">Login <span>
+                                    <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65"> -->
+                                    </span><b>SIG-PENTA</b>
                                     
                                         
                                     </h1>
