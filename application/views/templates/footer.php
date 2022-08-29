@@ -4,7 +4,7 @@
             <hr>
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geofrafis - PENTA | DISNAKERTRANS JAWA TIMUR</span>
+                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geofrafis Tenaga Kerja Jatim - PENTA | DISNAKERTRANS JAWA TIMUR</span>
                     <!-- <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp; -->
                 </div>
             </div>
@@ -77,7 +77,6 @@
 
     <!-- Load Bootsrap 3 bundle  -->
     <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -94,30 +93,27 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
-    <!-- <script type="text/javascript" src="<?php echo base_url('assets/js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
 
     <!-- select2 multiple form -->
     <!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
     <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap-select.js"></script>
-
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
 
     <!-- LEAFLET CENTER -->
-    <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script>
-
+    <!-- <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script> -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   crossorigin=""></script>
     <!-- leaflet full screen -->
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
-
     <!-- leflet search -->
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.js"></script>
-
+     <!-- leflet label -->
+    <script src="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.js"></script>
     <!-- leflet legenda -->
     <!-- <script src="<?= base_url('assets/'); ?>leaflet/leaflet.Legend/src/leaflet.legend.js"></script> -->
-
-    <!-- leflet label -->
-    <script src="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.js"></script>
-
+   
     <!-- LEAFLET CENTER -->
 
     <!-- date picker untuk tahun only -->
@@ -322,15 +318,18 @@
     <script type="text/javascript">
         // var L = window.L;
 
+       
+
         var map = L.map('mapp').setView([-7.6709737, 113.3288216], 8.5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-             maxZoom: 18,
+            maxZoom: 18,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             
         }).addTo(map);
-        
-        
+
+
+                
         // polygon untuk wilayah jawa timur
         var latlngs = [
             
@@ -961,10 +960,14 @@
                                 permanent: true,
                                 direction: 'bottom',
                                 opacity: 0.9,
+                                sticky: false,
+                                // pane: 'tooltipPane',
                                 // className: 'leaflet-tooltip-own' .
                         });
             });
         });
+
+       
 
         
 
@@ -1019,6 +1022,7 @@
           fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
         }).addTo(map);
 
+        
        
     </script>
 

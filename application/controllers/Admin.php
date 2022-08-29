@@ -36,7 +36,61 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer-testing');
+    }
+
+    public function test1()
+    {
+        $data['title'] = 'Test1 Geo Json';
+        
+
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+        $data['user'] = $this->db->get()->row_array();
+       
+
+        // $data['tka'] = $this->Perusahaan->getTotalTKA();
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        //load with templating view
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/test1', $data);
+        $this->load->view('templates/footer-geojson');
+    }
+
+    public function test2()
+    {
+        $data['title'] = 'Tes2 Cluster';
+        
+
+        // mengambil data user login
+        $this->db->select('user.*,user_role.role');
+        $this->db->from('user');
+        $this->db->join('user_role', 'user.role_id = user_role.id');
+        $this->db->where('email', $this->session->userdata('email'));
+        $data['user'] = $this->db->get()->row_array();
+       
+
+        // $data['tka'] = $this->Perusahaan->getTotalTKA();
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        //load with templating view
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/test2', $data);
+        $this->load->view('templates/footer-cluster');
     }
 
     // index Role dan tambah Role

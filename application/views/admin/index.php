@@ -4,7 +4,7 @@
 
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-600"><?= $title; ?></h1>
+        <h5 class="h5 mb-1 text-gray-600"><?= $title; ?> ADMIN TESTING </h5>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
 
@@ -15,10 +15,10 @@
     <?php foreach ($phk as $total_phk); ?>
 
     <!-- Content Row -->
-    <div class="row">
+    <!-- <div class="row"> -->
 
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <!-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -81,12 +81,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Content Row -->
 
         <!-- Collapsable Card Example -->
-        <div class="card shadow mb-4">
+        <!-- <div class="card shadow mb-4"> -->
             <!-- Card Header - Accordion -->
             <!-- <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                 <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
@@ -97,8 +97,30 @@
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                 </div>
             </div> -->
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
+       
+           
+    
+       
+            <!-- start -->
+            <p style="font-weight:bold; font-family:roboto; padding-left:5px;">Testing Get Location Coordinat</p>
+            <div class="form-group col-5 ">
+                <div class="row">
+                    <div style="padding:5px; ">
+                        <label for="lat">Latitude</label>
+                    <input type="text" id="lat" class="form-control" name="lat" value="">
+                    </div>
+                    <div style="padding:5px; ">
+                        <label for="long">Longitude</label>
+                        <input type="text" id="long" class="form-control" name="long" value="">
+                    </div>  
+                </div>
+            </div>
+
+            <div id="map"></div>
+            <!-- end -->
+    
     <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
