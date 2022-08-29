@@ -43,7 +43,40 @@
                                             <input type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama Lengkap" name="nama_tk" ">
                                             <?= form_error('nama_tk', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
+                                    </div> 
+                                    <div class="form-group row">
+                                        <label for="wilayah" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
+                                        <div class="col-sm-4">
+                                            <select name="wilayah" id="wilayah" class="form-control">
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
+                                            <?= form_error('wilayah', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>                            
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-4">
@@ -60,25 +93,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat Lengkap</label>
                                         <div class="col-sm-8">
                                             <textarea class="form-control" id="alamat" placeholder="alamat lengkap . . ." name="alamat" rows="2"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="wilayah" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
-                                        <div class="col-sm-4">
-                                            <select name="wilayah" id="wilayah" class="form-control">
-                                                <option value="">~ Pilih Kabupaten/kota ~</option>
-                                                <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
-                                            <?= form_error('wilayah', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group row">
                                         <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                                         <div class="col-sm-5">
@@ -93,8 +114,20 @@
                                                 <option value="aktif">Aktif (masih bekerja)</option>
                                                 <option value="phk">Nonaktif (ter-PHK)</option>
                                             </select>
+                                            <?= form_error('status_kerja', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="disabilitas" class="col-sm-3 col-form-label">Berkebutuhan Khusus ?</label>
+                                        <div class="col-sm-3">
+                                            <select name="disabilitas" id="disabilitas" class="form-control">
+                                                <option value="T">Tidak</option>
+                                                <option value="Y">Ya</option>
+                                            </select>
+                                            <?= form_error('disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                   
 
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
@@ -118,18 +151,8 @@
                                     </div>
                                     
 
-                                    <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
-                                    <div class="form-group">
-                                        <label for="disablitas" class="col-sm-3 col-form-label">Penyandang disabilitas?</label>
-                                            <div class="col-sm-6">
-                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" name="disabilitas" id="disabilitas" unchecked>
-                                                <label class="form-check-label" for="disabilitas">
-                                                    Iya?
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
+                                    
                                     <!-- <div class="form-group row">
                                         <label for="disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
                                         <div class="col-sm-3">

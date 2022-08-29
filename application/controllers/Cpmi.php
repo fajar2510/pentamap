@@ -62,23 +62,25 @@ class Cpmi extends CI_Controller
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
 
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
+        // $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
 
-        $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
+        $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'trim|required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat PMI', 'required');
-        $this->form_validation->set_rules('lokasi', 'Lokasi Wilayah PMI', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat PMI', 'trim|required');
+        $this->form_validation->set_rules('lokasi', 'Lokasi Wilayah PMI', 'trim|required');
         $this->form_validation->set_rules('jabatan', 'Jabatan Kerja', 'required');
-        $this->form_validation->set_rules('pendidikan', 'Pendidikan Terakhir', 'required');
-        $this->form_validation->set_rules('gaji', 'Gaji PMI', 'required');
-        $this->form_validation->set_rules('paspor', 'Nomor Paspor', 'required');
-        $this->form_validation->set_rules('negara_penempatan', 'Negara Penempatan', 'required');
+        $this->form_validation->set_rules('pendidikan', 'Pendidikan Terakhir', 'trim|required');
+        $this->form_validation->set_rules('gaji', 'Gaji PMI', 'trim|required');
+        $this->form_validation->set_rules('paspor', 'Nomor Paspor', 'trim|required');
+        $this->form_validation->set_rules('negara_penempatan', 'Negara Penempatan', 'trim|required');
         $this->form_validation->set_rules('kode_pesawat', 'Kode Pesawat', 'required');
         $this->form_validation->set_rules('pengguna_jasa', 'Pengguna Jasa', 'required');
         $this->form_validation->set_rules('alamat_pengguna_jasa', 'Alamat Pengguna Jasa', 'required');
-        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
+        // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
 
 
 
@@ -91,8 +93,9 @@ class Cpmi extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'perusahaan' => $this->input->post('perusahaan'),
-
+                // 'perusahaan' => $this->input->post('perusahaan'),
+                'latitude' => $this->input->post('lat'),
+                'longitude' => $this->input->post('long'),
                 'nama_pmi' => $this->input->post('nama_pmi'),
                 'jenis_kelamin' => $this->input->post('gender'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -108,7 +111,7 @@ class Cpmi extends CI_Controller
                 'pengguna_jasa' => $this->input->post('pengguna_jasa'),
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
 
-                'date_created' => $this->input->post('tanggal_data'),
+                'date_created' =>  date('Y-m-d'),
             ];
 
             // $data_perusahaan_negara = [
@@ -150,8 +153,9 @@ class Cpmi extends CI_Controller
         $data['edit_cpmi'] = $this->Penempatan->get_edit_cpmi($id);
 
 
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
-
+        // $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan PPMI', 'trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
         $this->form_validation->set_rules('nama_pmi', 'Nama PMI', 'required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
@@ -167,7 +171,7 @@ class Cpmi extends CI_Controller
         $this->form_validation->set_rules('kode_pesawat', 'Kode Pesawat', 'required');
         $this->form_validation->set_rules('pengguna_jasa', 'Pengguna Jasa', 'required');
         $this->form_validation->set_rules('alamat_pengguna_jasa', 'Alamat Pengguna Jasa', 'required');
-        $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
+        // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
 
 
         if ($this->form_validation->run() == false) {
@@ -179,8 +183,9 @@ class Cpmi extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
-                'perusahaan' => $this->input->post('perusahaan'),
-
+                // 'perusahaan' => $this->input->post('perusahaan'),
+                'latitude' => $this->input->post('lat'),
+                'longitude' => $this->input->post('long'),
                 'nama_pmi' => $this->input->post('nama_pmi'),
                 'jenis_kelamin' => $this->input->post('gender'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -195,7 +200,7 @@ class Cpmi extends CI_Controller
                 'kode_pesawat' => $this->input->post('kode_pesawat'),
                 'pengguna_jasa' => $this->input->post('pengguna_jasa'),
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
-                'date_created' => $this->input->post('tanggal_data'),
+                'date_created' => date('Y-m-d'),
             ];
 
 

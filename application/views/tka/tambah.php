@@ -35,14 +35,14 @@
                         <div>
                             <form action="<?= base_url('tka/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
                                         <div class="col-3">
                                             <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
@@ -63,6 +63,40 @@
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Lokasi Kerja</label>
+                                        <div class="col-sm-3">
+                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
+                                                <option value="">~ Pilih Lokasi Kerja ~</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+
+
+                                            </select>
+
+                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
+                                            <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -115,22 +149,7 @@
                                             <input class="form-control" type="date" value="2020-07-31" id="masa_imta" name="masa_imta">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="lokasi" class="col-sm-3 col-form-label">Lokasi Kerja</label>
-                                        <div class="col-sm-3">
-                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
-                                                <option value="">~ Pilih Lokasi Kerja ~</option>
-                                                <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-
-
-                                            </select>
-
-                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
-                                            <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                    
 
                                 </div>
                                 <div class="modal-footer">

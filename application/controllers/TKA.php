@@ -61,18 +61,20 @@ class Tka extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['negara'] = $this->Wilayah->list_negara();
 
-        $this->form_validation->set_rules('nama', 'Nama TKA', 'required');
-        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
-        $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
-        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama TKA', 'trim|required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'trim|required');
+        $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'trim|required');
+        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'trim|required');
       
-        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
         $this->form_validation->set_rules('no_rptka', 'NO. RPTKA', 'required');
         $this->form_validation->set_rules('masa_rptka', 'Masa Berlaku RPTKA', 'required');
         $this->form_validation->set_rules('no_imta', 'NO. IMTA', 'required');
         $this->form_validation->set_rules('masa_imta', 'Masa Berlaku IMTA', 'required');
         $this->form_validation->set_rules('lokasi', 'Loksi Kerja', 'required');
-        $this->form_validation->set_rules('tanggal_data', 'Tangal Data Inputan', 'required');
+        // $this->form_validation->set_rules('tanggal_data', 'Tangal Data Inputan', 'required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tenaga Kerja Asing';
@@ -84,6 +86,8 @@ class Tka extends CI_Controller
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama'),
+                'latitude' => $this->input->post('lat'),
+                'longitude' => $this->input->post('long'),
                 'kewarganegaraan' => $this->input->post('negara'),
                 'jenis_kel' => $this->input->post('gender'),
                 'id_perusahaan' => $this->input->post('perusahaan'),
@@ -94,7 +98,7 @@ class Tka extends CI_Controller
                 'no_imta' => $this->input->post('no_imta'),
                 'masa_imta' => $this->input->post('masa_imta'),
                 'lokasi_kerja' => $this->input->post('lokasi'),
-                'date_created' => $this->input->post('tanggal_data'),
+                'date_created' => date('Y-m-d'),
             ];
 
             $this->db->insert('tb_tka', $data);
@@ -144,6 +148,8 @@ class Tka extends CI_Controller
 
 
         $this->form_validation->set_rules('nama_tka', 'Nama TKA', 'required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('negara', 'Kewarganegaraan', 'required');
         $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
@@ -153,7 +159,7 @@ class Tka extends CI_Controller
         $this->form_validation->set_rules('no_imta', 'NO. IMTA', 'required');
         $this->form_validation->set_rules('masa_imta', 'Masa Berlaku IMTA', 'required');
         $this->form_validation->set_rules('lokasi', 'Loksi Kerja', 'required');
-        $this->form_validation->set_rules('tanggal_data', 'Tangal Data Inputan', 'required');
+        // $this->form_validation->set_rules('tanggal_data', 'Tangal Data Inputan', 'required');
 
 
         if ($this->form_validation->run() == false) {
@@ -166,6 +172,8 @@ class Tka extends CI_Controller
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama_tka'),
+                'latitude' => $this->input->post('lat'),
+                'longitude' => $this->input->post('long'),
                 'jenis_kel' => $this->input->post('gender'),
                 'id_perusahaan' => $this->input->post('perusahaan'),
                 'kewarganegaraan' => $this->input->post('negara'),
@@ -175,7 +183,7 @@ class Tka extends CI_Controller
                 'no_imta' => $this->input->post('no_imta'),
                 'masa_imta' => $this->input->post('masa_imta'),
                 'lokasi_kerja' => $this->input->post('lokasi'),
-                'date_created' => $this->input->post('tanggal_data'),
+                'date_created' => date('Y-m-d'),
             ];
 
             $this->db->where('id', $id);

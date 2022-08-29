@@ -124,7 +124,7 @@
         
 
         //  jawa timur 
-        $.getJSON("<?= base_url('assets/'); ?>geojson/jawa-timur-only.geojson", function(data) {
+        $.getJSON("<?= base_url('assets/'); ?>geojson/jatim-polygon.geojson", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {

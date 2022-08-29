@@ -35,12 +35,14 @@
   <!-- LEAFLET CSS , PLUGIN -->
    
   <!-- <link href="<?= base_url('assets/'); ?>leaflet/leaflet.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="crossorigin=""/>
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.css"/>
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.css" />
-  <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/cluster/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/cluster/dist/MarkerCluster.Default.css" />
+	
+  
+  <!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.css" /> -->
   <!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet.Legend/src/leaflet.legend.css" /> -->
   <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
   <!-- LEAFLET CSS , PLUGIN -->
@@ -78,6 +80,7 @@
     #map { height: 400px; }
     #mapgeojson { height: 400px; }
     #mapcluster { height: 400px; }
+    #mapltlg { height: 300px; width: 650px }
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->

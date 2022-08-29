@@ -109,8 +109,9 @@
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
     <!-- leflet search -->
     <script src="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.js"></script>
-     <!-- leflet label -->
-    <script src="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.js"></script>
+    	
+    <!-- leflet label -->
+    <!-- <script src="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.js"></script> -->
     <!-- leflet legenda -->
     <!-- <script src="<?= base_url('assets/'); ?>leaflet/leaflet.Legend/src/leaflet.legend.js"></script> -->
    
@@ -314,11 +315,80 @@
                 });
     </script>
 
+
+      <!-- MAP untuk get koordinat lat long -->
+    <script>
+
+        var curLocation = [0,0];
+        if (curLocation[0] == 0 && curLocation[1]==0) {
+        curLocation = [-7.5409737, 112.5288216];
+        }
+
+
+        var map = L.map('mapltlg').setView([-7.5409737, 112.5288216], 8.5);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Google Map API
+        googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+        googleStreets.addTo(map)
+
+        map.attributionControl.setPrefix(false);
+        
+        // L.marker([50.5, 30.5]).addTo(map);
+
+        var marker = new L.marker(curLocation, {
+            draggable: 'true'
+        });
+
+        marker.on('dragend', function(event) {
+        var position = marker.getLatLng();
+        marker.setLatLng(position, {
+            draggable : 'true'
+        }).bindPopup(position).update();
+        $("#lat").val(position.lat); 
+        $("#long").val(position.lng).keyup(); 
+        });
+
+        $("#lat, #long").change(function()  {
+        var position = [parseInt($("#lat").val()),parseInt($("#long").val()) ];
+        marker.setLatLng(position, {
+            draggable : 'true'
+        }).bindPopup(position).update();
+        map.panTo(position); 
+        });
+
+        map.addLayer(marker);
+
+        // full screen map
+        // create a fullscreen button and add it to the map
+        L.control.fullscreen({
+          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
+          title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
+          titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
+          content: null, // change the content of the button, can be HTML, default null
+          forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
+          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
+          fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
+        }).addTo(map);
+
+
+        </script>
+
      <!-- script MAP MAP TENAGA KERJA JATIM utama -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         // var L = window.L;
 
        
+        var curLocation = [0,0];
+        if (curLocation[0] == 0 && curLocation[1]==0) {
+        curLocation = [-7.6709737, 113.3288216];
+        }
 
         var map = L.map('mapp').setView([-7.6709737, 113.3288216], 8.5);
 
@@ -327,554 +397,59 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             
         }).addTo(map);
-
-
-                
-        // polygon untuk wilayah jawa timur
-        var latlngs = [
-            
-            [-7.032749742778853,
-              112.67578124999999
-              
-            ],
-            [ -7.119970883040842,
-              112.69226074218749
-             
-            ],
-            [ -7.1663003819031825,
-              112.71148681640625
-             
-            ],
-            [-7.163575247345454,
-              112.8350830078125
-              
-            ],
-            [ -7.228973966601107,
-              113.17291259765625
-             
-            ],
-            [-7.267118852885314,
-              113.50250244140624
-              
-            ],
-            [-7.149949330320771,
-              113.61236572265624
-              
-            ],
-            [-7.141773584935546,
-              113.89251708984374
-              
-            ],
-            [-7.0545565715284955,
-              113.90625
-              
-            ],
-            [-7.032749742778853,
-              113.97491455078125
-              
-            ],
-            [-6.989133016574015,
-              114.11773681640625
-              
-            ],
-            [-6.901887376486809,
-              114.06829833984375
-              
-            ],
-            [ -6.86643922958172,
-              113.89251708984374
-             
-            ],
-            [-6.890980536470734,
-              113.5272216796875
-              
-            ],
-            [-6.901887376486809,
-              113.203125
-              
-            ],
-            [-6.896433987868805,
-              112.84881591796875
-              
-            ],
-            [-7.040927423719915,
-              112.708740234375
-              
-            ],
-            [-7.032749742778853,
-              112.67578124999999
-              
-            ]
-      
-        ];
-        var polygon = L.polygon(latlngs, {
-            color: '#D07000'
-        }).addTo(map);
-
-        var latlng_jatim = [
-            [-8.2169271321774,
-              110.89599609375
-              
-            ],
-            [-8.260418916317658,
-              111.005859375
-              
-            ],
-            [-8.227800526152265,
-              111.09374999999999
-              
-            ],
-            [-8.276727101164033,
-              111.14868164062499
-              
-            ],
-            [ -8.276727101164033,
-              111.42333984375
-             
-            ],
-            [-8.369127356573127,
-              111.78039550781249
-              
-            ],
-            [ -8.303905908124174,
-              111.7474365234375
-             
-            ],
-            [-8.325647599239051,
-              112.21435546875
-              
-            ],
-            [ -8.439771599521729,
-              112.6318359375
-             
-            ],
-            [ -8.336517992258848,
-              112.9669189453125
-             
-            ],
-            [-8.293034610795036,
-              113.2305908203125
-              
-            ],
-            [-8.390865416667355,
-              113.389892578125
-              
-            ],
-            [ -8.510402920862324,
-              113.7030029296875
-             
-            ],
-            [-8.646195681181904,
-              114.1864013671875
-              
-            ],
-            [-8.60817860744248,
-              114.224853515625
-              
-            ],
-            [ -8.662487539644008,
-              114.356689453125
-             
-            ],
-            [ -8.760223824796954,
-              114.356689453125
-             
-            ],
-            [ -8.77651071605234,
-              114.5654296875
-             
-            ],
-            [-8.705929041749668,
-              114.60937499999999
-              
-            ],
-            [-8.646195681181904,
-              114.4720458984375
-              
-            ],
-            [ -8.477805461808186,
-              114.3951416015625
-             
-            ],
-            [-8.49410453755187,
-              114.3621826171875
-              
-            ],
-            [-7.966757602932168,
-              114.4281005859375
-              
-            ],
-            [ -7.83073144786945,
-              114.488525390625
-             
-            ],
-            [ -7.705548128425908,
-              114.246826171875
-             
-            ],
-            [-7.721878499324502,
-              114.14245605468749
-              
-            ],
-            [-7.612997502224091,
-              114.0216064453125
-              
-            ],
-            [ -7.694660864529159,
-              113.9447021484375
-             
-            ],
-            [ -7.716435112415487,
-              113.7579345703125
-             
-            ],
-            [-7.710991655433217,
-              113.4722900390625
-              
-            ],
-            [-7.787193658965735,
-              113.2965087890625
-              
-            ],
-            [-7.732765062729807,
-              113.15917968749999
-              
-            ],
-            [ -7.645664723491027,
-              112.9229736328125
-             
-            ],
-            [ -7.487750181700039,
-              112.82409667968749
-             
-            ],
-            [-7.297087564171992,
-              112.8515625
-              
-            ],
-            [ -7.2180748352370445,
-              112.78976440429688
-             
-            ],
-            [-7.19559454792355,
-              112.74238586425781
-              
-            ],
-            [ -7.231698708367139,
-              112.6702880859375
-             
-            ],
-            [ -7.155399745953593,
-              112.65655517578125
-             
-            ],
-            [ -7.1226962775182825,
-              112.62908935546874
-             
-            ],
-            [ -7.046379130937701,
-              112.642822265625
-             
-            ],
-            [-6.86643922958172,
-              112.59887695312499
-              
-            ],
-            [ -6.871892962887516,
-              112.4066162109375
-             
-            ],
-            [-6.904614047238073,
-              112.071533203125
-              
-            ],
-            [ -6.779171028142861,
-              111.9561767578125
-             
-            ],
-            [ -6.751896464843375,
-              111.6815185546875
-             
-            ],
-            [-6.931879889517204,
-              111.5826416015625
-              
-            ],
-            [-7.100892668623642,
-              111.6265869140625
-              
-            ],
-            [-7.291638856626342,
-              111.4453125
-              
-            ],
-            [ -7.384257828309248,
-              111.4398193359375
-             
-            ],
-            [ -7.286190082778849,
-              111.2860107421875
-             
-            ],
-            [ -7.27529233637217,
-              111.14868164062499
-             
-            ],
-            [-7.618442212274373,
-              111.1761474609375
-              
-            ],
-            [-7.759980241585301,
-              111.214599609375
-              
-            ],
-            [-7.743651345263343,
-              111.302490234375
-              
-            ],
-            [-7.934115417828389,
-              111.258544921875
-              
-            ],
-            [-7.917793352627911,
-              111.170654296875
-              
-            ],
-            [-8.064668502396389,
-              111.1212158203125
-              
-            ],
-            [-8.021155456563902,
-              111.0662841796875
-              
-            ],
-            [-8.064668502396389,
-              110.950927734375
-              
-            ],
-            [ -8.2169271321774,
-              110.89599609375
-             
-            ]
-
-        ];
-        var polygon = L.polygon(latlng_jatim, {
-            color: '#D07000'
-        }).addTo(map);
-
-
-        var latlngs2 = [
-          [-5.7690358661221355,
-              112.59613037109375
-              
-            ],
-            [-5.809682888294417,
-              112.57415771484375
-              
-            ],
-            [-5.852376180414698,
-              112.58995056152342
-              
-            ],
-            [-5.848619301205019,
-              112.63355255126953
-              
-            ],
-            [-5.844862396761838,
-              112.71800994873047
-              
-            ],
-            [-5.789872099864302,
-              112.73963928222656
-              
-            ],
-            [-5.741708497977726,
-              112.72315979003905
-              
-            ],
-            [-5.718479204355324,
-              112.68367767333983
-              
-            ],
-            [-5.737609279566594,
-              112.67131805419922
-              
-            ],
-            [-5.731460396704462,
-              112.64659881591797
-              
-            ],
-            [-5.748540463122782,
-              112.6156997680664
-              
-            ],
-            [-5.772793276406243,
-              112.60917663574219
-              
-            ],
-            [-5.7690358661221355,
-              112.59613037109375
-              
-            ]
-
-        ];
-        var polygon = L.polygon(latlngs2, {
-            color: '#D07000'
-        }).addTo(map);
-
-
-        var latlng3 = [
-          [-7.092716048631412,
-              114.268798828125
-              
-            ],
-            [-7.160850096497242,
-              114.3072509765625
-              
-            ],
-            [-7.171750602122852,
-              114.40338134765625
-              
-            ],
-            [-7.079088026071719,
-              114.36767578124999
-              
-            ],
-            [-7.0545565715284955,
-              114.3182373046875
-              
-            ],
-            [-7.092716048631412,
-              114.268798828125
-              
-            ]
-        ];
-        var polygon = L.polygon(latlng3, {
-            color: '#D07000'
-        }).addTo(map);
-
-        var latlng4 = [
-          [-7.148586716248072,
-              114.52011108398438
-              
-            ],
-            [ -7.144498849647323,
-              114.55856323242188
-             
-            ],
-            [-7.173113146986745,
-              114.59976196289064
-              
-            ],
-            [-7.145861475910591,
-              114.61761474609375
-              
-            ],
-            [-7.132235030578753,
-              114.5379638671875
-              
-            ],
-            [-7.148586716248072,
-              114.52011108398438
-              
-            ]
-
-        ];
-        var polygon = L.polygon(latlng4, {
-          color: '#D07000'
-        }).addTo(map);
-
-        var latlng5 = [
-          [ -6.940059334882694,
-              115.213623046875
-             
-            ],
-            [-6.945512219508057,
-              115.26855468749999
-              
-            ],
-            [-7.00003758074107,
-              115.28228759765624
-              
-            ],
-            [-6.959144154386006,
-              115.31249999999999
-              
-            ],
-            [-6.989133016574015,
-              115.39489746093751
-              
-            ],
-            [-6.9182471651737405,
-              115.33721923828125
-              
-            ],
-            [-6.926426847059551,
-              115.42510986328124
-              
-            ],
-            [-7.019119954643816,
-              115.68603515624999
-              
-            ],
-            [-6.912793965187946,
-              115.56793212890625
-              
-            ],
-            [ -6.839169626342808,
-              115.39764404296875
-             
-            ],
-            [ -6.825534240573385,
-              115.2410888671875
-             
-            ],
-            [-6.86643922958172,
-              115.24658203125
-              
-            ],
-            [-6.890980536470734,
-              115.21087646484375
-              
-            ],
-            [-6.940059334882694,
-              115.213623046875
-              
-            ]
-
-        ];
-        var polygon = L.polygon(latlng5, {
-          color: '#D07000'
-        }).addTo(map);
-
-        var latlng6 = [
-          [-7.156762339693515,
-              115.74783325195311
-              
-            ],
-            [ -7.208537879875225,
-              115.84121704101561
-             
-            ],
-            [-7.170388053181794,
-              115.90164184570312
-              
-            ],
-            [-7.149949330320771,
-              115.78903198242188
-              
-            ],
-            [-7.156762339693515,
-              115.74783325195311
-              
-            ]
-
-        ];
-        var polygon = L.polygon(latlng6, {
-          color: '#D07000'
-        }).addTo(map);
         
 
+        map.attributionControl.setPrefix(false);
+        
+        // L.marker([50.5, 30.5]).addTo(map);
+
+        var marker = new L.marker(curLocation, {
+            draggable: 'true'
+        });
+
+        marker.on('dragend', function(event) {
+        var position = marker.getLatLng();
+        marker.setLatLng(position, {
+            draggable : 'true'
+        }).bindPopup(position).update();
+        $("#lat").val(position.lat); 
+        $("#long").val(position.lng).keyup(); 
+        });
+
+        $("#lat, #long").change(function()  {
+        var position = [parseInt($("#lat").val()),parseInt($("#long").val()) ];
+        marker.setLatLng(position, {
+            draggable : 'true'
+        }).bindPopup(position).update();
+        map.panTo(position); 
+        });
+
+        map.addLayer(marker);
+
+        // Google Map API
+        googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+        googleStreets.addTo(map)
+
+         //  jawa timur polygon geo json
+        $.getJSON("<?= base_url('assets/'); ?>geojson/jatim-polygon.geojson", function(data) {
+            geoLayer = L.geoJson(data,  {
+                style : function(feature) {
+                    return {
+                        opacity: 0.7,
+                        color: '#293462',
+                        fillColor: '#293462',
+                        fillOpacity: 0.3,
+                        }    
+                 },
+            }).addTo(map);
+            geoLayer.eachLayer(function (layer) {
+                layer.bindPopup("Jawa Timur");
+            });
+        });
+ 
 
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
             $.each(data, function(i, field) {
@@ -1024,155 +599,9 @@
 
         
        
-    </script>
-
-    <script>
-        function btn_lp(){
-            var id_kabupaten = $(".listp").attr("data-id");
-            $.ajax({
-                    url : "<?php echo site_url('beranda/list_perusahaan');?>",
-                    method : "POST",
-                    data : {id_kabupaten: id_kabupaten},
-                    // async : true,
-                    dataType : 'json',
-                    success: function(data){
-                        var html="<center><h5>Daftar Perusahaan</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Nama Perusahaan</th>"
-                        html+="<th scope='col'>Aksi</th></tr></thead><tbody>";
-                        var nama_kabupaten="";
-                        nama_kabupaten += "WILAYAH : "+data.kab[0].nama_kabupaten;
-                        if (data.perusahaan.length == 0) {
-                            html += "<tr><td scope='row' colspan='4'><center>Tidak ada data Perusahaan</center></td></tr>";
-                        }else{
-                            var no=1;
-                            for(i=0; i<data.perusahaan.length; i++)
-                            {
-                                html += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i].nama_perusahaan+"</td><td><button class='btn btn-outline-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i> Riwayat Usulan Penghargaan</button></td></tr>";
-                                no+=1;
-                            }
-                        }
-                        // alert(data.length);
-                        // return false;
-                        html+="</tbody></table>";
-                        $('#baris_tabel').html(html);
-                        $('#nama_kabb').html(nama_kabupaten);
-                        $('#detail_reward_perusahaan').modal('hide');
-                        $('#modalPerusahaanlist').modal('show');
-                    }
-                });
-		}
-
-        function btn_detail_lp(id){
-            var id_prs = id;
-            // var id_prs = $(".listp").attr("data-id");
-            // $('#modalPerusahaanlist').modal('hide');
-            // $('#detail_reward_perusahaan').modal('show');
-            // return false;
-            $.ajax({
-                    url : "<?php echo site_url('beranda/detail_reward_perusahaan');?>",
-                    method : "POST",
-                    data : {id_prs: id_prs},
-                    // async : true,
-                    dataType : 'json',
-                    success: function(data){
-                        var html="";
-                        var list_reward="";
-                        var ada_reward=0;
-                        var btn_kembali="";
-                        list_reward+="<br><center><h5>Rincian</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Jenis Disabilitas</th><th scope='col'>Ragam Disabilitas</th>"
-                        list_reward+="<th scope='col'>Tanggal Diusulkan</th></tr></thead><tbody>";
-                        for(i=0; i<1; i++){
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_perusahaan+"</label></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Pimpinan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_pimpinan+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Sektor Usaha </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_sektor+"</label></div></div>";
-                        }
-                        var no=1;
-                        for(i=0; i<data.perusahaan.length; i++){
-                            if (data.perusahaan[i].id_reward != null) {
-                                list_reward += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i][0]+"</td><td scope='row'>"+data.perusahaan[i][1]+"</td><td scope='row'>"+data.perusahaan[i].tanggal_usul+"</td></tr>";
-                                no+=1;
-                                ada_reward +=1;   
-                            }
-                            else{
-                                list_reward += "<tr><td scope='row' colspan='4'><center>Tidak ada data Penghargaan</center></td></tr>";
-                            }
-                        }
-                        list_reward+="</tbody></table>";
-                        // btn_kembali += "<button type='button' onclick='btn_lp()' data-id='"+data.perusahaan[0].fungsi+"' class='btn btn-light btn-icon-split'></div>";
-                        // btn_kembali += "<span class='icon text-white-600'><i class='fas fa-arrow-left'></i></span><span class='text'>Kembali</span></button>"
-                        // alert(data.perusahaan[0][0]);
-                        // return false;
-                        $('#tabel_list_reward').html(list_reward);
-                        // $('#btn_kembali').html(btn_kembali);
-                        $('#detailper').html(html);
-                        $('#modalPerusahaanlist').modal('hide');
-                        $('#detail_reward_perusahaan').modal('show');
-                    }
-                });
-		}
-        // $(document).ready(function(){
- 
-        // $('.btn_lp').on('click', function(){ 
-        //     alert("masuk");
-        //     return false;
-        //     var id=$(this).val();
-        //     $.ajax({
-        //         url : "<?php echo site_url('beranda/list_perusahaan');?>",
-        //         method : "POST",
-        //         data : {id: id},
-        //         async : true,
-        //         dataType : 'json',
-        //         success: function(data){
-        //             var html = '';
-        //             var i;
-        //             for(i=0; i<data.length; i++){
-        //                 html += '<option value='+data[i].subcategory_id+'>'+data[i].subcategory_name+'</option>';
-        //             }
-        //             $('#sub_category').html(html);
-
-        //         }
-        //     });
-            // return false;
-        // }); 
-        
-        // });
-    </script>
-
-
-    <!-- script map utama -->
-
-    <!-- script map filter tahun -->
-    <!-- <script>
-        $(function() {
-
-            $('#tahun_pilih').on('change', function() {
-                var tahun = $(this).val();
-                $('#tahun_peta').html(tahun);
-                $.ajax({
-                    type: "POST",
-                    url: "<?= base_url() ?>beranda/kabupaten",
-                    data: {
-                        tahun: tahun
-                    },
-                    success: function(hasil) {
-                        $('#mapp').html(hasil);
-                    }
-                });
-            });
-        });
-
-        function tahun() {
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url() ?>beranda/kabupaten",
-                data: 'tahun=' + $('#tahun_pilih').val(),
-                dataType: "json",
-                success: function(hasil) {
-                    $('#mapp').html(hasil);
-                }
-            });
-        }
     </script> -->
 
+    
 
     <script type="text/javascript">
         $(document).ready(function() {

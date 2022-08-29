@@ -42,27 +42,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas" value="<?= $edit_phk->nomor_identitas ?>">
-                                            <?= form_error('no_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ (BPJS)</label>
-                                        <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="kpj" placeholder="No.KPJ" name="kpj" value="<?= $edit_phk->kpj ?>">
-                                            <?= form_error('kpj', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class=" form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap. . . " name="alamat" rows="2"><?= $edit_phk->alamat ?></textarea>
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <label for="wilayah" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-4">
                                             <select class="custom-select" name="wilayah" id="wilayah" class="form-control input-sm">
@@ -78,6 +57,47 @@
                                             <?= form_error('kabupaten/kota', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $edit_phk->latitude ?>" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="<?= $edit_phk->longitude ?>" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas" value="<?= $edit_phk->nomor_identitas ?>">
+                                            <?= form_error('no_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="kpj" class="col-sm-3 col-form-label">No.KPJ (BPJS)</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="kpj" placeholder="No.KPJ" name="kpj" value="<?= $edit_phk->kpj ?>">
+                                            <?= form_error('kpj', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group row">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat Lengkap</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap. . . " name="alamat" rows="2"><?= $edit_phk->alamat ?></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="form-group row">
                                         <label for="kontak" class="col-sm-3 col-form-label">No. Telepon</label>
                                         <div class="col-sm-5">
@@ -95,11 +115,28 @@
                                                                     } else {
                                                                         echo '';
                                                                     } ?>>non aktif</option>
-                                                <option value="aktif" <?php if ($perusahaan->status_kerja == 'aktif') {
+                                                <option value="aktif" <?php if ($edit_phk->status_kerja == 'aktif') {
                                                                         echo 'selected';
                                                                     } else {
                                                                         echo '';
                                                                     } ?>>aktif</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="disabilitas" class="col-sm-3 col-form-label">Berkebutuhan khusus?</label>
+                                        <div class="col-sm-3">
+                                            <select name="disabilitas" id="disabilitas" class="form-control">
+                                                <option value="T" <?php if ($edit_phk->disabilitas == 'T') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Tidak</option>
+                                                <option value="Y" <?php if ($edit_phk->disabilitas == 'Y') {
+                                                                        echo 'selected';
+                                                                    } else {
+                                                                        echo '';
+                                                                    } ?>>Ya</option>
                                             </select>
                                         </div>
                                     </div>
@@ -128,62 +165,7 @@
                                             <?= form_error('kode_segmen', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <p><small><b>BERKEBUTUHAN KHUSUS (opsional)</b></small></p>
-                                    <div class="form-group">
-                                        <label for="disablitas" class="col-sm-3 col-form-label">Penyandang disabilitas?</label>
-                                            <div class="col-sm-6">
-                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" name="disabilitas" id="disabilitas" unchecked>
-                                                <label class="form-check-label" for="disabilitas">
-                                                    Iya?
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
-                                        <div class="col-sm-3">
-                                            <select name="disabilitas" id="disabilitas" class="form-control">
-                                            <option value="-" <?php if ($edit_phk->ragam_disabilitas == '-') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>-Tidak-</option>
-                                                <option value="Fisik" <?php if ($edit_phk->ragam_disabilitas == 'Fisik') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Fisik</option>
-                                                <option value="Sensorik" <?php if ($edit_phk->ragam_disabilitas == 'Sensorik') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Sensorik</option>
-                                                <option value="Intelektual" <?php if ($edit_phk->ragam_disabilitas == 'Intelektual') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Intelektual</option>
-                                                <option value="Mental" <?php if ($edit_phk->ragam_disabilitas == 'Mental') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Mental</option>
-                                                <option value="Ganda" <?php if ($edit_phk->ragam_disabilitas == 'Ganda') {
-                                                                        echo 'selected';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>>Ganda</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="rincian" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="rincian" placeholder="Rincian . . ." name="rincian" value="<?= $edit_phk->jenis_disabilitas ?>">
-                                            <?= form_error('rincian', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div> -->
+                                   
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary btn-icon-split">

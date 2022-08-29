@@ -60,17 +60,6 @@
             </div> -->
 
             <div id="mapp" style=""></div>
-
-            <div class="form-group">
-                <label for="lat">Latitude</label>
-                <input type="text" id="lat" class="form-control" name="lat" value="">
-            </div>
-            <div class="form-group">
-                <label for="long">Longitude</label>
-                <input type="text" id="long" class="form-control" name="long" value="">
-            </div>
-
-            <div id="map" style=""></div>
             
             <!-- <hr style="margin-top: 100; margin-bottom: 60 ;"> -->
 

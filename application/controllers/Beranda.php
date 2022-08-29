@@ -11,6 +11,7 @@ class Beranda extends CI_Controller
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('RewardModel');
+        $this->load->model('Sebaran_Jatim');
     }
 
     public function index()
@@ -30,6 +31,16 @@ class Beranda extends CI_Controller
             -- WHERE id_provinsi= '42385' 
         ";
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
+
+        // data sebaran
+        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
+        $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
+        $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
+        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
+        // var_dump($data['sebaran_lokal']);
+        // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -43,7 +54,7 @@ class Beranda extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('beranda/index', $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/footer_map', $data);
     }
 
     public function kabupaten()

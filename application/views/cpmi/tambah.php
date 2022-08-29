@@ -34,29 +34,59 @@
                         <div>
                             <form action="<?= base_url('cpmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
                                         <div class="col-3">
                                             <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div> 
-                                    <p> <small><b> DATA PERUSAHAAN</b></small></p>
+                                    </div>  -->
+                                   
+                                    <p> <small><b> DATA CPMI</b></small></p>
                                     <div class="form-group row">
-                                    <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT/Organisasi</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT/organisasi" name="perusahaan">
-                                            <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <p> <small><b> DATA PMI</b></small></p>
-                                    <div class="form-group row">
-                                        <label for="nama_pmi" class="col-sm-3 col-form-label">Nama PMI</label>
+                                        <label for="nama_pmi" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="nama_pmi" placeholder="Masukkan Nama" name="nama_pmi">
                                             <?= form_error('nama_pmi', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="lokasi" class="col-sm-3 col-form-label">Kabupaten/kota</label>
+                                        <div class="col-sm-3">
+                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
+                                            <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
                                         </div>
                                     </div>
 
@@ -83,26 +113,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lokasi" class="col-sm-3 col-form-label">Kabupaten/kota</label>
-                                        <div class="col-sm-3">
-                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
-                                                <option value="">~ Pilih Kabupaten/kota ~</option>
-                                                <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <small id=" lokasiHelp" class="form-text text-muted"> <i> *lokasi wilayah jawa timur </i></small>
-                                            <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Sektor Jabatan</label>
                                         <div class="col-sm-4">
@@ -160,6 +171,16 @@
                                             <?= form_error('kode_pesawat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                    <!-- <hr>
+                                    <p> <small><b> DATA PERUSAHAAN</b></small></p>
+                                    <div class="form-group row">
+                                    <label for="perusahaan" class="col-sm-3 col-form-label">Nama PT/Organisasi</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="perusahaan" placeholder="Masukkan Nama PT/organisasi" name="perusahaan">
+                                            <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                     -->
                                     <hr>
                                     <p> <small> <b>DATA PENGGUNA JASA </b></small></p>
                                     <div class="form-group row">

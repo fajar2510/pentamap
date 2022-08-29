@@ -36,20 +36,113 @@
 
                             <form action="<?= base_url('pmi/edit/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
                                         <div class="col-3">
                                             <input class="form-control" type="date" value="<?= $pmi->date_created ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <p> <small><b> DATA PMI-B</b></small></p>
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                        <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $pmi->nama ?>">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $pmi->alamat ?></textarea>
+                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="jk" class="control-label col-sm-3"></label>
+                                        <div class="col-sm-4">
+                                            <?php
+                                                    $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
+                                                    echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
+                                                    ?>
+                                            <!-- <select class="custom-select" name="provinsi" id="provinsi_id" class="form-control input-sm" onChange="tampilKabupaten()">
+                                                <?php foreach ($provinsi_select as $row) : ?>
+                                                    <option value="<?= $row['id_provinsi']; ?>" <?php if ($row['id_provinsi'] == $pmi->provinsi) {
+                                                                                                    echo 'selected';
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>> <?= $row['nama_provinsi']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <?php
+                                                    $style_kabupaten = 'class="form-control input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
+                                                    echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
+                                                    ?>
+                                            <!-- <select class="custom-select" name="kabupaten" id="kabupaten_id" class="form-control input-sm" onChange="tampilKecamatan()">
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $pmi->kabupaten) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="" class="control-label col-sm-3"></label>
+                                        <div class="col-sm-4">
+                                            <?php
+                                                    $style_kecamatan = 'class="form-control input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
+                                                    echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
+                                                    ?>
+
+                                            <!-- <select class="custom-select" name="kecamatan" id="kecamatan_id" class="form-control input-sm" onChange="tampilKelurahan()">
+                                                <?php foreach ($kecamatan as $row) : ?>
+                                                    <option value="<?= $row['id_kecamatan']; ?>" <?php if ($row['id_kecamatan'] == $pmi->kecamatan) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kecamatan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <?php
+                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
+                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
+                                            ?>
+                                            <!-- <select class="custom-select" name="desa" id="kelurahan_id" class="form-control input-sm">
+                                                <?php foreach ($kelurahan as $row) : ?>
+                                                    <option value="<?= $row['id_kelurahan']; ?>" <?php if ($row['id_kelurahan'] == $pmi->desa) {
+                                                                                                        echo 'selected';
+                                                                                                    } else {
+                                                                                                        echo '';
+                                                                                                    } ?>> <?= $row['nama_kelurahan']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $pmi->latitude ?>" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="<?= $pmi->longitude ?>" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -76,82 +169,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $pmi->alamat ?></textarea>
-                                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
+                                    
 
-                                    <div class="form-group row">
-                                        <label for="jk" class="control-label col-sm-3"></label>
-                                        <div class="col-sm-4">
-                                            <!-- <?php
-                                                    $style_provinsi = 'class="form-control input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
-                                                    echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
-                                                    ?> -->
-                                            <select class="custom-select" name="provinsi" id="provinsi_id" class="form-control input-sm" onChange="tampilKabupaten()">
-                                                <?php foreach ($provinsi_select as $row) : ?>
-                                                    <option value="<?= $row['id_provinsi']; ?>" <?php if ($row['id_provinsi'] == $pmi->provinsi) {
-                                                                                                    echo 'selected';
-                                                                                                } else {
-                                                                                                    echo '';
-                                                                                                } ?>> <?= $row['nama_provinsi']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <!-- <?php
-                                                    $style_kabupaten = 'class="form-control input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
-                                                    echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
-                                                    ?> -->
-                                            <select class="custom-select" name="kabupaten" id="kabupaten_id" class="form-control input-sm" onChange="tampilKecamatan()">
-                                                <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $pmi->kabupaten) {
-                                                                                                        echo 'selected';
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>> <?= $row['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="" class="control-label col-sm-3"></label>
-                                        <div class="col-sm-4">
-                                            <!-- <?php
-                                                    $style_kecamatan = 'class="form-control input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
-                                                    echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
-                                                    ?> -->
-
-                                            <select class="custom-select" name="kecamatan" id="kecamatan_id" class="form-control input-sm" onChange="tampilKelurahan()">
-                                                <?php foreach ($kecamatan as $row) : ?>
-                                                    <option value="<?= $row['id_kecamatan']; ?>" <?php if ($row['id_kecamatan'] == $pmi->kecamatan) {
-                                                                                                        echo 'selected';
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>> <?= $row['nama_kecamatan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kelurahan = 'class="form-control input-sm" name="desa" id="kelurahan_id"';
-                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
-                                            ?>
-                                            <!-- <select class="custom-select" name="desa" id="kelurahan_id" class="form-control input-sm">
-                                                <?php foreach ($kelurahan as $row) : ?>
-                                                    <option value="<?= $row['id_kelurahan']; ?>" <?php if ($row['id_kelurahan'] == $pmi->kelurahan) {
-                                                                                                        echo 'selected';
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>> <?= $row['nama_kelurahan']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select> -->
-                                        </div>
-                                    </div>
+                                   
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
@@ -232,7 +252,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $pmi->jenis_pekerjaan ?>">
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -253,7 +273,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $pmi->lama_bekerja ?>">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

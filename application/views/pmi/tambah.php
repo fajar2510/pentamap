@@ -34,37 +34,20 @@
                         <div>
                             <form action="<?= base_url('pmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
+                                    <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
                                         <label for="tanggal_data" class="col-sm-3 col-form-label">Tanggal Data</label>
                                         <div class="col-3">
                                             <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <p> <small><b> DATA PMI-B</b></small></p>
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                        <div class="col-sm-8">
+                                        <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
-                                        <div class="col-3">
-                                            <input class="form-control" type="date" value="1990-09-05" id="tgl_lahir" name="tgl_lahir">
-                                            <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                        <div class="col-sm-4">
-                                            <select class="custom-select" name="gender" id="gender" class="form-control">
-                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
-                                                <option value="L"> Laki-Laki </option>
-                                                <option value="P"> Perempuan </option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -106,8 +89,45 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
+                                        <div class="col-sm-3"> 
+                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">
+                                            <!-- <div id="mapltlg"></div> -->
+                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
+                                        <div class="col-3">
+                                            <input class="form-control" type="date" value="1990-09-05" id="tgl_lahir" name="tgl_lahir">
+                                            <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                        <div class="col-sm-3">
+                                            <select class="custom-select" name="gender" id="gender" class="form-control">
+                                                <option value=""> ~ Pilih Jenis Kelamin ~ </option>
+                                                <option value="L"> Laki-Laki </option>
+                                                <option value="P"> Perempuan </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                    <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <select class="custom-select" name="negara" id="negara" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
@@ -118,7 +138,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>">
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -139,7 +159,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="lama" placeholder="" name="lama">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

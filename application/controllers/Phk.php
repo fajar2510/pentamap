@@ -56,11 +56,13 @@ class Phk extends CI_Controller
         $data['tambah_phk'] = $this->Master->get_tb_phk();
 
         $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
+        $this->form_validation->set_rules('long', 'Longitude', 'required|trim');
+        $this->form_validation->set_rules('no_identitas', 'NIK', 'trim');
         $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
         $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-        $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
+        $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'trim');
         $this->form_validation->set_rules('kode_segmen', 'Kode Segmen', 'trim');
         $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
         $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
@@ -75,6 +77,8 @@ class Phk extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
+                'latitude' => $this->input->post('lat', true),
+                'longitude' => $this->input->post('long', true),
                 'wilayah' => $this->input->post('wilayah', true),
                 'kpj' => $this->input->post('kpj', true),
                 'nama_tk' => $this->input->post('nama_tk', true),
@@ -94,7 +98,7 @@ class Phk extends CI_Controller
             // jumlah phk masih salah ya ingat
             $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
 
-           $jumlah = $jumlah_phk->row()->phk;
+            $jumlah = $jumlah_phk->row()->phk;
 
             $update = [   
                 'jumlah_phk' => $jumlah,
@@ -136,6 +140,8 @@ class Phk extends CI_Controller
         $data['edit_phk'] = $this->Master->get_phkById($id);
 
         $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
+        $this->form_validation->set_rules('long', 'Longitude', 'required|trim');
         $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
         $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
         $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
@@ -144,7 +150,7 @@ class Phk extends CI_Controller
         $this->form_validation->set_rules('kode_segmen', 'Kode Segmen', 'trim');
         $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
         $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
-        $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'trim');
+        $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'required|trim');
 
 
         if ($this->form_validation->run() == false) {
@@ -156,6 +162,8 @@ class Phk extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $data = [
+                'latitude' => $this->input->post('lat', true),
+                'longitude' => $this->input->post('long', true),
                 'wilayah' => $this->input->post('wilayah', true),
                 'kpj' => $this->input->post('kpj', true),
                 'nama_tk' => $this->input->post('nama_tk', true),

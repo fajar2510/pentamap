@@ -81,8 +81,8 @@
                                             <td> <?= $p['nama_tk']; ?>
                                             <td><small> <?= $p['nama_kabupaten']; ?></small> </td>
                                             <td> <?= $p['nama_perusahaan']; ?></td>
-                                            <td class="text-center"><?php if ($p['disabilitas'] == '1') {
-                                                            echo '<span class="badge badge-info">Iya</span>';
+                                            <td class="text-center"><?php if ($p['disabilitas'] == 'Y') {
+                                                            echo '<span class="badge badge-info">Ya</span>';
                                                         } else {
                                                             echo '<span class="badge badge-light">Tidak</span>';
                                                         } ?> </td>
