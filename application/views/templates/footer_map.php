@@ -141,11 +141,10 @@
 
      <!-- script MAP MAP TENAGA KERJA JATIM utama -->
     <script type="text/javascript">
-        // var L = window.L;
-
+    
 
         // memanggil map utama
-        var map = L.map('mapp').setView([-7.6709737, 113.3288216], 8.5);
+        var map = L.map('mapp').setView([-7.6709737, 113.3288216], 10);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
@@ -153,111 +152,172 @@
             
         }).addTo(map);
 
-
         // Google Map API
-        googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
-            maxZoom: 20,
-            subdomains:['mt0','mt1','mt2','mt3']
+        // googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+        //     maxZoom: 10,
+        //     subdomains:['mt0','mt1','mt2','mt3']
+        // });
+        // googleStreets.addTo(map)
+
+
+        // map search data Cpmi
+        var dataCpmi = [
+            <?php  foreach ($sebaran_cpmi as $key => $value) { ?>
+                 {"loc":[<?= $value->latitude ?>,<?= $value->longitude ?>],"nama_pmi":"<?= $value->nama_pmi?>"},
+            <?php } ?>
+            ];
+
+        var markersLayer = new L.LayerGroup();	//layer contain searched elements	
+        map.addLayer(markersLayer);
+        var controlSearch = new L.Control.Search({
+            position:'topright',		
+            layer: markersLayer,
+            initial: false,
+            zoom: 17,
+            marker: false
         });
-        googleStreets.addTo(map)
 
-        // // icon sebaran phk
-        // var iconPhk = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/sphk.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        map.addControl( new L.Control.Search({
+            position:'topright',
+            layer: markersLayer,
+            initial: false,
+            zoom: 17,
+            collapsed: false
+        }) );
 
-        // // icon sebaran cpmi
-        // var iconCpmi = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/scpmi.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        //populate map with markers from sample data
+        for(i in dataCpmi) {
+            var nama_pmi = dataCpmi[i].nama_pmi,	//value searched
+                loc = dataCpmi[i].loc,	//position found
+                marker = new L.Marker(new L.latLng(loc), {title: nama_pmi} );//se property searched
+                marker.bindPopup('nama_pmi: '+ nama_pmi );
+                markersLayer.addLayer(marker);
+        }
 
-        // // icon sebaran pmib
-        // var iconPmib = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/spmib.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        
 
-        // // icon sebaran tka
-        // var iconTka = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/stka.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        // icon sebaran phk
+        var iconPhk = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/sebaran/sphk.png',
+            iconSize : [30,16],
+            iconAnchor: [22, 65],
+            popupAnchor: [-3,-55]
+        });
 
-        // // icon sebaran lokal
-        // var iconCpmi = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/slokal.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        // icon sebaran cpmi
+        var iconCpmi = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/sebaran/scpmi.png',
+            iconSize : [30,16],
+            iconAnchor: [22, 65],
+            popupAnchor: [-3,-55]
+        });
 
-        // // icon sebaran disabilitas
-        // var iconCpmi = L.icon({
-        //     iconUrl : '<?= base_url('assets/'); ?>img/sebaran/sdisabilitas.png',
-        //     iconSize : [30,30],
-        //     iconAnchor: [22, 65],
-        //     popupAnchor: [-3,-55]
-        // });
+        // icon sebaran pmib
+        var iconPmib = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/sebaran/spmib.png',
+            iconSize : [30,16],
+            iconAnchor: [22, 65],
+            popupAnchor: [-3,-55]
+        });
+
+        // icon sebaran tka
+        var iconTka = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/sebaran/stka.png',
+            iconSize : [30,16],
+            iconAnchor: [22, 65],
+            popupAnchor: [-3,-55]
+        });
+
+        
         
         // MARKER dengan cluster PHK
-        var markersPhk = L.markerClusterGroup();
+        var markersPhk = L.markerClusterGroup( {
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-phk-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
+        
           
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
-            var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>]);
-            L.circle([<?= $value->latitude ?>, <?= $value->longitude ?>], {
-                color: '#D61C4E',
-                fillColor: '#D61C4E',
-                fillOpacity: 0.5,
-                radius: 4000
-            }).addTo(map);
-
+            var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
+            .bindPopup("<p> Nama :  <?= $value->nama_tk ?> &nbsp;(<?= $value->jenis_kel ?>) <br> Alamat : <?= $value->alamat ?> <br>  Kabupaten/kota : <?= $value->nama_kabupaten ?></p>" +
+            "<button type='button' class='btn btn-link'>>>Selengkapnya</button>");
 
             markersPhk.addLayer(sebaranPhk);
             map.addLayer(markersPhk);
             map.fitBounds(markersPhk.getBounds());
           
         <?php }?>
+        
 
         // MARKER dengan cluster CPMI
-        var markersCpmi = L.markerClusterGroup();
+        var markersCpmi = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-cpmi-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
           
         <?php foreach ($sebaran_cpmi  as $key => $value) { ?> 
-            var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>] );
-            L.circle([<?= $value->latitude ?>, <?= $value->longitude ?>], {
-            color: '#0096FF',
-                fillColor: '#0096FF',
-                fillOpacity: 0.5,
-                radius: 4000
-            }).addTo(map);
-    
+            var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconCpmi} )
+            .bindPopup("<h5><b> Nama : <?= $value->nama_pmi ?></b></h5><h5><b> Alamat : <?= $value->alamat ?></b></h5><h5><b> Kabupaten/kota : <?= $value->wilayah ?></b></h5> ");
+
             markersCpmi.addLayer(sebaranCpmi);
             map.addLayer(markersCpmi);
             map.fitBounds(markersCpmi.getBounds());
           
         <?php }?>
+        
 
          // MARKER dengan cluster PMIB
-         var markersPmib = L.markerClusterGroup();
+         var markersPmib = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-pmib-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+         });
           
           <?php foreach ($sebaran_pmib  as $key => $value) { ?> 
-              var sebaranPmib = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>]);
-              L.circle([<?= $value->latitude ?>, <?= $value->longitude ?>], {
-                color: '#FEDB39',
-                fillColor: '#FEDB39',
-                fillOpacity: 0.5,
-                radius: 4000
-                }).addTo(map);
-    
+              var sebaranPmib = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPmib} )
+              .bindPopup("<h5><b> Nama : <?= $value->nama ?></b></h5><h5><b> Alamat : <?= $value->alamat ?></b></h5><h5><b> Kabupaten/kota : <?= $value->provinsi ?></b></h5> ");
+  
               markersPmib.addLayer(sebaranPmib);
               map.addLayer(markersPmib);
               map.fitBounds(markersPmib.getBounds());
@@ -265,22 +325,38 @@
           <?php }?>
 
            // MARKER dengan cluster TKA
-         var markersTka = L.markerClusterGroup();
+         var markersTka = L.markerClusterGroup({
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-tka-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+         });
           
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
-              var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>] );
-              L.circle([<?= $value->latitude ?>, <?= $value->longitude ?>], {
-                color: '#3CCF4E',
-                fillColor: '#3CCF4E',
-                fillOpacity: 0.5,
-                radius: 4000
-                }).addTo(map);
+              var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
+              .bindPopup('<div class=" row"> ' +
+                    '<div class="col-sm-4"><img src="<?php echo base_url() ?>assets/img/factory.png" alt="" class="img-rounded " /></div>' +
+                    '<div class="col-sm-8"><h4>Bhaumik Patel</h4><small style="display: block; line-height: 1.428571429; color: #999;"><cite title="San Francisco, USA">San Francisco, USA <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></i></cite></small><p><i class="fa-solid fa-envelope" style="margin-bottom: 10px;margin-right: 10px;"></i></i>email@example.com<br /><i class="fa-solid fa-address-book" style="margin-bottom: 10px;margin-right: 10px;"></i>kontak<br /><i class="fa-solid fa-gift" style="margin-bottom: 10px;margin-right: 10px;"></i>June 02, 1988</p>' +
+                    '<button type="button" class="btn btn-primary">Rincian</button></div></div>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);
               map.fitBounds(markersTka.getBounds());
             
           <?php }?>
+
 
 
         //batas function
@@ -291,15 +367,15 @@
                 style : function(feature) {
                     return {
                         opacity: 0.7,
-                        color: '#293462',
-                        fillColor: '#293462',
+                        color: '#325288',
+                        fillColor: 'white',
                         fillOpacity: 0.3,
                         }    
                  },
             }).addTo(map);
-            geoLayer.eachLayer(function (layer) {
-                layer.bindPopup("Jawa Timur");
-            });
+            // geoLayer.eachLayer(function (layer) {
+            //     layer.bindPopup("Jawa Timur");
+            // });
         });
  
 
@@ -308,7 +384,8 @@
 
                 var leafleticon = L.icon({
                     iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    iconSize: [48, 48]
+                    // iconUrl: 'assets/img/production.png',
+                    iconSize: [35, 40]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
@@ -323,10 +400,10 @@
                 // if (phk == "0") {
                 //     phk = parseInt("0");
                 // } else {
-                //     phk = parseInt(data[i].jumlah_phk);
+                    phk = parseInt(data[i].jumlah_phk);
                 //     var circle = L.circle([long, lat], 14000, {
                 //         color: '#D61C4E',
-                //         fillOpacity: 0.5
+                //         fillOpacity: 0.3
                 //     }).addTo(map);
                 //     // circle.bindPopup("<u><b><center>" + data[i].nama_kabupaten +
                 //     // "</b></u><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>Gelombang Merah (PHK) :  <span class='badge badge-danger badge-pill'> "  + phk + " </span></ul> ");
@@ -342,54 +419,55 @@
                 // if (pmib == "0") {
                 //     pmib = parseInt("0");
                 // } else {
-                //     pmib = parseInt(data[i].jumlah_pmib);
+                    pmib = parseInt(data[i].jumlah_pmib);
                 //     var circle = L.circle([long, lat], 16000, {
                 //         color: '#FEDB39',
                 //         fillColor: '#FEDB39',
-                //         fillOpacity: 0.5
+                //         fillOpacity: 0.3
                 //     }).addTo(map);
                 // }
                 // if (pmi == "0") {
                 //     pmi = parseInt("0");
                 // } else {
-                //     pmi = parseInt(data[i].jumlah_pmi);
+                    pmi = parseInt(data[i].jumlah_pmi);
                 //     var circle = L.circle([long, lat], 10000, {
                 //         color: '#0096FF',
                 //         fillColor: '#0096FF',
-                //         fillOpacity: 0.5
+                //         fillOpacity: 0.3
                 //     }).addTo(map);
                 // }
                 // if (tka == "0") {
                 //     tka = parseInt("0");
                 // } else {
-                //     tka = parseInt(data[i].jumlah_tka);
+                    tka = parseInt(data[i].jumlah_tka);
                 //     var circle = L.circle([long, lat], 12000, {
                 //         color: '#3CCF4E',
-                //         fillOpacity: 0.5
+                //         fillOpacity: 0.3
                 //     }).addTo(map);
                 // }
                 // if (jumlah == '' || null) {
                 //     jumlah = 0;
                 // } else {
-                //     jumlah = parseInt(data[i].jumlah_phk);
+                    jumlah = parseInt(data[i].jumlah_phk);
                 // }
 
                 var jumlah = phk + pmib + pmi + tka;
                 bangunanMarker = L.marker([long, lat], {
-                        // icon: leafleticon,
-                        title: "#",
+                        icon: leafleticon,
+                        title: data[i].nama_kabupaten,
                             }).addTo(map)
-                        //     .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                        //     "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-success badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                        //         "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
-                        //     .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b><br> <b>  ("+ jumlah +") </b> orang </center>", {
-                        //       // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
-                        //         permanent: true,
-                        //         direction: 'bottom',
-                        //         opacity: 0.9,
-                        //         sticky: false,
-                        //         // className: 'leaflet-tooltip-own' .
-                        // });
+                            .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
+                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-success badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
+                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
+                            .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
+                              // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
+                                permanent: true,
+                                size: 10,
+                                direction: 'bottom',
+                                opacity: 0.65,
+                                sticky: false,
+                                className: 'leaflet-tooltip-own'
+                        });
             });
         });
 
@@ -416,21 +494,24 @@
         // standart zoom view jatim first load
         map.locate({setView: true, maxZoom: 16});
         
-        // map search 
-        L.control.search({
-          url: 'search.php?q={s}',
-          textPlaceholder: 'Color...',
-          position: 'topright',
-          hideMarkerOnCollapse: true,
-          marker: {
-            icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
-            circle: {
-              radius: 20,
-              color: '#0a0',
-              opacity: 1
-            }
-          }
-        }).addTo(map);
+        
+        
+
+
+        // L.control.search({
+        //   url: 'search.php?q={s}',
+        //   textPlaceholder: 'Color...',
+        //   position: 'topright',
+        //   hideMarkerOnCollapse: true,
+        //   marker: {
+        //     icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
+        //     circle: {
+        //       radius: 20,
+        //       color: '#0a0',
+        //       opacity: 1
+        //     }
+        //   }
+        // }).addTo(map);
 
 
         // full screen map

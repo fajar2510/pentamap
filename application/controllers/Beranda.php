@@ -39,7 +39,7 @@ class Beranda extends CI_Controller
         $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
         // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
-        // var_dump($data['sebaran_lokal']);
+        // var_dump($data['sebaran_phk']);
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 

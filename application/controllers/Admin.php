@@ -68,7 +68,7 @@ class Admin extends CI_Controller
 
     public function test2()
     {
-        $data['title'] = 'Tes2 Cluster';
+        $data['title'] = 'Tes2';
         
 
         // mengambil data user login

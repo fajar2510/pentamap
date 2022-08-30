@@ -16,10 +16,19 @@
 
 
             <!-- start -->
-            <p style="font-weight:bold; font-family:roboto; padding-left:5px;">Cluster</p>
+            <p style="font-weight:bold; font-family:roboto; padding-left:5px;">Drawer Map</p>
            
-
-            <div id="mapcluster"></div>
+            <div class="row">
+                <div class="col-8">
+                     <div id="mapcluster"></div>
+                </div>
+                <div class="col-4">
+                    <label for="drawer">Data GeoJson Drawer</label>
+                    <textarea id="drawerid" name="drawer" rows="17" cols="50" class="form-control"></textarea>
+                </div>
+                
+            </div>
+           
             <!-- end -->
     
     <!-- /.container-fluid -->

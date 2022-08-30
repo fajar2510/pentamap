@@ -112,6 +112,8 @@
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" integrity="sha512-ozq8xQKq6urvuU6jNgkfqAmT7jKN2XumbrX1JiB3TnF7tI48DPI4Gy1GXKD/V3EExgAs1V+pRO7vwtS1LHg0Gw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
 
 
@@ -122,25 +124,46 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
-            maxZoom: 20,
-            subdomains:['mt0','mt1','mt2','mt3']
-        });
-        googleStreets.addTo(map)
+         // FeatureGroup is to store editable layers
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                draw : {
+                    polygon : true,
+                    marker : false,
+                    circle : false,
+                    circlemarker : false,
+                    rectangle : false,
+                    polyline : false,
+                },
+                edit: {
+                    featureGroup: drawnItems
+                }
+            });
+            map.addControl(drawControl);
 
-        // Satellite Layer 
-        // googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',{
-        //     maxZoom: 20,
-        //     subdomains:['mt0','mt1','mt2','mt3']
-        // });
-        // googleSat.addTo(map);
+            //create geojson
+            map.on('draw:created', function (event) {
+                var layer = event.layer;
+                var feature = layer.feature = layer.feature || {};
+                feature.type = feature.type || "Feature";
+                var props = feature.properties = feature.properties || {};
+                drawnItems.addLayer(layer);
+                $("[name=drawer]").html(JSON.stringify(drawnItems.toGeoJSON()));
+                
+            });
 
-        // Google hybrid
-        // googleHybrid = L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}',{
-        //     maxZoom: 20,
-        //     subdomains:['mt0','mt1','mt2','mt3']
-        // });
-        // googleHybrid.attTo(map);
+            // edit geojson
+            map.on('draw:edited', function (event) {
+                $("[name=drawer]").html(JSON.stringify(drawnItems.toGeoJSON()));
+            });
+
+            // delete geojson
+            map.on('draw:deleted', function (event) {
+                $("[name=drawer]").html("");
+            });
+        
+
 
         </script>
 

@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.css" />
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/cluster/dist/MarkerCluster.css" />
 	<link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/cluster/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" integrity="sha512-gc3xjCmIy673V6MyOAZhIW93xhM9ei1I+gLbmFjUHIjocENRsLX/QUE1htk5q1XV2D/iie/VQ8DXI6Vu8bexvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	
   
   <!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>leaflet/Leaflet.label/dist/leaflet.label.css" /> -->
@@ -79,7 +80,7 @@
     #mapp { height: 530px; }
     #map { height: 400px; }
     #mapgeojson { height: 400px; }
-    #mapcluster { height: 400px; }
+    #mapcluster { height: 450px; }
     #mapltlg { height: 300px; width: 650px }
   </style>
 
@@ -333,11 +334,150 @@
         pointer-events: none;
         border-radius: 50%
     }
+
+  
     
 
   </style>
+
+  <style>
+    /* marker PHK */
+  .marker-cluster-phk-small {
+    background-color: rgba(218, 94, 94, 0.6);
+    }
+    .marker-cluster-phk-small div {
+    background-color: rgba(226, 36, 36, 0.6);
+    }
+    .marker-cluster-phk-medium {
+    background-color: rgba(241, 211, 87, 0.6);
+    }
+    .marker-cluster-phk-medium div {
+    background-color: rgba(240, 194, 12, 0.6);
+    }
+
+    .marker-cluster-phk-large {
+    background-color: rgba(253, 156, 115, 0.6);
+    }
+    .marker-cluster-phk-large div {
+    background-color: rgba(241, 128, 23, 0.6);
+    }
+  </style>
+
+<style>
+    /* marker TKA */
+  .marker-cluster-tka-small {
+    background-color: rgba(141, 250, 236, .6);
+    }
+    .marker-cluster-tka-small div {
+    background-color: rgba(0, 200, 151, 0.6);
+    }
+    .marker-cluster-tka-medium {
+    background-color: rgba(190, 235, 187, 0.6);
+    }
+    .marker-cluster-tka-medium div {
+    background-color: rgba(142, 219, 200, 0.6);
+    }
+
+    .marker-cluster-tka-large {
+    background-color: rgba(223, 247, 221, 0.6);
+    }
+    .marker-cluster-tka-large div {
+    background-color: rgba(8, 205, 156,  0.6);
+    }
+</style>
+
+<style>
+    /* marker CPMI */
+  .marker-cluster-cpmi-small {
+    background-color: rgba(10, 161, 221,.6);
+    }
+    .marker-cluster-cpmi-small div {
+    background-color: rgba(0, 147, 239, 0.6);
+    }
+    .marker-cluster-cpmi-medium {
+    background-color: rgba(121, 218, 232, 0.6);
+    }
+    .marker-cluster-cpmi-medium div {
+    background-color: rgba(134, 201, 242, 0.6);
+    }
+
+    .marker-cluster-cpmi-large {
+    background-color: rgba(78, 173, 232, 0.6);
+    }
+    .marker-cluster-cpmi-large div {
+    background-color: rgba(10, 112, 255,  0.6);
+    }
+</style>
+
+<style>
+    /* marker PHK */
+  .marker-cluster-pmib-small {
+    background-color: rgba(245, 236, 111, 0.6);
+    }
+    .marker-cluster-pmib-small div {
+    background-color: rgba(241, 128, 23, 0.6);
+    }
+    .marker-cluster-pmib-medium {
+    background-color: rgba(241, 211, 87, 0.6);
+    }
+    .marker-cluster-pmib-medium div {
+    background-color: rgba(240, 194, 12, 0.6);
+    }
+
+    .marker-cluster-pmib-large {
+    background-color: rgba(253, 156, 115, 0.6);
+    }
+    .marker-cluster-pmib-large div {
+    background-color: rgba(255, 183, 43, 0.6);
+    }
+  </style>
+
+<style>
+
+        /* IE 6-8 fallback colors */
+    .leaflet-oldie .marker-cluster-small {
+      background-color: rgb(181, 226, 140);
+      }
+    .leaflet-oldie .marker-cluster-small div {
+      background-color: rgb(110, 204, 57);
+      }
+
+    .leaflet-oldie .marker-cluster-medium {
+      background-color: rgb(241, 211, 87);
+      }
+    .leaflet-oldie .marker-cluster-medium div {
+      background-color: rgb(240, 194, 12);
+      }
+
+    .leaflet-oldie .marker-cluster-large {
+      background-color: rgb(253, 156, 115);
+      }
+    .leaflet-oldie .marker-cluster-large div {
+      background-color: rgb(241, 128, 23);
+    }
+
     
 
+      /* text marker */
+    .marker-cluster {
+      background-clip: padding-box;
+      border-radius: 35px;
+      }
+    .marker-cluster div {
+      width: 50px;
+      height: 50px;
+      margin-left: -5px;
+      margin-top: -5px;
+
+      text-align: center;
+      border-radius: 50px;
+      font: 38px "Helvetica Neue", Arial, Helvetica, sans-serif;
+      color: white;
+      }
+    .marker-cluster span {
+      line-height: 50px;
+      }
+  </style>
     
 
    
