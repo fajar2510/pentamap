@@ -191,7 +191,7 @@ class Auth extends CI_Controller
         
             $this->load->library('email', $config);
 
-            $this->email->from('savhiraindah@gmail.com', 'SiPENTA DISNAKER' );
+            $this->email->from('savhiraindah@gmail.com', 'SIG Disnakertrans' );
             $this->email->to($this->input->post('email'));
 
             if ($type == 'verify') {

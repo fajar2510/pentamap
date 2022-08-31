@@ -255,7 +255,7 @@
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
             var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
             .bindPopup('<div class="container px-1 py-1">'+
-              '<img src="<?= base_url("assets/img/default-profile/default.png") ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<img src="<?= base_url("assets/img/phk/") . $value->image ?> " alt="profile" class="img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover; " >  '+
               '<h5><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
@@ -293,7 +293,7 @@
         <?php foreach ($sebaran_cpmi  as $key => $value) { ?> 
             var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconCpmi} )
             .bindPopup('<div class="container px-1 py-1">'+
-              '<img src="<?= base_url("assets/img/default-profile/default.png") ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<img src="<?= base_url("assets/img/cpmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
               '<h5><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
@@ -366,7 +366,7 @@
           
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
               var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
-              .bindPopup('<div class="container px-1 py-1"><img src="<?php echo base_url() ?>assets/img/default-profile/default.png" width="150px" alt="profile" class="img-rounded img-responsive" /> '+
+              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/tka/") . $value->image ?>" width="150px" alt="profile" class="img-rounded img-responsive" /> '+
               '<h5><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Kewarganegaraan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
@@ -706,7 +706,8 @@
         $(".preloader").fadeOut();
         })
     </script>
-    
+
+        <!-- fungsi jika tak ada image tertampil atau data null -->
 
     </body>
 
