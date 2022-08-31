@@ -161,38 +161,38 @@
 
 
         // map search data Cpmi
-        var dataCpmi = [
-            <?php  foreach ($sebaran_cpmi as $key => $value) { ?>
-                 {"loc":[<?= $value->latitude ?>,<?= $value->longitude ?>],"nama_pmi":"<?= $value->nama_pmi?>"},
-            <?php } ?>
-            ];
+        // var dataCpmi = [
+        //     <?php  foreach ($sebaran_cpmi as $key => $value) { ?>
+        //          {"loc":[<?= $value->latitude ?>,<?= $value->longitude ?>],"nama_pmi":"<?= $value->nama_pmi?>"},
+        //     <?php } ?>
+        //     ];
 
-        var markersLayer = new L.LayerGroup();	//layer contain searched elements	
-        map.addLayer(markersLayer);
-        var controlSearch = new L.Control.Search({
-            position:'topright',		
-            layer: markersLayer,
-            initial: false,
-            zoom: 17,
-            marker: false
-        });
+        // var markersLayer = new L.LayerGroup();	//layer contain searched elements	
+        // map.addLayer(markersLayer);
+        // var controlSearch = new L.Control.Search({
+        //     position:'topright',		
+        //     layer: markersLayer,
+        //     initial: false,
+        //     zoom: 17,
+        //     marker: false
+        // });
 
-        map.addControl( new L.Control.Search({
-            position:'topright',
-            layer: markersLayer,
-            initial: false,
-            zoom: 17,
-            collapsed: false
-        }) );
+        // map.addControl( new L.Control.Search({
+        //     position:'topright',
+        //     layer: markersLayer,
+        //     initial: false,
+        //     zoom: 17,
+        //     collapsed: false
+        // }) );
 
-        //populate map with markers from sample data
-        for(i in dataCpmi) {
-            var nama_pmi = dataCpmi[i].nama_pmi,	//value searched
-                loc = dataCpmi[i].loc,	//position found
-                marker = new L.Marker(new L.latLng(loc), {title: nama_pmi} );//se property searched
-                marker.bindPopup('nama_pmi: '+ nama_pmi );
-                markersLayer.addLayer(marker);
-        }
+        // //populate map with markers from sample data
+        // for(i in dataCpmi) {
+        //     var nama_pmi = dataCpmi[i].nama_pmi,	//value searched
+        //         loc = dataCpmi[i].loc,	//position found
+        //         marker = new L.Marker(new L.latLng(loc), {title: nama_pmi} );//se property searched
+        //         marker.bindPopup('nama_pmi: '+ nama_pmi );
+        //         markersLayer.addLayer(marker);
+        // }
 
         
 
@@ -253,8 +253,14 @@
           
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
             var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
-            .bindPopup("<p> Nama :  <?= $value->nama_tk ?> &nbsp;(<?= $value->jenis_kel ?>) <br> Alamat : <?= $value->alamat ?> <br>  Kabupaten/kota : <?= $value->nama_kabupaten ?></p>" +
-            "<button type='button' class='btn btn-link'>>>Selengkapnya</button>");
+            .bindPopup('<div class="container px-1 py-1">'+
+              '<img src="<?= base_url("assets/img/default-profile/default.png") ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<h5><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+
+              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
 
             markersPhk.addLayer(sebaranPhk);
             map.addLayer(markersPhk);
@@ -285,7 +291,14 @@
           
         <?php foreach ($sebaran_cpmi  as $key => $value) { ?> 
             var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconCpmi} )
-            .bindPopup("<h5><b> Nama : <?= $value->nama_pmi ?></b></h5><h5><b> Alamat : <?= $value->alamat ?></b></h5><h5><b> Kabupaten/kota : <?= $value->wilayah ?></b></h5> ");
+            .bindPopup('<div class="container px-1 py-1">'+
+              '<img src="<?= base_url("assets/img/default-profile/default.png") ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<h5><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
+              '<i class="fa-solid fa-book-open-reader" style="margin-bottom: 10px; margin-right: 10px;"></i>Perekrut , <?= $value->pengguna_jasa ?><br />'+
+              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor , <?= $value->paspor ?></i></p> '+
+              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
 
             markersCpmi.addLayer(sebaranCpmi);
             map.addLayer(markersCpmi);
@@ -316,7 +329,13 @@
           
           <?php foreach ($sebaran_pmib  as $key => $value) { ?> 
               var sebaranPmib = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPmib} )
-              .bindPopup("<h5><b> Nama : <?= $value->nama ?></b></h5><h5><b> Alamat : <?= $value->alamat ?></b></h5><h5><b> Kabupaten/kota : <?= $value->provinsi ?></b></h5> ");
+              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/pmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<h5><?= $value->nama ?></h5> <span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><i>PMI Bermasalah (PMI-B)</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Bekerja , <?= $value->negara_bekerja ?> <br />'+
+              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jenis_pekerjaan ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->lama_bekerja ?></i></p> '+
+              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
   
               markersPmib.addLayer(sebaranPmib);
               map.addLayer(markersPmib);
@@ -346,10 +365,13 @@
           
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
               var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
-              .bindPopup('<div class=" row"> ' +
-                    '<div class="col-sm-4"><img src="<?php echo base_url() ?>assets/img/factory.png" alt="" class="img-rounded " /></div>' +
-                    '<div class="col-sm-8"><h4>Bhaumik Patel</h4><small style="display: block; line-height: 1.428571429; color: #999;"><cite title="San Francisco, USA">San Francisco, USA <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></i></cite></small><p><i class="fa-solid fa-envelope" style="margin-bottom: 10px;margin-right: 10px;"></i></i>email@example.com<br /><i class="fa-solid fa-address-book" style="margin-bottom: 10px;margin-right: 10px;"></i>kontak<br /><i class="fa-solid fa-gift" style="margin-bottom: 10px;margin-right: 10px;"></i>June 02, 1988</p>' +
-                    '<button type="button" class="btn btn-primary">Rincian</button></div></div>');
+              .bindPopup('<div class="container px-1 py-1"><img src="<?php echo base_url() ?>assets/img/default-profile/default.png" width="150px" alt="profile" class="img-rounded img-responsive" /> '+
+              '<h5><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Kewarganegaraan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
+              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jabatan ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
+              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);
@@ -369,7 +391,7 @@
                         opacity: 0.7,
                         color: '#325288',
                         fillColor: 'white',
-                        fillOpacity: 0.3,
+                        fillOpacity: 0.5,
                         }    
                  },
             }).addTo(map);
@@ -384,6 +406,7 @@
 
                 var leafleticon = L.icon({
                     iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
+                    // opacity: 0,
                     // iconUrl: 'assets/img/production.png',
                     iconSize: [35, 40]
                 })
@@ -457,7 +480,11 @@
                         title: data[i].nama_kabupaten,
                             }).addTo(map)
                             .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-success badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
+                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li> " +
+                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-info badge-pill'>" + pmi + "</span></li> " +
+                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li> " +
+                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-success badge-pill'>" + tka + "</span></li> " +
+                            "<li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
                                 "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
                             .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
                               // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {

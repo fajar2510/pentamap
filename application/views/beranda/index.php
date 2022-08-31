@@ -66,18 +66,6 @@
 
 
 
-        <div class="row">
-            <div class="col-sm-4">
-                <img src="<?php echo base_url() ?>assets/img/factory.png" alt="" class="img-rounded img-responsive" />
-            </div>
-            <div class="col-sm-8">
-                <h4>Bhaumik Patel</h4><small style="display: block; line-height: 1.428571429; color: #999;"><cite title="San Francisco, USA">San Francisco, USA <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></i></cite></small>
-                <p><i class="fa-solid fa-envelope" style="margin-bottom: 10px;margin-right: 10px;"></i></i>email@example.com<br /><i class="fa-solid fa-address-book" style="margin-bottom: 10px;margin-right: 10px;"></i>kontak<br />
-                <i class="fa-solid fa-gift" style="margin-bottom: 10px;margin-right: 10px;"></i>June 02, 1988</p>
-                 <button type="button" class="btn btn-primary">Rincian</button>
-            </div>
-           
-        </div>
 
             <!-- <div id="legenda">
                 <svg height="25" width="100%">

@@ -326,6 +326,7 @@
         background-color: rgba(255, 255, 255, 1);
         border: 0px solid #000;
         color: #000;
+        font-weight:bold;
         white-space: nowrap;
         -webkit-user-select: none;
         -moz-user-select: none;

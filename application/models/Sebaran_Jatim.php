@@ -17,6 +17,7 @@ class Sebaran_Jatim extends CI_Model
         $this->db->select('*');
         $this->db->from('tb_cpmi');
         $this->db->join('kabupaten','tb_cpmi.wilayah = kabupaten.id_kabupaten');
+        $this->db->join('tb_negara','tb_cpmi.negara_penempatan = tb_negara.id');
         return $this->db->get()->result();
     }
 
@@ -41,6 +42,7 @@ class Sebaran_Jatim extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tb_phk');
+        $this->db->join('tb_perusahaan','tb_phk.nama_perusahaan = tb_perusahaan.id');
         $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
         $this->db->where('status_kerja','phk');
         return $this->db->get()->result();
