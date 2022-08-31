@@ -59,7 +59,7 @@ class Phk extends CI_Controller
         $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
         $this->form_validation->set_rules('long', 'Longitude', 'required|trim');
         $this->form_validation->set_rules('no_identitas', 'NIK', 'trim');
-        $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim'); 
         $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
         $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'trim');
@@ -91,6 +91,27 @@ class Phk extends CI_Controller
                 'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
             ];
+           
+            // cek jika ada gambar yang akan di upload
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/lokal';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message', 
+                    '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('phk');
+                }
+            }
 
             $this->db->insert('tb_phk', $data);
 
@@ -176,6 +197,25 @@ class Phk extends CI_Controller
                 'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
             ];
+
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/lokal';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('phk');
+                }
+            }
 
 
             $this->db->where('id_phk', $id);

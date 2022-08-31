@@ -149,6 +149,16 @@
                                             <input class="form-control" type="date" value="2020-07-31" id="masa_imta" name="masa_imta">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <div class="col-sm-7">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
+                                            </div>
+                                        </div>
+                                    </div>
                                     
 
                                 </div>

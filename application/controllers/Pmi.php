@@ -130,14 +130,13 @@ class Pmi extends CI_Controller
                 'date_created' => date('Y-m-d'),
             ];
 
-            // cek jika ada gambar yang akan di upload
-            // masih salah dan belum bisa upload gambar
+           
             // cek jika ada gambar yang akan di upload
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']      = '5000';
+                $config['max_size']      = '1024';
                 $config['upload_path']   = './assets/img/pmi';
 
                 $this->load->library('upload', $config);
@@ -248,7 +247,7 @@ class Pmi extends CI_Controller
             $upload_image = $_FILES['image']['name'];
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size']      = '5000';
+                $config['max_size']      = '1024';
                 $config['upload_path']   = './assets/img/pmi';
 
                 $this->load->library('upload', $config);

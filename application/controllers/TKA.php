@@ -101,6 +101,25 @@ class Tka extends CI_Controller
                 'date_created' => date('Y-m-d'),
             ];
 
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/tka';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('tka');
+                }
+            }
+
             $this->db->insert('tb_tka', $data);
 
             $kabupaten = $this->input->post('lokasi');
@@ -185,6 +204,25 @@ class Tka extends CI_Controller
                 'lokasi_kerja' => $this->input->post('lokasi'),
                 'date_created' => date('Y-m-d'),
             ];
+
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/tka';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('tka');
+                }
+            }
 
             $this->db->where('id', $id);
             $this->db->update('tb_tka', $data);

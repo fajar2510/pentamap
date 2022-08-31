@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('phk/tambah'); ?>" method="post">
+                            <form action="<?= base_url('phk/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body"> 
 
                                     <p> <small><b> DATA TENAGA KERJA</b></small></p>
@@ -127,7 +127,24 @@
                                             <?= form_error('disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                   
+                                    <div class="form-group row">
+                                        <label for="kode_segmen" class="col-sm-3 col-form-label">Kode Segmen</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_segmen" placeholder="" name="kode_segmen">
+                                            <?= form_error('kode_segmen', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <div class="col-sm-7">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">
@@ -142,13 +159,6 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group row">
-                                        <label for="kode_segmen" class="col-sm-3 col-form-label">Kode Segmen</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kode_segmen" placeholder="" name="kode_segmen">
-                                            <?= form_error('kode_segmen', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
                                     
 
                                   

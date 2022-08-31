@@ -114,6 +114,25 @@ class Cpmi extends CI_Controller
                 'date_created' =>  date('Y-m-d'),
             ];
 
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/cpmi';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('cpmi');
+                }
+            }
+
             // $data_perusahaan_negara = [
             //     'perusahaan' => $this->input->post('perusahaan'),
             //     'negara_penempatan' => $this->input->post('negara_penempatan'),
@@ -202,6 +221,25 @@ class Cpmi extends CI_Controller
                 'alamat_pengguna_jasa' => $this->input->post('alamat_pengguna_jasa'),
                 'date_created' => date('Y-m-d'),
             ];
+
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/cpmi';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('cpmi');
+                }
+            }
 
 
             $this->db->where('id', $id);

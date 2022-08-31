@@ -16,16 +16,21 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45">
-                                    
-                                    <hr style="margin-top: 10px; margin-bottom: 10px ;">
-                                    <p><small> Sistem Informasi Geografis Tenaga Kerja Jatim</small> </p>
-                                    <h1 class="h4 text-gray-900 mb-4">Login <span>
-                                    <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65"> -->
-                                    </span><b>SIG-PENTA</b>
+                                    <!-- <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45"> --> 
+                                         <h6 class="h-6 text-gray-900 mb-4"> 
+                                              <!-- <hr style="margin-top: 10px; margin-bottom: 10px ;"> -->
+                                            <img src="<?php echo base_url() ?>assets/img/auth/authlogin.png" alt="logo" class="img-fluid " style="width: 90px; ">
+                                         <p> Sistem Informasi Geografis Tenaga Kerja Jatim </p>
+                                         <hr style="margin-top: 10px; margin-bottom: 10px ;">
+                                          <span style="font-size:25px;">    <b > Login </b></h1>   </span>
+                                            <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="30" height="35"> -->
+                                        
                                     
                                         
-                                    </h1>
+                                    
+                                   
+                                    
+                                   
 
                                 </div>
 

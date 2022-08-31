@@ -170,7 +170,7 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
                                                 <label class="custom-file-label" for="image">Pilih File</label>
-                                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 2 MB. </i></small>
+                                                <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                                             </div>
                                         </div>
                                     </div>

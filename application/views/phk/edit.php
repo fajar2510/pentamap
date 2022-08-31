@@ -31,7 +31,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('phk/edit/' . $edit_phk->id_phk); ?>" method="post">
+                            <form action="<?= base_url('phk/edit/' . $edit_phk->id_phk); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <p> <small><b> DATA TENAGA KERJA</b></small></p>
                                     <div class="form-group row">
@@ -138,6 +138,18 @@
                                                                         echo '';
                                                                     } ?>>Ya</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <div class="col-sm-2">
+                                            <img src="<?= base_url('assets/img/lokal/') . $edit_phk->image ?>" class="img-thumbnail" alt="Profile Picture">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>

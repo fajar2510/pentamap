@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('cpmi/edit/' . $edit_cpmi->id); ?>" method="post">
+                            <form action="<?= base_url('cpmi/edit/' . $edit_cpmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
@@ -217,6 +217,18 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" id="kode_pesawat" placeholder="Kode Pesawat" name="kode_pesawat" value="<?= $edit_cpmi->kode_pesawat ?>">
                                             <?= form_error('kode_pesawat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <div class="col-sm-2">
+                                            <img src="<?= base_url('assets/img/cpmi/') . $edit_cpmi->image ?>" class="img-thumbnail" alt="Profile Picture">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>

@@ -170,6 +170,18 @@
                                             <input class="form-control" type="date" id="masa_imta" name="masa_imta" value="<?= $edit_tka->masa_imta ?>">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
+                                        <div class="col-sm-2">
+                                            <img src="<?= base_url('assets/img/tka/') . $edit_tka->image ?>" class="img-thumbnail" alt="Profile Picture">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     
 
                                 </div>

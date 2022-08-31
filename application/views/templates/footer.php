@@ -4,7 +4,7 @@
             <hr>
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geofrafis Tenaga Kerja Jatim - PENTA | DISNAKERTRANS JAWA TIMUR</span>
+                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geografis Tenaga Kerja Jatim - PENTA | DISNAKERTRANS JAWA TIMUR</span>
                     <!-- <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp; -->
                 </div>
             </div>

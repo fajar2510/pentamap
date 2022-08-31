@@ -149,11 +149,11 @@
     <div class=" modal fade" id="modalPerusahaanlist" tabindex="-1" role="dialog" aria-labelledby="modalInfoLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="nama_kabb"></h5><br>
+                <div class="modal-header ">
+                    <h6 class="modal-title" style="font-weight:bold;" id="nama_kabb"></h6>
                 </div>
-                <div class="container">
-                    <div class="modal-body" id="baris_tabel">
+                <div class="container py-0 px-0">
+                    <div class="modal-body py-0"  id="baris_tabel">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -172,7 +172,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Riwayat Usulan Penghargaan Disabilitas Perusahaan</h5>
+                    <h5 class="modal-title style="font-weight:bold;"" id="modalInfoLabel" style="font-weight:bold;">Rincian Perusahaan</h5>
                     <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
                         <span class="icon text-white-600">
                             <i class="fas fa-window-close"></i>
@@ -184,7 +184,7 @@
                         <div id="detailper">
                                 
                         </div>
-                        <div id="tabel_list_reward"></div>
+                        <div id="tabel_list_reward" ></div>
                     </div>
                 </div>
                     <div class="modal-footer" id="btn_kembali">

@@ -144,10 +144,10 @@
     
 
         // memanggil map utama
-        var map = L.map('mapp').setView([-7.6709737, 113.3288216], 10);
+        var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 9);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
+            // maxZoom: 12,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             
         }).addTo(map);
@@ -155,6 +155,7 @@
         // Google Map API
         // googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
         //     maxZoom: 10,
+        //     zoomSnap: 0.25,
         //     subdomains:['mt0','mt1','mt2','mt3']
         // });
         // googleStreets.addTo(map)
@@ -479,13 +480,13 @@
                         icon: leafleticon,
                         title: data[i].nama_kabupaten,
                             }).addTo(map)
-                            .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li> " +
+                            .bindPopup("<h6><u><b><center>" + data[i].nama_kabupaten + "</b></u><br></h6>" +
+                            "<ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li> " +
                             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-info badge-pill'>" + pmi + "</span></li> " +
                             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li> " +
                             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-success badge-pill'>" + tka + "</span></li> " +
                             "<li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
+                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-primary listp' data-id='"+data[i].id_kabupaten+"'><b>Daftar Perusahaan</b></button>")
                             .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
                               // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
                                 permanent: true,
@@ -519,7 +520,7 @@
         legend.addTo(map);
 
         // standart zoom view jatim first load
-        map.locate({setView: true, maxZoom: 16});
+        // map.locate({setView: true, maxZoom: 30});
         
         
         
@@ -567,17 +568,17 @@
                     // async : true,
                     dataType : 'json',
                     success: function(data){
-                        var html="<center><h5>Daftar Perusahaan</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Nama Perusahaan</th>"
-                        html+="<th scope='col'>Aksi</th></tr></thead><tbody>";
+                        var html="<table class='table table-sm' style=' padding: 0; margin: 0;' ><thead style=' padding: 0; margin: 0;'><tr><th scope='col' style=' padding: 0; margin: 0;' >No</th><th scope='col' style=' padding: 0; margin: 0;'>Nama Perusahaan</th>"
+                        html+="<th scope='col' style=' padding: 0; margin: 0;' >Aksi</th></tr></thead><tbody>";
                         var nama_kabupaten="";
-                        nama_kabupaten += "WILAYAH : "+data.kab[0].nama_kabupaten;
+                        nama_kabupaten += "Daftar Perusahaan Kabupaten/kota , "+data.kab[0].nama_kabupaten;
                         if (data.perusahaan.length == 0) {
-                            html += "<tr><td scope='row' colspan='4'><center>Tidak ada data Perusahaan</center></td></tr>";
+                            html += "<tr><td scope='row' colspan='4' style=' padding: 0; margin: 0;'><center>Tidak ada data Perusahaan</center></td></tr>";
                         }else{
                             var no=1;
                             for(i=0; i<data.perusahaan.length; i++)
                             {
-                                html += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i].nama_perusahaan+"</td><td><button class='btn btn-outline-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><i class='fa-solid fa-clock-rotate-left' aria-hidden='true'></i> Riwayat Usulan Penghargaan</button></td></tr>";
+                                html += "<tr><td scope='row' style=' padding: 0; margin: 0;' class='text-center'>"+no+"</td><td style=' padding: 0; margin: 0;'>" +data.perusahaan[i].nama_perusahaan+"</td><td style=' padding: 0; margin: 0;> <button  class='btn btn-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><a href='#'>Rincian</a> </button> </td></tr>";
                                 no+=1;
                             }
                         }
@@ -609,22 +610,22 @@
                         var list_reward="";
                         var ada_reward=0;
                         var btn_kembali="";
-                        list_reward+="<br><center><h5>Rincian</h5></center><table class='table'><thead><tr><th scope='col'>No</th><th scope='col'>Jenis Disabilitas</th><th scope='col'>Ragam Disabilitas</th>"
-                        list_reward+="<th scope='col'>Tanggal Diusulkan</th></tr></thead><tbody>";
+                        list_reward+="<br><h5>Riwayat usulan penghargaan disabilitas</h5><table class='table'><thead><tr><th scope='col' style=' padding: 0; margin: 0;'>No</th><th scope='col' style=' padding: 0; margin: 0;'>Jenis Disabilitas</th><th scope='col' style=' padding: 0; margin: 0;'>Ragam Disabilitas</th>"
+                        list_reward+="<th scope='col' style=' padding: 0; margin: 0;'>Tanggal Diusulkan</th></tr></thead><tbody>";
                         for(i=0; i<1; i++){
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Perusahaan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_perusahaan+"</label></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Nama Pimpinan </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_pimpinan+"</label></div></div>";
-                            html += "<div class='row'><label class='col-sm-3 col-form-label'>Sektor Usaha </label><label class='col-sm-8 col-form-label'>:"+data.perusahaan[i].nama_sektor+"</label></div></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label' style=' padding: 0; margin: 0;'>Nama Perusahaan </label><label class='col-sm-8 col-form-label' style=' padding: 0; margin: 0;'>:"+data.perusahaan[i].nama_perusahaan+"</label></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label' style=' padding: 0; margin: 0;'>Nama Pimpinan </label><label class='col-sm-8 col-form-label' style=' padding: 0; margin: 0;'>:"+data.perusahaan[i].nama_pimpinan+"</label></div></div>";
+                            html += "<div class='row'><label class='col-sm-3 col-form-label' style=' padding: 0; margin: 0;'>Sektor Usaha </label><label class='col-sm-8 col-form-label' style=' padding: 0; margin: 0;'>:"+data.perusahaan[i].nama_sektor+"</label></div></div> <hr>";
                         }
                         var no=1;
                         for(i=0; i<data.perusahaan.length; i++){
                             if (data.perusahaan[i].id_reward != null) {
-                                list_reward += "<tr><td scope='row'>"+no+"</td><td>"+data.perusahaan[i][0]+"</td><td scope='row'>"+data.perusahaan[i][1]+"</td><td scope='row'>"+data.perusahaan[i].tanggal_usul+"</td></tr>";
+                                list_reward += "<tr><td scope='row' style=' padding: 0; margin: 0;'>"+no+"</td><td style=' padding: 0; margin: 0;'>"+data.perusahaan[i][0]+"</td><td scope='row' style=' padding: 0; margin: 0;'>"+data.perusahaan[i][1]+"</td><td scope='row' style=' padding: 0; margin: 0;'>"+data.perusahaan[i].tanggal_usul+"</td></tr>";
                                 no+=1;
                                 ada_reward +=1;   
                             }
                             else{
-                                list_reward += "<tr><td scope='row' colspan='4'><center>Tidak ada data Penghargaan</center></td></tr>";
+                                list_reward += "<tr><td scope='row' colspan='4' style=' padding: 0; margin: 0;'><center><br>Tidak ada data Penghargaan</center></td></tr>";
                             }
                         }
                         list_reward+="</tbody></table>";
