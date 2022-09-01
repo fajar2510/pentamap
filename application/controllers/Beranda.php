@@ -12,6 +12,7 @@ class Beranda extends CI_Controller
         $this->load->model('Penempatan');
         $this->load->model('RewardModel');
         $this->load->model('Sebaran_Jatim');
+        $this->load->model('Wilayah');
     }
 
     public function index()
@@ -38,6 +39,8 @@ class Beranda extends CI_Controller
         $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
         $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+
+        $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
         // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
         // var_dump($data['sebaran_phk']);
         // die;

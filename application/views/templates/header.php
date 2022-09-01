@@ -323,9 +323,9 @@
     .leaflet-tooltip-own {
         position: absolute;
         padding: 4px;
-        background-color: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, 0);
         border: 0px solid #000;
-        color: #000;
+        color: #2C3333;
         font-weight:bold;
         white-space: nowrap;
         -webkit-user-select: none;
@@ -333,7 +333,7 @@
         -ms-user-select: none;
         user-select: none;
         pointer-events: none;
-        border-radius: 50%
+        border-radius: 50%;
     }
 
   
@@ -479,6 +479,7 @@
       line-height: 50px;
       }
   </style>
+  
     
 
    

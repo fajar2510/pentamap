@@ -86,4 +86,12 @@ class Wilayah extends CI_Model
         }
         return $result;
     }
+
+    public function get_kab_jatim()
+    {
+        $this->db->select('*');
+        $this->db->from('kabupaten');
+        $this->db->where('id_provinsi','42385');
+        return $this->db->get()->result();
+    }
 }

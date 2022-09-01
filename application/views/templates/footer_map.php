@@ -144,7 +144,8 @@
     
 
         // memanggil map utama
-        var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 9);
+        var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
+        maxZoom: 18,
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             // maxZoom: 12,
@@ -385,31 +386,41 @@
         //batas function
 
          //  jawa timur polygon geo json
-        $.getJSON("<?= base_url('assets/'); ?>geojson/jatim-polygon.geojson", function(data) {
+         <?php foreach ($kab_jatim as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.7,
-                        color: '#325288',
-                        fillColor: 'white',
-                        fillOpacity: 0.5,
+                        opacity: 0.1,
+                        color: '<?= $value->warna ?>',
+                        fillColor: '<?= $value->warna ?>',
+                        fillOpacity: 0.2,
                         }    
                  },
             }).addTo(map);
-            // geoLayer.eachLayer(function (layer) {
-            //     layer.bindPopup("Jawa Timur");
-            // });
+
+            geoLayer.eachLayer(function (layer) {
+                layer.bindPopup('<div class="container px-1 py-1">'+
+            //   '<h6><u><?= $value->nama_kabupaten ?></u></h6> '+ 
+              ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
+              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Latitude-Longitude , <?= $value->kabupaten_lat ?>,&nbsp;  <?= $value->kabupaten_lat ?><br>'+
+              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>Total Tenaga Kerja , </i></p> '+
+              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Total Perusahaan , </i></p> '+
+              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
+            });
         });
+        <?php } ?>
  
 
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
             $.each(data, function(i, field) {
 
                 var leafleticon = L.icon({
-                    iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    // opacity: 0,
-                    // iconUrl: 'assets/img/production.png',
-                    iconSize: [35, 40]
+                    // iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
+                    iconUrl: 'assets/img/marker/dotgradient.png',
+                    iconSize: [10, 10]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
@@ -507,7 +518,7 @@
         legend.onAdd = function(map) {
           var div = L.DomUtil.create("div", "legend");
           div.innerHTML += "<h4>Legenda Peta Tenaga Kerja Jatim</h4>";
-          div.innerHTML += '<svg height="25" width="100%"><line x1="10" y1="10" x2="40" y2="10" style="stroke:#293462; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah Jawa Timur</text>]</svg>';
+          div.innerHTML += '<svg height="25" width="100%"><line x1="10" y1="10" x2="40" y2="10" style="stroke:#293462; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah</text>]</svg>';
           div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#D61C4E" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">PMI Bermasalah (PMIB)</text></svg>';
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Calon Pekerja Migran Indonesia (CPMI)</text></svg>';

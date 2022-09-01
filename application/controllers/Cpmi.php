@@ -35,7 +35,7 @@ class Cpmi extends CI_Controller
         $data['a'] =  $this->Penempatan->getTotalTKA();
         $data['b'] =  $this->Penempatan->getTotalPMIB();
 
-        $data['title'] = 'Penempatan Calon PMI';
+        $data['title'] = 'Penempatan CPMI';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -85,7 +85,7 @@ class Cpmi extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Penempatan Calon PMI';
+            $data['title'] = 'Penempatan CPMI';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -194,7 +194,7 @@ class Cpmi extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Calon Pekerja Migran Indonesia (CPMI) di Luar Negeri';
+            $data['title'] = 'Penempatan CPMI';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

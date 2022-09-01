@@ -7,10 +7,12 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45">
+                            <!-- <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45"> -->
+                            <img src="<?php echo base_url() ?>assets/img/auth/authlogin.png" alt="logo" class="img-fluid " style="width: 90px; ">
                        
-                            <hr style="margin-top: 10px; margin-bottom: 10px ;">
+                            
                                     <p><small> Sistem Informasi Geografis Tenaga Kerja Jatim</small> </p>
+                                    <hr style="margin-top: 10px; margin-bottom: 10px ;">
                             <h1 class="h4 text-gray-900 mb-4"> Registrasi Akun Baru!</h1>
                         </div>
                         <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">

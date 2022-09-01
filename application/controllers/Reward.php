@@ -38,7 +38,7 @@ class Reward extends CI_Controller
         // die;
         $data['tb_reward'] = $this->RewardModel->get_tb_reward();
 
-        $data['title'] = 'Penghargaan Perusahaan';
+        $data['title'] = 'Penghargaan';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -91,7 +91,7 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('jenis[]', 'Jenis Disabilitas', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Penghargaan Perusahaan';
+            $data['title'] = 'Penghargaan';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -227,7 +227,7 @@ class Reward extends CI_Controller
        
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Penghargaan Perusahaan';
+            $data['title'] = 'Penghargaan';
             // var_dump($data);
             // die;
             $this->load->view('templates/header', $data);
