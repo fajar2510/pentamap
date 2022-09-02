@@ -142,24 +142,44 @@
      <!-- script MAP MAP TENAGA KERJA JATIM utama -->
     <script type="text/javascript">
     
-
-        // memanggil map utama
+        // memanggil map utama set view jawa timur 
         var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
-        maxZoom: 18,
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            // maxZoom: 12,
+        // Open Street Layer
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            
-        }).addTo(map);
+        });
+        osm.addTo(map);
 
-        // Google Map API
-        // googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
-        //     maxZoom: 10,
-        //     zoomSnap: 0.25,
-        //     subdomains:['mt0','mt1','mt2','mt3']
+        // var osm_dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // });
-        // googleStreets.addTo(map)
+        // osm_dark.addTo(map);
+
+        // Google Street Layer
+        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+            // maxZoom: 16,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+        googleStreets.addTo(map);
+
+        // Google Satelite Layer
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+            // maxZoom: 16,
+            subdomains:['mt0','mt1','mt2','mt3']
+            });
+            googleSat.addTo(map);
+
+        Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: 'abcd',
+            // minZoom: 1,
+            // maxZoom: 16,
+            ext: 'jpg'
+            });
+            Stamen_Watercolor.addTo(map);
+
+        
 
 
         // map search data Cpmi
@@ -251,6 +271,8 @@
             className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
             }
         });
+
+        
         
           
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
@@ -382,7 +404,23 @@
           <?php }?>
 
 
+        //   change layer function
+        var overlays = {
+                "PHK": markersPhk,
+                "CPMI": markersCpmi,
+                "PMIB": markersPmib,
+                "TKA": markersTka
+            };
 
+        var baseLayers = {
+            "Satellite":googleSat,
+            "Google Map":googleStreets,
+            "Water Color":Stamen_Watercolor,
+            // "OpenStreetMapDark": osm_custom,
+            "OpenStreetMap": osm,
+            
+        };
+        var layer_baseControl= L.control.layers(baseLayers, overlays).addTo(map);
         //batas function
 
          //  jawa timur polygon geo json
@@ -394,7 +432,8 @@
                         opacity: 0.1,
                         color: '<?= $value->warna ?>',
                         fillColor: '<?= $value->warna ?>',
-                        fillOpacity: 0.2,
+                        fillOpacity: 0.1,
+                        
                         }    
                  },
             }).addTo(map);
@@ -412,6 +451,8 @@
             });
         });
         <?php } ?>
+
+        
  
 
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
@@ -419,8 +460,8 @@
 
                 var leafleticon = L.icon({
                     // iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    iconUrl: 'assets/img/marker/dotgradient.png',
-                    iconSize: [10, 10]
+                    iconUrl: 'assets/img/marker/darkcircle.png',
+                    iconSize: [15, 15]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);

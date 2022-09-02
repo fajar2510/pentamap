@@ -323,7 +323,7 @@
     .leaflet-tooltip-own {
         position: absolute;
         padding: 4px;
-        background-color: rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0.55);
         border: 0px solid #000;
         color: #2C3333;
         font-weight:bold;
@@ -480,7 +480,14 @@
       }
   </style>
   
-    
+    <!-- <style>
+    	.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+    </style> -->
 
    
 
