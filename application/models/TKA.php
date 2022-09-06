@@ -11,4 +11,6 @@ class Tka extends CI_Model
             $this->db->replace('tb_tka', $data_tka);
         }
     }
+
+    
 }

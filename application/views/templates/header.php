@@ -81,7 +81,7 @@
     #map { height: 400px; }
     #mapgeojson { height: 400px; }
     #mapcluster { height: 450px; }
-    #mapltlg { height: 300px; width: 650px }
+    #mapltlg { height: 390px; width: 710px }
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->

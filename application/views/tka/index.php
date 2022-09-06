@@ -60,7 +60,7 @@
                                     <label for="bulan" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Bulan:</label>
                                     <input style="margin:10px; " name="bulan" id="bulan" class="form-control p-2 " type="month" value= "<?= date('Y-m'); ?>">
                                     <span style="margin:10px;"> 
-                                            <button class="btn btn-danger btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-info btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
                                                 <span class="icon text-white-50">
                                                     <i class="fa-solid fa-print"></i>
                                                 </span>
@@ -124,7 +124,7 @@
                                             <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
                                             <!-- <td> <small> <?= $t['alamat']; ?> </small></td> -->
                                             <td> <small> <?= $t['nama_tka']; ?> </small> </td>
-                                            <td><small> <?= $t['kewarganegaraan']; ?> </small></td>
+                                            <td><small> <?= $t['nama_negara']; ?> </small></td>
                                             <!-- <td> <small> <?= $t['jabatan']; ?> </small></td> -->
                                             <td><small> <?= $t['jenis_kel']; ?> </small></td>
                                             <!-- <td> <small><?= $t['no_rptka']; ?> </small></td>

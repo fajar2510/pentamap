@@ -321,11 +321,11 @@
 
         var curLocation = [0,0];
         if (curLocation[0] == 0 && curLocation[1]==0) {
-        curLocation = [-7.5409737, 112.5288216];
+        curLocation = [<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>];
         }
 
 
-        var map = L.map('mapltlg').setView([-7.330979640916379, 112.4936104206151], 8.5);
+        var map = L.map('mapltlg').setView([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>], 11.5);
 
         // Open Street Layer
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

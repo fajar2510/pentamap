@@ -30,7 +30,7 @@ class Penempatan extends CI_Model
             `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
             FROM `tb_cpmi` 
             -- JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
-            JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id` 
+            JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id_negara` 
              JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
             
          ";
@@ -75,9 +75,9 @@ class Penempatan extends CI_Model
         COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
         COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal , 
         COUNT(*) as 'total' FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
-        JOIN tb_negara ON negara_penempatan = tb_negara.id 
+        JOIN tb_negara ON negara_penempatan = tb_negara.id_negara 
         JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
-        WHERE negara_penempatan = tb_negara.id 
+        WHERE negara_penempatan = tb_negara.id_negara 
         GROUP BY perusahaan,negara_penempatan";
         //     "SELECT nama_perusahaan,status,negara_penempatan,nama_kabupaten, 
         // COUNT(CASE jenis_kelamin WHEN 'L' THEN 1 END) AS total_lk, 
@@ -113,7 +113,7 @@ class Penempatan extends CI_Model
          COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
          COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
          FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
-         JOIN tb_negara ON negara_penempatan = tb_negara.id 
+         JOIN tb_negara ON negara_penempatan = tb_negara.id_negara 
          JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
          WHERE negara_penempatan = '254'  GROUP BY perusahaan";
         return $this->db->query($query)->result_array();
@@ -127,7 +127,7 @@ class Penempatan extends CI_Model
          COUNT(CASE jabatan WHEN 'FORMAL' THEN 1 END) AS total_formal, 
          COUNT(CASE jabatan WHEN 'INFORMAL' THEN 1 END) AS total_informal 
          FROM tb_cpmi JOIN tb_perusahaan ON perusahaan = tb_perusahaan.id 
-         JOIN tb_negara ON negara_penempatan = tb_negara.id 
+         JOIN tb_negara ON negara_penempatan = tb_negara.id_negara 
          JOIN kabupaten ON wilayah = kabupaten.id_kabupaten 
          WHERE negara_penempatan = '249' GROUP BY perusahaan";
         return $this->db->query($query)->result_array();
@@ -141,7 +141,7 @@ class Penempatan extends CI_Model
             `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
             FROM `tb_cpmi` 
             JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id`
-             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id`
+             JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id_negara`
               JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
 
              WHERE `perusahaan`='$perusahaan' AND `negara_penempatan` = '$negara' AND 

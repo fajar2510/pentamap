@@ -44,10 +44,11 @@ class Perusahaan extends CI_Model
     {
         $query =
             "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`, `tb_perusahaan`.`alamat`,
-                  `kabupaten`.`nama_kabupaten`
+                  `kabupaten`.`nama_kabupaten`, `tb_negara`. `nama_negara`
                     FROM `tb_tka` 
                     JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                     JOIN `kabupaten` ON `tb_tka`.`lokasi_kerja` = `kabupaten`.`id_kabupaten`
+                    JOIN `tb_negara` ON `tb_tka`.`kewarganegaraan` = `tb_negara`.`id_negara`
                       ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
@@ -72,10 +73,11 @@ class Perusahaan extends CI_Model
     {
         $query =
             "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`, `tb_perusahaan`.`alamat`,
-                    `kabupaten`.`nama_kabupaten`
+                    `kabupaten`.`nama_kabupaten`, `tb_negara`. `nama_negara`
                     FROM `tb_tka` 
                     JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                     JOIN `kabupaten` ON `tb_tka`.`lokasi_kerja` = `kabupaten`.`id_kabupaten`
+                    JOIN `tb_negara` ON `tb_tka`.`kewarganegaraan` = `tb_negara`.`id_negara`
                      WHERE `tb_tka`.`id`='$id'
                 ";
         return $this->db->query($query)->row();
@@ -88,5 +90,14 @@ class Perusahaan extends CI_Model
                     ON `user`. `role_id` = `user_role`. `id`
                 ";
         return $this->db->query($query)->result_array();
+    }
+
+    public function getTotal_perusahaanByKabupaten()
+    {
+
+        $data = $this->db->query("SELECT COUNT(id) as total_perusahaan FROM tb_perusahaan 
+        WHERE fungsi='42385' 
+         ");
+        return $data->result();
     }
 }

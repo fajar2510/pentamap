@@ -159,7 +159,7 @@
                                             <select class="custom-select" name="negara_penempatan" id="negara_penempatan" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                    <option value="<?= $n['id_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

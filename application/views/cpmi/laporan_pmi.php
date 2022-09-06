@@ -42,7 +42,7 @@
                                     <label for="bulan" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Bulan:</label>
                                     <input style="margin:10px; font-family:roboto;" name="bulan" id="bulan" class="form-control p-2 " type="month" value= "<?= date('Y-m'); ?>">
                                     <span style="margin:10px;"> 
-                                            <button class="btn btn-danger btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
                                                 <span class="icon text-white-50">
                                                     <i class="fa-solid fa-print"></i>
                                                 </span>

@@ -12,6 +12,7 @@ class Tka extends CI_Controller
         $this->load->model('Perusahaan');
         $this->load->model('Penempatan');
         $this->load->model('Wilayah');
+        $this->load->model('Sebaran_Jatim');
     }
 
 
@@ -142,7 +143,7 @@ class Tka extends CI_Controller
             redirect('tka');
         }
     }
-
+ 
     public function edit($id)
     {
         //load data user login session
@@ -164,6 +165,10 @@ class Tka extends CI_Controller
         $data['perusahaan'] = $this->Perusahaan->get_perusahaan();
         $data['edit_tka'] = $this->Perusahaan->get_TkaPerusahaanById($id);
         $data['negara'] = $this->Wilayah->list_negara();
+        // $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
+        // $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id);
+        // var_dump($data['edit_tka']);
+        // die;
 
 
         $this->form_validation->set_rules('nama_tka', 'Nama TKA', 'required');

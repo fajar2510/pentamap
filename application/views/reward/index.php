@@ -45,7 +45,7 @@
                             <label for="tahun" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Tahun:</label>
                             <input style="margin:10px; font-family:roboto;" name="tahun" id="tahun" class="form-control p-2 " type="year" value= "<?= date('Y'); ?>">
                                <span style="margin:10px;"> 
-                                    <button class="btn btn-danger btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
@@ -66,11 +66,11 @@
                                 <thead>
                                     <tr class="pure-table-odd">
                                         <th rowspan="2"> No</th>
-                                        <th rowspan="2" class="text-center">Kabupaten /kota</th>
+                                        <th rowspan="2" class="text-center">Kabupaten</th>
                                         <th rowspan="2" class="text-center">Nama Perusahaan</th>
                                         <th colspan="3" class="text-center">Disabilitas</th>
-                                        <th rowspan="2" class="text-center">Presentase%</th>
-                                        <th rowspan="2">Diusulkan pada</th>
+                                        <th rowspan="2" class="text-center">%</th>
+                                        <th rowspan="2">Tahun</th>
                                         <th width="" class="text-center" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
@@ -94,7 +94,7 @@
                                             <td> <small> <?= $r['date_created']; ?></small></td>
                                             <td class="text-center">
                                                 <!-- Example split danger button -->
-                                                <div class="btn-group">
+                                                <!-- <div class="btn-group">
                                                 <button type="button" class="btn btn-light px-1" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" >  <i class="fa-solid fa-eye"></i></button>
                                                 <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="sr-only">Toggle Dropdown</span>
@@ -104,11 +104,11 @@
                                                     <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
-                                                </div>
-                                                 <!-- <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i><</a>
+                                                </div> -->
+                                                 <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button> -->
+                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

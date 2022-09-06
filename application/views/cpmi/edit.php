@@ -203,7 +203,7 @@
                                             <select class="custom-select" name="negara_penempatan" id="negara_penempatan" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_cpmi->negara_penempatan) {
+                                                    <option value="<?= $n['id_negara']; ?>" <?php if ($n['id_negara'] == $edit_cpmi->negara_penempatan) {
                                                                                             echo 'selected';
                                                                                         } else {
                                                                                             echo '';

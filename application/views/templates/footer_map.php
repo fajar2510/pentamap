@@ -356,9 +356,9 @@
               .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/pmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
               '<h5><?= $value->nama ?></h5> <span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><i>PMI Bermasalah (PMI-B)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Bekerja , <?= $value->negara_bekerja ?> <br />'+
-              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jenis_pekerjaan ?><br />'+
-              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->lama_bekerja ?></i></p> '+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i> Negara Bekerja , <?= $value->negara_bekerja ?> <br />'+
+              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i> Pekerjaan , <?= $value->jenis_pekerjaan ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i> Lama bekerja , <?= $value->lama_bekerja ?></i></p> '+
               '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
   
               markersPmib.addLayer(sebaranPmib);
@@ -389,13 +389,16 @@
           
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
               var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
-              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/tka/") . $value->image ?>" width="150px" alt="profile" class="img-rounded img-responsive" /> '+
+              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/tka/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;">'+
               '<h5><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Kewarganegaraan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jabatan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
-              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
+              
+              '<a href="#" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<a href="<?= base_url('beranda/edit_tka/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
+              '<a href="<?= base_url('tka/hapus/'. $value->id) ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</a></div>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);

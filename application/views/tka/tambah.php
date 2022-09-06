@@ -114,7 +114,7 @@
                                         <div class="col-sm-5">
                                             <select name="negara" id="negara" class="form-control">
                                                 <?php foreach ($negara as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>"> <?= $n['nama_negara']; ?> </option>
+                                                    <option value="<?= $n['id_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <?= form_error('negara', '<small class="text-danger pl-3">', '</small>'); ?>
