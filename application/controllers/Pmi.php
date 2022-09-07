@@ -11,6 +11,7 @@ class Pmi extends CI_Controller
         $this->load->model('Master');
         $this->load->model('Wilayah', '', TRUE);
         $this->load->model('Penempatan');
+        $this->load->model('Sebaran_Jatim');
     }
 
     // FUNCTION Tambah START
@@ -270,6 +271,106 @@ class Pmi extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
             redirect('pmi');
+        }
+    }
+
+    public function edit_pmi($id_lokasi)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        $data['negara'] = $this->db->get('tb_negara')->result_array();
+
+        $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
+        $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
+        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+
+        // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
+        // Load model pmi
+        $data['lokasi'] = $this->Sebaran_Jatim->detail_pmib($id_lokasi);
+        // var_dump($data['lokasi']);
+        // die;
+        $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
+        $this->form_validation->set_rules('long', 'Longitude', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
+        $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
+        $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
+        // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'PMI Bermasalah';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('pmi/edit_map', $data);
+            $this->load->view('templates/footer_edit_map', $data);
+        } else {
+            $data = [
+                'latitude' => $this->input->post('lat', true),
+                'longitude' => $this->input->post('long', true),
+                'nama' => $this->input->post('nama', true),
+                'tgl_lahir' => $this->input->post('tgl_lahir', true),
+                'gender' => $this->input->post('gender', true),
+                'alamat' => $this->input->post('alamat', true),
+                'provinsi' => $this->input->post('provinsi', true),
+                'kabupaten' => $this->input->post('kabupaten', true),
+                'kecamatan' => $this->input->post('kecamatan', true),
+                'desa' => $this->input->post('kelurahan_id', true),
+                'negara_bekerja' => $this->input->post('negara', true),
+                'jenis_pekerjaan' => $this->input->post('jenis', true),
+                'berangkat_melalui' => $this->input->post('berangkat', true),
+                'pengirim' => $this->input->post('pengirim', true),
+                'lama_bekerja' => $this->input->post('lama', true),
+                'date_created' => date('Y-m-d'),
+            ];
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/pmi';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('pmi/edit_pmi/' . $id_lokasi);
+                }
+            }
+
+            $this->db->where('id', $id_lokasi);
+            $this->db->update('tb_pmi', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('pmi/edit_pmi/' . $id_lokasi);
         }
     }
 

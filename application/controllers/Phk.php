@@ -12,6 +12,7 @@ class Phk extends CI_Controller
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
         $this->load->model('Lokal');
+        $this->load->model('Sebaran_Jatim');
     } // FUNCTION USER START
 
     // FUNCTION DOCTOR START
@@ -29,6 +30,7 @@ class Phk extends CI_Controller
         
 
         $data['data_phk'] = $this->Master->get_tb_phk();
+        
 
         $data['title'] = 'Tenaga Kerja Lokal';
         $this->load->view('templates/header', $data);
@@ -227,6 +229,101 @@ class Phk extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>   </div>');
             redirect('phk');
+        }
+    }
+
+    public function edit_phk($id_lokasi)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
+        // $data['tambah_phk'] = $this->Master->get_tb_phk();
+        $data['lokasi'] = $this->Sebaran_Jatim->detail_phk($id_lokasi);
+        // var_dump($data['lokasi']);
+        // die;
+        
+
+        // Load model lokal
+        // $data['phk'] = $this->Master->get_tb_phk();
+        // $data['edit_phk'] = $this->Master->get_phkById($id_lokasi);
+
+        $this->form_validation->set_rules('nama_tk', 'Nama Lengkap', 'required|trim');
+        $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
+        $this->form_validation->set_rules('long', 'Longitude', 'required|trim');
+        $this->form_validation->set_rules('no_identitas', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('wilayah', 'Kabupaten/kota', 'required|trim');
+        $this->form_validation->set_rules('kpj', 'KPJ BPJS', 'trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $this->form_validation->set_rules('kontak', 'No.telp/hp/email', 'required|trim');
+        $this->form_validation->set_rules('kode_segmen', 'Kode Segmen', 'trim');
+        $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('status_kerja', 'Status_kerja', 'required|trim');
+        $this->form_validation->set_rules('disabilitas', 'Berkebutuhan khusus', 'required|trim');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tenaga Kerja Lokal';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('phk/edit_map', $data);
+            $this->load->view('templates/footer_edit_map', $data);
+        } else {
+            $data = [
+                'latitude' => $this->input->post('lat', true),
+                'longitude' => $this->input->post('long', true),
+                'wilayah' => $this->input->post('wilayah', true),
+                'kpj' => $this->input->post('kpj', true),
+                'nama_tk' => $this->input->post('nama_tk', true),
+                'alamat' => $this->input->post('alamat', true),
+                'kontak' => $this->input->post('kontak', true),
+                'nomor_identitas' => $this->input->post('no_identitas', true),
+                'kode_segmen' => $this->input->post('kode_segmen', true),
+                'nama_perusahaan' => $this->input->post('perusahaan', true),
+                'status_kerja' => $this->input->post('status_kerja', true),
+                'disabilitas' => $this->input->post('disabilitas', true),
+                'date_created' => date('Y-m-d'),
+            ];
+
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/lokal';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('phk/edit_phk/'. $id_lokasi);
+                }
+            }
+
+
+            $this->db->where('id_phk', $id_lokasi);
+            $this->db->update('tb_phk', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('phk/edit_phk/'. $id_lokasi);
         }
     }
 

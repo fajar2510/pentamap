@@ -88,11 +88,13 @@ class Master extends CI_Model
             $hir = date_format($akh, 'Y-m-d');
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`, `tb_negara`. *
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `tb_negara`
+                    ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id_negara`
                     JOIN `kecamatan`
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
@@ -107,11 +109,13 @@ class Master extends CI_Model
 
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`,`tb_negara`. *
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+                    JOIN `tb_negara`
+                    ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id_negara`
                     JOIN `kecamatan`
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
@@ -196,6 +200,7 @@ class Master extends CI_Model
         $query = "SELECT tb_pmi. * , kabupaten.nama_kabupaten,kecamatan.nama_kecamatan, kelurahan.nama_kelurahan 
         FROM tb_pmi 
         JOIN kabupaten ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+        JOIN tb_negara ON tb_pmi.negara_bekerja = tb_negara.id_negara 
         JOIN kecamatan ON tb_pmi.kecamatan = kecamatan.id_kecamatan 
         JOIN kelurahan ON tb_pmi.desa = kelurahan.id_kelurahan 
         WHERE tb_pmi.id='$id'

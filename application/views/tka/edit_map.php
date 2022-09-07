@@ -30,9 +30,6 @@
             <div class="card shadow mb-0">
                 <div class="card-header py-0 ">
                     
-
-                   
-
                     
                     <div class="card-body">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
@@ -45,7 +42,7 @@
                             </a>
                         </div>
                         <div>
-                            <form action="<?= base_url('beranda/edit_tka/' . $lokasi->id); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('tka/edit_tka/' . $lokasi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     
                                     <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
