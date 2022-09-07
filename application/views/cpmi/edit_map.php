@@ -63,12 +63,13 @@
                                             <div id="mapltlg"></div>
                                         </div>
                                         <div class="col-sm-3"> 
-
-                                            <img src="<?= base_url('assets/img/cpmi/') . $lokasi->image ?>" class="img-fluid " 
-                                            style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture">
+                                            
+                                            <div  id="foto1"><img src="<?= base_url('assets/img/cpmi/') . $lokasi->image ?>" class="img-fluid " 
+                                            style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture"></div>
+                                            <div  id="foto1"><img id="newimage"   src="http://placehold.it/180" class="img-fluid" alt="new image" style="width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;"/></div>
                                                                           
                                             <div class="custom-file" >
-                                                <input type="file"  class="custom-file-input" id="image" name="image">
+                                                <input type="file"  class="custom-file-input" onchange="readURL(this);" id="image" name="image">
                                                 <label class="custom-file-label" for="image">Pilih File</label>
                                             </div>
 
@@ -84,7 +85,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <hr>
                                     <p> <small><b> DATA CPMI</b></small></p>
                                     <div class="form-group row">

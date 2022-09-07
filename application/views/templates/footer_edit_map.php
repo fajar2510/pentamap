@@ -736,23 +736,41 @@
     </script>
 
     <script>
-    // show picture when choose from librarary
+
+    // untuk edit peta map image
     function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#fotoBaru')
+                    $('#newimage')
                         .attr('src', e.target.result);
                     
-                    var gambar_kedua = "<img id='fotoBaru' src='http://placehold.it/180' class='img-thumbnail' alt='Foto Profil Baru' style='object-fit: cover;' />"
-                    $('#gambar_pertama').html("");
-                    $('#gambar_kedua').html(gambar_kedua);
+                    var foto2 = "<img id='newimage' src='http://placehold.it/180' class='img-fluid' alt='Foto Profil Baru' style='object-fit: cover; padding-bottom:20px; width: 180px; height: 190px;' />"
+                    $('#foto1').html("");
+                    $('#foto2').html(foto2);
                 };
 
                 reader.readAsDataURL(input.files[0]);
              }
           }
+    // suntuk edit image profile
+    // function readURL(input) {
+    //         if (input.files && input.files[0]) {
+    //             var reader = new FileReader();
+
+    //             reader.onload = function (e) {
+    //                 $('#fotoBaru')
+    //                     .attr('src', e.target.result);
+                    
+    //                 var gambar_kedua = "<img id='fotoBaru' src='http://placehold.it/180' class='img-thumbnail' alt='Foto Profil Baru' style='object-fit: cover; ' />"
+    //                 $('#gambar_pertama').html("");
+    //                 $('#gambar_kedua').html(gambar_kedua);
+    //             };
+
+    //             reader.readAsDataURL(input.files[0]);
+    //          }
+    //       }
     </script>
 
     <!-- Use a button to open the snackbar -->

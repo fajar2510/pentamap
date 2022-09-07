@@ -42,7 +42,34 @@
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>  -->
-                                   
+                                    <div class="form-group row">
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
+                                        </div>
+                                        <div class="col-sm-3"> 
+                                            <!-- <img src="<?= base_url('assets/img/cpmi/') . $lokasi->image ?>" class="img-fluid " 
+                                            style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture"> -->
+                                            <div  id="foto1"><img src="" class="img-fluid" hidden="hidden" alt="Profile Picture" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <div  id="foto1"><img id="fotoBaru" src="http://placehold.it/180" class="img-fluid" alt="new image" style="width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;"/></div>                                                       
+                                           
+                                            <div class="custom-file" >
+                                                <input type="file"  class="custom-file-input"  onchange="readURL(this);"  id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                            </div>
+
+                                            <div class="form-group">
+                                            <label for="latitude" style="padding-top:8px;" >Latitude</label>
+                                                <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          
+                                                <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="longitude" >Longitude</label>
+                                                <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                                <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <p> <small><b> DATA CPMI</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama_pmi" class="col-sm-3 col-form-label">Nama Lengkap</label>
@@ -71,24 +98,7 @@
                                             <?= form_error('lokasi', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
-                                        <div class="col-sm-3"> 
-                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">
-                                            <!-- <div id="mapltlg"></div> -->
-                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-9">
-                                            <div id="mapltlg"></div>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
@@ -171,7 +181,7 @@
                                             <?= form_error('kode_pesawat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
                                         <div class="col-sm-7">
                                             <div class="custom-file">
@@ -180,7 +190,7 @@
                                                 <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- <hr>
                                     <p> <small><b> DATA PERUSAHAAN</b></small></p>
                                     <div class="form-group row">

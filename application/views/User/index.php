@@ -279,7 +279,7 @@
                         <div class="form-group row">
                             <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                                 <div class="col-sm-3">
-                                <div id="gambar_pertama"><img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture" style="width: 200px; height: 200px; object-fit: cover;"></div>
+                                <div id="gambar_pertama"><img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-thumbnail" alt="Profile Picture" style="width: 180px; height: 180px; object-fit: cover;"></div>
                                     
                                 <div id="gambar_pertama"><img id="fotoBaru" type="hidden" src="http://placehold.it/180" class="img-thumbnail" alt="Foto Profil Baru" /></div>                             
                                 </div>
