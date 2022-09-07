@@ -114,7 +114,7 @@
                                         </button>
                                         <div class="dropdown-menu ">
                                             <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a>
-                                            <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
+                                            <!-- <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a> -->
                                             <div class="dropdown-divider"></div>
                                             <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
                                         </div>

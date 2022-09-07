@@ -93,7 +93,7 @@
                                                         } ?></span> </td>
                                             <td class="text-center">
                                             <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
-                                                <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                <!-- <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a> -->
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

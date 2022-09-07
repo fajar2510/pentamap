@@ -178,7 +178,7 @@
                                         <div class="col-sm-6">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="image" name="image">
-                                                <label class="custom-file-label" for="image">Pilih File</label>
+                                                <label class="custom-file-label" for="image">Pilih Gambar</label>
                                             </div>
                                         </div>
                                     </div>

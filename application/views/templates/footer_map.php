@@ -584,6 +584,8 @@
         };
         legend.addTo(map);
 
+        
+
         // standart zoom view jatim first load
         // map.locate({setView: true, maxZoom: 30});
         

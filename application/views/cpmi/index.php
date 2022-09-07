@@ -103,7 +103,7 @@
                                             <td>
                                                 <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light"><i class="fa fa-book" aria-hidden="true"></i> <b>lap.</b></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
-                                                <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                <!-- <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a> -->
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

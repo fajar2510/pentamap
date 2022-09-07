@@ -183,7 +183,7 @@
                             <div class="col-sm-6">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
-                                <label class="custom-file-label" for="image">Pilih File</label>
+                                <label class="custom-file-label" for="image">Pilih Gambar</label>
                                 <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                             </div>
                         </div>
@@ -324,7 +324,7 @@
                                 <div class="col-sm-6">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="uploadHelp">
-                                    <label class="custom-file-label" for="image">Pilih File</label>
+                                    <label class="custom-file-label" for="image">Pilih Gambar</label>
                                     <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                                 </div>
                             </div>
