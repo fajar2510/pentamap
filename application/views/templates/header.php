@@ -71,6 +71,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
+  <!-- <script src="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.min.css"> -->
+
  
 
 
@@ -82,6 +85,7 @@
     #mapgeojson { height: 400px; }
     #mapcluster { height: 450px; }
     #mapltlg { height: 390px; width: 710px }
+    #mapltlg_detail { height: 460px; width: 390px }
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->

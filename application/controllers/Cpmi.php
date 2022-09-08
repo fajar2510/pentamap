@@ -364,6 +364,36 @@ class Cpmi extends CI_Controller
         }
     }
 
+    public function detail($id_lokasi)
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+        
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        // load data wilayah
+        $data['lokasi'] = $this->Sebaran_Jatim->detail_cpmi($id_lokasi);
+        // var_dump($data['lokasi']);
+        // die;
+
+        // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
+        // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
+
+        $data['title'] = 'CPMI';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('cpmi/detail', $data);
+        // $this->load->view('templates/footer', $data);
+    }
+
     public function hapus($id)
     {
         $this->db->where('id', $id);
@@ -375,6 +405,19 @@ class Cpmi extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>   </div>');
         redirect('cpmi');
+    }
+
+    public function hapusMap($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_cpmi');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
+        redirect('beranda');
     }
 
     public function laporan_pmi()

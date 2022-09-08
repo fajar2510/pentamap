@@ -106,6 +106,8 @@
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
+    <!-- <script src="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.all.min.js"></script> -->
+
 
 
     <!-- untuk mengambil input tanggal -->
@@ -278,17 +280,17 @@
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
             var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
             .bindPopup('<div class="container px-1 py-1">'+
-              '<img src="<?= base_url("assets/img/phk/") . $value->image ?> " alt="profile" class="img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover; " >  '+
-              '<h5><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
+              '<img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover; " >  '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
               '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+
               
                
-              '<a href="#" class="btn btn-primary  " style="color:white;">Selengkapnya</a> &nbsp;' +
+              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<a href="<?= base_url('phk/hapus/'. $value->id) ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</a></div>');
+              '<button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
 
             markersPhk.addLayer(sebaranPhk);
             map.addLayer(markersPhk);
@@ -321,15 +323,15 @@
             var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconCpmi} )
             .bindPopup('<div class="container px-1 py-1">'+
               '<img src="<?= base_url("assets/img/cpmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
-              '<h5><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-book-open-reader" style="margin-bottom: 10px; margin-right: 10px;"></i>Perekrut , <?= $value->pengguna_jasa ?><br />'+
               '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor , <?= $value->paspor ?></i></p> '+
               
-              '<a href="#" class="btn btn-primary  " style="color:white;">Selengkapnya</a> &nbsp;' +
+              '<a href="<?= base_url('cpmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<a href="<?= base_url('cpmi/hapus/'. $value->id) ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</a></div>');
+              '<button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
 
             markersCpmi.addLayer(sebaranCpmi);
             map.addLayer(markersCpmi);
@@ -361,15 +363,15 @@
           <?php foreach ($sebaran_pmib  as $key => $value) { ?> 
               var sebaranPmib = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPmib} )
               .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/pmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
-              '<h5><?= $value->nama ?></h5> <span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><i>PMI Bermasalah (PMI-B)</i></span> '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama ?></h5> <span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><i>PMI Bermasalah (PMI-B)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i> Negara Bekerja , <?= $value->nama_negara ?> &nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i> Pekerjaan , <?= $value->jenis_pekerjaan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i> Lama bekerja , <?= $value->lama_bekerja ?></i></p> '+
               
-              '<a href="#" class="btn btn-primary  " style="color:white;">Selengkapnya</a> &nbsp;' +
+              '<a href="<?= base_url('pmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<a href="<?= base_url('pmi/edit_pmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<a href="<?= base_url('pmi/hapus/'. $value->id) ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</a></div>');
+              '<button type="button" data-toggle="modal" data-target="#modalHapusPmib<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
   
               markersPmib.addLayer(sebaranPmib);
               map.addLayer(markersPmib);
@@ -400,15 +402,15 @@
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
               var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
               .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/tka/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;">'+
-              '<h5><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Kewarganegaraan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Asal , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jabatan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
               
-              '<a href="#" class="btn btn-primary  " style="color:white;">Selengkapnya</a> &nbsp;' +
+              '<a href="<?= base_url('tka/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<a href="<?= base_url('tka/edit_tka/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<a href="<?= base_url('tka/hapus/'. $value->id) ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</a></div>');
+              '<button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);
@@ -445,11 +447,16 @@
                         opacity: 0.1,
                         color: '<?= $value->warna ?>',
                         fillColor: '<?= $value->warna ?>',
-                        fillOpacity: 0.1,
+                        fillOpacity: 0.05,
                         
                         }    
                  },
             }).addTo(map);
+
+            var label = new L.Label();
+            label.setContent("MultiPolygon static label");
+            label.setLatLng(polygon.getBounds().getCenter());
+            map.showLabel(label);
 
             geoLayer.eachLayer(function (layer) {
                 layer.bindPopup('<div class="container px-1 py-1">'+
@@ -722,10 +729,10 @@
     <script>
         // alert auto close
         window.setTimeout(function() {
-            $(".alert").fadeTo(2500, 0).slideUp(200, function(){
+            $(".alert").fadeTo(3000, 0).slideUp(250, function(){
             $(this).remove(); 
             });
-        }, 5000);
+        }, 10500);
 
         // checkbox selected
         function myFunction() {

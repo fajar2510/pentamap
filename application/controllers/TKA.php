@@ -335,6 +335,33 @@ class Tka extends CI_Controller
         }
     }
 
+    public function detail($id_lokasi)
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        // load data wilayah
+        // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
+        $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id_lokasi);
+        $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
+
+        $data['title'] = 'Tenaga Kerja Asing';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('tka/detail', $data);
+        // $this->load->view('templates/footer_detail_map', $data);
+    }
+
+
     public function hapus($id)
     {
         $this->db->where('id', $id);
@@ -361,5 +388,33 @@ class Tka extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>   </div>');
         redirect('tka');
+    }
+
+    public function hapusMap($id)
+    {
+        $this->db->where('id', $id);
+
+        $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
+        $kabupaten = $tka->row()->lokasi_kerja;
+
+        $this->db->delete('tb_tka');
+
+            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
+
+           $jumlah = $jumlah_tka->row()->tka;
+
+            $update = [   
+                'jumlah_tka' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
+        redirect('beranda');
     }
 }

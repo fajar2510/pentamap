@@ -258,7 +258,7 @@ class Master extends CI_Model
        tb_phk.disabilitas, tb_phk.date_created, tb_perusahaan.nama_perusahaan, kabupaten.nama_kabupaten
         FROM tb_phk
         JOIN kabupaten ON tb_phk.wilayah = kabupaten.id_kabupaten 
-        JOIN tb_perusahaan ON tb_phk.nama_perusahaan = tb_perusahaan.id 
+        JOIN tb_perusahaan ON tb_phk.perusahaan = tb_perusahaan.id 
         ORDER BY date_created DESC
                 ";
         return $this->db->query($query)->result_array();

@@ -84,11 +84,11 @@ class Phk extends CI_Controller
                 'wilayah' => $this->input->post('wilayah', true),
                 'kpj' => $this->input->post('kpj', true),
                 'nama_tk' => $this->input->post('nama_tk', true),
-                'alamat' => $this->input->post('alamat', true),
+                'alamat_tk' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'nomor_identitas' => $this->input->post('no_identitas', true),
                 'kode_segmen' => $this->input->post('kode_segmen', true),
-                'nama_perusahaan' => $this->input->post('perusahaan', true),
+                'perusahaan' => $this->input->post('perusahaan', true),
                 'status_kerja' => $this->input->post('status_kerja', true),
                 'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
@@ -190,11 +190,11 @@ class Phk extends CI_Controller
                 'wilayah' => $this->input->post('wilayah', true),
                 'kpj' => $this->input->post('kpj', true),
                 'nama_tk' => $this->input->post('nama_tk', true),
-                'alamat' => $this->input->post('alamat', true),
+                'alamat_tk' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'nomor_identitas' => $this->input->post('no_identitas', true),
                 'kode_segmen' => $this->input->post('kode_segmen', true),
-                'nama_perusahaan' => $this->input->post('perusahaan', true),
+                'perusahaan' => $this->input->post('perusahaan', true),
                 'status_kerja' => $this->input->post('status_kerja', true),
                 'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
@@ -285,11 +285,11 @@ class Phk extends CI_Controller
                 'wilayah' => $this->input->post('wilayah', true),
                 'kpj' => $this->input->post('kpj', true),
                 'nama_tk' => $this->input->post('nama_tk', true),
-                'alamat' => $this->input->post('alamat', true),
+                'alamat_tk' => $this->input->post('alamat', true),
                 'kontak' => $this->input->post('kontak', true),
                 'nomor_identitas' => $this->input->post('no_identitas', true),
                 'kode_segmen' => $this->input->post('kode_segmen', true),
-                'nama_perusahaan' => $this->input->post('perusahaan', true),
+                'perusahaan' => $this->input->post('perusahaan', true),
                 'status_kerja' => $this->input->post('status_kerja', true),
                 'disabilitas' => $this->input->post('disabilitas', true),
                 'date_created' => date('Y-m-d'),
@@ -327,6 +327,31 @@ class Phk extends CI_Controller
         }
     }
 
+    public function detail($id_lokasi)
+    {
+
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+        
+
+        // $data['data_phk'] = $this->Master->get_tb_phk();
+        $data['lokasi'] = $this->Sebaran_Jatim->detail_phk($id_lokasi);
+        // var_dump($data['lokasi']);
+        // die;
+        $data['title'] = 'Tenaga Kerja Lokal';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('phk/detail', $data);
+        // $this->load->view('templates/footer');
+    }
+
 
     public function hapus($id)
     {
@@ -348,11 +373,39 @@ class Phk extends CI_Controller
             $this->db->where('id_kabupaten', $kabupaten);
             $this->db->update('kabupaten', $update);
 
-        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>   </div>');
         redirect('phk');
+    }
+
+    public function hapusMap($id)
+    {
+        $this->db->where('id_phk', $id);
+
+        $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
+        $kabupaten = $phk->row()->wilayah;
+
+        $this->db->delete('tb_phk');
+
+            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+
+           $jumlah = $jumlah_phk->row()->phk;
+
+            $update = [   
+                'jumlah_phk' => $jumlah,
+            ];
+
+            $this->db->where('id_kabupaten', $kabupaten);
+            $this->db->update('kabupaten', $update);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
+        redirect('beranda');
     }
 }

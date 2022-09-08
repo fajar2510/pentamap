@@ -193,6 +193,147 @@
         </div>
     </div>
 
+
+
+
 </div>
 <!-- End of Main Content -->
 </div>
+
+
+<!-- modal hapus PHK -->
+<?php foreach ($sebaran_phk as $sphk) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapusPhk<?= $sphk->id_phk ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+
+                </div>
+                <center>
+                    <!-- <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="80" height="100"> -->
+                    <form action="<?= base_url('phk/hapusMap/' . $sphk->id_phk); ?>">
+                        <div class="modal-body">Data PHK &nbsp; <b>
+                                <font color="black"><?= $sphk->nama_tk ?></font>
+                            </b> akan dihapus !</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-icon-split" type="submit">
+                                <span class="icon text-white-50">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                                </span>
+                                <span class="text">Hapus</span>        
+                            
+                        </button>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- modal hapus CPMI -->
+<?php foreach ($sebaran_cpmi as $scpmi) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapusCpmi<?= $scpmi->id ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+
+                </div>
+                <center>
+                    <!-- <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="80" height="100"> -->
+                    <form action="<?= base_url('cpmi/hapusMap/' . $scpmi->id); ?>">
+                        <div class="modal-body">Data CPMI &nbsp; <b>
+                                <font color="black"><?= $scpmi->nama_pmi ?></font>
+                            </b> akan dihapus !</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-icon-split" type="submit">
+                                <span class="icon text-white-50">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                                </span>
+                                <span class="text">Hapus</span>        
+                            
+                        </button>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- modal hapus PMIB -->
+<?php foreach ($sebaran_pmib as $spmib) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapusPmib<?= $spmib->id ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+
+                </div>
+                <center>
+                    <!-- <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="80" height="100"> -->
+                    <form action="<?= base_url('pmi/hapusMap/' . $spmib->id); ?>">
+                        <div class="modal-body">Data PMIB &nbsp; <b>
+                                <font color="black"><?= $spmib->nama ?></font>
+                            </b> akan dihapus !</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-icon-split" type="submit">
+                                <span class="icon text-white-50">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                                </span>
+                                <span class="text">Hapus</span>        
+                            
+                        </button>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- modal hapus tka -->
+<?php foreach ($sebaran_tka as $stka) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapusTka<?= $stka->id ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+
+                </div>
+                <center>
+                    <!-- <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="80" height="100"> -->
+                    <form action="<?= base_url('tka/hapusMap/' . $stka->id); ?>">
+                        <div class="modal-body">Data TKA &nbsp; <b>
+                                <font color="black"><?= $stka->nama_tka ?></font>
+                            </b> akan dihapus !</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-icon-split" type="submit">
+                                <span class="icon text-white-50">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                                </span>
+                                <span class="text">Hapus</span>        
+                            
+                        </button>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
