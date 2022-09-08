@@ -147,16 +147,28 @@
         // memanggil map utama set view jawa timur 
         var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
 
-        // Open Street Layer
+
+        // Open Street Default Layer     
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '©OpenStreetMap, ©CartoDB'
+            
         });
         osm.addTo(map);
+        
 
         // var osm_dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // });
         // osm_dark.addTo(map);
+
+        osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        attribution: '©OpenStreetMap, ©CartoDB'
+        }).addTo(map);
+
+        osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB'
+        });
+        osm.addTo(map);
 
         // Google Street Layer
         googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -432,6 +444,8 @@
             "Google Map":googleStreets,
             "Water Color":Stamen_Watercolor,
             // "OpenStreetMapDark": osm_custom,
+            // "OpenStreetMap No Label": osmNoLabel,
+            "OpenStreetMap Only Label": osmOnlyLabel,
             "OpenStreetMap": osm,
             
         };
@@ -439,12 +453,14 @@
         //batas function
 
          //  jawa timur polygon geo json
+
+
          <?php foreach ($kab_jatim as $key => $value) { ?>
         $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.1,
+                        opacity: 0.5,
                         color: '<?= $value->warna ?>',
                         fillColor: '<?= $value->warna ?>',
                         fillOpacity: 0.05,
@@ -453,10 +469,11 @@
                  },
             }).addTo(map);
 
-            var label = new L.Label();
-            label.setContent("MultiPolygon static label");
-            label.setLatLng(polygon.getBounds().getCenter());
-            map.showLabel(label);
+            // geolayer.bindTooltip("My polygon",
+            // {permanent: true, direction:"center"}
+            // ).openTooltip()
+
+            
 
             geoLayer.eachLayer(function (layer) {
                 layer.bindPopup('<div class="container px-1 py-1">'+
