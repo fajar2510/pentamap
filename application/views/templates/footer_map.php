@@ -236,32 +236,32 @@
         var iconPhk = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/sphk.png',
             iconSize : [30,16],
-            iconAnchor: [22, 65],
-            popupAnchor: [-3,-55]
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran cpmi
         var iconCpmi = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/scpmi.png',
             iconSize : [30,16],
-            iconAnchor: [22, 65],
-            popupAnchor: [-3,-55]
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran pmib
         var iconPmib = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/spmib.png',
             iconSize : [30,16],
-            iconAnchor: [22, 65],
-            popupAnchor: [-3,-55]
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran tka
         var iconTka = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/stka.png',
             iconSize : [30,16],
-            iconAnchor: [22, 65],
-            popupAnchor: [-3,-55]
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
         });
 
         
@@ -367,7 +367,7 @@
             c += 'large';
             }
 
-            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            return new L.DivIcon({ html: '<div><span>' + childCount  + '</span></div>', 
             className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
             }
          });
@@ -445,7 +445,7 @@
             "Water Color":Stamen_Watercolor,
             // "OpenStreetMapDark": osm_custom,
             // "OpenStreetMap No Label": osmNoLabel,
-            "OpenStreetMap Only Label": osmOnlyLabel,
+            "OSM OnlyLabel": osmOnlyLabel,
             "OpenStreetMap": osm,
             
         };
@@ -462,8 +462,9 @@
                     return {
                         opacity: 0.5,
                         color: '<?= $value->warna ?>',
-                        fillColor: '<?= $value->warna ?>',
-                        fillOpacity: 0.05,
+                        // fillColor: '<?= $value->warna ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
                         
                         }    
                  },
@@ -565,7 +566,7 @@
                 // }
 
                 var jumlah = phk + pmib + pmi + tka;
-                bangunanMarker = L.marker([long, lat], {
+                var bangunanMarker = L.marker([long, lat], {
                         icon: leafleticon,
                         title: data[i].nama_kabupaten,
                             }).addTo(map)
@@ -608,10 +609,10 @@
         };
         legend.addTo(map);
 
-        
-
         // standart zoom view jatim first load
         // map.locate({setView: true, maxZoom: 30});
+
+        
         
         
         

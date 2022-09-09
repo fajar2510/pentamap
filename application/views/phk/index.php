@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
+        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('phk/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -59,7 +59,7 @@
 
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table table-sm">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -93,7 +93,7 @@
                                                         } ?></span> </td>
                                             <td class="text-center">
                                             <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
-                                                <!-- <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a> -->
+                                                <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Alamat </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_tk']; ?></label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>

@@ -197,7 +197,7 @@ class Master extends CI_Model
     // query ambil id PMIgetPmiJoinWilayah
     public function getPmiById($id)
     {
-        $query = "SELECT tb_pmi. * , kabupaten.nama_kabupaten,kecamatan.nama_kecamatan, kelurahan.nama_kelurahan 
+        $query = "SELECT tb_pmi. * ,tb_negara.*,  kabupaten.nama_kabupaten,kecamatan.nama_kecamatan, kelurahan.nama_kelurahan
         FROM tb_pmi 
         JOIN kabupaten ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
         JOIN tb_negara ON tb_pmi.negara_bekerja = tb_negara.id_negara 

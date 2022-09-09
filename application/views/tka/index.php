@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
+        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('tka/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -28,7 +28,7 @@
 
 
             <div class="card shadow mb-0">
-                <div class="card-header py-3 ">
+                <div class="card-header py-1 ">
                     <div class="d-sm-flex align-items-center justify-content-start mb-0">
 
                         <!-- <div class="d-sm-flex align-items-center justify-content-between mb-0">
@@ -54,7 +54,7 @@
                         </div> -->
 
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
+                            <!-- <form action="<?= base_url('exportimport/export_pdf_pppmi') ?>" method="post" target="_blank">
                                 <div class="dropdown mb-0">
                                     <div class="d-flex flex-row " >
                                     <label for="bulan" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Bulan:</label>
@@ -69,7 +69,7 @@
                                     </span>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
 
 
@@ -91,7 +91,7 @@
                         <!-- </form> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table table-sm">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead align="center">
                                     <tr>
@@ -135,7 +135,7 @@
                                             <td class="text-center">
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
-                                                <!-- <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a> -->
+                                                <a href="<?= base_url('tka/edit/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $t['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

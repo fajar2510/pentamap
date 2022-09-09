@@ -3,13 +3,13 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-        <!-- <button class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
+        <h5 class="h3 mb-4 text-gray-800"><?= $title; ?></h5>
+        <button class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
-        </button> -->
+        </button>
     </div>
 
     <div class="row">
@@ -28,7 +28,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Kelola <?= $title; ?></h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table table-sm">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -51,7 +51,7 @@
                                         <td class="text-center"> <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-profile rounded-circle" width="50" height="50"" alt="Profile Picture"></td>
                                         <td class="text-center">
                                         <button type="button" data-toggle="modal" data-target="#modalInfo<?= $ur['id']; ?>" class="btn btn-sm btn-light"> <i class="fa-solid fa-eye"></i></button>
-                                            <!-- <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button> -->
+                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $ur['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

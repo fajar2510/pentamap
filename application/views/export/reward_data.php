@@ -21,6 +21,7 @@
         }
 
         td {
+            color:solid black;
             border: 1px solid black;
             padding: 8px;
             text-align: justify;
@@ -97,7 +98,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " {$bulanBahasaIndonesia}";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ?> <?= date('Y') ?></b> <br><b>Jumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;: <?php echo $total_cpmi->cpmi ?> orang</b></small></p> -->
 
-    <table width="100%">
+    <table width="100%" class="table table-sm">
         <thead align="center">
             <tr>
                 <th rowspan="2"> Kabupaten/kota </th>
@@ -195,9 +196,6 @@
                                 ?></small></td>
                     
                    
-
-                </tr>
-                <tr>
 
                 </tr>
                

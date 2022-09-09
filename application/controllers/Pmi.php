@@ -12,6 +12,7 @@ class Pmi extends CI_Controller
         $this->load->model('Wilayah', '', TRUE);
         $this->load->model('Penempatan');
         $this->load->model('Sebaran_Jatim');
+        $this->load->model('Perusahaan');
     }
 
     // FUNCTION Tambah START
@@ -44,25 +45,25 @@ class Pmi extends CI_Controller
 
 
     // dijalankan saat provinsi di klik
-    public function pilih_kabupaten()
-    {
-        $data['kabupaten'] = $this->Wilayah->ambil_kabupaten($this->uri->segment(3));
-        $this->load->view('pmi/v_drop_down_kabupaten', $data);
-    }
+    // public function pilih_kabupaten()
+    // {
+    //     $data['kabupaten'] = $this->Wilayah->ambil_kabupaten($this->uri->segment(3));
+    //     $this->load->view('pmi/v_drop_down_kabupaten', $data);
+    // }
 
     // dijalankan saat kabupaten di klik
-    public function pilih_kecamatan()
-    {
-        $data['kecamatan'] = $this->Wilayah->ambil_kecamatan($this->uri->segment(3));
-        $this->load->view('pmi/v_drop_down_kecamatan', $data);
-    }
+    // public function pilih_kecamatan()
+    // {
+    //     $data['kecamatan'] = $this->Wilayah->ambil_kecamatan($this->uri->segment(3));
+    //     $this->load->view('pmi/v_drop_down_kecamatan', $data);
+    // }
 
     // dijalankan saat kecamatan di klik
-    public function pilih_kelurahan()
-    {
-        $data['kelurahan'] = $this->Wilayah->ambil_kelurahan($this->uri->segment(3));
-        $this->load->view('pmi/v_drop_down_kelurahan', $data);
-    }
+    // public function pilih_kelurahan()
+    // {
+    //     $data['kelurahan'] = $this->Wilayah->ambil_kelurahan($this->uri->segment(3));
+    //     $this->load->view('pmi/v_drop_down_kelurahan', $data);
+    // }
 
     public function tambah()
     {
@@ -82,7 +83,8 @@ class Pmi extends CI_Controller
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['foto'] = $this->Master->get_foto($id);
         //LOAD data chained dropdown
-        $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+        // $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
 
         // $this->form_validation->set_rules('status', 'Status', 'required|trim');
@@ -92,10 +94,11 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
-        $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        // $this->form_validation->set_rules('provinsi_id', 'Provinsi', 'required|trim');
+        // $this->form_validation->set_rules('kabupaten_id', 'Kabupaten', 'required|trim');
+        // $this->form_validation->set_rules('kecamatan_id', 'Kecamatan', 'required|trim');
+        // $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten/kota', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
@@ -119,10 +122,11 @@ class Pmi extends CI_Controller
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'alamat' => $this->input->post('alamat', true),
                 'gender' => $this->input->post('gender', true),
-                'provinsi' => $this->input->post('provinsi_id', true),
-                'kabupaten' => $this->input->post('kabupaten_id', true),
-                'kecamatan' => $this->input->post('kecamatan_id', true),
-                'desa' => $this->input->post('kelurahan_id', true),
+                // 'provinsi' => $this->input->post('provinsi_id', true),
+                // 'kabupaten' => $this->input->post('kabupaten_id', true),
+                // 'kecamatan' => $this->input->post('kecamatan_id', true),
+                // 'desa' => $this->input->post('kelurahan_id', true),
+                'kabupaten' => $this->input->post('kabupaten', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
@@ -199,7 +203,8 @@ class Pmi extends CI_Controller
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // // Load model pmi
         $data['pmi'] = $this->Master->getPmiById($id);
-        $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+        // $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
@@ -207,10 +212,10 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
-        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kabupaten', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        // $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten/kota', 'required|trim');
+        // $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
+        // $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
@@ -233,10 +238,10 @@ class Pmi extends CI_Controller
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
                 'alamat' => $this->input->post('alamat', true),
-                'provinsi' => $this->input->post('provinsi', true),
+                // 'provinsi' => $this->input->post('provinsi', true),
                 'kabupaten' => $this->input->post('kabupaten', true),
-                'kecamatan' => $this->input->post('kecamatan', true),
-                'desa' => $this->input->post('kelurahan_id', true),
+                // 'kecamatan' => $this->input->post('kecamatan', true),
+                // 'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
@@ -297,9 +302,10 @@ class Pmi extends CI_Controller
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // Load model pmi
         $data['lokasi'] = $this->Sebaran_Jatim->detail_pmib($id_lokasi);
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         // var_dump($data['lokasi']);
         // die;
-        $data['provinsi'] = $this->Wilayah->ambil_provinsi();
+        // $data['provinsi'] = $this->Wilayah->ambil_provinsi();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('lat', 'Latitude', 'required|trim');
@@ -307,10 +313,10 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required|trim');
-        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
-        $this->form_validation->set_rules('kabupaten', 'Kabupaten', 'required|trim');
-        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
+        // $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten/kota', 'required|trim');
+        // $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
+        // $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
@@ -333,10 +339,10 @@ class Pmi extends CI_Controller
                 'tgl_lahir' => $this->input->post('tgl_lahir', true),
                 'gender' => $this->input->post('gender', true),
                 'alamat' => $this->input->post('alamat', true),
-                'provinsi' => $this->input->post('provinsi', true),
+                // 'provinsi' => $this->input->post('provinsi', true),
                 'kabupaten' => $this->input->post('kabupaten', true),
-                'kecamatan' => $this->input->post('kecamatan', true),
-                'desa' => $this->input->post('kelurahan_id', true),
+                // 'kecamatan' => $this->input->post('kecamatan', true),
+                // 'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
@@ -362,6 +368,15 @@ class Pmi extends CI_Controller
                     redirect('pmi/edit_pmi/' . $id_lokasi);
                 }
             }
+
+            $kabupaten = $this->input->post('kabupaten_id', true);
+            $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+
+           $jumlah = $jumlah_pmib->row()->pmib;
+
+            $update = [   
+                'jumlah_pmib' => $jumlah,
+            ];
 
             $this->db->where('id', $id_lokasi);
             $this->db->update('tb_pmi', $data);

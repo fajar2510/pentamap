@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h3>
+        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('pmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -69,7 +69,7 @@
 
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table table-sm">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead align="center">
                             <tr>
@@ -114,7 +114,7 @@
                                         </button>
                                         <div class="dropdown-menu ">
                                             <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a>
-                                            <!-- <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a> -->
+                                            <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
                                             <div class="dropdown-divider"></div>
                                             <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
                                         </div>

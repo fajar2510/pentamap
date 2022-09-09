@@ -79,6 +79,20 @@
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
+                                   
+                                    <div class="form-group row">
+                                        <label for="kabupaten" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
+                                        <div class="col-sm-4">
+                                            <select name="kabupaten" id="kabupaten" class="form-control">
+                                                <option value="">~ Pilih Kabupaten/kota ~</option>
+                                                <?php foreach ($kabupaten as $row) : ?>
+                                                    <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
+                                            <?= form_error('kabupaten', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        </div>                            
+                                    </div>
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
@@ -86,7 +100,7 @@
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="jk" class="control-label col-sm-3"> </label>
                                         <div class="col-sm-4">
                                             <?php
@@ -117,7 +131,7 @@
                                             ?>
                                         </div>
                                     </div>
-                                    
+                                     -->
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
                                         <div class="col-3">

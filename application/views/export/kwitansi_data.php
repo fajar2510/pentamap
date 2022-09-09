@@ -113,12 +113,18 @@
                             echo 'Perempuan';
                         } ?></td>
             </tr>
+            
             <tr>
-                <td>DESA</td>
+                <td>KAB/KOTA</td>
                 <td>:</td>
-                <td><?= $semua_data_kwitansi->nama_kelurahan ?></td>
+                <td> <?= $semua_data_kwitansi->nama_kabupaten ?> </td>
             </tr>
             <tr>
+                <td>ALAMAT LENGKAP</td>
+                <td>:</td>
+                <td> <?= $semua_data_kwitansi->alamat ?> </td>
+            </tr>
+            <!-- <tr>
                 <td>KECAMATAN</td>
                 <td>:</td>
                 <td><?= $semua_data_kwitansi->nama_kecamatan ?></td>
@@ -127,11 +133,11 @@
                 <td>KABUPATEN/KOTA</td>
                 <td>:</td>
                 <td><?= $semua_data_kwitansi->nama_kabupaten ?></td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>NEGARA TEMPAT BEKERJA</td>
                 <td>:</td>
-                <td><?= $semua_data_kwitansi->negara_bekerja ?></td>
+                <td><?= $semua_data_kwitansi->nama_negara ?></td>
             </tr>
             <tr>
                 <td>JENIS PEKERJAAN</td>

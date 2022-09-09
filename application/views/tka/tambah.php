@@ -5,7 +5,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h4 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h4>
+        <h5 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h5>
         <a href="<?= base_url('tka/'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
@@ -143,11 +143,11 @@
                                     <div class="form-group row">
                                         <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka">
+                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" >
                                             <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="2020-07-31" id="masa_rptka" name="masa_rptka">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="masa_rptka" name="masa_rptka">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -157,7 +157,7 @@
                                             <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="2020-07-31" id="masa_imta" name="masa_imta">
+                                            <input class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="masa_imta" name="masa_imta">
                                         </div>
                                     </div>
                                    

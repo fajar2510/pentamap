@@ -266,7 +266,7 @@
     </script>
 
      <!-- dinamic select option untuk pilih alamat  -->
-    <script>
+    <!-- <script>
         function tampilKabupaten() {
             kdprop = document.getElementById("provinsi_id").value;
             $.ajax({
@@ -302,7 +302,7 @@
             });
             return false;
         }
-    </script>
+    </script> -->
 
     <!-- AUTO COMPLETE -->
     <script  type="text/javascript">

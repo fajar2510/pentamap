@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h4 style="font-family:'Roboto';">Usulan <?= $title; ?> dengan Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
+        <h5 style="font-family:'Roboto';">Usulan <?= $title; ?> dengan Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <a href="<?= base_url('reward/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
@@ -61,7 +61,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <div class=" table-responsive">
+                        <div class=" table table-sm">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="pure-table-odd">
