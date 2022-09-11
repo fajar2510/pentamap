@@ -107,5 +107,30 @@ class Sebaran_Jatim extends CI_Model
         $this->db->where('tb_phk.id_phk', $id_lokasi);
         return $this->db->get()->row();
     }
+
+    //mengabil total cpmi 
+    public function detail_kabupaten()
+    {
+
+        $data = $this->db->query(
+            "SELECT  kabupaten.nama_kabupaten,kabupaten.geojson, kabupaten.warna,  kabupaten.luas_area, 
+            kabupaten.kabupaten_lat, kabupaten.kabupaten_long, kabupaten.logo_kab, kabupaten.id_kabupaten, 
+            
+            COUNT(DISTINCT tb_cpmi.id) AS totalCpmi,
+             COUNT(DISTINCT tb_tka.id) AS totalTka , 
+             COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
+             COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk 
+             FROM kabupaten 
+             LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
+             LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten
+              LEFT JOIN tb_pmi ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+              LEFT JOIN tb_phk ON tb_phk.wilayah = kabupaten.id_kabupaten 
+              WHERE id_provinsi = '42385' 
+              GROUP BY kabupaten.nama_kabupaten;
+         ");
+        return $data->result();
+    }
+    
+
     
 }

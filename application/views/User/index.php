@@ -363,7 +363,7 @@
     
     <!-- edit password modal -->
     <div class=" modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditLabel">Edit Password</h5>
@@ -376,7 +376,7 @@
                     <form action="<?= base_url('user/changepassword'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="current_password" class="col-sm-5 col-form-label">Password Sekarang*</label>
+                            <label for="current_password" class="col-sm-3 col-form-label">Password Sekarang*</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" id="current_password" placeholder="" name="current_password" >
                                 <small id=" pasnow" class="form-text text-muted"> <i> *Password kamu saat ini. </i></small>
@@ -384,7 +384,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="new_password1" class="col-sm-5 col-form-label">Password Baru*</label>
+                            <label for="new_password1" class="col-sm-3 col-form-label">Password Baru*</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" id="new_password1" placeholder="" name="new_password1" >
                                 <small id=" pashelp" class="form-text text-muted"> <i> *Gunakan karakter unik dan minimal 4 huruf. </i></small>
@@ -392,7 +392,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="new_password2" class="col-sm-5 col-form-label">Ulangi Password*</label>
+                            <label for="new_password2" class="col-sm-3 col-form-label">Ulangi Password*</label>
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" id="new_password2" placeholder="" name="new_password2" >
                                 <small id=" ulangihelp" class="form-text text-muted"> <i> *Ulangi untuk konfirmasi password </i></small>

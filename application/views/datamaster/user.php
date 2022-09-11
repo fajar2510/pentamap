@@ -3,7 +3,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 class="h3 mb-4 text-gray-800"><?= $title; ?></h5>
+        <p class="h5 mb-4 text-gray-800"><?= $title; ?></p>
         <button class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>

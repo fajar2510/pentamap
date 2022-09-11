@@ -63,7 +63,7 @@
                                         <th>Kabupaten/kota</th>
                                         <!-- <th class="text-center">Pimpinan</th> -->
                                         <th>Sektor</th>
-                                        <th>Kantor</th>
+                                        <th>Skala</th>
                                         
                                         <th width="14%" class="text-center">Aksi</th>
                                     </tr>
@@ -86,11 +86,7 @@
                                                 } ?>
                                             </td> -->
                                             <td>
-                                                <?php if ($p['status'] == 'P') {
-                                                    echo '<div> <small?>Pusat</small></div>';
-                                                } else {
-                                                    echo '<div> <small?>Cabang</small></div>';
-                                                } ?>
+                                                <?= $p['jenis_perusahaan']; ?>
                                             </td>
                                             
                                             <td class="text-center"> 

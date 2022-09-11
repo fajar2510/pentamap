@@ -105,6 +105,8 @@
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
    crossorigin=""></script>
+   <!-- leaflet full screen -->
+   <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
    
     <!-- LEAFLET CENTER -->
 
@@ -115,30 +117,46 @@
     <script>
 
 
-        var map = L.map('mapgeojson').setView([-7.6709737, 113.3288216], 8.5);
+        var map = L.map('mapgeojson').setView([-7.6709737, 112.7288216], 7);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+    
         
-
-        //  jawa timur 
-        $.getJSON("<?= base_url('assets/'); ?>geojson/jatim-polygon.geojson", function(data) {
+        <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.7,
-                        color: '#F94892',
-                        fillColor: '#F94892',
+                        opacity: 0.3,
+                        color: '<?= $value->warna ?>',
+                        fillColor: '<?= $value->warna ?>',
+                        fillColor: '<?= $value->warna ?>',
                         fillOpacity: 0.3,
+                        
                         }    
                  },
-            }).addTo(map);
+                }).addTo(map);
             geoLayer.eachLayer(function (layer) {
                 layer.bindPopup("Jawa Timur");
             });
         });
+        <?php } ?>
+
+
+         // full screen map
+        // create a fullscreen button and add it to the map
+        L.control.fullscreen({
+          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
+          title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
+          titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
+          content: null, // change the content of the button, can be HTML, default null
+          forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
+          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
+          fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
+        }).addTo(map);
 
         
 
@@ -150,6 +168,26 @@
         $(document).ready(function(){
         $(".preloader").fadeOut();
         })
+    </script>
+    <script>
+        
+         // untuk edit peta map image
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#newimage')
+                        .attr('src', e.target.result);
+                    
+                    var foto2 = "<img id='newimage' src='http://placehold.it/180' class='img-fluid' alt='Logo Kabupaten' style='object-fit: cover; padding-bottom:20px; width: 100px; height: 120px;' />"
+                    $('#foto1').html("");
+                    $('#foto2').html(foto2);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+             }
+          }
     </script>
 
 

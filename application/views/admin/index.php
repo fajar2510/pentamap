@@ -15,10 +15,10 @@
     <?php foreach ($phk as $total_phk); ?>
 
     <!-- Content Row -->
-    <!-- <div class="row"> -->
+    <div class="row">
 
 
-        <!-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -81,30 +81,30 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Content Row -->
 
         <!-- Collapsable Card Example -->
-        <!-- <div class="card shadow mb-4"> -->
+        <div class="card shadow mb-4">
             <!-- Card Header - Accordion -->
-            <!-- <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                 <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
-            </a> -->
+            </a>
             <!-- Card Content - Collapse -->
-            <!-- <div class="collapse show" id="collapseCardExample">
+            <div class="collapse show" id="collapseCardExample">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                 </div>
-            </div> -->
-        <!-- </div> -->
-    <!-- </div> -->
+            </div>
+        </div>
+    </div>
        
            
     
        
             <!-- start -->
-            <p style="font-weight:bold; font-family:roboto; padding-left:5px;">Testing Get Location Coordinat</p>
+            <!-- <p style="font-weight:bold; font-family:roboto; padding-left:5px;">Testing Get Location Coordinat</p>
             <div class="form-group col-5 ">
                 <div class="row">
                     <div style="padding:5px; ">
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div id="map"></div>
+            <div id="map"></div> -->
             <!-- end -->
     
     <!-- /.container-fluid -->

@@ -41,6 +41,11 @@ class Beranda extends CI_Controller
         $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
 
+        // data total cpmi, pmib , tka ,phk - per kabupaten
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        // var_dump($data['total_cpmi']);
+        // die;
+
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
         
         // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
@@ -66,11 +71,20 @@ class Beranda extends CI_Controller
     {
         // $tahun = $this->input->post('tahun');
         $query =
-            "SELECT *
-            FROM kabupaten 
-            -- JOIN tb_tka 
-            -- ON kabupaten.id_kabupaten = tb_tka.lokasi_kerja
-            WHERE id_provinsi= '42385' 
+            "SELECT  kabupaten.nama_kabupaten,kabupaten.geojson, kabupaten.warna,  kabupaten.luas_area, 
+            kabupaten.kabupaten_lat, kabupaten.kabupaten_long, kabupaten.logo_kab, kabupaten.id_kabupaten,
+            
+            COUNT(DISTINCT tb_cpmi.id) AS totalCpmi,
+             COUNT(DISTINCT tb_tka.id) AS totalTka , 
+             COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
+             COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk 
+             FROM kabupaten 
+             LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
+             LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten
+              LEFT JOIN tb_pmi ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+              LEFT JOIN tb_phk ON tb_phk.wilayah = kabupaten.id_kabupaten 
+              WHERE id_provinsi = '42385' 
+              GROUP BY kabupaten.nama_kabupaten ; 
         ";
 
         // if ($tahun == "all") {

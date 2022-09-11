@@ -455,7 +455,7 @@
          //  jawa timur polygon geo json
 
 
-         <?php foreach ($kab_jatim as $key => $value) { ?>
+         <?php foreach ($detail_kabupaten as $key => $value) { ?>
         $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
@@ -480,11 +480,11 @@
                 layer.bindPopup('<div class="container px-1 py-1">'+
             //   '<h6><u><?= $value->nama_kabupaten ?></u></h6> '+ 
               ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
-              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
+              '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
-              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Latitude-Longitude , <?= $value->kabupaten_lat ?>,&nbsp;  <?= $value->kabupaten_lat ?><br>'+
-              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>Total Tenaga Kerja , </i></p> '+
-              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Total Perusahaan , </i></p> '+
+              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value->kabupaten_lat ?>, &nbsp;  <?= $value->kabupaten_lat ?><br>'+
+              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br>'+
+              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
               '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
             });
         });
@@ -505,16 +505,16 @@
                 var lat = parseFloat(data[i].kabupaten_lat);
                 var long = parseFloat(data[i].kabupaten_long);
 
-                var phk = data[i].jumlah_phk;
-                var pmib = data[i].jumlah_pmib;
-                var pmi = data[i].jumlah_pmi;
-                var tka = data[i].jumlah_tka;
+                var phk = data[i].totalPhk;
+                var pmib = data[i].totalPmib;
+                var pmi = data[i].totalCpmi;
+                var tka = data[i].totalTka;
                 var logo = data[i].logo_kab;
 
                 // if (phk == "0") {
                 //     phk = parseInt("0");
                 // } else {
-                    phk = parseInt(data[i].jumlah_phk);
+                    phk = parseInt(data[i].totalPhk);
                 //     var circle = L.circle([long, lat], 14000, {
                 //         color: '#D61C4E',
                 //         fillOpacity: 0.3
@@ -533,7 +533,7 @@
                 // if (pmib == "0") {
                 //     pmib = parseInt("0");
                 // } else {
-                    pmib = parseInt(data[i].jumlah_pmib);
+                    pmib = parseInt(data[i].totalPmib);
                 //     var circle = L.circle([long, lat], 16000, {
                 //         color: '#FEDB39',
                 //         fillColor: '#FEDB39',
@@ -543,7 +543,7 @@
                 // if (pmi == "0") {
                 //     pmi = parseInt("0");
                 // } else {
-                    pmi = parseInt(data[i].jumlah_pmi);
+                    pmi = parseInt(data[i].totalCpmi);
                 //     var circle = L.circle([long, lat], 10000, {
                 //         color: '#0096FF',
                 //         fillColor: '#0096FF',
@@ -553,7 +553,7 @@
                 // if (tka == "0") {
                 //     tka = parseInt("0");
                 // } else {
-                    tka = parseInt(data[i].jumlah_tka);
+                    tka = parseInt(data[i].totalTka);
                 //     var circle = L.circle([long, lat], 12000, {
                 //         color: '#3CCF4E',
                 //         fillOpacity: 0.3
@@ -562,7 +562,7 @@
                 // if (jumlah == '' || null) {
                 //     jumlah = 0;
                 // } else {
-                    jumlah = parseInt(data[i].jumlah_phk);
+                    // jumlah = parseInt(data[i].totalPhk);
                 // }
 
                 var jumlah = phk + pmib + pmi + tka;

@@ -1,9 +1,9 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion"  id="accordionSidebar" >
+<ul class="navbar-nav bg-gradient-primary  sidebar  sidebar-dark accordion "   id="accordionSidebar" >
 
 <!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex" href="<?= base_url('beranda/index'); ?>">
+    <a class="sidebar-brand d-flex" href="<?= base_url('beranda'); ?>">
         
         <div class="sidebar-brand-icon"> 
             <!-- <i class="bi bi-map"></i> -->

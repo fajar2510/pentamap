@@ -10,11 +10,13 @@ class Admin extends CI_Controller
         is_logged_in();
         $this->load->model('Master');
         $this->load->model('Penempatan');
+        $this->load->model('Sebaran_Jatim');
+        
     }
 
     public function index()
     {
-        $data['title'] = 'Beranda';
+        $data['title'] = 'Dashboard';
         
 
         // mengambil data user login
@@ -30,6 +32,8 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+
+    
 
         //load with templating view
         $this->load->view('templates/header', $data);
@@ -39,9 +43,10 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer-testing');
     }
 
-    public function test1()
+
+    public function mapdrawer()
     {
-        $data['title'] = 'Test1 Geo Json';
+        $data['title'] = 'Map Drawer';
         
 
         // mengambil data user login
@@ -62,34 +67,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/test1', $data);
-        $this->load->view('templates/footer-geojson');
-    }
-
-    public function test2()
-    {
-        $data['title'] = 'Tes2';
-        
-
-        // mengambil data user login
-        $this->db->select('user.*,user_role.role');
-        $this->db->from('user');
-        $this->db->join('user_role', 'user.role_id = user_role.id');
-        $this->db->where('email', $this->session->userdata('email'));
-        $data['user'] = $this->db->get()->row_array();
-       
-
-        // $data['tka'] = $this->Perusahaan->getTotalTKA();
-        $data['tka'] = $this->Penempatan->getTotalTKA();
-        $data['pmib'] = $this->Penempatan->getTotalPMIB();
-        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
-        $data['phk'] = $this->Penempatan->getTotalPHK();
-
-        //load with templating view
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/test2', $data);
+        $this->load->view('admin/map_drawer', $data);
         $this->load->view('templates/footer-cluster');
     }
 

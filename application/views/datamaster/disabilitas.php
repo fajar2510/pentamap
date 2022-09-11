@@ -5,7 +5,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+        <p class="h5 mb-0 text-gray-800"><?= $title; ?></p>
         <button class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modalTambah">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
@@ -26,6 +26,7 @@
             <?= $this->session->flashdata('message'); ?>
 
             <div class="card shadow mb-4">
+                
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Data <?= $title; ?></h6>
                 </div>

@@ -14,6 +14,8 @@ class Datamaster extends CI_Controller
         $this->load->model('Perusahaan');
         $this->load->model('Sektor');
         $this->load->model('Disabilitas');
+        $this->load->model('Geo_Jatim');
+        $this->load->model('Sebaran_Jatim');
     }
 
     // FUNCTION USER START
@@ -450,7 +452,7 @@ class Datamaster extends CI_Controller
     // FUNCTION Perusahaan START
     public function perusahaan()
     {
-
+        
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -628,5 +630,86 @@ class Datamaster extends CI_Controller
         redirect('datamaster/perusahaan');
     }
 
+    public function geoJatim()
+    {
+        is_logged_in();
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        $data['geojatim'] = $this->Geo_Jatim->get_GeoJatim();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+
+        // $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        
+
+        $data['title'] = 'Geo Jatim';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('datamaster/geo_jatim', $data);
+        $this->load->view('templates/footer-geojson');
+    }
+
+    public function edit_geoJatim($id)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        // Load model perusahaan
+        // $data['perusahaan'] = $this->Perusahaan->get_perusahaan_jatim();
+        // $data['edit_geojatim'] = $this->Geo_Jatim->get_GeoJatim($id);
+        $data['geojatim'] = $this->Geo_Jatim->get_GeoJatim();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+
+        
+
+        $this->form_validation->set_rules('geojson', 'Nama Geojson', 'trim');
+        $this->form_validation->set_rules('warna', 'Kode Warna', 'trim');
+        $this->form_validation->set_rules('luas_area', 'Luas Area', 'trim');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Geo Jatim';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/geo_jatim', $data);
+            $this->load->view('templates/footer-geojson', $data);
+            
+        } else {
+            $data = [
+                'geojson' => $this->input->post('geojson', true),
+                'warna' => $this->input->post('warna', true),
+                'luas_area' => $this->input->post('luas_area', true),
+            ];
+
+
+            $this->db->where('id_kabupaten', $id);
+            $this->db->update('kabupaten', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('datamaster/geoJatim');
+        }
+    }
+
+    
     
 }

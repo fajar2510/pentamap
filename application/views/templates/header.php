@@ -82,7 +82,7 @@
     /* body { margin:0; padding:0; } */
     #mapp { height: 530px; }
     #map { height: 400px; }
-    #mapgeojson { height: 400px; }
+    #mapgeojson { height: 620px; }
     #mapcluster { height: 450px; }
     #mapltlg { height: 390px; width: 710px }
     #mapltlg_detail { height: 460px; width: 390px }
