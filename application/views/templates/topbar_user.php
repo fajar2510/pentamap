@@ -58,7 +58,7 @@
             <ul class="navbar-nav ml-auto ">
 
             <li class="nav-item no-arrow text-gray-400">
-                <a class="nav-item nav-link active text-gray-600" href="#">Peta
+                <a class="nav-item nav-link active text-gray-600" href="home">Peta
                 </a>
             </li>
             <li class="nav-item no-arrow">
