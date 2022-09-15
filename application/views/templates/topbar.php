@@ -57,7 +57,9 @@
                 
            
 
-
+            <?php 
+                $ci = get_instance();
+                if ($ci->session->userdata('email')) { ?>
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,8 +141,7 @@
                   <!-- echo  "&nbsp; $jam";  -->
 
                 <div class="topbar-divider d-none d-sm-block"></div>
-
-                <li class="nav-link no-arrow mx-1" > 
+                  <li class="nav-link no-arrow mx-1" > 
                   <right>
 
                   <!-- $tanggal = mktime(date("m"), date("d"), date("Y"));
@@ -163,13 +164,11 @@
                     }
                     ?>
                     
-
                     <p class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name']; ?></p>
 
                
                     </right>
                 </li>
-                
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -202,6 +201,7 @@
                         </a>
                     </div>
                 </li>
+                <?php } ?>
 
             </ul>
 
