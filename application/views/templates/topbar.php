@@ -14,8 +14,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
-
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
@@ -31,7 +29,6 @@
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
                     <?php foreach ($phk as $total_phk); ?>
-
 
                     <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
@@ -54,12 +51,6 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto ">
 
-                
-           
-
-            <?php 
-                $ci = get_instance();
-                if ($ci->session->userdata('email')) { ?>
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -201,7 +192,6 @@
                         </a>
                     </div>
                 </li>
-                <?php } ?>
 
             </ul>
 
