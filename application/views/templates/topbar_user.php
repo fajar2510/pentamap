@@ -152,7 +152,9 @@
                 </li>
                 <?php }else{ ?>
                 <li class="nav-item no-arrow">
-                    <a class="nav-item nav-link text-gray-600" href="<?= base_url('auth'); ?>">Login
+                    <a class="nav-item nav-link text-gray-600" href="<?= base_url('auth'); ?>">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Login
                     </a> 
                 </li>
                 <?php } ?>
