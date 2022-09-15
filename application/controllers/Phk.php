@@ -18,7 +18,6 @@ class Phk extends CI_Controller
     // FUNCTION DOCTOR START
     public function index()
     {
-        $ci = get_instance();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 

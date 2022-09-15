@@ -71,16 +71,16 @@
                 </a>
             <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="nakerDropdown">
-                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
-                        PHK
+                    <a class="dropdown-item" href="<?= base_url('phk'); ?>" >
+                    PHK
                     </a>
-                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="<?= base_url('pmi'); ?>" >
                     PMI Bermasalah
                     </a>
-                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="<?= base_url('cpmi'); ?>">
                     CPMI
                     </a>
-                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" href="<?= base_url('tka'); ?>">
                     TKA
                     </a>
                 </div>
