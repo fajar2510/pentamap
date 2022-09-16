@@ -59,12 +59,22 @@
                 </ul>
             </div> -->
 
-            <div id="mapp" style=""></div>
+            <div id="mapp"></div>
             
             <hr style="margin-top: 100; margin-bottom: 60 ;">
 
-
-
+            <div class="row">
+                <div class="col-md-6">
+                <figure class="highcharts-figure">
+                    <div id="pie_chart"></div>
+                </figure>
+                </div>
+                <div class="col-md-6">
+                <figure class="highcharts-figure">
+                    <div id="spline_chart"></div>
+                </figure>
+                </div>
+            </div>
 
 
             <!-- <div id="legenda">

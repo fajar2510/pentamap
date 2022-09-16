@@ -107,6 +107,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
     <!-- <script src="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.all.min.js"></script> -->
+    <!-- HIGHCHART -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- HIGHCHART -->
 
 
 
@@ -800,6 +806,150 @@
         $(document).ready(function(){
         $(".preloader").fadeOut();
         })
+    </script>
+
+    <script type="text/javascript">
+        // Data retrieved from https://netmarketshare.com/
+// Build the chart
+Highcharts.chart('pie_chart', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Diagram Tenaga Kerja Provinsi Jawa Timur'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Prosentase',
+        colorByPoint: true,
+        data: [{
+            name: 'PHK',
+            y: <?php echo $presentase_phk ?>,
+        },  {
+            name: 'PMI Bermasalah',
+            y: <?php echo $presentase_pmib ?>
+        },  {
+            name: 'CPMI',
+            y: <?php echo $presentase_cpmi ?>
+        }, {
+            name: 'TKA',
+            y: <?php echo $presentase_tka ?>
+        }]
+    },],
+});
+
+
+// Retrieved from https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt
+Highcharts.chart('spline_chart', {
+    chart: {
+        type: 'areaspline'
+    },
+    title: {
+        text: 'Diagram Tenaga Kerja dari Tahu 2019-2022'
+    },
+    subtitle: {
+        align: 'center',
+        text: 'Source: <a href="https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt" target="_blank">Dinas Tenaga Kerja & Transmigrasi Prov. Jatim</a>'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 120,
+        y: 70,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+    },
+    xAxis: {
+        plotBands: [{ // Highlight the two last years
+            from: 2019,
+            to: 2020,
+            color: 'rgba(68, 170, 213, .2)'
+        }]
+    },
+    yAxis: {
+        title: {
+            text: 'Quantity'
+        }
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<b>Hunting season starting autumn {point.x}</b><br>'
+    },
+    credits: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            pointStart: 2000
+        },
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: [{
+        name: 'PHK',
+        data:
+            [
+                38000,
+                37300,
+                37892,
+                38564,
+            ]
+    }, {
+        name: 'PMI Bermasalah',
+        data:
+            [
+                22534,
+                23599,
+                24533,
+                25195,
+            ]
+    },
+    {
+        name: 'CPMI',
+        data:
+            [
+                28534,
+                13599,
+                24533,
+                25195,
+            ]
+    },
+    {
+        name: 'TKA',
+        data:
+            [
+                52534,
+                23599,
+                34533,
+                25195,
+            ]
+    }]
+});
+
     </script>
 
         <!-- fungsi jika tak ada image tertampil atau data null -->

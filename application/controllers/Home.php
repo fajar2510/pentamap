@@ -35,11 +35,11 @@ public function index()
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
-        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
-        $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
-        $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
-        $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
-        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+            $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+            $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
+            $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
+            $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
+            $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
@@ -51,11 +51,31 @@ public function index()
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
-        $data['tka'] = $this->Penempatan->getTotalTKA();
-        $data['pmib'] = $this->Penempatan->getTotalPMIB();
-        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
-        $data['phk'] = $this->Penempatan->getTotalPHK();
+            $data['tka'] = $this->Penempatan->getTotalTKA();
+            $data['pmib'] = $this->Penempatan->getTotalPMIB();
+            $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+            $data['phk'] = $this->Penempatan->getTotalPHK();
+
+            // $data['jum_tka'] = $this->Penempatan->getpresentaseTKA($id_wilayah);
+            // $data['jum_pmib'] = $this->Penempatan->getpresentasePMIB($id_wilayah);
+            // $data['jum_cpmi'] = $this->Penempatan->getpresentaseCPMI($id_wilayah);
+            // $data['jum_phk'] = $this->Penempatan->getpresentasePHK($id_wilayah);
+
+            foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
+            foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }
+            foreach($data['cpmi'][0] as $cpmi1){ $cpmi = $cpmi1; }
+            foreach($data['phk'][0] as $phk1){ $phk = $phk1; }
+            $jumlah_naker = $tka + $pmib + $cpmi + $phk;
+            $data['presentase_cpmi'] = round($cpmi / $jumlah_naker * 100,2);
+            $data['presentase_pmib'] = round($pmib / $jumlah_naker * 100,2);
+            $data['presentase_tka'] = round($tka / $jumlah_naker * 100,2);
+            $data['presentase_phk'] = round($phk / $jumlah_naker * 100,2);
         $data['tabel'] = $this->Master->tabel();
+        // echo"<pre>";
+        // var_dump($data['tka'][0]->tka);
+        // die;
+
+
 
         //load with templating view
         $this->load->view('templates/header', $data);

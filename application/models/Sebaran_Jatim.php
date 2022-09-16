@@ -12,39 +12,51 @@ class Sebaran_Jatim extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_sebaran_cpmi()
+    public function get_sebaran_cpmi($wilayah = null)
     {
         $this->db->select('*');
         $this->db->from('tb_cpmi');
         $this->db->join('kabupaten','tb_cpmi.wilayah = kabupaten.id_kabupaten');
         $this->db->join('tb_negara','tb_cpmi.negara_penempatan = tb_negara.id_negara');
+        if ($wilayah != null) {
+            $this->db->where('wilayah',$wilayah);
+        }
         return $this->db->get()->result();
     }
 
-    public function get_sebaran_pmib()
+    public function get_sebaran_pmib($wilayah = null)
     {
         $this->db->select('*');
         $this->db->from('tb_pmi');
         $this->db->join('kabupaten','tb_pmi.kabupaten = kabupaten.id_kabupaten');
         $this->db->join('tb_negara','tb_pmi.negara_bekerja = tb_negara.id_negara');
+        if ($wilayah != null) {
+            $this->db->where('kabupaten',$wilayah);
+        }
         return $this->db->get()->result();
     }
 
-    public function get_sebaran_tka()
+    public function get_sebaran_tka($wilayah = null)
     {
         $this->db->select(' *');
         $this->db->from('tb_tka');
         $this->db->join('kabupaten','tb_tka.lokasi_kerja = kabupaten.id_kabupaten');
         $this->db->join('tb_negara','tb_tka.kewarganegaraan = tb_negara.id_negara');
+        if ($wilayah != null) {
+            $this->db->where('lokasi_kerja',$wilayah);
+        }
         return $this->db->get()->result();
     }
 
-    public function get_sebaran_phk()
+    public function get_sebaran_phk($wilayah = null)
     {
         $this->db->select('*');
         $this->db->from('tb_phk');
         $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
         $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+        if ($wilayah != null) {
+            $this->db->where('wilayah',$wilayah);
+        }
         $this->db->where('status_kerja','phk');
         return $this->db->get()->result();
     }
