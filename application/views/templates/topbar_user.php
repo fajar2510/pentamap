@@ -62,7 +62,7 @@
                 </a>
             </li>
             <li class="nav-item no-arrow">
-                <a class="nav-item nav-link text-gray-600" href="#">Data Diagram
+                <a class="nav-item nav-link text-gray-600" href="home#diagram">Data Diagram
                 </a> 
             </li>
             <li class="nav-item dropdown">

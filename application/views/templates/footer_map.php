@@ -865,11 +865,11 @@ Highcharts.chart('spline_chart', {
         type: 'areaspline'
     },
     title: {
-        text: 'Diagram Tenaga Kerja dari Tahu 2019-2022'
+        text: 'Diagram Tenaga Kerja dari Tahun '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
     },
     subtitle: {
         align: 'center',
-        text: 'Source: <a href="https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt" target="_blank">Dinas Tenaga Kerja & Transmigrasi Prov. Jatim</a>'
+        text: 'Source: Dinas Tenaga Kerja & Transmigrasi Prov. Jatim'
     },
     legend: {
         layout: 'vertical',
@@ -884,9 +884,9 @@ Highcharts.chart('spline_chart', {
     },
     xAxis: {
         plotBands: [{ // Highlight the two last years
-            from: 2019,
-            to: 2020,
-            color: 'rgba(68, 170, 213, .2)'
+            from: <?php echo $tahun_awal ?>,
+            to: <?php echo $tahun_ini ?>,
+            color: 'rgba(232, 232, 232, .2)'
         }]
     },
     yAxis: {
@@ -903,7 +903,7 @@ Highcharts.chart('spline_chart', {
     },
     plotOptions: {
         series: {
-            pointStart: 2000
+            pointStart: <?php echo $tahun_awal ?>
         },
         areaspline: {
             fillOpacity: 0.5
@@ -913,39 +913,27 @@ Highcharts.chart('spline_chart', {
         name: 'PHK',
         data:
             [
-                38000,
-                37300,
-                37892,
-                38564,
+                <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
             ]
     }, {
         name: 'PMI Bermasalah',
         data:
             [
-                22534,
-                23599,
-                24533,
-                25195,
+                <?php foreach($data_tahun_pmib as $data){ echo $data.","; } ?>
             ]
     },
     {
         name: 'CPMI',
         data:
             [
-                28534,
-                13599,
-                24533,
-                25195,
+                <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
             ]
     },
     {
         name: 'TKA',
         data:
             [
-                52534,
-                23599,
-                34533,
-                25195,
+                <?php foreach($data_tahun_tka as $data){ echo $data.","; } ?>
             ]
     }]
 });

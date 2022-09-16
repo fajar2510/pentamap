@@ -14,6 +14,8 @@ class Home extends CI_Controller
         $this->load->model('RewardModel');
         $this->load->model('Sebaran_Jatim');
         $this->load->model('Wilayah');
+        date_default_timezone_set('Asia/Jakarta');
+        $this->tahun_ini=date("Y");
     }
 
 public function index()
@@ -47,19 +49,12 @@ public function index()
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
         
         // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
-        // var_dump($data['sebaran_phk']);
-        // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
             $data['tka'] = $this->Penempatan->getTotalTKA();
             $data['pmib'] = $this->Penempatan->getTotalPMIB();
             $data['cpmi'] = $this->Penempatan->getTotalCPMI();
             $data['phk'] = $this->Penempatan->getTotalPHK();
-
-            // $data['jum_tka'] = $this->Penempatan->getpresentaseTKA($id_wilayah);
-            // $data['jum_pmib'] = $this->Penempatan->getpresentasePMIB($id_wilayah);
-            // $data['jum_cpmi'] = $this->Penempatan->getpresentaseCPMI($id_wilayah);
-            // $data['jum_phk'] = $this->Penempatan->getpresentasePHK($id_wilayah);
 
             foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
             foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }
@@ -70,12 +65,26 @@ public function index()
             $data['presentase_pmib'] = round($pmib / $jumlah_naker * 100,2);
             $data['presentase_tka'] = round($tka / $jumlah_naker * 100,2);
             $data['presentase_phk'] = round($phk / $jumlah_naker * 100,2);
-        $data['tabel'] = $this->Master->tabel();
-        // echo"<pre>";
-        // var_dump($data['tka'][0]->tka);
-        // die;
+            $data['tabel'] = $this->Master->tabel();
 
-
+            $data['data_tahun_tka'] = array();
+            $data['data_tahun_pmib'] = array();
+            $data['data_tahun_cpmi'] = array();
+            $data['data_tahun_phk'] = array();
+            $data['tahun_start'] = $this->tahun_ini - 3;
+            $data['tahun_awal'] = strval($data['tahun_start']);
+            for ($i=0; $i < 4; $i++) { 
+                $data_tka = $this->Penempatan->getjumlahtahuntka($data['tahun_start']);
+                $data_pmib = $this->Penempatan->getjumlahtahunpmib($data['tahun_start']);
+                $data_cpmi = $this->Penempatan->getjumlahtahuncpmi($data['tahun_start']);
+                $data_phk = $this->Penempatan->getjumlahtahunphk($data['tahun_start']);
+                array_push($data['data_tahun_tka'], $data_tka);
+                array_push($data['data_tahun_pmib'], $data_pmib);
+                array_push($data['data_tahun_cpmi'], $data_cpmi);
+                array_push($data['data_tahun_phk'], $data_phk);
+                $data['tahun_start'] += 1;
+            }
+            $data['tahun_ini'] = $this->tahun_ini;
 
         //load with templating view
         $this->load->view('templates/header', $data);

@@ -206,6 +206,40 @@ class Penempatan extends CI_Model
         return $data->result();
     }
 
+    public function getjumlahtahunphk($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->where('status_kerja', 'phk');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahunpmib($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_pmi');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahuntka($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_tka');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahuncpmi($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_cpmi');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
     // public function getpresentasePHK($wilayah)
     // {
     //     $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='phk' 

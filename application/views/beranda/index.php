@@ -63,7 +63,7 @@
             
             <hr style="margin-top: 100; margin-bottom: 60 ;">
 
-            <div class="row">
+            <div class="row" id="diagram">
                 <div class="col-md-6">
                 <figure class="highcharts-figure">
                     <div id="pie_chart"></div>
