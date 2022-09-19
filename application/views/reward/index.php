@@ -41,18 +41,20 @@
                             </a>
                         </div> -->
                         <div class="dropdown mb-0">
+                            <form action="<?= base_url('exportimport/reward_perusahaan')?>" target="_blank" method="POST">
                             <div class="d-flex flex-row " >
                             <label for="tahun" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Tahun:</label>
-                            <input style="margin:10px; font-family:roboto;" name="tahun" id="tahun" class="form-control p-2 " type="year" value= "<?= date('Y'); ?>">
+                            <input style="margin:10px; font-family:roboto;" readonly name="tahun" id="tahun" class="form-control p-2 " type="text" value="<?= date('Y'); ?>">
                                <span style="margin:10px;"> 
-                                    <button class="btn btn-info btn-icon-split" type="button" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-info btn-icon-split" type="submit" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
                                     <span class="text" style = "font-family:roboto; ">Print</span>
                                     </button>
                              </span>
-                            </div>
+                             </div>
+                             </form>
                             <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Excel.csv</a>
                                 <a class="dropdown-item" href="#">PDF.pdf</a>
@@ -105,7 +107,7 @@
                                                     <div class="dropdown-divider"></div>
                                                     <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
                                                 </div> -->
-                                                 <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></a>
+                                                 <!-- <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></a> -->
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
