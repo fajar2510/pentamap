@@ -188,8 +188,9 @@ class Exportimport extends CI_Controller
         $mpdf->Output();
     }
 
-    public function reward_perusahaan($date)
+    public function reward_perusahaan()
     {
+        $tahun = $this->input->post('tahun', true);
         $mpdf = new \Mpdf\Mpdf(
             [
                 'mode' => 'utf-8',
@@ -197,7 +198,8 @@ class Exportimport extends CI_Controller
                 'orientation' => 'L'
             ]
         );
-        $data_reward = $this->RewardModel->get_reward_perusahaan_date($date);
+
+        $data_reward = $this->RewardModel->get_reward_perusahaan_date($tahun);
         // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
         $data = $this->load->view('export/reward_data', ['semua_data_reward' => $data_reward], TRUE);
