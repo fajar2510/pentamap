@@ -728,10 +728,17 @@
           minViewMode: "years",
           autoclose:true
         });   
+
+    var dp= $("#tahun_bulan").datepicker({
+        format: "yyyy-mm",
+        viewMode: "months", 
+        minViewMode: "months",
+        autoclose:true
+    });   
       //changeYear event trigger's
       dp.on('changeYear', function (e) {    
         //do something here
-        alert("Tahun dipilih ");
+        // alert("Tahun dipilih ");
       });
     </script>
 

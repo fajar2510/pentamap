@@ -4,6 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Penempatan extends CI_Model
 {
 
+    public function getnegarapmi()
+    {
+        $this->db->select('DISTINCT(id_negara), nama_negara' );
+        $this->db->from('tb_negara');
+        // $this->db->distinct('id_negara');
+        $this->db->join('tb_pmi', 'negara_bekerja=id_negara', 'RIGHT');
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
     public function getRole()
     {
         $query = "SELECT `user`.*, `user_role`. `role`

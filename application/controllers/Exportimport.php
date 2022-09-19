@@ -177,13 +177,22 @@ class Exportimport extends CI_Controller
     }
 
 
-    public function pmi_negara($negara, $date)
+    public function pmi_negara()
     {
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim');
+        $tahun = $this->input->post('tahun', true);
+        $negara = $this->input->post('negara', true);
+        $nama_negara = $this->db->select('*')->where('id_negara',$negara)->get('tb_negara')->result_array();
         $mpdf = new \Mpdf\Mpdf();
-        $data_pmi = $this->Master->getPmi_per_negara($negara, $date);
-        // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
-
-        $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
+        $data_pmi = $this->Master->getPmi_per_negara($negara, $tahun);
+        $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
+        // var_dump(); die;
+        if (count($data_pmi) == 0) {
+            $ada = 0;
+        }else {
+            $ada = 1;
+        }
+        $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi, 'ada' => $ada,'nama_negara' => $nama_negara[0]['nama_negara']], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
