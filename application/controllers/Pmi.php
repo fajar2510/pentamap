@@ -8,6 +8,7 @@ class Pmi extends CI_Controller
     {
         parent::__construct();
         
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Wilayah', '', TRUE);
         $this->load->model('Penempatan');
@@ -30,15 +31,21 @@ class Pmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // Load Model User Role
-
+        
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['pmi'] = $this->Master->get_PMI();
 
         //load data view
         $data['title'] = 'PMI Bermasalah';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('pmi/index', $data);
         $this->load->view('templates/footer', $data);
     }
@@ -67,6 +74,7 @@ class Pmi extends CI_Controller
 
     public function tambah()
     {
+        is_logged_in();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();
@@ -182,6 +190,7 @@ class Pmi extends CI_Controller
 
     public function edit($id)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -281,6 +290,7 @@ class Pmi extends CI_Controller
 
     public function edit_pmi($id_lokasi)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -411,8 +421,14 @@ class Pmi extends CI_Controller
         //load data view
         $data['title'] = 'PMI Bermasalah';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('pmi/detail', $data);
         // $this->load->view('templates/footer_detail_map', $data);
     }
@@ -420,6 +436,7 @@ class Pmi extends CI_Controller
 
     public function deletePmi($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
 
         $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
@@ -448,6 +465,7 @@ class Pmi extends CI_Controller
 
     public function hapusMap($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
 
         $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");

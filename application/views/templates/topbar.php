@@ -14,8 +14,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
-
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
@@ -31,7 +29,6 @@
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
                     <?php foreach ($phk as $total_phk); ?>
-
 
                     <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
@@ -53,10 +50,6 @@
             
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto ">
-
-                
-           
-
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
@@ -139,8 +132,7 @@
                   <!-- echo  "&nbsp; $jam";  -->
 
                 <div class="topbar-divider d-none d-sm-block"></div>
-
-                <li class="nav-link no-arrow mx-1" > 
+                  <li class="nav-link no-arrow mx-1" > 
                   <right>
 
                   <!-- $tanggal = mktime(date("m"), date("d"), date("Y"));
@@ -163,13 +155,11 @@
                     }
                     ?>
                     
-
                     <p class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name']; ?></p>
 
                
                     </right>
                 </li>
-                
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">

@@ -175,13 +175,13 @@ class Penempatan extends CI_Model
     // }
 
 
-    public function getTotalTKA()
+    public function getTotalTKA($wilayah = null)
     {
         $data = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka ");
         return $data->result();
     }
 
-    public function getTotalCPMI()
+    public function getTotalCPMI($wilayah = null)
     {
         $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi ");
         return $data->result();
@@ -190,23 +190,83 @@ class Penempatan extends CI_Model
     public function getTotalCPMI_byNegara($perusahaan, $negara)
     {
 
-        $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi 
-        WHERE negara_penempatan='$negara' AND perusahaan = '$perusahaan' 
-         ");
+        $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi ");
         return $data->result();
     }
 
-    public function getTotalPMIB()
+    public function getTotalPMIB($wilayah = null)
     {
         $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi ");
         return $data->result();
     }
 
-    public function getTotalPHK()
+    public function getTotalPHK($wilayah = null)
     {
         $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='phk' ");
         return $data->result();
     }
+
+    public function getjumlahtahunphk($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->where('status_kerja', 'phk');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahunpmib($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_pmi');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahuntka($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_tka');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahuncpmi($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_cpmi');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    // public function getpresentasePHK($wilayah)
+    // {
+    //     $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='phk' 
+    //     AND wilayah='$wilayah' ");
+    //     return $data->result();
+    // }
+
+    // public function getpresentasePMIB($wilayah = null)
+    // {
+    //     $data = $this->db->query("SELECT COUNT(id) as pmib FROM tb_pmi 
+    //     WHERE kabupaten='$wilayah' ");
+    //     return $data->result();
+    // }
+
+    // public function getpresentaseCPMI($wilayah = null)
+    // {
+    //     $data = $this->db->query("SELECT COUNT(id) as cpmi FROM tb_cpmi
+    //     WHERE wilayah='$wilayah' ");
+    //     return $data->result();
+    // }
+
+    // public function getpresentaseTKA($wilayah = null)
+    // {
+    //     $data = $this->db->query("SELECT COUNT(id) as tka FROM tb_tka
+    //     WHERE lokasi_kerja='$wilayah' ");
+    //     return $data->result();
+    // }
 
     // laporan AN PMI 
     public function get_taiwan_lk()
