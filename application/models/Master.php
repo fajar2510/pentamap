@@ -173,9 +173,9 @@ class Master extends CI_Model
     }
 
 
-    public function getPmi_per_negara($negara, $date)
+    public function getPmi_per_negara($negara, $tahun)
     {
-        $bln = explode('-', $date);
+        $thn = explode('-', $tahun);
         $query =
             "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
                 , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
@@ -187,7 +187,7 @@ class Master extends CI_Model
                     ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
                     JOIN `kelurahan`
                     ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
-                    WHERE `negara_bekerja` = '$negara' AND MONTH(date_created) = '$bln[1]' ORDER BY `date_created` DESC
+                    WHERE `negara_bekerja` = '$negara' AND YEAR(date_created) = '$thn[0]' AND MONTH(date_created) = '$thn[1]' ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
     }

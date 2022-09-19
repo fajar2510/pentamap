@@ -90,6 +90,7 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
         $this->form_validation->set_rules('jenis[]', 'Jenis Disabilitas', 'required|trim');
 
+        // var_dump($data); die;
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan';
             $this->load->view('templates/header', $data);
@@ -257,7 +258,7 @@ class Reward extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $id_perusahaan = $this->input->post('id_perusahaan', true);
-            $id_reward = $this->input->post('id_reward', true);
+            $id_reward = $id;
             // var_dump($id_reward);
             // die;
             $data_perusahaan = [
@@ -275,7 +276,6 @@ class Reward extends CI_Controller
             ];
             $jenis =implode(',',$this->input->post('jenis_edit', true));
             
-
             $data_reward = [
                 'perusahaan_id' => $this->input->post('nama_perusahaan', true),
                 'disabilitas_L' => $this->input->post('disabilitas_L', true),
@@ -286,9 +286,9 @@ class Reward extends CI_Controller
                 'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
                 'presentase' => $this->input->post('presentase', true),
                 'jenis_disabilitas' => $jenis,
-                'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data', true),
             ];
-            
+            // var_dump($id_reward); die;
             // $this->db->where('id', $id_perusahaan);
             // $this->db->update('tb_perusahaan', $data_perusahaan);
 

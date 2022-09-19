@@ -35,6 +35,10 @@ class Pmi extends CI_Controller
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['pmi'] = $this->Master->get_PMI();
 
+        $data['negara'] = $this->Penempatan->getnegarapmi();
+        // echo "<pre>";
+        // var_dump($data['negara']); die;
+
         //load data view
         $data['title'] = 'PMI Bermasalah';
         $this->load->view('templates/header', $data);

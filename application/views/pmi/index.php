@@ -45,6 +45,59 @@
                                         </button> -->
                             </form>
                         </div>
+                        <div class="dropdown mb-0">
+                            <span style="margin:10px;"> 
+                                    <button class="btn btn-info btn-icon-split" type="button" data-toggle="modal" data-target="#modalfilterpmib" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon text-white-50">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                    <span class="text" style = "font-family:roboto; ">Filter Cetak</span>
+                                    </button>
+                            </span>
+                            <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Excel.csv</a>
+                                <a class="dropdown-item" href="#">PDF.pdf</a>
+                            </div> -->
+                        </div>
+                        <div class="modal fade" id="modalfilterpmib" tabindex="-1" role="dialog" aria-labelledby="modalfilterpmib" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Filter Cetak PMI Bermasalah</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                        <form action="<?= base_url('exportimport/pmi_negara/')?>" target="_blank" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label for="tahun" class="d-none d-sm-inline-block p-2" style="font-weight:bold; font-family:roboto;"> Bulan</label>
+                                                    <label for="tahun" class="d-none d-sm-inline-block p-2" style="font-weight:bold; font-family:roboto;"> Negara</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input style="margin:10px; font-family:roboto;" readonly name="tahun" id="tahun_bulan" class="form-control p-2 " type="text" value="<?= date('Y-m'); ?>">
+                                                    <select style="margin:10px; font-family:roboto;" name="negara" id="" class="form-control" required>
+                                                        <option value="">- Pilih Negara -</option>
+                                                        <?php foreach ($negara as $v) { ?>
+                                                            <option value="<?php echo $v->id_negara ?>"><?php echo $v->nama_negara ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row">
+                                                <span style="margin:10px;"> 
+                                                            <button class="btn btn-info btn-icon-split" type="submit" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fa-solid fa-print"></i>
+                                                                </span>
+                                                            <span class="text" style = "font-family:roboto; ">Cetak</span>
+                                                            </button>
+                                                    </span>
+                                            </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="dropdown mb-0">
@@ -68,7 +121,6 @@
                                 <span class="text">CSV</span>
                             </a>
                         </div> -->
-
             </div>
             <div class="card-body">
                 <div class="table table-sm">
@@ -118,7 +170,7 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu ">
-                                            <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a>
+                                            <!-- <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a> -->
                                             <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
                                             <div class="dropdown-divider"></div>
                                             <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>

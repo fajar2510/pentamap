@@ -43,8 +43,8 @@
                                         <div class="col-sm-3"> 
                                             <!-- <img src="<?= base_url('assets/img/lokal/') . $lokasi->image ?>" class="img-fluid " 
                                             style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture"> -->
-                                            <div  id="foto2"><img id="fotodefault" src="<?= base_url("assets/img/profile/default.png")?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
-                                            <div  id="foto1"></div>                                                       
+                                            <div  class="foto2"><img src="<?= base_url("assets/img/profile/default.png")?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <div  class="foto1"></div>                                                       
                                            
                                             <div class="custom-file" >
                                                 <input type="file"  class="custom-file-input"  onchange="readURL(this);"  id="image" name="image">

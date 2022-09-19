@@ -225,7 +225,7 @@
                                         <div class="col-sm-8">
                     
                                         <select class="bootstrap-select" class="form-control" name="jenis[]" data-width="100%" data-live-search="true" multiple required>
-                                            <?php foreach ($jenis->result() as $je) :?>
+                                            <?php foreach ($jenis as $je) :?>
                                                 <option value="<?php echo $je->id_jenis;?>"><?php echo $je->disabilitas_ragam;?> &nbsp;  &nbsp; <?php echo $je->jenis_disabilitas;?></option>
                                             <?php endforeach;?>
                                         </select>
