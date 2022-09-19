@@ -8,6 +8,7 @@ class Beranda extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -53,6 +54,11 @@ class Beranda extends CI_Controller
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
+        if ($this->ci->session->userdata('email')) {
+            $data['is_login'] = 1;
+        }else{
+            $data['is_login'] = 0;
+        }
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();

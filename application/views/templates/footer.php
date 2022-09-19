@@ -740,6 +740,8 @@
     function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+                var foto1 = "<img id='fotoBaru' src='http://placehold.it/180' class='img-fluid' type='hidden' style='width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;'/>";
+                $('#foto1').html(foto1);
 
                 reader.onload = function (e) {
                     $('#fotoBaru')
@@ -748,6 +750,7 @@
                     var gambar_kedua = "<img id='fotoBaru' src='http://placehold.it/180' class='img-thumbnail' alt='Foto Profil Baru' style='object-fit: cover;' />"
                     $('#gambar_pertama').html("");
                     $('#gambar_kedua').html(gambar_kedua);
+                    $('#foto2').html("");
                 };
 
                 reader.readAsDataURL(input.files[0]);

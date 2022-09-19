@@ -308,8 +308,8 @@
               
                
               '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
             markersPhk.addLayer(sebaranPhk);
             map.addLayer(markersPhk);
@@ -349,8 +349,8 @@
               '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor , <?= $value->paspor ?></i></p> '+
               
               '<a href="<?= base_url('cpmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
             markersCpmi.addLayer(sebaranCpmi);
             map.addLayer(markersCpmi);
@@ -390,8 +390,8 @@
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i> Lama bekerja , <?= $value->lama_bekerja ?></i></p> '+
               
               '<a href="<?= base_url('pmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('pmi/edit_pmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusPmib<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('pmi/edit_pmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPmib<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
   
               markersPmib.addLayer(sebaranPmib);
               map.addLayer(markersPmib);
@@ -430,8 +430,8 @@
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
               
               '<a href="<?= base_url('tka/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('tka/edit_tka/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('tka/edit_tka/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);

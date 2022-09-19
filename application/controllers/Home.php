@@ -8,6 +8,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         // is_logged_in();
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -85,6 +86,11 @@ public function index()
                 $data['tahun_start'] += 1;
             }
             $data['tahun_ini'] = $this->tahun_ini;
+        if ($this->ci->session->userdata('email')) {
+            $data['is_login'] = 1;
+        }else{
+            $data['is_login'] = 0;
+        }
 
         //load with templating view
         $this->load->view('templates/header', $data);
