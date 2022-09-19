@@ -150,7 +150,7 @@ class RewardModel extends CI_Model
 		$this->db->from('dis_jenis');
 		$this->db->join('dis_ragam', 'ragam_id=id_ragam');
 		$this->db->order_by('id_jenis','ASC');
-		$query = $this->db->get();
+		$query = $this->db->get()->result();
 		return $query;
 	}
 

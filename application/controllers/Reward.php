@@ -203,7 +203,27 @@ class Reward extends CI_Controller
         $data['jenis'] = $this->RewardModel->get_jenis();
         $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
-        
+        // PENGECEKAN JENIS DISABILITAS YANG PERNAH DIPILIH
+        $n_jenis_dipilih = explode(",", $data['edit_reward'][0]['jenis_disabilitas']);
+        $data['arr_jenis'] = array();
+        foreach ($data['jenis'] as $val) {
+           if (in_array($val->id_jenis, $n_jenis_dipilih)) {
+            array_push($data['arr_jenis'], [
+                'id_jenis' => $val->id_jenis,
+                'jenis_disabilitas' => $val->jenis_disabilitas, 
+                'disabilitas_ragam' => $val->disabilitas_ragam,
+                'status' => "1"
+            ]);
+           }else {
+            array_push($data['arr_jenis'], [
+                'id_jenis' => $val->id_jenis,
+                'jenis_disabilitas' => $val->jenis_disabilitas, 
+                'disabilitas_ragam' => $val->disabilitas_ragam,
+                'status' => "0"
+            ]);
+           }
+        }
+        // PENGECEKAN JENIS DISABILITAS YANG PERNAH DIPILIH
 
         // form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');

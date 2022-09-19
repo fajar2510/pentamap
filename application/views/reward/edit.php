@@ -164,8 +164,12 @@
                                         <select class="bootstrap-select" class="form-control" name="jenis_edit[]" data-width="100%" data-live-search="true" multiple required>
                                             
                                             <!-- AMBIL DATA BELUM BISA -->
-                                            <?php foreach ($jenis->result() as $je) :?>
-                                                <option value="<?php echo $je->id_jenis;?>"><?php echo $je->disabilitas_ragam;?> &nbsp;  &nbsp; <?php echo $je->jenis_disabilitas;?></option>
+                                            <?php foreach ($arr_jenis as $je) :?>
+                                                <?php if ($je['status'] == "1") { ?>
+                                                    <option value="<?php echo $je['id_jenis'];?>" selected><?php echo $je['disabilitas_ragam'];?> &nbsp; -&nbsp; <?php echo $je['jenis_disabilitas'];?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?php echo $je['id_jenis'];?>"><?php echo $je['disabilitas_ragam'];?> &nbsp; -&nbsp; <?php echo $je['jenis_disabilitas'];?></option>
+                                                <?php } ?>
                                             <?php endforeach;?>
                                             <!-- AMBIL DATA BELUM BISA -->
 
