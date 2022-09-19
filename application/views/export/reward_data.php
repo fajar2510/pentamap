@@ -72,7 +72,7 @@
         <thead>
             <tr>
                 <th> -->
-    <p align="center"> <b>USULAN PENGHARGAAN PERUSAHAAN YANG MEMPEKERJAKAN TENAGA KERJA DISABILITAS <br> TAHUN <?= date('Y'); ?> se-PROVINSI JAWA TIMUR
+    <p align="center"> <b>USULAN PENGHARGAAN PERUSAHAAN YANG MEMPEKERJAKAN TENAGA KERJA DISABILITAS <br> TAHUN <?php echo $tahun ?> se-PROVINSI JAWA TIMUR
             <!-- <?php
             $bln = explode('/',  $tanggal);
             ?> <?= bulanIndo($bln[0]) ?>

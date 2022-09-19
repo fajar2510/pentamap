@@ -202,7 +202,7 @@ class Exportimport extends CI_Controller
         $data_reward = $this->RewardModel->get_reward_perusahaan_date($tahun);
         // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
-        $data = $this->load->view('export/reward_data', ['semua_data_reward' => $data_reward], TRUE);
+        $data = $this->load->view('export/reward_data', ['semua_data_reward' => $data_reward, 'tahun' => $tahun], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
