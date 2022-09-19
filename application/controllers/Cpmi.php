@@ -31,6 +31,7 @@ class Cpmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data wilayah
+        $data['negara'] = $this->Penempatan->getnegaracpmi();
 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
@@ -53,7 +54,7 @@ class Cpmi extends CI_Controller
 
     public function tambah()
     {
-        is_logged_in();
+        // is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();

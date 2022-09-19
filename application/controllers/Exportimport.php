@@ -241,15 +241,21 @@ class Exportimport extends CI_Controller
         $mpdf->Output();
     }
 
-    public function export_pdf_cpmi($perusahaan, $negara, $date)
+    public function export_pdf_cpmi()
     {
+        $tahun = $this->input->post('tahun', true);
+        $negara = $this->input->post('negara', true);
+        $nama_negara = $this->db->select('*')->where('id_negara',$negara)->get('tb_negara')->result_array();
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan, $negara, $date);
-        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($perusahaan, $negara,$date);
+        $data_cpmi = $this->Penempatan->get_pdf_cpmi($negara, $tahun);
+        // echo"<pre>";
+        // var_dump($data_cpmi); 
+        // die;
+        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($negara,$tahun);
         $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
