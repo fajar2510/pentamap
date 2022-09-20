@@ -14,9 +14,22 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-            <div class="sidebar-brand-icon"> 
-                        <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
-            </div> 
+            <?php $ci = get_instance();
+                if ($ci->session->userdata('role_id') == 1) { ?>
+                    <a href="<?= base_url('admin'); ?>">
+                        <div class="sidebar-brand-icon"> 
+                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                        </div> 
+                    </a>
+            <?php } elseif ($ci->session->userdata('role_id') == 2) { ?>
+                    <a href="<?= base_url('beranda'); ?>">
+                        <div class="sidebar-brand-icon"> 
+                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                        </div> 
+                    </a>
+            <?php } else {?> 
+                <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+            <?php } ?>
             <div class="sidebar-brand-text mx-3 px-1 py-0" style="font-family:roboto; font-size:14px;  text-align: left;">Sistem Informasi Geografis<br>
                 <small> <p  style="font-family:roboto; font-size:9px; ">Tenaga Kerja Jawa Timur</p></small>
             </div>
@@ -84,6 +97,10 @@
                     TKA
                     </a>
                 </div>
+            </li>
+            <li class="nav-item no-arrow">
+                <a class="nav-item nav-link text-gray-600" href="reward">Data Reward
+                </a> 
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <?php 
