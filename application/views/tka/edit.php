@@ -55,7 +55,7 @@
 
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
-                                                    <option value="<?= $p['id_negara']; ?>" <?php if ($p['id_negara'] == $edit_tka->id_perusahaan) {
+                                                    <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $edit_tka->id_perusahaan) {
                                                                                             echo 'selected';
                                                                                         } else {
                                                                                             echo '';

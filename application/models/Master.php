@@ -266,7 +266,9 @@ class Master extends CI_Model
 
     public function get_phkById($id)
     {
-        $query = "SELECT * FROM tb_phk WHERE tb_phk.id_phk = '$id'
+        $query = "SELECT tb_phk . * , tb_perusahaan . * FROM tb_phk 
+        JOIN tb_perusahaan ON tb_phk.perusahaan = tb_perusahaan.id
+        WHERE tb_phk.id_phk = '$id'
                 ";
         return $this->db->query($query)->row();
     }

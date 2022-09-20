@@ -159,7 +159,7 @@
                                             <select class="custom-select" name="perusahaan" id="perusahaan" class="form-control">
                                                
                                                 <?php foreach ($perusahaan as $n) : ?>
-                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_phk->nama_perusahaan) {
+                                                    <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_phk->id) {
                                                                                             echo 'selected';
                                                                                         } else {
                                                                                             echo '';

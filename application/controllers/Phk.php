@@ -164,7 +164,6 @@ class Phk extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['tambah_phk'] = $this->Master->get_tb_phk();
-        
 
         // Load model lokal
         // $data['phk'] = $this->Master->get_tb_phk();
