@@ -170,7 +170,8 @@ function bulanIndo($bulanInggris)
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <?php } ?>
 </body>
-
+<?php } else { ?>
+    <body><h4><i>- Data tidak ada -</i></h4></body>
+<?php } ?>
 </html>

@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-
+<?php if ($ada == 1) { ?>
 <body>
     <span><small> <i>
                 <font color="grey"> Tanggal cetak : <?= date('d-m-Y'); ?></font>
@@ -79,7 +79,6 @@
         }
     }
     ?>
-
     <?php foreach ($semua_data_cpmi as $row); ?>
     <?php foreach ($data_total_orang as $total_cpmi); ?>
     <p align="left"><small>
@@ -133,5 +132,7 @@
 
 
 </body>
-
+<?php } else { ?>
+    <body><h4><i>- Data tidak ada -</i></h4></body>
+<?php } ?>
 </html>

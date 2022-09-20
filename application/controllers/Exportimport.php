@@ -252,11 +252,16 @@ class Exportimport extends CI_Controller
             'orientation' => 'L'
         ]);
         $data_cpmi = $this->Penempatan->get_pdf_cpmi($negara, $tahun);
+        if (count($data_cpmi) == 0) {
+            $ada = 0;
+        }else {
+            $ada = 1;
+        }
         // echo"<pre>";
         // var_dump($data_cpmi); 
         // die;
         $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($negara,$tahun);
-        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara], TRUE);
+        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara, 'ada' => $ada], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
