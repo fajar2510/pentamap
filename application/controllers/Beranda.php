@@ -44,7 +44,7 @@ class Beranda extends CI_Controller
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
-        // var_dump($data['total_cpmi']);
+        // var_dump($data['detail_kabupaten']);
         // die;
 
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
