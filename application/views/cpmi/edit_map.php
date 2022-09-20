@@ -64,9 +64,12 @@
                                         </div>
                                         <div class="col-sm-3"> 
                                             
-                                            <div  id="foto1"><img src="<?= base_url('assets/img/cpmi/') . $lokasi->image ?>" class="img-fluid " 
-                                            style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture"></div>
-                                            <div  id="foto1"><img id="newimage"   src="http://placehold.it/180" class="img-fluid" alt="new image" style="width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;"/></div>
+                                        <?php if ($lokasi->image == null) { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                        <?php } else { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/tka/').$lokasi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                         <?php } ?>
+                                            <div  class="foto1"></div>
                                                                           
                                             <div class="custom-file" >
                                                 <input type="file"  class="custom-file-input" onchange="readURL(this);" id="image" name="image">
