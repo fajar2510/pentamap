@@ -19,7 +19,8 @@ function is_logged_in()
         ]);
 
         if ($userAccess->num_rows() < 1) {
-            redirect('auth/blocked');
+            // redirect('auth/blocked');
+            redirect($_SERVER['HTTP_REFERER']);
         }
     }
 }

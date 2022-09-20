@@ -3,7 +3,7 @@
 
 <!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex" href="<?= base_url('beranda'); ?>">
+    <a class="sidebar-brand d-flex" href="<?= base_url('home'); ?>">
         
         <div class="sidebar-brand-icon"> 
             <!-- <i class="bi bi-map"></i> -->
@@ -33,21 +33,24 @@
 
     <!-- LOOPING MENU-->
     <?php foreach ($menu as $m) : ?>
+        <?php
+            $menuId = $m['id'];
+            $queryMenu = "SELECT *
+                            FROM `user_sub_menu` JOIN `user_menu`
+                            ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+                            WHERE `user_sub_menu`.`menu_id` = $menuId
+                            AND `user_sub_menu`.`is_active` = 1 
+                            ";
+            $subMenu = $this->db->query($queryMenu)->result_array();
+        ?>
+        <!-- idisini -->
+        <?php if (count($subMenu) > 0 ) { ?>
+
         <div class="sidebar-heading">
             <?= $m['menu']; ?>
         </div>
 
         <!-- SIAPKAN SUB-MENU SESUAI MENU -->
-        <?php
-        $menuId = $m['id'];
-        $queryMenu = "SELECT *
-                        FROM `user_sub_menu` JOIN `user_menu`
-                        ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
-                        WHERE `user_sub_menu`.`menu_id` = $menuId
-                        AND `user_sub_menu`.`is_active` = 1 
-                        ";
-        $subMenu = $this->db->query($queryMenu)->result_array();
-        ?>
 
         <?php foreach ($subMenu as $sm) : ?>
             <?php if ($title == $sm['title']) : ?>
@@ -64,7 +67,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider mt-3">
-
+            <?php } ?>
         <?php endforeach; ?>
 
         <li class="nav-item">

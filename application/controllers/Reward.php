@@ -8,6 +8,7 @@ class Reward extends CI_Controller
     {
         parent::__construct();
         
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -40,16 +41,21 @@ class Reward extends CI_Controller
 
         $data['title'] = 'Penghargaan';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('reward/index', $data);
         $this->load->view('templates/footer');
     }
 
-
-
     public function tambah()
     {
+        is_logged_in();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -185,6 +191,7 @@ class Reward extends CI_Controller
 
     public function edit($id)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -308,7 +315,7 @@ class Reward extends CI_Controller
 
     public function hapus($id)
     {
-        
+        is_logged_in();
         $this->db->where('id_reward', $id);
         $this->db->delete('tb_reward');
 
