@@ -7,7 +7,8 @@ class Beranda extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+        is_logged_in();
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -43,7 +44,7 @@ class Beranda extends CI_Controller
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
-        // var_dump($data['total_cpmi']);
+        // var_dump($data['detail_kabupaten']);
         // die;
 
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
@@ -53,6 +54,11 @@ class Beranda extends CI_Controller
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
+        if ($this->ci->session->userdata('email')) {
+            $data['is_login'] = 1;
+        }else{
+            $data['is_login'] = 0;
+        }
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();

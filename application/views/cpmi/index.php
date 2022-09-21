@@ -6,12 +6,14 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
+        <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('cpmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
         </a>
+        <?php } ?>
     </div>
 
     <!-- parsing data -->
@@ -33,7 +35,7 @@
             <div class="card shadow mb-0">
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                        <div class="d-sm-flex align-items-center justify-content-between mb-0">
+                        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-0"> -->
 
                             <!-- <a href="#" class="btn btn-success btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
@@ -47,8 +49,16 @@
                                     Rentang Akhir: <input id="endDate" width="276" />
                                 </div>
                             </div> -->
-                        </div>
+                        <!-- </div> -->
                         <div class="dropdown mb-0">
+                            <span style="margin:10px;"> 
+                                    <button class="btn btn-info btn-icon-split" type="button" data-toggle="modal" data-target="#modalfiltercpmi" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon text-white-50">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                    <span class="text" style = "font-family:roboto; ">Filter Cetak</span>
+                                    </button>
+                            </span>
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-upload"></i>
@@ -67,6 +77,45 @@
                                 </span>
                                 <span class="text">CSV</span>
                             </a> -->
+                        </div>
+                        <div class="modal fade" id="modalfiltercpmi" tabindex="-1" role="dialog" aria-labelledby="modalfiltercpmi" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Filter Cetak CPMI</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                        <form action="<?= base_url('exportimport/export_pdf_cpmi')?>" target="_blank" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label for="tahun" class="d-none d-sm-inline-block p-2" style="font-weight:bold; font-family:roboto;"> Bulan</label>
+                                                    <label for="tahun" class="d-none d-sm-inline-block p-2" style="font-weight:bold; font-family:roboto;"> Negara</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input style="margin:10px; font-family:roboto;" readonly name="tahun" id="tahun_bulan" class="form-control p-2 " type="text" value="<?= date('Y-m'); ?>">
+                                                    <select style="margin:10px; font-family:roboto;" name="negara" id="" class="form-control" required>
+                                                        <option value="">- Pilih Negara -</option>
+                                                        <?php foreach ($negara as $v) { ?>
+                                                            <option value="<?php echo $v->id_negara ?>"><?php echo $v->nama_negara ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row">
+                                                <span style="margin:10px;"> 
+                                                            <button class="btn btn-info btn-icon-split" type="submit" id="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fa-solid fa-print"></i>
+                                                                </span>
+                                                            <span class="text" style = "font-family:roboto; ">Cetak</span>
+                                                            </button>
+                                                    </span>
+                                            </div>
+                                        </form>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -101,10 +150,14 @@
                                             <td><small> <?= $p['nama_negara']; ?> </small> </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
-                                                <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light"><i class="fa fa-book" aria-hidden="true"></i> <b>lap.</b></i></a>
+                                                <?php if ($is_admin == 1) { ?>
+                                                    <!-- <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light"><i class="fa fa-book" aria-hidden="true"></i> <b>lap.</b></i></a> -->
+                                                <?php } ?>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
-                                                <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                                <?php if ($is_admin == 1) { ?>
+                                                    <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                    <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

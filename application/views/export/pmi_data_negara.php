@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Laporan PMI-B</title>
+    <!-- <title>Cetak Laporan PMI-B</title> -->
 
 
     <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/favicon/logo.ico">
@@ -32,6 +32,7 @@
         }
     </style>
 </head>
+<?php if ($ada == 1) { ?>
 <?php foreach ($semua_data_pmi as $p); ?>
 
 <?php
@@ -78,7 +79,7 @@ function bulanIndo($bulanInggris)
                 <tr style="border: 0px;">
                     <td align="center"> -->
             <p align="center"><b>DAFTAR HADIR PEMULANGAN<br>
-                    PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $p['negara_bekerja']; ?>
+                    PEKERJA MIGRAN INDONESIA NON PROSEDURAL (PMI-B) DARI <?= $nama_negara ?>
                     <?php
                     $bln = explode('-',  $p['date_created']);
                     $bulanBahasaInggris = date('m');
@@ -169,7 +170,8 @@ function bulanIndo($bulanInggris)
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 </body>
-
+<?php } else { ?>
+    <body><h4><i>- Data tidak ada -</i></h4></body>
+<?php } ?>
 </html>

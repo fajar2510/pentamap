@@ -6,12 +6,14 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
+        <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('phk/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
         </a>
+        <?php } ?>
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
     </div>
@@ -93,8 +95,10 @@
                                                         } ?></span> </td>
                                             <td class="text-center">
                                             <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
+                                            <?php if ($is_admin == 1) { ?>
                                                 <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
