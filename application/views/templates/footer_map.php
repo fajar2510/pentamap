@@ -152,12 +152,52 @@
     
         // memanggil map utama set view jawa timur 
         var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
+        // map.createPane('labels');
+        // map.getPane('labels').style.zIndex = 650;
+        // map.getPane('labels').style.pointerEvents = 'none';
 
 
+        //  jawa timur polygon geo json
+
+
+         <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
+            geoLayer = L.geoJson(data,  {
+                style : function(feature) {
+                    return {
+                        opacity: 0.5,
+                        color: '<?= $value->warna ?>',
+                        // fillColor: '<?= $value->warna ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
+                        
+                        }    
+                 },
+            }).addTo(map);
+
+            // geolayer.bindTooltip("My polygon",
+            // {permanent: true, direction:"center"}
+            // ).openTooltip()
+
+            
+
+            geoLayer.eachLayer(function (layer) {
+                layer.bindPopup('<div class="container px-1 py-1">'+
+            //   '<h6><u><?= $value->nama_kabupaten ?></u></h6> '+ 
+              ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
+              '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
+              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value->kabupaten_lat ?>, &nbsp;  <?= $value->kabupaten_lat ?><br>'+
+              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br>'+
+              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
+              '<button type="button" onclick="btn_lp()" data-id="<?php echo $value->id_kabupaten ?>" class="btn btn-primary btn-block d-inline-block listp">Selengkapnya</button></div>');
+            });
+        });
+        <?php } ?>
         // Open Street Default Layer     
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '©OpenStreetMap, ©CartoDB'
-            
+            attribution: '©OpenStreetMap, ©CartoDB',
+            // pane: 'labels'
         });
         osm.addTo(map);
         
@@ -461,54 +501,13 @@
         var layer_baseControl= L.control.layers(baseLayers, overlays).addTo(map);
         //batas function
 
-         //  jawa timur polygon geo json
-
-
-         <?php foreach ($detail_kabupaten as $key => $value) { ?>
-        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
-            geoLayer = L.geoJson(data,  {
-                style : function(feature) {
-                    return {
-                        opacity: 0.5,
-                        color: '<?= $value->warna ?>',
-                        // fillColor: '<?= $value->warna ?>',
-                        fillColor: 'white',
-                        fillOpacity: 0.3,
-                        
-                        }    
-                 },
-            }).addTo(map);
-
-            // geolayer.bindTooltip("My polygon",
-            // {permanent: true, direction:"center"}
-            // ).openTooltip()
-
-            
-
-            geoLayer.eachLayer(function (layer) {
-                layer.bindPopup('<div class="container px-1 py-1">'+
-            //   '<h6><u><?= $value->nama_kabupaten ?></u></h6> '+ 
-              ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
-              '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
-              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value->kabupaten_lat ?>, &nbsp;  <?= $value->kabupaten_lat ?><br>'+
-              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br>'+
-              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
-              '<button type="button" onclick="btn_lp()" data-id="<?php echo $value->id_kabupaten ?>" class="btn btn-primary btn-block d-inline-block listp">Selengkapnya</button></div>');
-            });
-        });
-        <?php } ?>
-
-        
- 
-
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
             $.each(data, function(i, field) {
 
                 var leafleticon = L.icon({
                     // iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
                     iconUrl: 'assets/img/marker/darkcircle.png',
-                    iconSize: [15, 15]
+                    iconSize: [1, 1]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
@@ -575,26 +574,18 @@
                 // }
 
                 var jumlah = phk + pmib + pmi + tka;
-                // var bangunanMarker = L.marker([long, lat], {
-                //         icon: leafleticon,
-                //         title: data[i].nama_kabupaten,
-                //             }).addTo(map)
-                //             .bindPopup("<h6><u><b><center>" + data[i].nama_kabupaten + "</b></u><br></h6>" +
-                //             "<ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li> " +
-                //             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-info badge-pill'>" + pmi + "</span></li> " +
-                //             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li> " +
-                //             "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-success badge-pill'>" + tka + "</span></li> " +
-                //             "<li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                //                 "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-primary listp' data-id='"+data[i].id_kabupaten+"'><b>Daftar Perusahaan</b></button>")
-                //             .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
-                //               // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
-                //                 permanent: true,
-                //                 size: 10,
-                //                 direction: 'bottom',
-                //                 opacity: 0.65,
-                //                 sticky: false,
-                //                 className: 'leaflet-tooltip-own'
-                //         });
+                var bangunanMarker = L.marker([long, lat], {
+                        icon: leafleticon,
+                        title: data[i].nama_kabupaten,
+                            }).addTo(map).bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
+                              // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
+                                permanent: true,
+                                size: 8,
+                                direction: 'bottom',
+                                opacity: 0.65,
+                                sticky: false,
+                                className: 'leaflet-tooltip-own'
+                        });
             });
         });
 

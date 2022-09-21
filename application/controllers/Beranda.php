@@ -7,7 +7,6 @@ class Beranda extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
         $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
@@ -19,6 +18,7 @@ class Beranda extends CI_Controller
 
     public function index()
     {
+        is_logged_in();
         $data['title'] = 'Peta Tenaga Kerja';
 
         // mengambil data user login
@@ -75,6 +75,7 @@ class Beranda extends CI_Controller
 
     public function kabupaten()
     {
+        // is_logged_in();
         // $tahun = $this->input->post('tahun');
         $query =
             "SELECT  kabupaten.nama_kabupaten,kabupaten.geojson, kabupaten.warna,  kabupaten.luas_area, 
@@ -249,6 +250,7 @@ class Beranda extends CI_Controller
 
     public function phk()
     {
+        is_logged_in();
         $query =
             "SELECT *, max(jumlah_phk) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
         ";
@@ -259,6 +261,7 @@ class Beranda extends CI_Controller
 
     public function pmi()
     {
+        is_logged_in();
         $query =
             "SELECT *,max(jumlah_pmi) as pmi_max FROM kabupaten WHERE id_provinsi= '42385' GROUP BY nama_kabupaten
         ";
@@ -269,6 +272,7 @@ class Beranda extends CI_Controller
 
     public function pmib()
     {
+        is_logged_in();
         $query =
             "SELECT max(jumlah_pmib) FROM kabupaten WHERE id_provinsi= '42385'
         ";
@@ -279,6 +283,7 @@ class Beranda extends CI_Controller
 
     public function tka()
     {
+        is_logged_in();
         $query =
             "SELECT max(jumlah_tka) FROM kabupaten WHERE id_provinsi= '42385'
         ";
