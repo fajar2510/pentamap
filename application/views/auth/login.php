@@ -60,12 +60,17 @@
                                     <div id="snackbar"> Sedang mencoba LOGIN . . . </div>
                                 </form>
                                 <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
+                                <div class="row">
+                                    <div class="text-center col-6">
+                                        <a class="small" href="<?= base_url(''); ?>">Dashboard Peta</a>
+                                    </div>
+                                    <div class="text-center col-6">
+                                        <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
+                                    </div>
                                 </div>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a class="small" href="<?php echo base_url() ?>auth/registration">Buat Akun Baru</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
