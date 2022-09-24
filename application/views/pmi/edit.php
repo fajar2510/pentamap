@@ -4,13 +4,13 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
+        <!-- <h3 style="font-family:'Roboto';font-size:15;"><?= $title; ?> <?= date('Y'); ?></h3>
         <a href="<?= base_url('pmi/index/'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
             </span>
             <span class="text">Kembali</span>
-        </a>
+        </a> -->
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
     </div>
@@ -27,14 +27,20 @@
 
 
             <div class="card shadow mb-0">
-                <div class="card-header py-3 ">
+            <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
-
+                    <p style="font-family:'helvetica';font-size:15;">Edit Data <b> <?= $pmi->nama ?></b>  <?= $title; ?> <b> <?= date('Y'); ?></b></p>
+                            <a href="<?= base_url('pmi'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-angle-left"></i>
+                                </span>
+                                <span class="text">Kembali</span>
+                            </a>
                     </div>
                     <div class="card-body">
                         <div>
 
-                            <form action="<?= base_url('pmi/edit/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('pmi/edit_pmi/' . $pmi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
                                     <div class="form-group row">
@@ -44,6 +50,38 @@
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div> -->
+                                    <div class="form-group row">
+                                        <div class="col-sm-9">
+                                            <div id="mapltlg"></div>
+                                        </div>
+                                        <div class="col-sm-3"> 
+
+                                        <?php if ($pmi->image == null) { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                        <?php } else { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/pmi/').$pmi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                         <?php } ?>
+                                            <div  class="foto1"></div>
+                                                                          
+                                            <div class="custom-file" >
+                                                <input type="file"  class="custom-file-input" onchange="readURL(this);" id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih Gambar</label>
+                                            </div>
+
+                                            <div class="form-group">
+                                            <label for="latitude" style="padding-top:8px;" >Latitude</label>
+                                                <input type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $pmi->latitude ?>" placeholder="Latitude. . .">                          
+                                                <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="longitude" >Longitude</label>
+                                                <input type="text" id="long" class="form-control" name="long" readonly value="<?= $pmi->longitude ?>" placeholder="Longitude. . .">
+                                                <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <hr>
                                     <p> <small><b> DATA PMI-B</b></small></p>
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
@@ -77,25 +115,9 @@
                                         </div>
                                     </div>
 
+                                
+                 
                                     
-                                    <div class="form-group row">
-                                        <label for="koordinat" class="col-sm-3 col-form-label">Koordinat</label>
-                                        <div class="col-sm-3"> 
-                                            <input type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $pmi->latitude ?>" placeholder="Latitude. . .">
-                                            <!-- <div id="mapltlg"></div> -->
-                                             <?= form_error('koordinat', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="text" id="long" class="form-control" name="long" readonly value="<?= $pmi->longitude ?>" placeholder="Longitude. . .">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="tampilanMap" class="col-sm-3 col-form-label"></label>
-                                        <div class="col-sm-9">
-                                            <div id="mapltlg"></div>
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup> </label>
                                         <div class="col-3">
@@ -126,7 +148,7 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
-                                        <select class="custom-select" name="negara" id="negara" class="form-control">
+                                             <select class="custom-select" name="negara" id="negara" class="form-control">
                                                 <!-- <option value="">~ Pilih Negara ~</option> -->
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['id_negara']; ?>" <?php if ($n['id_negara'] == $pmi->negara_bekerja) {
@@ -166,26 +188,7 @@
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="image" class="col-sm-3 col-form-label">Unggah Foto</label>
-                                        <div class="col-sm-2">
-
-                                            <!-- <?php
-                                                    if ($pmi->image == null) {
-                                                        echo "assets/img/pmi/default.png";
-                                                    } else {
-                                                        echo " $pmi->image";
-                                                    }
-                                                    ?> -->
-                                            <img src="<?= base_url('assets/img/pmi/') . $pmi->image ?>" class="img-thumbnail" alt="Profile Picture">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="image" name="image">
-                                                <label class="custom-file-label" for="image">Pilih Gambar</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <a href="<?= base_url('pmi'); ?>" class="btn btn-light btn-icon-split">

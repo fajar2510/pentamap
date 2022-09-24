@@ -155,7 +155,7 @@
                                                 <?php } ?>
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
                                                 <?php if ($is_admin == 1) { ?>
-                                                    <a href="<?= base_url('cpmi/edit/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                                    <a href="<?= base_url('cpmi/edit_cpmi/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                     <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
                                                 <?php } ?>
                                             </td>

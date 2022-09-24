@@ -14,7 +14,7 @@
   <title><?= $title; ?></title>
 
   <!-- logo  -->
-  <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/auth/mapnav.ico">
+  <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/auth/jatim.ico">
 
   <!-- Custom fonts awesome for this template-->
   <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

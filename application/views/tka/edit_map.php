@@ -34,11 +34,11 @@
                     <div class="card-body">
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
                             <p style="font-family:'helvetica';font-size:15;">Edit Data <b> <?= $lokasi->nama_tka ?></b>  <?= $title; ?> <b> <?= date('Y'); ?></b></p>
-                            <a href="<?= base_url('beranda'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+                            <a href="javascript:history.go(-1)" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-angle-left"></i>
                                 </span>
-                                <span class="text">Peta</span>
+                                <span class="text"></span>
                             </a>
                         </div>
                         <div>

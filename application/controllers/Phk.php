@@ -189,7 +189,7 @@ class Phk extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('phk/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 'latitude' => $this->input->post('lat', true),
@@ -257,6 +257,7 @@ class Phk extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_phk($id_lokasi);
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         // var_dump($data['lokasi']);
         // die;
         

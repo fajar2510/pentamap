@@ -4,7 +4,7 @@
             <hr>
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geofrafis Tenaga Kerja Jatim - PENTA | DISNAKERTRANS JAWA TIMUR</span>
+                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Aplikasi Pemetaan Tenaga Kerja Jawa Timur - PENTA | DISNAKERTRANS JAWA TIMUR</span>
                     <!-- <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp; -->
                 </div>
             </div>
@@ -461,7 +461,7 @@
             "Google Map":googleStreets,
             "Water Color":Stamen_Watercolor,
             // "OpenStreetMapDark": osm_custom,
-            // "OpenStreetMap No Label": osmNoLabel,
+            // "OSM NoLabel": osmNoLabel,
             "OSM OnlyLabel": osmOnlyLabel,
             "OpenStreetMap": osm,
             
@@ -476,11 +476,11 @@
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.5,
+                        opacity: 0.4,
                         color: '<?= $value->warna ?>',
                         // fillColor: '<?= $value->warna ?>',
                         fillColor: 'white',
-                        fillOpacity: 0.3,
+                        fillOpacity: 0.5,
                         interactive: true,
                         }    
                  },
@@ -815,7 +815,7 @@ Highcharts.chart('pie_chart', {
         type: 'pie'
     },
     title: {
-        text: 'Diagram Tenaga Kerja Provinsi Jawa Timur'
+        text: 'Diagram Tenaga Kerja Provinsi se-Jawa Timur'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -861,7 +861,7 @@ Highcharts.chart('spline_chart', {
         type: 'areaspline'
     },
     title: {
-        text: 'Diagram Tenaga Kerja dari Tahun '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
+        text: 'Grafik Tenaga Kerja Tahunan '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
     },
     subtitle: {
         align: 'center',

@@ -333,6 +333,15 @@
         });
         osm.addTo(map);
 
+        osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        attribution: '©OpenStreetMap, ©CartoDB'
+        }).addTo(map);
+
+        osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB'
+        });
+        osmOnlyLabel.addTo(map);
+
         // Google Street Layer
         googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
             // maxZoom: 16,
@@ -363,7 +372,9 @@
             "Water Color":Stamen_Watercolor,
             "OpenStreetMap": osm,
             "Google Satellite":googleSat,
+            "OSM OnlyLabel":osmOnlyLabel,
             "Google Street":googleStreets,
+           
             
         };
         var layer_baseControl= L.control.layers(baseLayers).addTo(map);
@@ -411,6 +422,25 @@
         });
 
         map.addLayer(marker);
+
+
+         //  jawa timur polygon geo json
+         <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
+            geoLayer = L.geoJson(data,  {
+                style : function(feature) {
+                    return {
+                        opacity: 0.2,
+                        color: 'gray',
+                        // fillColor: '<?= $value->warna ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
+                        interactive: false,
+                        }    
+                 },
+            }). addTo(map);
+        });
+        <?php } ?>
 
         // full screen map
         // create a fullscreen button and add it to the map

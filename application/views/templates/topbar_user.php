@@ -18,25 +18,25 @@
                 if ($ci->session->userdata('role_id') == 1) { ?>
                     <a href="<?= base_url('admin'); ?>">
                         <div class="sidebar-brand-icon"> 
-                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                            <img src="<?php echo base_url() ?>assets/img/favicon/jatim.png" alt="logo" width="55px" >
                         </div> 
                     </a>
             <?php } elseif ($ci->session->userdata('role_id') == 2) { ?>
                     <a href="<?= base_url('beranda'); ?>">
                         <div class="sidebar-brand-icon"> 
-                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                            <img src="<?php echo base_url() ?>assets/img/favicon/jatim.png" alt="logo" width="55px" >
                         </div> 
                     </a>
             <?php } else {?> 
                 <a href="<?= base_url(''); ?>">
                         <div class="sidebar-brand-icon"> 
-                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                            <img src="<?php echo base_url() ?>assets/img/favicon/jatim.png" alt="logo" width="55px" >
                         </div> 
                     </a>
                 <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65"> -->
             <?php } ?>
-            <div class="sidebar-brand-text mx-3" style="font-family:roboto; font-size:14px;  text-align: left;">Sistem Informasi Geografis<br>
-                <small> <p  style="font-family:roboto; font-size:9px; ">Tenaga Kerja Jawa Timur</p></small>
+            <div class="sidebar-brand-text mx-3" style="font-weight: 500; font-size:14px;  text-align: left;">Aplikasi Pemetaan Geografis<br>
+                 <p  style=" font-size:11px; ">Tenaga Kerja Jawa Timur</p>
             </div>
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -107,6 +107,7 @@
                 <a class="nav-item nav-link text-gray-600" href="reward">Penghargaan
                 </a> 
             </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
             <?php 
                 $ci = get_instance();
@@ -149,9 +150,9 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="<?= base_url(''); ?>" >
+                    <a class="dropdown-item" href="<?= base_url('beranda'); ?>" >
                             <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
-                            Dashboard 
+                            Dashboard Admin 
                         </a>
                         <a class="dropdown-item" href="<?= base_url('user'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>

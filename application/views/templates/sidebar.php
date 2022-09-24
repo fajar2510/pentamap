@@ -7,10 +7,10 @@
         
         <div class="sidebar-brand-icon"> 
             <!-- <i class="bi bi-map"></i> -->
-            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+            <img src="<?php echo base_url() ?>assets/img/favicon/jatim.png" alt="logo" width="55px" >
         </div> 
-        <div class="sidebar-brand-text mx-3 px-1 py-0" style="font-family:roboto; font-size:14px;  text-align: left;">Sistem Informasi Geografis<br>
-            <small> <p  style="font-family:roboto; font-size:9px; ">Tenaga Kerja Jawa Timur</p></small>
+        <div class="sidebar-brand-text mx-3 px-1 py-0" style="font-family:roboto; font-size:14px;  text-align: left;">Admin Dashboard<br>
+            <small> <p  style="font-family:roboto; font-size:9px; "></p></small>
         </div>
           
     </a>

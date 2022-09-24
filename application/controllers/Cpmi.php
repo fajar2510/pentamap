@@ -210,7 +210,7 @@ class Cpmi extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('cpmi/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 // 'perusahaan' => $this->input->post('perusahaan'),
@@ -284,6 +284,7 @@ class Cpmi extends CI_Controller
         // $data['negara'] = $this->db->get('tb_negara')->result_array();
         $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();

@@ -201,7 +201,7 @@ class Tka extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('tka/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama_tka'),
@@ -272,6 +272,7 @@ class Tka extends CI_Controller
         $data['negara'] = $this->Wilayah->list_negara();
         // $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id_lokasi);
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         // var_dump($data['lokasi']);
         // die;
 

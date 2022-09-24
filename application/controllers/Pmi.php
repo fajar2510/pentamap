@@ -242,7 +242,7 @@ class Pmi extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('pmi/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 'latitude' => $this->input->post('lat', true),
@@ -316,6 +316,7 @@ class Pmi extends CI_Controller
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // Load model pmi
         $data['lokasi'] = $this->Sebaran_Jatim->detail_pmib($id_lokasi);
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         // var_dump($data['lokasi']);
         // die;

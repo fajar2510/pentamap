@@ -29,11 +29,11 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                     <p style="font-family:'helvetica';font-size:15;">Edit Data <b> <?= $lokasi->nama_pmi ?></b>  <?= $title; ?> <b> <?= date('Y'); ?></b></p>
-                            <a href="<?= base_url('beranda'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+                            <a href="javascript:history.go(-1)" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-angle-left"></i>
                                 </span>
-                                <span class="text">Peta</span>
+                                <span class="text"></span>
                             </a>
                     </div>
                     <div class="card-body">
@@ -67,7 +67,7 @@
                                         <?php if ($lokasi->image == null) { ?>
                                             <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
                                         <?php } else { ?>
-                                            <div  class="foto2"><img src="<?= base_url('assets/img/tka/').$lokasi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/cpmi/').$lokasi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
                                          <?php } ?>
                                             <div  class="foto1"></div>
                                                                           
