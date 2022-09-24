@@ -28,7 +28,12 @@
                         </div> 
                     </a>
             <?php } else {?> 
-                <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                <a href="<?= base_url(''); ?>">
+                        <div class="sidebar-brand-icon"> 
+                            <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65">
+                        </div> 
+                    </a>
+                <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65"> -->
             <?php } ?>
             <div class="sidebar-brand-text mx-3" style="font-family:roboto; font-size:14px;  text-align: left;">Sistem Informasi Geografis<br>
                 <small> <p  style="font-family:roboto; font-size:9px; ">Tenaga Kerja Jawa Timur</p></small>
@@ -75,7 +80,7 @@
                 </a>
             </li>
             <li class="nav-item no-arrow">
-                <a class="nav-item nav-link text-gray-600" href="home#diagram">Data Diagram
+                <a class="nav-item nav-link text-gray-600" href="home#diagram">Grafik
                 </a> 
             </li>
             <li class="nav-item dropdown">
@@ -83,7 +88,7 @@
                 Tenaga Kerja
                 </a>
             <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="nakerDropdown">
+                <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="nakerDropdown">
                     <a class="dropdown-item" href="<?= base_url('phk'); ?>" >
                     PHK
                     </a>
@@ -99,7 +104,7 @@
                 </div>
             </li>
             <li class="nav-item no-arrow">
-                <a class="nav-item nav-link text-gray-600" href="reward">Data Reward
+                <a class="nav-item nav-link text-gray-600" href="reward">Penghargaan
                 </a> 
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -144,6 +149,10 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="<?= base_url(''); ?>" >
+                            <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
+                            Dashboard 
+                        </a>
                         <a class="dropdown-item" href="<?= base_url('user'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profil
@@ -156,10 +165,10 @@
                             <i class="fas fa-fw fa-unlock-alt mr-2 text-gray-400"></i>
                             Ubah Password
                         </a> -->
-                        <a class="dropdown-item disabled" disabled >
+                        <!-- <a class="dropdown-item disabled" disabled >
                             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                             Log <i><b> (segera hadir)</b></i>
-                        </a>
+                        </a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
