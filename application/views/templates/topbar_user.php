@@ -73,15 +73,21 @@
             </form>
             
             <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto ">
+            <ul class="navbar-nav">
 
-            <li class="nav-item no-arrow text-gray-600">
-                <a class="nav-item nav-link active text-gray-600" href="home">Peta
-                </a>
+            <li class="nav-item no-arrow">
+                <?php if ($title == "Peta Tenaga Kerja") { ?>
+                    <a class="nav-link" href="home">Peta</a>
+                <?php } else { ?>
+                    <a class="nav-link text-gray-600" href="home">Peta</a>
+                <?php } ?>
             </li>
             <li class="nav-item no-arrow">
-                <a class="nav-item nav-link text-gray-600" href="home#diagram">Grafik
-                </a> 
+                <?php if ($title == "Peta Tenaga Kerja") { ?>
+                    <a class="nav-link text-gray-600" href="#diagram">Grafik</a> 
+                <?php } else { ?>
+                    <a class="nav-link text-gray-600" href="home#diagram">Grafik</a> 
+                <?php } ?>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-gray-600" href="#" id="nakerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
@@ -89,23 +95,34 @@
                 </a>
             <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="nakerDropdown">
-                    <a class="dropdown-item" href="<?= base_url('phk'); ?>" >
-                    PHK
-                    </a>
-                    <a class="dropdown-item" href="<?= base_url('pmi'); ?>" >
-                    PMI Bermasalah
-                    </a>
-                    <a class="dropdown-item" href="<?= base_url('cpmi'); ?>">
-                    CPMI
-                    </a>
-                    <a class="dropdown-item" href="<?= base_url('tka'); ?>">
-                    TKA
-                    </a>
+                    <?php if ($title == "Tenaga Kerja Daerah") { ?>
+                        <a class="dropdown-item active" href="<?= base_url('phk'); ?>" >PHK</a>
+                    <?php } else { ?>
+                        <a class="dropdown-item" href="<?= base_url('phk'); ?>" >PHK</a>
+                    <?php } ?>
+                    <?php if ($title == "PMI Bermasalah") { ?>
+                        <a class="dropdown-item active" href="<?= base_url('pmi'); ?>" >PMI Bermasalah</a>
+                    <?php } else { ?>
+                        <a class="dropdown-item" href="<?= base_url('pmi'); ?>" >PMI Bermasalah</a>
+                    <?php } ?>
+                    <?php if ($title == "Penempatan CPMI") { ?>
+                        <a class="dropdown-item active" href="<?= base_url('cpmi'); ?>">CPMI</a>
+                    <?php } else { ?>
+                        <a class="dropdown-item" href="<?= base_url('cpmi'); ?>">CPMI</a>
+                    <?php } ?>
+                    <?php if ($title == "Tenaga Kerja Asing") { ?>
+                        <a class="dropdown-item active" href="<?= base_url('tka'); ?>">TKA</a>
+                    <?php } else { ?>
+                        <a class="dropdown-item" href="<?= base_url('tka'); ?>">TKA</a>
+                    <?php } ?>
                 </div>
             </li>
             <li class="nav-item no-arrow">
-                <a class="nav-item nav-link text-gray-600" href="reward">Penghargaan
-                </a> 
+                <?php if ($title == "Penghargaan") { ?>
+                        <a class="nav-link" href="reward">Penghargaan</a> 
+                    <?php } else { ?>
+                        <a class="nav-link text-gray-600" href="reward">Penghargaan</a> 
+                    <?php } ?>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
