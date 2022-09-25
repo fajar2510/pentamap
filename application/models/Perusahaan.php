@@ -45,7 +45,7 @@ class Perusahaan extends CI_Model
     {
         $query =
             "SELECT `tb_tka`.*, `tb_perusahaan`.`nama_perusahaan`, `tb_perusahaan`.`status`, `tb_perusahaan`.`alamat`,
-                  `kabupaten`.`nama_kabupaten`, `tb_negara`. `nama_negara`
+             `kabupaten`.`nama_kabupaten`, `tb_negara`. `nama_negara`, `tb_negara`.`flag`
                     FROM `tb_tka` 
                     JOIN `tb_perusahaan` ON `tb_tka`.`id_perusahaan` = `tb_perusahaan`.`id`
                     JOIN `kabupaten` ON `tb_tka`.`lokasi_kerja` = `kabupaten`.`id_kabupaten`

@@ -187,73 +187,79 @@
                 </div>
                 <div class="container">
                     <div class="modal-body">
-                        <p > <small><b> DATA <?= $title; ?> </b></small></p>
                         <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_pmi']; ?></label>
+                            <div class="col-8">
+                                <p > <small><b> DATA <?= $title; ?> </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_pmi']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kelamin']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Tempat Lahir </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tempat_lahir']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tanggal_lahir']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['perusahaan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Domisili</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Asal</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jabatan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Pendidikan Formal </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pendidikan_formal']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Gaji</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['gaji']; ?></label>
+                                </div>
+                                
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Paspor </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['paspor']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Negara Penempatan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Kode Penerbangan</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_pesawat']; ?></label>
+                                </div>
+                                <div class="row"><br></div>
+                                <p > <small><b> DATA PENGGUNA JASA </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Nama/Instansi </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pengguna_jasa']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Alamat  </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_pengguna_jasa']; ?></label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                    <p > <small><b> <br> </b></small></p>
+                                    <img src="<?= base_url('assets/img/cpmi/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
+                                    <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama_pmi']; ?></small></p>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kelamin']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Tempat Lahir </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tempat_lahir']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Tanggal Lahir</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tanggal_lahir']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['perusahaan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Domisili</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Asal</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jabatan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Pendidikan Formal </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pendidikan_formal']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Gaji</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['gaji']; ?></label>
-                        </div>
-                        
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Paspor </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['paspor']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Negara Penempatan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kode Penerbangan</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_pesawat']; ?></label>
-                        </div>
-                        <div class="row"><br></div>
-                        <p > <small><b> DATA PENGGUNA JASA </b></small></p>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama/Instansi </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['pengguna_jasa']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Alamat  </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_pengguna_jasa']; ?></label>
-                        </div>
-                        
-                      
-                       
                     </div>
                 </div>
                 <div class="modal-footer">

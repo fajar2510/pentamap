@@ -285,15 +285,15 @@
                                                 ?>) tahun</label>
                                 </div>
                                 <div class="row">
-                                    <label for="name" class="col-sm-4 col-form-label">Alamat Lengkap</label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat']; ?></label>
+                                    <label for="name" class="col-sm-4 col-form-label">Kabupaten/kota</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
                                     
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label"></label>
                                     <label for="name" class="col-sm-8 col-form-label">: <small>&nbsp;<?= $p['nama_kelurahan']; ?>, &nbsp;<?= $p['nama_kecamatan']; ?>,
                                                                 &nbsp;<?= $p['nama_kabupaten']; ?>, &nbsp;<?= $p['nama_provinsi']; ?> </small> </label>
-                                </div>
+                                </div> -->
                                 
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Negara Bekerja</label>

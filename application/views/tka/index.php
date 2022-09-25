@@ -170,56 +170,65 @@
                 </div>
                 <div class="container">
                     <div class="modal-body">
-                        <p > <small><b> DATA <?= $title; ?> </b></small></p>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $t['nama_tka']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Perusahaan</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jenis_kel']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Negara </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kewarganegaraan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kontak</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kontak']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jabatan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_kabupaten']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">No. RPTKA</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_rptka']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Masa RPTKA </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_rptka']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">No. IMTA </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_imta']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Masa IMTA </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_imta']; ?> </label>
-                        </div>
                        
+                        <div class="row">
+                            <div class="col-8">
+                            <p> <small><b> DATA <?= $title; ?> </b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $t['nama_tka']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Perusahaan</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jenis_kel']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Negara </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kewarganegaraan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Kontak</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kontak']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Jabatan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jabatan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_kabupaten']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">No. RPTKA</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_rptka']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Masa RPTKA </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_rptka']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">No. IMTA </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['no_imta']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Masa IMTA </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_imta']; ?> </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                    <p > <small><b> <br> </b></small></p>
+                                    <img src="<?= base_url('assets/img/tka/') . $t['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
+                                    <p class="text-center" ><small> Foto. &nbsp; <?= $t['nama_tka']; ?></small></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

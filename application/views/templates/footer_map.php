@@ -806,133 +806,133 @@
 
     <script type="text/javascript">
         // Data retrieved from https://netmarketshare.com/
-// Build the chart
-Highcharts.chart('pie_chart', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Diagram Tenaga Kerja Provinsi se-Jawa Timur'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-    },
-    series: [{
-        name: 'Prosentase',
-        colorByPoint: true,
-        data: [{
-            name: 'PHK',
-            y: <?php echo $presentase_phk ?>,
-        },  {
-            name: 'PMI Bermasalah',
-            y: <?php echo $presentase_pmib ?>
-        },  {
-            name: 'CPMI',
-            y: <?php echo $presentase_cpmi ?>
-        }, {
-            name: 'TKA',
-            y: <?php echo $presentase_tka ?>
-        }]
-    },],
-});
-
-
-// Retrieved from https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt
-Highcharts.chart('spline_chart', {
-    chart: {
-        type: 'areaspline'
-    },
-    title: {
-        text: 'Grafik Tenaga Kerja Tahunan '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
-    },
-    subtitle: {
-        align: 'center',
-        text: 'Source: Dinas Tenaga Kerja & Transmigrasi Prov. Jatim'
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'left',
-        verticalAlign: 'top',
-        x: 120,
-        y: 70,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-    },
-    xAxis: {
-        plotBands: [{ // Highlight the two last years
-            from: <?php echo $tahun_awal ?>,
-            to: <?php echo $tahun_ini ?>,
-            color: 'rgba(232, 232, 232, .2)'
-        }]
-    },
-    yAxis: {
-        title: {
-            text: 'Quantity'
-        }
-    },
-    tooltip: {
-        shared: true,
-        headerFormat: '<b>Hunting season starting autumn {point.x}</b><br>'
-    },
-    credits: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            pointStart: <?php echo $tahun_awal ?>
+    // Build the chart
+    Highcharts.chart('pie_chart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
         },
-        areaspline: {
-            fillOpacity: 0.5
-        }
-    },
-    series: [{
-        name: 'PHK',
-        data:
-            [
-                <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
-            ]
-    }, {
-        name: 'PMI Bermasalah',
-        data:
-            [
-                <?php foreach($data_tahun_pmib as $data){ echo $data.","; } ?>
-            ]
-    },
-    {
-        name: 'CPMI',
-        data:
-            [
-                <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
-            ]
-    },
-    {
-        name: 'TKA',
-        data:
-            [
-                <?php foreach($data_tahun_tka as $data){ echo $data.","; } ?>
-            ]
-    }]
-});
+        title: {
+            text: 'Diagram Tenaga Kerja Provinsi se-Jawa Timur'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Prosentase',
+            colorByPoint: true,
+            data: [{
+                name: 'PHK',
+                y: <?php echo $presentase_phk ?>,
+            },  {
+                name: 'PMI-B',
+                y: <?php echo $presentase_pmib ?>
+            },  {
+                name: 'CPMI',
+                y: <?php echo $presentase_cpmi ?>
+            }, {
+                name: 'TKA',
+                y: <?php echo $presentase_tka ?>
+            }]
+        },],
+    });
+
+
+    // Retrieved from https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt
+    Highcharts.chart('spline_chart', {
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: 'Grafik Tenaga Kerja Tahunan '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
+        },
+        subtitle: {
+            align: 'center',
+            text: 'Source: Dinas Tenaga Kerja & Transmigrasi Prov. Jatim'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 120,
+            y: 70,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor:
+                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+        },
+        xAxis: {
+            plotBands: [{ // Highlight the two last years
+                from: <?php echo $tahun_awal ?>,
+                to: <?php echo $tahun_ini ?>,
+                color: 'rgba(232, 232, 232, .2)'
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Quantity'
+            }
+        },
+        tooltip: {
+            shared: true,
+            headerFormat: '<b>Hunting season starting autumn {point.x}</b><br>'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                pointStart: <?php echo $tahun_awal ?>
+            },
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+            name: 'PHK',
+            data:
+                [
+                    <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
+                ]
+        }, {
+            name: 'PMI-B',
+            data:
+                [
+                    <?php foreach($data_tahun_pmib as $data){ echo $data.","; } ?>
+                ]
+        },
+        {
+            name: 'CPMI',
+            data:
+                [
+                    <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
+                ]
+        },
+        {
+            name: 'TKA',
+            data:
+                [
+                    <?php foreach($data_tahun_tka as $data){ echo $data.","; } ?>
+                ]
+        }]
+    });
 
     </script>
 

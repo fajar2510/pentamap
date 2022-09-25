@@ -75,7 +75,7 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto ">
 
-            <li class="nav-item no-arrow text-gray-400">
+            <li class="nav-item no-arrow text-gray-600">
                 <a class="nav-item nav-link active text-gray-600" href="home">Peta
                 </a>
             </li>
