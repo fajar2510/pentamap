@@ -30,11 +30,11 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-between mb-0">
                     <p style="font-family:'helvetica';font-size:15;">Edit Data <b> <?= $lokasi->nama ?></b>  <?= $title; ?> <b> <?= date('Y'); ?></b></p>
-                            <a href="<?= base_url('beranda'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+                            <a href="javascript:history.go(-1)" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-angle-left"></i>
                                 </span>
-                                <span class="text">Peta</span>
+                                <span class="text"></span>
                             </a>
                     </div>
                     <div class="card-body">
@@ -56,10 +56,12 @@
                                         </div>
                                         <div class="col-sm-3"> 
 
-                                            <div  id="foto1"><img src="<?= base_url('assets/img/pmi/') . $lokasi->image ?>" class="img-fluid " 
-                                            style="width: 180px; height: 190px; object-fit: cover; padding-bottom:20px;" alt="Profile Picture"></div>
-                                                                          
-                                            <div  id="foto1"><img id="newimage"   src="http://placehold.it/180" class="img-fluid" alt="new image" style="width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;"/></div>
+                                        <?php if ($lokasi->image == null) { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                        <?php } else { ?>
+                                            <div  class="foto2"><img src="<?= base_url('assets/img/pmi/').$lokasi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                         <?php } ?>
+                                            <div  class="foto1"></div>
                                                                           
                                             <div class="custom-file" >
                                                 <input type="file"  class="custom-file-input" onchange="readURL(this);" id="image" name="image">

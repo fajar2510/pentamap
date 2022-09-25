@@ -177,19 +177,29 @@ class Exportimport extends CI_Controller
     }
 
 
-    public function pmi_negara($negara, $date)
+    public function pmi_negara()
     {
+        $this->form_validation->set_rules('tahun', 'Tahun', 'required|trim');
+        $tahun = $this->input->post('tahun', true);
+        $negara = $this->input->post('negara', true);
+        $nama_negara = $this->db->select('*')->where('id_negara',$negara)->get('tb_negara')->result_array();
         $mpdf = new \Mpdf\Mpdf();
-        $data_pmi = $this->Master->getPmi_per_negara($negara, $date);
-        // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
-
-        $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi], TRUE);
+        $data_pmi = $this->Master->getPmi_per_negara($negara, $tahun);
+        $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
+        // var_dump(); die;
+        if (count($data_pmi) == 0) {
+            $ada = 0;
+        }else {
+            $ada = 1;
+        }
+        $data = $this->load->view('export/pmi_data_negara', ['semua_data_pmi' => $data_pmi, 'ada' => $ada,'nama_negara' => $nama_negara[0]['nama_negara']], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
 
-    public function reward_perusahaan($date)
+    public function reward_perusahaan()
     {
+        $tahun = $this->input->post('tahun', true);
         $mpdf = new \Mpdf\Mpdf(
             [
                 'mode' => 'utf-8',
@@ -197,10 +207,11 @@ class Exportimport extends CI_Controller
                 'orientation' => 'L'
             ]
         );
-        $data_reward = $this->RewardModel->get_reward_perusahaan_date($date);
+
+        $data_reward = $this->RewardModel->get_reward_perusahaan_date($tahun);
         // $data_tanggal = $this->Master->getPmiJoinWilayah($negara);
 
-        $data = $this->load->view('export/reward_data', ['semua_data_reward' => $data_reward], TRUE);
+        $data = $this->load->view('export/reward_data', ['semua_data_reward' => $data_reward, 'tahun' => $tahun], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }
@@ -230,16 +241,27 @@ class Exportimport extends CI_Controller
         $mpdf->Output();
     }
 
-    public function export_pdf_cpmi($perusahaan, $negara, $date)
+    public function export_pdf_cpmi()
     {
+        $tahun = $this->input->post('tahun', true);
+        $negara = $this->input->post('negara', true);
+        $nama_negara = $this->db->select('*')->where('id_negara',$negara)->get('tb_negara')->result_array();
         $mpdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4-L',
             'orientation' => 'L'
         ]);
-        $data_cpmi = $this->Penempatan->get_pdf_cpmi($perusahaan, $negara, $date);
-        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($perusahaan, $negara,$date);
-        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara], TRUE);
+        $data_cpmi = $this->Penempatan->get_pdf_cpmi($negara, $tahun);
+        if (count($data_cpmi) == 0) {
+            $ada = 0;
+        }else {
+            $ada = 1;
+        }
+        // echo"<pre>";
+        // var_dump($data_cpmi); 
+        // die;
+        $total_cpmi_perusahaan_negara = $this->Penempatan->getTotalCPMI_byNegara($negara,$tahun);
+        $data = $this->load->view('export/cpmi_data', ['semua_data_cpmi' => $data_cpmi, 'data_total_orang' => $total_cpmi_perusahaan_negara, 'ada' => $ada], TRUE);
         $mpdf->WriteHTML($data);
         $mpdf->Output();
     }

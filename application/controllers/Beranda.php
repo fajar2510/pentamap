@@ -7,7 +7,7 @@ class Beranda extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -18,6 +18,7 @@ class Beranda extends CI_Controller
 
     public function index()
     {
+        is_logged_in();
         $data['title'] = 'Peta Tenaga Kerja';
 
         // mengambil data user login
@@ -43,7 +44,7 @@ class Beranda extends CI_Controller
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
-        // var_dump($data['total_cpmi']);
+        // var_dump($data['detail_kabupaten']);
         // die;
 
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
@@ -53,6 +54,11 @@ class Beranda extends CI_Controller
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
 
+        if ($this->ci->session->userdata('email')) {
+            $data['is_login'] = 1;
+        }else{
+            $data['is_login'] = 0;
+        }
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
@@ -69,6 +75,7 @@ class Beranda extends CI_Controller
 
     public function kabupaten()
     {
+        // is_logged_in();
         // $tahun = $this->input->post('tahun');
         $query =
             "SELECT  kabupaten.nama_kabupaten,kabupaten.geojson, kabupaten.warna,  kabupaten.luas_area, 
@@ -243,6 +250,7 @@ class Beranda extends CI_Controller
 
     public function phk()
     {
+        is_logged_in();
         $query =
             "SELECT *, max(jumlah_phk) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
         ";
@@ -253,6 +261,7 @@ class Beranda extends CI_Controller
 
     public function pmi()
     {
+        is_logged_in();
         $query =
             "SELECT *,max(jumlah_pmi) as pmi_max FROM kabupaten WHERE id_provinsi= '42385' GROUP BY nama_kabupaten
         ";
@@ -263,6 +272,7 @@ class Beranda extends CI_Controller
 
     public function pmib()
     {
+        is_logged_in();
         $query =
             "SELECT max(jumlah_pmib) FROM kabupaten WHERE id_provinsi= '42385'
         ";
@@ -273,6 +283,7 @@ class Beranda extends CI_Controller
 
     public function tka()
     {
+        is_logged_in();
         $query =
             "SELECT max(jumlah_tka) FROM kabupaten WHERE id_provinsi= '42385'
         ";

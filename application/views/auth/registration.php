@@ -8,14 +8,14 @@
                     <div class="p-5">
                         <div class="text-center">
                             <!-- <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45"> -->
-                            <img src="<?php echo base_url() ?>assets/img/auth/authlogin.png" alt="logo" class="img-fluid " style="width: 90px; ">
+                            <img src="<?php echo base_url() ?>assets/img/auth/jatim.png" alt="logo" class="img-fluid " style="width: 90px; ">
                        
                             
-                                    <p><small> Sistem Informasi Geografis Tenaga Kerja Jatim</small> </p>
+                                    <p><small> Aplikasi Pemetaan Geografis Tenaga Kerja Jatim</small> </p>
                                     <hr style="margin-top: 10px; margin-bottom: 10px ;">
                             <h1 class="h4 text-gray-900 mb-4"> Registrasi Akun Baru!</h1>
                         </div>
-                        <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
+                        <!-- <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
                             <div class="form-floating mb-3 "> 
                                 <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap. . ." value="<?= set_value('name'); ?>">
                                 
@@ -37,7 +37,7 @@
                             <button type="submit" class="btn btn-primary btn-user btn-block" style="font-size:15; font-weight:bold;">
                                 BUAT AKUN
                             </button>
-                        </form>
+                        </form> -->
                         <hr>
                         <div class="text-center">
                             <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>

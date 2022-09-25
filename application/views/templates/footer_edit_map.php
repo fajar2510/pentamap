@@ -333,6 +333,15 @@
         });
         osm.addTo(map);
 
+        osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+        attribution: '©OpenStreetMap, ©CartoDB'
+        }).addTo(map);
+
+        osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB'
+        });
+        osmOnlyLabel.addTo(map);
+
         // Google Street Layer
         googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
             // maxZoom: 16,
@@ -363,7 +372,9 @@
             "Water Color":Stamen_Watercolor,
             "OpenStreetMap": osm,
             "Google Satellite":googleSat,
+            "OSM OnlyLabel":osmOnlyLabel,
             "Google Street":googleStreets,
+           
             
         };
         var layer_baseControl= L.control.layers(baseLayers).addTo(map);
@@ -411,6 +422,25 @@
         });
 
         map.addLayer(marker);
+
+
+         //  jawa timur polygon geo json
+         <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
+            geoLayer = L.geoJson(data,  {
+                style : function(feature) {
+                    return {
+                        opacity: 0.2,
+                        color: 'gray',
+                        // fillColor: '<?= $value->warna ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
+                        interactive: false,
+                        }    
+                 },
+            }). addTo(map);
+        });
+        <?php } ?>
 
         // full screen map
         // create a fullscreen button and add it to the map
@@ -520,14 +550,17 @@
     function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
+                var foto1 = "<img class='fotoBaru' src='http://placehold.it/180' class='img-fluid' style='width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;'/>";
+                $('.foto1').html(foto1);
 
                 reader.onload = function (e) {
-                    $('#newimage')
+                    $('.fotoBaru')
                         .attr('src', e.target.result);
                     
-                    var foto2 = "<img id='newimage' src='http://placehold.it/180' class='img-fluid' alt='Foto Profil Baru' style='object-fit: cover; padding-bottom:20px; width: 180px; height: 190px;' />"
-                    $('#foto1').html("");
-                    $('#foto2').html(foto2);
+                    var gambar_kedua = "<img class='fotoBaru' src='http://placehold.it/180' class='img-thumbnail' alt='Foto Profil Baru' style='object-fit: cover;' />"
+                    $('#gambar_pertama').html("");
+                    $('#gambar_kedua').html(gambar_kedua);
+                    $('.foto2').html("");
                 };
 
                 reader.readAsDataURL(input.files[0]);

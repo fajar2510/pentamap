@@ -14,8 +14,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-
-
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
@@ -31,7 +29,6 @@
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
                     <?php foreach ($phk as $total_phk); ?>
-
 
                     <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
@@ -54,17 +51,13 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto ">
 
-                
-           
-
-
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">
-                     3
+                     0
                      <!-- jumlah notifikasi -->
                 </span>
               </a>
@@ -139,8 +132,7 @@
                   <!-- echo  "&nbsp; $jam";  -->
 
                 <div class="topbar-divider d-none d-sm-block"></div>
-
-                <li class="nav-link no-arrow mx-1" > 
+                  <li class="nav-link no-arrow mx-1" > 
                   <right>
 
                   <!-- $tanggal = mktime(date("m"), date("d"), date("Y"));
@@ -163,13 +155,11 @@
                     }
                     ?>
                     
-
                     <p class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name']; ?></p>
 
                
                     </right>
                 </li>
-                
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -179,10 +169,15 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="<?= base_url(''); ?>" >
+                            <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
+                            Peta Penuh 
+                        </a>
                         <a class="dropdown-item" href="<?= base_url('user'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profil
                         </a>
+                        
                         <!-- <a class="dropdown-item" href="<?= base_url('user/edit'); ?>">
                             <i class="fas fa-fw fa-user-edit mr-2 text-gray-400"></i>
                             Edit
@@ -191,10 +186,11 @@
                             <i class="fas fa-fw fa-unlock-alt mr-2 text-gray-400"></i>
                             Ubah Password
                         </a> -->
-                        <a class="dropdown-item disabled" disabled >
+                        <!-- <a class="dropdown-item disabled" disabled >
                             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                             Log <i><b> (segera hadir)</b></i>
-                        </a>
+                        </a> -->
+                        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

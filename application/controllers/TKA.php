@@ -8,6 +8,7 @@ class Tka extends CI_Controller
     {
         parent::__construct();
         
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Perusahaan');
         $this->load->model('Penempatan');
@@ -35,14 +36,21 @@ class Tka extends CI_Controller
 
         $data['title'] = 'Tenaga Kerja Asing';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('tka/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
     public function tambah()
     {
+        is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -146,6 +154,7 @@ class Tka extends CI_Controller
  
     public function edit($id)
     {
+        is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -167,8 +176,8 @@ class Tka extends CI_Controller
         $data['negara'] = $this->Wilayah->list_negara();
         // $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         // $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id);
-        // var_dump($data['edit_tka']);
-        // die;
+        // echo"<pre>";
+        // var_dump($data['edit_tka']); die;
 
 
         $this->form_validation->set_rules('nama_tka', 'Nama TKA', 'required');
@@ -192,7 +201,7 @@ class Tka extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('tka/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 'nama_tka' => $this->input->post('nama_tka'),
@@ -242,6 +251,7 @@ class Tka extends CI_Controller
 
     public function edit_tka($id_lokasi)
     {
+        is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -262,6 +272,7 @@ class Tka extends CI_Controller
         $data['negara'] = $this->Wilayah->list_negara();
         // $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id_lokasi);
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         // var_dump($data['lokasi']);
         // die;
 
@@ -355,8 +366,14 @@ class Tka extends CI_Controller
 
         $data['title'] = 'Tenaga Kerja Asing';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('tka/detail', $data);
         // $this->load->view('templates/footer_detail_map', $data);
     }
@@ -364,6 +381,7 @@ class Tka extends CI_Controller
 
     public function hapus($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
 
         $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
@@ -392,6 +410,7 @@ class Tka extends CI_Controller
 
     public function hapusMap($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
 
         $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");

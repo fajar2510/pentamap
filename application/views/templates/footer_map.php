@@ -4,7 +4,7 @@
             <hr>
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Sistem Informasi Geofrafis Tenaga Kerja Jatim - PENTA | DISNAKERTRANS JAWA TIMUR</span>
+                    <span>Copyright All Reserved &copy; <?= date('Y'); ?>&nbsp;  Aplikasi Pemetaan Tenaga Kerja Jawa Timur - PENTA | DISNAKERTRANS JAWA TIMUR</span>
                     <!-- <img src="<?php echo base_url() ?>assets/img/favicon/logopng.png" alt="" width="15" height="18">&nbsp; -->
                 </div>
             </div>
@@ -107,6 +107,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
     <!-- <script src="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.all.min.js"></script> -->
+    <!-- HIGHCHART -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- HIGHCHART -->
 
 
 
@@ -148,18 +154,26 @@
         var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
 
 
-        // Open Street Default Layer     
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '©OpenStreetMap, ©CartoDB'
-            
-        });
-        osm.addTo(map);
+        
+
+           
+
+        
         
 
         // var osm_dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // });
         // osm_dark.addTo(map);
+
+       
+
+        // Open Street Default Layer     
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '©OpenStreetMap, ©CartoDB',
+            // pane: 'labels'
+        });
+        osm.addTo(map);
 
         osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '©OpenStreetMap, ©CartoDB'
@@ -168,7 +182,7 @@
         osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
             attribution: '©OpenStreetMap, ©CartoDB'
         });
-        osm.addTo(map);
+        osmOnlyLabel.addTo(map);
 
         // Google Street Layer
         googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -291,8 +305,9 @@
           
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
             var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
-            .bindPopup('<div class="container px-1 py-1">'+
-              '<img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover; " >  '+
+            .bindPopup(
+            '<div class="container px-1 py-1">'+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
@@ -300,9 +315,9 @@
               '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+
               
                
-              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
             markersPhk.addLayer(sebaranPhk);
             map.addLayer(markersPhk);
@@ -334,16 +349,16 @@
         <?php foreach ($sebaran_cpmi  as $key => $value) { ?> 
             var sebaranCpmi = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconCpmi} )
             .bindPopup('<div class="container px-1 py-1">'+
-              '<img src="<?= base_url("assets/img/cpmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/cpmi/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-book-open-reader" style="margin-bottom: 10px; margin-right: 10px;"></i>Perekrut , <?= $value->pengguna_jasa ?><br />'+
               '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor , <?= $value->paspor ?></i></p> '+
               
-              '<a href="<?= base_url('cpmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<a href="<?= base_url('cpmi/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
             markersCpmi.addLayer(sebaranCpmi);
             map.addLayer(markersCpmi);
@@ -374,16 +389,17 @@
           
           <?php foreach ($sebaran_pmib  as $key => $value) { ?> 
               var sebaranPmib = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPmib} )
-              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/pmi/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;"> '+
+              .bindPopup('<div class="container px-1 py-1">'+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/pmi/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama ?></h5> <span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><i>PMI Bermasalah (PMI-B)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i> Negara Bekerja , <?= $value->nama_negara ?> &nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i> Pekerjaan , <?= $value->jenis_pekerjaan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i> Lama bekerja , <?= $value->lama_bekerja ?></i></p> '+
               
-              '<a href="<?= base_url('pmi/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('pmi/edit_pmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusPmib<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<a href="<?= base_url('pmi/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('pmi/edit_pmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPmib<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
   
               markersPmib.addLayer(sebaranPmib);
               map.addLayer(markersPmib);
@@ -413,16 +429,17 @@
           
           <?php foreach ($sebaran_tka  as $key => $value) { ?> 
               var sebaranTka = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconTka} )
-              .bindPopup('<div class="container px-1 py-1"><img src="<?= base_url("assets/img/tka/") . $value->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 200px; height: 200px; object-fit:cover;">'+
+              .bindPopup('<div class="container px-1 py-1">'+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/tka/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Asal , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
               '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jabatan ?><br />'+
               '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
               
-              '<a href="<?= base_url('tka/detail/' . $value->id) ?>" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<a href="<?= base_url('tka/edit_tka/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a>' +
-              '<button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div>');
+              '<a href="<?= base_url('tka/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('tka/edit_tka/' . $value->id) ?>"  class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
               markersTka.addLayer(sebaranTka);
               map.addLayer(markersTka);
@@ -444,37 +461,34 @@
             "Google Map":googleStreets,
             "Water Color":Stamen_Watercolor,
             // "OpenStreetMapDark": osm_custom,
-            // "OpenStreetMap No Label": osmNoLabel,
+            // "OSM NoLabel": osmNoLabel,
             "OSM OnlyLabel": osmOnlyLabel,
             "OpenStreetMap": osm,
             
+            
         };
         var layer_baseControl= L.control.layers(baseLayers, overlays).addTo(map);
-        //batas function
-
-         //  jawa timur polygon geo json
 
 
-         <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        //  jawa timur polygon geo json
+        <?php foreach ($detail_kabupaten as $key => $value) { ?>
         $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.5,
+                        opacity: 0.4,
                         color: '<?= $value->warna ?>',
                         // fillColor: '<?= $value->warna ?>',
                         fillColor: 'white',
-                        fillOpacity: 0.3,
-                        
+                        fillOpacity: 0.5,
+                        interactive: true,
                         }    
                  },
-            }).addTo(map);
+            }). addTo(map);
 
             // geolayer.bindTooltip("My polygon",
             // {permanent: true, direction:"center"}
             // ).openTooltip()
-
-            
 
             geoLayer.eachLayer(function (layer) {
                 layer.bindPopup('<div class="container px-1 py-1">'+
@@ -483,15 +497,14 @@
               '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
               '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
               '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value->kabupaten_lat ?>, &nbsp;  <?= $value->kabupaten_lat ?><br>'+
-              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br>'+
-              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
-              '<button type="button" class="btn btn-primary btn-block d-inline-block ">Selengkapnya</button></div>');
+              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, ' +
+              'PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br> <br>'+
+            //   '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
+              '<button type="button" onclick="btn_lp()" data-id="<?php echo $value->id_kabupaten ?>" class="btn btn-primary btn-block d-inline-block listp">Daftar Perusahaan</button></div>');
             });
         });
         <?php } ?>
-
-        
- 
+        //batas function
 
         $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
             $.each(data, function(i, field) {
@@ -499,7 +512,7 @@
                 var leafleticon = L.icon({
                     // iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
                     iconUrl: 'assets/img/marker/darkcircle.png',
-                    iconSize: [15, 15]
+                    iconSize: [1, 1]
                 })
                 
                 var lat = parseFloat(data[i].kabupaten_lat);
@@ -569,18 +582,10 @@
                 var bangunanMarker = L.marker([long, lat], {
                         icon: leafleticon,
                         title: data[i].nama_kabupaten,
-                            }).addTo(map)
-                            .bindPopup("<h6><u><b><center>" + data[i].nama_kabupaten + "</b></u><br></h6>" +
-                            "<ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li> " +
-                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-info badge-pill'>" + pmi + "</span></li> " +
-                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li> " +
-                            "<li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-success badge-pill'>" + tka + "</span></li> " +
-                            "<li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-primary listp' data-id='"+data[i].id_kabupaten+"'><b>Daftar Perusahaan</b></button>")
-                            .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
+                            }).addTo(map).bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
                               // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
                                 permanent: true,
-                                size: 10,
+                                size: 8,
                                 direction: 'bottom',
                                 opacity: 0.65,
                                 sticky: false,
@@ -797,6 +802,138 @@
         $(document).ready(function(){
         $(".preloader").fadeOut();
         })
+    </script>
+
+    <script type="text/javascript">
+        // Data retrieved from https://netmarketshare.com/
+    // Build the chart
+    Highcharts.chart('pie_chart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Diagram Tenaga Kerja Provinsi se-Jawa Timur'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Prosentase',
+            colorByPoint: true,
+            data: [{
+                name: 'PHK',
+                y: <?php echo $presentase_phk ?>,
+            },  {
+                name: 'PMI-B',
+                y: <?php echo $presentase_pmib ?>
+            },  {
+                name: 'CPMI',
+                y: <?php echo $presentase_cpmi ?>
+            }, {
+                name: 'TKA',
+                y: <?php echo $presentase_tka ?>
+            }]
+        },],
+    });
+
+
+    // Retrieved from https://www.ssb.no/jord-skog-jakt-og-fiskeri/jakt
+    Highcharts.chart('spline_chart', {
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: 'Grafik Tenaga Kerja Tahunan '+<?php echo $tahun_awal ?>+'-'+<?php echo $tahun_ini ?>
+        },
+        subtitle: {
+            align: 'center',
+            text: 'Source: Dinas Tenaga Kerja & Transmigrasi Prov. Jatim'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 120,
+            y: 70,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor:
+                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+        },
+        xAxis: {
+            plotBands: [{ // Highlight the two last years
+                from: <?php echo $tahun_awal ?>,
+                to: <?php echo $tahun_ini ?>,
+                color: 'rgba(232, 232, 232, .2)'
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Quantity'
+            }
+        },
+        tooltip: {
+            shared: true,
+            headerFormat: '<b>Hunting season starting autumn {point.x}</b><br>'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                pointStart: <?php echo $tahun_awal ?>
+            },
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+            name: 'PHK',
+            data:
+                [
+                    <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
+                ]
+        }, {
+            name: 'PMI-B',
+            data:
+                [
+                    <?php foreach($data_tahun_pmib as $data){ echo $data.","; } ?>
+                ]
+        },
+        {
+            name: 'CPMI',
+            data:
+                [
+                    <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
+                ]
+        },
+        {
+            name: 'TKA',
+            data:
+                [
+                    <?php foreach($data_tahun_tka as $data){ echo $data.","; } ?>
+                ]
+        }]
+    });
+
     </script>
 
         <!-- fungsi jika tak ada image tertampil atau data null -->

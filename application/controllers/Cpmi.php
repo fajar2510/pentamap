@@ -8,6 +8,7 @@ class Cpmi extends CI_Controller
     {
         parent::__construct();
         
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Wilayah');
@@ -30,6 +31,7 @@ class Cpmi extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         // load data wilayah
+        $data['negara'] = $this->Penempatan->getnegaracpmi();
 
         $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['formal'] =  $this->Penempatan->getTotFormalByPenempatan();
@@ -38,14 +40,21 @@ class Cpmi extends CI_Controller
 
         $data['title'] = 'Penempatan CPMI';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('cpmi/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
     public function tambah()
     {
+        // is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -152,6 +161,7 @@ class Cpmi extends CI_Controller
 
     public function edit($id)
     {
+        is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -200,7 +210,7 @@ class Cpmi extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('cpmi/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 // 'perusahaan' => $this->input->post('perusahaan'),
@@ -258,6 +268,7 @@ class Cpmi extends CI_Controller
 
     public function edit_cpmi($id_lokasi)
     {
+        is_logged_in();
         //load data user login session
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -273,6 +284,7 @@ class Cpmi extends CI_Controller
         // $data['negara'] = $this->db->get('tb_negara')->result_array();
         $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();
@@ -388,14 +400,21 @@ class Cpmi extends CI_Controller
 
         $data['title'] = 'CPMI';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('cpmi/detail', $data);
         // $this->load->view('templates/footer', $data);
     }
 
     public function hapus($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
         $this->db->delete('tb_cpmi');
 
@@ -409,6 +428,7 @@ class Cpmi extends CI_Controller
 
     public function hapusMap($id)
     {
+        is_logged_in();
         $this->db->where('id', $id);
         $this->db->delete('tb_cpmi');
 
@@ -422,7 +442,7 @@ class Cpmi extends CI_Controller
 
     public function laporan_pmi()
     {
-
+        is_logged_in();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get('user_role')->result_array();

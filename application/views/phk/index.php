@@ -6,12 +6,14 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
+        <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('phk/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
             <span class="text">Tambah</span>
         </a>
+        <?php } ?>
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
     </div>
@@ -93,8 +95,10 @@
                                                         } ?></span> </td>
                                             <td class="text-center">
                                             <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
-                                                <a href="<?= base_url('phk/edit/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
+                                            <?php if ($is_admin == 1) { ?>
+                                                <a href="<?= base_url('phk/edit_phk/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -154,58 +158,67 @@
                 </div>
                 <div class="container">
                     <div class="modal-body">
-                        <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
                         <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_tk']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">NIK </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nomor_identitas']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kel']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">KPJ (BPJS) </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kpj']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">No.Telp. (kontak) </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kontak']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Alamat </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_tk']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_perusahaan']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Kode Segmen</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_segmen']; ?></label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Status </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($p['status_kerja'] == 'aktif') {
-                                                            echo '<span class="badge badge-success">Aktif</span>';
-                                                        } else {
-                                                            echo '<span class="badge badge-danger">Nonakti(phk)</span>';
-                                                        } ?> </label>
-                        </div>
-                        <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Peny. Disabilitas </label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['disabilitas'] == '1') {
-                                                            echo '<span class="badge badge-info">Iya</span>';
-                                                        } else {
-                                                            echo '<span class="badge badge-light">Tidak</span>';
-                                                        } ?> </label>
+                            <div class="col-8">
+                                <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_tk']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">NIK </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nomor_identitas']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kel']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">KPJ (BPJS) </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kpj']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">No.Telp. (kontak) </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kontak']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Alamat </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['alamat_tk']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Kabupaten/kota </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_kabupaten']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Perusahaan </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_perusahaan']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Kode Segmen</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['kode_segmen']; ?></label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Status </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($p['status_kerja'] == 'aktif') {
+                                                                    echo '<span class="badge badge-success">Aktif</span>';
+                                                                } else {
+                                                                    echo '<span class="badge badge-danger">Nonakti(phk)</span>';
+                                                                } ?> </label>
+                                </div>
+                                <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label">Peny. Disabilitas </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($p['disabilitas'] == '1') {
+                                                                    echo '<span class="badge badge-info">Iya</span>';
+                                                                } else {
+                                                                    echo '<span class="badge badge-light">Tidak</span>';
+                                                                } ?> </label>
+                                </div>
+                            </div>                          
+                            <div class="col-4">
+                                <p > <small><b> <br> </b></small></p>
+                                <img src="<?= base_url('assets/img/lokal/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
+                                <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama_tk']; ?></small></p>
+                            </div>
                         </div>
                     </div>
                 </div>

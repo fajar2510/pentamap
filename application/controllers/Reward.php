@@ -8,6 +8,7 @@ class Reward extends CI_Controller
     {
         parent::__construct();
         
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -40,16 +41,21 @@ class Reward extends CI_Controller
 
         $data['title'] = 'Penghargaan';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('reward/index', $data);
         $this->load->view('templates/footer');
     }
 
-
-
     public function tambah()
     {
+        is_logged_in();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -90,6 +96,7 @@ class Reward extends CI_Controller
         $this->form_validation->set_rules('presentase', 'Presentase', 'trim');
         $this->form_validation->set_rules('jenis[]', 'Jenis Disabilitas', 'required|trim');
 
+        // var_dump($data); die;
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Penghargaan';
             $this->load->view('templates/header', $data);
@@ -184,6 +191,7 @@ class Reward extends CI_Controller
 
     public function edit($id)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -203,7 +211,27 @@ class Reward extends CI_Controller
         $data['jenis'] = $this->RewardModel->get_jenis();
         $data['edit_reward'] = $this->RewardModel->get_rewardById($id);
 
-        
+        // PENGECEKAN JENIS DISABILITAS YANG PERNAH DIPILIH
+        $n_jenis_dipilih = explode(",", $data['edit_reward'][0]['jenis_disabilitas']);
+        $data['arr_jenis'] = array();
+        foreach ($data['jenis'] as $val) {
+           if (in_array($val->id_jenis, $n_jenis_dipilih)) {
+            array_push($data['arr_jenis'], [
+                'id_jenis' => $val->id_jenis,
+                'jenis_disabilitas' => $val->jenis_disabilitas, 
+                'disabilitas_ragam' => $val->disabilitas_ragam,
+                'status' => "1"
+            ]);
+           }else {
+            array_push($data['arr_jenis'], [
+                'id_jenis' => $val->id_jenis,
+                'jenis_disabilitas' => $val->jenis_disabilitas, 
+                'disabilitas_ragam' => $val->disabilitas_ragam,
+                'status' => "0"
+            ]);
+           }
+        }
+        // PENGECEKAN JENIS DISABILITAS YANG PERNAH DIPILIH
 
         // form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
@@ -237,7 +265,7 @@ class Reward extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $id_perusahaan = $this->input->post('id_perusahaan', true);
-            $id_reward = $this->input->post('id_reward', true);
+            $id_reward = $id;
             // var_dump($id_reward);
             // die;
             $data_perusahaan = [
@@ -255,7 +283,6 @@ class Reward extends CI_Controller
             ];
             $jenis =implode(',',$this->input->post('jenis_edit', true));
             
-
             $data_reward = [
                 'perusahaan_id' => $this->input->post('nama_perusahaan', true),
                 'disabilitas_L' => $this->input->post('disabilitas_L', true),
@@ -266,9 +293,9 @@ class Reward extends CI_Controller
                 'tenaga_kerja_total' => $this->input->post('tenaga_kerja_total', true),
                 'presentase' => $this->input->post('presentase', true),
                 'jenis_disabilitas' => $jenis,
-                'date_created' => date('Y-m-d'),
+                'date_created' => $this->input->post('tanggal_data', true),
             ];
-            
+            // var_dump($id_reward); die;
             // $this->db->where('id', $id_perusahaan);
             // $this->db->update('tb_perusahaan', $data_perusahaan);
 
@@ -288,7 +315,7 @@ class Reward extends CI_Controller
 
     public function hapus($id)
     {
-        
+        is_logged_in();
         $this->db->where('id_reward', $id);
         $this->db->delete('tb_reward');
 

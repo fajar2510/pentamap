@@ -7,7 +7,7 @@ class Phk extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+        $this->ci = get_instance();
         $this->load->model('Master');
         $this->load->model('Penempatan');
         $this->load->model('Perusahaan');
@@ -18,7 +18,6 @@ class Phk extends CI_Controller
     // FUNCTION DOCTOR START
     public function index()
     {
-
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -34,8 +33,15 @@ class Phk extends CI_Controller
 
         $data['title'] = 'Tenaga Kerja Daerah';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('phk/index', $data);
         $this->load->view('templates/footer');
     }
@@ -44,6 +50,7 @@ class Phk extends CI_Controller
 
     public function tambah()
     {
+        is_logged_in();
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -142,6 +149,7 @@ class Phk extends CI_Controller
 
     public function edit($id)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -156,7 +164,6 @@ class Phk extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         $data['tambah_phk'] = $this->Master->get_tb_phk();
-        
 
         // Load model lokal
         // $data['phk'] = $this->Master->get_tb_phk();
@@ -182,7 +189,7 @@ class Phk extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('phk/edit', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer_edit_map', $data);
         } else {
             $data = [
                 'latitude' => $this->input->post('lat', true),
@@ -234,6 +241,7 @@ class Phk extends CI_Controller
 
     public function edit_phk($id_lokasi)
     {
+        is_logged_in();
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -249,6 +257,7 @@ class Phk extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_phk($id_lokasi);
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         // var_dump($data['lokasi']);
         // die;
         
@@ -329,7 +338,6 @@ class Phk extends CI_Controller
 
     public function detail($id_lokasi)
     {
-
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
@@ -346,8 +354,14 @@ class Phk extends CI_Controller
         // die;
         $data['title'] = 'Tenaga Kerja Lokal';
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
+        if ($this->ci->session->userdata('email')) {
+            $data['is_admin'] = 1;
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+        }else{
+            $data['is_admin'] = 0;
+            $this->load->view('templates/topbar_user', $data);
+        }
         $this->load->view('phk/detail', $data);
         // $this->load->view('templates/footer');
     }
@@ -355,6 +369,7 @@ class Phk extends CI_Controller
 
     public function hapus($id)
     {
+        is_logged_in();
         $this->db->where('id_phk', $id);
 
         $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
@@ -383,6 +398,7 @@ class Phk extends CI_Controller
 
     public function hapusMap($id)
     {
+        is_logged_in();
         $this->db->where('id_phk', $id);
 
         $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");

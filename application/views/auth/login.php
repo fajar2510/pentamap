@@ -19,19 +19,12 @@
                                     <!-- <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45"> --> 
                                          <h6 class="h-6 text-gray-900 mb-4"> 
                                               <!-- <hr style="margin-top: 10px; margin-bottom: 10px ;"> -->
-                                            <img src="<?php echo base_url() ?>assets/img/auth/authlogin.png" alt="logo" class="img-fluid " style="width: 90px; ">
-                                         <p> Sistem Informasi Geografis Tenaga Kerja Jatim </p>
+                                            <img src="<?php echo base_url() ?>assets/img/auth/jatim.png" alt="logo" class="img-fluid " style="width: 90px; ">
+                                         <p style="font-weight: 500;">Aplikasi Pemetaan Geografis Tenaga Kerja Jatim </p>
                                          <hr style="margin-top: 10px; margin-bottom: 10px ;">
                                           <span style="font-size:25px;">    <b > Login </b></h1>   </span>
                                             <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="30" height="35"> -->
-                                        
-                                    
-                                        
-                                    
-                                   
-                                    
-                                   
-
+       
                                 </div>
 
                                 <?= $this->session->flashdata('message'); ?>
@@ -60,12 +53,17 @@
                                     <div id="snackbar"> Sedang mencoba LOGIN . . . </div>
                                 </form>
                                 <hr>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
+                                <div class="row">
+                                    <div class="text-center col-6">
+                                        <a class="small" href="<?= base_url(''); ?>">Dashboard Peta</a>
+                                    </div>
+                                    <div class="text-center col-6">
+                                        <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
+                                    </div>
                                 </div>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a class="small" href="<?php echo base_url() ?>auth/registration">Buat Akun Baru</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

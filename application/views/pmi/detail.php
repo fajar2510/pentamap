@@ -119,12 +119,12 @@
                                          <hr>
                                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
                                              <p ><small><i>&nbsp;terakhir diperbarui pada &nbsp;  <?= $lokasi->date_created ?> </i> </small> </p> 
-                                            <button class="btn btn-info btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
+                                            <!-- <button class="btn btn-info btn-icon-split" type="submit"  aria-haspopup="true" aria-expanded="false">
                                                 <span class="icon text-white-50">
                                                     <i class="fa-solid fa-print"></i>
                                                 </span>
                                             <span class="text" >Cetak</span>
-                                            </button>
+                                            </button> -->
                                         </div>
                                        
                                             

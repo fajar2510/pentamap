@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-
+<?php if ($ada == 1) { ?>
 <body>
     <span><small> <i>
                 <font color="grey"> Tanggal cetak : <?= date('d-m-Y'); ?></font>
@@ -79,10 +79,11 @@
         }
     }
     ?>
-
     <?php foreach ($semua_data_cpmi as $row); ?>
     <?php foreach ($data_total_orang as $total_cpmi); ?>
-    <p align="left"><small><b>Nama Perusahaan &nbsp; : <?= $row['nama_perusahaan'] ?></b> <br>
+    <p align="left"><small>
+        <!-- <b>Nama Perusahaan &nbsp; : <?= $row['nama_perusahaan'] ?></b>  -->
+        <br>
             <b>Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <?= $row['alamat'] ?></b> <br>
             <b>Negara Tujuan_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $row['nama_negara'] ?></b>
             <br> <b>Bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
@@ -131,5 +132,7 @@
 
 
 </body>
-
+<?php } else { ?>
+    <body><h4><i>- Data tidak ada -</i></h4></body>
+<?php } ?>
 </html>
