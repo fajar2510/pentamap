@@ -745,7 +745,7 @@
     <script>
     // show picture when choose from librarary
     function readURL(input) {
-        alert("masuk"); return false;
+        // alert("test"); return false;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 var foto1 = "<img class='fotoBaru' src='http://placehold.it/180' class='img-fluid' style='width: 180px; height: 180px; object-fit: cover; padding-bottom:20px;'/>";
