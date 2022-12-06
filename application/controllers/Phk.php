@@ -281,7 +281,7 @@ class Phk extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tenaga Kerja ter-PHK';
+            $data['title'] = 'Tenaga Kerja Daerah';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

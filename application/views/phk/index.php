@@ -94,7 +94,7 @@
                                                             echo '<span class="badge badge-light">Nonaktif</span>';
                                                         } ?></span> </td>
                                             <td class="text-center">
-                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
                                             <?php if ($is_admin == 1) { ?>
                                                 <a href="<?= base_url('phk/edit_phk/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

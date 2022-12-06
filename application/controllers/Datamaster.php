@@ -16,6 +16,7 @@ class Datamaster extends CI_Controller
         $this->load->model('Disabilitas');
         $this->load->model('Geo_Jatim');
         $this->load->model('Sebaran_Jatim');
+        $this->load->model('KantorUPT');
     }
 
     // FUNCTION USER START
@@ -710,6 +711,157 @@ class Datamaster extends CI_Controller
         }
     }
 
+
+    public function upt()
+    {
+        is_logged_in();
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        $data['kantorUPT'] = $this->KantorUPT->get_upt();
+        // var_dump ($data['kantorUPT']);
+        //     die;
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['kabupaten'] = $this->Perusahaan->get_Jatim();
+        
+
+        $data['title'] = 'Kantor UPT';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('datamaster/upt', $data);
+        $this->load->view('templates/footer-upt');
+    }
+
+
+    public function upt_add()
+    {
+        // is_logged_in();
+        //load data user login session
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        $data['kabupaten'] = $this->Penempatan->get_Jatim();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+
+        $this->form_validation->set_rules('nama_upt', 'Nama UPT', 'trim|required');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('ket_upt', 'Keterangan Cakupan', 'trim|required');
+
+        // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
+
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Kantor UPT';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/upt_add', $data);
+            $this->load->view('templates/footer-upt-add', $data);
+        } else {
+            $data = [
+                // 'perusahaan' => $this->input->post('perusahaan'),
+                'nama_upt' => $this->input->post('nama_upt'),
+                'lat_upt' => $this->input->post('lat'),
+                'long_upt' => $this->input->post('long'),
+                'ket_upt' => $this->input->post('ket_upt'),
+            ];
+
+
+            $this->db->insert('kantor_upt', $data);
+            // $this->db->insert('tb_perusahaan_negara', $data_perusahaan_negara);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('datamaster/upt');
+        }
+    }
+
+    public function upt_edit($id_upt)
+    {
+        // load data user login
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['role'] = $this->db->get('user_role')->result_array();
+
+        // load data count cpmi pmi tka pengangguran
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+
+        // Load model perusahaan
+        $data['kabupaten'] = $this->Penempatan->get_Jatim();
+        $data['edit_upt'] = $this->KantorUPT->edit_upt($id_upt);
+        // menampilkan warna wilayah
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        // var_dump ($data['edit_upt']);
+        //     die;
+        
+
+        $this->form_validation->set_rules('nama_upt', 'Nama UPT', 'trim|required');
+        $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('ket_upt', 'Keterangan Cakupan', 'trim|required');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Kantor UPT';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('datamaster/upt_edit', $data);
+            $this->load->view('templates/footer-upt-edit', $data);
+            
+        } else {
+            $data = [
+                'nama_upt' => $this->input->post('nama_upt'),
+                'lat_upt' => $this->input->post('lat'),
+                'long_upt' => $this->input->post('long'),
+                'ket_upt' => $this->input->post('ket_upt'),
+            ];
+
+
+            $this->db->where('id_upt', $id_upt);
+            $this->db->update('kantor_upt', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Disunting !</strong> data telah berhasil diupdate.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('datamaster/upt');
+        }
+    }
     
+    public function upt_delete($id)
+    {
+        $this->db->where('id_upt', $id);
+        $this->db->delete('kantor_upt');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Dihapus !</strong> data telah berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>   </div>');
+        redirect('datamaster/upt');
+    }
     
 }

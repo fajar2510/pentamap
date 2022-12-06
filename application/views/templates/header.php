@@ -86,6 +86,7 @@
     #mapcluster { height: 450px; }
     #mapltlg { height: 390px; width: 710px }
     #mapltlg_detail { height: 460px; width: 390px }
+    #mapupt { height: 390px; width: 550px }
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->
@@ -501,12 +502,12 @@
 
 <!-- batas body -->
 <body id="page-top"  >
-<div class="preloader">
+<!-- <div class="preloader">
   <div class="loading">
     <img src="<?= base_url("assets/img/loading/FALLING_LOADER.gif"); ?>" width="100">
     <p><b> Sedang memuat . . . </b></p>
   </div>
-</div>
+</div> -->
 
   <!-- Page Wrapper -->
   <div id="wrapper">
