@@ -81,7 +81,9 @@ class Penempatan extends CI_Model
 
     public function get_Jatim()
     {
-        $query = "SELECT * FROM `kabupaten` WHERE id_provinsi = '42385'";
+        $query = "SELECT * FROM `kabupaten` 
+                WHERE id_provinsi = '42385' 
+                ORDER BY `nama_kabupaten` ASC";
         return $this->db->query($query)->result_array();
     }
 

@@ -66,10 +66,6 @@
 
     <!-- Load Script All -->
     <!-- Bootstrap core JavaScript-->
-    
-    <!-- Load Esri Leaflet Map  -->
-    <!-- <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js" integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ==" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script> -->
 
     <!-- Load JS  -->
     <!-- <script src="<?php echo base_url('assets/js/jquery-1.10.2.min.js') ?>"></script> -->
@@ -93,103 +89,160 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
-
-    <!-- select2 multiple form -->
-    <!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/jquery-3.4.1.min.js');?>"></script> -->
-    <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="<?= base_url('assets/'); ?>js-select2/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="<?= base_url('assets/'); ?>jquery-ui/jquery-ui.min.js"></script>
 
     <!-- LEAFLET CENTER -->
     <!-- <script src="<?= base_url(); ?>assets/leaflet/leaflet.js"></script> -->
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-   crossorigin=""></script>
-   <!-- leaflet full screen -->
-   <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
-   
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="crossorigin=""></script>
+    <!-- leaflet full screen -->
+    <script src="<?= base_url('assets/'); ?>leaflet/leaflet-fullscreen-master/Control.FullScreen.js"></script>
+    <!-- leflet search -->
+    <script src="<?= base_url('assets/'); ?>leaflet/leaflet-search/src/leaflet-search.js"></script>
+     <!-- leflet Cluster -->
+    <script src="<?= base_url('assets/'); ?>leaflet/cluster/dist/leaflet.markercluster-src.js"></script>
     <!-- LEAFLET CENTER -->
 
     <!-- date picker untuk tahun only -->
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script> -->
+
+    <!-- <script src="<?= base_url('assets/'); ?>sweetalert2/package/dist/sweetalert2.all.min.js"></script> -->
+
 
     <script>
 
 
-        var map = L.map('mapgeojson').setView([-7.6709737, 112.7288216], 7);
+    var map = L.map('mapupt-index').setView([-7.530979640916379, 112.4936104206151], 5);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    // Open Street Default Layer     
+    var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+            // maxZoom: 16,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+    googleStreets.addTo(map);
 
-    
+
+
+    var iconUpt = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/marker/city.png',
+            iconSize : [30,30],
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
+        });
         
-        <?php foreach ($detail_kabupaten as $key => $value) { ?>
+    var markersUpt = L.markerClusterGroup( {
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-upt-';
+            if (childCount < 2) {
+            c += 'small';
+            } 
+            else if (childCount < 5) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
+
+        
+        
+          
+        <?php foreach ($sebaran_upt  as $key => $value) { ?> 
+            var sebaranUpt = L.marker([<?= $value->lat_upt ?>, <?= $value->long_upt ?>], { icon:iconUpt} )
+            .bindPopup(
+            `<div class="container px-1 py-1">
+             <h5 style="font-weight:bold;"><?= $value->nama_upt ?></h5>
+             <p style="font-weight:semibold;">Cakupan : <?= $value->ket_upt ?>\</p>
+             <p>Latitude : <?= $value->lat_upt ?>\</p>
+             <p> Longitude : <?= $value->long_upt ?> </p> `
+             ).bindTooltip("<center><b><?= $value->nama_upt ?></b></center>", {
+                permanent: true,
+                size:25,
+                direction: 'bottom',
+                opacity: 0.85,
+                sticky: false,
+                className: 'leaflet-tooltip-own'
+             });
+
+            markersUpt.addLayer(sebaranUpt);
+            map.addLayer(markersUpt);
+            map.fitBounds(markersUpt.getBounds());
+
+            
+          
+        <?php }?>
+
+        var overlays = {
+                "UPT": markersUpt
+            };
+
+        var layer_baseControl= L.control.layers( overlays).addTo(map);
+
+    //  jawa timur polygon geo json
+    <?php foreach ($detail_kabupaten as $key => $value) { ?>
         $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.1,
+                        opacity: 0.2,
                         color: '<?= $value->warna ?>',
-                        fillColor: '<?= $value->warna ?>',
-                        fillColor: '<?= $value->warna ?>',
-                        fillOpacity: 0.1,
-                        
+                        // fillColor: '<?= $value->warna ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.5,
+                        interactive: true,
                         }    
                  },
-                }).addTo(map);
+            }). addTo(map);
+
+            // geolayer.bindTooltip("My polygon",
+            // {permanent: true, direction:"center"}
+            // ).openTooltip()
+
             geoLayer.eachLayer(function (layer) {
-                layer.bindPopup("Jawa Timur");
+                layer.bindPopup('<div class="container px-1 py-1">'+
+              '<h6 style="font-weight:bold;"><u><?= $value->nama_kabupaten ?></u></h6> '+ 
+              ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;"></div> ');
             });
         });
         <?php } ?>
+        //batas function
 
+    
+    // create a fullscreen button and add it to the map
+    L.control.fullscreen({
+        position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
+        title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
+        titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
+        content: null, // change the content of the button, can be HTML, default null
+        forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
+        forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
+        fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
+    }).addTo(map);
 
-         // full screen map
-        // create a fullscreen button and add it to the map
-        L.control.fullscreen({
-          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
-          title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
-          titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
-          content: null, // change the content of the button, can be HTML, default null
-          forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
-          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
-          fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
-        }).addTo(map);
+    
+    </script>
 
         
-
-        </script>
-
-        
+    <!-- Use a button to open the snackbar -->
+    <script>
+        function snackbarlogout() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+    <!-- The actual snackbar -->
       <!-- untuk animasi loading saat memuat halaman -->
     <script>
         $(document).ready(function(){
         $(".preloader").fadeOut();
         })
     </script>
-    <!-- <script>
-        
-         // untuk edit peta map image
-    function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#newimage')
-                        .attr('src', e.target.result);
-                    
-                    var foto2 = "<img id='newimage' src='http://placehold.it/180' class='img-fluid' alt='Logo Kabupaten' style='object-fit: cover; padding-bottom:20px; width: 100px; height: 120px;' />"
-                    $('#foto1').html("");
-                    $('#foto2').html(foto2);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-             }
-          }
-    </script> -->
-
 
 
 </body>

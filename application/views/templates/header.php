@@ -87,6 +87,7 @@
     #mapltlg { height: 390px; width: 710px }
     #mapltlg_detail { height: 460px; width: 390px }
     #mapupt { height: 390px; width: 550px }
+    #mapupt-index { height: 520px; width: 450px }
   </style>
 
   <!-- style untuk konfigura table border padding dll global -->
@@ -341,11 +342,51 @@
         pointer-events: none;
         border-radius: 50%;
     }
+
+    .leaflet-tooltip-own-upt {
+        position: absolute;
+        padding: 4px;
+        background-color: rgba(10, 10, 10, 1);
+        border: 0px solid #000;
+        color: white;
+        font-weight:bold;
+        font-size: 90%;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+        border-radius: 70%;
+    }
     
 
   
     
 
+  </style>
+
+<style>
+    /* marker kantor UPT */
+  .marker-cluster-upt-small {
+    background-color: rgba(100, 100, 100, 0.5);
+    }
+    .marker-cluster-upt-small div {
+    background-color: rgba(100, 100, 100, 0.55);
+    }
+    .marker-cluster-upt-medium {
+    background-color: rgba(100, 100, 100, 0.6);
+    }
+    .marker-cluster-upt-medium div {
+    background-color: rgba(100, 100, 215, 0.65);
+    }
+
+    .marker-cluster-upt-large {
+    background-color: rgba(100, 100, 225, 0.7);
+    }
+    .marker-cluster-upt-large div {
+    background-color: rgba(100, 100, 300, 0.8);
+    }
   </style>
 
   <style>
@@ -502,12 +543,12 @@
 
 <!-- batas body -->
 <body id="page-top"  >
-<!-- <div class="preloader">
+<div class="preloader">
   <div class="loading">
     <img src="<?= base_url("assets/img/loading/FALLING_LOADER.gif"); ?>" width="100">
     <p><b> Sedang memuat . . . </b></p>
   </div>
-</div> -->
+</div>
 
   <!-- Page Wrapper -->
   <div id="wrapper">

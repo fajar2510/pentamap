@@ -725,6 +725,8 @@ class Datamaster extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['kantorUPT'] = $this->KantorUPT->get_upt();
+        $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt();
+        
         // var_dump ($data['kantorUPT']);
         //     die;
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
@@ -758,6 +760,7 @@ class Datamaster extends CI_Controller
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
 
         $this->form_validation->set_rules('nama_upt', 'Nama UPT', 'trim|required');
+        $this->form_validation->set_rules('kab', 'Kabupaten/kota', 'trim|required');
         $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
         $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
         $this->form_validation->set_rules('ket_upt', 'Keterangan Cakupan', 'trim|required');
@@ -777,6 +780,7 @@ class Datamaster extends CI_Controller
             $data = [
                 // 'perusahaan' => $this->input->post('perusahaan'),
                 'nama_upt' => $this->input->post('nama_upt'),
+                'kabupaten_id' => $this->input->post('kab'),
                 'lat_upt' => $this->input->post('lat'),
                 'long_upt' => $this->input->post('long'),
                 'ket_upt' => $this->input->post('ket_upt'),
@@ -794,7 +798,7 @@ class Datamaster extends CI_Controller
         }
     }
 
-    public function upt_edit($id_upt)
+    public function upt_edit($id)
     {
         // load data user login
         $data['user'] = $this->db->get_where('user', ['email' =>
@@ -809,7 +813,7 @@ class Datamaster extends CI_Controller
 
         // Load model perusahaan
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
-        $data['edit_upt'] = $this->KantorUPT->edit_upt($id_upt);
+        $data['edit_upt'] = $this->KantorUPT->edit_upt($id);
         // menampilkan warna wilayah
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
         // var_dump ($data['edit_upt']);
@@ -839,7 +843,7 @@ class Datamaster extends CI_Controller
             ];
 
 
-            $this->db->where('id_upt', $id_upt);
+            $this->db->where('id_upt', $id);
             $this->db->update('kantor_upt', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">

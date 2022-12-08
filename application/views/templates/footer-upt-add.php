@@ -267,7 +267,6 @@
             Stamen_Watercolor.addTo(map);
 
          //   change layer function
-
         var baseLayers = {
             
             "Water Color":Stamen_Watercolor,
@@ -278,6 +277,8 @@
         };
         var layer_baseControl= L.control.layers(baseLayers).addTo(map);
         //batas function
+
+        
 
         /*Legend specific*/
         var legend = L.control({ position: "bottomright" });
@@ -329,10 +330,10 @@
                 style : function(feature) {
                     return {
                         opacity: 0.2,
-                        color: 'gray',
+                        color: '<?= $value->warna ?>',
                         fillColor: '<?= $value->warna ?>',
-                        fillColor: '<?= $value->warna ?>',
-                        fillOpacity: 0.2,
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
                         interactive: false,
                         }    
                  },

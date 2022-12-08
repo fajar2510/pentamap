@@ -244,7 +244,13 @@
         //         markersLayer.addLayer(marker);
         // }
 
-        
+        // icon sebaran UPT
+        var iconUpt = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/marker/city.png',
+            iconSize : [30,30],
+            // iconAnchor: [22, 65],
+            // popupAnchor: [-3,-55]
+        });
 
         // icon sebaran phk
         var iconPhk = L.icon({
@@ -279,7 +285,51 @@
         });
 
         
+        var markersUpt = L.markerClusterGroup( {
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-upt-';
+            if (childCount < 2) {
+            c += 'small';
+            } 
+            else if (childCount < 5) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
+
         
+        
+          // MARKER dengan cluster UPT
+        <?php foreach ($sebaran_upt  as $key => $value) { ?> 
+            var sebaranUpt = L.marker([<?= $value->lat_upt ?>, <?= $value->long_upt ?>], { icon:iconUpt} )
+            .bindPopup(
+            `<div class="container px-1 py-1">
+             <h5 style="font-weight:bold;"><?= $value->nama_upt ?></h5>
+             <p style="font-weight:semibold;">Cakupan : <?= $value->ket_upt ?>\</p>
+             <p>Latitude : <?= $value->lat_upt ?>\</p>
+             <p> Longitude : <?= $value->long_upt ?> </p> `
+             ).bindTooltip("<center><b><?= $value->nama_upt ?></b></center>", {
+                permanent: false,
+                size:25,
+                direction: 'bottom',
+                opacity: 0.85,
+                sticky: false,
+                className: 'leaflet-tooltip-own-upt'
+             });
+
+            markersUpt.addLayer(sebaranUpt);
+            map.addLayer(markersUpt);
+            map.fitBounds(markersUpt.getBounds());
+        <?php }?>
+
+
         // MARKER dengan cluster PHK
         var markersPhk = L.markerClusterGroup( {
             iconCreateFunction: function (cluster) {
@@ -450,6 +500,7 @@
 
         //   change layer function
         var overlays = {
+                "Kantor UPT": markersUpt,
                 "PHK": markersPhk,
                 "CPMI": markersCpmi,
                 "PMIB": markersPmib,

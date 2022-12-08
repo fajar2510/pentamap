@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-5">
-             <div id="mapgeojson"></div>
+             <div id="mapupt-index"></div>
         </div>
         <div class="col-7">
             <?php if (validation_errors()) : ?>
@@ -30,15 +30,15 @@
                 </div>
                
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <div class="table table-sm">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
                                     <th>Nama UPT</th>
                                     <th>Kabupaten/kota</th>
-                                    <th>Ket.Cakupan</th>
-                                    <th >Aksi</th>
+                                    <th>Cakupan</th>
+                                    <th width="14%" >Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,9 +46,9 @@
                                 <?php foreach ($kantorUPT as $row) : ?>
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
-                                        <td> <?= $row['nama_upt'] ?></td>
-                                        <td> <?= $row['nama_kabupaten']; ?></td>
-                                         <td> <?= $row['ket_upt']; ?></td>
+                                        <td> <small> <?= $row['nama_upt'] ?></small></td>
+                                        <td> <small><?= $row['nama_kabupaten']; ?></small></td>
+                                         <td> <small><?= $row['ket_upt']; ?></small></td>
                                         <td class="text-center">
                                             <a href="<?= base_url('datamaster/upt_edit/') . $row['id_upt']; ?>"  class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $row['id_upt']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -68,65 +68,6 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- adduserModal -->
-<!-- <div class=" modal fade" id="modalTambah">
-    <div class="modal-dialog  modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEditLabel">Tambah Jenis Sektor Usaha</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('datamaster/upt'); ?>" method="post">
-            <div class="modal-body">
-                        <div class="form-group row">
-                            <label for="nama_upt" class="col-sm-3 col-form-label">Nama UPT</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_upt" placeholder="" name="nama_upt" >
-                                <?= form_error('nama_upt', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                        <label for="fungsi" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
-                            <div class="col-sm-5">
-                                <select name="fungsi" id="fungsi" class="form-control">
-                                    <option value="">~ Pilih Kabupaten/kota ~</option>
-                                    <?php foreach ($kabupaten as $kab) : ?>
-                                        <option value="<?= $kab['id_kabupaten']; ?>"> <?= $kab['nama_kabupaten']; ?> </option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
-                                <?= form_error('fungsi', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="ket_upt" class="col-sm-3 col-form-label">Keterangan Cakupan </label>
-                            <div class="col-sm-8">
-                                <textarea type="text" class="form-control" id="ket_upt" placeholder=". . . cakupan upt" name="ket_upt" row="3" cols="2"></textarea>
-                                <?= form_error('ket_upt', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
-                            <span class="icon text-gray-600">
-                                <i class="fas fa-window-close"></i>
-                            </span>
-                            <span class="text">Batal</span>
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <span class="text">Simpan</span>
-                        </button>
-                    </div>
-            </form>
-        </div>
-    </div>
-</div> -->
 
 
 
@@ -144,7 +85,7 @@
                 </div>
                 <center>
                     <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="170" height="150">
-                    <form action="<?= base_url('datamaster/delete_sektor/' . $row['id_upt']); ?>">
+                    <form action="<?= base_url('datamaster/upt_delete/' . $row['id_upt']); ?>">
                         <div class="modal-body">Data&nbsp;<b>
                                 <font color="red"><?= $row['nama_upt']; ?></font>
                             </b> akan dihapus </div>

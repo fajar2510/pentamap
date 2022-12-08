@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <form action="<?= base_url('datamaster/upt_edit'); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('datamaster/upt_edit/'. $edit_upt->id_upt); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body"> 
 
                                 <div class="form-group row">
