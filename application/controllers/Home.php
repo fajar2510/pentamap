@@ -15,6 +15,7 @@ class Home extends CI_Controller
         $this->load->model('RewardModel');
         $this->load->model('Sebaran_Jatim');
         $this->load->model('Wilayah');
+        $this->load->model('KantorUPT');
         date_default_timezone_set('Asia/Jakarta');
         $this->tahun_ini=date("Y");
     }
@@ -38,6 +39,8 @@ public function index()
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
+            $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt();
+
             $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
             $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
             $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
