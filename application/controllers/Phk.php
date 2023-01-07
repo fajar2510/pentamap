@@ -124,18 +124,18 @@ class Phk extends CI_Controller
 
             $this->db->insert('tb_phk', $data);
 
-            $kabupaten = $this->input->post('wilayah', true);
+            // $kabupaten = $this->input->post('wilayah', true);
             // jumlah phk masih salah ya ingat
-            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+            // $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
 
-            $jumlah = $jumlah_phk->row()->phk;
+            // $jumlah = $jumlah_phk->row()->phk;
 
-            $update = [   
-                'jumlah_phk' => $jumlah,
-            ];
+            // $update = [   
+            //     'jumlah_phk' => $jumlah,
+            // ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+            // $this->db->where('id_kabupaten', $kabupaten);
+            // $this->db->update('kabupaten', $update);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
@@ -401,21 +401,21 @@ class Phk extends CI_Controller
         is_logged_in();
         $this->db->where('id_phk', $id);
 
-        $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
-        $kabupaten = $phk->row()->wilayah;
+        // $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
+        // $kabupaten = $phk->row()->wilayah;
 
         $this->db->delete('tb_phk');
 
-            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
+        //     $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
 
-           $jumlah = $jumlah_phk->row()->phk;
+        //    $jumlah = $jumlah_phk->row()->phk;
 
-            $update = [   
-                'jumlah_phk' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_phk' => $jumlah,
+        //     ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+        //     $this->db->where('id_kabupaten', $kabupaten);
+        //     $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

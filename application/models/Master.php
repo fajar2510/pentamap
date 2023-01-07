@@ -74,7 +74,7 @@ class Master extends CI_Model
 
 
     // query data PMI
-    public function getPmiJoinWilayah()
+    public function getPmiJoinWilayah($where = "")
     {
 
         if (isset($_POST['filter'])) {
@@ -107,21 +107,36 @@ class Master extends CI_Model
 
 
 
-            $query =
-                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`,`tb_negara`. *
-                    FROM `tb_pmi` JOIN `provinsi`
-                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
-                    JOIN `kabupaten`
-                    ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
-                    JOIN `tb_negara`
-                    ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id_negara`
-                    JOIN `kecamatan`
-                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
-                    JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`  ORDER BY `date_created` DESC
-                ";
-            return $this->db->query($query)->result_array();
+            // $query =
+            //     "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+            //     , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`,`tb_negara`. *
+            //         FROM `tb_pmi` JOIN `provinsi`
+            //         ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+            //         JOIN `kabupaten`
+            //         ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
+            //         JOIN `tb_negara`
+            //         ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id_negara`
+            //         -- JOIN `kecamatan`
+            //         -- ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+            //         -- JOIN `kelurahan`
+            //         -- ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+            //         ORDER BY `date_created` DESC
+            //     ";
+            // return $this->db->query($query)->result_array();
+
+            $CI = &get_instance();
+            $this->CI = $CI;
+            $this->db = $CI->db;
+            $this->db->select('tb_pmi.*, provinsi.nama_provinsi, kabupaten.nama_kabupaten, tb_negara.*');
+            $this->db->from('tb_pmi');
+            $this->db->join('provinsi', 'tb_pmi.provinsi = provinsi.id_provinsi');
+            $this->db->join('kabupaten', 'tb_pmi.kabupaten = kabupaten.id_kabupaten');
+            $this->db->join('tb_negara', 'tb_pmi.negara_bekerja = tb_negara.id_negara');
+            if ($where != "") {
+                $this->db->where($where);
+            }
+            $this->db->order_by('date_created', 'DESC');
+            return $query = $this->db->get()->result_array();
         }
     }
 
@@ -259,6 +274,7 @@ class Master extends CI_Model
         FROM tb_phk
         JOIN kabupaten ON tb_phk.wilayah = kabupaten.id_kabupaten 
         JOIN tb_perusahaan ON tb_phk.perusahaan = tb_perusahaan.id 
+       
         ORDER BY date_created DESC
                 ";
         return $this->db->query($query)->result_array();

@@ -171,17 +171,17 @@ class Pmi extends CI_Controller
 
             $this->db->insert('tb_pmi', $data);
 
-            $kabupaten = $this->input->post('kabupaten_id', true);
-            $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+        //     $kabupaten = $this->input->post('kabupaten_id', true);
+        //     $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
 
-           $jumlah = $jumlah_pmib->row()->pmib;
+        //    $jumlah = $jumlah_pmib->row()->pmib;
 
-            $update = [   
-                'jumlah_pmib' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_pmib' => $jumlah,
+        //     ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+        //     $this->db->where('id_kabupaten', $kabupaten);
+        //     $this->db->update('kabupaten', $update);
             // show alert
             $this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
@@ -384,17 +384,17 @@ class Pmi extends CI_Controller
                 }
             }
 
-            $kabupaten = $this->input->post('kabupaten_id', true);
-            $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+        //     $kabupaten = $this->input->post('kabupaten_id', true);
+        //     $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
 
-           $jumlah = $jumlah_pmib->row()->pmib;
+        //    $jumlah = $jumlah_pmib->row()->pmib;
 
-            $update = [   
-                'jumlah_pmib' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_pmib' => $jumlah,
+        //     ];
 
-            $this->db->where('id', $id_lokasi);
-            $this->db->update('tb_pmi', $data);
+        //     $this->db->where('id', $id_lokasi);
+        //     $this->db->update('tb_pmi', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Disunting !</strong> data telah berhasil diupdate.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -473,21 +473,21 @@ class Pmi extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
-        $kabupaten = $pmi->row()->kabupaten;
+        // $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
+        // $kabupaten = $pmi->row()->kabupaten;
 
         $this->db->delete('tb_pmi');
 
-        $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
+        // $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
 
-        $jumlah = $jumlah_pmib->row()->pmib;
+        // $jumlah = $jumlah_pmib->row()->pmib;
 
-        $update = [   
-            'jumlah_pmib' => $jumlah,
-        ];
+        // $update = [   
+        //     'jumlah_pmib' => $jumlah,
+        // ];
 
-        $this->db->where('id_kabupaten', $kabupaten);
-        $this->db->update('kabupaten', $update);
+        // $this->db->where('id_kabupaten', $kabupaten);
+        // $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

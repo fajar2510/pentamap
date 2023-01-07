@@ -413,21 +413,21 @@ class Tka extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
-        $kabupaten = $tka->row()->lokasi_kerja;
+        // $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
+        // $kabupaten = $tka->row()->lokasi_kerja;
 
         $this->db->delete('tb_tka');
 
-            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
+        //     $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
 
-           $jumlah = $jumlah_tka->row()->tka;
+        //    $jumlah = $jumlah_tka->row()->tka;
 
-            $update = [   
-                'jumlah_tka' => $jumlah,
-            ];
+        //     $update = [   
+        //         'jumlah_tka' => $jumlah,
+        //     ];
 
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
+        //     $this->db->where('id_kabupaten', $kabupaten);
+        //     $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

@@ -15,6 +15,8 @@ class Beranda extends CI_Controller
         $this->load->model('Sebaran_Jatim');
         $this->load->model('Wilayah');
         $this->load->model('KantorUPT');
+        date_default_timezone_set('Asia/Jakarta');
+        $this->tahun_ini=date("Y");
     }
 
     public function index()
@@ -34,6 +36,13 @@ class Beranda extends CI_Controller
             FROM tb_perusahaan 
             -- WHERE id_provinsi= '42385' 
         ";
+
+        $data['tka'] = $this->Penempatan->getTotalTKA();
+        $data['pmib'] = $this->Penempatan->getTotalPMIB();
+        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['tabel'] = $this->Master->tabel();
+
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
@@ -56,17 +65,43 @@ class Beranda extends CI_Controller
         // var_dump($data['sebaran_phk']);
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
+        foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
+            foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }
+            foreach($data['cpmi'][0] as $cpmi1){ $cpmi = $cpmi1; }
+            foreach($data['phk'][0] as $phk1){ $phk = $phk1; }
+            $jumlah_naker = $tka + $pmib + $cpmi + $phk;
+            $data['presentase_cpmi'] = round($cpmi / $jumlah_naker * 100,2);
+            $data['presentase_pmib'] = round($pmib / $jumlah_naker * 100,2);
+            $data['presentase_tka'] = round($tka / $jumlah_naker * 100,2);
+            $data['presentase_phk'] = round($phk / $jumlah_naker * 100,2);
+            $data['tabel'] = $this->Master->tabel();
+
+            $data['data_tahun_tka'] = array();
+            $data['data_tahun_pmib'] = array();
+            $data['data_tahun_cpmi'] = array();
+            $data['data_tahun_phk'] = array();
+            $data['tahun_start'] = $this->tahun_ini - 3;
+            $data['tahun_awal'] = strval($data['tahun_start']);
+            for ($i=0; $i < 4; $i++) { 
+                $data_tka = $this->Penempatan->getjumlahtahuntka($data['tahun_start']);
+                $data_pmib = $this->Penempatan->getjumlahtahunpmib($data['tahun_start']);
+                $data_cpmi = $this->Penempatan->getjumlahtahuncpmi($data['tahun_start']);
+                $data_phk = $this->Penempatan->getjumlahtahunphk($data['tahun_start']);
+                array_push($data['data_tahun_tka'], $data_tka);
+                array_push($data['data_tahun_pmib'], $data_pmib);
+                array_push($data['data_tahun_cpmi'], $data_cpmi);
+                array_push($data['data_tahun_phk'], $data_phk);
+                $data['tahun_start'] += 1;
+            }
+            $data['tahun_ini'] = $this->tahun_ini;
+
 
         if ($this->ci->session->userdata('email')) {
             $data['is_login'] = 1;
         }else{
             $data['is_login'] = 0;
         }
-        $data['tka'] = $this->Penempatan->getTotalTKA();
-        $data['pmib'] = $this->Penempatan->getTotalPMIB();
-        $data['cpmi'] = $this->Penempatan->getTotalCPMI();
-        $data['phk'] = $this->Penempatan->getTotalPHK();
-        $data['tabel'] = $this->Master->tabel();
+        
 
         //load with templating view
         $this->load->view('templates/header', $data);

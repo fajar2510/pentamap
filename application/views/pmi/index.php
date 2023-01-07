@@ -154,7 +154,7 @@
                                                 // echo $umur->d;
                                                 // echo " Hari";
                                                 ?>)th</sup> </td>
-                                    <td ><small> <?= $p['nama_kelurahan']; ?>, <?= $p['nama_kecamatan']; ?>, <?= $p['nama_kabupaten']; ?> </small></td>
+                                    <td ><small> <?= $p['nama_kabupaten']; ?>, <?= $p['alamat']; ?> </small></td>
                                     <td align="center"><?= $p['nama_negara']; ?></td>
                                     <td align="center">
                                         

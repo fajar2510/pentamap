@@ -4,8 +4,7 @@ defined('BASEPATH') or exit('No direct script acces allowed');
 
 class KantorUPT extends CI_Model
 {
-public function get_upt()
-
+    public function get_upt()
     {
         $query = "SELECT  kantor_upt.*, kabupaten.*
                     FROM kantor_upt 
