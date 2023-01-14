@@ -91,12 +91,9 @@
             <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                 <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
             </a>
-            <!-- Card Content - Collapse -->
-            <div class="collapse show" id="collapseCardExample">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-                </div>
-            </div>
+            
+
+            <!-- //kosongan -->
         </div>
     </div>
        

@@ -243,6 +243,12 @@ class Penempatan extends CI_Model
         return $data->result();
     }
 
+    public function getTotalLokal($wilayah = null)
+    {
+        $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='aktif' ");
+        return $data->result();
+    }
+
     public function getjumlahtahunphk($tahun)
     {
         $this->db->select('*');

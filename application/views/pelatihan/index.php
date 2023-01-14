@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';">Rekomendasi <?= $title; ?> <?= date('Y'); ?> </h3>
+        <h5 style="font-family:'Roboto';">%Data tidak/belum kerja per-UPT, merekomendasikan <?= $title; ?> <?= date('Y'); ?> </h3>
         
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
@@ -27,7 +27,7 @@
                 <div class="card-header py-3 ">
                     <div class="d-sm-flex align-items-center justify-content-start mb-0">
                         <div class="dropdown mb-0">
-                        <form action="<?= base_url('exportimport/reward_perusahaan')?>" target="_blank" method="POST">
+                        <!-- <form action="<?= base_url('exportimport/reward_perusahaan')?>" target="_blank" method="POST">
                             <div class="d-flex flex-row " >
                             <label for="tahun" class="d-none d-sm-inline-block p-2" style="margin:10px; font-weight:bold; font-family:roboto;"> Tahun:</label>
                             <input style="margin:10px; font-family:roboto;" readonly name="tahun" id="tahun" class="form-control p-2 " type="text" value="<?= date('Y'); ?>">
@@ -40,7 +40,7 @@
                                     </button>
                              </span>
                              </div>
-                             </form>
+                             </form> -->
                             <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Excel.csv</a>
                                 <a class="dropdown-item" href="#">PDF.pdf</a>
@@ -57,7 +57,7 @@
                                         <th  class="text-center">Nama UPT</th>
                                         <th  class="text-center">Cakupan</th>
                                         <th  class="text-center">Lokasi</th>
-                                        <th  class="text-center">%Presentase</th>
+                                        <th  class="text-center">%tidak/belum kerja</th>
                                         <th width="" class="text-center" >Aksi</th>
                                     </tr>
                                 </thead>
@@ -71,8 +71,8 @@
                                             <td> <small> <?= $lat['nama_kabupaten']; ?> </small></td>
                                             <td> <small><?php if ($lat[0]['percent'] != null) { echo $lat[0]['percent']."%"; } else { echo "no-data"; }  ?> </small></td>
                                             <td class="text-center">  
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
-                                  
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalPrint<?= $lat['id_upt']; ?>" class="btn btn-sm btn-success"> Ajukan <i class="fa fa-paper-plane"></i></button>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -127,8 +127,8 @@
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $lat['long_upt']; ?></label>
                         </div>
                         <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">Presentase</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; </label>
+                            <label for="name" class="col-sm-3 col-form-label">%tidak/belum bekerja</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($lat[0]['percent'] != null) { echo $lat[0]['percent']."%"; } else { echo "no-data"; }  ?> </label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Riwayat Pelatihan </label>

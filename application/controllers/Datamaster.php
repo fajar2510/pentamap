@@ -644,7 +644,7 @@ class Datamaster extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['geojatim'] = $this->Geo_Jatim->get_GeoJatim();
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
 
         // $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         
@@ -729,7 +729,7 @@ class Datamaster extends CI_Controller
         
         // var_dump ($data['kantorUPT']);
         //     die;
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         
 

@@ -4,13 +4,13 @@ defined('BASEPATH') or exit('No direct script acces allowed');
 
 class Sebaran_Jatim extends CI_Model
 {
-    public function get_sebaran_lokal()
-    {
-        $this->db->select('*');
-        $this->db->from('tb_phk');
-        $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
-        return $this->db->get()->result();
-    }
+    // public function get_sebaran_lokal()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('tb_phk');
+    //     $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+    //     return $this->db->get()->result();
+    // }
 
     public function get_sebaran_cpmi($wilayah = null)
     {
@@ -58,6 +58,33 @@ class Sebaran_Jatim extends CI_Model
             $this->db->where('wilayah',$wilayah);
         }
         $this->db->where('status_kerja','phk');
+        return $this->db->get()->result();
+    }
+
+    public function get_sebaran_lokal($wilayah = null)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
+        $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+        if ($wilayah != null) {
+            $this->db->where('wilayah',$wilayah);
+        }
+        $this->db->where('status_kerja','aktif');
+        return $this->db->get()->result();
+    }
+
+    public function get_sebaran_disabilitas($wilayah = null)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
+        $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+        if ($wilayah != null) {
+            $this->db->where('wilayah',$wilayah);
+        }
+        // $this->db->where('status_kerja','aktif');
+        $this->db->where('disabilitas','Y');
         return $this->db->get()->result();
     }
       
@@ -120,8 +147,57 @@ class Sebaran_Jatim extends CI_Model
         return $this->db->get()->row();
     }
 
+    // mengambil data detail berdasarkan id lokasi LOkal
+    public function detail_lokal($id_lokasi)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+        $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
+        $this->db->where('tb_phk.status_kerja', 'aktif');
+        $this->db->where('tb_phk.id_phk', $id_lokasi);
+        return $this->db->get()->row();
+    }
+
+    // mengambil data detail berdasarkan id lokasi Disabilitas
+    public function detail_disabilitas($id_lokasi)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
+        $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
+        // $this->db->where('tb_phk.status_kerja', 'aktif');
+        $this->db->where('tb_phk.disabilitas', 'Y');
+        $this->db->where('tb_phk.id_phk', $id_lokasi);
+        return $this->db->get()->row();
+    }
+
     //mengabil total cpmi 
     public function detail_kabupaten()
+    {
+
+        $data = $this->db->query(
+            "SELECT  kabupaten.nama_kabupaten,kabupaten.geojson, kabupaten.warna,  kabupaten.luas_area, 
+            kabupaten.kabupaten_lat, kabupaten.kabupaten_long, kabupaten.logo_kab, kabupaten.id_kabupaten, 
+            
+            COUNT(DISTINCT tb_cpmi.id) AS totalCpmi,
+            COUNT(DISTINCT tb_tka.id) AS totalTka , 
+            COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
+            COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk ,
+            COUNT(CASE tb_phk.status_kerja WHEN 'aktif' THEN 1 END)  AS totLokal 
+            FROM kabupaten 
+            LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
+            LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten
+            LEFT JOIN tb_pmi ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+            LEFT JOIN tb_phk ON tb_phk.wilayah = kabupaten.id_kabupaten 
+            WHERE id_provinsi = '42385' 
+            GROUP BY kabupaten.nama_kabupaten;
+        ");
+        return $data->result_array();
+    }
+
+    //mengatasi error pada pengambilan data array
+    public function detail_kabupaten_object()
     {
 
         $data = $this->db->query(

@@ -169,11 +169,11 @@
        
 
         // Open Street Default Layer     
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '©OpenStreetMap, ©CartoDB',
-            // pane: 'labels'
-        });
-        osm.addTo(map);
+        // var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     attribution: '©OpenStreetMap, ©CartoDB',
+        //     // pane: 'labels'
+        // });
+        // osm.addTo(map);
 
         osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '©OpenStreetMap, ©CartoDB'
@@ -198,14 +198,14 @@
             });
             googleSat.addTo(map);
 
-        Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            subdomains: 'abcd',
-            // minZoom: 1,
-            // maxZoom: 16,
-            ext: 'jpg'
-            });
-            Stamen_Watercolor.addTo(map);
+        // Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+        //     attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        //     subdomains: 'abcd',
+        //     // minZoom: 1,
+        //     // maxZoom: 16,
+        //     ext: 'jpg'
+        //     });
+        //     Stamen_Watercolor.addTo(map);
 
         
 
@@ -284,6 +284,18 @@
             // popupAnchor: [-3,-55]
         });
 
+        // icon sebaran Lokal
+        var iconLokal = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/marker/ellipse.png',
+            iconSize : [16,16],
+        });
+
+        // icon sebaran Disabilitas
+        var iconDisabilitas = L.icon({
+            iconUrl : '<?= base_url('assets/'); ?>img/marker/disabled-person.png',
+            iconSize : [30,30],
+        });
+
         
         var markersUpt = L.markerClusterGroup( {
             iconCreateFunction: function (cluster) {
@@ -307,22 +319,34 @@
         
         
           // MARKER dengan cluster UPT
-        <?php foreach ($sebaran_upt  as $key => $value) { ?> 
-            var sebaranUpt = L.marker([<?= $value->lat_upt ?>, <?= $value->long_upt ?>], { icon:iconUpt} )
+        <?php foreach ($data_pelatihan  as $key => $value) { ?> 
+            var sebaranUpt = L.marker([<?= $value['lat_upt'] ?>, <?= $value['long_upt'] ?>], { icon:iconUpt} )
             .bindPopup(
             `<div class="container px-1 py-1">
-             <h5 style="font-weight:bold;"><?= $value->nama_upt ?></h5>
-             <p style="font-weight:semibold;">Cakupan : <?= $value->ket_upt ?>\</p>
-             <p>Latitude : <?= $value->lat_upt ?>\</p>
-             <p> Longitude : <?= $value->long_upt ?> </p> `
-             ).bindTooltip("<center><b><?= $value->nama_upt ?></b></center>", {
+            <h5 style="font-weight:bold;"><?= $value['nama_upt'] ?></h5>
+            <img src="<?= base_url("assets/img/upt/") . $value['foto'] ?>" alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;"> 
+                
+            <table class="table table-sm" style=" padding: 1; margin: 1;" >
+            <thead style=" padding: 2; margin: 2; font-color:black;">
+            <tr>
+            <th scope="col" style=" padding: 0; margin: 0; color: black;">Alamat</th>
+            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['alamat_upt'] ?></span></th></tr>
+            <tr>
+            <th scope="col" style=" padding: 0; margin: 0; color: black;">Cakupan</th>
+            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['ket_upt'] ?></span></th></tr>
+            <tr>
+            <th scope="col" style=" padding: 0; margin: 0; color: black;" >Phk/Bermasalah</th>
+            <th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"> &nbsp;  &nbsp;<?php if ($value[0]['percent'] != null) { echo $value[0]['percent']."%"; } else { echo "no-data"; }  ?></span></th></tr>
+            </table>
+            <button type="button"  class="btn btn-primary btn-block d-inline-block ">Ajukan Pelatihan</button></div>'`
+            ).bindTooltip("<center><b><?= $value['nama_upt'] ?></b></center>", {
                 permanent: false,
                 size:25,
                 direction: 'bottom',
                 opacity: 0.85,
                 sticky: false,
                 className: 'leaflet-tooltip-own-upt'
-             });
+            });
 
             markersUpt.addLayer(sebaranUpt);
             map.addLayer(markersUpt);
@@ -498,23 +522,109 @@
           <?php }?>
 
 
+        // MARKER dengan cluster Lokal
+        var markersLokal = L.markerClusterGroup( {
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-lokal-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
+          
+        <?php foreach ($sebaran_lokal  as $key => $value) { ?> 
+            var sebaranLokal = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconLokal} )
+            .bindPopup(
+            '<div class="container px-1 py-1">'+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Lokal/daerah Aktif kerja</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+ 
+
+              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
+
+            markersLokal.addLayer(sebaranLokal);
+            map.addLayer(markersLokal);
+            map.fitBounds(markersLokal.getBounds());
+          
+        <?php }?>
+
+         // MARKER dengan cluster Disabilitas
+         var markersDisabilitas = L.markerClusterGroup( {
+            iconCreateFunction: function (cluster) {
+            var childCount = cluster.getChildCount();
+            var c = ' marker-cluster-lokal-';
+            if (childCount < 10) {
+            c += 'small';
+            } 
+            else if (childCount < 100) {
+            c += 'medium';
+            } 
+            else {
+            c += 'large';
+            }
+
+            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+            }
+        });
+          
+        <?php foreach ($sebaran_disabilitas  as $key => $value) { ?> 
+            var sebaranDisabilitas = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconDisabilitas} )
+            .bindPopup(
+            '<div class="container px-1 py-1">'+
+              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Penyandang Disabilitas</i></span> '+
+              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  , <?= $value->status_kerja ?><br />'+
+              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+ 
+
+              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+              '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
+              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
+
+            markersDisabilitas.addLayer(sebaranDisabilitas);
+            map.addLayer(markersDisabilitas);
+            map.fitBounds(markersDisabilitas.getBounds());
+          
+        <?php }?>
+
+
         //   change layer function
         var overlays = {
                 "Kantor UPT": markersUpt,
+                "Disabilitas": markersDisabilitas,
                 "PHK": markersPhk,
-                "CPMI": markersCpmi,
+                "PMI": markersCpmi,
                 "PMIB": markersPmib,
-                "TKA": markersTka
+                "TKA": markersTka,
+                "Lokal/Daerah": markersLokal,
+                
             };
 
         var baseLayers = {
-            "Satellite":googleSat,
-            "Google Map":googleStreets,
-            "Water Color":Stamen_Watercolor,
-            // "OpenStreetMapDark": osm_custom,
-            // "OSM NoLabel": osmNoLabel,
-            "OSM OnlyLabel": osmOnlyLabel,
-            "OpenStreetMap": osm,
+            
+            
+            // "Water Color":Stamen_Watercolor,
+            "OSM Clean": osmOnlyLabel,
+            "Google Satellite":googleSat,
+            "Google Street":googleStreets,
+            // "OpenStreetMap": osm,
             
             
         };
@@ -523,18 +633,18 @@
 
         //  jawa timur polygon geo json
         <?php foreach ($detail_kabupaten as $key => $value) { ?>
-        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value->geojson) ?>", function(data) {
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value['geojson']) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
                         opacity: 0.4,
-                        color: '<?= $value->warna ?>',
-                        // fillColor: '<?= $value->warna ?>',
+                        color: '<?= $value['warna'] ?>',
+                        // fillColor: '<?= $value['warna'] ?>',
                         fillColor: 'white',
                         fillOpacity: 0.5,
                         interactive: true,
                         }    
-                 },
+                },
             }). addTo(map);
 
             // geolayer.bindTooltip("My polygon",
@@ -543,15 +653,32 @@
 
             geoLayer.eachLayer(function (layer) {
                 layer.bindPopup('<div class="container px-1 py-1">'+
-            //   '<h6><u><?= $value->nama_kabupaten ?></u></h6> '+ 
-              ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value->logo_kab ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
-              '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; ">  <?= $value->nama_kabupaten ?> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value->luas_area ?>&nbsp; KM <sup>2</sup> <br>'+
-              '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value->kabupaten_lat ?>, &nbsp;  <?= $value->kabupaten_lat ?><br>'+
-              '<i class="fa-solid fa-people-group" style="margin-bottom: 10px;margin-right: 10px;"></i>CPMI <span class="badge badge-info badge-pill"><?= $value->totalCpmi ?> </span>, ' +
-              'PHK <span class="badge badge-danger badge-pill"><?= $value->totalPhk ?> </span>, PMIB <span class="badge badge-warning badge-pill"><?= $value->totalPmib ?> </span>, TKA <span class="badge badge-success badge-pill"><?= $value->totalTka ?> </span></i> <br> <br>'+
-            //   '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Perusahaan ,<span class="badge badge-secondary badge-pill">0 </span> </i></p> '+
-              '<button type="button" onclick="btn_lp()" data-id="<?php echo $value->id_kabupaten ?>" class="btn btn-primary btn-block d-inline-block listp">Daftar Perusahaan</button></div>');
+            ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value['logo_kab'] ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
+            '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; "> <b> <?= $value['nama_kabupaten'] ?></b> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
+            '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value['luas_area'] ?>&nbsp; KM <sup>2</sup> '+
+            //   '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value['kabupaten_lat'] ?>, &nbsp;  <?= $value['kabupaten_lat'] ?><br>'+
+            '<table class="table table-sm" style=" padding: 0; margin: 0;" >' +
+            '<thead style=" padding: 0; margin: 0;"><tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" >CPMI</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-info badge-pill"><?= $value['totalCpmi'] ?> </span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" >PHK</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"><?= $value['totalPhk'] ?>  </span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" >PMIB</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-warning badge-pill"><?= $value['totalPmib'] ?></span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" >TKA</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-success badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" >LOKAL</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-light badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" ><b>TOTAL DATA</b></th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-secondary badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
+            '</table> <br>' +
+            
+              '<button type="button" onclick="btn_lp()" data-id="<?php echo $value['id_kabupaten'] ?>" class="btn btn-primary btn-block d-inline-block listp">Lihat Perusahaan</button></div>');
             });
         });
         <?php } ?>
@@ -573,6 +700,7 @@
                 var pmib = data[i].totalPmib;
                 var pmi = data[i].totalCpmi;
                 var tka = data[i].totalTka;
+                var lokal = data[i].totalLokal;
                 var logo = data[i].logo_kab;
 
                 // if (phk == "0") {
@@ -618,6 +746,7 @@
                 //     tka = parseInt("0");
                 // } else {
                     tka = parseInt(data[i].totalTka);
+                    lokal = parseInt(data[i].totalLokal);
                 //     var circle = L.circle([long, lat], 12000, {
                 //         color: '#3CCF4E',
                 //         fillOpacity: 0.3
@@ -652,13 +781,15 @@
 
         legend.onAdd = function(map) {
           var div = L.DomUtil.create("div", "legend");
-          div.innerHTML += "<h4>Legenda Peta Tenaga Kerja Jatim</h4>";
+          div.innerHTML += "<h4>Legenda Peta</h4>";
           div.innerHTML += '<svg height="25" width="100%"><line x1="0" y1="10" x2="40" y2="10" style="stroke:#293462; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah</text>]</svg>';
           
-          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#D61C4E" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
+          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="red" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Pekerja Migran Indonesia (PMI)</text></svg>';
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">PMI Bermasalah (PMIB)</text></svg>';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Calon Pekerja Migran Indonesia (CPMI)</text></svg>';
+          
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="green" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Asing (TKA)</text></svg> ';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="purple" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Lokal/Daerah</text></svg> ';
           div.innerHTML += '<br><svg width="100%" height="20"  xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M1 22h2v-22h18v22h2v2h-22v-2zm7-3v4h3v-4h-3zm5 0v4h3v-4h-3zm-6-5h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2z" opacity="70%"/> <text x="60" y="15" style="font-family:roboto;  font-size=16px;">Kantor UPT</text></svg> ';
         //   div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Daerah</text></svg>';
           // div.innerHTML += ' <br><i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>SIG</span><br>';

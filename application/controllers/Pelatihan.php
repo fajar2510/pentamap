@@ -90,8 +90,43 @@ class Pelatihan extends CI_Controller
             // echo $jumlah_pengurang_upt."-".$jumlah_total_upt."-".$percent."\n";
             $m++;
         }
+        // foreach ($data['data_pelatihan'] as $val) {
+        //     echo $val[0]['percent']."<br>";
+        // }
+
+        $temp = [];
+        $n_array = count($data['data_pelatihan']);
+        // var_dump($data['data_pelatihan'][0][0]['percent']); die;
+        for ($x=0; $x < $n_array; $x++) { 
+            // $angka1 = $data['data_pelatihan'][$x][0]['percent'];
+            // $arr_angka1 = $data['data_pelatihan'][$x];
+            for ($y=0; $y < $n_array; $y++) { 
+                // $angka2 = $data['data_pelatihan'][$y][0]['percent'];
+                // $arr_angka2 = $data['data_pelatihan'][$y];
+                if ($data['data_pelatihan'][$x][0]['percent'] > $data['data_pelatihan'][$y][0]['percent']) {
+                    // echo "iki".$arr_angka2[0]['percent']." ";
+                    $temp[0] = $data['data_pelatihan'][$x];
+                    $data['data_pelatihan'][$x] = $data['data_pelatihan'][$y];
+                    $data['data_pelatihan'][$y] = $temp[0];
+                    // echo"<pre>";
+                    // var_dump("yo1".$arr_angka1[0]['percent']);
+                    // var_dump("yo2".$arr_angka2[0]['percent']);
+
+                }
+                // echo $arr_angka1[0]['percent']."-".$arr_angka2[0]['percent'];
+                // echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+            // var_dump($arr_angka1);
+            // break;
+        }
+        // var_dump($data['data_pelatihan'][0]);
+// die;
         // echo"<pre>";
-        // var_dump($data['data_pelatihan']);
+        // var_dump($data['data_pelatihan'][0]);
+        // echo "----------------------------------------<br>";
+        // foreach ($data['data_pelatihan'] as $val) {
+        //     echo $val[0]['percent']."<br>";
+        // }
         // die;
         
         $data['title'] = 'Pelatihan Lokasi';

@@ -20,7 +20,7 @@ class KantorUPT extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('kantor_upt');
-        return $this->db->get()->result();
+        return $this->db->get()->result_array();
     }
 
     // mengambil data detail berdasarkan id lokasi UPT

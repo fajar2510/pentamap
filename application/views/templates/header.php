@@ -369,22 +369,45 @@
 <style>
     /* marker kantor UPT */
   .marker-cluster-upt-small {
-    background-color: rgba(100, 100, 100, 0.5);
+    background-color: rgba(252, 10, 203, 0.7), 0.65);
     }
     .marker-cluster-upt-small div {
-    background-color: rgba(100, 100, 100, 0.55);
+    background-color: rgba(221, 60, 221, 0.65);
     }
     .marker-cluster-upt-medium {
-    background-color: rgba(100, 100, 100, 0.6);
+    background-color: rgba(251, 180, 221, 0.65);
     }
     .marker-cluster-upt-medium div {
-    background-color: rgba(100, 100, 215, 0.65);
+    background-color: rgba(256, 124, 230, 0.65);
     }
 
     .marker-cluster-upt-large {
-    background-color: rgba(100, 100, 225, 0.7);
+    background-color: rgba(252, 10, 203, 0.7);
     }
     .marker-cluster-upt-large div {
+    background-color: rgba(252, 122, 203, 0.8);
+    }
+  </style>
+
+<style>
+    /* marker Lokal */
+  .marker-cluster-lokal-small {
+    background-color: rgba(100, 90, 225, 0.3);
+    }
+    .marker-cluster-lokal-small div {
+    background-color: rgba(100, 100, 225, 0.4);
+    }
+    .marker-cluster-lokal-medium {
+    background-color: rgba(100, 100, 225, 0.5);
+    }
+    .marker-cluster-lokal-medium div {
+    background-color: rgba(100, 100, 215, 0.65);
+    }
+
+    .marker-cluster-lokal-large {
+    background-color: rgba(100, 100, 225, 0.7);
+    }
+    .marker-cluster-lokal-large div {
     background-color: rgba(100, 100, 300, 0.8);
     }
   </style>

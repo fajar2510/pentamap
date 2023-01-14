@@ -15,6 +15,9 @@ class Beranda extends CI_Controller
         $this->load->model('Sebaran_Jatim');
         $this->load->model('Wilayah');
         $this->load->model('KantorUPT');
+        $this->load->model('PelatihanModel');
+        $this->load->model('Geo_Jatim');
+        $this->load->model('Lokal');
         date_default_timezone_set('Asia/Jakarta');
         $this->tahun_ini=date("Y");
     }
@@ -41,21 +44,38 @@ class Beranda extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lokal'] = $this->Penempatan->getTotalLokal();
         $data['tabel'] = $this->Master->tabel();
 
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
-        $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt();
+        // $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt(); 
+        // $data['sebaran_upt'] = $this->PelatihanModel->get_pelatihan(); 
+        
 
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
         $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
         $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
         $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
-        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        $data['sebaran_lokal'] = $this->Sebaran_Jatim->get_sebaran_lokal();
+        $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        // $data['detail_kabupaten_object'] = $this->Sebaran_Jatim->detail_kabupaten_object();
+
+        $total = 0;
+        $m = 0;
+        foreach ($data['detail_kabupaten'] as $valx) {
+            $total = $valx['totalTka'] + $valx['totalCpmi'] + $valx['totalPmib'] + $valx['totalPhk'] +  $valx['totLokal']  ;
+            // echo $total."<br>";
+            array_push($data['detail_kabupaten'][$m], ["total" => $total]);
+            // break;
+            $m++;
+        }
+
+        // echo"<pre>";
         // var_dump($data['detail_kabupaten']);
         // die;
 
@@ -65,7 +85,7 @@ class Beranda extends CI_Controller
         // var_dump($data['sebaran_phk']);
         // die;
         // $data['tka'] = $this->Perusahaan->getTotalTKA();
-        foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
+            foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
             foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }
             foreach($data['cpmi'][0] as $cpmi1){ $cpmi = $cpmi1; }
             foreach($data['phk'][0] as $phk1){ $phk = $phk1; }
@@ -101,6 +121,42 @@ class Beranda extends CI_Controller
         }else{
             $data['is_login'] = 0;
         }
+
+        // data UPT get
+        $data['data_pelatihan'] = $this->PelatihanModel->get_pelatihan();
+        $kabupaten = $this->Geo_Jatim->get_GeoJatim();
+
+        // presentase tidak/belum kerja per upt
+        $m = 0;
+        foreach ($data['data_pelatihan'] as $pelatihan) {
+            $id_upt = $pelatihan['id_upt'];
+            $n = 0;
+            $id_kab = 0;
+            $jumlah_total_upt = 0;
+            $jumlah_pengurang_upt = 0;
+            foreach ($kabupaten as $val) {
+                $id_kab = $val['id_kabupaten'];
+                $upt_id = $val['upt_id'];
+                $jum_phk = count($this->Lokal->get_phk("wilayah = $id_kab"));
+                $jum_lokal = count($this->Lokal->get_aktif("wilayah = $id_kab"));
+                $jum_pmib = count($this->Master->getPmiJoinWilayah("kabupaten = $id_kab"));
+                $jum_tka = count($this->Perusahaan->get_TkaPerusahaan("lokasi_kerja = $id_kab"));
+                $jum_cpmi = count($this->Penempatan->get_cpmi("wilayah = $id_kab"));
+                $jumlah_total = $jum_phk + $jum_lokal + $jum_pmib + $jum_tka + $jum_cpmi;
+                $jum_pengurang = $jum_phk + $jum_pmib;
+                if ($upt_id == $id_upt) {
+                    $jumlah_total_upt += $jumlah_total;
+                    $jumlah_pengurang_upt += $jum_pengurang;
+                }
+                $n++;
+            }
+            $percent = null;
+            if ($jumlah_total_upt != 0) {
+                $percent = $jumlah_pengurang_upt/$jumlah_total_upt*100;
+            }
+            array_push($data['data_pelatihan'][$m], ["percent" => $percent]);
+            $m++;
+        }
         
 
         //load with templating view
@@ -120,16 +176,17 @@ class Beranda extends CI_Controller
             kabupaten.kabupaten_lat, kabupaten.kabupaten_long, kabupaten.logo_kab, kabupaten.id_kabupaten,
             
             COUNT(DISTINCT tb_cpmi.id) AS totalCpmi,
-             COUNT(DISTINCT tb_tka.id) AS totalTka , 
-             COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
-             COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk 
-             FROM kabupaten 
-             LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
-             LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten
-              LEFT JOIN tb_pmi ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
-              LEFT JOIN tb_phk ON tb_phk.wilayah = kabupaten.id_kabupaten 
-              WHERE id_provinsi = '42385' 
-              GROUP BY kabupaten.nama_kabupaten ; 
+            COUNT(DISTINCT tb_tka.id) AS totalTka , 
+            COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
+            COUNT(CASE tb_phk.status_kerja WHEN 'aktif' THEN 1 END)  AS totLokal ,
+            COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk 
+            FROM kabupaten 
+            LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
+            LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten
+            LEFT JOIN tb_pmi ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
+            LEFT JOIN tb_phk ON tb_phk.wilayah = kabupaten.id_kabupaten 
+            WHERE id_provinsi = '42385' 
+            GROUP BY kabupaten.nama_kabupaten ; 
         ";
 
         // if ($tahun == "all") {
@@ -141,6 +198,7 @@ class Beranda extends CI_Controller
         //         "SELECT * FROM kabupaten WHERE DATE(YEAR)='$tahun' id_provinsi= '42385'
         // ";
         // }
+        
         $data = $this->db->query($query)->result();
         echo json_encode($data);
     }
@@ -150,6 +208,9 @@ class Beranda extends CI_Controller
     //     $data = $this->product_model->get_sub_category($category_id)->result();
     //     echo json_encode($data);
     // }
+
+        
+
     public function list_perusahaan()
     {
         $id=$this->input->post('id_kabupaten');
@@ -296,6 +357,17 @@ class Beranda extends CI_Controller
         $phk = $this->db->query($query)->result();
         echo json_encode($phk);
     }
+
+    // public function lokal()
+    // {
+    //     is_logged_in();
+    //     $query =
+    //         "SELECT *, max(jumlah_lokal) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
+    //     ";
+
+    //     $phk = $this->db->query($query)->result();
+    //     echo json_encode($phk);
+    // }
 
     public function pmi()
     {
