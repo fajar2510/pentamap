@@ -757,7 +757,7 @@ class Datamaster extends CI_Controller
         $data['phk'] = $this->Penempatan->getTotalPHK();
 
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
 
         $this->form_validation->set_rules('nama_upt', 'Nama UPT', 'trim|required');
         $this->form_validation->set_rules('kab', 'Kabupaten/kota', 'trim|required');
@@ -815,7 +815,7 @@ class Datamaster extends CI_Controller
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
         $data['edit_upt'] = $this->KantorUPT->edit_upt($id);
         // menampilkan warna wilayah
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
         // var_dump ($data['edit_upt']);
         //     die;
         

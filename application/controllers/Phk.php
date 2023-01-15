@@ -257,7 +257,7 @@ class Phk extends CI_Controller
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
         // $data['tambah_phk'] = $this->Master->get_tb_phk();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_phk($id_lokasi);
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
         // var_dump($data['lokasi']);
         // die;
         
@@ -372,21 +372,8 @@ class Phk extends CI_Controller
         is_logged_in();
         $this->db->where('id_phk', $id);
 
-        $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
-        $kabupaten = $phk->row()->wilayah;
-
         $this->db->delete('tb_phk');
 
-            $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
-
-           $jumlah = $jumlah_phk->row()->phk;
-
-            $update = [   
-                'jumlah_phk' => $jumlah,
-            ];
-
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.
@@ -401,21 +388,8 @@ class Phk extends CI_Controller
         is_logged_in();
         $this->db->where('id_phk', $id);
 
-        // $phk =  $this->db->query("SELECT * FROM tb_phk WHERE id_phk='$id'");
-        // $kabupaten = $phk->row()->wilayah;
-
         $this->db->delete('tb_phk');
 
-        //     $jumlah_phk = $this->db->query("SELECT SUM(CASE WHEN wilayah='$kabupaten' THEN 1 ELSE 0 END) AS phk FROM tb_phk");
-
-        //    $jumlah = $jumlah_phk->row()->phk;
-
-        //     $update = [   
-        //         'jumlah_phk' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id_kabupaten', $kabupaten);
-        //     $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

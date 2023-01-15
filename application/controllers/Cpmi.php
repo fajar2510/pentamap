@@ -284,7 +284,7 @@ class Cpmi extends CI_Controller
         // $data['negara'] = $this->db->get('tb_negara')->result_array();
         $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
 
         // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
         // $data['perusahaan'] = $this->Penempatan->get_perusahaanPMI();

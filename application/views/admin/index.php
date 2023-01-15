@@ -4,7 +4,7 @@
 
 
         <!-- Page Heading -->
-        <h5 class="h5 mb-1 text-gray-600"><?= $title; ?> ADMIN TESTING </h5>
+        <h5 class="h5 mb-1 text-gray-600"><?= $title; ?> ADMIN DASHBOARD </h5>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
 

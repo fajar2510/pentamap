@@ -272,7 +272,7 @@ class Tka extends CI_Controller
         $data['negara'] = $this->Wilayah->list_negara();
         // $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
         $data['lokasi'] = $this->Sebaran_Jatim->detail_tka($id_lokasi);
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
         // var_dump($data['lokasi']);
         // die;
 

@@ -265,45 +265,6 @@
         });
     </script>
 
-     <!-- dinamic select option untuk pilih alamat  -->
-    <!-- <script>
-        function tampilKabupaten() {
-            kdprop = document.getElementById("provinsi_id").value;
-            $.ajax({
-                url: "<?php echo base_url(); ?>pmi/pilih_kabupaten/" + kdprop + "",
-                success: function(response) {
-                    $("#kabupaten_id").html(response);
-                },
-                dataType: "html"
-            });
-            return false;
-        }
-
-        function tampilKecamatan() {
-            kdkab = document.getElementById("kabupaten_id").value;
-            $.ajax({
-                url: "<?php echo  base_url(); ?>pmi/pilih_kecamatan/" + kdkab + "",
-                success: function(response) {
-                    $("#kecamatan_id").html(response);
-                },
-                dataType: "html"
-            });
-            return false;
-        }
-
-        function tampilKelurahan() {
-            kdkec = document.getElementById("kecamatan_id").value;
-            $.ajax({
-                url: "<?php echo  base_url(); ?>pmi/pilih_kelurahan/" + kdkec + "",
-                success: function(response) {
-                    $("#kelurahan_id").html(response);
-                },
-                dataType: "html"
-            });
-            return false;
-        }
-    </script> -->
-
     <!-- AUTO COMPLETE -->
     <script  type="text/javascript">
                 //autocomplete tenaga kerja lokal add
@@ -327,54 +288,42 @@
 
         var map = L.map('mapltlg').setView([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>], 11.5);
 
-        // Open Street Layer
+        // Open Street Default Layer     
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '©OpenStreetMap, ©CartoDB',
+            // pane: 'labels'
         });
         osm.addTo(map);
 
-        osmNoLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        attribution: '©OpenStreetMap, ©CartoDB'
-        }).addTo(map);
 
-        osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        var osmOnlyLabel = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
             attribution: '©OpenStreetMap, ©CartoDB'
         });
         osmOnlyLabel.addTo(map);
 
         // Google Street Layer
-        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
             // maxZoom: 16,
             subdomains:['mt0','mt1','mt2','mt3']
         });
         googleStreets.addTo(map);
 
         // Google Satelite Layer
-        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
             // maxZoom: 16,
             subdomains:['mt0','mt1','mt2','mt3']
             });
             googleSat.addTo(map);
 
-        Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            subdomains: 'abcd',
-            // minZoom: 1,
-            // maxZoom: 16,
-            ext: 'jpg'
-            });
-            Stamen_Watercolor.addTo(map);
-
-         //   change layer function
-
         var baseLayers = {
             
-            "Water Color":Stamen_Watercolor,
-            "OpenStreetMap": osm,
+            
+            // "Water Color":Stamen_Watercolor,
+            "OSM Clean": osmOnlyLabel,
             "Google Satellite":googleSat,
-            "OSM OnlyLabel":osmOnlyLabel,
             "Google Street":googleStreets,
-           
+            "OpenStreetMap": osm,
+            
             
         };
         var layer_baseControl= L.control.layers(baseLayers).addTo(map);
@@ -385,7 +334,7 @@
 
         legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>Pilih Lokasi</h4>";
+        div.innerHTML += "<h4>Tentukan Lokasi</h4>";
         div.innerHTML += '<svg height="25" width="100%"><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Tarik Marker ke titik Lokasi </text></svg>';
 
         //   div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Daerah</text></svg>';

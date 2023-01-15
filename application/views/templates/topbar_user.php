@@ -77,18 +77,18 @@
 
             <li class="nav-item no-arrow">
                 <?php if ($title == "Peta Tenaga Kerja") { ?>
-                    <a class="nav-link" href="home">Peta</a>
+                    <a class="nav-link text-gray-900" href="home"><b>Peta</b></a>
                 <?php } else { ?>
                     <a class="nav-link text-gray-600" href="home">Peta</a>
                 <?php } ?>
             </li>
-            <li class="nav-item no-arrow">
+            <!-- <li class="nav-item no-arrow">
                 <?php if ($title == "Peta Tenaga Kerja") { ?>
-                    <a class="nav-link text-gray-600" href="#diagram">Grafik</a> 
+                    <a class="nav-link text-gray-900"" href="#diagram"><b>Grafik</b></a> 
                 <?php } else { ?>
                     <a class="nav-link text-gray-600" href="home#diagram">Grafik</a> 
                 <?php } ?>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-gray-600" href="#" id="nakerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
                 Tenaga Kerja
@@ -119,7 +119,7 @@
             </li>
             <li class="nav-item no-arrow">
                 <?php if ($title == "Penghargaan") { ?>
-                        <a class="nav-link" href="reward">Penghargaan</a> 
+                        <a class="nav-link text-gray-900" href="reward"><b>Penghargaan</b></a> 
                     <?php } else { ?>
                         <a class="nav-link text-gray-600" href="reward">Penghargaan</a> 
                     <?php } ?>

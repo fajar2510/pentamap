@@ -37,7 +37,6 @@ class Beranda extends CI_Controller
         $perusahaan =
             "SELECT *
             FROM tb_perusahaan 
-            -- WHERE id_provinsi= '42385' 
         ";
 
         $data['tka'] = $this->Penempatan->getTotalTKA();
@@ -50,10 +49,6 @@ class Beranda extends CI_Controller
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
-        // $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt(); 
-        // $data['sebaran_upt'] = $this->PelatihanModel->get_pelatihan(); 
-        
-
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
         $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
         $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
@@ -62,15 +57,15 @@ class Beranda extends CI_Controller
         $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
-        // $data['detail_kabupaten_object'] = $this->Sebaran_Jatim->detail_kabupaten_object();
+        $data['detail_kabupaten_array'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
 
         $total = 0;
         $m = 0;
-        foreach ($data['detail_kabupaten'] as $valx) {
+        foreach ($data['detail_kabupaten_array'] as $valx) {
             $total = $valx['totalTka'] + $valx['totalCpmi'] + $valx['totalPmib'] + $valx['totalPhk'] +  $valx['totLokal']  ;
             // echo $total."<br>";
-            array_push($data['detail_kabupaten'][$m], ["total" => $total]);
+            array_push($data['detail_kabupaten_array'][$m], ["total" => $total]);
             // break;
             $m++;
         }
@@ -188,16 +183,6 @@ class Beranda extends CI_Controller
             WHERE id_provinsi = '42385' 
             GROUP BY kabupaten.nama_kabupaten ; 
         ";
-
-        // if ($tahun == "all") {
-        //     $query =
-        //         "SELECT * FROM kabupaten WHERE id_provinsi= '42385'
-        // ";
-        // } else {
-        //     $query =
-        //         "SELECT * FROM kabupaten WHERE DATE(YEAR)='$tahun' id_provinsi= '42385'
-        // ";
-        // }
         
         $data = $this->db->query($query)->result();
         echo json_encode($data);
@@ -358,16 +343,16 @@ class Beranda extends CI_Controller
         echo json_encode($phk);
     }
 
-    // public function lokal()
-    // {
-    //     is_logged_in();
-    //     $query =
-    //         "SELECT *, max(jumlah_lokal) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
-    //     ";
+    public function lokal()
+    {
+        is_logged_in();
+        $query =
+            "SELECT *, max(jumlah_lokal) FROM kabupaten WHERE id_provinsi= '42385' GROUP BY id_provinsi
+        ";
 
-    //     $phk = $this->db->query($query)->result();
-    //     echo json_encode($phk);
-    // }
+        $lokal = $this->db->query($query)->result();
+        echo json_encode($lokal);
+    }
 
     public function pmi()
     {

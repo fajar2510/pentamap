@@ -142,7 +142,7 @@ class Sebaran_Jatim extends CI_Model
         $this->db->from('tb_phk');
         $this->db->join('kabupaten','tb_phk.wilayah = kabupaten.id_kabupaten');
         $this->db->join('tb_perusahaan','tb_phk.perusahaan = tb_perusahaan.id');
-        $this->db->where('tb_phk.status_kerja', 'phk');
+        // $this->db->where('tb_phk.status_kerja', 'phk');
         $this->db->where('tb_phk.id_phk', $id_lokasi);
         return $this->db->get()->row();
     }
@@ -196,7 +196,7 @@ class Sebaran_Jatim extends CI_Model
         return $data->result_array();
     }
 
-    //mengatasi error pada pengambilan data array
+    //mengatasi error pada pengambilan data objek
     public function detail_kabupaten_object()
     {
 
@@ -207,7 +207,8 @@ class Sebaran_Jatim extends CI_Model
             COUNT(DISTINCT tb_cpmi.id) AS totalCpmi,
              COUNT(DISTINCT tb_tka.id) AS totalTka , 
              COUNT(DISTINCT tb_pmi.id) AS totalPmib , 
-             COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk 
+             COUNT(CASE tb_phk.status_kerja WHEN 'phk' THEN 1 END)  AS totalPhk ,
+             COUNT(CASE tb_phk.status_kerja WHEN 'aktif' THEN 1 END)  AS totLokal 
              FROM kabupaten 
              LEFT JOIN tb_cpmi ON tb_cpmi.wilayah = kabupaten.id_kabupaten 
              LEFT JOIN tb_tka ON tb_tka.lokasi_kerja = kabupaten.id_kabupaten

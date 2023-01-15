@@ -55,7 +55,7 @@
                                         <table class="table table-sm">
                                             <thead>
                                                 <tr>
-                                                <th colspan="4" class="text-center">Data PHK <?= date('Y'); ?></th>
+                                                <th colspan="4" class="text-center">Data Tenaga Kerja Lokal/Daerah <?= date('Y'); ?></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -103,7 +103,7 @@
                                                     <td colspan="3"> <?= $lokasi->nama_kabupaten ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Perusahaan(phk)</th>
+                                                    <th scope="row">Perusahaan</th>
                                                     <td>:</td>
                                                     <td colspan="3"><?= $lokasi->nama_perusahaan ?></td>
                                                 </tr>
@@ -405,7 +405,7 @@
         L.marker([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>])
         .addTo(map)
         .bindPopup('<center><div class="container px-0 py-0"><img src="<?= base_url("assets/img/lokal/") . $lokasi->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%">'+
-              '<small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:0px; margin:0px;"><span class="badge badge-pill badge-danger" ><i>PHK</i></span>&nbsp;<?= $lokasi->nama_tk ?> </p></small> </div></center> ')
+              '<small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:1px; margin:1px;"><span class="badge badge-pill badge-info" ><i>Lokal</i></span>&nbsp;<?= $lokasi->nama_tk ?> </p></small> </div></center> ')
         .openPopup();
         
        

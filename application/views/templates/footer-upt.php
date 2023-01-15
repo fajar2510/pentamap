@@ -126,8 +126,6 @@
     var iconUpt = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/marker/city.png',
             iconSize : [30,30],
-            // iconAnchor: [22, 65],
-            // popupAnchor: [-3,-55]
         });
         
     var markersUpt = L.markerClusterGroup( {
@@ -153,14 +151,24 @@
         
           
         <?php foreach ($sebaran_upt  as $key => $value) { ?> 
-            var sebaranUpt = L.marker([<?= $value->lat_upt ?>, <?= $value->long_upt ?>], { icon:iconUpt} )
+            var sebaranUpt = L.marker([<?= $value['lat_upt'] ?>, <?= $value['long_upt'] ?>], { icon:iconUpt} )
             .bindPopup(
-            `<div class="container px-1 py-1">
-             <h5 style="font-weight:bold;"><?= $value->nama_upt ?></h5>
-             <p style="font-weight:semibold;">Cakupan : <?= $value->ket_upt ?>\</p>
-             <p>Latitude : <?= $value->lat_upt ?>\</p>
-             <p> Longitude : <?= $value->long_upt ?> </p> `
-             ).bindTooltip("<center><b><?= $value->nama_upt ?></b></center>", {
+       
+                `<div class="container px-1 py-1">
+            <h5 style="font-weight:bold;"><?= $value['nama_upt'] ?></h5>
+            <img src="<?= base_url("assets/img/upt/") . $value['foto'] ?>" alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;"> 
+                
+            <table class="table table-sm" style=" padding: 1; margin: 1;" >
+            <thead style=" padding: 2; margin: 2; font-color:black;">
+            <tr>
+            <th scope="col" style=" padding: 0; margin: 0; color: black;">Alamat</th>
+            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['alamat_upt'] ?></span></th></tr>
+            <tr>
+            <th scope="col" style=" padding: 0; margin: 0; color: black;">Cakupan</th>
+            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['ket_upt'] ?></span></th></tr>
+            
+            </table></div>'`
+             ).bindTooltip("<center><b><?= $value['nama_upt'] ?></b></center>", {
                 permanent: true,
                 size:25,
                 direction: 'bottom',

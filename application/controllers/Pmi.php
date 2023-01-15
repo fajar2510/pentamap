@@ -316,7 +316,7 @@ class Pmi extends CI_Controller
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // Load model pmi
         $data['lokasi'] = $this->Sebaran_Jatim->detail_pmib($id_lokasi);
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         // var_dump($data['lokasi']);
         // die;
@@ -444,21 +444,8 @@ class Pmi extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
-        $kabupaten = $pmi->row()->kabupaten;
 
         $this->db->delete('tb_pmi');
-
-        $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
-
-        $jumlah = $jumlah_pmib->row()->pmib;
-
-        $update = [   
-            'jumlah_pmib' => $jumlah,
-        ];
-
-        $this->db->where('id_kabupaten', $kabupaten);
-        $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.
