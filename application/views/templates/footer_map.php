@@ -323,22 +323,18 @@
             var sebaranUpt = L.marker([<?= $value['lat_upt'] ?>, <?= $value['long_upt'] ?>], { icon:iconUpt} )
             .bindPopup(
             `<div class="container px-1 py-1">
-            <h5 style="font-weight:bold;"><?= $value['nama_upt'] ?></h5>
-            <img src="<?= base_url("assets/img/upt/") . $value['foto'] ?>" alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;"> 
-                
-            <table class="table table-sm" style=" padding: 1; margin: 1;" >
-            <thead style=" padding: 2; margin: 2; font-color:black;">
-            <tr>
-            <th scope="col" style=" padding: 0; margin: 0; color: black;">Alamat</th>
-            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['alamat_upt'] ?></span></th></tr>
-            <tr>
-            <th scope="col" style=" padding: 0; margin: 0; color: black;">Cakupan</th>
-            <th scope="col" style=" padding: 0; margin: 0; "><span class="badge badge-light badge-pill">&nbsp;  &nbsp;<?= $value['ket_upt'] ?></span></th></tr>
-            <tr>
-            <th scope="col" style=" padding: 0; margin: 0; color: black;" >Phk/Bermasalah</th>
-            <th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"> &nbsp;  &nbsp;<?php if ($value[0]['percent'] != null) { echo $value[0]['percent']."%"; } else { echo "no-data"; }  ?></span></th></tr>
-            </table>
-            <button type="button"  class="btn btn-primary btn-block d-inline-block ">Ajukan Pelatihan</button></div>'`
+            <center><h5 style="font-weight:bold;"><?= $value['nama_upt'] ?></h5></center>
+            <?php if ($value['foto'] != null) { ?><center>
+                <img src="<?= base_url("assets/img/upt/") . $value['foto'] ?> " alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;"></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;" ></center><?php } ?>
+            <p class="text-dark px-0 py-0 ">
+                    <cite title="kabupaten/kota" ><?= $value['nama_kabupaten'] ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>
+            <?= $value['alamat_upt'] ?><br/>
+            <hr>
+            <i class="fa-solid fa-city" style="margin-bottom: 10px;margin-right: 8px;"></i>
+                Cakupan : <?= $value['ket_upt'] ?><br/>
+            <i class="fa-solid fa-face-frown" style="margin-bottom: 10px;margin-right: 10px;"></i>
+                Bermasalah/phk : <span class="badge badge-danger badge-pill" style="font-size:15px;"> <?php if ($value[0]['percent'] != null) { echo $value[0]['percent']."%"; } else { echo "no-data"; }  ?></span><br /></p>
+            <button type="button" class="btn btn-primary btn-block d-inline-block">Ajukan Pelatihan</button></div>`
             ).bindTooltip("<center><b><?= $value['nama_upt'] ?></b></center>", {
                 permanent: false,
                 size:25,
@@ -382,11 +378,11 @@
             .bindPopup(
             '<div class="container px-1 py-1">'+
               '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
-              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-danger" style="font-size:12px;"><i>telah ter-PHK</i></span> '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Lokal/daerah</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
               '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
-              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
-              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  :  <?php if ($value->status_kerja == "aktif") {echo '<span class="badge badge-pill badge-success">AKTIF</span>' ;} else echo '<span class="badge badge-pill badge-danger">ter-PHK</span>' ?><br>' +
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus : <?php if ($value->disabilitas == "T") {echo '<span class="badge badge-pill badge-success">TIDAK</span>';} else  echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>'?> </p>'+ 
               
                
               '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
@@ -426,10 +422,11 @@
               '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/cpmi/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_pmi ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Calon PMI (CPMI)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
-              '<i class="fa-solid fa-book-open-reader" style="margin-bottom: 10px; margin-right: 10px;"></i>Perekrut , <?= $value->pengguna_jasa ?><br />'+
-              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor , <?= $value->paspor ?></i></p> '+
-              
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Penempatan : <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
+              '<i class="fa-solid fa-book-open-reader" style="margin-bottom: 10px; margin-right: 10px;"></i>Perekrut : <?= $value->pengguna_jasa ?><br />'+
+              '<i class="fa-solid fa-passport" style="margin-bottom: 10px;margin-right: 10px;"></i>Paspor : <?= $value->paspor ?></i><br>'+
+              '<i class="fa-solid fa-plane-departure" style="margin-bottom: 10px;margin-right: 10px;"></i>Penerbangan : <?= $value->kode_pesawat ?></i></p> ' +
+
               '<a href="<?= base_url('cpmi/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<?php if ($is_login == 1) { ?><a href="<?= base_url('cpmi/edit_cpmi/' . $value->id) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
               '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusCpmi<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
@@ -507,9 +504,11 @@
               '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/tka/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
               '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tka ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Tenaga Kerja Asing (TKA)</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota"><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Negara Asal , <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
-              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan , <?= $value->jabatan ?><br />'+
-              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px;margin-right: 10px;"></i>Kontak , <?= $value->kontak ?></i></p> '+
+              '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Kewarganegaraan : <?= $value->nama_negara ?>&nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $value->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"><br />'+
+              '<i class="fa-solid fa-briefcase" style="margin-bottom: 10px; margin-right: 10px;"></i>Perusahaan : <?= $value->nama_perusahaan ?><br />'+
+              '<i class="fa-sharp fa-solid fa-building" style="margin-bottom: 10px; margin-right: 10px;"></i>Jabatan : <?= $value->jabatan ?><br/>'+
+              '<i class="fa-solid fa-business-time" style="margin-bottom: 10px;margin-right: 10px;"></i>Masa IMTA : <?= $value->masa_imta ?> </i><br/> '+
+              '<i class="fa-solid fa-business-time" style="margin-bottom: 10px;margin-right: 10px;"></i>Masa RPTKA : <?= $value->masa_rptka ?> </i></p> '+
               
               '<a href="<?= base_url('tka/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<?php if ($is_login == 1) { ?><a href="<?= base_url('tka/edit_tka/' . $value->id) ?>"  class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
@@ -547,11 +546,11 @@
             .bindPopup(
             '<div class="container px-1 py-1">'+
             '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
-            '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-success" style="font-size:12px;"><i>Lokal/daerah Aktif kerja</i></span> '+
+            '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Lokal/daerah</i></span> '+
             '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-            '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari , <?= $value->nama_perusahaan ?><br />'+
-            '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
-            '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+ 
+            '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari : <?= $value->nama_perusahaan ?><br />'+
+            '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  :  <?php if ($value->status_kerja == "aktif") {echo '<span class="badge badge-pill badge-success">AKTIF</span>' ;} else echo '<span class="badge badge-pill badge-danger">ter-PHK</span>' ?><br>' +
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus : <?php if ($value->disabilitas == "T") {echo '<span class="badge badge-pill badge-success">TIDAK</span>';} else  echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>'?> </p>'+ 
 
             '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
             '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
@@ -588,11 +587,11 @@
             .bindPopup(
             '<div class="container px-1 py-1">'+
               '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
-              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Penyandang Disabilitas</i></span> '+
+              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Lokal/daerah</i></span> '+
               '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  , <?= $value->status_kerja ?><br />'+
-              '<i class="fa-solid fa-square-phone" style="margin-bottom: 10px; margin-right: 10px;"></i>No. Handphone , <?= $value->kontak ?><br />'+
-              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus , <?php if ($value->disabilitas == 'T') {echo 'Tidak';} else  echo 'Ya'?> </p>'+ 
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari : <?= $value->nama_perusahaan ?><br />'+
+              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  :  <?php if ($value->status_kerja == "aktif") {echo '<span class="badge badge-pill badge-success">AKTIF</span>' ;} else echo '<span class="badge badge-pill badge-danger">ter-PHK</span>' ?><br>' +
+              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus : <?php if ($value->disabilitas == "T") {echo '<span class="badge badge-pill badge-success">TIDAK</span>';} else  echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>'?> </p>'+ 
 
               '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
               '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Edit</a><?php }else{ ?><p></p><?php } ?>' +
@@ -670,8 +669,8 @@
             '<th scope="col" style=" padding: 0; margin: 0;" >LOKAL</th>' +
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-light badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
             '<tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" ><b>TOTAL DATA</b></th>' +
-            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-secondary badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
+            '<th scope="col" style=" padding: 5; margin: 0;" ><b>TOTAL DATA</b></th>' +
+            '<th scope="col" style=" padding: 5; margin: 0;"><span class="badge badge-secondary badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
             '</table> <br>' +
             
               '<button type="button" onclick="btn_lp()" data-id="<?php echo $value['id_kabupaten'] ?>" class="btn btn-primary btn-block d-inline-block listp">Lihat Perusahaan</button></div>');

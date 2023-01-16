@@ -42,6 +42,7 @@ class Sebaran_Jatim extends CI_Model
         $this->db->from('tb_tka');
         $this->db->join('kabupaten','tb_tka.lokasi_kerja = kabupaten.id_kabupaten');
         $this->db->join('tb_negara','tb_tka.kewarganegaraan = tb_negara.id_negara');
+        $this->db->join('tb_perusahaan','tb_tka.id_perusahaan = tb_perusahaan.id');
         if ($wilayah != null) {
             $this->db->where('lokasi_kerja',$wilayah);
         }
