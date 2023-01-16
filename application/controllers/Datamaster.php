@@ -51,6 +51,10 @@ class Datamaster extends CI_Controller
 
         // Load Model User Role
         $data['user_role'] = $this->Master->getRole(); 
+        $data['role'] = $this->Master->getAkses(); 
+        // echo "<pre>",
+        // var_dump ($data['user_role']);
+        //     die;
 
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -548,6 +552,7 @@ class Datamaster extends CI_Controller
                 'date_created' => date('Y-m-d'),
             ];
             // var_dump ($data);
+            // die;// var_dump ($data);
             // die;
 
             $this->db->insert('tb_perusahaan', $data);

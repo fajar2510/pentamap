@@ -13,6 +13,13 @@ class Master extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getAkses()
+    {
+        $query = "SELECT *  FROM `user_role` 
+                ";
+        return $this->db->query($query)->result_array();
+    }
+
     public function getUserById($id)
     {
         $query = "SELECT * FROM user WHERE id='$id'

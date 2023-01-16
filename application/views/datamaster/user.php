@@ -34,8 +34,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Jabatan</th>
-                                    <th>Kontak</th>
+                                    <th class="text-center">Hak Akses</th>
+                                    <!-- <th>Kontak</th> -->
                                     <th class="text-center">Profil</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -46,13 +46,22 @@
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
                                         <td> <?= $ur['name']; ?></td>
-                                        <td> <i> <?= $ur['jabatan']; ?></i></td>
-                                        <td><?= $ur['kontak']; ?></td>
-                                        <td class="text-center"> <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-profile rounded-circle" width="50" height="50"" alt="Profile Picture"></td>
+                                        <td class="text-center"> <i> <?= $ur['role']; ?></i></td>
+                                        <!-- <td><?= $ur['kontak']; ?></td> -->
+                                        <td class="text-center"> <img src="<?= base_url('assets/img/profile/') . $ur['image']; ?>" class="img-profile rounded-circle" width="50" height="50"" alt="Profile Picture" style="width: 60px; height: 60px; object-fit: cover ; "></td>
                                         <td class="text-center">
                                         <button type="button" data-toggle="modal" data-target="#modalInfo<?= $ur['id']; ?>" class="btn btn-sm btn-light"> <i class="fa-solid fa-eye"></i></button>
-                                            <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                        <button type="button" data-toggle="modal" data-target="#modalEdit<?= $ur['id']; ?>" class="btn btn-sm btn-warning" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></button>
+                                        
+                                        <?php if ($ur['id'] == 1) { ?>
+                                            <button type="button" disabled class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                        <?php } ?>
+                                         
+                                        <?php if ($ur['id'] != 1) { ?>
                                             <button type="button" data-toggle="modal" data-target="#modalHapus<?= $ur['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
+                                        <?php } ?>
+
+                                            
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -169,13 +178,13 @@
                         <label for="password" class="col-sm-3 col-form-label">Hak Akses</label>
                         <div class="col-sm-5">
                             <select name="role" id="role" class="form-control">
-                                <?php foreach ($user_role as $ru) : ?>
-                                    <option value="<?= $ru['id']; ?>"> <?= $ru['role']; ?></option>
+                                <?php foreach ($role as $ro) : ?>
+                                    <option value="<?= $ro['id']; ?>"> <?= $ro['role']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                             <div class="col-sm-2">
                                 <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
@@ -187,7 +196,7 @@
                                 <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light btn-icon-split" data-dismiss="modal">
@@ -304,19 +313,18 @@
                             <label for="role" class="col-sm-3 col-form-label">Hak Akses</label>
                             <div class="col-sm-5">
                                 <select name="role" id="role" class="form-control">
-                                   
-                                    <?php foreach ($user_role as $ur) : ?>
-                                        <option value="<?= $ur['id']; ?>" <?php if ($ur['id'] == $ur['role_id']) {
+                                    <?php foreach ($role as $ro) : ?>
+                                        <option value="<?= $ro['id']; ?>" <?php if ($ur['role_id'] == $ro['id']) {
                                                                                 echo 'selected';
                                                                             } else {
                                                                                 echo '';
-                                                                            } ?>> <?= $ur['role']; ?> </option>
+                                                                            } ?>> <?= $ro['role']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                         
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="image" class="col-sm-3 col-form-label">Unggah Foto Profil</label>
                                 <div class="col-sm-2">
                                     <img src="<?= base_url('assets/img/profile/') . $ur['image'] ?>" class="img-thumbnail" alt="Profile Picture">
@@ -328,10 +336,10 @@
                                     <small id="uploadHelp" class="form-text text-muted"> <i> .jpg, .jpeg, .png ukuran maks. 1 MB. </i></small>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="<?= $ur['is_active']; ?>"" name="is_active" id="is_active" checked>
+                                <input class="form-check-input" type="checkbox" value="<?= $ur['is_active']; ?>" name="is_active" id="is_active" checked>
                                 <label class="form-check-label" for="is_active">
                                     Status User Aktif?
                                 </label>
@@ -349,7 +357,7 @@
                             <span class="icon text-white-50">
                              <i class="fa-solid fa-pen-to-square"></i>
                             </span>
-                            <span class="text">Update</span>
+                            <span class="text">Simpan</span>
                         </button>
                     </div>
                 </form>
@@ -416,14 +424,18 @@
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Hak Akses </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $ur['role']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: <?php if ($ur['role'] == 'Super Admin') {
+                                                            echo '<span class="badge badge-danger badge-pill">Super Admin</span> ' ;
+                                                        } else {
+                                                            echo '<span class="badge badge-success badge-pill">Just Admin</span> ';
+                                                        } ?></label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Status Aktif </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?php if ($ur['is_active'] == '1') {
-                                                            echo '<i class="fa-solid fa-toggle-on color-1"></i>  Aktif ' ;
+                                    <label for="name" class="col-sm-8 col-form-label">:  <?php if ($ur['is_active'] == '1') {
+                                                            echo '<span class="badge badge-success badge-pill">AKTIF</span> ' ;
                                                         } else {
-                                                            echo '<i class="fa-light fa-toggle-off"></i>  Nonaktif ';
+                                                            echo '<span class="badge badge-dark badge-pill">NONAKTIF</span> ';
                                                         } ?></label>
                                 </div>
                             </div>
