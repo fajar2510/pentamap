@@ -32,8 +32,14 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+        $data['pengguna'] = $this->Penempatan->getTotalPengguna();
+        $data['upt'] = $this->Penempatan->getTotalUpt();
+        // echo "<pre>", var_dump($data['tka']); die;
 
-    
+
+
 
         //load with templating view
         $this->load->view('templates/header', $data);
@@ -43,6 +49,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer-testing');
     }
 
+   
 
     public function mapdrawer()
     {
@@ -62,6 +69,9 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         //load with templating view
         $this->load->view('templates/header', $data);
@@ -70,6 +80,8 @@ class Admin extends CI_Controller
         $this->load->view('admin/map_drawer', $data);
         $this->load->view('templates/footer-cluster');
     }
+
+   
 
     // index Role dan tambah Role
     public function role()
@@ -86,6 +98,9 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         $this->form_validation->set_rules('role', 'Role Akses', 'required|trim');
 
@@ -127,6 +142,9 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -143,7 +161,10 @@ class Admin extends CI_Controller
         $data['tka'] = $this->Penempatan->getTotalTKA();
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
-         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+ 
 
         $menu_id = $this->input->post('menuId');
         $role_id = $this->input->post('roleId');
@@ -192,6 +213,9 @@ class Admin extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         $data['role_id'] = $this->Master->getRoleById($id);
 

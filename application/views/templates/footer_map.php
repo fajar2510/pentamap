@@ -618,21 +618,17 @@
             };
 
         var baseLayers = {
-            
-            
             // "Water Color":Stamen_Watercolor,
             "OSM Clean": osmOnlyLabel,
             "Google Satellite":googleSat,
             "Google Street":googleStreets,
             // "OpenStreetMap": osm,
-            
-            
         };
         var layer_baseControl= L.control.layers(baseLayers, overlays).addTo(map);
 
 
         //  jawa timur polygon geo json
-        <?php foreach ($detail_kabupaten as $key => $value) { ?>
+        <?php foreach ($detail_kabupaten_array as $key => $value) { ?>
         $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value['geojson']) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
@@ -1022,19 +1018,23 @@
         series: [{
             name: 'Prosentase',
             colorByPoint: true,
-            data: [{
-                name: 'PHK',
-                y: <?php echo $presentase_phk ?>,
-            },  {
-                name: 'PMI-B',
-                y: <?php echo $presentase_pmib ?>
-            },  {
+            data: [  {
                 name: 'CPMI',
                 y: <?php echo $presentase_cpmi ?>
             }, {
+                name: 'PMI-B',
+                y: <?php echo $presentase_pmib ?>
+            },  {
                 name: 'TKA',
-                y: <?php echo $presentase_tka ?>
-            }]
+                y: <?php echo $presentase_tka ?>,
+                
+            },{
+                name: 'LOKAL PHK',
+                y: <?php echo $presentase_phk ?>,
+            },{
+                name: 'LOKAL AKTIF',
+                y: <?php echo $presentase_lok ?>,
+            }, ]
         },],
     });
 
@@ -1089,33 +1089,39 @@
                 fillOpacity: 0.5
             }
         },
-        series: [{
-            name: 'PHK',
+        series: [  {
+            name: 'CPMI',
             data:
                 [
-                    <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
+                    <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
                 ]
-        }, {
+        },{
             name: 'PMI-B',
             data:
                 [
                     <?php foreach($data_tahun_pmib as $data){ echo $data.","; } ?>
                 ]
         },
-        {
-            name: 'CPMI',
-            data:
-                [
-                    <?php foreach($data_tahun_cpmi as $data){ echo $data.","; } ?>
-                ]
-        },
+       
         {
             name: 'TKA',
             data:
                 [
                     <?php foreach($data_tahun_tka as $data){ echo $data.","; } ?>
                 ]
-        }]
+        },{
+            name: 'LOKAL PHK',
+            data:
+                [
+                    <?php foreach($data_tahun_phk as $data){ echo $data.","; } ?>
+                ]
+        },{
+            name: 'LOKAL AKTIF',
+            data:
+                [
+                    <?php foreach($data_tahun_lok as $data){ echo $data.","; } ?>
+                ]
+        },]
     });
 
     </script>

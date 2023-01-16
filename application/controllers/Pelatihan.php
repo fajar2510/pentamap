@@ -31,18 +31,13 @@ class Pelatihan extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // data UPT get
         $data['data_pelatihan'] = $this->PelatihanModel->get_pelatihan();
         // data Kabupaten Jatim get
         $kabupaten = $this->Geo_Jatim->get_GeoJatim();
-
-        // Data List Tenaga Kerja All
-        
-        // $data['data_lokal_aktif'] = $this->Lokal->get_aktif();
-        // $data['data_pmib'] = $this->Master->getPmiJoinWilayah();
-        // $data['data_tka'] = $this->Perusahaan->get_TkaPerusahaan();
-        // $data['data_cpmi'] = $this->Penempatan->get_cpmi();
 
         // echo"<pre>";
         // var_dump($kabupaten);

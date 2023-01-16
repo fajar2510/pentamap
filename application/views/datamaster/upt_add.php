@@ -43,7 +43,13 @@
                                         <div class="col-sm-5"> 
                                             
                                             <div class="form-group">
-                                            <label for="nama_upt" style="padding-top:8px;">Nama UPT(Unit Pelaksana)</label>
+                                            <div  class="foto2"><img src="<?= base_url("assets/img/profile/default.png")?>" class="img-fluid" style="width: 320px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <div  class="foto1"></div> 
+                                            <div class="custom-file" >
+                                                <input type="file"  class="custom-file-input"  onchange="readURL(this);"  id="image" name="image">
+                                                <label class="custom-file-label" for="image">Pilih Gambar</label>
+                                            </div>
+                                            <label for="nama_upt" style="padding-top:8px;">Nama UPT BLK</label>
                                        
                                                 <input type="text" class="form-control" id="nama_upt" placeholder="" name="nama_upt" >
                                                 <?= form_error('nama_upt', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -61,11 +67,17 @@
                                                 <?= form_error('kab', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             <div class="form-group">
+                                                <label for="alamat_upt" >Alamat Lengkap </label>
+                                                <textarea type="text" class="form-control" id="alamat_upt" placeholder=". . ." name="alamat_upt" row="1" cols="1"></textarea>
+                                                <?= form_error('alamat_upt', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          
+                                            </div> 
+                                            <div class="form-group">
                                                 <label for="ket_upt" >Keterangan Cakupan </label>
                                                 <textarea type="text" class="form-control" id="ket_upt" placeholder=". . . cakupan upt" name="ket_upt" row="1" cols="1"></textarea>
                                                 <?= form_error('ket_upt', '<small class="text-danger pl-3">', '</small>'); ?>
                                           
-                                            </div> 
+                                            </div>
                                             <div class="form-group">
                                             <!-- <label for="latitude"  >Latitude</label> -->
                                                 <input type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          

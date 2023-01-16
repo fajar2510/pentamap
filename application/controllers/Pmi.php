@@ -29,6 +29,8 @@ class Pmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // Load Model User Role
         
@@ -54,28 +56,6 @@ class Pmi extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-
-    // dijalankan saat provinsi di klik
-    // public function pilih_kabupaten()
-    // {
-    //     $data['kabupaten'] = $this->Wilayah->ambil_kabupaten($this->uri->segment(3));
-    //     $this->load->view('pmi/v_drop_down_kabupaten', $data);
-    // }
-
-    // dijalankan saat kabupaten di klik
-    // public function pilih_kecamatan()
-    // {
-    //     $data['kecamatan'] = $this->Wilayah->ambil_kecamatan($this->uri->segment(3));
-    //     $this->load->view('pmi/v_drop_down_kecamatan', $data);
-    // }
-
-    // dijalankan saat kecamatan di klik
-    // public function pilih_kelurahan()
-    // {
-    //     $data['kelurahan'] = $this->Wilayah->ambil_kelurahan($this->uri->segment(3));
-    //     $this->load->view('pmi/v_drop_down_kelurahan', $data);
-    // }
-
     public function tambah()
     {
         is_logged_in();
@@ -88,6 +68,8 @@ class Pmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         //load data negara
         $data['negara'] = $this->db->get('tb_negara')->result_array();
@@ -205,6 +187,8 @@ class Pmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
@@ -305,6 +289,8 @@ class Pmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
@@ -384,17 +370,6 @@ class Pmi extends CI_Controller
                 }
             }
 
-        //     $kabupaten = $this->input->post('kabupaten_id', true);
-        //     $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
-
-        //    $jumlah = $jumlah_pmib->row()->pmib;
-
-        //     $update = [   
-        //         'jumlah_pmib' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id', $id_lokasi);
-        //     $this->db->update('tb_pmi', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Disunting !</strong> data telah berhasil diupdate.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -416,6 +391,8 @@ class Pmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // Load Model User Role
         $data['lokasi'] = $this->Sebaran_Jatim->detail_pmib($id_lokasi);
@@ -460,21 +437,8 @@ class Pmi extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        // $pmi =  $this->db->query("SELECT * FROM tb_pmi WHERE id='$id'");
-        // $kabupaten = $pmi->row()->kabupaten;
 
         $this->db->delete('tb_pmi');
-
-        // $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
-
-        // $jumlah = $jumlah_pmib->row()->pmib;
-
-        // $update = [   
-        //     'jumlah_pmib' => $jumlah,
-        // ];
-
-        // $this->db->where('id_kabupaten', $kabupaten);
-        // $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

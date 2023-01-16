@@ -40,6 +40,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['user'] = $this->db->get()->row_array();
 
@@ -124,6 +126,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // Load model user edit
         $data['userid'] = $this->Master->getUserById($id);
@@ -222,6 +226,8 @@ class Datamaster extends CI_Controller
       $data['pmib'] = $this->Penempatan->getTotalPMIB();
       $data['cpmi'] = $this->Penempatan->getTotalCPMI();
       $data['phk'] = $this->Penempatan->getTotalPHK();
+      $data['lok'] = $this->Penempatan->getTotalLokal();
+      $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
       $data['user'] = $this->db->get()->row_array();
 
@@ -276,6 +282,8 @@ class Datamaster extends CI_Controller
       $data['pmib'] = $this->Penempatan->getTotalPMIB();
       $data['cpmi'] = $this->Penempatan->getTotalCPMI();
       $data['phk'] = $this->Penempatan->getTotalPHK();
+      $data['lok'] = $this->Penempatan->getTotalLokal();
+      $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
       // Load model sektor
       $data['data_sektor'] = $this->Master->getSektor();
@@ -344,6 +352,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
   
         $data['user'] = $this->db->get()->row_array();
   
@@ -395,6 +405,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
   
         // Load model disabilitas
         $data['edit_disabilitas'] = $this->Disabilitas->get_ragam_jenis_Byid($id);
@@ -462,6 +474,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['tb_perusahaan'] =   $this->Perusahaan->get_perusahaan_jatim();
         // $data['kabupaten'] = $this->Perusahaan->get_perusahaan_jatim();
@@ -493,6 +507,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
         
         //form validation
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required|trim');
@@ -558,6 +574,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // Load model perusahaan
         // $data['perusahaan'] = $this->Perusahaan->get_perusahaan_jatim();
@@ -642,6 +660,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+         $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['geojatim'] = $this->Geo_Jatim->get_GeoJatim();
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
@@ -669,6 +689,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // Load model perusahaan
         // $data['perusahaan'] = $this->Perusahaan->get_perusahaan_jatim();
@@ -723,6 +745,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kantorUPT'] = $this->KantorUPT->get_upt();
         $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt();
@@ -733,7 +757,7 @@ class Datamaster extends CI_Controller
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         
 
-        $data['title'] = 'Kantor UPT';
+        $data['title'] = 'UPT BLK';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -755,6 +779,8 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
         $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
@@ -763,6 +789,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('kab', 'Kabupaten/kota', 'trim|required');
         $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
         $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('alamat_upt', 'Alamat UPT BLK', 'trim');
         $this->form_validation->set_rules('ket_upt', 'Keterangan Cakupan', 'trim|required');
 
         // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required');
@@ -783,8 +810,28 @@ class Datamaster extends CI_Controller
                 'kabupaten_id' => $this->input->post('kab'),
                 'lat_upt' => $this->input->post('lat'),
                 'long_upt' => $this->input->post('long'),
+                'alamat_upt' => $this->input->post('alamat_upt'),
                 'ket_upt' => $this->input->post('ket_upt'),
             ];
+
+             // cek gambar upload
+             $upload_image = $_FILES['image']['name'];
+             if ($upload_image) {
+                 $config['allowed_types'] = 'gif|jpg|png';
+                 $config['max_size']      = '1024';
+                 $config['upload_path']   = './assets/img/upt';
+ 
+                 $this->load->library('upload', $config);
+ 
+                 if ($this->upload->do_upload('image')) {
+                     $new_image = $this->upload->data('file_name');
+                     $this->db->set('foto', $new_image);
+                 } else {
+                     $this->session->set_flashdata('message',
+                      '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                     redirect('datamaster/upt');
+                 }
+             }
 
 
             $this->db->insert('kantor_upt', $data);
@@ -810,6 +857,9 @@ class Datamaster extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+        
 
         // Load model perusahaan
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
@@ -823,6 +873,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('nama_upt', 'Nama UPT', 'trim|required');
         $this->form_validation->set_rules('lat', 'Latitude', 'trim|required');
         $this->form_validation->set_rules('long', 'Longitude', 'trim|required');
+        $this->form_validation->set_rules('alamat_upt', 'Alamat UPT BLK', 'trim');
         $this->form_validation->set_rules('ket_upt', 'Keterangan Cakupan', 'trim|required');
 
 
@@ -839,8 +890,30 @@ class Datamaster extends CI_Controller
                 'nama_upt' => $this->input->post('nama_upt'),
                 'lat_upt' => $this->input->post('lat'),
                 'long_upt' => $this->input->post('long'),
+                'alamat_upt' => $this->input->post('alamat_upt'),
                 'ket_upt' => $this->input->post('ket_upt'),
             ];
+
+            
+            // cek gambar upload
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['upload_path']   = './assets/img/upt';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_image);
+                } else {
+                    $this->session->set_flashdata('message',
+                     '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+                    redirect('datamaster/upt_edit/'. $id);
+                }
+            }
+
 
 
             $this->db->where('id_upt', $id);

@@ -63,8 +63,14 @@
                                                     <th width="15%" scope="row">Nama Lengkap  </th>
                                                     <td width="5%">:</td>
                                                     <td width="50%"><?= $lokasi->nama_tka ?></td>
-                                                    <td width="35%" rowspan="5"> <img src="<?= base_url('assets/img/tka/') . $lokasi->image ?>"  alt="Profile Picture" 
-                                                        class="img-thumbnail img-fluid " style="width: 200px; height: 220px; object-fit: cover;"></td>
+                                                    <td width="35%" rowspan="5"> 
+                                                    <?php if ($lokasi->image != null) { ?>
+                                                            <center><img src="<?= base_url("assets/img/tka/") . $lokasi->image ?> "alt="profile" class=" img-responsive" style="width: 180px; height: 220px; object-fit: cover;"></center>
+                                                    <?php }else{ ?>
+                                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 180px; height: 220px; object-fit: cover;"></center><?php } ?>
+                                                    <!-- <img src="<?= base_url('assets/img/tka/') . $lokasi->image ?>"  alt="Profile Picture" 
+                                                        class="img-thumbnail img-fluid " style="width: 200px; height: 220px; object-fit: cover;"> -->
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Jenis Kelamin</th>
@@ -74,7 +80,7 @@
                                                 <tr>
                                                     <th scope="row">Kewarganegaraan</th>
                                                     <td>:</td>
-                                                    <td><?= $lokasi->nama_negara ?></td>
+                                                    <td><?= $lokasi->nama_negara ?> &nbsp; <img src="<?= base_url("assets/img/img-country-flag/") . $lokasi->flag ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 30px;"></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Jabatan</th>
@@ -406,8 +412,12 @@
         
         L.marker([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>])
         .addTo(map)
-        .bindPopup('<center><div class="container px-0 py-0"><img src="<?= base_url("assets/img/tka/") . $lokasi->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%">'+
-              '<small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:0px; margin:0px;"><span class="badge badge-pill badge-success"><i>TKA</i></span>&nbsp;<?= $lokasi->nama_tka ?> </p></small> </div></center> ')
+        .bindPopup(`<center><div class="container px-0 py-0">
+                     <?php if ($lokasi->image != null) { ?>
+                        <center><img src="<?= base_url("assets/img/tka/") . $lokasi->image ?> "alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%"></center>
+                    <?php }else{ ?>
+                        <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%"></center><?php } ?>
+              <small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:0px; margin:0px;"><span class="badge badge-pill badge-success"><i>TKA</i></span>&nbsp;<?= $lokasi->nama_tka ?> </p></small> </div></center> `)
         .openPopup();
         
        

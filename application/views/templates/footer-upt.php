@@ -112,11 +112,11 @@
     <script>
 
 
-    var map = L.map('mapupt-index').setView([-7.530979640916379, 112.4936104206151], 5);
+    var map = L.map('mapupt-index').setView([-7.530979640916379, 112.4936104206151], 7);
 
     // Open Street Default Layer     
     var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
-            // maxZoom: 16,
+            // maxZoom: 6,
             subdomains:['mt0','mt1','mt2','mt3']
         });
     googleStreets.addTo(map);
@@ -125,7 +125,7 @@
 
     var iconUpt = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/marker/city.png',
-            iconSize : [30,30],
+            iconSize : [35,35],
         });
         
     var markersUpt = L.markerClusterGroup( {

@@ -245,7 +245,25 @@ class Penempatan extends CI_Model
 
     public function getTotalLokal($wilayah = null)
     {
-        $data = $this->db->query("SELECT COUNT(id_phk) as phk FROM tb_phk WHERE status_kerja='aktif' ");
+        $data = $this->db->query("SELECT COUNT(id_phk) as lok FROM tb_phk WHERE status_kerja='aktif' ");
+        return $data->result();
+    }
+
+    public function getTotalDisabilitas($wilayah = null)
+    {
+        $data = $this->db->query("SELECT COUNT(id_phk) as disabilitas FROM tb_phk WHERE disabilitas='Y' ");
+        return $data->result();
+    }
+
+    public function getTotalPengguna()
+    {
+        $data = $this->db->query("SELECT COUNT(id) as pengguna FROM user WHERE role_id !=1");
+        return $data->result();
+    }
+
+    public function getTotalUpt()
+    {
+        $data = $this->db->query("SELECT COUNT(id_upt) as upt FROM kantor_upt ");
         return $data->result();
     }
 
@@ -254,6 +272,15 @@ class Penempatan extends CI_Model
         $this->db->select('*');
         $this->db->from('tb_phk');
         $this->db->where('status_kerja', 'phk');
+        $this->db->where('YEAR(date_created)',$tahun);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function getjumlahtahunlok($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_phk');
+        $this->db->where('status_kerja', 'aktif');
         $this->db->where('YEAR(date_created)',$tahun);
         $query = $this->db->get();
         return $query->num_rows();

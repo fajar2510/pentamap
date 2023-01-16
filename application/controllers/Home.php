@@ -39,16 +39,26 @@ public function index()
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
 
         // data sebaran
-            $data['sebaran_upt'] = $this->KantorUPT->get_sebaran_upt();
-
-            $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
-            $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
-            $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
-            $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
-            $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
+        $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
+        $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
+        $data['sebaran_lokal'] = $this->Sebaran_Jatim->get_sebaran_lokal();
+        $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
 
         // data total cpmi, pmib , tka ,phk - per kabupaten
-        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten_array'] = $this->Sebaran_Jatim->detail_kabupaten();
+        $data['detail_kabupaten'] = $this->Sebaran_Jatim->detail_kabupaten_object();
+
+        $total = 0;
+        $m = 0;
+        foreach ($data['detail_kabupaten_array'] as $valx) {
+            $total = $valx['totalTka'] + $valx['totalCpmi'] + $valx['totalPmib'] + $valx['totalPhk'] +  $valx['totLokal']  ;
+            // echo $total."<br>";
+            array_push($data['detail_kabupaten_array'][$m], ["total" => $total]);
+            // break;
+            $m++;
+        }
 
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
         
@@ -59,6 +69,9 @@ public function index()
             $data['pmib'] = $this->Penempatan->getTotalPMIB();
             $data['cpmi'] = $this->Penempatan->getTotalCPMI();
             $data['phk'] = $this->Penempatan->getTotalPHK();
+            $data['lok'] = $this->Penempatan->getTotalLokal();
+            $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+            $data['tabel'] = $this->Master->tabel();
 
             foreach($data['tka'][0] as $tka1){ $tka = $tka1; }
             foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }

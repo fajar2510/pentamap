@@ -29,6 +29,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         // load data wilayah
         $data['negara'] = $this->Penempatan->getnegaracpmi();
@@ -65,6 +68,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         $data['negara'] = $this->Wilayah->list_negara();
         $data['kabupaten'] = $this->Penempatan->get_Jatim();
@@ -172,6 +178,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         // load data 
         // $data['negara'] = $this->db->get('tb_negara')->result_array();
@@ -279,6 +288,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         // load data 
         // $data['negara'] = $this->db->get('tb_negara')->result_array();
@@ -389,6 +401,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         // load data wilayah
         $data['lokasi'] = $this->Sebaran_Jatim->detail_cpmi($id_lokasi);
@@ -454,6 +469,9 @@ class Cpmi extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
 
         // load data wilayah
         // $data['perusahaan_pmi'] = $this->Penempatan->get_perusahaan();

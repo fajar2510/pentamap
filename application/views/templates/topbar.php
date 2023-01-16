@@ -29,6 +29,8 @@
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
                     <?php foreach ($phk as $total_phk); ?>
+                    <?php foreach ($lok as $total_lokal); ?>
+                    <?php foreach ($disabilitas as $total_disabilitas); ?>
 
                     <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
@@ -36,12 +38,15 @@
                                 <small>
                                     <!-- //gambar bendera indonesia -->
                                     <!-- <img src="<?php echo base_url() ?>assets/img/favicon/idn-flag.png" width="30" height="30" alt="pmi" class="rounded-circle"> -->
+                                    
                                     <span>Total Results:</span> <font color="3561EC"><b>&nbsp;&nbsp;CPMI </b></font>
                                     <span class="border-left"> &nbsp;<font color="black"><?php echo $total_cpmi->cpmi; ?></font></span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>TKA </b></font> 
                                     <span class="border-left"> &nbsp;<font color="black"><?php echo $total_tka->tka; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PMI-B </b></font>
-                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_pmib->pmib; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PHK </b></font>
-                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_phk->phk; ?></font> </span>
-                                </small>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_pmib->pmib; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>LOKAL PHK </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_phk->phk; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>LOKAL AKTIF </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_lokal->lok; ?></font> </span>  &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>DISABILITAS </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_disabilitas->disabilitas; ?> </font> </span> 
+                                  </small>
                             </div>
                         </div>
                     </marquee>

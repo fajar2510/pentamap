@@ -27,6 +27,8 @@ class Menu extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -64,6 +66,8 @@ class Menu extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
         $data['menu_id'] = $this->Master->getMenuById($id);
@@ -118,6 +122,8 @@ class Menu extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['subMenu'] = $this->Menu_model->getSubMenu();
         $data['menu'] = $this->db->get('user_menu')->result_array();
@@ -163,7 +169,8 @@ class Menu extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
-        $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // $data['subMenu'] = $this->Master->getSubMenuJoinMenu();
         $data['subMenu'] = $this->Menu_model->getSubMenu();

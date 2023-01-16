@@ -53,6 +53,8 @@
                     <?php foreach ($pmib as $total_pmib); ?>
                     <?php foreach ($cpmi as $total_cpmi); ?>
                     <?php foreach ($phk as $total_phk); ?>
+                    <?php foreach ($lok as $total_lokal); ?>
+                    <?php foreach ($disabilitas as $total_disabilitas); ?>
 
                     <marquee behavior="scroll" direction="left" scrollamount="5" width="130%">
                         <div class="form-group row">
@@ -63,8 +65,10 @@
                                     <span>Total Results:</span> <font color="3561EC"><b>&nbsp;&nbsp;CPMI </b></font>
                                     <span class="border-left"> &nbsp;<font color="black"><?php echo $total_cpmi->cpmi; ?></font></span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>TKA </b></font> 
                                     <span class="border-left"> &nbsp;<font color="black"><?php echo $total_tka->tka; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PMI-B </b></font>
-                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_pmib->pmib; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>PHK </b></font>
-                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_phk->phk; ?></font> </span>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_pmib->pmib; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>LOKAL PHK </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_phk->phk; ?></font> </span> &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>LOKAL AKTIF </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_lokal->lok; ?></font> </span>  &nbsp; &nbsp;&nbsp; <font color="3561EC"><b>DISABILITAS </b></font>
+                                    <span class="border-left"> &nbsp;<font color="black"><?php echo $total_disabilitas->disabilitas; ?> </font> </span> 
                                 </small>
                             </div>
                         </div>
@@ -96,9 +100,9 @@
             <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="nakerDropdown">
                     <?php if ($title == "Tenaga Kerja Daerah") { ?>
-                        <a class="dropdown-item active" href="<?= base_url('phk'); ?>" >PHK</a>
+                        <a class="dropdown-item active" href="<?= base_url('phk'); ?>" >Lokal Daerah</a>
                     <?php } else { ?>
-                        <a class="dropdown-item" href="<?= base_url('phk'); ?>" >PHK</a>
+                        <a class="dropdown-item" href="<?= base_url('phk'); ?>" >Lokal Daerah</a>
                     <?php } ?>
                     <?php if ($title == "PMI Bermasalah") { ?>
                         <a class="dropdown-item active" href="<?= base_url('pmi'); ?>" >PMI Bermasalah</a>
@@ -106,14 +110,14 @@
                         <a class="dropdown-item" href="<?= base_url('pmi'); ?>" >PMI Bermasalah</a>
                     <?php } ?>
                     <?php if ($title == "Penempatan CPMI") { ?>
-                        <a class="dropdown-item active" href="<?= base_url('cpmi'); ?>">CPMI</a>
+                        <a class="dropdown-item active" href="<?= base_url('cpmi'); ?>">Penempatan PMI</a>
                     <?php } else { ?>
-                        <a class="dropdown-item" href="<?= base_url('cpmi'); ?>">CPMI</a>
+                        <a class="dropdown-item" href="<?= base_url('cpmi'); ?>">Penempatan PMI</a>
                     <?php } ?>
                     <?php if ($title == "Tenaga Kerja Asing") { ?>
-                        <a class="dropdown-item active" href="<?= base_url('tka'); ?>">TKA</a>
+                        <a class="dropdown-item active" href="<?= base_url('tka'); ?>">TKA Luar Negri</a>
                     <?php } else { ?>
-                        <a class="dropdown-item" href="<?= base_url('tka'); ?>">TKA</a>
+                        <a class="dropdown-item" href="<?= base_url('tka'); ?>">TKA Luar Negri</a>
                     <?php } ?>
                 </div>
             </li>
@@ -122,6 +126,13 @@
                         <a class="nav-link text-gray-900" href="reward"><b>Penghargaan</b></a> 
                     <?php } else { ?>
                         <a class="nav-link text-gray-600" href="reward">Penghargaan</a> 
+                    <?php } ?>
+            </li>
+            <li class="nav-item no-arrow">
+                <?php if ($title == "Pelatihan Lokasi") { ?>
+                        <a class="nav-link text-gray-900" href="pelatihan"><b>Pelatihan</b></a> 
+                    <?php } else { ?>
+                        <a class="nav-link text-gray-600" href="pelatihan">Pelatihan</a> 
                     <?php } ?>
             </li>
 

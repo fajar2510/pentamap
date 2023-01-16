@@ -4,7 +4,7 @@
 
 
         <!-- Page Heading -->
-        <h5 class="h5 mb-1 text-gray-600"><?= $title; ?> ADMIN DASHBOARD </h5>
+        <h5 class="h5 mb-1 text-gray-600"><?= $title; ?> ADMIN </h5>
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
 
@@ -13,17 +13,35 @@
     <?php foreach ($pmib as $total_pmib); ?>
     <?php foreach ($cpmi as $total_cpmi); ?>
     <?php foreach ($phk as $total_phk); ?>
+    <?php foreach ($lok as $total_lokal); ?>
+    <?php foreach ($disabilitas as $total_disabilitas); ?>
+    <?php foreach ($pengguna as $total_pengguna); ?>
+    <?php foreach ($upt as $total_upt); ?>
 
     <!-- Content Row -->
     <div class="row">
 
 
+    <!-- <div class="card shadow mb-4">
+            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
+            </a>
+            <div class="card shadow mb-4">
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
+                </a>
+                
+            </div>
+            
+    </div> -->
+
+
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">CPMI [Calon P.Migran Ind]</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">CPMI [Calon Pekerja Migran Indonesia] </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_cpmi->cpmi; ?> <span><small>orang</small> </span> </div>
                         </div>
                         <div class="col-auto">
@@ -53,7 +71,7 @@
 
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -68,12 +86,75 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja ter-PHK</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja Lokal PHK</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_phk->phk; ?> <span><small>orang</small> </span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja Lokal Aktif</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_lokal->lok; ?> <span><small>orang</small> </span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tenaga Kerja Disabilitas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_disabilitas->disabilitas; ?> <span><small>orang</small> </span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-light shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TOTAL PENGGUNA APLIKASI (no admin)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_pengguna->pengguna; ?> <span><small>orang</small> </span> </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-credit-card fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TOTAL UPT BLK (Unit Pelaksana Tenis/ Balai Latihan Kerja) </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_upt->upt; ?> <span><small>lokasi</small> </span> </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-credit-card fa-2x text-gray-300"></i>
@@ -85,16 +166,7 @@
 
         <!-- Content Row -->
 
-        <!-- Collapsable Card Example -->
-        <div class="card shadow mb-4">
-            <!-- Card Header - Accordion -->
-            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">Sistem Informasi PENTA | DISNAKERTRANS</h6>
-            </a>
-            
-
-            <!-- //kosongan -->
-        </div>
+       
     </div>
        
            

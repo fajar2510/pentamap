@@ -63,13 +63,25 @@
                                                     <th width="25%" scope="row">Nama Lengkap  </th>
                                                     <td width="5%">:</td>
                                                     <td width="40%"><?= $lokasi->nama_tk ?></td>
-                                                    <td width="35%" rowspan="5"> <img src="<?= base_url('assets/img/lokal/') . $lokasi->image ?>"  alt="Profile Picture" 
-                                                        class="img-thumbnail img-fluid " style="width: 160px; height: 190px; object-fit: cover;"></td>
+                                                    <td width="35%" rowspan="5">
+                                                    <?php if ($lokasi->image != null) { ?>
+                                                            <center><img src="<?= base_url("assets/img/lokal/") . $lokasi->image ?> "alt="profile" class=" img-responsive" style="width: 180px; height: 220px; object-fit: cover;"></center>
+                                                    <?php }else{ ?>
+                                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 180px; height: 220px; object-fit: cover;"></center><?php } ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Jenis Kelamin</th>
                                                     <td>:</td>
-                                                    <td ><?= $lokasi->jenis_kel ?></td>
+                                                    <td >
+                                                        <?php if ($lokasi->jenis_kel == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else if ($lokasi->jenis_kel == 'P'){ 
+                                                            echo 'Perempuan';
+                                                        } else 
+                                                            echo '<small?><i> belum disebutkan </i> </small>'
+                                                         ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">NIK</th>
@@ -115,12 +127,20 @@
                                                 <tr>
                                                     <th scope="row">Status</th>
                                                     <td>:</td>
-                                                    <td colspan="3"><?= $lokasi->status_kerja ?></td>
+                                                    <td colspan="3"><?php if ($lokasi->status_kerja == 'aktif') {
+                                                            echo '<span class="badge badge-pill badge-success" >AKTIF</span>';
+                                                        } else 
+                                                            echo '<span class="badge badge-pill badge-danger" >PHK</span>'
+                                                         ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Disabilitas ?</th>
                                                     <td>:</td>
-                                                    <td colspan="3"><?= $lokasi->disabilitas ?></td>
+                                                    <td colspan="3"><?php if ($lokasi->disabilitas == 'Y') {
+                                                            echo '<span class="badge badge-pill badge-warning" >YA</span>';
+                                                        } else 
+                                                            echo '<span class="badge badge-pill badge-success" >TIDAK</span>'
+                                                         ?></td>
                                                 </tr>
                                                  
 
@@ -404,8 +424,12 @@
         
         L.marker([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>])
         .addTo(map)
-        .bindPopup('<center><div class="container px-0 py-0"><img src="<?= base_url("assets/img/lokal/") . $lokasi->image ?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%">'+
-              '<small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:1px; margin:1px;"><span class="badge badge-pill badge-info" ><i>Lokal</i></span>&nbsp;<?= $lokasi->nama_tk ?> </p></small> </div></center> ')
+        .bindPopup(`<center><div class="container px-0 py-0">
+                    <?php if ($lokasi->image != null) { ?>
+                        <center><img src="<?= base_url("assets/img/lokal/") . $lokasi->image ?> "alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%"></center>
+                    <?php }else{ ?>
+                        <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="padding-bottom: 15px; width: 100px; height: 90px; object-fit:cover;  border-radius: 10%"></center><?php } ?>
+              <small><p style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-weight:bold; padding:1px; margin:1px;"><span class="badge badge-pill badge-info" ><i>Lokal</i></span>&nbsp;<?= $lokasi->nama_tk ?> </p></small> </div></center> `)
         .openPopup();
         
        

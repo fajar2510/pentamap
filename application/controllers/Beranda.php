@@ -14,7 +14,6 @@ class Beranda extends CI_Controller
         $this->load->model('RewardModel');
         $this->load->model('Sebaran_Jatim');
         $this->load->model('Wilayah');
-        $this->load->model('KantorUPT');
         $this->load->model('PelatihanModel');
         $this->load->model('Geo_Jatim');
         $this->load->model('Lokal');
@@ -43,7 +42,9 @@ class Beranda extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
-        $data['lokal'] = $this->Penempatan->getTotalLokal();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+
         $data['tabel'] = $this->Master->tabel();
 
         $data['list_perusahaan'] = $this->db->query($perusahaan)->result();
@@ -70,10 +71,6 @@ class Beranda extends CI_Controller
             $m++;
         }
 
-        // echo"<pre>";
-        // var_dump($data['detail_kabupaten']);
-        // die;
-
         $data['kab_jatim'] = $this->Wilayah->get_kab_jatim();
         
         // $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
@@ -84,17 +81,20 @@ class Beranda extends CI_Controller
             foreach($data['pmib'][0] as $pmib1){ $pmib = $pmib1; }
             foreach($data['cpmi'][0] as $cpmi1){ $cpmi = $cpmi1; }
             foreach($data['phk'][0] as $phk1){ $phk = $phk1; }
-            $jumlah_naker = $tka + $pmib + $cpmi + $phk;
+            foreach($data['lok'][0] as $lok1){ $lok = $lok1; }
+            $jumlah_naker = $tka + $pmib + $cpmi + $phk + $lok;
             $data['presentase_cpmi'] = round($cpmi / $jumlah_naker * 100,2);
             $data['presentase_pmib'] = round($pmib / $jumlah_naker * 100,2);
             $data['presentase_tka'] = round($tka / $jumlah_naker * 100,2);
             $data['presentase_phk'] = round($phk / $jumlah_naker * 100,2);
+            $data['presentase_lok'] = round($lok / $jumlah_naker * 100,2);
             $data['tabel'] = $this->Master->tabel();
 
             $data['data_tahun_tka'] = array();
             $data['data_tahun_pmib'] = array();
             $data['data_tahun_cpmi'] = array();
             $data['data_tahun_phk'] = array();
+            $data['data_tahun_lok'] = array();
             $data['tahun_start'] = $this->tahun_ini - 3;
             $data['tahun_awal'] = strval($data['tahun_start']);
             for ($i=0; $i < 4; $i++) { 
@@ -102,10 +102,12 @@ class Beranda extends CI_Controller
                 $data_pmib = $this->Penempatan->getjumlahtahunpmib($data['tahun_start']);
                 $data_cpmi = $this->Penempatan->getjumlahtahuncpmi($data['tahun_start']);
                 $data_phk = $this->Penempatan->getjumlahtahunphk($data['tahun_start']);
+                $data_lok = $this->Penempatan->getjumlahtahunlok($data['tahun_start']);
                 array_push($data['data_tahun_tka'], $data_tka);
                 array_push($data['data_tahun_pmib'], $data_pmib);
                 array_push($data['data_tahun_cpmi'], $data_cpmi);
                 array_push($data['data_tahun_phk'], $data_phk);
+                array_push($data['data_tahun_lok'], $data_lok);
                 $data['tahun_start'] += 1;
             }
             $data['tahun_ini'] = $this->tahun_ini;
@@ -291,7 +293,6 @@ class Beranda extends CI_Controller
             }
         }
         // SINTAX MENAMPILKAN RAGAM DISABILITAS
-
         // SINTAX MENAMPILKAN JENIS DISABILITAS
         $j_d=array();
         foreach ($data['perusahaan'] as $data_jenis) {

@@ -32,6 +32,8 @@ class Reward extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
         
         $data['data_reward'] = $this->RewardModel->get_reward_perusahaan();
         // var_dump($data['data_reward']);
@@ -64,6 +66,8 @@ class Reward extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
@@ -202,6 +206,8 @@ class Reward extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();

@@ -46,9 +46,28 @@
                                             <div id="mapupt"></div>
                                         </div>
                                         <div class="col-sm-5"> 
+
+                                            <div class="form-group">
+                                            <?php if ($edit_upt->foto == null) { ?>
+                                                <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <?php } else { ?>
+                                                <div  class="foto2"><img src="<?= base_url('assets/img/upt/').$edit_upt->foto ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
+                                            <?php } ?>
+                                            
+                                                <div  class="foto1"></div>     
+                                                <div class="custom-file" >
+                                                    <input type="file"  class="custom-file-input" onchange="readURL(this);" id="image" name="image">
+                                                    <label class="custom-file-label" for="image">Pilih Gambar</label>
+                                                </div>
+                                            </div>
+
+                                        
                                             
                                             <div class="form-group">
-                                            <label for="nama_upt" style="padding-top:8px;">Nama UPT(Unit Pelaksana)</label>
+    
+
+                                            
+                                            <label for="nama_upt" style="padding-top:8px;">Nama UPT BLK</label>
                                        
                                                 <input type="text" class="form-control" id="nama_upt" placeholder="" name="nama_upt" value="<?= $edit_upt->nama_upt ?>" >
                                                 <?= form_error('nama_upt', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -69,6 +88,12 @@
                                                 <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
                                                 <?= form_error('kab', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="alamat_upt" >Alamat Lengkap </label>
+                                                <textarea type="text" class="form-control" id="alamat_upt" placeholder=". . . " name="alamat_upt" row="1" cols="1"><?= $edit_upt->alamat_upt ?></textarea>
+                                                <?= form_error('alamat_upt', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          
+                                            </div> 
                                             <div class="form-group">
                                                 <label for="ket_upt" >Keterangan Cakupan </label>
                                                 <textarea type="text" class="form-control" id="ket_upt" placeholder=". . . cakupan upt" name="ket_upt" row="1" cols="1"><?= $edit_upt->ket_upt ?></textarea>

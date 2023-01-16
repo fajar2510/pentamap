@@ -30,6 +30,8 @@ class Tka extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // load data wilayah
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
@@ -61,8 +63,8 @@ class Tka extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
-
-
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
@@ -131,17 +133,6 @@ class Tka extends CI_Controller
 
             $this->db->insert('tb_tka', $data);
 
-            $kabupaten = $this->input->post('lokasi');
-            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
-
-           $jumlah = $jumlah_tka->row()->tka;
-
-            $update = [   
-                'jumlah_tka' => $jumlah,
-            ];
-
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
@@ -165,9 +156,10 @@ class Tka extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
-
 
         // load data 
         $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
@@ -262,6 +254,8 @@ class Tka extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
 
@@ -358,6 +352,8 @@ class Tka extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         // load data wilayah
         // $data['tb_tka'] = $this->Perusahaan->get_TkaPerusahaan();
@@ -384,22 +380,9 @@ class Tka extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
-        $kabupaten = $tka->row()->lokasi_kerja;
-
         $this->db->delete('tb_tka');
 
-            $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
-
-           $jumlah = $jumlah_tka->row()->tka;
-
-            $update = [   
-                'jumlah_tka' => $jumlah,
-            ];
-
-            $this->db->where('id_kabupaten', $kabupaten);
-            $this->db->update('kabupaten', $update);
-
+            
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -413,21 +396,7 @@ class Tka extends CI_Controller
         is_logged_in();
         $this->db->where('id', $id);
 
-        // $tka =  $this->db->query("SELECT * FROM tb_tka WHERE id='$id'");
-        // $kabupaten = $tka->row()->lokasi_kerja;
-
         $this->db->delete('tb_tka');
-
-        //     $jumlah_tka = $this->db->query("SELECT SUM(CASE WHEN lokasi_kerja='$kabupaten' THEN 1 ELSE 0 END) AS tka FROM tb_tka");
-
-        //    $jumlah = $jumlah_tka->row()->tka;
-
-        //     $update = [   
-        //         'jumlah_tka' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id_kabupaten', $kabupaten);
-        //     $this->db->update('kabupaten', $update);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> Dihapus !</strong> data telah berhasil dihapus.

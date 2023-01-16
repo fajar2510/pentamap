@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';">%Data tidak/belum kerja per-UPT, merekomendasikan <?= $title; ?> <?= date('Y'); ?> </h3>
+        <h5 style="font-family:'Roboto';">Data tidak/belum kerja per-UPT, merekomendasikan <?= $title; ?> <?= date('Y'); ?> </h3>
         
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
@@ -72,7 +72,11 @@
                                             <td> <small><?php if ($lat[0]['percent'] != null) { echo $lat[0]['percent']."%"; } else { echo "no-data"; }  ?> </small></td>
                                             <td class="text-center">  
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
-                                                <button type="button" data-toggle="modal" data-target="#modalPrint<?= $lat['id_upt']; ?>" class="btn btn-sm btn-success"> Ajukan <i class="fa fa-paper-plane"></i></button>
+                                                <?php if ($is_admin == 1) { ?>
+                                                    <button type="button" data-toggle="modal" data-target="#modalPrint<?= $lat['id_upt']; ?>" class="btn btn-sm btn-success"> Ajukan <i class="fa fa-paper-plane"></i></button>
+                                                <?php } ?>
+
+                                               
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

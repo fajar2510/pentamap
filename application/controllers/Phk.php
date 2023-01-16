@@ -26,6 +26,10 @@ class Phk extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
+        // var_dump($data['phk']);
+        // die;
         
 
         $data['data_phk'] = $this->Master->get_tb_phk();
@@ -59,6 +63,8 @@ class Phk extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
@@ -160,6 +166,8 @@ class Phk extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
@@ -252,6 +260,8 @@ class Phk extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         $data['kabupaten'] = $this->Perusahaan->get_Jatim();
         $data['perusahaan'] = $this->Lokal->get_namaperusahaan();
@@ -346,6 +356,8 @@ class Phk extends CI_Controller
         $data['pmib'] = $this->Penempatan->getTotalPMIB();
         $data['cpmi'] = $this->Penempatan->getTotalCPMI();
         $data['phk'] = $this->Penempatan->getTotalPHK();
+        $data['lok'] = $this->Penempatan->getTotalLokal();
+        $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
         
 
         // $data['data_phk'] = $this->Master->get_tb_phk();
