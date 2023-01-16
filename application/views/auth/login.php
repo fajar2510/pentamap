@@ -19,7 +19,7 @@
                                     <!-- <img src="<?= base_url('assets/img/auth/disnakertrans.png') ?> " width="350" height="45"> --> 
                                          <h6 class="h-6 text-gray-900 mb-4"> 
                                               <!-- <hr style="margin-top: 10px; margin-bottom: 10px ;"> -->
-                                            <img src="<?php echo base_url() ?>assets/img/auth/jatim.png" alt="logo" class="img-fluid " style="width: 90px; ">
+                                            <img src="<?php echo base_url() ?>assets/img/auth/jatim.png" alt="logo" class="img-fluid " style="width: 100px ">
                                          <p style="font-weight: 500;">Aplikasi Pemetaan Geografis Tenaga Kerja Jatim </p>
                                          <hr style="margin-top: 10px; margin-bottom: 10px ;">
                                           <span style="font-size:25px;">    <b > Login </b></h1>   </span>

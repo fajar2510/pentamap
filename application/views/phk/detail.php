@@ -137,7 +137,7 @@
                                                     <th scope="row">Disabilitas ?</th>
                                                     <td>:</td>
                                                     <td colspan="3"><?php if ($lokasi->disabilitas == 'Y') {
-                                                            echo '<span class="badge badge-pill badge-warning" >YA</span>';
+                                                            echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>';
                                                         } else 
                                                             echo '<span class="badge badge-pill badge-success" >TIDAK</span>'
                                                          ?></td>
@@ -392,7 +392,7 @@
       <!-- MAP untuk get koordinat lat long -->
     <script>
 
-        var map = L.map('mapltlg_detail').setView([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>], 9);
+        var map = L.map('mapltlg_detail').setView([<?= $lokasi->latitude ?>, <?= $lokasi->longitude ?>], 10);
 
         // Open Street Layer
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

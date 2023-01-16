@@ -210,7 +210,7 @@
         
 
 
-        // map search data Cpmi
+        // map search data Cpmi START
         // var dataCpmi = [
         //     <?php  foreach ($sebaran_cpmi as $key => $value) { ?>
         //          {"loc":[<?= $value->latitude ?>,<?= $value->longitude ?>],"nama_pmi":"<?= $value->nama_pmi?>"},
@@ -235,7 +235,7 @@
         //     collapsed: false
         // }) );
 
-        // //populate map with markers from sample data
+        //populate map with markers from sample data
         // for(i in dataCpmi) {
         //     var nama_pmi = dataCpmi[i].nama_pmi,	//value searched
         //         loc = dataCpmi[i].loc,	//position found
@@ -243,6 +243,25 @@
         //         marker.bindPopup('nama_pmi: '+ nama_pmi );
         //         markersLayer.addLayer(marker);
         // }
+        // MAP SEARCH END
+
+         // pencarian tombol tunggal
+        // L.control.search({
+        //   url: 'search.php?q={s}',
+        //   textPlaceholder: 'search ...',
+        //   position: 'topright',
+        //   hideMarkerOnCollapse: true,
+        //   marker: {
+        //     icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
+        //     circle: {
+        //       radius: 20,
+        //       color: '#0a0',
+        //       opacity: 1
+        //     }
+        //   }
+        // }).addTo(map);
+
+       
 
         // icon sebaran UPT
         var iconUpt = L.icon({
@@ -776,46 +795,22 @@
 
         legend.onAdd = function(map) {
           var div = L.DomUtil.create("div", "legend");
-          div.innerHTML += "<h4>Legenda Peta</h4>";
-          div.innerHTML += '<svg height="25" width="100%"><line x1="0" y1="10" x2="40" y2="10" style="stroke:#293462; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah</text>]</svg>';
-          
-          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="red" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Pekerja Migran Indonesia (PMI)</text></svg>';
+          div.innerHTML += "<h4>Legenda Peta Tenaga Kerja Jatim</h4>";
+          div.innerHTML += '<svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Pekerja Migran Indonesia (PMI)</text></svg>';
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">PMI Bermasalah (PMIB)</text></svg>';
-          
           div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="green" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Asing (TKA)</text></svg> ';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="purple" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Lokal/Daerah</text></svg> ';
-          div.innerHTML += '<br><svg width="100%" height="20"  xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M1 22h2v-22h18v22h2v2h-22v-2zm7-3v4h3v-4h-3zm5 0v4h3v-4h-3zm-6-5h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2z" opacity="70%"/> <text x="60" y="15" style="font-family:roboto;  font-size=16px;">Kantor UPT</text></svg> ';
+          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="red" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Lokal PHK</text></svg> ';
+          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="12" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="purple" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Lokal Aktif</text></svg> ';
+          div.innerHTML += '<br><svg width="100%" height="20"  xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M1 22h2v-22h18v22h2v2h-22v-2zm7-3v4h3v-4h-3zm5 0v4h3v-4h-3zm-6-5h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-12-4h-2v2h2v-2zm8 0h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2z" opacity="70%"/> <text x="60" y="15" style="font-family:roboto;  font-size=16px;">UPT BLK (Balai Latihan Kerja)</text></svg> ';
         //   div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Daerah</text></svg>';
           // div.innerHTML += ' <br><i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>SIG</span><br>';
-
+        //   div.innerHTML += '<svg height="25" width="100%"><line x1="0" y1="10" x2="40" y2="10" style="stroke:#293462; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah</text>]</svg>';
           return div;
         };
         legend.addTo(map);
 
         // standart zoom view jatim first load
         // map.locate({setView: true, maxZoom: 30});
-
-        
-        
-        
-        
-
-
-        // L.control.search({
-        //   url: 'search.php?q={s}',
-        //   textPlaceholder: 'Color...',
-        //   position: 'topright',
-        //   hideMarkerOnCollapse: true,
-        //   marker: {
-        //     icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
-        //     circle: {
-        //       radius: 20,
-        //       color: '#0a0',
-        //       opacity: 1
-        //     }
-        //   }
-        // }).addTo(map);
 
 
         // full screen map
@@ -854,7 +849,7 @@
                             var no=1;
                             for(i=0; i<data.perusahaan.length; i++)
                             {
-                                html += "<tr><td scope='row' style=' padding: 0; margin: 0;' class='text-center'>"+no+"</td><td style=' padding: 0; margin: 0;'>" +data.perusahaan[i].nama_perusahaan+"</td><td style=' padding: 0; margin: 0;> <button  class='btn btn-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><a href='#'>Rincian</a> </button> </td></tr>";
+                                html += "<tr><td scope='row' style=' padding: 0; margin: 0;' class='text-center'>"+no+"</td><td style=' padding: 0; margin: 0;'>" +data.perusahaan[i].nama_perusahaan+"</td><td style=' padding: 0; margin: 0;> <button  class='btn btn-primary detailp' data-id='"+data.perusahaan[i].id+"' onclick='btn_detail_lp("+data.perusahaan[i].id+")'><a href='#'>Penghargaan</a> </button> </td></tr>";
                                 no+=1;
                             }
                         }
