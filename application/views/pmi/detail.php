@@ -101,7 +101,7 @@
                                                 <tr>
                                                     <th scope="row">Alamat</th>
                                                     <td>:</td>
-                                                    <td colspan="3"><?= $lokasi->nama_kabupaten ?>, <?= $lokasi->nama_kecamatan ?>, <?= $lokasi->nama_kelurahan ?></td>
+                                                    <td colspan="3"><?= $lokasi->alamat ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Lat/Long</th>
