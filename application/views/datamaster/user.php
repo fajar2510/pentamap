@@ -339,7 +339,7 @@
                         </div> -->
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="<?= $ur['is_active']; ?>" name="is_active" id="is_active" checked>
+                                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                                 <label class="form-check-label" for="is_active">
                                     Status User Aktif?
                                 </label>

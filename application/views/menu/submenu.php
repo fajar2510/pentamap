@@ -117,9 +117,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="icon" class="col-sm-3 col-form-label">Font Awesome Ikon</label>
+                        <label for="icon" class="col-sm-3 col-form-label">Font Awesome Icon</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . ">
+                            <input type="text" class="form-control" id="icon" name="icon" placeholder=". . . ">
                             <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>

@@ -87,7 +87,14 @@
                 <td width="25%">NAMA</td>
                 <td width="5%">:</td>
                 <td width="35%"><?= $semua_data_kwitansi->nama ?></td>
-                <td width="25%" rowspan="8"><img src="<?= base_url('assets/img/pmi/') . $semua_data_kwitansi->image; ?>" alt="Profil" width="150" height="150"></td>
+                <td width="25%" rowspan="8">
+                <?php if ($semua_data_kwitansi->image == null) { ?>
+                        <img src="<?= base_url("assets/img/profile/default.png"); ?> "alt="profile"  style="width: 180px; height: 220px; object-fit: cover;">
+                <?php }else{ ?>
+                        <img src="<?= base_url('assets/img/pmi/') . $semua_data_kwitansi->image; ?>" alt="Profil" width="150" height="190"  style="object-fit: cover;">
+                <?php } ?>    
+               
+                </td>
             </tr>
             <tr>
                 <td>TANGGAL LAHIR (USIA)</td>

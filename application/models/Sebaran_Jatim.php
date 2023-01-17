@@ -118,8 +118,8 @@ class Sebaran_Jatim extends CI_Model
         $this->db->select('*');
         $this->db->from('tb_pmi');
         $this->db->join('kabupaten','tb_pmi.kabupaten = kabupaten.id_kabupaten');
-        $this->db->join('kecamatan','tb_pmi.kecamatan = kecamatan.id_kecamatan');
-        $this->db->join('kelurahan','tb_pmi.desa = kelurahan.id_kelurahan');
+        // $this->db->join('kecamatan','tb_pmi.kecamatan = kecamatan.id_kecamatan');
+        // $this->db->join('kelurahan','tb_pmi.desa = kelurahan.id_kelurahan');
         $this->db->join('tb_negara','tb_pmi.negara_bekerja = tb_negara.id_negara');
         $this->db->where('tb_pmi.id', $id_lokasi);
         return $this->db->get()->row();

@@ -153,17 +153,7 @@ class Pmi extends CI_Controller
 
             $this->db->insert('tb_pmi', $data);
 
-        //     $kabupaten = $this->input->post('kabupaten_id', true);
-        //     $jumlah_pmib = $this->db->query("SELECT SUM(CASE WHEN kabupaten='$kabupaten' THEN 1 ELSE 0 END) AS pmib FROM tb_pmi");
-
-        //    $jumlah = $jumlah_pmib->row()->pmib;
-
-        //     $update = [   
-        //         'jumlah_pmib' => $jumlah,
-        //     ];
-
-        //     $this->db->where('id_kabupaten', $kabupaten);
-        //     $this->db->update('kabupaten', $update);
+    
             // show alert
             $this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Ditambahkan !</strong> data telah berhasil ditambahkan.
@@ -192,10 +182,10 @@ class Pmi extends CI_Controller
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
-        $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
+        // $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
         $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
-        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
-        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        // $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
+        // $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
 
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // // Load model pmi
@@ -294,10 +284,10 @@ class Pmi extends CI_Controller
 
         $data['negara'] = $this->db->get('tb_negara')->result_array();
 
-        $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
+        // $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
         $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
-        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
-        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        // $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
+        // $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
 
         // $data['kelurahan'] = $this->db->get('kelurahan')->result_row();
         // Load model pmi
@@ -369,6 +359,9 @@ class Pmi extends CI_Controller
                     redirect('pmi/edit_pmi/' . $id_lokasi);
                 }
             }
+
+            $this->db->where('id', $id_lokasi);
+            $this->db->update('tb_pmi', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong> Disunting !</strong> data telah berhasil diupdate.

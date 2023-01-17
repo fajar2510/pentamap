@@ -146,6 +146,16 @@
               }
           }
 
+          .badge-purple {
+            color: #FFFFFF;
+            background-color: #7739F3;
+          }
+
+          .badge-black {
+            color: #FFFFFF;
+            background-color: #2B2832;
+          }
+
 
           .select {
               text-align-last:right;

@@ -211,7 +211,7 @@
 
 
         // map search data Cpmi START
-        // var dataCpmi = [
+        // var dataCpmix = [
         //     <?php  foreach ($sebaran_cpmi as $key => $value) { ?>
         //          {"loc":[<?= $value->latitude ?>,<?= $value->longitude ?>],"nama_pmi":"<?= $value->nama_pmi?>"},
         //     <?php } ?>
@@ -235,14 +235,15 @@
         //     collapsed: false
         // }) );
 
-        //populate map with markers from sample data
+        // populate map with markers from sample data
         // for(i in dataCpmi) {
         //     var nama_pmi = dataCpmi[i].nama_pmi,	//value searched
         //         loc = dataCpmi[i].loc,	//position found
-        //         marker = new L.Marker(new L.latLng(loc), {title: nama_pmi} );//se property searched
+        //         marker = new L.Marker(new L.latLng(sebaranCpmi), {title: nama_pmi} );//se property searched
         //         marker.bindPopup('nama_pmi: '+ nama_pmi );
         //         markersLayer.addLayer(marker);
         // }
+
         // MAP SEARCH END
 
          // pencarian tombol tunggal
@@ -283,24 +284,18 @@
         var iconCpmi = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/scpmi.png',
             iconSize : [30,16],
-            // iconAnchor: [22, 65],
-            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran pmib
         var iconPmib = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/spmib.png',
             iconSize : [30,16],
-            // iconAnchor: [22, 65],
-            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran tka
         var iconTka = L.icon({
             iconUrl : '<?= base_url('assets/'); ?>img/sebaran/stka.png',
             iconSize : [30,16],
-            // iconAnchor: [22, 65],
-            // popupAnchor: [-3,-55]
         });
 
         // icon sebaran Lokal
@@ -389,9 +384,6 @@
             }
         });
 
-        
-        
-          
         <?php foreach ($sebaran_phk  as $key => $value) { ?> 
             var sebaranPhk = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconPhk} )
             .bindPopup(
@@ -455,7 +447,6 @@
             map.fitBounds(markersCpmi.getBounds());
           
         <?php }?>
-        
 
          // MARKER dengan cluster PMIB
          var markersPmib = L.markerClusterGroup({
@@ -647,13 +638,13 @@
 
         //   change layer function
         var overlays = {
-                "Kantor UPT": markersUpt,
+                "UPT-BLK": markersUpt,
                 "Disabilitas": markersDisabilitas,
-                "PHK": markersPhk,
                 "PMI": markersCpmi,
                 "PMIB": markersPmib,
                 "TKA": markersTka,
-                "Lokal/Daerah": markersLokal,
+                "Lokal Phk": markersPhk,
+                "Lokal Aktif": markersLokal,
                 
             };
 
@@ -691,27 +682,26 @@
                 layer.bindPopup('<div class="container px-1 py-1">'+
             ' &nbsp; <img src="<?= base_url("assets/img/logo_kab/") . $value['logo_kab'] ?>" alt="profile" class=" img-responsive" style="padding-bottom: 1px; width: 55px; object-fit:cover;">   '+
             '<p class="text-dark-900 px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; "> <b> <?= $value['nama_kabupaten'] ?></b> &nbsp; <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i><br>'+
-            '<i class="fa-solid fa-flag" style="margin-bottom: 10px;margin-right: 10px;"></i>Luas Area , <?= $value['luas_area'] ?>&nbsp; KM <sup>2</sup> '+
-            //   '<i class="fa-solid fa-location-crosshairs" style="margin-bottom: 10px; margin-right: 10px;"></i>Lat-Lng , <?= $value['kabupaten_lat'] ?>, &nbsp;  <?= $value['kabupaten_lat'] ?><br>'+
+            'Luas Area , <?= $value['luas_area'] ?>&nbsp; km <sup>2</sup> '+
             '<table class="table table-sm" style=" padding: 0; margin: 0;" >' +
             '<thead style=" padding: 0; margin: 0;"><tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" >CPMI</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span style="color:#505050  ; font-family: sans-serif;">CPMI/PMI</span></th>' +
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-info badge-pill"><?= $value['totalCpmi'] ?> </span></th></tr> '+
             '<tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" >PHK</th>' +
-            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"><?= $value['totalPhk'] ?>  </span></th></tr> '+
-            '<tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" >PMIB</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;" ><span style="color:#505050  ; font-family: sans-serif;">PMI Bermasalah</span></th>' +
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-warning badge-pill"><?= $value['totalPmib'] ?></span></th></tr> '+
             '<tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" >TKA</th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;" ><span style="color:#505050  ; font-family: sans-serif;">TKA (Luar Negri)</span></th>' +
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-success badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
             '<tr>'+
-            '<th scope="col" style=" padding: 0; margin: 0;" >LOKAL</th>' +
-            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-light badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
+            '<th scope="col" style=" padding: 0; margin: 0;" ><span style="color:#505050  ; font-family: sans-serif;">Lokal PHK</span></th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"><?= $value['totalPhk'] ?>  </span></th></tr> '+
             '<tr>'+
-            '<th scope="col" style=" padding: 5; margin: 0;" ><b>TOTAL DATA</b></th>' +
-            '<th scope="col" style=" padding: 5; margin: 0;"><span class="badge badge-secondary badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
+            '<th scope="col" style=" padding: 0; margin: 0;" ><span style="color:#505050  ; font-family: sans-serif;">Lokal AKTIF</span></th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-purple badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
+            '<tr>'+
+            '<th scope="col" style=" padding: 0; margin: 0;" ><b>&nbsp;&nbsp<span style="color:black;">TOTAL DATA</span></b></th>' +
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-black badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
             '</table> <br>' +
             
               '<button type="button" onclick="btn_lp()" data-id="<?php echo $value['id_kabupaten'] ?>" class="btn btn-primary btn-block d-inline-block listp">Lihat Perusahaan</button></div>');
