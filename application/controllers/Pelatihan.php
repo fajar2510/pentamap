@@ -82,7 +82,10 @@ class Pelatihan extends CI_Controller
             //     percen
             // }
             array_push($data['data_pelatihan'][$m], ["percent" => $percent]);
+            array_push($data['data_pelatihan'][$m], ["jumlah_total_upt" =>  $jumlah_total_upt]);
             // echo $jumlah_pengurang_upt."-".$jumlah_total_upt."-".$percent."\n";
+            // echo $jumlah_total_upt;
+            // die;
             $m++;
         }
         // foreach ($data['data_pelatihan'] as $val) {

@@ -57,7 +57,7 @@
                                         <th  class="text-center">Nama UPT</th>
                                         <th  class="text-center">Cakupan</th>
                                         <th  class="text-center">Lokasi</th>
-                                        <th  class="text-center">%tidak/belum kerja</th>
+                                        <th  class="text-center">%belum kerja</th>
                                         <th width="" class="text-center" >Aksi</th>
                                     </tr>
                                 </thead>
@@ -68,8 +68,8 @@
                                             <th scope="row"><?= $i; ?></th>
                                             <td> <small> <?= $lat['nama_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['ket_upt']; ?> </small></td>
-                                            <td> <small> <?= $lat['nama_kabupaten']; ?> </small></td>
-                                            <td> <small><?php if ($lat[0]['percent'] != null) { echo $lat[0]['percent']."%"; } else { echo "no-data"; }  ?> </small></td>
+                                            <td> <small> <?= $lat['nama_kabupaten']; ?></small></td>
+                                            <td> <small><?php if ($lat[0]['percent'] != null) { echo round($lat[0]['percent'],2)."%"; } else { echo "no-data"; }  ?> dari  <?= $lat[1]['jumlah_total_upt']; ?> orang</small></td>
                                             <td class="text-center">  
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
                                                 <?php if ($is_admin == 1) { ?>
