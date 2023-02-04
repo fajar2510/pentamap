@@ -543,7 +543,7 @@
                     }?>
                 </i></p> 
               <a href="<?= base_url('tka/detail/' . $value->id) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;
-              <?php if ($is_login == 1) { ?><a href="<?= base_url('tka/edit_tka/' . $value->id) ?>"  class="btn btn-link btn-sm ">Perbarui</a><?php }else{ ?><p></p><?php } ?>
+              <?php if ($is_login == 1) { ?><a href="<?= base_url('tka/edit_tka/'.$value->id) ?>"  class="btn btn-link btn-sm ">Perbarui</a><?php }else{ ?><p></p><?php } ?>
               <?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusTka<?= $value->id ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>`);
 
               markersTka.addLayer(sebaranTka);

@@ -38,11 +38,17 @@ class Sebaran_Jatim extends CI_Model
 
     public function get_sebaran_tka($wilayah = null)
     {
-        $this->db->select(' *');
-        $this->db->from('tb_tka');
-        $this->db->join('kabupaten','tb_tka.lokasi_kerja = kabupaten.id_kabupaten');
-        $this->db->join('tb_negara','tb_tka.kewarganegaraan = tb_negara.id_negara');
-        $this->db->join('tb_perusahaan','tb_tka.id_perusahaan = tb_perusahaan.id');
+        $this->db->select('tka.id, tka.id_perusahaan, tka.nama_tka, tka.jenis_kel,
+                        tka.kewarganegaraan, tka.jabatan, tka.kontak, tka.no_rptka, tka.masa_rptka,
+                        tka.no_imta, tka.masa_imta, tka.lokasi_kerja, tka.image, tka.latitude, tka.longitude,
+                        tka.date_created');
+        $this->db->select('kabupaten.*');
+        $this->db->select('tb_negara.*');
+        $this->db->select('tb_perusahaan.id as id_per, tb_perusahaan.nama_perusahaan');
+        $this->db->from('tb_tka as tka');
+        $this->db->join('kabupaten','tka.lokasi_kerja = kabupaten.id_kabupaten');
+        $this->db->join('tb_negara','tka.kewarganegaraan = tb_negara.id_negara');
+        $this->db->join('tb_perusahaan','tka.id_perusahaan = tb_perusahaan.id');
         if ($wilayah != null) {
             $this->db->where('lokasi_kerja',$wilayah);
         }
@@ -100,15 +106,18 @@ class Sebaran_Jatim extends CI_Model
     // mengambil data detail berdasarkan id lokasi TKA
     public function detail_tka($id_lokasi)
     {
-        $this->db->select('tb_tka.*');
+        $this->db->select('tka.id, tka.id_perusahaan, tka.nama_tka, tka.jenis_kel,
+                        tka.kewarganegaraan, tka.jabatan, tka.kontak, tka.no_rptka, tka.masa_rptka,
+                        tka.no_imta, tka.masa_imta, tka.lokasi_kerja, tka.image, tka.latitude, tka.longitude,
+                        tka.date_created');
         $this->db->select('kabupaten.*');
         $this->db->select('tb_negara.*');
-        $this->db->select('tb_perusahaan.nama_perusahaan');
-        $this->db->from('tb_tka');
-        $this->db->join('kabupaten','tb_tka.lokasi_kerja = kabupaten.id_kabupaten');
-        $this->db->join('tb_perusahaan','tb_tka.id_perusahaan = tb_perusahaan.id');
-        $this->db->join('tb_negara','tb_tka.kewarganegaraan = tb_negara.id_negara');
-        $this->db->where('tb_tka.id', $id_lokasi);
+        $this->db->select('tb_perusahaan.id as id_per, tb_perusahaan.nama_perusahaan');
+        $this->db->from('tb_tka as tka');
+        $this->db->join('kabupaten','tka.lokasi_kerja = kabupaten.id_kabupaten');
+        $this->db->join('tb_negara','tka.kewarganegaraan = tb_negara.id_negara');
+        $this->db->join('tb_perusahaan','tka.id_perusahaan = tb_perusahaan.id');
+        $this->db->where('tka.id', $id_lokasi);
         return $this->db->get()->row();
     }
 

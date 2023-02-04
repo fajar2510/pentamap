@@ -53,7 +53,10 @@ class Beranda extends CI_Controller
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
         $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
         $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
-        $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka ();
+        $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
+        //  echo"<pre>";
+        // var_dump($data['sebaran_tka']);
+        // die;
         $data['sebaran_lokal'] = $this->Sebaran_Jatim->get_sebaran_lokal();
         $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
 

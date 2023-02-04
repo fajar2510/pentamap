@@ -62,9 +62,9 @@
                                         <div class="col-sm-9">
                                             <div id="mapltlg"></div>
                                         </div>
-                                        <div class="col-sm-3"> 
+                                        <div class="col-sm-3">  
                                             
-                                        <?php if ($lokasi->image == null) { ?>style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"
+                                        <?php if ($lokasi->image == null) { ?>
                                             <div  class="foto2"><img src="<?= base_url('assets/img/profile/default.png') ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
                                         <?php } else { ?>
                                             <div  class="foto2"><img src="<?= base_url('assets/img/cpmi/').$lokasi->image ?>" class="img-fluid" style="width: 180px; height: 180px; object-fit: cover ; padding-bottom:20px;"></div>
