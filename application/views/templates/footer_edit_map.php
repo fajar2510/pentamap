@@ -319,10 +319,11 @@
             
             
             // "Water Color":Stamen_Watercolor,
-            "OSM Clean": osmOnlyLabel,
+            // "OSM Clean": osmOnlyLabel,
+            "OpenStreetMap": osm,
             "Google Satellite":googleSat,
             "Google Street":googleStreets,
-            "OpenStreetMap": osm,
+           
             
             
         };
