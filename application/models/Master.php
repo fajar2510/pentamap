@@ -95,17 +95,17 @@ class Master extends CI_Model
             $hir = date_format($akh, 'Y-m-d');
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`, `tb_negara`. *
+                , `tb_negara`. *
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
                     JOIN `tb_negara`
                     ON `tb_pmi`. `negara_bekerja` = `tb_negara`. `id_negara`
-                    JOIN `kecamatan`
-                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
-                    JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    -- JOIN `kecamatan`
+                    -- ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    -- JOIN `kelurahan`
+                    -- ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
                     WHERE `date_created` 
                     BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
                 ";
@@ -161,15 +161,15 @@ class Master extends CI_Model
             $hir = date_format($akh, 'Y-m-d');
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+                
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
-                    JOIN `kecamatan`
-                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
-                    JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    -- JOIN `kecamatan`
+                    -- ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    -- JOIN `kelurahan`
+                    -- ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
                     WHERE `negara_bekerja` = '$negara' AND `date_created` 
                     BETWEEN '$wal' AND '$hir' ORDER BY `date_created` DESC
                 ";
@@ -180,15 +180,16 @@ class Master extends CI_Model
 
             $query =
                 "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+               
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
-                    JOIN `kecamatan`
-                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
-                    JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`  ORDER BY `date_created` DESC
+                    -- JOIN `kecamatan`
+                    -- ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    -- JOIN `kelurahan`
+                    -- ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan`  
+                    ORDER BY `date_created` DESC
                 ";
             return $this->db->query($query)->result_array();
         }
@@ -200,15 +201,15 @@ class Master extends CI_Model
         $thn = explode('-', $tahun);
         $query =
             "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
-                , `kecamatan`. `nama_kecamatan`, `kelurahan`. `nama_kelurahan`
+               
                     FROM `tb_pmi` JOIN `provinsi`
                     ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
-                    JOIN `kecamatan`
-                    ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
-                    JOIN `kelurahan`
-                    ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
+                    -- JOIN `kecamatan`
+                    -- ON `tb_pmi`. `kecamatan` = `kecamatan`. `id_kecamatan`
+                    -- JOIN `kelurahan`
+                    -- ON `tb_pmi`. `desa` = `kelurahan`. `id_kelurahan` 
                     WHERE `negara_bekerja` = '$negara' AND YEAR(date_created) = '$thn[0]' AND MONTH(date_created) = '$thn[1]' ORDER BY `date_created` DESC
                 ";
         return $this->db->query($query)->result_array();
@@ -219,12 +220,12 @@ class Master extends CI_Model
     // query ambil id PMIgetPmiJoinWilayah
     public function getPmiById($id)
     {
-        $query = "SELECT tb_pmi. * ,tb_negara.*,  kabupaten.nama_kabupaten,kecamatan.nama_kecamatan, kelurahan.nama_kelurahan
+        $query = "SELECT tb_pmi. * ,tb_negara.*,  kabupaten.nama_kabupaten
         FROM tb_pmi 
         JOIN kabupaten ON tb_pmi.kabupaten = kabupaten.id_kabupaten 
         JOIN tb_negara ON tb_pmi.negara_bekerja = tb_negara.id_negara 
-        JOIN kecamatan ON tb_pmi.kecamatan = kecamatan.id_kecamatan 
-        JOIN kelurahan ON tb_pmi.desa = kelurahan.id_kelurahan 
+        -- JOIN kecamatan ON tb_pmi.kecamatan = kecamatan.id_kecamatan 
+        -- JOIN kelurahan ON tb_pmi.desa = kelurahan.id_kelurahan 
         WHERE tb_pmi.id='$id'
                 ";
         return $this->db->query($query)->row();

@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';">Data tidak/belum kerja per-UPT, merekomendasikan <?= $title; ?> <?= date('Y'); ?> </h3>
+        <h5 style="font-family:'Roboto';">Data Serapan <?= $title; ?> Tahun <?= date('Y'); ?> </h3>
         
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
@@ -57,7 +57,7 @@
                                         <th  class="text-center">Nama UPT</th>
                                         <th  class="text-center">Cakupan</th>
                                         <th  class="text-center">Lokasi</th>
-                                        <th  class="text-center">%belum kerja</th>
+                                        <th  class="text-center">%non-kerja</th>
                                         <th width="" class="text-center" >Aksi</th>
                                     </tr>
                                 </thead>
@@ -69,12 +69,12 @@
                                             <td> <small> <?= $lat['nama_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['ket_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['nama_kabupaten']; ?></small></td>
-                                            <td> <small><?php if ($lat[0]['percent'] != null) { echo round($lat[0]['percent'],2)."%"; } else { echo "no-data"; }  ?> dari  <?= $lat[1]['jumlah_total_upt']; ?> orang</small></td>
+                                            <td> <small><span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><?php if ($lat[0]['percent'] != null) { echo round($lat[0]['percent'],2)."%"; } else { echo "no-data"; }  ?></span><i class="fa-solid fa-arrow-right"></i> <span class="badge badge-pill badge-success" style="font-size:12px; color:white;"> <?= $lat[1]['jumlah_total_upt']; ?></span> orang</i></small></td>
                                             <td class="text-center">  
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
-                                                <?php if ($is_admin == 1) { ?>
+                                                <!-- <?php if ($is_admin == 1) { ?>
                                                     <button type="button" data-toggle="modal" data-target="#modalPrint<?= $lat['id_upt']; ?>" class="btn btn-sm btn-success"> Ajukan <i class="fa fa-paper-plane"></i></button>
-                                                <?php } ?>
+                                                <?php } ?> -->
 
                                                
                                             </td>

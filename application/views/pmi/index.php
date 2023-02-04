@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
+        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?>(Pekerja Migran Indonesia Bermasalah) </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('pmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -51,7 +51,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
-                                    <span class="text" style = "font-family:roboto; ">Filter Cetak</span>
+                                    <span class="text" style = "font-family:roboto; ">Cetak Daftar Hadir PMI-B Negara Bekerja</span>
                                     </button>
                             </span>
                             <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
@@ -128,7 +128,7 @@
                         <thead align="center">
                             <tr>
                                 <th> No</th>
-                                <!-- <th>Tanggal</th> -->
+                                <th>Tanggal</th>
                                 <th>Nama (umur)</th>
                                 <th>Alamat</th>
                                 <th>Negara</th>
@@ -140,7 +140,7 @@
                             <?php foreach ($pmi as $p) : ?>
                                 <tr>
                                     <td align="center"><?= $i; ?></td>
-                                    <!-- <td><small><?= $p['date_created']; ?></small> </td> -->
+                                    <td><small><?= $p['date_created']; ?></small> </td>
 
                                     <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                     <td><?= $p['nama']; ?> <sup>

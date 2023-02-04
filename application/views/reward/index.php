@@ -52,7 +52,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
-                                    <span class="text" style = "font-family:roboto; ">Print</span>
+                                    <span class="text" style = "font-family:roboto; ">Cetak</span>
                                     </button>
                              </span>
                              </div>
@@ -70,11 +70,12 @@
                                 <thead>
                                     <tr class="pure-table-odd">
                                         <th rowspan="2"> No</th>
+                                        <th rowspan="2" class="text-center">Tahun</th>
                                         <th rowspan="2" class="text-center">Kabupaten</th>
                                         <th rowspan="2" class="text-center">Nama Perusahaan</th>
                                         <th colspan="3" class="text-center">Disabilitas</th>
                                         <th rowspan="2" class="text-center">%</th>
-                                        <th rowspan="2">Tahun</th>
+                                        
                                         <th width="" class="text-center" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
@@ -89,13 +90,14 @@
                                     <?php foreach ($data_reward as $r) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
+                                            <td> <small> <?= date("Y",strtotime($r['date_created'])); ?></small></td>
                                             <td> <small> <?= $r['nama_kabupaten']; ?></small></td>
                                             <td> <small><?= $r['nama_perusahaan']; ?></small></td>
                                             <td><center><?= $r['disabilitas_L']; ?></center>  </td>
                                             <td><center><?= $r['disabilitas_P']; ?></center>  </td>
                                             <td> <center><?= $r['disabilitas_total']; ?></center> </td>
                                             <td> <center><?= $r['presentase']; ?> %</center> </td>
-                                            <td> <small> <?= $r['date_created']; ?></small></td>
+                                            
                                             <td class="text-center">
                                                 <!-- Example split danger button -->
                                                 <!-- <div class="btn-group">

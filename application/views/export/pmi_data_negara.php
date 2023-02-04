@@ -131,14 +131,14 @@ function bulanIndo($bulanInggris)
                 <thead align="center">
                     <tr>
                         <th rowspan="2" width="7%"> NO</th>
-                        <th rowspan="2" width="17%">NAMA</th>
-                        <th colspan="3">ALAMAT</th>
-                        <th rowspan="2" colspan="2" width="36%">TANDA TANGAN</th>
+                        <th rowspan="2" width="25%">NAMA</th>
+                        <th colspan="2">ALAMAT</th>
+                        <th rowspan="2" colspan="2" width="22%">TANDA TANGAN</th>
                     </tr>
                     <tr align="center">
-                        <th width="19%">DESA</th>
-                        <th width="18%">KECAMATAN</th>
-                        <th width="18%">KAB./ KOTA</th>
+                        <th width="25%">DESA/KECAMATAN</th>
+                        <!-- <th width="18%">KECAMATAN</th> -->
+                        <th width="20%">KAB./ KOTA</th>
                     </tr>
                 </thead>
                 <tbody align="center">
@@ -147,8 +147,8 @@ function bulanIndo($bulanInggris)
                         <tr style="border-style: dotted; border: 1;">
                             <th><?= $i; ?></th>
                             <td style="text-align: left;"><?= $p['nama']; ?> </td>
-                            <td> <small> <?= $p['nama_kelurahan']; ?></small> </td>
-                            <td><small><?= $p['nama_kecamatan']; ?></small> </td>
+                            <td> <small> <?= $p['alamat']; ?></small> </td>
+                            <!-- <td><small><?= $p['nama_kecamatan']; ?></small> </td> -->
                             <td><small><?= $p['nama_kabupaten']; ?></small> </td>
                             <td style="text-align: left;" style="border: 0;" align="left">
                                 <?php if ($i % 2 == 1) {

@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
+        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?>(Calon Pekerja Migran Indonesia) </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('cpmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -56,7 +56,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
-                                    <span class="text" style = "font-family:roboto; ">Filter Cetak</span>
+                                    <span class="text" style = "font-family:roboto; ">Cetak CPMI Negara Penempatan</span>
                                     </button>
                             </span>
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
@@ -125,7 +125,7 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <!-- <th>Tanggal</th> -->
+                                        <th>Tanggal</th>
                                         <th>Nama_PMI </th>
                                         <th>Domisili</th>
                                         <!-- <th>L/P</th> -->
@@ -140,7 +140,7 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <!-- <td> <small> <?= $p['date_created']; ?> </small> </td> -->
+                                            <td> <small> <?= $p['date_created']; ?> </small> </td>
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['nama_kabupaten']; ?> </small> </td>
                                             <!-- <td><small> <?= $p['perusahaan']; ?> </small> </td> -->
