@@ -42,7 +42,7 @@ class Pmi extends CI_Controller
         // var_dump($data['negara']); die;
 
         //load data view
-        $data['title'] = 'PMI-B';
+        $data['title'] = 'PMI Bermasalah';
         $this->load->view('templates/header', $data);
         if ($this->ci->session->userdata('email')) {
             $data['is_admin'] = 1;

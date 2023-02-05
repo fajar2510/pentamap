@@ -74,6 +74,7 @@
                                         <th rowspan="2" class="text-center">Kabupaten</th>
                                         <th rowspan="2" class="text-center">Nama Perusahaan</th>
                                         <th colspan="3" class="text-center">Disabilitas</th>
+                                        <th rowspan="2" class="text-center">Total Pekerja</th>
                                         <th rowspan="2" class="text-center">%</th>
                                         
                                         <th width="" class="text-center" rowspan="2">Aksi</th>
@@ -96,7 +97,8 @@
                                             <td><center><?= $r['disabilitas_L']; ?></center>  </td>
                                             <td><center><?= $r['disabilitas_P']; ?></center>  </td>
                                             <td> <center><?= $r['disabilitas_total']; ?></center> </td>
-                                            <td> <center><?= $r['presentase']; ?> %</center> </td>
+                                            <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
+                                            <td> <span class="badge badge-pill badge-info" style="font-size:12px; color:white;"><center><?= $r['presentase']; ?> %</center> </span></td>
                                             
                                             <td class="text-center">
                                                 <!-- Example split danger button -->
