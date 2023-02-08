@@ -80,21 +80,21 @@
                         <div class="form-group row">
                             <label for="warna" class="col-sm-3 col-form-label">Pilih Warna</label>
                             <div class="col-sm-6">
-                                <input type="color" class="form-control form-control-color" title="Choose your color" id="warna" placeholder="" name="warna" value="<?= $row['warna']; ?>">
+                                <input required type="color" class="form-control form-control-color" title="Choose your color" id="warna" placeholder="" name="warna" value="<?= $row['warna']; ?>">
                                 <?= form_error('warna', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="luas_area" class="col-sm-3 col-form-label">Luas Area <sup>2</sup></label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="luas_area" placeholder="" name="luas_area" value="<?= $row['luas_area']; ?>">
+                                <input required type="text" class="form-control" id="luas_area" placeholder="" name="luas_area" value="<?= $row['luas_area']; ?>">
                                 <?= form_error('luas_area', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="geojson" class="col-sm-3 col-form-label">GeoJson <sup>nama</sup></label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="geojson" placeholder="" name="geojson" value="<?= $row['geojson']; ?>">
+                                <input required type="text" class="form-control" id="geojson" placeholder="" name="geojson" value="<?= $row['geojson']; ?>">
                                 <?= form_error('geojson', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

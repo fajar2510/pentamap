@@ -81,14 +81,14 @@
                     <div class="form-group row">
                         <label for="nama_sektor" class="col-sm-3 col-form-label">Nama Sektor</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama_sektor" placeholder="" name="nama_sektor" >
+                            <input required type="text" class="form-control" id="nama_sektor" placeholder="" name="nama_sektor" >
                             <?= form_error('nama_sektor', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-3 col-form-label">Sub Sektor</label>
                         <div class="col-sm-8">
-                        <textarea class="form-control" id="keterangan" placeholder="" name="keterangan" rows="3"></textarea>
+                        <textarea required class="form-control" id="keterangan" placeholder="" name="keterangan" rows="3"></textarea>
                             <?= form_error('keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -129,14 +129,14 @@
                         <div class="form-group row">
                             <label for="nama_sektor" class="col-sm-3 col-form-label">Nama Sektor</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_sektor" placeholder="" name="nama_sektor" value="<?= $ds['nama_sektor']; ?>">
+                                <input required type="text" class="form-control" id="nama_sektor" placeholder="" name="nama_sektor" value="<?= $ds['nama_sektor']; ?>">
                                 <?= form_error('nama_sektor', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="keterangan" class="col-sm-3 col-form-label">Sub Sektor</label>
                             <div class="col-sm-8">
-                            <textarea class="form-control" id="alaketeranganmat" placeholder="" name="sub sektor" rows="3"><?= $ds['keterangan']; ?></textarea>
+                            <textarea required class="form-control" id="alaketeranganmat" placeholder="" name="sub sektor" rows="3"><?= $ds['keterangan']; ?></textarea>
                                 <?= form_error('keterangan', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

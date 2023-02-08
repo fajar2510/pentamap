@@ -94,14 +94,14 @@
                     <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Judul Sub</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= set_value('title'); ?>">
+                            <input required type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= set_value('title'); ?>">
                             <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="negara" class="col-sm-3 col-form-label">Menu</label>
                         <div class="col-sm-5">
-                            <select name="menu_id" id="menu_id" class="form-control">
+                            <select required name="menu_id" id="menu_id" class="form-control">
                                 <option value=""> Pilih Menu </option>
                                 <?php foreach ($menu as $m) : ?>
                                     <option value="<?= $m['id']; ?>"> <?= $m['menu']; ?></option>
@@ -112,14 +112,14 @@
                     <div class="form-group row">
                         <label for="url" class="col-sm-3 col-form-label">URL</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . ">
+                            <input required type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . ">
                             <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="icon" class="col-sm-3 col-form-label">Font Awesome Icon</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="icon" name="icon" placeholder=". . . ">
+                            <input required type="text" class="form-control" id="icon" name="icon" placeholder=". . . ">
                             <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -171,14 +171,14 @@
                         <div class="form-group row">
                             <label for="title" class="col-sm-3 col-form-label">Judul Sub</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= $sm['title']; ?>">
+                                <input required type="text" class="form-control" id="title" placeholder="Judul Sub" name="title" value="<?= $sm['title']; ?>">
                                 <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="negara" class="col-sm-3 col-form-label">Menu</label>
                             <div class="col-sm-5">
-                                <select name="menu_id" id="menu_id" class="form-control">
+                                <select required  name="menu_id" id="menu_id" class="form-control">
                                     <option value=""> Pilih Menu </option>
                                     <?php foreach ($menu as $m) : ?>
                                         <option value="<?= $m['id']; ?>" <?php if ($m['id'] == $sm['menu_id']) {
@@ -193,21 +193,21 @@
                         <div class="form-group row">
                             <label for="url" class="col-sm-3 col-form-label">URL</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . " value="<?= $sm['url']; ?>">
+                                <input required type="text" class="form-control" id="url" name="url" placeholder="SubMenu url. . . " value="<?= $sm['url']; ?>">
                                 <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="icon" class="col-sm-3 col-form-label">Ikon</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . " value="<?= $sm['icon']; ?>">
+                                <input required type="text" class="form-control" id="icon" name="icon" placeholder="Ikon. . . " value="<?= $sm['icon']; ?>">
                                 <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                                <input  class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                                 <label class="form-check-label" for="is_active">
                                     Status Aktif?
                                 </label>

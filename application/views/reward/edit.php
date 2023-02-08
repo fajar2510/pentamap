@@ -37,7 +37,7 @@
                                     <div class="form-group row">
                                         <label for="tanggal_data" class="col-sm-3 col-form-label"> Di usulkan pada</label>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="<?= $edit_reward['date_created'] ?>" id="tanggal_data" name="tanggal_data">
+                                            <input required class="form-control" type="date" value="<?= $edit_reward['date_created'] ?>" id="tanggal_data" name="tanggal_data">
                                             <?= form_error('tanggal_data', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <select class="custom-select" name="nama_perusahaan" id="nama_perusahaan" class="form-control">
+                                            <select required class="custom-select" name="nama_perusahaan" id="nama_perusahaan" class="form-control">
                                           
                                                 <?php foreach ($perusahaan as $n) : ?>
                                                     <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_reward ['perusahaan_id']) {
@@ -107,16 +107,16 @@
                                     <div class="form-group row">
                                         <label for="disabilitas_L" class="col-sm-3 col-form-label">Jumlah Disabilitas L/P</label>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L" value="<?= $edit_reward ['disabilitas_L']; ?>">
+                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L" value="<?= $edit_reward ['disabilitas_L']; ?>">
                                             <?= form_error('disabilitas_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P" value="<?= $edit_reward ['disabilitas_P']; ?>">
+                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P" value="<?= $edit_reward ['disabilitas_P']; ?>">
                                             <?= form_error('disabilitas_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                             <!-- onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" -->
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" value="<?= $edit_reward ['disabilitas_total']; ?>"name="disabilitas_total">
+                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" value="<?= $edit_reward ['disabilitas_total']; ?>"name="disabilitas_total">
                                             <?= form_error('disabilitas_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>
@@ -128,15 +128,15 @@
                                     <div class="form-group row">
                                         <label for="tenaga_kerja_L" class="col-sm-3 col-form-label">Jumlah Tenaga Kerja L/P</label>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L" value="<?= $edit_reward ['tenaga_kerja_L']; ?>" >
+                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L" value="<?= $edit_reward ['tenaga_kerja_L']; ?>" >
                                             <?= form_error('tenaga_kerja_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P" value="<?= $edit_reward ['tenaga_kerja_P']; ?>">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P" value="<?= $edit_reward ['tenaga_kerja_P']; ?>">
                                             <?= form_error('tenaga_kerja_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total" value="<?= $edit_reward ['tenaga_kerja_total']; ?>" name="tenaga_kerja_total">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total" value="<?= $edit_reward ['tenaga_kerja_total']; ?>" name="tenaga_kerja_total">
                                             <?= form_error('tenaga_kerja_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>
@@ -161,7 +161,7 @@
                                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam & Jenis Disabilitas</label>
                                         <div class="col-sm-5">
                     
-                                        <select class="bootstrap-select" class="form-control" name="jenis_edit[]" data-width="100%" data-live-search="true" multiple required>
+                                        <select required class="bootstrap-select" class="form-control" name="jenis_edit[]" data-width="100%" data-live-search="true" multiple required>
                                             
                                             <!-- AMBIL DATA BELUM BISA -->
                                             <?php foreach ($arr_jenis as $je) :?>

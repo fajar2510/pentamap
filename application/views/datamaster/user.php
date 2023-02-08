@@ -96,7 +96,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" name="name" >
+                            <input required type="text" class="form-control" id="name" placeholder="Masukkan Nama" name="name" >
                             <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                     <div class="form-group row">
                         <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-3">
-                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                            <select required name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option value="L"> Laki-Laki </option>
                                 <option value="P"> Perempuan </option>
                             </select>
@@ -120,18 +120,18 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="<?= set_value('email'); ?>">
+                            <input required type="text" class="form-control" id="email" placeholder="Masukkan Email" name="email" value="<?= set_value('email'); ?>">
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label">Password</label>
                         <div class="col-sm-4">
-                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Masukkan Password" value="<?= set_value('password1'); ?>">
+                            <input required type="password" class="form-control" id="password1" name="password1" placeholder="Masukkan Password" value="<?= set_value('password1'); ?>">
                             <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="col-sm-4">
-                            <input type="password" class="form-control" id="password2" placeholder="Konfirmasi Password" name="password2" value="<?= set_value('password2'); ?>">
+                            <input required type="password" class="form-control" id="password2" placeholder="Konfirmasi Password" name="password2" value="<?= set_value('password2'); ?>">
                             <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                     <div class="form-group row">
                         <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak">
+                            <input  type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak">
                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label">Hak Akses</label>
                         <div class="col-sm-5">
-                            <select name="role" id="role" class="form-control">
+                            <select required name="role" id="role" class="form-control">
                                 <?php foreach ($role as $ro) : ?>
                                     <option value="<?= $ro['id']; ?>"> <?= $ro['role']; ?></option>
                                 <?php endforeach; ?>
@@ -234,7 +234,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $ur['name']; ?>">
+                                <input required type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $ur['name']; ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                         <div class="form-group row">
                             <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-3">
-                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                    <select required name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                                 <option value="L" <?php if ($ur ['jenis_kelamin'] == 'L') {
                                                                         echo 'selected';
                                                                     } else {
@@ -266,7 +266,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $ur['email']; ?>" readonly>
+                                <input required type="text" class="form-control" id="email" placeholder=" " name="email" value="<?= $ur['email']; ?>" readonly>
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -312,7 +312,7 @@
                         <div class="form-group row">
                             <label for="role" class="col-sm-3 col-form-label">Hak Akses</label>
                             <div class="col-sm-5">
-                                <select name="role" id="role" class="form-control">
+                                <select required name="role" id="role" class="form-control">
                                     <?php foreach ($role as $ro) : ?>
                                         <option value="<?= $ro['id']; ?>" <?php if ($ur['role_id'] == $ro['id']) {
                                                                                 echo 'selected';
@@ -339,7 +339,7 @@
                         </div> -->
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                                <input required class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                                 <label class="form-check-label" for="is_active">
                                     Status User Aktif?
                                 </label>

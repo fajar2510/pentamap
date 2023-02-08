@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="menu" class="col-sm-2 col-form-label">Menu</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="menu" placeholder="Judul Menu" name="menu">
+                            <input required type="text" class="form-control" id="menu" placeholder="Judul Menu" name="menu">
                             <?= form_error('menu', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="role">Menu</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?= $m['menu']; ?>">
+                            <input required type="text" class="form-control" id="menu" name="menu" value="<?= $m['menu']; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">

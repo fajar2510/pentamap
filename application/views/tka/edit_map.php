@@ -95,10 +95,7 @@
                                     <div class="form-group row">
                                         <label for="perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan TKA</label>
                                         <div class="col-sm-6">
-
-
-                                            <select name="perusahaan" id="perusahaan" class="form-control">
-
+                                            <select required name="perusahaan" id="perusahaan" class="form-control">
                                                 <option value="">~ Pilih Perusahaan ~</option>
                                                 <?php foreach ($perusahaan as $p) : ?>
                                                     <option value="<?= $p['id']; ?>" <?php if ($p['id'] == $lokasi->id_perusahaan) {
@@ -115,14 +112,14 @@
                                     <div class="form-group row">
                                         <label for="nama_tka" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="nama_tka" placeholder="Masukkan Nama " value="<?= $lokasi->nama_tka ?>" name="nama_tka">
+                                            <input required type="text" class="form-control" id="nama_tka" placeholder="Masukkan Nama " value="<?= $lokasi->nama_tka ?>" name="nama_tka">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lokasi" class="col-sm-3 col-form-label">Kabupaten/kota</label>
                                         <div class="col-sm-3">
-                                            <select name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
+                                            <select required name="lokasi" id="lokasi" class="form-control" aria-describedby="lokasiHelp">
 
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $lokasi->lokasi_kerja) {
@@ -140,7 +137,7 @@
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-3">
-                                            <select name="gender" id="gender" class="form-control">
+                                            <select required name="gender" id="gender" class="form-control">
                                                 <option value="L" <?php if ($lokasi->jenis_kel == 'L') {
                                                                         echo 'selected';
                                                                     } else {
@@ -157,7 +154,7 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
                                         <div class="col-sm-5">
-                                        <select class="custom-select" name="negara" id="negara" class="form-control">
+                                        <select required class="custom-select" name="negara" id="negara" class="form-control">
                                                 <option value="">~ Pilih Kewarganegaraan ~</option>
                                                     <?php foreach ($negara as $n) : ?>
                                                         <option value="<?= $n['id_negara']; ?>" <?php if ($n['id_negara'] == $lokasi->kewarganegaraan) {
@@ -174,7 +171,7 @@
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $lokasi->jabatan ?>">
+                                            <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $lokasi->jabatan ?>">
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -182,21 +179,21 @@
                                     <div class="form-group row">
                                         <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" value="<?= $lokasi->no_rptka ?>">
+                                            <input required type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" value="<?= $lokasi->no_rptka ?>">
                                             <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" id="masa_rptka" name="masa_rptka" value="<?= $lokasi->masa_rptka ?>">
+                                            <input required class="form-control" type="date" id="masa_rptka" name="masa_rptka" value="<?= $lokasi->masa_rptka ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="no_imta" class="col-sm-3 col-form-label">NO. IMTA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" value="<?= $lokasi->no_imta ?>">
+                                            <input required type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" value="<?= $lokasi->no_imta ?>">
                                             <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" id="masa_imta" name="masa_imta" value="<?= $lokasi->masa_imta ?>">
+                                            <input required class="form-control" type="date" id="masa_imta" name="masa_imta" value="<?= $lokasi->masa_imta ?>">
                                         </div>
                                     </div>
                                    

@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
                         <div class="col-sm-3">
-                            <select name="ragam_disabilitas" id="ragam_disabilitas" class="form-control">
+                            <select required name="ragam_disabilitas" id="ragam_disabilitas" class="form-control">
                                 <?php foreach ($ragam as $row) : ?>
                                     <option value="<?= $row['id_ragam']; ?>"> <?= $row['disabilitas_ragam']; ?> </option>
                                 <?php endforeach; ?>
@@ -96,7 +96,7 @@
                     <div class="form-group row">
                         <label for="jenis_disabilitas" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="jenis_disabilitas" placeholder="Masukkan Jenis" name="jenis_disabilitas" >
+                            <input required type="text" class="form-control" id="jenis_disabilitas" placeholder="Masukkan Jenis" name="jenis_disabilitas" >
                             <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                         <div class="form-group row">
                             <label for="ragam_disabilitas" class="col-sm-3 col-form-label">Ragam Disabilitas</label>
                             <div class="col-sm-3">
-                                    <select  class="custom-select" name="ragam_disabilitas" id="ragam_disabilitas" class="form-control input-sm">
+                                    <select required  class="custom-select" name="ragam_disabilitas" id="ragam_disabilitas" class="form-control input-sm">
                                                 <?php foreach ($ragam as $r) : ?>
                                                     <option value="<?= $r['id_ragam']; ?>" <?php if ($r['id_ragam'] == $row['ragam_id']) {
                                                                                                         echo 'selected';
@@ -152,7 +152,7 @@
                         <div class="form-group row">
                             <label for="jenis_disabilitas" class="col-sm-3 col-form-label">Jenis Disabilitas</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="jenis_disabilitas" placeholder="" name="jenis_disabilitas" value="<?= $row['jenis_disabilitas']; ?>">
+                                <input required type="text" class="form-control" id="jenis_disabilitas" placeholder="" name="jenis_disabilitas" value="<?= $row['jenis_disabilitas']; ?>">
                                 <?= form_error('jenis_disabilitas', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

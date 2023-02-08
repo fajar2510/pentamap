@@ -86,14 +86,14 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $lokasi->nama ?>">
+                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" value="<?= $lokasi->nama ?>">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="kabupaten" class="col-sm-3 col-form-label">Kabupaten/kota</label>
                                         <div class="col-sm-3">
-                                            <select name="kabupaten" id="kabupaten" class="form-control" aria-describedby="kabupatenHelp">
+                                            <select required name="kabupaten" id="kabupaten" class="form-control" aria-describedby="kabupatenHelp">
 
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $lokasi->kabupaten) {
@@ -110,7 +110,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $lokasi->alamat ?></textarea>
+                                            <textarea required class="form-control" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"><?= $lokasi->alamat ?></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -121,14 +121,14 @@
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup> </label>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="<?= $lokasi->tgl_lahir ?>" id="tgl_lahir" name="tgl_lahir">
+                                            <input required class="form-control" type="date" value="<?= $lokasi->tgl_lahir ?>" id="tgl_lahir" name="tgl_lahir">
                                             <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-4">
-                                            <select name="gender" id="gender" class="form-control">
+                                            <select required name="gender" id="gender" class="form-control">
                                                 <option value="L" <?php if ($lokasi->gender == 'L') {
                                                                         echo 'selected';
                                                                     } else {
@@ -148,7 +148,7 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
-                                             <select class="custom-select" name="negara" id="negara" class="form-control">
+                                             <select required class="custom-select" name="negara" id="negara" class="form-control">
                                                 <!-- <option value="">~ Pilih Negara ~</option> -->
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['id_negara']; ?>" <?php if ($n['id_negara'] == $lokasi->negara_bekerja) {
@@ -163,28 +163,28 @@
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $lokasi->jenis_pekerjaan ?>">
+                                            <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $lokasi->jenis_pekerjaan ?>">
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $lokasi->berangkat_melalui ?>">
+                                            <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $lokasi->berangkat_melalui ?>">
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= $lokasi->pengirim ?>">
+                                            <input required type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= $lokasi->pengirim ?>">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $lokasi->lama_bekerja ?>">
+                                            <input required type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $lokasi->lama_bekerja ?>">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

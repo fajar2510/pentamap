@@ -76,7 +76,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="role">Level (Hak Akses)</label>
-                        <input type="text" class="form-control" id="role" name="role" placeholder="...">
+                        <input required type="text" class="form-control" id="role" name="role" placeholder="...">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -114,7 +114,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="role">Level (Hak Akses)</label>
-                            <input type="text" readonly class="form-control" id="role" name="role" value="<?= $r['role']; ?>">
+                            <input required type="text" readonly class="form-control" id="role" name="role" value="<?= $r['role']; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">

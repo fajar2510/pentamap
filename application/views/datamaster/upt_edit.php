@@ -69,13 +69,13 @@
                                             
                                             <label for="nama_upt" style="padding-top:8px;">Nama UPT BLK</label>
                                        
-                                                <input type="text" class="form-control" id="nama_upt" placeholder="" name="nama_upt" value="<?= $edit_upt->nama_upt ?>" >
+                                                <input required type="text" class="form-control" id="nama_upt" placeholder="" name="nama_upt" value="<?= $edit_upt->nama_upt ?>" >
                                                 <?= form_error('nama_upt', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             
                                             <div class="form-group">
                                             <!-- <label for="kab" >Kabupaten/Kota</label> -->
-                                                <select name="kab" id="kab" class="form-control">
+                                                <select required name="kab" id="kab" class="form-control">
                                                     <option value="">~ Pilih Kabupaten/kota ~</option>
                                                     <?php foreach ($kabupaten as $kab) : ?>
                                                     <option value="<?= $kab['id_kabupaten']; ?>" <?php if ($kab['id_kabupaten'] == $edit_upt->kabupaten_id) {
@@ -90,13 +90,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="alamat_upt" >Alamat Lengkap </label>
-                                                <textarea type="text" class="form-control" id="alamat_upt" placeholder=". . . " name="alamat_upt" row="1" cols="1"><?= $edit_upt->alamat_upt ?></textarea>
+                                                <textarea type="text" required class="form-control" id="alamat_upt" placeholder=". . . " name="alamat_upt" row="1" cols="1"><?= $edit_upt->alamat_upt ?></textarea>
                                                 <?= form_error('alamat_upt', '<small class="text-danger pl-3">', '</small>'); ?>
                                           
                                             </div> 
                                             <div class="form-group">
                                                 <label for="ket_upt" >Keterangan Cakupan </label>
-                                                <textarea type="text" class="form-control" id="ket_upt" placeholder=". . . cakupan upt" name="ket_upt" row="1" cols="1"><?= $edit_upt->ket_upt ?></textarea>
+                                                <textarea type="text" required class="form-control" id="ket_upt" placeholder=". . . cakupan upt" name="ket_upt" row="1" cols="1"><?= $edit_upt->ket_upt ?></textarea>
                                                 <?= form_error('ket_upt', '<small class="text-danger pl-3">', '</small>'); ?>
                                           
                                             </div> 

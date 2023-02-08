@@ -39,14 +39,14 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_perusahaan->nama_perusahaan ?>">
+                                            <input required type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_perusahaan->nama_perusahaan ?>">
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nama_pimpinan" class="col-sm-3 col-form-label">Pimpinan</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama_pimpinan" placeholder="Masukkan Nama Pimpinan" name="nama_pimpinan" value="<?= $edit_perusahaan->nama_pimpinan ?>">
+                                            <input required type="text" class="form-control" id="nama_pimpinan" placeholder="Masukkan Nama Pimpinan" name="nama_pimpinan" value="<?= $edit_perusahaan->nama_pimpinan ?>">
                                             <?= form_error('nama_pimpinan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" id="alamat" placeholder="alamat lengkap . . ." name="alamat" rows="3"><?= $edit_perusahaan->alamat ?></textarea>
+                                            <textarea required class="form-control" id="alamat" placeholder="alamat lengkap . . ." name="alamat" rows="3"><?= $edit_perusahaan->alamat ?></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -63,14 +63,14 @@
                                     <div class="form-group row">
                                         <label for="nama_kontak_person" class="col-sm-3 col-form-label">Nama Kontak</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="nama_kontak_person" placeholder="nama kontak person" name="nama_kontak_person" value="<?= $edit_perusahaan->nama_kontak_person ?>">
+                                            <input required type="text" class="form-control" id="nama_kontak_person" placeholder="nama kontak person" name="nama_kontak_person" value="<?= $edit_perusahaan->nama_kontak_person ?>">
                                             <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="kontak" class="col-sm-3 col-form-label">No.Telp 1</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" value="<?= $edit_perusahaan->kontak ?>">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="" name="kontak" value="<?= $edit_perusahaan->kontak ?>">
                                            
                                             <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -78,7 +78,7 @@
                                     <div class="form-group row">
                                         <label for="no_kontak_person" class="col-sm-3 col-form-label">No.Telp 2</label>
                                         <div class="col-sm-4">
-                                            <input type="tel" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person" value="<?= $edit_perusahaan->no_kontak_person ?>">
+                                            <input required type="tel" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person" value="<?= $edit_perusahaan->no_kontak_person ?>">
                                            
                                             <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -86,7 +86,7 @@
                                     <div class="form-group row">
                                         <label for="email_perusahaan" class="col-sm-3 col-form-label">E-mail</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="email_perusahaan" placeholder="e-mail" name="email_perusahaan" value="<?= $edit_perusahaan->email_perusahaan?>">
+                                            <input required type="text" class="form-control" id="email_perusahaan" placeholder="e-mail" name="email_perusahaan" value="<?= $edit_perusahaan->email_perusahaan?>">
                                             <?= form_error('email_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                                     <div class="form-group row">
                                     <label for="fungsi" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-3">
-                                            <select class="custom-select" name="fungsi" id="fungsi" class="form-control input-sm">
+                                            <select required class="custom-select" name="fungsi" id="fungsi" class="form-control input-sm">
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $edit_perusahaan->fungsi) {
                                                                                                         echo 'selected';
@@ -110,7 +110,7 @@
                                     <div class="form-group row">
                                         <label for="sektor_perusahaan" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-5">
-                                            <select class="custom-select" name="sektor_perusahaan" id="sektor_perusahaan" class="form-control input-sm">
+                                            <select required class="custom-select" name="sektor_perusahaan" id="sektor_perusahaan" class="form-control input-sm">
                                                 <?php foreach ($jenis_sektor_usaha as $jsu) : ?>
                                                     <option value="<?= $jsu['id_sektor']; ?>" <?php if ($jsu['id_sektor'] == $edit_perusahaan->sektor_perusahaan) {
                                                                                                         echo 'selected';
@@ -125,7 +125,7 @@
                                     <div class="form-group row">
                                         <label for="jenis_perusahaan" class="col-sm-3 col-form-label">Jenis Perusahaan</label>
                                         <div class="col-sm-2">
-                                            <select name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">
+                                            <select required name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">
                                                 <option value="Kecil" <?php if ($edit_perusahaan->jenis_perusahaan == 'Kecil') {
                                                                         echo 'selected';
                                                                     } else {
@@ -152,14 +152,14 @@
                                     <div class="form-group row">
                                         <label for="kode_kantor" class="col-sm-3 col-form-label">Kode Kantor</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="kode_kantor" placeholder="" name="kode_kantor" value="<?= $edit_perusahaan->kode_kantor?>">
+                                            <input required type="text" class="form-control" id="kode_kantor" placeholder="" name="kode_kantor" value="<?= $edit_perusahaan->kode_kantor?>">
                                             <?= form_error('kode_kantor', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="status" class="col-sm-3 col-form-label">Status Kantor</label>
                                         <div class="col-sm-2">
-                                            <select name="status" id="status" class="form-control">
+                                            <select required name="status" id="status" class="form-control">
                                             <option value="P" <?php if ($edit_perusahaan->status == 'P') {
                                                                         echo 'selected';
                                                                     } else {
