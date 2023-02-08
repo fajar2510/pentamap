@@ -15,7 +15,7 @@
                                     <hr style="margin-top: 10px; margin-bottom: 10px ;">
                             <h1 class="h4 text-gray-900 mb-4"> Registrasi Akun Baru!</h1>
                         </div>
-                        <!-- <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
+                        <form class="user" method="post" action="<?= base_url('auth/registrationTanpaVerifikasiEmail'); ?>">
                             <div class="form-floating mb-3 "> 
                                 <input required type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap. . ." value="<?= set_value('name'); ?>">
                                 
@@ -37,7 +37,7 @@
                             <button type="submit" class="btn btn-primary btn-user btn-block" style="font-size:15; font-weight:bold;">
                                 BUAT AKUN
                             </button>
-                        </form> -->
+                        </form>
                         <hr>
                         <div class="text-center">
                             <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>

@@ -173,6 +173,59 @@ class Auth extends CI_Controller
             redirect('auth');
         } 
     }
+
+    public function registrationTanpaVerifikasiEmail() 
+    { 
+        $this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',[
+            'is_unique' => 'Alamat E-mail sudah digunakan']);
+        $this->form_validation->set_rules('password1', 'Password', 'min_length[4]|matches[password2]|trim|required', [
+            'matches' => 'Password tidak sama,  ulangi lagi',
+            'min_lenght' => 'Password telalu pendek, min 4 huruf/angka'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'matches[password1]|trim|required');
+
+        if ($this->form_validation->run()== false) {
+            $data['title'] = 'Registrasi';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/registration');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $email = $this->input->post('email', true);
+            $data = [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($email),
+                'image' => 'default.png',
+                'password' => password_hash(
+                    $this->input->post('password1'),
+                    PASSWORD_DEFAULT
+                ),
+                'role_id' => 2,
+                'is_active' => 0,
+                'date_created' => time()
+            ];
+
+            // siapkan token
+            // $token = base64_encode(random_bytes(32));
+            // $user_token = [
+            //     'email' => $email,
+            //     'token' => $token,
+            //     'date_created' => time()
+            // ];
+
+            $this->db->insert('user', $data);
+            // $this->db->insert('user_token', $user_token);
+
+            // $this->_sendEmail($token, 'verify');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> Silahkan tunggu Superadmin untuk mengaktifkan akun !</strong>  terimakasih telah bergabung.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>   </div>');
+            redirect('auth');
+        } 
+    }
     
     private function _sendEmail($token, $type) 
     {
