@@ -62,7 +62,7 @@
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class=" col-sm-7">
                                         
-                                            <input type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
+                                            <input required type="text" class="form-control" id="perusahaan" placeholder="" name="nama_perusahaan">
                                             <input type="hidden" name="id_perusahaan">
                                             <?php foreach ($max_id as $idx); ?>
                                             <input type="hidden" value="<?php echo $idx->max_id; ?>" name="id_perusahaan_baru">
@@ -82,7 +82,7 @@
                                     <div class="form-group row">
                                         <label for="kabupaten_kota" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class=" col-sm-4">
-                                            <select name="kabupaten_kota" id="kabupaten_kota" class="form-control">
+                                            <select required name="kabupaten_kota" id="kabupaten_kota" class="form-control">
                                                 <option class="dropdown-menu dropdown-menu-right shadow animated--grow-in" value="">~ Pilih Kabupaten/kota ~</option>
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option  value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
@@ -99,7 +99,7 @@
                                     <div class="form-group row">
                                         <label for="nama_pimpinan" class="col-sm-3 col-form-label">Nama Pimpinan</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="nama_pimpinan" placeholder="" name="nama_pimpinan">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="nama_pimpinan" placeholder="" name="nama_pimpinan">
                                             <?= form_error('nama_pimpinan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -107,12 +107,12 @@
                                     <div class="form-group row">
                                         <label for="nama_kontak_person" class="col-sm-3 col-form-label">Nama Kontak Person</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control"  id="nama_kontak_person" placeholder="" name="nama_kontak_person">
+                                            <input required type="text" class="form-control"  id="nama_kontak_person" placeholder="" name="nama_kontak_person">
                                             <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <label for="no_kontak_person" class="col-sm-1 col-form-label">No.Telp</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
                                             <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                     <div class="form-group row">
                                         <label for="alamat_perusahaan" class="col-sm-3 col-form-label">Alamat Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <textarea class="form-control" id="alamat_perusahaan" placeholder="Alamat Lengkap . . ." name="alamat_perusahaan" rows="2"></textarea>
+                                            <textarea required class="form-control" id="alamat_perusahaan" placeholder="Alamat Lengkap . . ." name="alamat_perusahaan" rows="2"></textarea>
                                             <?= form_error('alamat_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -128,14 +128,14 @@
                                     <div class="form-group row">
                                         <label for="no_perusahaan" class="col-sm-3 col-form-label">No.Telp. Perusahaan</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan">
                                             <?= form_error('no_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email_perusahaan" class="col-sm-3 col-form-label">Email Perusahaan</label>
                                         <div class="col-sm-5">
-                                            <input type="email_perusahaan" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="email@email.com" name="email_perusahaan" >
+                                            <input required type="email_perusahaan" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="email@email.com" name="email_perusahaan" >
                                             <?= form_error('email_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@
                                     <div class="form-group row">
                                         <label for="jenis_perusahaan" class="col-sm-3 col-form-label">Jenis</label>
                                         <div class="col-sm-2">
-                                            <select name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">
+                                            <select required name="jenis_perusahaan" id="jenis_perusahaan" class="form-control">
                                                 <option value="Kecil">Kecil</option>
                                                 <option value="Menengah">Menengah</option>
                                                 <option value="Besar">Besar</option>
@@ -154,7 +154,7 @@
                                     <div class="form-group row">
                                         <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-5">
-                                        <select name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" >
+                                        <select required name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" >
                                                 <option value="">~ Jenis Sektor  ~</option>
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
                                                     <option  value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> </option>
@@ -169,15 +169,15 @@
                                     <div class="form-group row">
                                         <label for="disabilitas_L" class="col-sm-3 col-form-label">Jumlah Disabilitas L/P</label>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L">
+                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L">
                                             <?= form_error('disabilitas_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P">
+                                            <input required type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P">
                                             <?= form_error('disabilitas_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" 
+                                            <input required type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" 
                                             value="" name="disabilitas_total" v>
                                             <?= form_error('disabilitas_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -190,15 +190,15 @@
                                     <div class="form-group row">
                                         <label for="tenaga_kerja_L" class="col-sm-3 col-form-label">Jumlah Tenaga Kerja L/P</label>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L">
+                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L">
                                             <?= form_error('tenaga_kerja_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P">
                                             <?= form_error('tenaga_kerja_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total"
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total"
                                             value="" name="tenaga_kerja_total">
                                             <?= form_error('tenaga_kerja_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -215,7 +215,7 @@
                                             <?= form_error('presentase', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>
-                                        <small id="help2" class="form-text text-muted"> <i> *% disabilitas </i></small>
+                                        <small id="help2" class="form-text text-muted"> <i><b> *% disabilitas</b> </i></small>
                                             
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                         <label for="ragam_disabilitas" class="col-sm-3 col-form-label" >Ragam & Jenis Disabilitas</label>
                                         <div class="col-sm-8">
                     
-                                        <select class="bootstrap-select" class="form-control" name="jenis[]" data-width="100%" data-live-search="true" multiple required>
+                                        <select required class="bootstrap-select" class="form-control" name="jenis[]" data-width="100%" data-live-search="true" multiple required>
                                             <?php foreach ($jenis as $je) :?>
                                                 <option value="<?php echo $je->id_jenis;?>"><?php echo $je->disabilitas_ragam;?> &nbsp;  &nbsp; <?php echo $je->jenis_disabilitas;?></option>
                                             <?php endforeach;?>

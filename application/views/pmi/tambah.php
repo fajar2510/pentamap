@@ -76,7 +76,7 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
+                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@
                                     <div class="form-group row">
                                         <label for="kabupaten" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
                                         <div class="col-sm-4">
-                                            <select name="kabupaten" id="kabupaten" class="form-control">
+                                            <select required name="kabupaten" id="kabupaten" class="form-control">
                                                 <option value="">~ Pilih Kabupaten/kota ~</option>
                                                 <?php foreach ($kabupaten as $row) : ?>
                                                     <option value="<?= $row['id_kabupaten']; ?>"> <?= $row['nama_kabupaten']; ?> </option>
@@ -97,7 +97,7 @@
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" class="custom-select" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
+                                            <textarea required class="form-control" class="custom-select" id="alamat" placeholder="Alamat Lengkap. . . " name="alamat" rows="2"></textarea>
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -136,14 +136,14 @@
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
                                         <div class="col-3">
-                                            <input class="form-control" type="date" value="1990-09-05" id="tgl_lahir" name="tgl_lahir">
+                                            <input required class="form-control" type="date" value="1990-09-05" id="tgl_lahir" name="tgl_lahir">
                                             <?= form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gender" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-3">
-                                            <select class="custom-select" name="gender" id="gender" class="form-control">
+                                            <select required class="custom-select" name="gender" id="gender" class="form-control">
                                                 <option value=""> ~ Pilih Jenis Kelamin ~ </option>
                                                 <option value="L"> Laki-Laki </option>
                                                 <option value="P"> Perempuan </option>
@@ -155,7 +155,7 @@
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-3">
-                                            <select class="custom-select" name="negara" id="negara" class="form-control">
+                                            <select required class="custom-select" name="negara" id="negara" class="form-control">
                                                 <option value="">~ Pilih Negara ~</option>
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['nama_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
@@ -166,28 +166,28 @@
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>">
+                                            <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>">
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="berangkat" placeholder="" name="berangkat">
+                                            <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat">
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="pengirim" placeholder="" name="pengirim">
+                                            <input required type="text" class="form-control" id="pengirim" placeholder="" name="pengirim">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="lama" placeholder="" name="lama">
+                                            <input required type="text" class="form-control" id="lama" placeholder="" name="lama">
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

@@ -197,14 +197,14 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $user['name']; ?>">
+                                <input required type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $user['name']; ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-3">
-                                <input class="form-control" type="date" value="<?= $user['tanggal_lahir']; ?>" id="tanggal_lahir" name="tanggal_lahir">
+                                <input required class="form-control" type="date" value="<?= $user['tanggal_lahir']; ?>" id="tanggal_lahir" name="tanggal_lahir">
                                
                                 <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
@@ -212,7 +212,7 @@
                         <div class="form-group row">
                             <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-3">
-                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                    <select required name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                                 <option value="L" <?php if ($user ['jenis_kelamin'] == 'L') {
                                                                         echo 'selected';
                                                                     } else {
@@ -230,7 +230,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="email" placeholder=" " name="email" value="<?= $user ['email']; ?>" readonly>
+                                <input required type="email" class="form-control" id="email" placeholder=" " name="email" value="<?= $user ['email']; ?>" readonly>
                                 <!-- <input type="hidden" name="id_user" value="<?= $user ['id']; ?>"> -->
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
@@ -238,7 +238,7 @@
                         <div class="form-group row">
                             <label for="NIK/NIP" class="col-sm-3 col-form-label">NIK/NIP</label>
                             <div class="col-sm-4">
-                                <input type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $user ['NIK']; ?>">
+                                <input  type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $user ['NIK']; ?>">
                                 <?= form_error('NIK', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="col-sm-4">
@@ -256,14 +256,14 @@
                         <div class="form-group row">
                             <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $user['kontak']; ?>">
+                                <input  type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $user['kontak']; ?>">
                                 <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="jabatan" placeholder="" name="jabatan" value="<?= $user['jabatan']; ?>">
+                                <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="jabatan" placeholder="" name="jabatan" value="<?= $user['jabatan']; ?>">
                                 <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -378,7 +378,7 @@
                         <div class="form-group row">
                             <label for="current_password" class="col-sm-3 col-form-label">Password Sekarang*</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" id="current_password" placeholder="" name="current_password" >
+                                <input required type="password" class="form-control" id="current_password" placeholder="" name="current_password" >
                                 <small id=" pasnow" class="form-text text-muted"> <i> *Password kamu saat ini. </i></small>
                                 <?= form_error('current_password', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
@@ -386,7 +386,7 @@
                         <div class="form-group row">
                             <label for="new_password1" class="col-sm-3 col-form-label">Password Baru*</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" id="new_password1" placeholder="" name="new_password1" >
+                                <input required type="password" class="form-control" id="new_password1" placeholder="" name="new_password1" >
                                 <small id=" pashelp" class="form-text text-muted"> <i> *Gunakan karakter unik dan minimal 4 huruf. </i></small>
                                 <?= form_error('new_password1', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
@@ -394,7 +394,7 @@
                         <div class="form-group row">
                             <label for="new_password2" class="col-sm-3 col-form-label">Ulangi Password*</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" id="new_password2" placeholder="" name="new_password2" >
+                                <input required type="password" class="form-control" id="new_password2" placeholder="" name="new_password2" >
                                 <small id=" ulangihelp" class="form-text text-muted"> <i> *Ulangi untuk konfirmasi password </i></small>
                                 <?= form_error('new_password2', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>

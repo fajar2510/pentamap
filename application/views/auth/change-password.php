@@ -22,11 +22,11 @@
 
                                 <form class="user" method="post" action="<?= base_url('auth/changepassword'); ?>">
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Masukkan password baru...">
+                                        <input type="password" required class="form-control form-control-user" id="password1" name="password1" placeholder="Masukkan password baru...">
                                         <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi password...">
+                                        <input type="password" required class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi password...">
                                         <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
