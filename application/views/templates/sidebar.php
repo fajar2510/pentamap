@@ -68,16 +68,18 @@
         
         
       <!-- Nav Item - Pages Collapse Menu -->
+
+            
       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>Contoh Kolapse</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <h6 class="collapse-header">Daftar Menu:</h6>
+            <a class="collapse-item" href="#">Menu 1</a>
+            <a class="collapse-item" href="#">Menu 2</a>
           </div>
         </div>
       </li> -->
@@ -85,7 +87,7 @@
         <?php foreach ($subMenu as $sm) : ?>
             <?php if ($title == $sm['title']) : ?>
                 <!-- Nav Item - Dashboard  yang sudah auto aktif-->
-                <li class="nav-item active" style="ba">
+                <li class="nav-item active" >
                 <?php else : ?>
                 <li class="nav-item">
                 <?php endif; ?>
@@ -99,6 +101,7 @@
             <hr class="sidebar-divider mt-3">
             <?php } ?>
         <?php endforeach; ?>
+        
 
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url('auth/logout'); ?>"  data-toggle="modal" data-target="#logoutModal">

@@ -77,7 +77,7 @@ class Datamaster extends CI_Controller
         $this->form_validation->set_rules('bio', 'Bio/tentang kamu', 'trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pengguna';
+            $data['title'] = 'Daftar Pengguna';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -159,7 +159,7 @@ class Datamaster extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Data Pengguna';
+            $data['title'] = 'Edit Daftar Pengguna';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);

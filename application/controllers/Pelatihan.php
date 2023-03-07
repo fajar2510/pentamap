@@ -50,6 +50,8 @@ class Pelatihan extends CI_Controller
             $id_kab = 0;
             $jumlah_total_upt = 0;
             $jumlah_pengurang_upt = 0;
+            $total_upt = 0;
+            
             foreach ($kabupaten as $val) {
                 $id_kab = $val['id_kabupaten'];
                 $upt_id = $val['upt_id'];
@@ -60,38 +62,35 @@ class Pelatihan extends CI_Controller
                 $jum_cpmi = count($this->Penempatan->get_cpmi("wilayah = $id_kab"));
                 $jumlah_total = $jum_phk + $jum_lokal + $jum_pmib + $jum_tka + $jum_cpmi;
                 $jum_pengurang = $jum_phk + $jum_pmib;
+
+                // menghitung total pengurang masing-masing upt
+                $total_upt += count($this->Master->getPmiJoinWilayah("kabupaten = $id_kab"));
+                $total_upt += count($this->Lokal->get_phk("wilayah = $id_kab"));
+
                 if ($upt_id == $id_upt) {
                     $jumlah_total_upt += $jumlah_total;
                     $jumlah_pengurang_upt += $jum_pengurang;
-                    // echo $jum_phk."-".$jum_lokal."-".$jum_pmib."-".$jum_tka."-".$jum_cpmi."<br>";
-                    // echo "====<br>";
-                    // echo $val['nama_kabupaten']."=".$id_kab."-".$jumlah_total."-".$jum_pengurang."<br>";
                 }
-                // array_push($kabupaten[$n], [
-                //     "jum_total" => $jumlah_total,
-                //     "jum_pengurang" => $jum_pengurang
-                // ]);
-                // echo $val['id_kabupaten']."\n";
                 $n++;
             }
-            $percent = null;
+
+            $percent = null; // presentase per upt
+            $percent2 = null; // peresentase seluruh upt
             if ($jumlah_total_upt != 0) {
-                $percent = $jumlah_pengurang_upt/$jumlah_total_upt*100;
+                
+               
+
+                $percent = $jumlah_pengurang_upt/$jumlah_total_upt*100;           
+                $percent2 = $jumlah_pengurang_upt/$total_upt*100;
+                  
             }
-            // elseif ($jumlah_total_upt == 0 && $jumlah_pengurang_upt == 0){
-            //     percen
-            // }
             array_push($data['data_pelatihan'][$m], ["percent" => $percent]);
             array_push($data['data_pelatihan'][$m], ["jumlah_total_upt" =>  $jumlah_total_upt]);
-            // echo $jumlah_pengurang_upt."-".$jumlah_total_upt."-".$percent."\n";
-            // echo $jumlah_total_upt;
-            // die;
+            array_push($data['data_pelatihan'][$m], ["jumlah_pengurang_upt" =>  $jumlah_pengurang_upt]);
+            array_push($data['data_pelatihan'][$m], ["percent2" => $percent2]);
+
             $m++;
         }
-        // foreach ($data['data_pelatihan'] as $val) {
-        //     echo $val[0]['percent']."<br>";
-        // }
-
         $temp = [];
         $n_array = count($data['data_pelatihan']);
         // var_dump($data['data_pelatihan'][0][0]['percent']); die;
@@ -101,7 +100,7 @@ class Pelatihan extends CI_Controller
             for ($y=0; $y < $n_array; $y++) { 
                 // $angka2 = $data['data_pelatihan'][$y][0]['percent'];
                 // $arr_angka2 = $data['data_pelatihan'][$y];
-                if ($data['data_pelatihan'][$x][0]['percent'] > $data['data_pelatihan'][$y][0]['percent']) {
+                if ($data['data_pelatihan'][$x][3]['percent2'] > $data['data_pelatihan'][$y][3]['percent2']) {
                     // echo "iki".$arr_angka2[0]['percent']." ";
                     $temp[0] = $data['data_pelatihan'][$x];
                     $data['data_pelatihan'][$x] = $data['data_pelatihan'][$y];
@@ -111,21 +110,8 @@ class Pelatihan extends CI_Controller
                     // var_dump("yo2".$arr_angka2[0]['percent']);
 
                 }
-                // echo $arr_angka1[0]['percent']."-".$arr_angka2[0]['percent'];
-                // echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
             }
-            // var_dump($arr_angka1);
-            // break;
         }
-        // var_dump($data['data_pelatihan'][0]);
-// die;
-        // echo"<pre>";
-        // var_dump($data['data_pelatihan'][0]);
-        // echo "----------------------------------------<br>";
-        // foreach ($data['data_pelatihan'] as $val) {
-        //     echo $val[0]['percent']."<br>";
-        // }
-        // die;
         
         $data['title'] = 'Pelatihan Lokasi';
         $this->load->view('templates/header', $data);

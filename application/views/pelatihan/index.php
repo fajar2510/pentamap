@@ -49,14 +49,15 @@
                     </div>
                     
                     <div class="card-body">
-                        <div class=" table table-sm">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="table table-sm">
+                            <table data-page-length="-1" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="pure-table-odd">
                                         <th > No</th>
                                         <th  class="text-center">Nama UPT</th>
                                         <th  class="text-center">Cakupan</th>
                                         <th  class="text-center">Lokasi</th>
+                                        <th  class="text-center">%Dana</th>
                                         <th  class="text-center">%non-kerja</th>
                                         <th width="" class="text-center" >Aksi</th>
                                     </tr>
@@ -69,7 +70,13 @@
                                             <td> <small> <?= $lat['nama_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['ket_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['nama_kabupaten']; ?></small></td>
-                                            <td> <small><span class="badge badge-pill badge-warning" style="font-size:12px; color:black;"><?php if ($lat[0]['percent'] != null) { echo round($lat[0]['percent'],2)."%"; } else { echo "no-data"; }  ?></span><i class="fa-solid fa-arrow-right"></i> <span class="badge badge-pill badge-success" style="font-size:12px; color:white;"> <?= $lat[1]['jumlah_total_upt']; ?></span> orang</i></small></td>
+                                            <td> <small> <span class="badge badge-pill badge-warning" style="font-size:15px; font-family:Arial; color:black;">
+                                            <?php if ($lat[3]['percent2'] != null) { echo round($lat[3]['percent2'],2)."%"; } else { echo "no-data"; }  ?></span></small></td>
+                                            <td> <small>
+                                           <strong> <?= round($lat[0]['percent'],2)."%"; ?></strong> <i class="fa-solid fa-arrow-right"> </i> 
+                                            <span class="badge badge-pill badge-success" style="font-size:12px; color:white;">
+                                             <?= $lat[2]['jumlah_pengurang_upt']; ?> /
+                                             <?= $lat[1]['jumlah_total_upt']; ?></span> orang</i></small></td>
                                             <td class="text-center">  
                                                 <button type="button" data-toggle="modal" data-target="#modalInfo<?= $lat['id_kabupaten']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
                                                 <!-- <?php if ($is_admin == 1) { ?>
@@ -111,7 +118,7 @@
                         <p > <small><b> DATA UPT <?= $title; ?></b></small></p>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Nama UPT </label>
-                            <p for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $lat['nama_upt']; ?></=>
+                            <p for="name" class="col-sm-8 col-form-label">: &nbsp; <strong><?= $lat['nama_upt']; ?></strong> </=>
                         </div>
                       
                         <div class="row">
@@ -124,20 +131,31 @@
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Latitude</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $lat['lat_upt']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<em><?= $lat['lat_upt']; ?></em> </label>
                         </div>
                         <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Longitude</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $lat['long_upt']; ?></label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<em><?= $lat['long_upt']; ?></em> </label>
                         </div>
                         <div class="row">
-                            <label for="name" class="col-sm-3 col-form-label">%tidak/belum bekerja</label>
-                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($lat[0]['percent'] != null) { echo $lat[0]['percent']."%"; } else { echo "no-data"; }  ?> </label>
+                            <label for="name" class="col-sm-3 col-form-label">%non-kerja</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp;<strong><?php if ($lat[0]['percent'] != null) { echo round($lat[0]['percent'],2)."%"; } else { echo "no-data"; }  ?></strong> 
+                                <i class="fa-solid fa-arrow-right"> </i> 
+                                <span class="badge badge-pill badge-success" style="font-size:12px; color:white;">
+                                    <?= $lat[2]['jumlah_pengurang_upt']; ?> /
+                                    <?= $lat[1]['jumlah_total_upt']; ?>
+                                </span> orang
+                                </i>
+                            </label>
                         </div>
                         <div class="row">
+                            <label for="name" class="col-sm-3 col-form-label">%Dana Alokasi</label>
+                            <label for="name" class="col-sm-8 col-form-label">: &nbsp; <span class="badge badge-pill badge-warning" style="font-size:15px; font-family:Arial; color:black;"><?php if ($lat[3]['percent2'] != null) { echo round($lat[3]['percent2'],2)."%"; } else { echo "no-data"; }  ?></span> </label>
+                        </div>
+                        <!-- <div class="row">
                             <label for="name" class="col-sm-3 col-form-label">Riwayat Pelatihan </label>
                             <label for="name" class="col-sm-8 col-form-label">: &nbsp;</label>
-                        </div>
+                        </div> -->
                         
                         
                     </div>

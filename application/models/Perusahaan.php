@@ -41,6 +41,8 @@ class Perusahaan extends CI_Model
     }
 
 
+
+
     public function get_TkaPerusahaan($where = "")
     {
         // $query =

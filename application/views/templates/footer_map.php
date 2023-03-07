@@ -342,13 +342,29 @@
                 <img src="<?= base_url("assets/img/upt/") . $value['foto'] ?> " alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;"></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="upt-foto" class=" img-responsive" style="padding-bottom: 8px; width: 250; object-fit:cover;" ></center><?php } ?>
             <p class="text-dark px-0 py-0 ">
                     <cite title="kabupaten/kota" ><?= $value['nama_kabupaten'] ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>
-            <?= $value['alamat_upt'] ?><br/>
-            <hr>
-            <i class="fa-solid fa-city" style="margin-bottom: 10px;margin-right: 8px;"></i>
-                Cakupan : <?= $value['ket_upt'] ?><br/>
-            <i class="fa-solid fa-face-frown" style="margin-bottom: 10px;margin-right: 10px;"></i>
-                Bermasalah/phk : <span class="badge badge-danger badge-pill" style="font-size:15px;"> <?php if ($value[0]['percent'] != null) { echo $value[0]['percent']."%"; } else { echo "no-data"; }  ?></span><br /></p>
-            <button type="button" class="btn btn-primary btn-block d-inline-block">Ajukan Pelatihan</button></div>`
+            <em><?= $value['alamat_upt'] ?> </em><br>
+           
+            <p/>
+
+            <table class="table table-sm" style=" padding: 1; margin: 0;" >
+                <tr>
+                <th scope="col" style=" padding: 0; margin: 0;"><span style="color:#505050; font-size:15px; font-family: sans-serif;"><i class="fa-solid fa-face-frown" style="margin-bottom: 10px;margin-right: 10px;"></i>NON-KERJA</span></th>
+                <th scope="col" style=" padding: 0; margin: 0;" ><span class="badge badge-light badge-pill" style="font-size:15px;">
+                <?php if ($value[0]['percent'] != null) { echo round($value[0]['percent'],2)."%"; } else { echo "no-data"; }  ?>  
+                &nbsp;(<?= $value[2]['jumlah_pengurang_upt']; ?> / <?= $value[1]['jumlah_total_upt']; ?>) </span></th></tr> 
+                </tr>
+                <tr>
+                <th scope="col" style=" padding: 0; margin: 0;"><span style="color:#505050; font-size:15px; font-family: sans-serif;"><i class="fa-solid fa-money-bill style="margin-bottom: 10px;margin-right: 10px;"></i>  DANA ALOKASI</span></th>
+                <th scope="col" style=" padding: 0; margin: 0;" ><span class="badge badge-info badge-pill" style="font-size:15px;"><?php if ($value[3]['percent2'] != null) { echo round($value[3]['percent2'],2)."%"; } else { echo "no-data"; }  ?> </span></th></tr> 
+                </tr>
+            </table>
+           <p class="text-dark px-0 py-0 ">
+            <strong>Cakupan</strong> <i class="fa-solid fa-arrow-right"></i> <?= $value['ket_upt'] ?> 
+           </p>
+            
+            
+            
+            </div>`
             ).bindTooltip("<center><b><?= $value['nama_upt'] ?></b></center>", {
                 permanent: false,
                 size:25,
