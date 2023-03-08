@@ -51,7 +51,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
-                                    <span class="text" style = "font-family:roboto; ">Cetak Daftar Hadir PMI-B Negara Bekerja</span>
+                                    <span class="text" style = "font-family:roboto; ">Cetak Daftar Hadir</span>
                                     </button>
                             </span>
                             <!-- <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
@@ -128,10 +128,10 @@
                         <thead align="center">
                             <tr>
                                 <th> No</th>
-                                <th>Tanggal</th>
-                                <th>Nama (umur)</th>
+                                <!-- <th>Tanggal</th> -->
+                                <th>Nama</th>
                                 <th>Alamat</th>
-                                <th>Negara</th>
+                                <th>Negara Bekerja</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -140,7 +140,7 @@
                             <?php foreach ($pmi as $p) : ?>
                                 <tr>
                                     <td align="center"><?= $i; ?></td>
-                                    <td><small><?= $p['date_created']; ?></small> </td>
+                                    <!-- <td><small><?= $p['date_created']; ?></small> </td> -->
 
                                     <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                     <td><?= $p['nama']; ?> <sup>
@@ -155,7 +155,9 @@
                                                 // echo " Hari";
                                                 ?>)th</sup> </td>
                                     <td ><small> <?= $p['nama_kabupaten']; ?>, <?= $p['alamat']; ?> </small></td>
-                                    <td align="center"><?= $p['nama_negara']; ?></td>
+                                    <td align="center"><?= $p['nama_negara']; ?>
+                                    <img src="<?= base_url('assets/img/img-country-flag/') . $p['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" >
+                                    </td>
                                     <td align="center">
                                         
                                         
@@ -251,7 +253,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalInfoLabel">Data Info <?= $title; ?></h5>
+                    <h5 class="modal-title" id="modalInfoLabel">Rincian Data Info <?= $title; ?></h5>
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -260,7 +262,7 @@
                                 <p > <small><b> DATA <?= $title; ?> </b></small></p>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Nama </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama']; ?></label> 
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <strong><?= $p['nama']; ?></strong> </label> 
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Jenis Kelamin </label>
@@ -273,16 +275,16 @@
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                                     <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['tgl_lahir']; ?> 
-                                            (<?php $lahir    = new DateTime($p['tgl_lahir']);
+                                            <strong>(<?php $lahir    = new DateTime($p['tgl_lahir']);
                                                 $today        = new DateTime();
                                                 $umur = $today->diff($lahir);
-                                                echo $umur->y;
+                                                echo  $umur->y ;
                                                 // echo " Tahun, ";
                                                 // echo $umur->m;
                                                 // echo " Bulan, dan ";
                                                 // echo $umur->d;
                                                 // echo " Hari";
-                                                ?>) tahun</label>
+                                                ?>) tahun</strong></label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Kabupaten/kota</label>
@@ -297,7 +299,9 @@
                                 
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Negara Bekerja</label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['negara_bekerja']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?>
+                                            <img src="<?= base_url('assets/img/img-country-flag/') . $p['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" >
+                                    </label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Jenis Pekerjaan</label>
@@ -325,9 +329,14 @@
                                 </div> -->
                             </div>
                             <div class="col">
-                                <p > <small><b> <br> </b></small></p>
-                                <img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
-                                <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama']; ?></small></p>
+                                <!-- <p > <small><b> <br> </b></small></p> -->
+                                <td width="35%" rowspan="5"> 
+                                    <?php if ($p['image'] != null) { ?>
+                                            <center><img src="<?= base_url("assets/img/pmi/") . $p['image'] ?> "alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center>
+                                    <?php }else{ ?>
+                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center><?php } ?>
+                                
+                                <p class="text-center" ><small> Foto. &nbsp; <strong> <?= $p['nama']; ?></strong></small></p>
                             </div>
                         </div>
                         

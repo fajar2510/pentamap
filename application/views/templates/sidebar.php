@@ -3,7 +3,7 @@
 
 <!-- navbar-fixed-top" style="position:fixed" -->
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex" href="<?= base_url('home'); ?>">
+    <a class="sidebar-brand d-flex" href="<?= base_url('beranda'); ?>">
         
         <div class="sidebar-brand-icon"> 
             <!-- <i class="bi bi-map"></i> -->

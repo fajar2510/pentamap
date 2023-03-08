@@ -61,9 +61,9 @@
                                         <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
                                     </div>
                                 </div>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a class="small" href="<?php echo base_url() ?>auth/registration">Buat Akun Baru</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

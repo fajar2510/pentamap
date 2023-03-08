@@ -541,7 +541,7 @@
                     $masaImta = strtotime(date('Y-m-d', strtotime($imta) ) );
                     $currentDate = strtotime(date('Y-m-d'));
                     if($masaImta < $currentDate) {
-                        echo '<span class="badge badge-danger badge-pill" style="font-size:12px; ">Izin Habis</span>';
+                        echo '<span class="badge badge-light badge-pill" style="font-size:12px; ">Nonaktif</span>';
                     } else {
                         echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
                     }?>
@@ -553,7 +553,7 @@
                     $masaRptka = strtotime(date('Y-m-d', strtotime($rptka) ) );
                     $currentDate = strtotime(date('Y-m-d'));
                     if($masaRptka < $currentDate) {
-                        echo '<span class="badge badge-danger badge-pill" style="font-size:12px; ">Izin Habis</span> ';
+                        echo '<span class="badge badge-light badge-pill" style="font-size:12px; ">Nonaktif</span> ';
                     } else {
                         echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
                     }?>

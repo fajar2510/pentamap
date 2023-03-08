@@ -22,7 +22,7 @@
                         </div> 
                     </a>
             <?php } elseif ($ci->session->userdata('role_id') == 2) { ?>
-                    <a href="<?= base_url('beranda'); ?>">
+                    <a href="<?= base_url(''); ?>">
                         <div class="sidebar-brand-icon"> 
                             <img src="<?php echo base_url() ?>assets/img/favicon/jatim.png" alt="logo" width="55px" >
                         </div> 
@@ -178,10 +178,27 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="<?= base_url('beranda'); ?>" >
+
+                    <?php 
+                        $ci = get_instance();
+                        if ($ci->session->userdata('role_id') == 1) { 
+                    ?>
+                        <a class="dropdown-item" href="<?= base_url('admin'); ?>" >
                             <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
-                            Dashboard Admin 
+                            Superadmin
                         </a>
+                    <?php 
+                        } else if ($ci->session->userdata('role_id') == 2) { 
+                    ?>
+                        <a class="dropdown-item" href="<?= base_url('beranda'); ?>" >
+                            <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
+                            Admin 
+                        </a>
+                    <?php 
+                        } 
+                    ?>
+
+                        
                         <a class="dropdown-item" href="<?= base_url('user'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profil

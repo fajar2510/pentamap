@@ -108,12 +108,12 @@
                                         <th>Nama</th>
                                         <th>Negara</th>
                                         <!-- <th>Jabatan</th> -->
-                                        <th>L/P</th>
+                                        <th>RPTKA</th>
                                         <!-- <th>No. RPTKA</th>
                                         <th>Masa Berlaku</th>
                                         <th>No. IMTA</th>
                                         <th>Masa Berlaku</th> -->
-                                        <th>Lokasi Bekerja</th>
+                                        <th>IMTA</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -124,19 +124,40 @@
 
                                             <!-- <td> <small> <?= $t['date_created']; ?> </small></td> -->
                                             <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
-                                            <!-- <td> <small> <?= $t['alamat']; ?> </small></td> -->
                                             <td> <small> <?= $t['nama_tka']; ?> </small> </td>
-                                            <td><small> <?= $t['nama_negara']; ?> </small></td>
+                                            <td><small> <?= $t['nama_negara']; ?> <img src="<?= base_url('assets/img/img-country-flag/') . $t['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" ></small></td>
                                             <!-- <td> <small> <?= $t['jabatan']; ?> </small></td> -->
-                                            <td><small> <?= $t['jenis_kel']; ?> </small></td>
-                                            <!-- <td> <small><?= $t['no_rptka']; ?> </small></td>
-                                            <td> <small><?= $t['masa_rptka']; ?></small></td>
-                                            <td> <small><?= $t['no_imta']; ?> </small></td>
-                                            <td><small><?= $t['masa_imta']; ?></small></td> -->
-                                            <td> <small> <?= $t['nama_kabupaten']; ?></small> </td>
+                                            <!-- <td class="text-center"><small> <?= $t['jenis_kel']; ?> </small></td> -->
+                                            <td>
+                                                <small>
+                                                <?php
+                                                    $rptka = $t['masa_rptka'];
+                                                    $masaRptka = strtotime(date('Y-m-d', strtotime($rptka) ) );
+                                                    $currentDate = strtotime(date('Y-m-d'));
+                                                    if($masaRptka < $currentDate) {
+                                                        echo '<span class="badge badge-light badge-pill" style="font-size:12px; ">Nonaktif</span> ';
+                                                    } else {
+                                                        echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
+                                                    }?>
+                                                </small>
+                                            </td>
+                                            <td> 
+                                                <small>
+                                                <?php
+                                                    $imta = $t['masa_imta'];
+                                                    $masaImta = strtotime(date('Y-m-d', strtotime($imta) ) );
+                                                    $currentDate = strtotime(date('Y-m-d'));
+                                                    if($masaImta < $currentDate) {
+                                                        echo '<span class="badge badge-light badge-pill" style="font-size:12px; ">Nonaktif</span>';
+                                                    } else {
+                                                        echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
+                                                    }?>
+                                                </small>
+                                            </td>
+                                            <!--<td> <small> <?= $t['nama_kabupaten']; ?></small> </td>-->
                                             <td class="text-center">
                                                 <!-- <button type="button" data-toggle="modal" data-target="#modalPrint" class="btn btn-sm btn-info"> <i class="fa fa-print"></i></button> -->
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $t['id']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></i></button>
                                                 <?php if ($is_admin == 1) { ?>
                                                     <a href="<?= base_url('tka/edit_tka/') . $t['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                     <button type="button" data-toggle="modal" data-target="#modalHapus<?= $t['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -175,20 +196,23 @@
                             <div class="col-8">
                             <p> <small><b> DATA <?= $title; ?> </b></small></p>
                                 <div class="row">
-                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $t['nama_tka']; ?></label>
+                                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <strong><?= $t['nama_tka']; ?></strong> </label>
                                 </div>
-                                <div class="row">
-                                    <label for="name" class="col-sm-3 col-form-label">Perusahaan</label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_perusahaan']; ?></label>
-                                </div>
+                                
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['jenis_kel']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($t['jenis_kel'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $t['jenis_kel']; ?>&nbsp;)</label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Negara </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['kewarganegaraan']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['nama_negara']; ?>
+                                    <img src="<?= base_url('assets/img/img-country-flag/') . $t['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" >
+                                    </label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Kontak</label>
@@ -212,7 +236,17 @@
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Masa RPTKA </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_rptka']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_rptka']; ?>
+                                    <?php
+                                    $rptka = $t['masa_rptka'];
+                                    $masaRptka = strtotime(date('Y-m-d', strtotime($rptka) ) );
+                                    $currentDate = strtotime(date('Y-m-d'));
+                                    if($masaRptka < $currentDate) {
+                                        echo '<span class="badge badge-danger badge-pill" style="font-size:12px; ">Izin Habis</span> ';
+                                    } else {
+                                        echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
+                                    }?>
+                                    </label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">No. IMTA </label>
@@ -220,12 +254,26 @@
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Masa IMTA </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_imta']; ?> </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $t['masa_imta']; ?> 
+                                    <?php
+                                        $imta = $t['masa_imta'];
+                                        $masaImta = strtotime(date('Y-m-d', strtotime($imta) ) );
+                                        $currentDate = strtotime(date('Y-m-d'));
+                                        if($masaImta < $currentDate) {
+                                            echo '<span class="badge badge-danger badge-pill" style="font-size:12px; ">Izin Habis</span>';
+                                        } else {
+                                            echo '<span class="badge badge-success badge-pill" style="font-size:12px; ">Aktif</span>';
+                                        }?>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-4">
-                                    <p > <small><b> <br> </b></small></p>
-                                    <img src="<?= base_url('assets/img/tka/') . $t['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
+                                    <!-- <p > <small><b> <br> </b></small></p> -->
+                                    <?php if ($t['image'] != null) { ?>
+                                                            <center><img src="<?= base_url("assets/img/tka/") . $t['image'] ?> "alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center>
+                                                    <?php }else{ ?>
+                                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center><?php } ?>
+                                    
                                     <p class="text-center" ><small> Foto. &nbsp; <?= $t['nama_tka']; ?></small></p>
                             </div>
                         </div>

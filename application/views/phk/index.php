@@ -67,7 +67,7 @@
                                     <tr>
                                         <th> No</th>
                                         <th>Nama</th>
-                                        <th>Asal</th>
+                                        <!-- <th>Asal</th> -->
                                         <th>Perusahaan</th>
                                         <th class="text-center">Disabilitas</th>
                                         <th class="text-center">Status</th>
@@ -81,7 +81,7 @@
                                         <tr>
                                             <th scope="row"><?= $i; ?></small> </th>
                                             <td> <?= $p['nama_tk']; ?>
-                                            <td><small> <?= $p['nama_kabupaten']; ?></small> </td>
+                                            <!-- <td><small> <?= $p['nama_kabupaten']; ?></small> </td> -->
                                             <td> <?= $p['nama_perusahaan']; ?></td>
                                             <td class="text-center"><?php if ($p['disabilitas'] == 'Y') {
                                                             echo '<span class="badge badge-info">Ya</span>';
@@ -94,7 +94,7 @@
                                                             echo '<span class="badge badge-light">Nonaktif</span>';
                                                         } ?></span> </td>
                                             <td class="text-center">
-                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id_phk']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
                                             <?php if ($is_admin == 1) { ?>
                                                 <a href="<?= base_url('phk/edit_phk/') . $p['id_phk']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id_phk']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -162,8 +162,8 @@
                             <div class="col-8">
                                 <p > <small><b> DATA INDEKS PERUSAHAAN</b></small></p>
                                 <div class="row">
-                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_tk']; ?></label>
+                                    <label for="name" class="col-sm-3 col-form-label">Nama </label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <strong> <?= $p['nama_tk']; ?></strong></label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">NIK </label>
@@ -216,8 +216,11 @@
                             </div>                          
                             <div class="col-4">
                                 <p > <small><b> <br> </b></small></p>
-                                <img src="<?= base_url('assets/img/lokal/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
-                                <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama_tk']; ?></small></p>
+                                <?php if ($p['image'] != null) { ?>
+                                                            <center><img src="<?= base_url("assets/img/lokal/") . $p['image'] ?> "alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center>
+                                                    <?php }else{ ?>
+                                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center><?php } ?>
+                                <p class="text-center" ><small> Foto. &nbsp; <strong><?= $p['nama_tk']; ?></strong> </small></p>
                             </div>
                         </div>
                     </div>

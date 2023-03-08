@@ -70,18 +70,18 @@
                                 <thead>
                                     <tr class="pure-table-odd">
                                         <th rowspan="2"> No</th>
-                                        <th rowspan="2" class="text-center">Tahun</th>
-                                        <th rowspan="2" class="text-center">Kabupaten</th>
+                                        <!-- <th rowspan="2" class="text-center">Tahun</th> -->
+                                        <!-- <th rowspan="2" class="text-center">Kabupaten</th> -->
                                         <th rowspan="2" class="text-center">Nama Perusahaan</th>
                                         <th colspan="3" class="text-center">Disabilitas</th>
-                                        <th rowspan="2" class="text-center">Total Pekerja</th>
-                                        <th rowspan="2" class="text-center">%</th>
+                                        <th rowspan="2" class="text-center">@Total</th>
+                                        <th rowspan="2" class="text-center">%Percent</th>
                                         
                                         <th width="" class="text-center" rowspan="2">Aksi</th>
                                     </tr>
                                     <tr>
-                                        <th> L</th>
-                                        <th>P</th>
+                                        <th class="text-center"> L</th>
+                                        <th class="text-center">P</th>
                                         <th>Total</th>
                                         
                                     </tr>
@@ -91,14 +91,14 @@
                                     <?php foreach ($data_reward as $r) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= date("Y",strtotime($r['date_created'])); ?></small></td>
-                                            <td> <small> <?= $r['nama_kabupaten']; ?></small></td>
+                                            <!-- <td> <small> <?= date("Y",strtotime($r['date_created'])); ?></small></td> -->
+                                            <!-- <td> <small> <?= $r['nama_kabupaten']; ?></small></td> -->
                                             <td> <small><?= $r['nama_perusahaan']; ?></small></td>
                                             <td><center><?= $r['disabilitas_L']; ?></center>  </td>
                                             <td><center><?= $r['disabilitas_P']; ?></center>  </td>
                                             <td> <center><?= $r['disabilitas_total']; ?></center> </td>
                                             <td> <center><?= $r['tenaga_kerja_total']; ?></center> </td>
-                                            <td> <span class="badge badge-pill badge-info" style="font-size:12px; color:white;"><center><?= $r['presentase']; ?> %</center> </span></td>
+                                            <td class="text-center"> <span class="badge badge-pill badge-light" style="font-size:15px;"><center><?= $r['presentase']; ?> %</center> </span></td>
                                             
                                             <td class="text-center">
                                                 <!-- Example split danger button -->
@@ -114,7 +114,7 @@
                                                     <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
                                                 </div> -->
                                                  <!-- <a href=" <?= base_url('exportimport/reward_perusahaan/') . $r['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  ">  <i class="fa fa-print" aria-hidden="true"></i></a> -->
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $r['id_reward']; ?>" class="btn btn-sm btn-light">  <i class="fa-solid fa-eye"></i></button>
                                                 <?php if ($is_admin == 1) { ?>
                                                 <a href="<?= base_url('reward/edit/') . $r['id_reward']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#modalHapus<?= $r['id_reward']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>

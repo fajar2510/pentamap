@@ -37,30 +37,11 @@ class Penempatan extends CI_Model
     // SELECT DISTINCT negara_penempatan FROM tb_cpmi
     public function get_cpmi($where = "")
     {
-        // $query =
-
-            // "SELECT DISTINCT tb_cpmi.negara_penempatan, tb_cpmi.perusahaan, tb_perusahaan.nama_perusahaan, tb_negara.nama_negara
-            //     FROM tb_cpmi 
-            //     INNER JOIN tb_perusahaan
-            //     ON tb_cpmi.perusahaan = tb_perusahaan.id
-            //     INNER JOIN tb_negara
-            //     ON tb_cpmi.negara_penempatan = tb_negara.id
-            //     ORDER BY tb_cpmi.negara_penempatan ASC";
-        //     "SELECT  `tb_cpmi`.*, 
-        //     `tb_negara`.`nama_negara`, `kabupaten`.`nama_kabupaten`
-        //     FROM `tb_cpmi` 
-        //     -- JOIN `tb_perusahaan` ON `tb_cpmi`.`perusahaan` = `tb_perusahaan`.`id` 
-        //     JOIN `tb_negara` ON `tb_cpmi`.`negara_penempatan` = `tb_negara`.`id_negara` 
-        //      JOIN `kabupaten` ON `tb_cpmi`.`wilayah` = `kabupaten`.`id_kabupaten` 
-            
-        //  ";
-        // return $this->db->query($query)->result_array();
-
         $CI = &get_instance();
         $this->CI = $CI;
         $this->db = $CI->db;
 
-        $this->db->select('tb_cpmi.*, tb_negara.nama_negara, kabupaten.nama_kabupaten');
+        $this->db->select('tb_cpmi.*, tb_negara.nama_negara, tb_negara.flag, kabupaten.nama_kabupaten');
         $this->db->from('tb_cpmi');
         $this->db->join('kabupaten', 'tb_cpmi.wilayah = kabupaten.id_kabupaten');
         $this->db->join('tb_negara', 'tb_cpmi.negara_penempatan = tb_negara.id_negara');

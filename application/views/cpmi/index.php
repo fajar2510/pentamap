@@ -56,7 +56,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-print"></i>
                                         </span>
-                                    <span class="text" style = "font-family:roboto; ">Cetak CPMI Negara Penempatan</span>
+                                    <span class="text" style = "font-family:roboto; ">Cetak Laporan Penempatan</span>
                                     </button>
                             </span>
                             <!-- <button class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#modalImport" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
@@ -125,7 +125,7 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <th>Tanggal</th>
+                                        <!-- <th>Tanggal</th> -->
                                         <th>Nama_PMI </th>
                                         <th>Domisili</th>
                                         <!-- <th>L/P</th> -->
@@ -140,20 +140,22 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <td> <small> <?= $p['date_created']; ?> </small> </td>
+                                            <!-- <td> <small> <?= $p['date_created']; ?> </small> </td> -->
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['nama_kabupaten']; ?> </small> </td>
                                             <!-- <td><small> <?= $p['perusahaan']; ?> </small> </td> -->
                                             <!-- <td><small> <?= $p['jenis_kelamin']; ?> </small> </td> -->
                                             <!-- <td><small> <?= $p['nama_perusahaan']; ?> </small> </td> -->
                                             <td><small> <?= $p['pengguna_jasa']; ?> </small> </td>
-                                            <td><small> <?= $p['nama_negara']; ?> </small> </td>
+                                            <td><small> <?= $p['nama_negara']; ?> 
+                                                <img src="<?= base_url('assets/img/img-country-flag/') . $p['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" ></small> 
+                                            </td>
                                             <!-- <td> <?php echo $aa->tka + $bb->pmib; ?></td> -->
                                             <td>
                                                 <?php if ($is_admin == 1) { ?>
                                                     <!-- <a href="<?= base_url('exportimport/export_pdf_cpmi/') . $p['perusahaan'] . '/' . $p['negara_penempatan'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light"><i class="fa fa-book" aria-hidden="true"></i> <b>lap.</b></i></a> -->
                                                 <?php } ?>
-                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i></button>
+                                                <button type="button" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-light"> <i class="fa-solid fa-eye"></i></button>
                                                 <?php if ($is_admin == 1) { ?>
                                                     <a href="<?= base_url('cpmi/edit_cpmi/') . $p['id']; ?>" class="btn btn-sm btn-warning"> <i class="fa fa-edit"></i></a>
                                                     <button type="button" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class=" btn btn-sm btn-danger"> <i class="fa fa-trash-alt"></i></button>
@@ -191,12 +193,16 @@
                             <div class="col-8">
                                 <p > <small><b> DATA <?= $title; ?> </b></small></p>
                                 <div class="row">
-                                    <label for="name" class="col-sm-3 col-form-label">Nama Lengkap </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <?= $p['nama_pmi']; ?></label>
+                                    <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp; <strong><?= $p['nama_pmi']; ?></strong> </label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Jenis Kelamin </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['jenis_kelamin']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?php if ($p['jenis_kelamin'] == 'L') {
+                                                            echo 'Laki-laki';
+                                                        } else {
+                                                            echo 'Perempuan';
+                                                        } ?> &nbsp; (&nbsp;<?= $p['jenis_kelamin']; ?>&nbsp;)</label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Tempat Lahir </label>
@@ -237,7 +243,9 @@
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Negara Penempatan </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['nama_negara']; ?>
+                                    <img src="<?= base_url('assets/img/img-country-flag/') . $p['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" >
+                                    </label>
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-3 col-form-label">Kode Penerbangan</label>
@@ -255,9 +263,13 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                    <p > <small><b> <br> </b></small></p>
-                                    <img src="<?= base_url('assets/img/cpmi/') . $p['image']; ?>"  class="img-fluid img-thumbnail" alt="Picture" tyle="width: 300px; height: 300px;">
-                                    <p class="text-center" ><small> Foto. &nbsp; <?= $p['nama_pmi']; ?></small></p>
+                                    <!-- <p > <small><b> <br> </b></small></p> -->
+                                    <?php if ($p['image'] != null) { ?>
+                                                            <center><img src="<?= base_url("assets/img/cpmi/") . $p['image'] ?> "alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center>
+                                                    <?php }else{ ?>
+                                                            <center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class=" img-responsive" style="width: 130px; height: 180px; object-fit: cover;"></center><?php } ?>
+
+                                    <p class="text-center" ><small> Foto. &nbsp; <strong><?= $p['nama_pmi']; ?></strong> </small></p>
                             </div>
                         </div>
                     </div>
