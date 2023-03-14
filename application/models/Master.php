@@ -94,10 +94,10 @@ class Master extends CI_Model
             $akh = date_create($takhir);
             $hir = date_format($akh, 'Y-m-d');
             $query =
-                "SELECT `tb_pmi`.*, `provinsi`. `nama_provinsi`, `kabupaten`. `nama_kabupaten`
+                "SELECT `tb_pmi`.*, `kabupaten`. `nama_kabupaten`
                 , `tb_negara`. *
-                    FROM `tb_pmi` JOIN `provinsi`
-                    ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
+                    -- FROM `tb_pmi` JOIN `provinsi`
+                    -- ON `tb_pmi`. `provinsi` = `provinsi`. `id_provinsi`
                     JOIN `kabupaten`
                     ON `tb_pmi`. `kabupaten` = `kabupaten`. `id_kabupaten`
                     JOIN `tb_negara`
@@ -134,9 +134,9 @@ class Master extends CI_Model
             $CI = &get_instance();
             $this->CI = $CI;
             $this->db = $CI->db;
-            $this->db->select('tb_pmi.*, provinsi.nama_provinsi, kabupaten.nama_kabupaten, tb_negara.*');
+            $this->db->select('tb_pmi.*, kabupaten.nama_kabupaten, tb_negara.*');
             $this->db->from('tb_pmi');
-            $this->db->join('provinsi', 'tb_pmi.provinsi = provinsi.id_provinsi');
+            // $this->db->join('provinsi', 'tb_pmi.provinsi = provinsi.id_provinsi');
             $this->db->join('kabupaten', 'tb_pmi.kabupaten = kabupaten.id_kabupaten');
             $this->db->join('tb_negara', 'tb_pmi.negara_bekerja = tb_negara.id_negara');
             if ($where != "") {

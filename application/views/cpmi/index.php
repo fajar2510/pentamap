@@ -125,7 +125,7 @@
                                 <thead align="center">
                                     <tr>
                                         <th> No</th>
-                                        <!-- <th>Tanggal</th> -->
+                                        <th>Tanggal</th>
                                         <th>Nama_PMI </th>
                                         <th>Domisili</th>
                                         <!-- <th>L/P</th> -->
@@ -140,7 +140,7 @@
                                     <?php foreach ($data_cpmi as $p) : ?>
                                         <tr>
                                             <th scope="row"><?= $i; ?></th>
-                                            <!-- <td> <small> <?= $p['date_created']; ?> </small> </td> -->
+                                            <td> <small> <?= $p['date_created']; ?> </small> </td>
                                             <td> <small> <?= $p['nama_pmi']; ?> </small> </td>
                                             <td><small> <?= $p['nama_kabupaten']; ?> </small> </td>
                                             <!-- <td><small> <?= $p['perusahaan']; ?> </small> </td> -->

@@ -128,7 +128,7 @@
                         <thead align="center">
                             <tr>
                                 <th> No</th>
-                                <!-- <th>Tanggal</th> -->
+                                <th>Tanggal</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>Negara Bekerja</th>
@@ -140,7 +140,7 @@
                             <?php foreach ($pmi as $p) : ?>
                                 <tr>
                                     <td align="center"><?= $i; ?></td>
-                                    <!-- <td><small><?= $p['date_created']; ?></small> </td> -->
+                                    <td><small><?= $p['date_created']; ?></small> </td>
 
                                     <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->
                                     <td><?= $p['nama']; ?> <sup>

@@ -98,7 +98,7 @@
                                 <thead align="center">
                                     <tr>
                                         <th rowspan="2">No.</th>
-                                        <!-- <th rowspan="2">Tanggal </th> -->
+                                        <th rowspan="2">Tanggal </th>
                                         <th rowspan="2">Perusahaan</>
                                             <!-- <th rowspan="2">Alamat Perusahaan</th> -->
                                         <th colspan="4">Data TKA</th>
@@ -122,7 +122,7 @@
                                         <tr align="left">
                                             <th><?= $i; ?></th>
 
-                                            <!-- <td> <small> <?= $t['date_created']; ?> </small></td> -->
+                                            <td> <small> <?= $t['date_created']; ?> </small></td>
                                             <td> <small> <?= $t['nama_perusahaan']; ?> </small></td>
                                             <td> <small> <?= $t['nama_tka']; ?> </small> </td>
                                             <td><small> <?= $t['nama_negara']; ?> <img src="<?= base_url('assets/img/img-country-flag/') . $t['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" ></small></td>
