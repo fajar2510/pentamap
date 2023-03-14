@@ -232,9 +232,9 @@ class Auth extends CI_Controller
             $config = [
                 'protocol' => 'smtp',
                 'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_user' => 'fajarabdurrohman.pro25@gmail.com',
+                'smtp_user' => 'sepertiseharusnyafajar@gmail.com',
                 // 'smtp_pass' => 'oyjocfiavzdqwlrb',
-                'smtp_pass' => 'ndjdbpyaoqyduvig',
+                'smtp_pass' => 'uprrhlhwvsylbewl',
                 'smtp_port' => 465,
                 'smtp_crypto' => 'ssl',
                 'mailtype' => 'html',
