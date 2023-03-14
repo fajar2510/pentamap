@@ -245,6 +245,40 @@
     </div>
 <?php endforeach; ?>
 
+<!-- modal hapus Lokal -->
+<?php foreach ($sebaran_lokal as $slokal) : ?>
+    <!-- modalhapus -->
+    <div class="modal fade" id="modalHapusLokal<?= $slokal->id_phk ?>" tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusLabel">Apakah kamu yakin ?</h5>
+
+                </div>
+                <center>
+                    <!-- <img src="<?= base_url('assets/img/favicon/hapus.png') ?>" alt="Hapus" width="80" height="100"> -->
+                    <form action="<?= base_url('phk/hapusMap/' . $slokal->id_phk); ?>">
+                        <div class="modal-body">Data Lokal &nbsp; <b>
+                                <font color="black"><?= $slokal->nama_tk ?></font>
+                            </b> akan dihapus !</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                            <button class="btn btn-danger btn-icon-split" type="submit">
+                                <span class="icon text-white-50">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                                </span>
+                                <span class="text">Hapus</span>        
+                            
+                        </button>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 <!-- modal hapus CPMI -->
 <?php foreach ($sebaran_cpmi as $scpmi) : ?>
     <!-- modalhapus -->

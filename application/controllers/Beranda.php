@@ -51,6 +51,7 @@ class Beranda extends CI_Controller
 
         // data sebaran
         $data['sebaran_phk'] = $this->Sebaran_Jatim->get_sebaran_phk();
+        // $data['sebaran_lokal'] = $this->Sebaran_Jatim->get_sebaran_lokal();
         $data['sebaran_cpmi'] = $this->Sebaran_Jatim->get_sebaran_cpmi();
         $data['sebaran_pmib'] = $this->Sebaran_Jatim->get_sebaran_pmib();
         $data['sebaran_tka'] = $this->Sebaran_Jatim->get_sebaran_tka();
@@ -58,6 +59,8 @@ class Beranda extends CI_Controller
         // var_dump($data['sebaran_tka']);
         // die;
         $data['sebaran_lokal'] = $this->Sebaran_Jatim->get_sebaran_lokal();
+        // var_dump( $data['sebaran_lokal']);
+        // die;
         $data['sebaran_disabilitas'] = $this->Sebaran_Jatim->get_sebaran_disabilitas();
 
         // data total cpmi, pmib , tka ,phk - per kabupaten

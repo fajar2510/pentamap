@@ -305,10 +305,10 @@
         });
 
         // icon sebaran Disabilitas
-        var iconDisabilitas = L.icon({
-            iconUrl : '<?= base_url('assets/'); ?>img/marker/disabled-person.png',
-            iconSize : [30,30],
-        });
+        // var iconDisabilitas = L.icon({
+        //     iconUrl : '<?= base_url('assets/'); ?>img/marker/disabled-person.png',
+        //     iconSize : [30,30],
+        // });
 
         
         var markersUpt = L.markerClusterGroup( {
@@ -588,8 +588,11 @@
             className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
             }
         });
+        // var_dump($data['phk']);
+        // die;
         
         <?php foreach ($sebaran_lokal  as $key => $value) { ?> 
+            
             var sebaranLokal = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconLokal} )
             .bindPopup(
             '<div class="container px-1 py-1">'+
@@ -602,7 +605,7 @@
 
             '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
             '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Perbarui</a><?php }else{ ?><p></p><?php } ?>' +
-            '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
+            '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusLokal<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
             markersLokal.addLayer(sebaranLokal);
             map.addLayer(markersLokal);
@@ -611,51 +614,51 @@
         <?php }?>
 
          // MARKER dengan cluster Disabilitas
-        var markersDisabilitas = L.markerClusterGroup( {
-            iconCreateFunction: function (cluster) {
-            var childCount = cluster.getChildCount();
-            var c = ' marker-cluster-lokal-';
-            if (childCount < 10) {
-            c += 'small';
-            } 
-            else if (childCount < 100) {
-            c += 'medium';
-            } 
-            else {
-            c += 'large';
-            }
+        // var markersDisabilitas = L.markerClusterGroup( {
+        //     iconCreateFunction: function (cluster) {
+        //     var childCount = cluster.getChildCount();
+        //     var c = ' marker-cluster-lokal-';
+        //     if (childCount < 10) {
+        //     c += 'small';
+        //     } 
+        //     else if (childCount < 100) {
+        //     c += 'medium';
+        //     } 
+        //     else {
+        //     c += 'large';
+        //     }
 
-            return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
-            className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
-            }
-        });
+        //     return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', 
+        //     className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+        //     }
+        // });
           
-        <?php foreach ($sebaran_disabilitas  as $key => $value) { ?> 
-            var sebaranDisabilitas = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconDisabilitas} )
-            .bindPopup(
-            '<div class="container px-1 py-1">'+
-              '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
-              '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Lokal/daerah</i></span> '+
-              '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
-              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari : <?= $value->nama_perusahaan ?><br />'+
-              '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  :  <?php if ($value->status_kerja == "aktif") {echo '<span class="badge badge-pill badge-success">AKTIF</span>' ;} else echo '<span class="badge badge-pill badge-danger">ter-PHK</span>' ?><br>' +
-              '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus : <?php if ($value->disabilitas == "T") {echo '<span class="badge badge-pill badge-success">TIDAK</span>';} else  echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>'?> </p>'+ 
+        // <?php foreach ($sebaran_disabilitas  as $key => $value) { ?> 
+        //     var sebaranDisabilitas = L.marker([<?= $value->latitude ?>, <?= $value->longitude ?>], { icon:iconDisabilitas} )
+        //     .bindPopup(
+        //     '<div class="container px-1 py-1">'+
+        //       '<?php if ($value->image != null) { ?><center><img src="<?= base_url("assets/img/lokal/") . $value->image ?> " alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php }else{ ?><center><img src="<?= base_url("assets/img/profile/default.png")?>" alt="profile" class="img-responsive rounded-circle" style="padding-bottom: 15px; width: 100px; height: 100px; object-fit:cover; " ></center><?php } ?>'+
+        //       '<h5 style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><?= $value->nama_tk ?></h5> <span class="badge badge-pill badge-info" style="font-size:12px;"><i>Lokal/daerah</i></span> '+
+        //       '<p class="text-dark px-0 py-0 " style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><cite title="kabupaten/kota" ><?= $value->nama_kabupaten ?> <i class="fa-solid fa-location-dot" style="margin-bottom: 10px;margin-right: 10px;"></i></cite> <br>'+
+        //       '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>dari : <?= $value->nama_perusahaan ?><br />'+
+        //       '<i class="fa-solid fa-building" style="margin-bottom: 10px;margin-right: 10px;"></i>Status Kerja  :  <?php if ($value->status_kerja == "aktif") {echo '<span class="badge badge-pill badge-success">AKTIF</span>' ;} else echo '<span class="badge badge-pill badge-danger">ter-PHK</span>' ?><br>' +
+        //       '<i class="fa-solid fa-hospital-user" style="margin-bottom: 10px;margin-right: 10px;"></i>Berkebutuhan Khusus : <?php if ($value->disabilitas == "T") {echo '<span class="badge badge-pill badge-success">TIDAK</span>';} else  echo '<span class="badge badge-pill badge-warning" style="color:black;">YA</span>'?> </p>'+ 
 
-              '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
-              '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Perbarui</a><?php }else{ ?><p></p><?php } ?>' +
-              '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
+        //       '<a href="<?= base_url('phk/detail/' . $value->id_phk) ?>" target="_blank" class="btn btn-primary  " style="color:white;">Rincian</a> &nbsp;' +
+        //       '<?php if ($is_login == 1) { ?><a href="<?= base_url('phk/edit_phk/' . $value->id_phk) ?>" class="btn btn-link btn-sm ">Perbarui</a><?php }else{ ?><p></p><?php } ?>' +
+        //       '<?php if ($is_login == 1) { ?><button type="button" data-toggle="modal" data-target="#modalHapusPhk<?= $value->id_phk ?>" class="btn btn-link btn-sm " style="color:red;">Hapus</button></div><?php }else{ ?><p></p><?php } ?>');
 
-            markersDisabilitas.addLayer(sebaranDisabilitas);
-            map.addLayer(markersDisabilitas);
-            map.fitBounds(markersDisabilitas.getBounds());
+        //     markersDisabilitas.addLayer(sebaranDisabilitas);
+        //     map.addLayer(markersDisabilitas);
+        //     map.fitBounds(markersDisabilitas.getBounds());
           
-        <?php }?>
+        // <?php }?>
 
 
         //   change layer function
         var overlays = {
                 "UPT-BLK": markersUpt,
-                "Disabilitas": markersDisabilitas,
+                // "Disabilitas": markersDisabilitas,
                 "PMI": markersCpmi,
                 "PMIB": markersPmib,
                 "TKA": markersTka,
@@ -714,7 +717,7 @@
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-danger badge-pill"><?= $value['totalPhk'] ?>  </span></th></tr> '+
             '<tr>'+
             '<th scope="col" style=" padding: 0; margin: 0;" ><span style="color:#505050  ; font-family: sans-serif;">Lokal AKTIF</span></th>' +
-            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-purple badge-pill"><?= $value['totalTka'] ?> </span></th></tr> '+
+            '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-purple badge-pill"><?= $value['totLokal'] ?> </span></th></tr> '+
             '<tr>'+
             '<th scope="col" style=" padding: 0; margin: 0;" ><b>&nbsp;&nbsp<span style="color:black;">TOTAL DATA</span></b></th>' +
             '<th scope="col" style=" padding: 0; margin: 0;"><span class="badge badge-black badge-pill"><?= $value[0]['total'] ?>  </span></th></tr> '+
@@ -742,7 +745,7 @@
                 var pmib = data[i].totalPmib;
                 var pmi = data[i].totalCpmi;
                 var tka = data[i].totalTka;
-                var lokal = data[i].totalLokal;
+                var lokal = data[i].totLokal;
                 var logo = data[i].logo_kab;
 
                 // if (phk == "0") {
@@ -788,7 +791,7 @@
                 //     tka = parseInt("0");
                 // } else {
                     tka = parseInt(data[i].totalTka);
-                    lokal = parseInt(data[i].totalLokal);
+                    lokal = parseInt(data[i].totLokal);
                 //     var circle = L.circle([long, lat], 12000, {
                 //         color: '#3CCF4E',
                 //         fillOpacity: 0.3
@@ -800,7 +803,7 @@
                     // jumlah = parseInt(data[i].totalPhk);
                 // }
 
-                var jumlah = phk + pmib + pmi + tka;
+                var jumlah = phk + pmib + pmi + tka + lokal;
                 var bangunanMarker = L.marker([long, lat], {
                         icon: leafleticon,
                         title: data[i].nama_kabupaten,

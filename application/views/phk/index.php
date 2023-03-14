@@ -68,7 +68,7 @@
                                         <th> No</th>
                                         <th>Tanggal</th>
                                         <th>Nama</th>
-                                        <!-- <th>Asal</th> -->
+                                        <th>Asal</th>
                                         <th>Perusahaan</th>
                                         <th class="text-center">Disabilitas</th>
                                         <th class="text-center">Status</th>
@@ -83,7 +83,7 @@
                                             <th scope="row"><?= $i; ?></small> </th>
                                             <td><small> <?= $p['date_created']; ?></small> </td>
                                             <td> <?= $p['nama_tk']; ?></td>
-                                            <!-- <td><small> <?= $p['nama_kabupaten']; ?></small> </td> -->
+                                            <td><small> <?= $p['nama_kabupaten']; ?></small> </td>
                                             <td> <?= $p['nama_perusahaan']; ?></td>
                                             <td class="text-center"><?php if ($p['disabilitas'] == 'Y') {
                                                             echo '<span class="badge badge-info">Ya</span>';
