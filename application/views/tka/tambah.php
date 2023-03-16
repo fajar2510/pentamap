@@ -143,17 +143,17 @@
                                     <div class="form-group row">
                                         <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input required type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" >
+                                            <input required type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka"  pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" >
                                             <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
-                                            <input required class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="masa_rptka" name="masa_rptka">
+                                            <input required class="form-control" type="date" value="<?= date('Y-m-d'); ?>" id="masa_rptka" name="masa_rptka" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="no_imta" class="col-sm-3 col-form-label">NO. IMTA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input required type="text" class="form-control" id="no_imta" placeholder="" name="no_imta">
+                                            <input required type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">

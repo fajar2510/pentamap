@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?>(Pekerja Migran Indonesia Bermasalah) </h5>
+        <h5 style="color:#5b5b5b;"><?= $title; ?>(Pekerja Migran Indonesia Bermasalah) </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('pmi/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -127,7 +127,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead align="center">
                             <tr>
-                                <th> No</th>
+                                <th>#</th>
                                 <th>Tanggal</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
@@ -139,7 +139,8 @@
                             <?php $i = 1; ?>
                             <?php foreach ($pmi as $p) : ?>
                                 <tr>
-                                    <td align="center"><?= $i; ?></td>
+                                    <!-- <td align="center"><?= $i; ?></td> -->
+                                    <th scope="row"><small><center>  <?= $i; ?></center></small> </th>
                                     <td><small><?= $p['date_created']; ?></small> </td>
 
                                     <!-- <td><img src="<?= base_url('assets/img/pmi/') . $p['image']; ?>" alt="Profil" width="60" height="60"></td> -->

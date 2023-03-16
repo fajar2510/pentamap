@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';">Usulan <?= $title; ?> dengan Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
+        <h5 style=" color:#5b5b5b;">Usulan <?= $title; ?> Perusahaan terhadap Tenaga Kerja Disabilitas Tahun <?= date('Y'); ?> </h3>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('reward/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -69,8 +69,8 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="pure-table-odd">
-                                        <th rowspan="2"> No</th>
-                                        <!-- <th rowspan="2" class="text-center">Tahun</th> -->
+                                        <th rowspan="2">#</th>
+                                        <th rowspan="2" class="text-center">Tahun</th>
                                         <!-- <th rowspan="2" class="text-center">Kabupaten</th> -->
                                         <th rowspan="2" class="text-center">Nama Perusahaan</th>
                                         <th colspan="3" class="text-center">Disabilitas</th>
@@ -90,8 +90,8 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_reward as $r) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></th>
-                                            <!-- <td> <small> <?= date("Y",strtotime($r['date_created'])); ?></small></td> -->
+                                            <th scope="row"><small><center>  <?= $i; ?></center></small> </th>
+                                            <td> <center> <?= date("Y",strtotime($r['date_created'])); ?></center></td>
                                             <!-- <td> <small> <?= $r['nama_kabupaten']; ?></small></td> -->
                                             <td> <small><?= $r['nama_perusahaan']; ?></small></td>
                                             <td><center><?= $r['disabilitas_L']; ?></center>  </td>

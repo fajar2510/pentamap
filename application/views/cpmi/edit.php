@@ -55,7 +55,7 @@
                                     <div class="form-group row">
                                         <label for="nama_pmi" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama_pmi" placeholder="Masukkan Nama" name="nama_pmi" value="<?= $edit_cpmi->nama_pmi ?>">
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama_pmi" value="<?= $edit_cpmi->nama_pmi ?>">
                                             <?= form_error('nama_pmi', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

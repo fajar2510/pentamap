@@ -82,7 +82,7 @@
                                     <div class="form-group row">
                                         <label for="nama_tk" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-7">
-                                            <input required type="text" class="form-control" id="nama_tk" placeholder="Masukkan Nama Lengkap" name="nama_tk" value="<?= $lokasi->nama_tk ?>">
+                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama Lengkap" name="nama_tk" value="<?= $lokasi->nama_tk ?>">
                                             <?= form_error('nama_tk', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                     <div class="form-group row">
                                         <label for="no_identitas" class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-4">
-                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas" value="<?= $lokasi->nomor_identitas ?>">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_identitas" placeholder="No.KTP" name="no_identitas" value="<?= $lokasi->nomor_identitas ?>" maxlength="16" pattern="^[0-9]{16}$" title="Format NIK salah">
                                             <?= form_error('no_identitas', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
                                     <div class="form-group row">
                                         <label for="kontak" class="col-sm-3 col-form-label">No. Telepon</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="08xxx" name="kontak" value="<?= $lokasi->kontak ?>">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="08xxx" name="kontak" value="<?= $lokasi->kontak ?>"  maxlength="13" pattern="^[0-9]{10,13}$" title="Format Nomor salah, setidaknya ada 10 digit">
                                             
                                             <?= form_error('no.telepon', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

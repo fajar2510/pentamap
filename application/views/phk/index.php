@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';font-size:15;"><?= $title; ?> </h5>
+        <h5 style="color:#5b5b5b;"><?= $title; ?> (Lokal Aktif dan Lokal PHK) </h5>
         <!-- <a href="#" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahPMI"> -->
         <?php if ($is_admin == 1) { ?>
         <a href="<?= base_url('phk/tambah/'); ?>" class="btn btn-primary btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -65,7 +65,7 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th> No</th>
+                                        <th>#</th>
                                         <th>Tanggal</th>
                                         <th>Nama</th>
                                         <th>Asal</th>
@@ -80,7 +80,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_phk as $p) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></small> </th>
+                                            <th scope="row"><small><center>  <?= $i; ?></center></small> </th>
                                             <td><small> <?= $p['date_created']; ?></small> </td>
                                             <td> <?= $p['nama_tk']; ?></td>
                                             <td><small> <?= $p['nama_kabupaten']; ?></small> </td>

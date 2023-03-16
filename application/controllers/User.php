@@ -41,7 +41,7 @@ class User extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
     }
 
     public function edit()

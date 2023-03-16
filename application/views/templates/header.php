@@ -95,12 +95,12 @@
           table {
               border-collapse: collapse;
               width: 100%;
-              /* text-align: center; */
               padding: 0px;
           }
           table,
           th {
-              height: 1px;
+            color: black;
+              height: 0px;
              
               padding: 0px;
           }
@@ -109,14 +109,19 @@
              
               padding: 0px;
           }
-          td {          
+          td {         
+            color: black; 
             padding: 0px;
-              /* text-align: center; */
           }
           label {          
             padding: 0px;
+            
               /* text-align: center; */
           }
+          select option[selected] {
+            font-weight: bold;
+          }
+
           section {          
             padding: 0px;
               /* text-align: center; */

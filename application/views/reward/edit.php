@@ -45,7 +45,7 @@
                                     <div class="form-group row">
                                         <label for="nama_perusahaan" class="col-sm-3 col-form-label">Nama Perusahaan</label>
                                         <div class="col-sm-7">
-                                            <select required class="custom-select" name="nama_perusahaan" id="nama_perusahaan" class="form-control">
+                                            <select required class="custom-select" name="nama_perusahaan" id="nama_perusahaan" class="form-control" >
                                           
                                                 <?php foreach ($perusahaan as $n) : ?>
                                                     <option value="<?= $n['id']; ?>" <?php if ($n['id'] == $edit_reward ['perusahaan_id']) {
@@ -55,68 +55,25 @@
                                                                                         } ?>> <?= $n['nama_perusahaan']; ?> </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <!-- <input type="text" class="form-control"  disabled id="perusahaan" placeholder="Masukkan Nama PT" name="nama_perusahaan" value="<?= $edit_reward ['nama_perusahaan']; ?>">
-                                            <input type="hidden" name="id_perusahaan" value="<?= $edit_reward ['id']; ?>">
-                                            <input type="hidden" name="id_reward" value="<?= $edit_reward ['id_reward']; ?>"> -->
-                                            <!-- <?php foreach ($max_id as $idx); ?> -->
                                             <?= form_error('nama_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                             <small id="help2" class="form-text text-muted"> <i> *hanya dapat mengubah perusahaan dan jumlah tenaga kerja disabilitas/total</i></small>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="kabupaten_kota" class="col-sm-3 col-form-label">Kabupaten/Kota</label>
-                                        <div class="col-sm-4">
-                                            <select class="custom-select" disabled name="kabupaten_kota" id="kabupaten_kota" class="form-control input-sm">
-                                                <?php foreach ($kabupaten as $row) : ?>
-                                                    <option value="<?= $row['id_kabupaten']; ?>" <?php if ($row['id_kabupaten'] == $edit_reward['nama_kabupaten']) {
-                                                                                                        echo 'selected';
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>> <?= $row['nama_kabupaten']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            
-                                        </div>
-                                        <div>
-                                        <small id="help2" class="form-text text-muted"> <i> *provinsi jawa timur </i></small>
-                                            <?= form_error('kabupaten_kota', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div>
-                                   
-                                    
-
-                                    
-
-                                    <div class="form-group row">
-                                        <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
-                                        <div class="col-sm-5">
-                                            <select class="custom-select" disabled name="sektor_usaha" id="sektor_usaha" class="form-control input-sm">
-                                                <?php foreach ($jenis_sektor_usaha as $jsu) : ?>
-                                                    <option value="<?= $jsu['id_sektor']; ?>" <?php if ($jsu['id_sektor'] == $edit_reward['sektor_perusahaan']) {
-                                                                                                        echo 'selected';
-                                                                                                    } else {
-                                                                                                        echo '';
-                                                                                                    } ?>> <?= $jsu['nama_sektor']; ?> </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <?= form_error('sektor_usaha', '<small class="text-danger pl-3">', '</small>'); ?>
-                                        </div>
-                                    </div> -->
                                     <p><small><b>DISABILITAS</b></small></p>
                                                     
                                     <div class="form-group row">
                                         <label for="disabilitas_L" class="col-sm-3 col-form-label">Jumlah Disabilitas L/P</label>
                                         <div class="col-sm-2">
-                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L" value="<?= $edit_reward ['disabilitas_L']; ?>">
+                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L" value="<?= $edit_reward ['disabilitas_L']; ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P" value="<?= $edit_reward ['disabilitas_P']; ?>">
+                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P" value="<?= $edit_reward ['disabilitas_P']; ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                             <!-- onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" -->
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" value="<?= $edit_reward ['disabilitas_total']; ?>"name="disabilitas_total">
+                                            <input required type="number" class="form-control" min="0"  aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" value="<?= $edit_reward ['disabilitas_total']; ?>"name="disabilitas_total" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>
@@ -128,15 +85,15 @@
                                     <div class="form-group row">
                                         <label for="tenaga_kerja_L" class="col-sm-3 col-form-label">Jumlah Tenaga Kerja L/P</label>
                                         <div class="col-sm-2">
-                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L" value="<?= $edit_reward ['tenaga_kerja_L']; ?>" >
+                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L" value="<?= $edit_reward ['tenaga_kerja_L']; ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" >
                                             <?= form_error('tenaga_kerja_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P" value="<?= $edit_reward ['tenaga_kerja_P']; ?>">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P" value="<?= $edit_reward ['tenaga_kerja_P']; ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('tenaga_kerja_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total" value="<?= $edit_reward ['tenaga_kerja_total']; ?>" name="tenaga_kerja_total">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total" value="<?= $edit_reward ['tenaga_kerja_total']; ?>" name="tenaga_kerja_total" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('tenaga_kerja_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>

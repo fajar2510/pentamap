@@ -3,7 +3,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h4 style="font-family:'Roboto';font-size:12;">&nbsp;&nbsp; <i> <?= $title; ?> <?= date('Y'); ?></i></h4>
+        <h4 style=" color:#5b5b5b;">&nbsp;&nbsp; Tambah Lokasi Marker <?= $title; ?> <?= date('Y'); ?></h4>
         <a href="<?= base_url('cpmi'); ?>" class="btn btn-light btn-icon-split " class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <span class="icon text-white-50">
                 <i class="fas fa-angle-left"></i>
@@ -31,7 +31,7 @@
 
                     </div>
                     <div class="card-body">
-                        <div>
+                        <div style="color:#5b5b5b;">
                             <form action="<?= base_url('cpmi/tambah'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <!-- <p> <small><b> DATA TANGGAL INPUTAN</b></small></p>
@@ -54,17 +54,17 @@
 
                                             <div class="custom-file" >
                                                 <input type="file"  class="custom-file-input"  onchange="readURL(this);"  id="image" name="image">
-                                                <label class="custom-file-label" for="image">Pilih Gambar</label>
+                                                <label  class="custom-file-label" for="image">Pilih Gambar</label>
                                             </div>
 
                                             <div class="form-group">
                                             <label for="latitude" style="padding-top:8px;" >Latitude</label>
-                                                <input type="text" required id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          
+                                                <input style="font-weight: bold;" type="text" required id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          
                                                 <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             <div class="form-group">
                                             <label for="longitude" >Longitude</label>
-                                                <input type="text" required id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                                <input style="font-weight: bold;" type="text" required id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
                                                 <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                     <div class="form-group row">
                                         <label for="nama_pmi" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
-                                            <input type="text" required class="form-control" id="nama_pmi" placeholder="Masukkan Nama" name="nama_pmi">
+                                            <input type="text" required class="form-control" id="nama" placeholder="Masukkan Nama" name="nama_pmi">
                                             <?= form_error('nama_pmi', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                     <div class="form-group row">
                                         <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tempat, Tgl Lahir</label>
                                         <div class="col-sm-4">
-                                            <input type="text" required class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir">
+                                            <input type="text" required class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
@@ -206,7 +206,7 @@
                                     <div class="form-group row">
                                         <label for="pengguna_jasa" class="col-sm-3 col-form-label">Nama Pengguna Jasa</label>
                                         <div class="col-sm-5">
-                                            <input type="text" required class="form-control" id="pengguna_jasa" placeholder="Masukkan Nama Pengguna Jasa" name="pengguna_jasa">
+                                            <input type="text" required class="form-control" id="pengguna_jasa" placeholder="Masukkan Nama Pengguna Jasa" name="pengguna_jasa" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('pengguna_jasa', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

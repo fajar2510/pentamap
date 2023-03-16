@@ -234,7 +234,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input required type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $ur['name']; ?>">
+                                <input required type="text" class="form-control" id="nama" placeholder="" name="name" value="<?= $ur['name']; ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -273,11 +273,11 @@
                         <div class="form-group row">
                             <label for="NIK/NIP" class="col-sm-3 col-form-label">NIK/NIP</label>
                             <div class="col-sm-4">
-                                <input type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $ur['NIK']; ?>">
+                                <input type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $ur['NIK']; ?>" pattern="/^[0-9]*$/" title="Format salah, hanya gunakan Angka">
                                 <?= form_error('NIK', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="col-sm-4">
-                                <input type="NIP" class="form-control" id="NIP" placeholder="NIP" name="NIP" value="<?= $ur['NIP']; ?>">
+                                <input type="NIP" class="form-control" id="NIP" placeholder="NIP" name="NIP" value="<?= $ur['NIP']; ?>" pattern="/^[0-9]*$/" title="Format salah, hanya gunakan Angka">
                                 <?= form_error('NIP', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -291,7 +291,7 @@
                         <div class="form-group row">
                             <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $ur['kontak']; ?>">
+                                <input type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $ur['kontak']; ?>"maxlength="13" pattern="^[0-9]{10,13}$" title="Format Nomor salah, setidaknya ada 10 digit">
                                 <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

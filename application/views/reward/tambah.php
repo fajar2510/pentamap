@@ -99,7 +99,7 @@
                                     <div class="form-group row">
                                         <label for="nama_pimpinan" class="col-sm-3 col-form-label">Nama Pimpinan</label>
                                         <div class="col-sm-6">
-                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="nama_pimpinan" placeholder="" name="nama_pimpinan">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="nama_pimpinan" placeholder="" name="nama_pimpinan"  pattern="[a-zA-Z]+" title="Hanya gunakan huruf" >
                                             <?= form_error('nama_pimpinan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -107,12 +107,12 @@
                                     <div class="form-group row">
                                         <label for="nama_kontak_person" class="col-sm-3 col-form-label">Nama Kontak Person</label>
                                         <div class="col-sm-4">
-                                            <input required type="text" class="form-control"  id="nama_kontak_person" placeholder="" name="nama_kontak_person">
+                                            <input required type="text" class="form-control"  id="nama_kontak_person" placeholder="" name="nama_kontak_person" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('nama_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <label for="no_kontak_person" class="col-sm-1 col-form-label">No.Telp</label>
                                         <div class="col-sm-2">
-                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_kontak_person" placeholder="" name="no_kontak_person" maxlength="13" pattern="^[0-9]{10,13}$" title="Format Nomor salah, setidaknya ada 10 digit">
                                             <?= form_error('no_kontak_person', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -128,14 +128,14 @@
                                     <div class="form-group row">
                                         <label for="no_perusahaan" class="col-sm-3 col-form-label">No.Telp. Perusahaan</label>
                                         <div class="col-sm-3">
-                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan">
+                                            <input required type="text" class="form-control" aria-describedby="uploadHelp1" id="no_perusahaan" placeholder="" name="no_perusahaan" maxlength="13" pattern="^[0-9]{10,13}$" title="Format Nomor salah, setidaknya ada 10 digit">
                                             <?= form_error('no_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email_perusahaan" class="col-sm-3 col-form-label">Email Perusahaan</label>
                                         <div class="col-sm-5">
-                                            <input required type="email_perusahaan" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="email@email.com" name="email_perusahaan" >
+                                            <input required type="email" class="form-control" id="email_perusahaan" aria-describedby="uploadHelp1" placeholder="email@email.com" name="email_perusahaan" >
                                             <?= form_error('email_perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                     <div class="form-group row">
                                         <label for="sektor_usaha" class="col-sm-3 col-form-label">Sektor</label>
                                         <div class="col-sm-5">
-                                        <select required name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" >
+                                        <select required name="sektor_usaha" id="sektor_usaha" class="form-control" data-width="100%" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                                 <option value="">~ Jenis Sektor  ~</option>
                                                 <?php foreach ($jenis_sektor_usaha as $row) : ?>
                                                     <option  value="<?= $row['id_sektor']; ?>"> <?= $row['nama_sektor']; ?> </option>
@@ -169,16 +169,17 @@
                                     <div class="form-group row">
                                         <label for="disabilitas_L" class="col-sm-3 col-form-label">Jumlah Disabilitas L/P</label>
                                         <div class="col-sm-2">
-                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L">
+                                            <input required type="number" class="form-control" min="0"  id="disabilitas_L" placeholder="Laki-laki" name="disabilitas_L" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_P" placeholder="Perempuan" name="disabilitas_P">
+                                            <input required type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_P"
+                                             placeholder="Perempuan" name="disabilitas_P" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
                                             <input required type="number" class="form-control" min="0" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" aria-describedby="uploadHelp1" id="disabilitas_total" readonly placeholder="Total" 
-                                            value="" name="disabilitas_total" v>
+                                            value="" name="disabilitas_total" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('disabilitas_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>
@@ -190,16 +191,16 @@
                                     <div class="form-group row">
                                         <label for="tenaga_kerja_L" class="col-sm-3 col-form-label">Jumlah Tenaga Kerja L/P</label>
                                         <div class="col-sm-2">
-                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L">
+                                            <input required type="number" min="0" class="form-control"  id="tenaga_kerja_L" placeholder="Laki-laki" name="tenaga_kerja_L" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('tenaga_kerja_L', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P">
+                                            <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_P" placeholder="Perempuan" name="tenaga_kerja_P" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('tenaga_kerja_P', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-2">
                                             <input required type="number" min="0" class="form-control" aria-describedby="uploadHelp1" id="tenaga_kerja_total" readonly placeholder="Total"
-                                            value="" name="tenaga_kerja_total">
+                                            value="" name="tenaga_kerja_total" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('tenaga_kerja_total', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div>

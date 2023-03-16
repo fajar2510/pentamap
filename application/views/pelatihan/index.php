@@ -4,7 +4,7 @@
     <!-- Page Heading -->
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h5 style="font-family:'Roboto';">Data Serapan <?= $title; ?> Tahun <?= date('Y'); ?> </h3>
+        <h5 style="color:#5b5b5b;">Data Serapan <?= $title; ?> Tahun <?= date('Y'); ?> </h3>
         
 
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-print fa-sm text-white-50"></i> Print </a> -->
@@ -53,7 +53,7 @@
                             <table data-page-length="-1" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="pure-table-odd">
-                                        <th > No</th>
+                                        <th>#</th>
                                         <th  class="text-center">Nama UPT</th>
                                         <th  class="text-center">Cakupan</th>
                                         <th  class="text-center">Lokasi</th>
@@ -66,7 +66,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data_pelatihan as $lat) : ?>
                                         <tr>
-                                            <th scope="row"><?= $i; ?></th>
+                                            <th scope="row"><small><center>  <?= $i; ?></center></small> </th>
                                             <td> <small> <?= $lat['nama_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['ket_upt']; ?> </small></td>
                                             <td> <small> <?= $lat['nama_kabupaten']; ?></small></td>

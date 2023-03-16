@@ -93,7 +93,7 @@
                                     <div class="form-group row">
                                         <label for="nama_pmi" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
-                                            <input required type="text" class="form-control" id="nama_pmi" placeholder="Masukkan Nama" name="nama_pmi" value="<?= $lokasi->nama_pmi ?>">
+                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama_pmi" value="<?= $lokasi->nama_pmi ?>">
                                             <?= form_error('nama_pmi', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@
                                     <div class="form-group row">
                                         <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tempat, Tgl Lahir</label>
                                         <div class="col-sm-4">
-                                            <input required type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" value="<?= $lokasi->tempat_lahir ?>" name="tempat_lahir">
+                                            <input required type="text" class="form-control" id="tempat_lahir" placeholder="Tempat Lahir" value="<?= $lokasi->tempat_lahir ?>" name="tempat_lahir" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('tempat_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
@@ -246,7 +246,7 @@
                                     <div class="form-group row">
                                         <label for="pengguna_jasa" class="col-sm-3 col-form-label">Nama Pengguna Jasa</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="pengguna_jasa" placeholder="Masukkan Nama Pengguna Jasa" name="pengguna_jasa" value="<?= $lokasi->pengguna_jasa ?>">
+                                            <input required type="text" class="form-control" id="pengguna_jasa" placeholder="Masukkan Nama Pengguna Jasa" name="pengguna_jasa" value="<?= $lokasi->pengguna_jasa ?>" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('pengguna_jasa', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

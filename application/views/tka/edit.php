@@ -114,7 +114,7 @@
                                     <div class="form-group row">
                                         <label for="nama_tka" class="col-sm-3 col-form-label ">Nama </small></label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="nama_tka" placeholder="Masukkan Nama " value="<?= $lokasi->nama_tka ?>" name="nama_tka">
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama " value="<?= $lokasi->nama_tka ?>" name="nama_tka">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                                     <div class="form-group row">
                                         <label for="no_rptka" class="col-sm-3 col-form-label">NO. RPTKA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" value="<?= $lokasi->no_rptka ?>">
+                                            <input type="text" class="form-control" id="no_rptka" placeholder="" name="no_rptka" value="<?= $lokasi->no_rptka ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('no_rptka', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">
@@ -191,7 +191,7 @@
                                     <div class="form-group row">
                                         <label for="no_imta" class="col-sm-3 col-form-label">NO. IMTA / *masa berlaku</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" value="<?= $lokasi->no_imta ?>">
+                                            <input type="text" class="form-control" id="no_imta" placeholder="" name="no_imta" value="<?= $lokasi->no_imta ?>" pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka">
                                             <?= form_error('no_imta', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="col-3">

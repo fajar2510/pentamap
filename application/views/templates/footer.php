@@ -219,6 +219,38 @@
         });
     </script>
 
+        <!-- VALIDASI FORM HANYA HURUF dan hanya angka  -->
+    <script type="text/javascript">
+        const inputNama = document.querySelector('#nama');
+
+        inputNama.addEventListener('input', () => {
+        const namaValue = inputNama.value;
+        const pattern = /^[a-zA-Z\s]*$/;
+
+        if (!pattern.test(namaValue)) {
+            inputNama.setCustomValidity('Format salah, Hanya gunakan Huruf');
+        } else {
+            inputNama.setCustomValidity('');
+        }
+        });
+
+
+        const nik = document.querySelector('#nik');
+       
+        
+        nik.addEventListener('input', () => {
+        const nik_value = nik.value;
+        const pattern = /^[0-9]*$/;
+
+        if (!pattern.test(nik_value) ) {
+            nik.setCustomValidity('Format NIK salah');
+        } else {
+            nik.setCustomValidity('');
+        }
+        });
+
+    </script>
+
     <!-- untuk memanggil id dari baris tabel yang ingin di hapus -->
     <script type="text/javascript">
         //Hapus Data

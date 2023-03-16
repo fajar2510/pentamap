@@ -197,7 +197,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input required type="text" class="form-control" id="name" placeholder="" name="name" value="<?= $user['name']; ?>">
+                                <input required type="text" class="form-control" id="nama" name="name" value="<?= $user['name']; ?>">
                                 <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -238,11 +238,11 @@
                         <div class="form-group row">
                             <label for="NIK/NIP" class="col-sm-3 col-form-label">NIK/NIP</label>
                             <div class="col-sm-4">
-                                <input  type="NIK" class="form-control" id="NIK" name="NIK" placeholder="NIK" value="<?= $user ['NIK']; ?>">
+                                <input  type="text" class="form-control" id="nik" name="NIK" placeholder="NIK" value="<?= $user ['NIK']; ?>">
                                 <?= form_error('NIK', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="col-sm-4">
-                                <input type="NIP" class="form-control" id="NIP" placeholder="NIP" name="NIP" value="<?= $user['NIP']; ?>">
+                                <input type="text" class="form-control" id="nip" placeholder="NIP" name="NIP" value="<?= $user['NIP']; ?>" pattern="/^[0-9]*$/" title="Format NIP salah">
                                 <?= form_error('NIP', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
@@ -256,7 +256,7 @@
                         <div class="form-group row">
                             <label for="kontak" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-5">
-                                <input  type="text" class="form-control" aria-describedby="uploadHelp1" id="kontak" placeholder="Nomor HP" name="kontak" value="<?= $user['kontak']; ?>">
+                                <input  type="text" class="form-control" aria-describedby="uploadHelp1" id="nohp" placeholder="Nomor HP" name="kontak" value="<?= $user['kontak']; ?>" maxlength="13" pattern="^[0-9]{10,13}$" title="Format Nomor salah, setidaknya ada 10 digit">
                                 <?= form_error('kontak', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

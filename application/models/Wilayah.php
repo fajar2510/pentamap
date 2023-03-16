@@ -16,9 +16,23 @@ class Wilayah extends CI_Model
    public function list_negara()
     {
         $query =
-            "SELECT * 
-             FROM tb_negara 
-             ORDER BY tb_negara.nama_negara  ASC ";
+            // "SELECT * 
+            //  FROM tb_negara 
+            //  ORDER BY tb_negara.nama_negara  ASC ";
+
+            "SELECT nama_negara, id_negara, flag FROM tb_negara
+            ORDER BY 
+            CASE 
+                WHEN nama_negara = 'Malaysia' THEN 1 
+                WHEN nama_negara = 'Taiwan' THEN 2 
+                WHEN nama_negara = 'Hong Kong' THEN 3 
+                WHEN nama_negara = 'South Korea' THEN 4 
+                WHEN nama_negara = 'Japan' THEN 5 
+                WHEN nama_negara = 'Singapore' THEN 6 
+                WHEN nama_negara = 'Brunei' THEN 7 
+                WHEN nama_negara = 'Saudi Arab' THEN 8 
+                ELSE 9 
+            END, nama_negara ASC";
 
         return $this->db->query($query)->result_array();
     }

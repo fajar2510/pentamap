@@ -76,7 +76,8 @@
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-6">
-                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama">
+                                            <input required type="text" class="form-control" id="nama" placeholder="Masukkan Nama" name="nama" >
+                                            <!-- pattern="[a-zA-Z]+" title="Input hanya boleh menggunakan huruf" -->
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -101,38 +102,6 @@
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group row">
-                                        <label for="jk" class="control-label col-sm-3"> </label>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_provinsi = 'class="form-control class="custom-select" input-sm" id="provinsi_id" name="provinsi"  onChange="tampilKabupaten()"';
-                                            echo form_dropdown('provinsi_id', $provinsi, '', $style_provinsi);
-                                            ?>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kabupaten = 'class="form-control class="custom-select" input-sm" name="kabupaten" id="kabupaten_id" onChange="tampilKecamatan()"';
-                                            echo form_dropdown("kabupaten_id", array('Pilih Kabupaten' => '- Pilih Kabupaten -'), '', $style_kabupaten);
-                                            ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="" class="control-label col-sm-3"></label>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kecamatan = 'class="form-control class="custom-select" input-sm" name="kecamatan" id="kecamatan_id" onChange="tampilKelurahan()"';
-                                            echo form_dropdown("kecamatan_id", array('Pilih Kecamatan' => '- Pilih Kecamatan -'), '', $style_kecamatan);
-                                            ?>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <?php
-                                            $style_kelurahan = 'class="form-control class="custom-select" input-sm" name="desa" id="kelurahan_id"';
-                                            echo form_dropdown("kelurahan_id", array('Pilih Kelurahan' => '- Pilih Kelurahan -'), '', $style_kelurahan);
-                                            ?>
-                                        </div>
-                                    </div>
-                                     -->
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup></label>
                                         <div class="col-3">
