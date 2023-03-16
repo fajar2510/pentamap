@@ -160,7 +160,7 @@
                     }
                     ?>
                     
-                    <p class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name']; ?></p>
+                    <p class="mr-2 d-none d-lg-inline text-black-700 small"><?= $user['name']; ?></p>
 
                
                     </right>
@@ -176,7 +176,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="<?= base_url(''); ?>" >
                             <i class="fas fa-solid fa-map fa-fw mr-2 text-gray-400"></i>
-                            Peta Penuh 
+                            Beranda 
                         </a>
                         <a class="dropdown-item" href="<?= base_url('user'); ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>

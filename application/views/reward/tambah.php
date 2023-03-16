@@ -32,7 +32,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-0"></div>
 
                     <div class="card-body">
-                        <div >
+                        <div  style="color:#5b5b5b;">
                             <form  id ="myForm" action="<?= base_url('reward/tambah'); ?>" method="post" >
                                 <div class="modal-body"> 
                                

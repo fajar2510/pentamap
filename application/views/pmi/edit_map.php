@@ -38,7 +38,7 @@
                             </a>
                     </div>
                     <div class="card-body">
-                        <div>
+                        <div  style="color:#5b5b5b;">
 
                             <form action="<?= base_url('pmi/edit_pmi/' . $lokasi->id); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
@@ -70,12 +70,12 @@
 
                                             <div class="form-group">
                                             <label for="latitude" style="padding-top:8px;" >Latitude</label>
-                                                <input type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $lokasi->latitude ?>" placeholder="Latitude. . .">                          
+                                                <input style="font-weight: bold;" type="text" id="lat" class="form-control" name="lat" readonly  value="<?= $lokasi->latitude ?>" placeholder="Latitude. . .">                          
                                                 <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             <div class="form-group">
                                             <label for="longitude" >Longitude</label>
-                                                <input type="text" id="long" class="form-control" name="long" readonly value="<?= $lokasi->longitude ?>" placeholder="Longitude. . .">
+                                                <input style="font-weight: bold;" type="text" id="long" class="form-control" name="long" readonly value="<?= $lokasi->longitude ?>" placeholder="Longitude. . .">
                                                 <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                         </div>

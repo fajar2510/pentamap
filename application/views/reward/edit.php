@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="card-body">
-                        <div>
+                        <div  style="color:#5b5b5b;">
                         <?php foreach ($edit_reward as $edit_reward): ?>
                             <form action="<?= base_url('reward/edit/' . $edit_reward ['id_reward']); ?>" method="post">
                             <div class="modal-body"> 

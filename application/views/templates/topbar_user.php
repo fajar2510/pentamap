@@ -35,7 +35,7 @@
                     </a>
                 <!-- <img src="<?php echo base_url() ?>assets/img/favicon/mapnav.png" alt="logo" width="55px" height="65"> -->
             <?php } ?>
-            <div class="sidebar-brand-text mx-3" style="font-weight: 500; font-size:14px;  text-align: left;">Aplikasi Pemetaan Geografis<br>
+            <div class="sidebar-brand-text mx-3" style="font-weight: bold; font-size:14px; color:#5b5b5b; text-align: left;">Aplikasi Pemetaan Geografis<br>
                  <p  style=" font-size:11px; ">Tenaga Kerja Jawa Timur</p>
             </div>
             <!-- Topbar Search -->
@@ -81,9 +81,9 @@
 
             <li class="nav-item no-arrow">
                 <?php if ($title == "Peta Tenaga Kerja") { ?>
-                    <a class="nav-link text-gray-900" href="home"><b>Peta</b></a>
+                    <a class="nav-link text-gray-900" href="home"><b>BERANDA</b></a>
                 <?php } else { ?>
-                    <a class="nav-link text-gray-600" href="home">Peta</a>
+                    <a class="nav-link text-gray-700" href="home">BERANDA</a>
                 <?php } ?>
             </li>
             <!-- <li class="nav-item no-arrow">
@@ -94,7 +94,7 @@
                 <?php } ?>
             </li> -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-gray-600" href="#" id="nakerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
+                <a class="nav-link dropdown-toggle text-gray-700" href="#" id="nakerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
                 Tenaga Kerja
                 </a>
             <!-- Dropdown - User Information -->
@@ -125,14 +125,14 @@
                 <?php if ($title == "Penghargaan") { ?>
                         <a class="nav-link text-gray-900" href="reward"><b>Penghargaan</b></a> 
                     <?php } else { ?>
-                        <a class="nav-link text-gray-600" href="reward">Penghargaan</a> 
+                        <a class="nav-link text-gray-700" href="reward">Penghargaan</a> 
                     <?php } ?>
             </li>
             <li class="nav-item no-arrow">
                 <?php if ($title == "Pelatihan Lokasi") { ?>
                         <a class="nav-link text-gray-900" href="pelatihan"><b>Pelatihan</b></a> 
                     <?php } else { ?>
-                        <a class="nav-link text-gray-600" href="pelatihan">Pelatihan</a> 
+                        <a class="nav-link text-gray-700" href="pelatihan">Pelatihan</a> 
                     <?php } ?>
             </li>
 
@@ -225,8 +225,8 @@
                 <?php }else{ ?>
                 <li class="nav-item no-arrow">
                     <a class="nav-item nav-link text-gray-600" href="<?= base_url('auth'); ?>">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Login
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-700"></i>
+                    <strong>LOGIN</strong>
                     </a> 
                 </li>
                 <?php } ?>

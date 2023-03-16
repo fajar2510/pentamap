@@ -153,14 +153,6 @@
         // memanggil map utama set view jawa timur 
         var map = L.map('mapp').setView([-7.330979640916379, 112.4936104206151], 8.5);
 
-
-        
-
-           
-
-        
-        
-
         // var osm_dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // });
@@ -196,7 +188,7 @@
             // maxZoom: 16,
             subdomains:['mt0','mt1','mt2','mt3']
             });
-            googleSat.addTo(map);
+        googleSat.addTo(map);
 
         // Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
         //     attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -672,6 +664,7 @@
             "OSM Clean": osmOnlyLabel,
             "Google Satellite":googleSat,
             "Google Street":googleStreets,
+            
             // "OpenStreetMap": osm,
         };
         var layer_baseControl= L.control.layers(baseLayers, overlays).addTo(map);
@@ -685,9 +678,9 @@
                     return {
                         opacity: 0.4,
                         color: '<?= $value['warna'] ?>',
-                        // fillColor: '<?= $value['warna'] ?>',
-                        fillColor: 'white',
-                        fillOpacity: 0.5,
+                        fillColor: '<?= $value['warna'] ?>',
+                        // fillColor: 'white',
+                        fillOpacity: 0.2,
                         interactive: true,
                         }    
                 },

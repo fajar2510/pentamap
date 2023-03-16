@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> Pengguna</h1>
+    <h4 style="font-weight: semi-bold; color:#5b5b5b;"><?= $title; ?> Pengguna</h4>
 
     <?php if (validation_errors()) : ?>
         <div class="alert alert-danger" role="alert">
@@ -33,20 +33,20 @@
                             </button> -->
                         </div>
                 </div>
-                <p class="my-2 mb-0" style = " font-size:20px;"> <b><?= $user['name']; ?></b> </p>
-                <p class="text-muted mb-0 "> <small> <i><?php if ($user['jenis_kelamin'] == 'L') {
+                <p class="my-2 mb-0" style ="font-size:20px; color:#5b5b5b;"> <b><?= $user['name']; ?></b> </p>
+                <p class="mb-0 "> <small> <i><?php if ($user['jenis_kelamin'] == 'L') {
                                                             echo 'Laki-laki';
                                                         } else if ($user['jenis_kelamin'] == 'P'){ 
                                                             echo 'Perempuan';
                                                         } else 
                                                             echo '<small?><i> belum disebutkan </i> </small>'
                                                          ?> &nbsp; </i></small></p>
-                <p class="text-muted mb-4"><?= $user['jabatan']; ?></p>
+                <p class="mb-4"><?= $user['jabatan']; ?></p>
                 <div class="card mb-4">
                 
-                <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary">Edit Profile</button>
+                <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary" style="font-weight:bold;">Edit Profile</button>
                
-                <button type="button" data-toggle="modal" data-target="#modalPassword" class="btn btn-light ms-1">Edit Password</button>
+                <button type="button" data-toggle="modal" data-target="#modalPassword" class="btn btn-light ms-1" style="font-weight:bold;">Edit Password</button>
                 </div>
             </div>
             </div>
@@ -55,8 +55,8 @@
         <div class="col-lg-8">
             <div class="card mb-4" >
                 <!-- <div class="card-body rounded float-left" style="background:url('assets/img/auth/disnakerlogo.png');  background-size:cover;  "> -->
-                <div class="card-body  "  style="color:#635f5f">    
-                <div class="row ">
+                <div class="card-body "  style="color:#5b5b5b;">    
+                <div class="row">
                     <div class="col-sm-3">
                         <p class="mb-0"><i class="fa-solid fa-user-graduate"></i>&nbsp; Nama Lengkap</p>
                     </div>
@@ -193,7 +193,7 @@
                 </div>
                 
                 <form action="<?= base_url('user/edit/' . $user['id']); ?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
+                    <div class="modal-body"  style="color:#5b5b5b;">
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-8">
