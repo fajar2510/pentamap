@@ -348,7 +348,7 @@
         border: 0px solid #000;
         color: #2C3333;
         font-weight:bold;
-        font-size: 80%;
+        font-size: 100%;
         white-space: nowrap;
         -webkit-user-select: none;
         -moz-user-select: none;

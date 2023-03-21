@@ -678,9 +678,9 @@
                     return {
                         opacity: 0.4,
                         color: '<?= $value['warna'] ?>',
-                        fillColor: '<?= $value['warna'] ?>',
-                        // fillColor: 'white',
-                        fillOpacity: 0.2,
+                        // fillColor: '<?= $value['warna'] ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.3,
                         interactive: true,
                         }    
                 },
@@ -803,9 +803,9 @@
                             }).addTo(map).bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b></center>", {
                               // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
                                 permanent: true,
-                                size: 8,
+                                size: 12,
                                 direction: 'bottom',
-                                opacity: 0.65,
+                                opacity: 1,
                                 sticky: false,
                                 className: 'leaflet-tooltip-own'
                         });
