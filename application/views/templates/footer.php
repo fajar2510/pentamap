@@ -219,37 +219,7 @@
         });
     </script>
 
-        <!-- VALIDASI FORM HANYA HURUF dan hanya angka  -->
-    <script type="text/javascript">
-        const inputNama = document.querySelector('#nama');
-
-        inputNama.addEventListener('input', () => {
-        const namaValue = inputNama.value;
-        const pattern = /^[a-zA-Z\s]*$/;
-
-        if (!pattern.test(namaValue)) {
-            inputNama.setCustomValidity('Format salah, Hanya gunakan Huruf');
-        } else {
-            inputNama.setCustomValidity('');
-        }
-        });
-
-
-        const nik = document.querySelector('#nik');
-       
-        
-        nik.addEventListener('input', () => {
-        const nik_value = nik.value;
-        const pattern = /^[0-9]*$/;
-
-        if (!pattern.test(nik_value) ) {
-            nik.setCustomValidity('Format NIK salah');
-        } else {
-            nik.setCustomValidity('');
-        }
-        });
-
-    </script>
+     
 
     <!-- untuk memanggil id dari baris tabel yang ingin di hapus -->
     <script type="text/javascript">
@@ -457,228 +427,29 @@
         }).addTo(map);
 
 
-        </script>
-
-     <!-- script MAP MAP TENAGA KERJA JATIM utama -->
-    <!-- <script type="text/javascript">
-        // var L = window.L;
-
-       
-        var curLocation = [0,0];
-        if (curLocation[0] == 0 && curLocation[1]==0) {
-        curLocation = [-7.6709737, 113.3288216];
-        }
-
-        var map = L.map('mapp').setView([-7.6709737, 113.3288216], 8.5);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            
-        }).addTo(map);
-        
-
-        map.attributionControl.setPrefix(false);
-        
-        // L.marker([50.5, 30.5]).addTo(map);
-
-        var marker = new L.marker(curLocation, {
-            draggable: 'true'
-        });
-
-        marker.on('dragend', function(event) {
-        var position = marker.getLatLng();
-        marker.setLatLng(position, {
-            draggable : 'true'
-        }).bindPopup(position).update();
-        $("#lat").val(position.lat); 
-        $("#long").val(position.lng).keyup(); 
-        });
-
-        $("#lat, #long").change(function()  {
-        var position = [parseInt($("#lat").val()),parseInt($("#long").val()) ];
-        marker.setLatLng(position, {
-            draggable : 'true'
-        }).bindPopup(position).update();
-        map.panTo(position); 
-        });
-
-        map.addLayer(marker);
-
-        // Google Map API
-        googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
-            maxZoom: 20,
-            subdomains:['mt0','mt1','mt2','mt3']
-        });
-        googleStreets.addTo(map)
-
-         //  jawa timur polygon geo json
-        $.getJSON("<?= base_url('assets/'); ?>geojson/jatim-polygon.geojson", function(data) {
+        //  jawa timur polygon geo json
+        <?php foreach ($kabupaten as $key => $value) { ?>
+        $.getJSON("<?= base_url('assets/geojson/kabupaten-jatim/' . $value['geojson']) ?>", function(data) {
             geoLayer = L.geoJson(data,  {
                 style : function(feature) {
                     return {
-                        opacity: 0.7,
-                        color: '#293462',
-                        fillColor: '#293462',
-                        fillOpacity: 0.3,
+                        opacity: 0.3,
+                        color: '<?= $value['warna'] ?>',
+                        // fillColor: '<?= $value['warna'] ?>',
+                        fillColor: 'white',
+                        fillOpacity: 0.1,
+                        interactive: true,
                         }    
-                 },
-            }).addTo(map);
-            geoLayer.eachLayer(function (layer) {
-                layer.bindPopup("Jawa Timur");
-            });
+                },
+            }). addTo(map);
+   
         });
- 
+        <?php } ?>
+        //batas function
 
-        $.getJSON("<?= base_url() ?>beranda/kabupaten", function(data) {
-            $.each(data, function(i, field) {
-
-                var leafleticon = L.icon({
-                    iconUrl: 'assets/img/logo_kab/' + data[i].logo_kab,
-                    iconSize: [48, 48]
-                })
-                
-                var lat = parseFloat(data[i].kabupaten_lat);
-                var long = parseFloat(data[i].kabupaten_long);
-
-                var phk = data[i].jumlah_phk;
-                var pmib = data[i].jumlah_pmib;
-                var pmi = data[i].jumlah_pmi;
-                var tka = data[i].jumlah_tka;
-                var logo = data[i].logo_kab;
-
-                if (phk == "0") {
-                    phk = parseInt("0");
-                } else {
-                    phk = parseInt(data[i].jumlah_phk);
-                    var circle = L.circle([long, lat], 14000, {
-                        color: '#D61C4E',
-                        fillOpacity: 0.5
-                    }).addTo(map);
-                    // circle.bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                    // "</b></u><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>Gelombang Merah (PHK) :  <span class='badge badge-danger badge-pill'> "  + phk + " </span></ul> ");
-                    // circle.openPopup().bindTooltip("<u><b><center>" + data[i].nama_kabupaten +
-                    // "</b></u><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>Gelombang Merah (PHK) :  <span class='badge badge-danger badge-pill'> "  + phk + " </span></ul> ", {
-                    //     permanent: false,
-                    //     iconAnchor: [122,65],
-                    //     popupAnchor: [-35, -55],
-                    //     direction: 'left',
-                    //     opacity: 0.9
-                    //   });
-                }
-                if (pmib == "0") {
-                    pmib = parseInt("0");
-                } else {
-                    pmib = parseInt(data[i].jumlah_pmib);
-                    var circle = L.circle([long, lat], 16000, {
-                        color: '#FEDB39',
-                        fillColor: '#FEDB39',
-                        fillOpacity: 0.5
-                    }).addTo(map);
-                }
-                if (pmi == "0") {
-                    pmi = parseInt("0");
-                } else {
-                    pmi = parseInt(data[i].jumlah_pmi);
-                    var circle = L.circle([long, lat], 10000, {
-                        color: '#0096FF',
-                        fillColor: '#0096FF',
-                        fillOpacity: 0.5
-                    }).addTo(map);
-                }
-                if (tka == "0") {
-                    tka = parseInt("0");
-                } else {
-                    tka = parseInt(data[i].jumlah_tka);
-                    var circle = L.circle([long, lat], 12000, {
-                        color: '#3CCF4E',
-                        fillOpacity: 0.5
-                    }).addTo(map);
-                }
-                if (jumlah == '' || null) {
-                    jumlah = 0;
-                } else {
-                    jumlah = parseInt(data[i].jumlah_phk);
-                }
-
-                var jumlah = phk + pmib + pmi + tka;
-                bangunanMarker = L.marker([long, lat], {
-                        icon: leafleticon,
-                        title: "Kabupaten/kota",
-                            }).addTo(map)
-                            .bindPopup("<u><b><center>" + data[i].nama_kabupaten +
-                            "</b></u><br><br><ul class='list-group'><li class='list-group-item d-flex justify-content-between align-items-center p-2'>ter-PHK<span class='badge badge-danger badge-pill'>" + phk + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>CPMI<span class='badge badge-success badge-pill'>" + tka + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>PMI-Bermasalah<span class='badge badge-warning badge-pill'>" + pmib + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center p-2'>TKA (Asing)<span class='badge badge-info badge-pill'>" + pmi + "</span></li><li class='list-group-item d-flex justify-content-between align-items-center px-2 font-weight-bold'><b>TOTAL</b><span class='badge badge-dark badge-pill'>" + jumlah + "</span></li></ul>" +
-                                "<br><button type='button' onclick='btn_lp()' class='btn btn-sm btn btn-light listp' data-id='"+data[i].id_kabupaten+"'><b>Rincian Perusahaan</b></button>")
-                            .openPopup().bindTooltip("<center><b>"+data[i].nama_kabupaten+"</b><br> <b>  ("+ jumlah +") </b> orang </center>", {
-                              // .openPopup().bindTooltip("<b>"+data[i].nama_kabupaten+"</b><br> ("+data[i].id_kabupaten+") aktif", {
-                                permanent: true,
-                                direction: 'bottom',
-                                opacity: 0.9,
-                                sticky: false,
-                                // pane: 'tooltipPane',
-                                // className: 'leaflet-tooltip-own' .
-                        });
-            });
-        });
-
-       
-
-        
+        </script>
 
 
-         /*Legend specific*/
-        var legend = L.control({ position: "bottomright" });
-
-        legend.onAdd = function(map) {
-          var div = L.DomUtil.create("div", "legend");
-          div.innerHTML += "<h4>Legenda Peta Tenaga Kerja Jatim</h4>";
-          div.innerHTML += '<svg height="25" width="100%"><line x1="10" y1="10" x2="40" y2="10" style="stroke:peru; stroke-width:2;"/><text x="59" y="15" style="font-family:sans-serif; font-size=16px;">Garis Batas Wilayah Jawa Timur</text>]</svg>';
-          div.innerHTML += '<br> <svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#D61C4E" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja ter-PHK</text></svg> ';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#FEDB39" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">PMI Bermasalah (PMIB)</text></svg>';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#0096FF" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Calon Pekerja Migran Indonesia (CPMI)</text></svg>';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="green" opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Asing (TKA)</text></svg> ';
-          div.innerHTML += '<br><svg height="25" width="100%"><circle cx="25" cy="10" x1="10" y1="10" x2="40" y2="10" r="7" stroke="grey" stroke-width="1" fill="#3CCF4E opacity="70%"/> <text x="60" y="15" style="font-family:roboto; font-size=16px;">Tenaga Kerja Daerah</text></svg>';
-          // div.innerHTML += ' <br><i class="icon" style="background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/194515-200.png);background-repeat: no-repeat;"></i><span>SIG</span><br>';
-
-          return div;
-        };
-        legend.addTo(map);
-
-        // standart zoom view jatim first load
-        map.locate({setView: true, maxZoom: 16});
-        
-        // map search 
-        L.control.search({
-          url: 'search.php?q={s}',
-          textPlaceholder: 'Color...',
-          position: 'topright',
-          hideMarkerOnCollapse: true,
-          marker: {
-            icon: new L.Icon({iconUrl:'data/custom-icon.png', iconSize: [20,20]}),
-            circle: {
-              radius: 20,
-              color: '#0a0',
-              opacity: 1
-            }
-          }
-        }).addTo(map);
-
-
-        // full screen map
-        // create a fullscreen button and add it to the map
-        L.control.fullscreen({
-          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, default topleft
-          title: 'Show me the fullscreen !', // change the title of the button, default Full Screen
-          titleCancel: 'Exit fullscreen mode', // change the title of the button when fullscreen is on, default Exit Full Screen
-          content: null, // change the content of the button, can be HTML, default null
-          forceSeparateButton: true, // force separate button to detach from zoom buttons, default false
-          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
-          fullscreenElement: false // Dom element to render in full screen, false by default, fallback to map._container
-        }).addTo(map);
-
-        
-       
-    </script> -->
 
     
 
@@ -732,14 +503,6 @@
                 text.style.display = "none";
             }
           }
-
-          // fungsi tampil lebih banyak data table di tabel
-          // $(document).ready(function() {                   // function error jangan di jalankan yaa
-          //     $('#dataTable').dataTable({
-          //         "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-          //         "iDisplayLength": 25
-          //     });
-          // } );
 
     </script>
 
@@ -815,6 +578,72 @@
         $(".preloader").fadeOut();
         })
     </script>
+
+     <!-- VALIDASI FORM HANYA HURUF dan hanya angka  -->
+    <script type="text/javascript">
+        const inputNama = document.querySelector('#nama');
+
+        inputNama.addEventListener('input', () => {
+        const namaValue = inputNama.value;
+        const pattern = /^[a-zA-Z\s]*$/;
+
+        if (!pattern.test(namaValue)) {
+            inputNama.setCustomValidity('Format salah, Hanya gunakan Huruf');
+        } else {
+            inputNama.setCustomValidity('');
+        }
+        });
+
+        // validasi NIK, angka dan jumlah karakter
+        const nik = document.querySelector('#nik');
+       
+        
+        nik.addEventListener('input', () => {
+        const nik_value = nik.value;
+        const pattern = /^[0-9]*$/;
+
+        if (!pattern.test(nik_value) ) {
+            nik.setCustomValidity('Format NIK salah');
+        } else {
+            nik.setCustomValidity('');
+        }
+        });
+
+    </script>
+
+    <!-- untuk dinamis selection -->
+    <script>
+    function handleChangeBerangkat(select) {
+        if (select.value === 'Lainnya') {
+        document.getElementById('berangkatInput').style.display = 'block';
+        } else {
+        document.getElementById('berangkatInput').style.display = 'none';
+        }
+    }
+
+    function handleChangeLama(select) {
+        if (select.value === '11') {
+        document.getElementById('lamaInput').style.display = 'block';
+        } else {
+        document.getElementById('lamaInput').style.display = 'none';
+        }
+    }
+    function handleChangeJenis(select) {
+        if (select.value === 'Lainnya') {
+        document.getElementById('jenisInput').style.display = 'block';
+        } else {
+        document.getElementById('jenisInput').style.display = 'none';
+        }
+    }
+    function handleChangeJabatan(select) {
+        if (select.value === 'Lainnya') {
+        document.getElementById('jabatanInput').style.display = 'block';
+        } else {
+        document.getElementById('jabatanInput').style.display = 'none';
+        }
+    }
+    </script>
+
 
     
     

@@ -58,14 +58,18 @@
                                                 <label class="custom-file-label" for="image">Pilih Gambar</label>
                                             </div>
 
+                                            <?php 
+                                            $defaultLat = -7.5409737;
+                                            $defaultLong = 112.5288216;
+                                            ?>
                                             <div class="form-group">
                                             <label for="latitude" style="padding-top:8px;" >Latitude</label>
-                                                <input style="font-weight: bold;" type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          
+                                                <input style="font-weight: bold;" type="text" id="lat" class="form-control" name="lat" readonly  value="<?php echo $defaultLat ?>" placeholder="Latitude. . .">                          
                                                 <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             <div class="form-group">
                                             <label for="longitude" >Longitude</label>
-                                                <input style="font-weight: bold;" type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                                <input style="font-weight: bold;" type="text" id="long" class="form-control" name="long" readonly value="<?php echo $defaultLong ?>" placeholder="Longitude. . .">
                                                 <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                         </div>
@@ -124,6 +128,7 @@
                                         <label for="negara" class="col-sm-3 col-form-label ">Kewarganegaraan </small></label>
                                         <div class="col-sm-5">
                                             <select required name="negara" id="negara" class="form-control">
+                                                <option value="">~ Pilih Kewarganegaraan ~</option>
                                                 <?php foreach ($negara as $n) : ?>
                                                     <option value="<?= $n['id_negara']; ?>"> <?= $n['nama_negara']; ?> </option>
                                                 <?php endforeach; ?>
@@ -136,7 +141,21 @@
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="">
+                                        <select required class="custom-select" name="jabatan" id="jabatan" onchange="handleChangeJabatan(this)">
+                                                <option value="">~ Pilih Jabatan ~</option>
+                                                <option value="Manager/Senior Manager">Manager/Senior Manager</option>
+                                                <option value="Supervisor/Koordinator">Supervisor/Koordinator</option>
+                                                <option value="Teknisi/Operator">Teknisi/Operator</option>
+                                                <option value="Montir/Mekanik">Montir/Mekanik</option>
+                                                <option value="Pekerja Kontruksi">Pekerja Kontruksi</option>
+                                                <option value="Lainnya">Lainnya</option>
+                                            </select>
+                                            <div id="jabatanInput" style="display: none; padding-top:10px;">
+                                                <!-- <label for="berangkat_lainnya">Lainnya:</label> -->
+                                                <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Silahkan isi. . .">
+                                               
+                                            </div>
+                                            <!-- <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value=""> -->
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

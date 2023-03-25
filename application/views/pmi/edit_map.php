@@ -114,9 +114,6 @@
                                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
-
-                                
-                 
                                     
                                     <div class="form-group row">
                                         <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir / <sup>*umur</sup> </label>
@@ -143,8 +140,6 @@
                                         </div>
                                     </div>
                                     
-
-                                   
                                     <div class="form-group row">
                                         <label for="negara" class="col-sm-3 col-form-label">Negara Bekerja</label>
                                         <div class="col-sm-4">
@@ -163,6 +158,24 @@
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-5">
+                                        <!-- <select required class="custom-select" name="jenis" id="jenis" onchange="handleChangeJenis(this)">               
+                                                <option value="Asisten Rumah Tangga"<?php if($lokasi->jenis_pekerjaan=="Asisten Rumah Tangga"){echo "selected";} ?>>Asisten Rumah Tangga</option>
+                                                <option value="Buruh Pabrik"<?php if($lokasi->jenis_pekerjaan=="Buruh Pabrik"){echo "selected";} ?>>Buruh Pabrik</option>
+                                                <option value="Tukang Bangunan"<?php if($lokasi->jenis_pekerjaan=="Tukang Bangunan"){echo "selected";} ?>>Tukang Bangunan</option>
+                                                <option value="Restoran"<?php if($lokasi->jenis_pekerjaan=="Restoran"){echo "selected";} ?>>Restoran</option>
+                                                <option value="Tenaga Kesehatan"<?php if($lokasi->jenis_pekerjaan=="Tenaga Kesehatan"){echo "selected";} ?>>Tenaga Kesehatan</option>
+                                                <option value="jenisLainnya" <?php if($lokasi->jenis_pekerjaan != "jenisLainnya" ) { echo "selected";   } ?>>Lainnya</option>
+                                        </select>
+                                                                                       
+                                        <?php if ($lokasi->jenis_pekerjaan == "jenisLainnya" ) : ?>
+                                            <div id="jenisInput" style="padding-top:10px;">
+                                                <input  type="text"  name="jenis" class="form-control" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jenis_pekerjaan; ?>">
+                                            </div>
+                                        <?php else: ?>
+                                            <div id="jenis" style="display: none; padding-top:10px;">
+                                                <input  type="text"  name="jenis" class="form-control" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
+                                            </div>
+                                        <?php endif; ?> -->
                                             <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $lokasi->jenis_pekerjaan ?>">
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -170,6 +183,35 @@
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
+                                        <!-- <select required class="custom-select" name="berangkat" id="berangkat" onchange="handleChangeBerangkat(this)">
+                              
+                                                <option value="Batam"<?php if($lokasi->berangkat_melalui=="Batam"){echo "selected";} ?>>Batam</option>
+                                                <option value="Serawak"<?php if($lokasi->berangkat_melalui=="Serawak"){echo "selected";} ?>>Serawak</option>
+                                                <option value="Pangkal Pinang"<?php if($lokasi->berangkat_melalui=="Pangkal Pinang"){echo "selected";} ?>>Pangkal Pinang</option>
+                                                <option value="Tanjung Pinang"<?php if($lokasi->berangkat_melalui=="Tanjung Pinang"){echo "selected";} ?>>Tanjung Pinang</option>
+                                                <option value="Tekong"<?php if($lokasi->berangkat_melalui=="Tekong"){echo "selected";} ?>>Tekong</option>
+                                                <option value="berangkatLainnya"<?php if($lokasi->jenis_pekerjaan!= "Batam" && 
+                                                $lokasi->berangkat_melalui != "Serawak" && $lokasi->berangkat_melalui != "Pangkal Pinang" 
+                                                && $lokasi->berangkat_melalui != "Tanjung Pinang" && $lokasi->berangkat_melalui != "Tekong"){echo "selected";} ?>>Lainnya</option>
+                                   
+                                        </select>
+
+                                        <?php if (
+                                            $lokasi->berangkat_melalui == "Batam" || 
+                                            $lokasi->berangkat_melalui == "Serawak" || 
+                                            $lokasi->berangkat_melalui == "Pangkal Pinang" || 
+                                            $lokasi->berangkat_melalui == "Tanjung Pinang" || 
+                                            $lokasi->berangkat_melalui == "Tekong"
+                                        ) : ?>
+                                            <div id="berangkatInput" style="display: none; padding-top:10px;">
+                                                <input type="text" name="berangkat" id="berangkat" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
+                                            </div>
+                                        <?php else : ?>
+                                            <div id="berangkatInput" style="padding-top:10px;">
+                                                <input type="text" name="berangkat" id="berangkat" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->berangkat_melalui; ?>">
+                                            </div>
+                                        <?php endif; ?> -->
+
                                             <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $lokasi->berangkat_melalui ?>">
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
@@ -177,14 +219,39 @@
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= $lokasi->pengirim ?>">
+                                            <input required type="text" class="form-control" id="pengirim" placeholder="PT." name="pengirim" value="<?= $lokasi->pengirim ?>"  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lama" class="col-sm-3 col-form-label">Lama Bekerja</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $lokasi->lama_bekerja ?>">
+
+                                        <select required class="custom-select" name="lama" id="lama" class="form-control" onchange="handleChangeLama(this)">
+                                            <?php
+                                            for ($i=1; $i<=10; $i++) {
+                                                $selected = ($i == $lokasi->lama_bekerja) ? 'selected' : '';
+                                                echo "<option value='$i' $selected> $i tahun </option>";
+                                            }
+                                            ?>
+                                            <?php if ($lokasi->lama_bekerja > 10) : ?>
+                                                <option value="11" selected> Lebih dari 10 tahun </option>
+                                            <?php endif; ?>
+                                        </select>
+
+                                        <?php if ($lokasi->lama_bekerja > 10) : ?>
+                                            <div id="lamaInput" style="padding-top:10px; width:100px;">
+                                                <input required  type="text"  name="lama1" id="1lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>" onchange="checkValueLama()">
+                                                <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
+                                            </div>
+                                        <?php else: ?>
+                                            <div id="lamaInput" style="display: none; padding-top:10px; width:100px;">
+                                                <input required  type="text"  name="lama11" id="2lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" onchange="checkValueLama()">
+                                                <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
+                                            </div>
+                                        <?php endif; ?>
+
+                                            <!-- <input required type="text" class="form-control" id="lama" placeholder="x tahun x bulan" name="lama" value="<?= $lokasi->lama_bekerja ?>"> -->
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>

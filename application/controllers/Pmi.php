@@ -37,7 +37,9 @@ class Pmi extends CI_Controller
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['pmi'] = $this->Master->get_PMI();
 
-        $data['negara'] = $this->Penempatan->getnegarapmi();
+        // $data['negara'] = $this->Penempatan->getnegarapmi();
+        $data['negara'] = $this->Wilayah->list_negara();
+
         // echo "<pre>";
         // var_dump($data['negara']); die;
 
@@ -72,7 +74,9 @@ class Pmi extends CI_Controller
         $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
         //load data negara
-        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['negara'] = $this->Wilayah->list_negara();
+
+        // $data['negara'] = $this->db->get('tb_negara')->result_array();
         // Load model PMI
         $data['pmi'] = $this->Master->getPmiJoinWilayah();
         // $data['foto'] = $this->Master->get_foto($id);
@@ -180,7 +184,9 @@ class Pmi extends CI_Controller
         $data['lok'] = $this->Penempatan->getTotalLokal();
         $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
-        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        // $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['negara'] = $this->Wilayah->list_negara();
+
 
         // $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
         $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
@@ -282,7 +288,9 @@ class Pmi extends CI_Controller
         $data['lok'] = $this->Penempatan->getTotalLokal();
         $data['disabilitas'] = $this->Penempatan->getTotalDisabilitas();
 
-        $data['negara'] = $this->db->get('tb_negara')->result_array();
+        // $data['negara'] = $this->db->get('tb_negara')->result_array();
+        $data['negara'] = $this->Wilayah->list_negara();
+
 
         // $data['provinsi_select'] = $this->db->get('provinsi')->result_array();
         $data['kabupaten'] = $this->db->get('kabupaten')->result_array();
@@ -308,11 +316,12 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('kabupaten', 'Kabupaten/kota', 'required|trim');
         // $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
         // $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
-        $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
-        $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required');
+        // $this->form_validation->set_rules('jenis-select', 'Jenis Pekerjaan');
+        $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan','required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
-        $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
-        $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
+        $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required');
+        $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required');
         // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
@@ -335,6 +344,7 @@ class Pmi extends CI_Controller
                 // 'kecamatan' => $this->input->post('kecamatan', true),
                 // 'desa' => $this->input->post('kelurahan_id', true),
                 'negara_bekerja' => $this->input->post('negara', true),
+                // 'jenis_pekerjaan' => $this->input->post('jenis-select', true),
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),

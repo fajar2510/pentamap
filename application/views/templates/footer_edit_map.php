@@ -381,10 +381,10 @@
                 style : function(feature) {
                     return {
                         opacity: 0.2,
-                        color: 'gray',
+                        color: '<?= $value->warna ?>',
                         // fillColor: '<?= $value->warna ?>',
                         fillColor: 'white',
-                        fillOpacity: 0.3,
+                        fillOpacity: 0.1,
                         interactive: false,
                         }    
                  },
@@ -550,6 +550,44 @@
         $(document).ready(function(){
         $(".preloader").fadeOut();
         })
+    </script>
+
+<script>
+
+    // function handleChangeBerangkat(select) {
+    //     const berangkatMelalui = "berangkatLainnya";
+    //     if (select.value === berangkatMelalui ) {
+    //         document.getElementById('berangkatInput').style.display = 'block';
+    //     } else {
+    //         document.getElementById('berangkatInput').style.display = 'none';
+    //     }
+    // }
+
+    // function handleChangeJenis(select) {
+    //     const jenisKerja = "jenisLainnya";
+
+    //     if (select.value === jenisKerja) {
+    //     document.getElementById('jenisInput').style.display = 'block';
+    //     } else {
+    //     document.getElementById('jenisInput').style.display = 'none';
+      
+    //     }
+
+    // }
+    function handleChangeLama(select) {
+        if (select.value  > 10) {
+        document.getElementById('lamaInput').style.display = 'block';
+        } else {
+        document.getElementById('lamaInput').style.display = 'none';
+        }
+    }
+    function handleChangeJabatan(select) {
+        if (select.value === (document.querySelectorAll("#jabatan").value)) {
+        document.getElementById('jabatanInput').style.display = 'block';
+        } else {
+        document.getElementById('jabatanInput').style.display = 'none';
+        }
+    }
     </script>
     
 

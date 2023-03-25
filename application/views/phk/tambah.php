@@ -51,14 +51,18 @@
                                                 <label class="custom-file-label" for="image">Pilih Gambar</label>
                                             </div>
 
+                                            <?php 
+                                            $defaultLat = -7.5409737;
+                                            $defaultLong = 112.5288216;
+                                            ?>
                                             <div class="form-group">
                                             <label for="latitude" style="padding-top:8px;" >Latitude</label>
-                                                <input style="font-weight: bold;" type="text" id="lat" class="form-control" name="lat" readonly  value="" placeholder="Latitude. . .">                          
+                                                <input style="font-weight: bold;" type="text" id="lat" class="form-control" name="lat" readonly  value="<?php echo $defaultLat ?>" placeholder="Latitude. . .">                          
                                                 <?= form_error('latitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                             <div class="form-group">
                                             <label for="longitude" >Longitude</label>
-                                                <input style="font-weight: bold;" type="text" id="long" class="form-control" name="long" readonly value="" placeholder="Longitude. . .">
+                                                <input style="font-weight: bold;" type="text" id="long" class="form-control" name="long" readonly value="<?php echo $defaultLong ?>" placeholder="Longitude. . .">
                                                 <?= form_error('longitude', '<small class="text-danger pl-3">', '</small>'); ?>
                                             </div>
                                         </div>

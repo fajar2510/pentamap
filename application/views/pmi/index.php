@@ -318,7 +318,7 @@
                                 </div>
                                 <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Lama bekerja </label>
-                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['lama_bekerja']; ?></label>
+                                    <label for="name" class="col-sm-8 col-form-label">: &nbsp;<?= $p['lama_bekerja']; ?> tahun</label>
                                 </div>
                                 <!-- <div class="row">
                                     <label for="name" class="col-sm-4 col-form-label">Status Aktif </label>
