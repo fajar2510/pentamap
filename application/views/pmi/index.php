@@ -130,7 +130,7 @@
                                 <th>#</th>
                                 <th>Tanggal</th>
                                 <th>Nama</th>
-                                <th>Alamat</th>
+                                <th>Kab/kota</th>
                                 <th>Negara Bekerja</th>
                                 <th>Aksi</th>
                             </tr>
@@ -155,7 +155,7 @@
                                                 // echo $umur->d;
                                                 // echo " Hari";
                                                 ?>)th</sup> </td>
-                                    <td ><small> <?= $p['nama_kabupaten']; ?>, <?= $p['alamat']; ?> </small></td>
+                                    <td ><small> <?= $p['nama_kabupaten']; ?></small></td>
                                     <td align="center"><?= $p['nama_negara']; ?>
                                     <img src="<?= base_url('assets/img/img-country-flag/') . $p['flag']; ?>"  class="img-fluid img-thumbnail" alt="Bendera" style="width: 100;" >
                                     </td>
@@ -163,21 +163,21 @@
                                         
                                         
                                         
-                                        <div class="btn-group">
+                                        <!-- <div class="btn-group"> -->
                                         <?php if ($is_admin == 1) { ?>
                                             <a href="<?= base_url('exportimport/export_pdf_kwitansi/') . $p['id']; ?>" target="_blank" class="btn btn-sm btn-success"><i class="fa-solid fa-clipboard"></i> Kwitansi</a>
                                         <?php } ?>
                                         <button type="button" class="btn btn-light px-1" data-toggle="modal" data-target="#modalInfo<?= $p['id']; ?>" class="btn btn-sm btn-success">  <i class="fa-solid fa-eye"></i></i></button>
                                         <?php if ($is_admin == 1) { ?>
-                                        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <!-- <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
-                                        <div class="dropdown-menu ">
+                                        <div class="dropdown-menu "> -->
                                             <!-- <a class="dropdown-item btn btn-sm btn-secondary" href="<?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-secondary">  <i class="fa fa-book btn-sm btn-secondary" aria-hidden="true"></i> Laporan</a> -->
-                                            <a class="dropdown-item btn btn-sm btn-warning" href="<?= base_url('pmi/edit_pmi/'). $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i> Edit</a>
-                                            <div class="dropdown-divider"></div>
-                                            <button type="button" class="dropdown-item btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i> Hapus</button>
-                                        </div>
+                                            <a class=" btn btn-sm btn-warning" href="<?= base_url('pmi/edit_pmi/'). $p['id']; ?>" class="btn btn-sm btn-warning " > <i class="fa fa-edit btn btn-sm btn-warning"></i></a>
+                                            <!-- <div class="dropdown-divider"></div> -->
+                                            <button type="button" class=" btn btn-sm btn-danger" data-toggle="modal" data-target="#modalHapus<?= $p['id']; ?>" class="btn btn-sm btn-danger"> <i class="fa fa-trash-alt btn btn-sm btn-danger"></i></button>
+                                        <!-- </div> -->
                                         <?php } ?>
 
                                         <!-- <a href=" <?= base_url('exportimport/pmi_negara/') . $p['negara_bekerja'] . '/' . $p['date_created']; ?>" target="_blank" class="btn btn-sm btn-light  "> lap. <i class="fa fa-book" aria-hidden="true"></i></i></a>

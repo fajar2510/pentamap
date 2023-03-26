@@ -140,41 +140,40 @@
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-5">
-                                            <!-- <select required class="custom-select" name="jenis" id="jenis" onchange="handleChangeJenis(this)">
-                                                <option value="">~ Pilih Pekerjaan ~</option>
+                                            <select required class="custom-select" name="jenis" id="jenis" onchange="handleChangeJenis(this)">
+                                                <option value="">~ Pilih Jenis Pekerjaan ~</option>
                                                 <option value="Asisten Rumah Tangga">Asisten Rumah Tangga</option>
                                                 <option value="Buruh Pabrik">Buruh Pabrik</option>
                                                 <option value="Tukang Bangunan">Tukang Bangunan</option>
                                                 <option value="Restoran">Restoran</option>
                                                 <option value="Tenaga Kesehatan">Tenaga Kesehatan</option>
-                                                <option value="Lainnya">Lainnya</option>
+                                                <option value="jenisLain">*Lainnya</option>
                                             </select>
-                                            <div id="jenisInput" style="display: none; padding-top:10px;">
-                                               
-                                                <input type="text" name="jenis" id="jenis" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
-                                               
-                                            </div> -->
-                                            <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>">
+                                            <div id="jenisBlok" style="display: none; padding-top:10px;">
+                                                <input type="text" name="jenis" id="jenisInput" class="form-control" 
+                                                placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
+                                            </div>
+                                            <!-- <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>"> -->
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                            <!-- <select required class="custom-select" name="berangkat" id="berangkat" onchange="handleChangeBerangkat(this)">
+                                            <select required class="custom-select" name="berangkat" id="berangkat" onchange="handleChangeBerangkat(this)">
                                                 <option value="">~ Pilih Berangkat Melalui ~</option>
                                                 <option value="Batam">Batam</option>
                                                 <option value="Serawak">Serawak</option>
                                                 <option value="Pangkal Pinang">Pangkal Pinang</option>
                                                 <option value="Tanjung Pinang">Tanjung Pinang</option>
                                                 <option value="Tekong">Tekong</option>
-                                                <option value="Lainnya">Lainnya</option>
+                                                <option value="Lainnya">*Lainnya</option>
                                             </select>
-                                            <div id="berangkatInput" style="display: none; padding-top:10px;">
-                                                <input type="text" name="berangkat" id="berangkat" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
+                                            <div id="berangkatBlok" style="display: none; padding-top:10px;">
+                                                <input type="text" name="berangkat" id="berangkatInput" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                                
-                                            </div> -->
-                                            <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat">
+                                            </div>
+                                            <!-- <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat"> -->
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -191,19 +190,22 @@
 
                                             <select required class="custom-select" name="lama" id="lama" class="form-control" onchange="handleChangeLama(this)">
                                                 <option value=""> ~ Pilih Lama Bekerja ~ </option>
-                                                <?php
-                                                for ($i=1; $i<=10; $i++) {
-                                                    echo "<option value='$i'> $i tahun </option>";
+                                                <?php 
+                                                for ($i=1; $i<=11; $i++) {
+                                                    if ($i <= 10) {
+                                                        echo "<option value='$i'> $i tahun </option>";
+                                                    } else {
+                                                        echo "<option value='$i'> lebih dari 10 tahun </option>";
+                                                    }
                                                 }
                                                 ?>
-                                                <option value="11"> Lebih dari 10 tahun </option>
+                                                <!-- <option value="Lainnya"> Lebih dari 10 tahun </option> -->
                                             </select>
-                                            <div id="lamaInput" style="display: none; padding-top:10px;">
+                                            <div id="lamaBlok" style="display: none; padding-top:10px; ">
                                                 <!-- <label for="berangkat_lainnya">Lainnya:</label> -->
-                                                <input type="text"  name="lama" id="lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" onchange="checkValueLama()">
+                                                <input type="text" style="width:180px;" name="lamaInput" id="lamaInput" class="form-control" placeholder="Silahkan isi . . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" >
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
-
                                             <!-- <input required type="text" class="form-control" id="lama" placeholder="" name="lama"> -->
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>

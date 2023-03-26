@@ -101,7 +101,10 @@ class Pmi extends CI_Controller
         $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
         $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
         $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
-        $this->form_validation->set_rules('lama', 'Lama Bekerja', 'required|trim');
+        // $this->form_validation->set_rules('lama', 'Lama Bekerja', 'trim');
+        $this->form_validation->set_rules('lamaInput', 'Lama Bekerja', 'trim');
+      
+        
         // $this->form_validation->set_rules('tanggal_data', 'Tanggal Data Inputan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
@@ -129,7 +132,8 @@ class Pmi extends CI_Controller
                 'jenis_pekerjaan' => $this->input->post('jenis', true),
                 'berangkat_melalui' => $this->input->post('berangkat', true),
                 'pengirim' => $this->input->post('pengirim', true),
-                'lama_bekerja' => $this->input->post('lama', true),
+                // 'lama_bekerja' => $this->input->post('lama', true),
+                'lama_bekerja' => $this->input->post('lamaInput', true),
                 'date_created' => date('Y-m-d'),
             ];
 

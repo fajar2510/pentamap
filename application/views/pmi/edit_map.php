@@ -241,12 +241,12 @@
 
                                         <?php if ($lokasi->lama_bekerja > 10) : ?>
                                             <div id="lamaInput" style="padding-top:10px; width:100px;">
-                                                <input required  type="text"  name="lama1" id="1lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>" onchange="checkValueLama()">
+                                                <input required  type="text"  name="lama" id="1lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>" onchange="checkValueLama()">
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
                                         <?php else: ?>
                                             <div id="lamaInput" style="display: none; padding-top:10px; width:100px;">
-                                                <input required  type="text"  name="lama11" id="2lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" onchange="checkValueLama()">
+                                                <input required  type="text"  name="lama" id="2lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" onchange="checkValueLama()">
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
                                         <?php endif; ?>

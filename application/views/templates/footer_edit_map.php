@@ -574,13 +574,54 @@
     //     }
 
     // }
-    function handleChangeLama(select) {
-        if (select.value  > 10) {
-        document.getElementById('lamaInput').style.display = 'block';
-        } else {
-        document.getElementById('lamaInput').style.display = 'none';
-        }
+    // function handleChangeLama(select) {
+    //     if (select.value  > 10) {
+    //     document.getElementById('lamaInput').style.display = 'block';
+    //     } else {
+    //     document.getElementById('lamaInput').style.display = 'none';
+    //     }
+    // }
+
+    // function handleChangeLama(select) {
+    //   const lamaInput = document.getElementById('lamaInput');
+    //   if (select.value > 10) {
+    //     lamaInput.style.display = 'block';
+    //     lamaInput.disabled = false;
+    //   } else {
+    //     lamaInput.style.display = 'none';
+    //     lamaInput.disabled = true;
+    //   }
+    // }
+
+    function handleChangeLama(selectElement) {
+    let lamaInput = document.getElementById("lamaInput");
+    if (selectElement.value > 10) {
+        lamaInput.style.display = "block";
+        lamaInput.required = true;
+        lamaInput.setAttribute('name', 'lama');
+    } else {
+        lamaInput.style.display = "none";
+        lamaInput.required = false;
+        lamaInput.setAttribute('name', '');
     }
+    }
+
+
+
+
+    function checkValueLama() {
+    var lamaInput = document.getElementById("lamaInput");
+    var lamaSelect = document.getElementById("lama");
+    if (lamaInput.value !== "") {
+        lamaSelect.value = "11";
+    } else {
+        lamaSelect.value = "";
+    }
+    }
+
+
+
+
     function handleChangeJabatan(select) {
         if (select.value === (document.querySelectorAll("#jabatan").value)) {
         document.getElementById('jabatanInput').style.display = 'block';
