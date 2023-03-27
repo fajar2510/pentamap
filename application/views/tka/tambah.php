@@ -141,18 +141,21 @@
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
-                                        <select required class="custom-select" name="jabatan" id="jabatan" onchange="handleChangeJabatan(this)">
+                                            <select required class="custom-select" name="jabatanSelect" id="jabatan" onchange="handleChangeJabatan(this)">
                                                 <option value="">~ Pilih Jabatan ~</option>
-                                                <option value="Manager/Senior Manager">Manager/Senior Manager</option>
-                                                <option value="Supervisor/Koordinator">Supervisor/Koordinator</option>
-                                                <option value="Teknisi/Operator">Teknisi/Operator</option>
-                                                <option value="Montir/Mekanik">Montir/Mekanik</option>
+                                                <option value="Manager">Manager</option>
+                                                <option value="Senior Manager">Senior Manager</option>
+                                                <option value="Supervisor">Supervisor</option>
+                                                <option value="Koordinator">Koordinator</option>
+                                                <option value="Teknisi">Teknisi</option>
+                                                <option value="Operator">Operator</option>
+                                                <option value="Mekanik">Mekanik</option>
                                                 <option value="Pekerja Kontruksi">Pekerja Kontruksi</option>
-                                                <option value="Lainnya">Lainnya</option>
+                                                <option value="jabLain">*Lainnya</option>
                                             </select>
-                                            <div id="jabatanInput" style="display: none; padding-top:10px;">
+                                            <div id="jabatanBlok" style="display: none; padding-top:10px;">
                                                 <!-- <label for="berangkat_lainnya">Lainnya:</label> -->
-                                                <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Silahkan isi. . .">
+                                                <input type="text" name="jabatan" id="jabatanInput" class="form-control" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
                                                
                                             </div>
                                             <!-- <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value=""> -->
@@ -211,4 +214,22 @@
     <!-- /.container-fluid -->
 
 </div>
+
+<script>
+    function handleChangeJabatan(selectElement) {
+    const jabatanBlok = document.getElementById("jabatanBlok");
+    const jabatanInput = document.getElementById("jabatanInput");
+    const jabatanSelect = document.getElementById("jabatan");
+        if (selectElement.value == "jabLain") {
+            jabatanBlok.style.display = "block";
+            jabatanInput.required = true;
+            jabatanInput.value = "";
+        } else {
+            jabatanBlok.style.display = "none";
+            jabatanInput.required = false;
+            // jabatanInput.setAttribute('name', '');
+            jabatanInput.value = jabatanSelect.value;
+        }
+    }
+</script>
 <!-- End of Main Content -->

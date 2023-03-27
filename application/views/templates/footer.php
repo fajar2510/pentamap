@@ -120,6 +120,7 @@
     <!-- date picker untuk tahun only -->
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> -->
 
 
 
@@ -594,78 +595,8 @@
         }
         });
 
-        // validasi NIK, angka dan jumlah karakter
-        // const nik = document.querySelector('#nik');
-       
-        
-        // nik.addEventListener('input', () => {
-        // const nik_value = nik.value;
-        // const pattern = /^[0-9]*$/;
-
-        // if (!pattern.test(nik_value) ) {
-        //     nik.setCustomValidity('Format NIK salah');
-        // } else {
-        //     nik.setCustomValidity('');
-        // }
-        // });
-
     </script>
 
-    <!-- untuk dinamis selection -->
-    <script type="text/javascript">
-
-    function handleChangeJenis(selectElement) {
-    const jenisBlok = document.getElementById("jenisBlok");
-    const jenisInput = document.getElementById("jenisInput");
-    const jenisSelect = document.getElementById("jenis");
-        if (selectElement.value == "jenisLain") {
-            jenisBlok.style.display = "block";
-            jenisInput.required = true;
-            jenisInput.value = "";
-        } else {
-            jenisBlok.style.display = "none";
-            jenisInput.required = false;
-            jenisInput.value = jenisSelect.value;
-        }
-    }
-
-    function handleChangeLama(selectElement) {
-    const lamaBlok = document.getElementById("lamaBlok");
-    const lamaInput = document.getElementById("lamaInput");
-    const lamaSelect = document.getElementById("lama");
-        if (selectElement.value > 10) {
-            lamaBlok.style.display = "block";
-            lamaInput.required = true;
-            lamaInput.value = "";
-            // lamaSelect.value = lamaInput.value;
-            // lamaInput.setAttribute('name', 'lama');
-        } else {
-            lamaBlok.style.display = "none";
-            lamaInput.required = false;
-            // lamaInput.setAttribute('name', '');
-            lamaInput.value = lamaSelect.value;
-        }
-    }
-
-    function handleChangeBerangkat(selectElement) {
-    const berangkatBlok = document.getElementById("berangkatBlok");
-    const berangkatInput = document.getElementById("berangkatInput");
-    const berangkatSelect = document.getElementById("berangkat");
-        if (selectElement.value == "Lainnya") {
-            berangkatBlok.style.display = "block";
-            berangkatInput.required = true;
-            berangkatInput.value = "";
-        } else {
-            berangkatBlok.style.display = "none";
-            berangkatInput.required = false;
-            // berangkatInput.setAttribute('name', '');
-            berangkatInput.value = berangkatSelect.value;
-        }
-    }
-    </script>
-
-
-    
     
 
     </body>

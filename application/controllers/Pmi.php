@@ -98,8 +98,8 @@ class Pmi extends CI_Controller
         // $this->form_validation->set_rules('kelurahan_id', 'Desa', 'required|trim');
         $this->form_validation->set_rules('kabupaten', 'Kabupaten/kota', 'required|trim');
         $this->form_validation->set_rules('negara', 'Negara Bekerja', 'required|trim');
-        $this->form_validation->set_rules('jenis', 'Jenis Pekerjaan', 'required|trim');
-        $this->form_validation->set_rules('berangkat', 'Keberangkatan melalui', 'required|trim');
+        $this->form_validation->set_rules('jenisInput', 'Jenis Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('berangkatInput', 'Keberangkatan melalui', 'required|trim');
         $this->form_validation->set_rules('pengirim', 'PT Pengirim', 'required|trim');
         // $this->form_validation->set_rules('lama', 'Lama Bekerja', 'trim');
         $this->form_validation->set_rules('lamaInput', 'Lama Bekerja', 'trim');
@@ -129,8 +129,8 @@ class Pmi extends CI_Controller
                 // 'desa' => $this->input->post('kelurahan_id', true),
                 'kabupaten' => $this->input->post('kabupaten', true),
                 'negara_bekerja' => $this->input->post('negara', true),
-                'jenis_pekerjaan' => $this->input->post('jenis', true),
-                'berangkat_melalui' => $this->input->post('berangkat', true),
+                'jenis_pekerjaan' => $this->input->post('jenisInput', true),
+                'berangkat_melalui' => $this->input->post('berangkatInput', true),
                 'pengirim' => $this->input->post('pengirim', true),
                 // 'lama_bekerja' => $this->input->post('lama', true),
                 'lama_bekerja' => $this->input->post('lamaInput', true),

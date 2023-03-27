@@ -150,8 +150,8 @@
                                                 <option value="jenisLain">*Lainnya</option>
                                             </select>
                                             <div id="jenisBlok" style="display: none; padding-top:10px;">
-                                                <input type="text" name="jenis" id="jenisInput" class="form-control" 
-                                                placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
+                                                <input type="text" name="jenisInput" id="jenisInput" class="form-control" 
+                                                placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
                                             </div>
                                             <!-- <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= set_value('jenis_pekerjaan'); ?>"> -->
                                             <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -170,7 +170,8 @@
                                                 <option value="Lainnya">*Lainnya</option>
                                             </select>
                                             <div id="berangkatBlok" style="display: none; padding-top:10px;">
-                                                <input type="text" name="berangkat" id="berangkatInput" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
+                                                <input type="text" name="berangkatInput" id="berangkatInput" class="form-control" placeholder="Silahkan isi. . ." 
+                                                pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
                                                
                                             </div>
                                             <!-- <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat"> -->
@@ -180,7 +181,7 @@
                                     <div class="form-group row">
                                         <label for="pengirim" class="col-sm-3 col-form-label">Pengirim</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="pengirim" placeholder="" name="pengirim" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
+                                            <input required type="text" class="form-control" id="pengirim" placeholder="Nama pengirim . . ." name="pengirim" pattern="[a-zA-Z]+" title="Hanya gunakan huruf">
                                             <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -195,7 +196,7 @@
                                                     if ($i <= 10) {
                                                         echo "<option value='$i'> $i tahun </option>";
                                                     } else {
-                                                        echo "<option value='$i'> lebih dari 10 tahun </option>";
+                                                        echo "<option value='$i'>*Lebih dari 10 tahun </option>";
                                                     }
                                                 }
                                                 ?>
@@ -203,14 +204,18 @@
                                             </select>
                                             <div id="lamaBlok" style="display: none; padding-top:10px; ">
                                                 <!-- <label for="berangkat_lainnya">Lainnya:</label> -->
-                                                <input type="text" style="width:180px;" name="lamaInput" id="lamaInput" class="form-control" placeholder="Silahkan isi . . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" >
+                                                <input type="number" min="11" style="width:180px;" name="lamaInput" id="lamaInput" class="form-control" placeholder="Silahkan isi . . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" >
+                                              
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
+                                            
                                             <!-- <input required type="text" class="form-control" id="lama" placeholder="" name="lama"> -->
                                             <?= form_error('lama', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                    
+                                   
+
                                 </div>
                                 <div class="modal-footer">
                                     <a href="<?= base_url('pmi'); ?>" class="btn btn-light btn-icon-split">
@@ -219,7 +224,7 @@
                                         </span>
                                         <span class="text">Batal</span>
                                     </a>
-                                    <button type="submit" class="btn btn-primary btn-icon-split">
+                                    <button type="submit" class="btn btn-primary btn-icon-split" >
                                         <span class="icon text-white-50">
                                             <i class="fas fa-save"></i>
                                         </span>
@@ -236,4 +241,87 @@
     </div>
     <!-- /.container-fluid -->
 </div>
+
+<!-- untuk dinamis selection -->
+<script type="text/javascript">
+
+function handleChangeJenis(selectElement) {
+const jenisBlok = document.getElementById("jenisBlok");
+const jenisInput = document.getElementById("jenisInput");
+const jenisSelect = document.getElementById("jenis");
+    if (selectElement.value == "jenisLain") {
+        jenisBlok.style.display = "block";
+        jenisInput.required = true;
+        jenisInput.value = "";
+    } else {
+        jenisBlok.style.display = "none";
+        jenisInput.required = false;
+        jenisInput.value = jenisSelect.value;
+    }
+}
+
+function handleChangeLama(selectElement) {
+const lamaBlok = document.getElementById("lamaBlok");
+const lamaInput = document.getElementById("lamaInput");
+const lamaSelect = document.getElementById("lama");
+    if (selectElement.value > 10) {
+        lamaBlok.style.display = "block";
+        lamaInput.required = true;
+        lamaInput.value = "";
+        // lamaSelect.value = lamaInput.value;
+        // lamaInput.setAttribute('name', 'lama');
+    } else {
+        lamaBlok.style.display = "none";
+        lamaInput.required = false;
+        // lamaInput.setAttribute('name', '');
+        lamaInput.value = lamaSelect.value;
+    }
+}
+
+function handleChangeBerangkat(selectElement) {
+const berangkatBlok = document.getElementById("berangkatBlok");
+const berangkatInput = document.getElementById("berangkatInput");
+const berangkatSelect = document.getElementById("berangkat");
+    if (selectElement.value == "Lainnya") {
+        berangkatBlok.style.display = "block";
+        berangkatInput.required = true;
+        berangkatInput.value = "";
+    } else {
+        berangkatBlok.style.display = "none";
+        berangkatInput.required = false;
+        // berangkatInput.setAttribute('name', '');
+        berangkatInput.value = berangkatSelect.value;
+    }
+}
+
+// function validateInput() {
+// 			// ambil nilai input
+// 			const inputNilai = document.getElementById("lamaInput").value;
+			
+// 			// periksa apakah nilai input lebih besar dari 10
+// 			if (inputNilai > 10) {
+// 				Toastify({
+// 					text: "Nilai input valid!",
+// 					backgroundColor: "#008080",
+// 					duration: 3000,
+//                     // position: "toastify-toast-bottom",
+//                     gravity: "auto",
+// 					newestOnTop: true,
+//                     stopOnFocus: true
+// 				}).showToast();
+// 			} else {
+// 				Toastify({
+// 					text: "Nilai input harus lebih besar dari 10!",
+// 					backgroundColor: "#FF7373",
+// 					duration: 3000,
+//                     // position: "toastify-toast-bottom",
+//                     gravity: "auto",
+// 					newestOnTop: true,
+//                     stopOnFocus: true
+// 				}).showToast();
+// 			}
+// 		}
+
+
+</script>
 <!-- End of Main Content -->

@@ -120,6 +120,7 @@
     <!-- date picker untuk tahun only -->
     <script src="<?= base_url('assets/'); ?>css/date-picker-tahun/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> -->
 
 
 
@@ -552,84 +553,6 @@
         })
     </script>
 
-<script>
-
-    // function handleChangeBerangkat(select) {
-    //     const berangkatMelalui = "berangkatLainnya";
-    //     if (select.value === berangkatMelalui ) {
-    //         document.getElementById('berangkatInput').style.display = 'block';
-    //     } else {
-    //         document.getElementById('berangkatInput').style.display = 'none';
-    //     }
-    // }
-
-    // function handleChangeJenis(select) {
-    //     const jenisKerja = "jenisLainnya";
-
-    //     if (select.value === jenisKerja) {
-    //     document.getElementById('jenisInput').style.display = 'block';
-    //     } else {
-    //     document.getElementById('jenisInput').style.display = 'none';
-      
-    //     }
-
-    // }
-    // function handleChangeLama(select) {
-    //     if (select.value  > 10) {
-    //     document.getElementById('lamaInput').style.display = 'block';
-    //     } else {
-    //     document.getElementById('lamaInput').style.display = 'none';
-    //     }
-    // }
-
-    // function handleChangeLama(select) {
-    //   const lamaInput = document.getElementById('lamaInput');
-    //   if (select.value > 10) {
-    //     lamaInput.style.display = 'block';
-    //     lamaInput.disabled = false;
-    //   } else {
-    //     lamaInput.style.display = 'none';
-    //     lamaInput.disabled = true;
-    //   }
-    // }
-
-    function handleChangeLama(selectElement) {
-    let lamaInput = document.getElementById("lamaInput");
-    if (selectElement.value > 10) {
-        lamaInput.style.display = "block";
-        lamaInput.required = true;
-        lamaInput.setAttribute('name', 'lama');
-    } else {
-        lamaInput.style.display = "none";
-        lamaInput.required = false;
-        lamaInput.setAttribute('name', '');
-    }
-    }
-
-
-
-
-    function checkValueLama() {
-    var lamaInput = document.getElementById("lamaInput");
-    var lamaSelect = document.getElementById("lama");
-    if (lamaInput.value !== "") {
-        lamaSelect.value = "11";
-    } else {
-        lamaSelect.value = "";
-    }
-    }
-
-
-
-
-    function handleChangeJabatan(select) {
-        if (select.value === (document.querySelectorAll("#jabatan").value)) {
-        document.getElementById('jabatanInput').style.display = 'block';
-        } else {
-        document.getElementById('jabatanInput').style.display = 'none';
-        }
-    }
-    </script>
     
 
     </body>

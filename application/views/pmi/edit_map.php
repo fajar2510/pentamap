@@ -158,61 +158,57 @@
                                     <div class="form-group row">
                                         <label for="jenis" class="col-sm-3 col-form-label">Jenis Pekerjaan</label>
                                         <div class="col-sm-5">
-                                        <!-- <select required class="custom-select" name="jenis" id="jenis" onchange="handleChangeJenis(this)">               
-                                                <option value="Asisten Rumah Tangga"<?php if($lokasi->jenis_pekerjaan=="Asisten Rumah Tangga"){echo "selected";} ?>>Asisten Rumah Tangga</option>
-                                                <option value="Buruh Pabrik"<?php if($lokasi->jenis_pekerjaan=="Buruh Pabrik"){echo "selected";} ?>>Buruh Pabrik</option>
-                                                <option value="Tukang Bangunan"<?php if($lokasi->jenis_pekerjaan=="Tukang Bangunan"){echo "selected";} ?>>Tukang Bangunan</option>
-                                                <option value="Restoran"<?php if($lokasi->jenis_pekerjaan=="Restoran"){echo "selected";} ?>>Restoran</option>
-                                                <option value="Tenaga Kesehatan"<?php if($lokasi->jenis_pekerjaan=="Tenaga Kesehatan"){echo "selected";} ?>>Tenaga Kesehatan</option>
-                                                <option value="jenisLainnya" <?php if($lokasi->jenis_pekerjaan != "jenisLainnya" ) { echo "selected";   } ?>>Lainnya</option>
+                                        <select required class="custom-select" name="jenis" id="jenis" onchange="handleChangeJenis(this)">
+                                            <!-- <option value="">Pilih jenis pekerjaan</option> -->
+                                            <option value="Asisten Rumah Tangga" <?php if($lokasi->jenis_pekerjaan=="Asisten Rumah Tangga"){echo "selected";} ?>>Asisten Rumah Tangga</option>
+                                            <option value="Buruh Pabrik" <?php if($lokasi->jenis_pekerjaan=="Buruh Pabrik"){echo "selected";} ?>>Buruh Pabrik</option>
+                                            <option value="Tukang Bangunan" <?php if($lokasi->jenis_pekerjaan=="Tukang Bangunan"){echo "selected";} ?>>Tukang Bangunan</option>
+                                            <option value="Restoran" <?php if($lokasi->jenis_pekerjaan=="Restoran"){echo "selected";} ?>>Restoran</option>
+                                            <option value="Tenaga Kesehatan" <?php if($lokasi->jenis_pekerjaan=="Tenaga Kesehatan"){echo "selected";} ?>>Tenaga Kesehatan</option>
+                                            <option value="jenisLain" <?php if(!in_array($lokasi->jenis_pekerjaan, array("Asisten Rumah Tangga", "Buruh Pabrik", "Tukang Bangunan", "Restoran", "Tenaga Kesehatan"))){ echo "selected";} ?>>*Lainnya</option>
                                         </select>
-                                                                                       
-                                        <?php if ($lokasi->jenis_pekerjaan == "jenisLainnya" ) : ?>
-                                            <div id="jenisInput" style="padding-top:10px;">
-                                                <input  type="text"  name="jenis" class="form-control" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jenis_pekerjaan; ?>">
+
+                                        <?php if (!in_array($lokasi->jenis_pekerjaan, array("Asisten Rumah Tangga", "Buruh Pabrik", "Tukang Bangunan", "Restoran", "Tenaga Kesehatan"))) : ?>
+                                            <div id="jenisBlok" style="padding-top:10px;">
+                                                <input  type="text"  name="jenis" class="form-control" id="jenisInput" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jenis_pekerjaan; ?>">
                                             </div>
                                         <?php else: ?>
-                                            <div id="jenis" style="display: none; padding-top:10px;">
-                                                <input  type="text"  name="jenis" class="form-control" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
+                                            <div id="jenisBlok" style="display: none; padding-top:10px;">
+                                                <input  type="text"  name="jenis" class="form-control" id="jenisInput" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jenis_pekerjaan; ?>">
                                             </div>
-                                        <?php endif; ?> -->
-                                            <input required type="text" class="form-control" id="jenis" placeholder="" name="jenis" value="<?= $lokasi->jenis_pekerjaan ?>">
-                                            <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
+                                        <?php endif; ?>
+
+                                        <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="berangkat" class="col-sm-3 col-form-label">Berangkat Melalui</label>
                                         <div class="col-sm-5">
-                                        <!-- <select required class="custom-select" name="berangkat" id="berangkat" onchange="handleChangeBerangkat(this)">
+                                        <select required class="custom-select" name="berangkat" id="berangkat" onchange="handleChangeBerangkat(this)">
                               
                                                 <option value="Batam"<?php if($lokasi->berangkat_melalui=="Batam"){echo "selected";} ?>>Batam</option>
                                                 <option value="Serawak"<?php if($lokasi->berangkat_melalui=="Serawak"){echo "selected";} ?>>Serawak</option>
                                                 <option value="Pangkal Pinang"<?php if($lokasi->berangkat_melalui=="Pangkal Pinang"){echo "selected";} ?>>Pangkal Pinang</option>
                                                 <option value="Tanjung Pinang"<?php if($lokasi->berangkat_melalui=="Tanjung Pinang"){echo "selected";} ?>>Tanjung Pinang</option>
                                                 <option value="Tekong"<?php if($lokasi->berangkat_melalui=="Tekong"){echo "selected";} ?>>Tekong</option>
-                                                <option value="berangkatLainnya"<?php if($lokasi->jenis_pekerjaan!= "Batam" && 
-                                                $lokasi->berangkat_melalui != "Serawak" && $lokasi->berangkat_melalui != "Pangkal Pinang" 
-                                                && $lokasi->berangkat_melalui != "Tanjung Pinang" && $lokasi->berangkat_melalui != "Tekong"){echo "selected";} ?>>Lainnya</option>
+                                                <option value="Lainnya"<?php if(in_array($lokasi->berangkat_melalui, ["Batam", "Serawak", "Pangkal Pinang", "Tanjung Pinang", "Tekong"]) === false)
+                                                {echo "selected";} ?>>*Lainnya</option>
                                    
                                         </select>
 
-                                        <?php if (
-                                            $lokasi->berangkat_melalui == "Batam" || 
-                                            $lokasi->berangkat_melalui == "Serawak" || 
-                                            $lokasi->berangkat_melalui == "Pangkal Pinang" || 
-                                            $lokasi->berangkat_melalui == "Tanjung Pinang" || 
-                                            $lokasi->berangkat_melalui == "Tekong"
-                                        ) : ?>
-                                            <div id="berangkatInput" style="display: none; padding-top:10px;">
-                                                <input type="text" name="berangkat" id="berangkat" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf">
+                                        <?php if (in_array($lokasi->berangkat_melalui, 
+                                        ["Batam", "Serawak", "Pangkal Pinang", "Tanjung Pinang", "Tekong"]) === false   ) : ?>
+                                            <div id="berangkatBlok" style="padding-top:10px;">
+                                                <input type="text" name="berangkat" id="berangkatInput" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->berangkat_melalui; ?>">
                                             </div>
+                                            
                                         <?php else : ?>
-                                            <div id="berangkatInput" style="padding-top:10px;">
-                                                <input type="text" name="berangkat" id="berangkat" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->berangkat_melalui; ?>">
+                                            <div id="berangkatBlok" style="display: none; padding-top:10px;">
+                                                <input type="text" name="berangkat" id="berangkatInput" class="form-control" placeholder="Silahkan isi. . ." pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->berangkat_melalui; ?>">
                                             </div>
-                                        <?php endif; ?> -->
+                                        <?php endif; ?>
 
-                                            <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $lokasi->berangkat_melalui ?>">
+                                            <!-- <input required type="text" class="form-control" id="berangkat" placeholder="" name="berangkat" value="<?= $lokasi->berangkat_melalui ?>"> -->
                                             <?= form_error('berangkat', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -228,25 +224,33 @@
                                         <div class="col-sm-5">
 
                                         <select required class="custom-select" name="lama" id="lama" class="form-control" onchange="handleChangeLama(this)">
-                                            <?php
-                                            for ($i=1; $i<=10; $i++) {
-                                                $selected = ($i == $lokasi->lama_bekerja) ? 'selected' : '';
-                                                echo "<option value='$i' $selected> $i tahun </option>";
+                                        <?php 
+                                        for ($i=1; $i<=11; $i++) {
+                                            if ($i <= 10) {
+                                                if ($i == $lokasi->lama_bekerja) {
+                                                    echo "<option value='$i' selected> $i tahun </option>";
+                                                } else {
+                                                    echo "<option value='$i'> $i tahun </option>";
+                                                }
+                                            } else {
+                                                if ($i == $lokasi->lama_bekerja) {
+                                                    echo "<option value='$i' selected>*Lebih dari 10 tahun </option>";
+                                                } else {
+                                                    echo "<option value='$i'>*Lebih dari 10 tahun </option>";
+                                                }
                                             }
-                                            ?>
-                                            <?php if ($lokasi->lama_bekerja > 10) : ?>
-                                                <option value="11" selected> Lebih dari 10 tahun </option>
-                                            <?php endif; ?>
+                                        }
+                                        ?>
                                         </select>
 
                                         <?php if ($lokasi->lama_bekerja > 10) : ?>
-                                            <div id="lamaInput" style="padding-top:10px; width:100px;">
-                                                <input required  type="text"  name="lama" id="1lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>" onchange="checkValueLama()">
+                                            <div id="lamaBlok" style="padding-top:10px; width:100px;">
+                                                <input  type="number" min="11"  name="lama" id="lamaInput" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>">
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
                                         <?php else: ?>
-                                            <div id="lamaInput" style="display: none; padding-top:10px; width:100px;">
-                                                <input required  type="text"  name="lama" id="2lama" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" onchange="checkValueLama()">
+                                            <div id="lamaBlok" style="display: none; padding-top:10px; width:160px;">
+                                                <input  type="number" min="11"  name="lama" id="lamaInput" class="form-control" placeholder="Silahkan isi. . ." pattern="^[0-9]*$" title="Format salah, hanya gunakan Angka" value="<?php echo $lokasi->lama_bekerja; ?>">
                                                 <small id="helpInfo" class="form-text text-muted"> <i> *hanya angka! </i></small>
                                             </div>
                                         <?php endif; ?>
@@ -283,4 +287,58 @@
     <!-- /.container-fluid -->
 
 </div>
+
+<!-- untuk dinamis selection -->
+<script type="text/javascript">
+
+function handleChangeJenis(selectElement) {
+const jenisBlok = document.getElementById("jenisBlok");
+const jenisInput = document.getElementById("jenisInput");
+const jenisSelect = document.getElementById("jenis");
+
+    if (selectElement.value == "jenisLain") {
+        jenisBlok.style.display = "block";
+        jenisInput.required = true;
+        jenisInput.value = "";
+    } else {
+        jenisBlok.style.display = "none";
+        jenisInput.required = false;
+        jenisInput.value = jenisSelect.value;
+    }
+}
+
+function handleChangeLama(selectElement) {
+const lamaBlok = document.getElementById("lamaBlok");
+const lamaInput = document.getElementById("lamaInput");
+const lamaSelect = document.getElementById("lama");
+    if (selectElement.value > 10) {
+        lamaBlok.style.display = "block";
+        lamaInput.required = true;
+        lamaInput.value = "";
+    } else {
+        lamaBlok.style.display = "none";
+        lamaInput.required = false;
+        // lamaInput.setAttribute('name', '');
+        lamaInput.value = lamaSelect.value;
+    }
+}
+
+function handleChangeBerangkat(selectElement) {
+const berangkatBlok = document.getElementById("berangkatBlok");
+const berangkatInput = document.getElementById("berangkatInput");
+const berangkatSelect = document.getElementById("berangkat");
+    if (selectElement.value == "Lainnya") {
+        berangkatBlok.style.display = "block";
+        berangkatInput.required = true;
+        berangkatInput.value = "";
+    } else {
+        berangkatBlok.style.display = "none";
+        berangkatInput.required = false;
+        // berangkatInput.setAttribute('name', '');
+        berangkatInput.value = berangkatSelect.value;
+    }
+}
+
+
+</script>
 <!-- End of Main Content -->

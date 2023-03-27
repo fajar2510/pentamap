@@ -171,7 +171,30 @@
                                     <div class="form-group row">
                                         <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                                         <div class="col-sm-5">
-                                            <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $lokasi->jabatan ?>">
+                                        <select required class="custom-select" name="jabatan" id="jabatan" onchange="handleChangeJabatan(this)">
+
+                                            <option value="Manager" <?php if($lokasi->jabatan=="Manager"){echo "selected";} ?>>Manager</option>
+                                            <option value="Senior Manager" <?php if($lokasi->jabatan=="Senior Manager"){echo "selected";} ?>>Senior Manager</option>
+                                            <option value="Supervisor" <?php if($lokasi->jabatan=="Supervisor"){echo "selected";} ?>>Supervisor</option>
+                                            <option value="Koordinator" <?php if($lokasi->jabatan=="Koordinator"){echo "selected";} ?>>Koordinator</option>
+                                            <option value="Teknisi" <?php if($lokasi->jabatan=="Teknisi"){echo "selected";} ?>>Teknisi</option>
+                                            <option value="Operator" <?php if($lokasi->jabatan=="Operator"){echo "selected";} ?>>Operator</option>
+                                            <option value="Mekanik" <?php if($lokasi->jabatan=="Mekanik"){echo "selected";} ?>>Mekanik</option>
+                                            <option value="Pekerja Kontruksi" <?php if($lokasi->jabatan=="Pekerja Kontruksi"){echo "selected";} ?>>Pekerja Kontruksi</option>
+                                            <option value="jabLain" <?php if(!in_array($lokasi->jabatan, array("Manager", "Senior Manager", "Supervisor", "Koordinator", "Teknisi","Mekanik","Operator","Pekerja Kontruksi"))){ echo "selected";} ?>>*Lainnya</option>
+                                        </select>
+
+                                        <?php if (!in_array($lokasi->jabatan, array("Manager", "Senior Manager", "Supervisor", "Koordinator", "Teknisi","Mekanik","Operator","Pekerja Kontruksi"))) : ?>
+                                            <div id="jabatanBlok" style="padding-top:10px;">
+                                                <input  type="text"  name="jabatan" class="form-control" id="jabatanInput" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jabatan; ?>">
+                                            </div>
+                                        <?php else: ?>
+                                            <div id="jabatanBlok" style="display: none; padding-top:10px;">
+                                                <input  type="text"  name="jabatan" class="form-control" id="jabatanInput" placeholder="Silahkan isi. . ."  pattern="[a-zA-Z ]+" title="Hanya gunakan huruf" value="<?= $lokasi->jabatan; ?>">
+                                            </div>
+                                        <?php endif; ?>
+
+                                            <!-- <input required type="text" class="form-control" id="jabatan" placeholder="" name="jabatan" value="<?= $lokasi->jabatan ?>"> -->
                                             <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -227,4 +250,22 @@
     <!-- /.container-fluid -->
 
 </div>
+
+<script>
+    function handleChangeJabatan(selectElement) {
+    const jabatanBlok = document.getElementById("jabatanBlok");
+    const jabatanInput = document.getElementById("jabatanInput");
+    const jabatanSelect = document.getElementById("jabatan");
+        if (selectElement.value == "jabLain") {
+            jabatanBlok.style.display = "block";
+            jabatanInput.required = true;
+            jabatanInput.value = "";
+        } else {
+            jabatanBlok.style.display = "none";
+            jabatanInput.required = false;
+            // jabatanInput.setAttribute('name', '');
+            jabatanInput.value = jabatanSelect.value;
+        }
+    }
+</script>
 <!-- End of Main Content -->
